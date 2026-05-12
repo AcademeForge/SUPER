@@ -1,25 +1,23 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AcademeForge App</title>
 
   <style>
     :root {
-      --bg: #050816;
-      --bg2: #080f2b;
-      --card: rgba(255, 255, 255, 0.08);
-      --card2: rgba(255, 255, 255, 0.12);
-      --text: #f8fafc;
-      --muted: #aab4d4;
-      --gold: #f8c75c;
-      --blue: #6ee7ff;
-      --purple: #a78bfa;
-      --green: #5eead4;
-      --danger: #fb7185;
-      --border: rgba(255,255,255,0.14);
-      --shadow: 0 24px 80px rgba(0,0,0,0.45);
+      --bg: #f6f9fc;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #64748b;
+      --primary: #d95b6a;
+      --primary2: #f07b88;
+      --soft: #fff1f3;
+      --blueSoft: #eef7ff;
+      --greenSoft: #effcf7;
+      --border: #e8edf3;
+      --shadow: 0 16px 45px rgba(15, 23, 42, 0.08);
       --radius: 24px;
     }
 
@@ -28,21 +26,14 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
       margin: 0;
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
       background:
-        radial-gradient(circle at 10% 0%, rgba(167,139,250,0.28), transparent 28%),
-        radial-gradient(circle at 90% 10%, rgba(110,231,255,0.20), transparent 28%),
-        radial-gradient(circle at 50% 100%, rgba(248,199,92,0.12), transparent 30%),
-        linear-gradient(135deg, var(--bg), var(--bg2));
+        radial-gradient(circle at top left, #ffe9ed, transparent 28%),
+        radial-gradient(circle at top right, #eaf6ff, transparent 30%),
+        var(--bg);
       color: var(--text);
-      min-height: 100vh;
-      overflow-x: hidden;
     }
 
     a {
@@ -51,29 +42,20 @@
     }
 
     .app {
-      width: 100%;
       max-width: 480px;
       margin: 0 auto;
       min-height: 100vh;
       padding-bottom: 90px;
-      position: relative;
-    }
-
-    .glass {
-      background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
     }
 
     .topbar {
       position: sticky;
       top: 0;
       z-index: 50;
-      padding: 14px 16px 10px;
-      background: linear-gradient(180deg, rgba(5,8,22,0.96), rgba(5,8,22,0.72), transparent);
-      backdrop-filter: blur(12px);
+      background: rgba(246, 249, 252, 0.86);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(232, 237, 243, 0.7);
+      padding: 14px 16px;
     }
 
     .top-row {
@@ -86,209 +68,59 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 11px;
     }
 
     .logo {
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       border-radius: 15px;
       display: grid;
       place-items: center;
-      background:
-        linear-gradient(135deg, rgba(248,199,92,0.95), rgba(167,139,250,0.95));
-      color: #0b1020;
+      color: white;
       font-weight: 900;
-      box-shadow: 0 12px 40px rgba(248,199,92,0.20);
+      background: linear-gradient(135deg, var(--primary), var(--primary2));
+      box-shadow: 0 10px 24px rgba(217, 91, 106, 0.22);
     }
 
     .brand h1 {
       margin: 0;
-      font-size: 17px;
-      letter-spacing: 0.2px;
+      font-size: 19px;
+      letter-spacing: 0.3px;
+      color: var(--primary);
     }
 
     .brand p {
       margin: 2px 0 0;
-      color: var(--muted);
       font-size: 11px;
+      color: var(--muted);
     }
 
-    .time-box {
-      padding: 9px 11px;
+    .time-pill {
+      background: white;
+      border: 1px solid var(--border);
       border-radius: 16px;
-      font-size: 12px;
+      padding: 8px 10px;
       text-align: right;
-      min-width: 86px;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.05);
+      min-width: 82px;
     }
 
-    .time-box strong {
+    .time-pill strong {
       display: block;
       font-size: 14px;
-      color: var(--gold);
+      color: var(--primary);
     }
 
-    .calculator {
-      margin-top: 12px;
-      padding: 10px;
-      border-radius: 20px;
-      display: grid;
-      grid-template-columns: 1fr auto auto;
-      gap: 8px;
-      align-items: center;
-    }
-
-    .calculator input {
-      width: 100%;
-      background: rgba(255,255,255,0.08);
-      color: var(--text);
-      border: 1px solid rgba(255,255,255,0.14);
-      border-radius: 14px;
-      padding: 12px 12px;
-      outline: none;
-      font-size: 14px;
-    }
-
-    .calculator button,
-    .btn {
-      border: 0;
-      border-radius: 14px;
-      padding: 12px 14px;
-      color: #07111f;
-      background: linear-gradient(135deg, var(--gold), #fff0a3);
-      font-weight: 800;
-      cursor: pointer;
-      box-shadow: 0 10px 28px rgba(248,199,92,0.18);
-    }
-
-    .calc-result {
-      color: var(--green);
-      font-weight: 800;
-      font-size: 13px;
-      min-width: 52px;
-      text-align: right;
-    }
-
-    .hero {
-      margin: 10px 16px 0;
-      padding: 24px 18px;
-      border-radius: 30px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: -1px;
-      background:
-        radial-gradient(circle at 10% 10%, rgba(248,199,92,0.18), transparent 34%),
-        radial-gradient(circle at 90% 20%, rgba(110,231,255,0.14), transparent 35%);
-      pointer-events: none;
-    }
-
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 8px 11px;
-      border-radius: 999px;
-      background: rgba(248,199,92,0.12);
-      border: 1px solid rgba(248,199,92,0.28);
-      color: #ffe6a3;
-      font-size: 12px;
-      font-weight: 700;
-      position: relative;
-    }
-
-    .hero h2 {
-      margin: 16px 0 8px;
-      font-size: 30px;
-      line-height: 1.05;
-      letter-spacing: -1px;
-      position: relative;
-    }
-
-    .hero p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.6;
-      font-size: 14px;
-      position: relative;
-    }
-
-    .notice {
-      margin-top: 16px;
-      padding: 14px;
-      border-radius: 20px;
-      background: rgba(251,113,133,0.12);
-      border: 1px solid rgba(251,113,133,0.26);
-      color: #ffd0d8;
-      font-size: 13px;
-      line-height: 1.5;
-      position: relative;
-    }
-
-    .actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin: 16px;
-    }
-
-    .action-card {
-      border-radius: 24px;
-      padding: 16px;
-      min-height: 122px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: 0.25s ease;
-    }
-
-    .action-card:active {
-      transform: scale(0.98);
-    }
-
-    .icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.12);
-      font-size: 20px;
-    }
-
-    .action-card h3 {
-      margin: 12px 0 4px;
-      font-size: 15px;
-    }
-
-    .action-card p {
-      margin: 0;
+    .time-pill span {
       font-size: 11px;
       color: var(--muted);
-      line-height: 1.45;
-    }
-
-    .wide {
-      grid-column: span 2;
-      min-height: auto;
-      flex-direction: row;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .wide div:last-child {
-      flex: 1;
     }
 
     .section {
       display: none;
-      margin: 16px;
-      animation: fade 0.25s ease;
+      padding: 16px;
+      animation: fade 0.22s ease;
     }
 
     .section.active {
@@ -300,20 +132,168 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    .hero {
+      background: linear-gradient(135deg, #ffffff, #fff6f7);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      padding: 22px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      background: rgba(217, 91, 106, 0.08);
+      right: -60px;
+      top: -50px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 800;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h2 {
+      margin: 16px 0 8px;
+      font-size: 30px;
+      line-height: 1.08;
+      letter-spacing: -0.8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 16px;
+      padding: 13px 14px;
+      font-weight: 900;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--primary), var(--primary2));
+      color: white;
+      box-shadow: 0 12px 25px rgba(217, 91, 106, 0.22);
+    }
+
+    .btn.secondary {
+      background: white;
+      color: var(--primary);
+      border: 1px solid #ffd3d9;
+      box-shadow: none;
+    }
+
+    .notice {
+      margin-top: 14px;
+      background: #fff8e8;
+      border: 1px solid #ffe2a7;
+      color: #7c5a12;
+      border-radius: 18px;
+      padding: 13px;
+      font-size: 13px;
+      line-height: 1.5;
+      position: relative;
+      z-index: 1;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 13px;
+      margin-top: 16px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 16px;
+    }
+
+    .tap {
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .tap:active {
+      transform: scale(0.98);
+    }
+
+    .wide {
+      grid-column: span 2;
+    }
+
+    .icon {
+      width: 43px;
+      height: 43px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: var(--soft);
+      color: var(--primary);
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .card h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+    }
+
+    .card p, .card li {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
     .panel {
-      border-radius: 26px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
       padding: 18px;
       margin-bottom: 14px;
     }
 
     .panel h2 {
       margin: 0 0 8px;
-      font-size: 22px;
+      font-size: 24px;
     }
 
     .panel h3 {
-      margin: 14px 0 8px;
-      font-size: 16px;
+      margin: 18px 0 8px;
+      font-size: 17px;
     }
 
     .panel p, .panel li {
@@ -323,7 +303,7 @@
     }
 
     .input-group {
-      margin: 12px 0;
+      margin-top: 12px;
     }
 
     .input-group label {
@@ -337,55 +317,75 @@
       width: 100%;
       padding: 14px;
       border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.08);
-      color: var(--text);
+      border: 1px solid var(--border);
+      background: #fbfdff;
       outline: none;
+      font-size: 14px;
     }
 
-    .login-note {
-      margin-top: 12px;
-      padding: 12px;
-      border-radius: 16px;
-      background: rgba(110,231,255,0.08);
-      border: 1px solid rgba(110,231,255,0.18);
-      color: #dffaff;
-      font-size: 12px;
+    .info-box {
+      margin-top: 13px;
+      padding: 13px;
+      border-radius: 18px;
+      background: var(--blueSoft);
+      border: 1px solid #d8edff;
+      color: #35506b;
+      font-size: 13px;
       line-height: 1.5;
+    }
+
+    .notice-board {
+      display: grid;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .notice-item {
+      padding: 14px;
+      border-radius: 20px;
+      background: #fff;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
+    }
+
+    .notice-item strong {
+      display: block;
+      color: var(--primary);
+      margin-bottom: 5px;
     }
 
     .course-grid {
       display: grid;
       gap: 12px;
-      margin-top: 14px;
+      margin-top: 12px;
     }
 
     .course {
       padding: 14px;
       border-radius: 20px;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.11);
+      background: #fbfdff;
+      border: 1px solid var(--border);
     }
 
     .course strong {
       display: block;
-      color: var(--text);
       margin-bottom: 5px;
     }
 
     .team {
       display: grid;
       gap: 12px;
-      margin-top: 14px;
+      margin-top: 12px;
     }
 
     .member {
       display: flex;
       gap: 12px;
+      align-items: flex-start;
       padding: 14px;
       border-radius: 20px;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.11);
+      background: #fbfdff;
+      border: 1px solid var(--border);
     }
 
     .avatar {
@@ -394,59 +394,71 @@
       border-radius: 16px;
       display: grid;
       place-items: center;
-      background: linear-gradient(135deg, var(--purple), var(--blue));
-      color: #07111f;
+      background: linear-gradient(135deg, var(--primary), var(--primary2));
+      color: white;
       font-weight: 900;
       flex: 0 0 auto;
     }
 
     .member h4 {
       margin: 0 0 3px;
-      font-size: 14px;
+      font-size: 15px;
     }
 
     .member p {
       margin: 0;
-      font-size: 12px;
-      line-height: 1.45;
-    }
-
-    .ticker {
-      margin: 16px;
-      padding: 13px 14px;
-      border-radius: 20px;
-      background: rgba(94,234,212,0.09);
-      border: 1px solid rgba(94,234,212,0.18);
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-    }
-
-    .ticker span {
-      font-size: 18px;
-    }
-
-    .ticker p {
-      margin: 0;
-      color: #d8fffa;
       font-size: 13px;
-      line-height: 1.45;
+    }
+
+    .tools-row {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .calc-box {
+      display: none;
+      margin-top: 12px;
+      background: #fbfdff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 14px;
+    }
+
+    .calc-box.active {
+      display: block;
+    }
+
+    .calc-box input {
+      width: 100%;
+      padding: 14px;
+      border-radius: 15px;
+      border: 1px solid var(--border);
+      outline: none;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .result {
+      font-weight: 900;
+      color: var(--primary);
+      margin-top: 8px;
     }
 
     .toast {
       position: fixed;
       left: 50%;
       bottom: 86px;
-      transform: translateX(-50%) translateY(30px);
+      transform: translateX(-50%) translateY(25px);
       width: min(440px, calc(100% - 28px));
+      background: white;
+      border: 1px solid var(--border);
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.16);
+      border-radius: 22px;
       padding: 14px;
-      border-radius: 20px;
-      background: rgba(8, 15, 43, 0.96);
-      border: 1px solid rgba(255,255,255,0.16);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
       opacity: 0;
       pointer-events: none;
-      transition: 0.3s ease;
+      transition: 0.25s ease;
       z-index: 100;
     }
 
@@ -456,9 +468,9 @@
     }
 
     .toast strong {
+      color: var(--primary);
       display: block;
       margin-bottom: 4px;
-      color: var(--gold);
     }
 
     .toast p {
@@ -474,20 +486,24 @@
       bottom: 12px;
       transform: translateX(-50%);
       width: min(450px, calc(100% - 24px));
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(14px);
+      border: 1px solid var(--border);
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.13);
+      border-radius: 24px;
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 8px;
       padding: 8px;
-      border-radius: 24px;
-      z-index: 80;
+      gap: 6px;
+      z-index: 90;
     }
 
     .nav-btn {
-      border: 0;
+      border: none;
       background: transparent;
       color: var(--muted);
-      border-radius: 18px;
-      padding: 10px 4px;
+      border-radius: 17px;
+      padding: 9px 4px;
       font-size: 10px;
       cursor: pointer;
     }
@@ -499,76 +515,27 @@
     }
 
     .nav-btn.active {
-      background: rgba(255,255,255,0.12);
-      color: var(--text);
-    }
-
-    .link-btn {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      width: 100%;
-      margin-top: 12px;
-      border-radius: 16px;
-      padding: 13px 14px;
-      background: linear-gradient(135deg, var(--gold), #fff1a8);
-      color: #07111f;
-      font-weight: 900;
-      border: 0;
-      cursor: pointer;
-    }
-
-    .secondary {
-      background: rgba(255,255,255,0.09);
-      color: var(--text);
-      border: 1px solid rgba(255,255,255,0.14);
-      box-shadow: none;
-    }
-
-    .mini-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 12px;
-    }
-
-    .stat {
-      padding: 14px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 20px;
-      color: var(--gold);
-    }
-
-    .stat small {
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    .dev-badge {
-      display: inline-block;
-      margin-top: 12px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      background: rgba(167,139,250,0.12);
-      border: 1px solid rgba(167,139,250,0.25);
-      color: #ddd6fe;
-      font-size: 12px;
-      font-weight: 700;
+      background: var(--soft);
+      color: var(--primary);
+      font-weight: 800;
     }
 
     @media (max-width: 360px) {
-      .hero h2 { font-size: 26px; }
-      .actions { grid-template-columns: 1fr; }
-      .wide { grid-column: span 1; }
-      .bottom-nav { grid-template-columns: repeat(5, 1fr); }
-      .nav-btn { font-size: 9px; }
+      .hero h2 {
+        font-size: 26px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .wide {
+        grid-column: span 1;
+      }
+
+      .hero-actions {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -582,201 +549,159 @@
           <div class="logo">AF</div>
           <div>
             <h1>AcademeForge</h1>
-            <p>Learning Beyond the Classroom</p>
+            <p>Learning Beyond The Classroom</p>
           </div>
         </div>
 
-        <div class="time-box glass">
+        <div class="time-pill">
           <strong id="time">--:--</strong>
           <span id="date">Loading</span>
         </div>
       </div>
-
-      <div class="calculator glass">
-        <input id="calcInput" type="text" inputmode="decimal" placeholder="Quick calculator: 25*4+10" />
-        <button onclick="calculate()">=</button>
-        <div class="calc-result" id="calcResult">0</div>
-      </div>
     </header>
 
     <section id="home" class="section active">
-      <div class="hero glass">
-        <div class="tag">🚧 App Preview Build</div>
-        <h2>AcademeForge App is under development.</h2>
+      <div class="hero">
+        <div class="badge">🚧 Preview App</div>
+        <h2>Welcome to AcademeForge App</h2>
         <p>
-          A premium student-first learning space is being prepared for practical skills,
-          clarity, discipline, and real-world growth.
+          A student-first learning companion for courses, notices, team updates,
+          and future student dashboard access.
         </p>
 
         <div class="notice">
-          <b>Development Notice:</b> This is an early app version. Student login, office login,
-          learning dashboard, and notification features are being improved step by step.
+          <b>App is under development.</b><br>
+          Student login, office login, notifications, and learning dashboard are being prepared.
         </div>
 
-        <span class="dev-badge">Version 1.0 Preview</span>
+        <div class="hero-actions">
+          <button class="btn" onclick="showSection('student')">Student Login</button>
+          <button class="btn secondary" onclick="showSection('explore')">Explore</button>
+        </div>
       </div>
 
-      <div class="ticker glass">
-        <span>🔔</span>
-        <p id="tickerText">Welcome to AcademeForge. Stay consistent, keep learning, and build skills with clarity.</p>
-      </div>
-
-      <div class="actions">
-        <button class="action-card glass" onclick="showSection('student')">
+      <div class="grid">
+        <div class="card tap" onclick="showSection('student')">
           <div class="icon">🎓</div>
-          <div>
-            <h3>Student Login</h3>
-            <p>Access student dashboard preview and future learning tools.</p>
-          </div>
-        </button>
+          <h3>Student Login</h3>
+          <p>Dashboard preview and future student tools.</p>
+        </div>
 
-        <button class="action-card glass" onclick="showSection('office')">
+        <div class="card tap" onclick="showSection('office')">
           <div class="icon">🏢</div>
-          <div>
-            <h3>Office Login</h3>
-            <p>For team, office, management, and internal operations.</p>
-          </div>
-        </button>
+          <h3>Office Login</h3>
+          <p>Internal access for team and office work.</p>
+        </div>
 
-        <button class="action-card glass wide" onclick="showSection('explore')">
-          <div class="icon">✨</div>
-          <div>
-            <h3>Explore Without Login</h3>
-            <p>Read about AcademeForge, courses, programs, AST, and contact details.</p>
-          </div>
-        </button>
+        <div class="card tap wide" onclick="showSection('notices')">
+          <div class="icon">🔔</div>
+          <h3>Notice Board</h3>
+          <p id="latestNotice">Latest student updates will appear here.</p>
+        </div>
 
-        <button class="action-card glass wide" onclick="showSection('management')">
-          <div class="icon">👥</div>
-          <div>
-            <h3>Management & Team</h3>
-            <p>Know the people behind AcademeForge and their roles.</p>
-          </div>
-        </button>
+        <div class="card tap wide" onclick="showSection('tools')">
+          <div class="icon">🧮</div>
+          <h3>Student Tools</h3>
+          <p>Quick calculator and useful mini tools for students.</p>
+        </div>
       </div>
     </section>
 
     <section id="student" class="section">
-      <div class="panel glass">
+      <div class="panel">
         <h2>🎓 Student Login</h2>
-        <p>Login system is currently in development. This preview keeps the interface ready for future student dashboard.</p>
+        <p>This is a preview login screen. Real student dashboard will be added in future updates.</p>
 
         <div class="input-group">
           <label>Student ID / Mobile Number</label>
-          <input type="text" placeholder="Enter Student ID" />
+          <input type="text" placeholder="Enter Student ID">
         </div>
 
         <div class="input-group">
           <label>Password</label>
-          <input type="password" placeholder="Enter Password" />
+          <input type="password" placeholder="Enter Password">
         </div>
 
-        <button class="link-btn" onclick="demoLogin('Student')">Login Preview</button>
+        <button class="btn" style="width:100%; margin-top:14px;" onclick="demoLogin('Student')">Login Preview</button>
 
-        <div class="login-note">
-          Future features: course progress, class updates, tasks, certificates, AST updates,
-          notices, and learning resources.
+        <div class="info-box">
+          Future dashboard: course progress, notices, tasks, certificates, learning resources, and AST updates.
         </div>
       </div>
     </section>
 
     <section id="office" class="section">
-      <div class="panel glass">
+      <div class="panel">
         <h2>🏢 Office Login</h2>
-        <p>Office login is reserved for AcademeForge team and management operations.</p>
+        <p>Reserved for AcademeForge team, management, and internal operations.</p>
 
         <div class="input-group">
           <label>Office Email / Staff ID</label>
-          <input type="text" placeholder="Enter Office ID" />
+          <input type="text" placeholder="Enter Office ID">
         </div>
 
         <div class="input-group">
           <label>Password</label>
-          <input type="password" placeholder="Enter Password" />
+          <input type="password" placeholder="Enter Password">
         </div>
 
-        <button class="link-btn" onclick="demoLogin('Office')">Login Preview</button>
+        <button class="btn" style="width:100%; margin-top:14px;" onclick="demoLogin('Office')">Login Preview</button>
 
-        <div class="login-note">
-          Future features: student records, notices, admissions, course updates, feedback,
-          and internal team dashboard.
+        <div class="info-box">
+          Future office panel: student records, admissions, notices, feedback, and course updates.
         </div>
       </div>
     </section>
 
     <section id="explore" class="section">
-      <div class="panel glass">
+      <div class="panel">
         <h2>✨ Explore AcademeForge</h2>
         <p>
-          AcademeForge is a student-focused learning initiative built around practical skills,
-          consistency, digital creativity, and real-world understanding.
+          AcademeForge helps students build practical skills, creativity, and AI-powered knowledge beyond traditional education.
         </p>
-
-        <div class="mini-row">
-          <div class="stat">
-            <strong>2024</strong>
-            <small>Founded</small>
-          </div>
-          <div class="stat">
-            <strong>Skill-first</strong>
-            <small>Learning model</small>
-          </div>
-        </div>
-
-        <h3>Learning Focus</h3>
-        <ul>
-          <li>Foundation-first learning</li>
-          <li>Short practical lessons</li>
-          <li>Digital skills and creativity</li>
-          <li>Discipline, consistency, and execution</li>
-          <li>Future AST learning and assessment phase</li>
-        </ul>
 
         <h3>Course Programs</h3>
         <div class="course-grid">
           <div class="course">
             <strong>Video & Media Editing</strong>
-            <p>Create content that captures attention and builds digital creativity.</p>
+            <p>Create content that looks professional and communicates clearly.</p>
           </div>
           <div class="course">
             <strong>Creative & Graphic Design</strong>
-            <p>Turn ideas into clean, engaging, and impactful visuals.</p>
+            <p>Learn design thinking, visual creativity, and practical branding basics.</p>
           </div>
           <div class="course">
             <strong>AI Coding & Logic Foundation</strong>
-            <p>Build smart thinking with coding basics, logic, and AI fundamentals.</p>
+            <p>Start with logic, coding basics, and AI-supported learning.</p>
           </div>
           <div class="course">
             <strong>Freelancing & Monetization</strong>
-            <p>Understand how digital skills can create real online opportunities.</p>
+            <p>Understand how digital skills can become real opportunities.</p>
           </div>
         </div>
 
         <h3>Contact</h3>
         <p>
-          Location: Patna, Bihar, India<br />
-          Email: academeforge@gmail.com
+          Official Website: academeforge.in<br>
+          Email: academeforge@gmail.com<br>
+          Location: Patna, Bihar, India
         </p>
 
-        <button class="link-btn" onclick="openWebsite()">Open Official Website</button>
-        <button class="link-btn secondary" onclick="copyWebsite()">Copy Website Link</button>
+        <button class="btn" style="width:100%;" onclick="openWebsite()">Open Website</button>
       </div>
     </section>
 
     <section id="management" class="section">
-      <div class="panel glass">
+      <div class="panel">
         <h2>👥 Management & Team</h2>
-        <p>
-          AcademeForge is powered by young innovators and learners working to build a better
-          student-first learning experience.
-        </p>
+        <p>Meet the team working to build a better student-first learning experience.</p>
 
         <div class="team">
           <div class="member">
             <div class="avatar">D</div>
             <div>
               <h4>Devraj Kumar</h4>
-              <p>Founder — focused on modern education, AI-powered learning, creativity, and student empowerment.</p>
+              <p>Founder — modern education, AI-powered learning, creativity, and student empowerment.</p>
             </div>
           </div>
 
@@ -784,7 +709,7 @@
             <div class="avatar">M</div>
             <div>
               <h4>Mandeep Harsh</h4>
-              <p>Co-Founder — helping shape growth, strategy, and student learning experiences.</p>
+              <p>Co-Founder — growth, strategy, and student learning experience.</p>
             </div>
           </div>
 
@@ -792,7 +717,7 @@
             <div class="avatar">P</div>
             <div>
               <h4>Palak Kumari Jha</h4>
-              <p>Moderator — supporting student engagement, community, and smooth learning experience.</p>
+              <p>Moderator — student engagement and community support.</p>
             </div>
           </div>
 
@@ -800,9 +725,201 @@
             <div class="avatar">A</div>
             <div>
               <h4>Ayush Raj</h4>
-              <p>Moderator — assisting with student coordination, platform activities, and learning environment.</p>
+              <p>Moderator — student coordination and platform activities.</p>
             </div>
           </div>
         </div>
       </div>
- 
+    </section>
+
+    <section id="notices" class="section">
+      <div class="panel">
+        <h2>🔔 Notice Board</h2>
+        <p>Student updates will rotate automatically while the app is open.</p>
+
+        <div class="notice-board" id="noticeBoard"></div>
+
+        <button class="btn" style="width:100%; margin-top:14px;" onclick="sendNoticeNow()">Show Demo Notice</button>
+
+        <div class="info-box">
+          Real background notifications every 1 hour need native setup like Firebase or OneSignal in the final APK.
+        </div>
+      </div>
+    </section>
+
+    <section id="tools" class="section">
+      <div class="panel">
+        <h2>🧮 Student Tools</h2>
+        <p>Useful mini tools for students. More tools can be added later.</p>
+
+        <button class="btn" style="width:100%;" onclick="toggleCalc()">Open Calculator</button>
+
+        <div class="calc-box" id="calcBox">
+          <input id="calcInput" type="text" inputmode="decimal" placeholder="Example: 45*2+10">
+          <button class="btn" style="width:100%;" onclick="calculate()">Calculate</button>
+          <div class="result" id="calcResult">Result: 0</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="toast" id="toast">
+      <strong id="toastTitle">AcademeForge</strong>
+      <p id="toastMessage">Message</p>
+    </div>
+
+    <nav class="bottom-nav">
+      <button class="nav-btn active" onclick="showSection('home', this)">
+        <b>🏠</b>Home
+      </button>
+      <button class="nav-btn" onclick="showSection('explore', this)">
+        <b>✨</b>Explore
+      </button>
+      <button class="nav-btn" onclick="showSection('student', this)">
+        <b>🎓</b>Login
+      </button>
+      <button class="nav-btn" onclick="showSection('notices', this)">
+        <b>🔔</b>Notice
+      </button>
+      <button class="nav-btn" onclick="showSection('management', this)">
+        <b>👥</b>Team
+      </button>
+    </nav>
+
+  </main>
+
+  <script>
+    const WEBSITE_URL = "https://academeforge.in/";
+
+    const notices = [
+      "AcademeForge app preview is currently under development.",
+      "Student dashboard and course progress features are coming soon.",
+      "Explore courses: Editing, Design, AI Coding, and Freelancing basics.",
+      "Stay consistent. Small daily learning creates strong results.",
+      "Office login and student records panel will be added in future updates.",
+      "AST and advanced learning updates will be shared in upcoming phases."
+    ];
+
+    let noticeIndex = 0;
+
+    function showSection(id, btn) {
+      document.querySelectorAll(".section").forEach(sec => sec.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+
+      document.querySelectorAll(".nav-btn").forEach(nav => nav.classList.remove("active"));
+
+      if (btn) {
+        btn.classList.add("active");
+      } else {
+        const map = {
+          home: 0,
+          explore: 1,
+          student: 2,
+          notices: 3,
+          management: 4
+        };
+        const navs = document.querySelectorAll(".nav-btn");
+        if (navs[map[id]]) navs[map[id]].classList.add("active");
+      }
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function updateTime() {
+      const now = new Date();
+      document.getElementById("time").textContent = now.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+      document.getElementById("date").textContent = now.toLocaleDateString([], {
+        day: "2-digit",
+        month: "short"
+      });
+    }
+
+    setInterval(updateTime, 1000);
+    updateTime();
+
+    function renderNotices() {
+      const board = document.getElementById("noticeBoard");
+      board.innerHTML = "";
+
+      notices.forEach((notice, i) => {
+        const item = document.createElement("div");
+        item.className = "notice-item";
+        item.innerHTML = `<strong>Notice ${i + 1}</strong><p>${notice}</p>`;
+        board.appendChild(item);
+      });
+
+      document.getElementById("latestNotice").textContent = notices[noticeIndex % notices.length];
+    }
+
+    function showToast(title, message) {
+      document.getElementById("toastTitle").textContent = title;
+      document.getElementById("toastMessage").textContent = message;
+
+      const toast = document.getElementById("toast");
+      toast.classList.add("show");
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 4500);
+    }
+
+    function rotateNotice() {
+      const msg = notices[noticeIndex % notices.length];
+      document.getElementById("latestNotice").textContent = msg;
+      showToast("AcademeForge Notice", msg);
+      noticeIndex++;
+    }
+
+    function sendNoticeNow() {
+      rotateNotice();
+    }
+
+    setTimeout(rotateNotice, 6000);
+    setInterval(rotateNotice, 60 * 60 * 1000);
+
+    renderNotices();
+
+    function demoLogin(type) {
+      showToast(type + " Login", "This login is in preview mode. Real dashboard will be added soon.");
+    }
+
+    function openWebsite() {
+      window.location.href = WEBSITE_URL;
+    }
+
+    function toggleCalc() {
+      document.getElementById("calcBox").classList.toggle("active");
+    }
+
+    function calculate() {
+      const input = document.getElementById("calcInput").value.trim();
+      const resultBox = document.getElementById("calcResult");
+
+      if (!input) {
+        resultBox.textContent = "Result: 0";
+        return;
+      }
+
+      const safe = /^[0-9+\-*/().\s%]+$/.test(input);
+
+      if (!safe) {
+        resultBox.textContent = "Result: Error";
+        return;
+      }
+
+      try {
+        const result = Function('"use strict"; return (' + input.replace(/%/g, "/100") + ')')();
+        if (Number.isFinite(result)) {
+          resultBox.textContent = "Result: " + Number(result.toFixed(4));
+        } else {
+          resultBox.textContent = "Result: Error";
+        }
+      } catch (e) {
+        resultBox.textContent = "Result: Error";
+      }
+    }
+  </script>
+</body>
+</html>
