@@ -1,769 +1,808 @@
 
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AcademeForge</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>AcademeForge App</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050816;
+      --bg2: #080f2b;
+      --card: rgba(255, 255, 255, 0.08);
+      --card2: rgba(255, 255, 255, 0.12);
+      --text: #f8fafc;
+      --muted: #aab4d4;
+      --gold: #f8c75c;
+      --blue: #6ee7ff;
+      --purple: #a78bfa;
+      --green: #5eead4;
+      --danger: #fb7185;
+      --border: rgba(255,255,255,0.14);
+      --shadow: 0 24px 80px rgba(0,0,0,0.45);
+      --radius: 24px;
+    }
 
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="style.css">
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(167,139,250,0.28), transparent 28%),
+        radial-gradient(circle at 90% 10%, rgba(110,231,255,0.20), transparent 28%),
+        radial-gradient(circle at 50% 100%, rgba(248,199,92,0.12), transparent 30%),
+        linear-gradient(135deg, var(--bg), var(--bg2));
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+      min-height: 100vh;
+      padding-bottom: 90px;
+      position: relative;
+    }
+
+    .glass {
+      background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding: 14px 16px 10px;
+      background: linear-gradient(180deg, rgba(5,8,22,0.96), rgba(5,8,22,0.72), transparent);
+      backdrop-filter: blur(12px);
+    }
+
+    .top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      background:
+        linear-gradient(135deg, rgba(248,199,92,0.95), rgba(167,139,250,0.95));
+      color: #0b1020;
+      font-weight: 900;
+      box-shadow: 0 12px 40px rgba(248,199,92,0.20);
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 17px;
+      letter-spacing: 0.2px;
+    }
+
+    .brand p {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .time-box {
+      padding: 9px 11px;
+      border-radius: 16px;
+      font-size: 12px;
+      text-align: right;
+      min-width: 86px;
+    }
+
+    .time-box strong {
+      display: block;
+      font-size: 14px;
+      color: var(--gold);
+    }
+
+    .calculator {
+      margin-top: 12px;
+      padding: 10px;
+      border-radius: 20px;
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .calculator input {
+      width: 100%;
+      background: rgba(255,255,255,0.08);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 14px;
+      padding: 12px 12px;
+      outline: none;
+      font-size: 14px;
+    }
+
+    .calculator button,
+    .btn {
+      border: 0;
+      border-radius: 14px;
+      padding: 12px 14px;
+      color: #07111f;
+      background: linear-gradient(135deg, var(--gold), #fff0a3);
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 10px 28px rgba(248,199,92,0.18);
+    }
+
+    .calc-result {
+      color: var(--green);
+      font-weight: 800;
+      font-size: 13px;
+      min-width: 52px;
+      text-align: right;
+    }
+
+    .hero {
+      margin: 10px 16px 0;
+      padding: 24px 18px;
+      border-radius: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(248,199,92,0.18), transparent 34%),
+        radial-gradient(circle at 90% 20%, rgba(110,231,255,0.14), transparent 35%);
+      pointer-events: none;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(248,199,92,0.12);
+      border: 1px solid rgba(248,199,92,0.28);
+      color: #ffe6a3;
+      font-size: 12px;
+      font-weight: 700;
+      position: relative;
+    }
+
+    .hero h2 {
+      margin: 16px 0 8px;
+      font-size: 30px;
+      line-height: 1.05;
+      letter-spacing: -1px;
+      position: relative;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+      position: relative;
+    }
+
+    .notice {
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 20px;
+      background: rgba(251,113,133,0.12);
+      border: 1px solid rgba(251,113,133,0.26);
+      color: #ffd0d8;
+      font-size: 13px;
+      line-height: 1.5;
+      position: relative;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 16px;
+    }
+
+    .action-card {
+      border-radius: 24px;
+      padding: 16px;
+      min-height: 122px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: 0.25s ease;
+    }
+
+    .action-card:active {
+      transform: scale(0.98);
+    }
+
+    .icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.12);
+      font-size: 20px;
+    }
+
+    .action-card h3 {
+      margin: 12px 0 4px;
+      font-size: 15px;
+    }
+
+    .action-card p {
+      margin: 0;
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .wide {
+      grid-column: span 2;
+      min-height: auto;
+      flex-direction: row;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .wide div:last-child {
+      flex: 1;
+    }
+
+    .section {
+      display: none;
+      margin: 16px;
+      animation: fade 0.25s ease;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .panel {
+      border-radius: 26px;
+      padding: 18px;
+      margin-bottom: 14px;
+    }
+
+    .panel h2 {
+      margin: 0 0 8px;
+      font-size: 22px;
+    }
+
+    .panel h3 {
+      margin: 14px 0 8px;
+      font-size: 16px;
+    }
+
+    .panel p, .panel li {
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    .input-group {
+      margin: 12px 0;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 7px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.08);
+      color: var(--text);
+      outline: none;
+    }
+
+    .login-note {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 16px;
+      background: rgba(110,231,255,0.08);
+      border: 1px solid rgba(110,231,255,0.18);
+      color: #dffaff;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .course-grid {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .course {
+      padding: 14px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.11);
+    }
+
+    .course strong {
+      display: block;
+      color: var(--text);
+      margin-bottom: 5px;
+    }
+
+    .team {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .member {
+      display: flex;
+      gap: 12px;
+      padding: 14px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.11);
+    }
+
+    .avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--purple), var(--blue));
+      color: #07111f;
+      font-weight: 900;
+      flex: 0 0 auto;
+    }
+
+    .member h4 {
+      margin: 0 0 3px;
+      font-size: 14px;
+    }
+
+    .member p {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .ticker {
+      margin: 16px;
+      padding: 13px 14px;
+      border-radius: 20px;
+      background: rgba(94,234,212,0.09);
+      border: 1px solid rgba(94,234,212,0.18);
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .ticker span {
+      font-size: 18px;
+    }
+
+    .ticker p {
+      margin: 0;
+      color: #d8fffa;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 86px;
+      transform: translateX(-50%) translateY(30px);
+      width: min(440px, calc(100% - 28px));
+      padding: 14px;
+      border-radius: 20px;
+      background: rgba(8, 15, 43, 0.96);
+      border: 1px solid rgba(255,255,255,0.16);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.3s ease;
+      z-index: 100;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .toast strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--gold);
+    }
+
+    .toast p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      left: 50%;
+      bottom: 12px;
+      transform: translateX(-50%);
+      width: min(450px, calc(100% - 24px));
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      padding: 8px;
+      border-radius: 24px;
+      z-index: 80;
+    }
+
+    .nav-btn {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      border-radius: 18px;
+      padding: 10px 4px;
+      font-size: 10px;
+      cursor: pointer;
+    }
+
+    .nav-btn b {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 2px;
+    }
+
+    .nav-btn.active {
+      background: rgba(255,255,255,0.12);
+      color: var(--text);
+    }
+
+    .link-btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      margin-top: 12px;
+      border-radius: 16px;
+      padding: 13px 14px;
+      background: linear-gradient(135deg, var(--gold), #fff1a8);
+      color: #07111f;
+      font-weight: 900;
+      border: 0;
+      cursor: pointer;
+    }
+
+    .secondary {
+      background: rgba(255,255,255,0.09);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: none;
+    }
+
+    .mini-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .stat {
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 20px;
+      color: var(--gold);
+    }
+
+    .stat small {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .dev-badge {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(167,139,250,0.12);
+      border: 1px solid rgba(167,139,250,0.25);
+      color: #ddd6fe;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 360px) {
+      .hero h2 { font-size: 26px; }
+      .actions { grid-template-columns: 1fr; }
+      .wide { grid-column: span 1; }
+      .bottom-nav { grid-template-columns: repeat(5, 1fr); }
+      .nav-btn { font-size: 9px; }
+    }
+  </style>
 </head>
 
-<body class="bg-white text-gray-900">
+<body>
+  <main class="app">
 
-  <!-- TOP HEADER -->
-  <div class="bg-black text-white text-sm py-3 px-4 md:px-6 flex justify-between items-center top-header">
-
-    <div>
-      📞 +91 XXXXX XXXXX | academeforge@gmail.com
-    </div>
-
-    <div class="flex gap-4 md:gap-5">
-      <a href="https://www.instagram.com/academeforge.in?igsh=MXc2eTlmenozNnN1Mg==" class="hover:text-red-400">Instagram</a>
-      <a href="https://youtube.com/@academeforgepro?si=3jOxYewYdb0NNXSG" class="hover:text-red-400">Youtube</a>
-      <a href="https://t.me/+46ubatq-EV0wNjY1" class="hover:text-red-400">Telegram</a>
-    </div>
-
-  </div>
-
-  <!-- NAVBAR -->
-  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-lg shadow-lg border-b border-gray-100">
-
-    <div class="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-6 py-4 navbar">
-
-      <div>
-        <h1 class="text-2xl md:text-3xl font-extrabold text-red-700">
-          AcademeForge
-        </h1>
-
-        <p class="text-xs text-gray-500">
-          Learning Beyond The Classroom
-        </p>
-      </div>
-
-      <nav class="hidden lg:flex items-center gap-8 font-medium text-sm">
-        <a href="#about" class="hover:text-red-700">About</a>
-        <a href="#courses" class="hover:text-red-700">Courses</a>
-        <a href="#team" class="hover:text-red-700">Management</a>
-        <a href="#fees" class="hover:text-red-700">Fees</a>
-        <a href="#faq" class="hover:text-red-700">FAQ</a>
-        <a href="#contact" class="hover:text-red-700">Contact</a>
-      </nav>
-
-      <button onclick="openPopup('Admissions Opening Soon','Admissions for Programs is Under Development.')" class="bg-red-700 hover:bg-red-800 text-white px-5 py-3 rounded-xl font-semibold transition-all hover:scale-105">
-        Apply Now
-      </button>
-
-    </div>
-
-  </header>
-
-  <!-- HERO -->
-  <section class="relative min-h-screen overflow-hidden">
-
-    <img
-      src="AFhome.jpg"
-      class="absolute inset-0 w-full h-full object-cover"
-      alt="Campus"
-    />
-
-    <div class="hero-overlay absolute inset-0"></div>
-
-    <div class="relative z-10 min-h-screen flex items-center">
-
-      <div class="max-w-7xl mx-auto px-4 md:px-6 text-white">
-
-        <p class="uppercase tracking-[5px] text-red-400 mb-4 text-xs md:text-sm">
-          REBUILDING A BETTER LEARNING EXPERIENCE
-        </p>
-
-        <h1 class="hero-title text-5xl md:text-7xl font-extrabold leading-tight mb-8 max-w-4xl">
-          Welcome to
-          <span class="text-red-500">AcademeForge</span>
-        </h1>
-
-        <p class="text-base md:text-lg text-gray-200 max-w-2xl leading-8 mb-10">
-          Empowering students through AI-Powered learning.
-        </p>
-
-        <div class="flex flex-wrap gap-4">
-
-          <button onclick="openPopup('Admissions Opening Soon','Admissions for Programs Is Under Development.')" class="bg-red-700 hover:bg-red-800 px-7 py-4 rounded-2xl font-bold transition-all hover:scale-105">
-            Apply For Admission
-          </button>
-
-          <button onclick="openVisionPopup()" class="border border-white hover:bg-white hover:text-black px-7 py-4 rounded-2xl font-bold transition-all hover:scale-105">
-            Our Vision
-          </button>
-
+    <header class="topbar">
+      <div class="top-row">
+        <div class="brand">
+          <div class="logo">AF</div>
+          <div>
+            <h1>AcademeForge</h1>
+            <p>Learning Beyond the Classroom</p>
+          </div>
         </div>
 
+        <div class="time-box glass">
+          <strong id="time">--:--</strong>
+          <span id="date">Loading</span>
+        </div>
       </div>
 
-    </div>
-
-  </section>
-
-  <!-- STATS -->
-  <section class="py-16 md:py-20 bg-gray-100">
-
-    <div class="max-w-7xl mx-auto px-4 md:px-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-
-      <div class="bg-white p-8 rounded-3xl shadow-xl hover-up hover:shadow-2xl text-center">
-        <h2 class="text-5xl font-extrabold text-red-700 mb-3">1000+</h2>
-        <p class="text-gray-600">Students Reached</p>
+      <div class="calculator glass">
+        <input id="calcInput" type="text" inputmode="decimal" placeholder="Quick calculator: 25*4+10" />
+        <button onclick="calculate()">=</button>
+        <div class="calc-result" id="calcResult">0</div>
       </div>
+    </header>
 
-      <div class="bg-white p-8 rounded-3xl shadow-xl hover-up hover:shadow-2xl text-center">
-        <h2 class="text-5xl font-extrabold text-red-700 mb-3">2024</h2>
-        <p class="text-gray-600">Founded</p>
-      </div>
-
-      <div class="bg-white p-8 rounded-3xl shadow-xl hover-up hover:shadow-2xl text-center">
-        <h2 class="text-5xl font-extrabold text-red-700 mb-3">4+</h2>
-        <p class="text-gray-600">Core Team Members</p>
-      </div>
-
-      <div class="bg-white p-8 rounded-3xl shadow-xl hover-up hover:shadow-2xl text-center">
-        <h2 class="text-5xl font-extrabold text-red-700 mb-3">10+</h2>
-        <p class="text-gray-600">School Outreach Visits</p>
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about" class="py-20 md:py-24">
-
-    <div class="max-w-7xl mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-14 md:gap-20 items-center">
-
-      <div>
-
-        <p class="uppercase tracking-[4px] text-red-700 text-sm mb-4">
-          About Us
+    <section id="home" class="section active">
+      <div class="hero glass">
+        <div class="tag">🚧 App Preview Build</div>
+        <h2>AcademeForge App is under development.</h2>
+        <p>
+          A premium student-first learning space is being prepared for practical skills,
+          clarity, discipline, and real-world growth.
         </p>
 
-        <h2 class="section-title text-4xl md:text-5xl font-bold leading-tight mb-8">
-          Building Future Creators & Innovators
-        </h2>
+        <div class="notice">
+          <b>Development Notice:</b> This is an early app version. Student login, office login,
+          learning dashboard, and notification features are being improved step by step.
+        </div>
 
-        <p class="text-gray-600 leading-8 mb-6">
-          AcademeForge is a modern student-focused platform helping learners build practical skills, creativity, and AI-powered knowledge beyond traditional education.
-        </p>
+        <span class="dev-badge">Version 1.0 Preview</span>
+      </div>
 
-        <p class="text-gray-600 leading-8 mb-10">
-          Our mission is to transform students into industry-ready professionals.
-        </p>
+      <div class="ticker glass">
+        <span>🔔</span>
+        <p id="tickerText">Welcome to AcademeForge. Stay consistent, keep learning, and build skills with clarity.</p>
+      </div>
 
-        <button onclick="openAboutPopup()" class="bg-red-700 text-white px-8 py-4 rounded-xl hover:bg-red-800 transition-all hover:scale-105">
-          Know More
+      <div class="actions">
+        <button class="action-card glass" onclick="showSection('student')">
+          <div class="icon">🎓</div>
+          <div>
+            <h3>Student Login</h3>
+            <p>Access student dashboard preview and future learning tools.</p>
+          </div>
         </button>
 
+        <button class="action-card glass" onclick="showSection('office')">
+          <div class="icon">🏢</div>
+          <div>
+            <h3>Office Login</h3>
+            <p>For team, office, management, and internal operations.</p>
+          </div>
+        </button>
+
+        <button class="action-card glass wide" onclick="showSection('explore')">
+          <div class="icon">✨</div>
+          <div>
+            <h3>Explore Without Login</h3>
+            <p>Read about AcademeForge, courses, programs, AST, and contact details.</p>
+          </div>
+        </button>
+
+        <button class="action-card glass wide" onclick="showSection('management')">
+          <div class="icon">👥</div>
+          <div>
+            <h3>Management & Team</h3>
+            <p>Know the people behind AcademeForge and their roles.</p>
+          </div>
+        </button>
       </div>
+    </section>
 
-      <div>
-        <img
-          src="stockIMG.jpg"
-          class="rounded-3xl shadow-2xl w-full"
-          alt="Students"
-        />
+    <section id="student" class="section">
+      <div class="panel glass">
+        <h2>🎓 Student Login</h2>
+        <p>Login system is currently in development. This preview keeps the interface ready for future student dashboard.</p>
+
+        <div class="input-group">
+          <label>Student ID / Mobile Number</label>
+          <input type="text" placeholder="Enter Student ID" />
+        </div>
+
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" placeholder="Enter Password" />
+        </div>
+
+        <button class="link-btn" onclick="demoLogin('Student')">Login Preview</button>
+
+        <div class="login-note">
+          Future features: course progress, class updates, tasks, certificates, AST updates,
+          notices, and learning resources.
+        </div>
       </div>
+    </section>
 
-    </div>
+    <section id="office" class="section">
+      <div class="panel glass">
+        <h2>🏢 Office Login</h2>
+        <p>Office login is reserved for AcademeForge team and management operations.</p>
 
-  </section>
+        <div class="input-group">
+          <label>Office Email / Staff ID</label>
+          <input type="text" placeholder="Enter Office ID" />
+        </div>
 
-  <!-- COURSES -->
-  <section id="courses" class="bg-gray-50 py-20 md:py-24">
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" placeholder="Enter Password" />
+        </div>
 
-    <div class="max-w-7xl mx-auto px-4 md:px-6">
+        <button class="link-btn" onclick="demoLogin('Office')">Login Preview</button>
 
-      <div class="text-center mb-16">
+        <div class="login-note">
+          Future features: student records, notices, admissions, course updates, feedback,
+          and internal team dashboard.
+        </div>
+      </div>
+    </section>
 
-        <p class="uppercase tracking-[4px] text-red-700 text-sm mb-4">
-          Academic Programs
+    <section id="explore" class="section">
+      <div class="panel glass">
+        <h2>✨ Explore AcademeForge</h2>
+        <p>
+          AcademeForge is a student-focused learning initiative built around practical skills,
+          consistency, digital creativity, and real-world understanding.
         </p>
 
-        <h2 class="section-title text-4xl md:text-5xl font-bold">
-          Explore Our Courses
-        </h2>
+        <div class="mini-row">
+          <div class="stat">
+            <strong>2024</strong>
+            <small>Founded</small>
+          </div>
+          <div class="stat">
+            <strong>Skill-first</strong>
+            <small>Learning model</small>
+          </div>
+        </div>
 
+        <h3>Learning Focus</h3>
+        <ul>
+          <li>Foundation-first learning</li>
+          <li>Short practical lessons</li>
+          <li>Digital skills and creativity</li>
+          <li>Discipline, consistency, and execution</li>
+          <li>Future AST learning and assessment phase</li>
+        </ul>
+
+        <h3>Course Programs</h3>
+        <div class="course-grid">
+          <div class="course">
+            <strong>Video & Media Editing</strong>
+            <p>Create content that captures attention and builds digital creativity.</p>
+          </div>
+          <div class="course">
+            <strong>Creative & Graphic Design</strong>
+            <p>Turn ideas into clean, engaging, and impactful visuals.</p>
+          </div>
+          <div class="course">
+            <strong>AI Coding & Logic Foundation</strong>
+            <p>Build smart thinking with coding basics, logic, and AI fundamentals.</p>
+          </div>
+          <div class="course">
+            <strong>Freelancing & Monetization</strong>
+            <p>Understand how digital skills can create real online opportunities.</p>
+          </div>
+        </div>
+
+        <h3>Contact</h3>
+        <p>
+          Location: Patna, Bihar, India<br />
+          Email: academeforge@gmail.com
+        </p>
+
+        <button class="link-btn" onclick="openWebsite()">Open Official Website</button>
+        <button class="link-btn secondary" onclick="copyWebsite()">Copy Website Link</button>
       </div>
+    </section>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+    <section id="management" class="section">
+      <div class="panel glass">
+        <h2>👥 Management & Team</h2>
+        <p>
+          AcademeForge is powered by young innovators and learners working to build a better
+          student-first learning experience.
+        </p>
 
-        <div onclick="openCourse(
-          'Video & Media Editing',
-          'Duration: 6 months',
-          'Annual Fees: To Be Announced',
-          'Create videos, reels, captions, thumbnails, and edits using Powerful AI tools.',
-          'AI editing tools, practical editing projects, creator workflows'
-        )" class="bg-white p-8 rounded-3xl shadow-xl hover-up hover:shadow-2xl cursor-pointer">
-
-          <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center text-red-700 text-2xl font-bold mb-6">
-            01
+        <div class="team">
+          <div class="member">
+            <div class="avatar">D</div>
+            <div>
+              <h4>Devraj Kumar</h4>
+              <p>Founder — focused on modern education, AI-powered learning, creativity, and student empowerment.</p>
+            </div>
           </div>
 
-          <h3 class="text-2xl font-bold mb-4">Video & Media Editing</h3>
-
-          <p class="text-gray-600 leading-7 mb-5">
-            Create content that captures attention and builds digital creativity.
-          </p>
-
-          <p class="font-semibold text-red-700 mb-5">
-            Fees: To Be Announced
-          </p>
-
-          <button class="bg-red-700 text-white px-5 py-3 rounded-xl">
-            View Details
-          </button>
-
-        </div>
-
-        <div onclick="openCourse(
-          'Creative & Graphic Design',
-          'Duration: 6 Months',
-          'Annual Fees: To Be Announced',
-          'Design posters, social media graphics, and professional visuals with AI',
-          'Design labs, Canva & AI tools, branding practice projects'
-        )" class="bg-white p-8 rounded-3xl shadow-xl hover-up hover:shadow-2xl cursor-pointer">
-
-          <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center text-red-700 text-2xl font-bold mb-6">
-            02
+          <div class="member">
+            <div class="avatar">M</div>
+            <div>
+              <h4>Mandeep Harsh</h4>
+              <p>Co-Founder — helping shape growth, strategy, and student learning experiences.</p>
+            </div>
           </div>
 
-          <h3 class="text-2xl font-bold mb-4">Creative & Graphic Design</h3>
-
-          <p class="text-gray-600 leading-7 mb-5">
-            Turn ideas into visually engaging and impactful designs.
-          </p>
-
-          <p class="font-semibold text-red-700 mb-5">
-            Fees: To Be Announced
-          </p>
-
-          <button class="bg-red-700 text-white px-5 py-3 rounded-xl">
-            View Details
-          </button>
-
-        </div>
-
-        <div onclick="openCourse(
-          'AI Coding & Logic Foundation',
-          'Duration: 1 Year',
-          'Annual Fees: To Be Announced',
-          'Learn coding, websites, and logic building with beginner-friendly AI tools',
-          'Beginner coding environment, logic-building tasks, mini projects'
-        )" class="bg-white p-8 rounded-3xl shadow-xl hover-up hover:shadow-2xl cursor-pointer">
-
-          <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center text-red-700 text-2xl font-bold mb-6">
-            03
+          <div class="member">
+            <div class="avatar">P</div>
+            <div>
+              <h4>Palak Kumari Jha</h4>
+              <p>Moderator — supporting student engagement, community, and smooth learning experience.</p>
+            </div>
           </div>
 
-          <h3 class="text-2xl font-bold mb-4">AI Coding & Logic Foundation</h3>
-
-          <p class="text-gray-600 leading-7 mb-5">
-            Develop smart thinking with modern coding and AI fundamentals.
-          </p>
-
-          <p class="font-semibold text-red-700 mb-5">
-            Fees: To Be Announced
-          </p>
-
-          <button class="bg-red-700 text-white px-5 py-3 rounded-xl">
-            View Details
-          </button>
-
-        </div>
-
-        <div onclick="openCourse(
-          'Freelancing & Monetization',
-          'Duration: 1 Year',
-          'Annual Fees: To Be Announced',
-          'Learn how to earn online using AI-powered freelance and digital skills.',
-          'Portfolio guidance, freelancing resources, earning strategies'
-        )" class="bg-white p-8 rounded-3xl shadow-xl hover-up hover:shadow-2xl cursor-pointer">
-
-          <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center text-red-700 text-2xl font-bold mb-6">
-            04
+          <div class="member">
+            <div class="avatar">A</div>
+            <div>
+              <h4>Ayush Raj</h4>
+              <p>Moderator — assisting with student coordination, platform activities, and learning environment.</p>
+            </div>
           </div>
-
-          <h3 class="text-2xl font-bold mb-4">Freelancing & Monetization</h3>
-
-          <p class="text-gray-600 leading-7 mb-5">
-            Learn how digital skills can create real online opportunities.
-          </p>
-
-          <p class="font-semibold text-red-700 mb-5">
-            Fees: To Be Announced
-          </p>
-
-          <button class="bg-red-700 text-white px-5 py-3 rounded-xl">
-            View Details
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- POPUP MODAL -->
-  <div id="popup" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-[999] px-4">
-    <div class="bg-white max-w-2xl w-full rounded-3xl p-8 animate-popup relative max-h-[80vh] overflow-y-auto">
-
-      <button onclick="closePopup()" class="absolute top-4 right-5 text-3xl font-bold text-red-700">
-        &times;
-      </button>
-
-      <h2 id="popupTitle" class="text-3xl font-bold text-red-700 mb-5"></h2>
-
-      <p id="popupText" class="text-gray-700 leading-8 whitespace-pre-line"></p>
-
-    </div>
-  </div>
-
-<!-- TEAM SECTION -->
-<section id="team" class="py-20 md:py-24 bg-gray-50">
-
-  <div class="max-w-7xl mx-auto px-4 md:px-6">
-
-    <div class="text-center mb-16">
-
-      <p class="uppercase tracking-[4px] text-red-700 text-sm mb-4">
-        Our Team
-      </p>
-
-      <h2 class="section-title text-4xl md:text-5xl font-bold mb-6">
-        Meet The People Behind AcademeForge
-      </h2>
-
-      <p class="text-gray-600 max-w-3xl mx-auto leading-8">
-        AcademeForge is powered by passionate young innovators, creators,
-        and learners dedicated to building a better future for students
-        through modern education and AI-powered learning.
-      </p>
-
-    </div>
-
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-
-      <div class="bg-white p-8 rounded-3xl shadow-xl text-center hover-up hover:shadow-2xl">
-
-        <div class="w-32 h-32 rounded-full bg-red-700 text-white flex items-center justify-center text-4xl font-bold mx-auto mb-6 shadow-lg">
-          D
-        </div>
-
-        <h3 class="text-2xl font-bold mb-2">
-          Devraj Kumar
-        </h3>
-
-        <p class="text-red-700 font-semibold mb-4">
-          Founder
-        </p>
-
-        <p class="text-gray-600 leading-7 text-sm">
-          Visionary behind AcademeForge focused on modern education,
-          AI-powered learning, creativity, and student empowerment.
-        </p>
-
-      </div>
-
-      <div class="bg-white p-8 rounded-3xl shadow-xl text-center hover-up hover:shadow-2xl">
-
-        <div class="w-32 h-32 rounded-full bg-red-700 text-white flex items-center justify-center text-4xl font-bold mx-auto mb-6 shadow-lg">
-          M
-        </div>
-
-        <h3 class="text-2xl font-bold mb-2">
-          Mandeep Harsh
-        </h3>
-
-        <p class="text-red-700 font-semibold mb-4">
-          Co-Founder
-        </p>
-
-        <p class="text-gray-600 leading-7 text-sm">
-          Helping shape the growth, strategy, and vision of AcademeForge
-          while building impactful student learning experiences.
-        </p>
-
-      </div>
-
-      <div class="bg-white p-8 rounded-3xl shadow-xl text-center hover-up hover:shadow-2xl">
-
-        <div class="w-32 h-32 rounded-full bg-red-700 text-white flex items-center justify-center text-4xl font-bold mx-auto mb-6 shadow-lg">
-          P
-        </div>
-
-        <h3 class="text-2xl font-bold mb-2">
-          Palak Kumari Jha
-        </h3>
-
-        <p class="text-red-700 font-semibold mb-4">
-          Moderator
-        </p>
-
-        <p class="text-gray-600 leading-7 text-sm">
-          Supporting student engagement, community management,
-          and smooth learning experiences across the platform.
-        </p>
-
-      </div>
-
-      <div class="bg-white p-8 rounded-3xl shadow-xl text-center hover-up hover:shadow-2xl">
-
-        <div class="w-32 h-32 rounded-full bg-red-700 text-white flex items-center justify-center text-4xl font-bold mx-auto mb-6 shadow-lg">
-          A
-        </div>
-
-        <h3 class="text-2xl font-bold mb-2">
-          Ayush Raj
-        </h3>
-
-        <p class="text-red-700 font-semibold mb-4">
-          Moderator
-        </p>
-
-        <p class="text-gray-600 leading-7 text-sm">
-          Assisting with student coordination, platform activities,
-          and creating a positive learning environment.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- FEES -->
-<section id="fees" class="py-20 md:py-24 bg-white">
-
-  <div class="max-w-7xl mx-auto px-4 md:px-6">
-
-    <div class="text-center mb-16">
-
-      <p class="uppercase tracking-[4px] text-red-700 text-sm mb-4">
-        Fee Structure
-      </p>
-
-      <h2 class="section-title text-4xl md:text-5xl font-bold">
-        Affordable Education
-      </h2>
-
-    </div>
-
-    <div class="overflow-x-auto rounded-3xl shadow-2xl">
-
-      <table class="w-full bg-white min-w-[700px]">
-
-        <thead class="bg-red-700 text-white">
-
-          <tr>
-            <th class="p-6 text-left">Program</th>
-            <th class="p-6 text-left">Duration</th>
-            <th class="p-6 text-left">Annual Fees</th>
-          </tr>
-
-        </thead>
-
-        <tbody>
-
-          <tr class="border-b">
-            <td class="p-6">Video & Media Editing</td>
-            <td class="p-6">6 Months</td>
-            <td class="p-6">To Be Announced</td>
-          </tr>
-
-          <tr class="border-b bg-gray-50">
-            <td class="p-6">Creative & Graphic Design</td>
-            <td class="p-6">6 Months</td>
-            <td class="p-6">To Be Announced</td>
-          </tr>
-
-          <tr class="border-b">
-            <td class="p-6">AI Coding & Logic Foundation</td>
-            <td class="p-6">1 Year</td>
-            <td class="p-6">To Be Announced</td>
-          </tr>
-
-          <tr class="bg-gray-50">
-            <td class="p-6">Freelancing & Monetization</td>
-            <td class="p-6">1 Year</td>
-            <td class="p-6">To Be Announced</td>
-          </tr>
-
-        </tbody>
-
-      </table>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- FAQ -->
-<section id="faq" class="bg-gray-50 py-20 md:py-24">
-
-  <div class="max-w-5xl mx-auto px-4 md:px-6">
-
-    <div class="text-center mb-16">
-
-      <p class="uppercase tracking-[4px] text-red-700 text-sm mb-4">
-        Frequently Asked Questions
-      </p>
-
-      <h2 class="section-title text-4xl md:text-5xl font-bold">
-        Have Questions?
-      </h2>
-
-    </div>
-
-    <div class="space-y-5">
-
-      <div class="faq bg-white rounded-2xl shadow-md p-6 cursor-pointer">
-        <div class="flex justify-between items-center">
-          <h3 class="font-semibold text-lg">Are scholarships available?</h3>
-          <span class="faq-icon text-3xl text-red-700">+</span>
-        </div>
-        <div class="faq-content mt-4 text-gray-600 leading-7">
-          Merit-based and need-based scholarships are available.
         </div>
       </div>
-
-      <div class="faq bg-white rounded-2xl shadow-md p-6 cursor-pointer">
-        <div class="flex justify-between items-center">
-          <h3 class="font-semibold text-lg">What is AcademeForge?</h3>
-          <span class="faq-icon text-3xl text-red-700">+</span>
-        </div>
-        <div class="faq-content mt-4 text-gray-600 leading-7">
-          AcademeForge is a student-focused learning platform built around practical skills, creativity, and real-world learning beyond traditional classrooms.
-        </div>
-      </div>
-
-      <div class="faq bg-white rounded-2xl shadow-md p-6 cursor-pointer">
-        <div class="flex justify-between items-center">
-          <h3 class="font-semibold text-lg">Are admissions open right now?</h3>
-          <span class="faq-icon text-3xl text-red-700">+</span>
-        </div>
-        <div class="faq-content mt-4 text-gray-600 leading-7">
-          No. Admissions in 2026 are currently paused while we rebuild and improve the platform, programs, and learning experience.
-        </div>
-      </div>
-
-      <div class="faq bg-white rounded-2xl shadow-md p-6 cursor-pointer">
-        <div class="flex justify-between items-center">
-          <h3 class="font-semibold text-lg">When will admissions start again?</h3>
-          <span class="faq-icon text-3xl text-red-700">+</span>
-        </div>
-        <div class="faq-content mt-4 text-gray-600 leading-7">
-          Admissions are expected to open in upcoming academic sessions. Updates will be shared officially through the website and social platforms.
-        </div>
-      </div>
-
-      <div class="faq bg-white rounded-2xl shadow-md p-6 cursor-pointer">
-        <div class="flex justify-between items-center">
-          <h3 class="font-semibold text-lg">Is this beginner friendly?</h3>
-          <span class="faq-icon text-3xl text-red-700">+</span>
-        </div>
-        <div class="faq-content mt-4 text-gray-600 leading-7">
-          Yes. Programs are being designed for both complete beginners and students who already have some basic knowledge.
-        </div>
-      </div>
-
-      <div class="faq bg-white rounded-2xl shadow-md p-6 cursor-pointer">
-        <div class="flex justify-between items-center">
-          <h3 class="font-semibold text-lg">What kind of skills will students learn?</h3>
-          <span class="faq-icon text-3xl text-red-700">+</span>
-        </div>
-        <div class="faq-content mt-4 text-gray-600 leading-7">
-          Students will work on practical skills like digital tools, communication, creative thinking, technology basics, problem-solving, and project-based learning.
-        </div>
-      </div>
-
-      <div class="faq bg-white rounded-2xl shadow-md p-6 cursor-pointer">
-        <div class="flex justify-between items-center">
-          <h3 class="font-semibold text-lg">Will there be live classes or recorded content?</h3>
-          <span class="faq-icon text-3xl text-red-700">+</span>
-        </div>
-        <div class="faq-content mt-4 text-gray-600 leading-7">
-          Learning may include a mix of live sessions, recorded lessons, workshops, and practical activities for flexible learning.
-        </div>
-      </div>
-
-      <div class="faq bg-white rounded-2xl shadow-md p-6 cursor-pointer">
-        <div class="flex justify-between items-center">
-          <h3 class="font-semibold text-lg">Do I need an expensive laptop or setup?</h3>
-          <span class="faq-icon text-3xl text-red-700">+</span>
-        </div>
-        <div class="faq-content mt-4 text-gray-600 leading-7">
-          No. A normal laptop or mobile device with a stable internet connection is enough for most beginner-level learning activities.
-        </div>
-      </div>
-
-      <div class="faq bg-white rounded-2xl shadow-md p-6 cursor-pointer">
-        <div class="flex justify-between items-center">
-          <h3 class="font-semibold text-lg">Will students get mentorship and support?</h3>
-          <span class="faq-icon text-3xl text-red-700">+</span>
-        </div>
-        <div class="faq-content mt-4 text-gray-600 leading-7">
-          Yes. Students will be able to interact with mentors, ask doubts, and receive guidance throughout the learning journey.
-        </div>
-      </div>
-
-      <div class="faq bg-white rounded-2xl shadow-md p-6 cursor-pointer">
-        <div class="flex justify-between items-center">
-          <h3 class="font-semibold text-lg">Will certificates be provided?</h3>
-          <span class="faq-icon text-3xl text-red-700">+</span>
-        </div>
-        <div class="faq-content mt-4 text-gray-600 leading-7">
-          Yes. Certificates may be provided for selected programs, activities, or learning tracks after successful completion.
-        </div>
-      </div>
-
-      <div class="faq bg-white rounded-2xl shadow-md p-6 cursor-pointer">
-        <div class="flex justify-between items-center">
-          <h3 class="font-semibold text-lg">What makes AcademeForge different?</h3>
-          <span class="faq-icon text-3xl text-red-700">+</span>
-        </div>
-        <div class="faq-content mt-4 text-gray-600 leading-7">
-          AcademeForge focuses more on practical learning, consistency, execution, and real growth instead of only theory, memorization, or marks.
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="py-20 md:py-24 bg-black text-white relative overflow-hidden">
-
-  <div class="absolute top-0 left-0 w-full h-full opacity-10">
-    <div class="w-[500px] h-[500px] bg-red-700 rounded-full blur-3xl absolute -top-40 -left-40"></div>
-    <div class="w-[500px] h-[500px] bg-red-500 rounded-full blur-3xl absolute bottom-0 right-0"></div>
-  </div>
-
-  <div class="relative z-10 max-w-7xl mx-auto px-4 md:px-6 text-center">
-
-    <p class="uppercase tracking-[4px] text-red-400 text-sm mb-4">
-      Contact Us
-    </p>
-
-    <h2 class="section-title text-4xl md:text-5xl font-bold mb-8">
-      Let’s Build Your Future
-    </h2>
-
-    <p class="text-gray-300 text-lg leading-8 max-w-3xl mx-auto mb-10">
-      Connect with AcademeForge for admissions and Program Details.
-    </p>
-
-    <div class="flex flex-col md:flex-row justify-center gap-8 text-lg">
-
-      <div class="glass px-8 py-6 rounded-3xl">
-        📍 Patna, Bihar, India
-      </div>
-
-      <div class="glass px-8 py-6 rounded-3xl">
-        📞 +91 SOON
-      </div>
-
-      <div class="glass px-8 py-6 rounded-3xl">
-        ✉ academeforge@gmail.com
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- POPUP -->
-<div id="popup" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden items-center justify-center z-[999] p-4 overflow-y-auto">
-
-  <div class="bg-white max-w-lg w-full rounded-3xl p-8 relative animate-popup shadow-2xl max-h-[90vh] overflow-y-auto">
-
-    <button onclick="closePopup()" class="absolute top-4 right-4 text-2xl font-bold text-gray-500 hover:text-red-700">
-      ×
-    </button>
-
-    <h2 id="popupTitle" class="text-3xl font-extrabold mb-4 text-red-700"></h2>
-
-    <div id="popupText" class="text-gray-600 leading-8 text-lg"></div>
-
-    <button onclick="closePopup()" class="mt-8 bg-red-700 hover:bg-red-800 text-white px-7 py-3 rounded-xl font-semibold transition-all">
-      Close
-    </button>
-
-  </div>
-
-</div>
-
-<!-- FLOATING CONTACT BAR -->
-<div class="fixed bottom-6 right-6 z-50">
-
-  <div class="bg-black px-4 py-3 rounded-full flex items-center gap-4 shadow-2xl">
-
-    <a
-      href="https://wa.me/91XXXXXXXXXX?text=Hello%20AcademeForge%20Team,%20please%20guide%20me%20regarding%20admissions."
-      target="_blank"
-      class="w-16 h-16 bg-green-500 hover:scale-110 transition-all duration-300 rounded-full flex items-center justify-center"
-      aria-label="WhatsApp"
-    >
-
-      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" viewBox="0 0 24 24">
-        <path d="M20.52 3.48A11.79 11.79 0 0012.06 0C5.52 0 .19 5.33.19 11.87c0 2.09.55 4.14 1.6 5.95L0 24l6.37-1.67a11.79 11.79 0 005.69 1.45h.01c6.54 0 11.87-5.33 11.87-11.87a11.8 11.8 0 00-3.42-8.43z"/>
-      </svg>
-
-    </a>
-
-    <a
-      href="tel:+91XXXXXXXXXX"
-      class="w-16 h-16 bg-sky-500 hover:scale-110 transition-all duration-300 rounded-full flex items-center justify-center"
-      aria-label="Call"
-    >
-
-      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
-        <path d="M22 16.92v3a2 2 0 0 1-2.18 2
-        19.79 19.79 0 0 1-8.63-3.07
-        19.5 19.5 0 0 1-6-6
-        19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72
-        12.84 12.84 0 0 0 .7 2.81
-        2 2 0 0 1-.45 2.11L8.09 9.91
-        a16 16 0 0 0 6 6l1.27-1.27
-        a2 2 0 0 1 2.11-.45
-        12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-      </svg>
-
-    </a>
-
-  </div>
-
-</div>
-
-<!-- FOOTER -->
-<footer class="bg-black border-t border-gray-800 text-center py-6 text-gray-400 text-sm">
-  © 2026 AcademeForge. All Rights Reserved.
-</footer>
-
-<!-- Custom JavaScript -->
-<script src="script.js"></script>
-
-  <!-- Custom JavaScript -->
-  <script src="script.js"></script>
-
-</body>
-</html>
+ 
