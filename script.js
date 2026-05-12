@@ -90,3 +90,101 @@ document.addEventListener("click", function(event) {
     closePopup();
   }
 });
+
+// FAQ
+document.querySelectorAll(".faq").forEach((faq) => {
+  faq.addEventListener("click", () => {
+    faq.classList.toggle("active");
+  });
+});
+
+// NORMAL POPUP
+function openPopup(title, text) {
+  const popup = document.getElementById("popup");
+  const popupTitle = document.getElementById("popupTitle");
+  const popupText = document.getElementById("popupText");
+
+  popup.classList.remove("hidden");
+  popup.classList.add("flex");
+
+  popupTitle.innerText = title;
+  popupText.innerText = text;
+
+  document.body.style.overflow = "hidden";
+}
+
+// COURSE POPUP
+function openCourse(title, duration, fees, syllabus, faculty) {
+  const popup = document.getElementById("popup");
+  const popupTitle = document.getElementById("popupTitle");
+  const popupText = document.getElementById("popupText");
+
+  popup.classList.remove("hidden");
+  popup.classList.add("flex");
+
+  popupTitle.innerText = title;
+
+  popupText.innerHTML = `
+    <div class="space-y-5">
+
+      <div class="bg-gray-100 p-5 rounded-2xl">
+        <h3 class="font-bold text-red-700 mb-2">Duration</h3>
+        <p>${duration}</p>
+      </div>
+
+      <div class="bg-gray-100 p-5 rounded-2xl">
+        <h3 class="font-bold text-red-700 mb-2">Fees</h3>
+        <p>${fees}</p>
+      </div>
+
+      <div class="bg-gray-100 p-5 rounded-2xl">
+        <h3 class="font-bold text-red-700 mb-2">Syllabus</h3>
+        <p>${syllabus}</p>
+      </div>
+
+      <div class="bg-gray-100 p-5 rounded-2xl">
+        <h3 class="font-bold text-red-700 mb-2">Faculty & Facilities</h3>
+        <p>${faculty}</p>
+      </div>
+
+    </div>
+  `;
+
+  document.body.style.overflow = "hidden";
+}
+
+// CLOSE POPUP
+function closePopup() {
+  const popup = document.getElementById("popup");
+
+  popup.classList.add("hidden");
+  popup.classList.remove("flex");
+
+  document.body.style.overflow = "auto";
+}
+
+// Close popup when clicking outside popup box
+document.addEventListener("click", function(event) {
+  const popup = document.getElementById("popup");
+
+  if (event.target === popup) {
+    closePopup();
+  }
+});
+
+// Optional: Disable right click and some inspect shortcuts
+document.addEventListener("contextmenu", (event) => {
+  event.preventDefault();
+});
+
+document.addEventListener("keydown", function(event) {
+  const key = event.key.toUpperCase();
+
+  if (
+    event.keyCode === 123 ||
+    (event.ctrlKey && event.shiftKey && ["I", "J", "C"].includes(key)) ||
+    (event.ctrlKey && key === "U")
+  ) {
+    event.preventDefault();
+  }
+});
