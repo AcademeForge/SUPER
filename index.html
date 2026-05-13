@@ -1471,6 +1471,266 @@ body::before {
     grid-template-columns: 1fr !important;
   }
 }
+
+  /* =========================================================
+   STUDY-FRIENDLY CLEAN MOBILE PATCH
+   Paste at END of CSS.
+   Goal: readable, calm, daily-use friendly.
+========================================================= */
+
+:root {
+  --study-bg-1: #0b1220;
+  --study-bg-2: #111827;
+  --study-card: rgba(255, 255, 255, 0.105);
+  --study-card-solid: rgba(17, 24, 39, 0.88);
+  --study-border: rgba(255, 255, 255, 0.12);
+
+  --study-text: #f8fafc;
+  --study-muted: #cbd5e1;
+
+  --study-primary: #60a5fa;
+  --study-accent: #fbbf24;
+  --study-green: #34d399;
+  --study-danger: #fb7185;
+
+  --study-shadow: 0 10px 28px rgba(0, 0, 0, 0.24);
+}
+
+/* Calm background, less visual noise */
+body {
+  background:
+    radial-gradient(circle at 20% -10%, rgba(96, 165, 250, 0.16), transparent 30%),
+    radial-gradient(circle at 90% 0%, rgba(251, 191, 36, 0.08), transparent 28%),
+    linear-gradient(160deg, var(--study-bg-1), var(--study-bg-2)) !important;
+  color: var(--study-text) !important;
+}
+
+/* Remove heavy texture/noise if previous patch added it */
+body::before {
+  display: none !important;
+}
+
+/* Less blur, more readable cards */
+.glass,
+.panel,
+.action-card,
+.course-select-card,
+.course-info-box,
+.course,
+.member,
+.admin-student-card,
+.chapter-item,
+.content-item,
+.stat,
+.learning-btn,
+.team-profile-card,
+.team-detail-card {
+  background: var(--study-card-solid) !important;
+  border: 1px solid var(--study-border) !important;
+  box-shadow: var(--study-shadow) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Better text contrast */
+.panel p,
+.panel li,
+.action-card p,
+.course-select-card p,
+.chapter-item p,
+.content-item p,
+.admin-student-card p,
+.course p,
+.member p,
+.team-profile-bio,
+.team-detail-intro,
+.brand p,
+.input-group label {
+  color: var(--study-muted) !important;
+}
+
+/* Section fade less aggressive */
+.section {
+  animation: studyFade 0.16s ease !important;
+}
+
+@keyframes studyFade {
+  from {
+    opacity: 0.92;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Topbar less dark blur */
+.topbar {
+  background: linear-gradient(180deg, rgba(11,18,32,0.98), rgba(11,18,32,0.88)) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Hero: calm study card */
+.hero {
+  background:
+    linear-gradient(145deg, rgba(30, 41, 59, 0.96), rgba(15, 23, 42, 0.96)) !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  box-shadow: var(--study-shadow) !important;
+}
+
+.hero::before {
+  display: none !important;
+}
+
+.hero h2 {
+  font-size: clamp(28px, 8.5vw, 34px) !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.8px !important;
+}
+
+.hero p {
+  color: var(--study-muted) !important;
+}
+
+/* Keep accent but subtle */
+.tag {
+  background: rgba(96, 165, 250, 0.12) !important;
+  border-color: rgba(96, 165, 250, 0.22) !important;
+  color: #dbeafe !important;
+}
+
+/* Buttons readable, not too flashy */
+.link-btn {
+  background: linear-gradient(135deg, #fbbf24, #fde68a) !important;
+  color: #111827 !important;
+  box-shadow: 0 8px 20px rgba(251, 191, 36, 0.16) !important;
+  border-radius: 16px !important;
+}
+
+.secondary,
+.back-mini {
+  background: rgba(255,255,255,0.08) !important;
+  color: var(--study-text) !important;
+  border: 1px solid rgba(255,255,255,0.13) !important;
+  box-shadow: none !important;
+}
+
+/* Cards simpler and easier */
+.action-card,
+.course-select-card,
+.learning-btn,
+.chapter-item,
+.content-item,
+.admin-student-card,
+.course-info-box,
+.course,
+.member {
+  border-radius: 20px !important;
+}
+
+.action-card::after,
+.course-select-card::after,
+.learning-btn::after,
+.team-profile-card::before {
+  display: none !important;
+}
+
+/* Icons calm */
+.icon,
+.course-select-card span,
+.learning-btn span,
+.avatar,
+.team-profile-avatar,
+.team-detail-avatar {
+  background: rgba(96, 165, 250, 0.14) !important;
+  color: #dbeafe !important;
+  border: 1px solid rgba(96, 165, 250, 0.22) !important;
+  box-shadow: none !important;
+}
+
+/* Inputs high readability */
+.input-group input,
+.input-group textarea,
+.input-group select {
+  background: rgba(15, 23, 42, 0.92) !important;
+  border: 1px solid rgba(203, 213, 225, 0.18) !important;
+  color: var(--study-text) !important;
+  border-radius: 15px !important;
+}
+
+.input-group input::placeholder,
+.input-group textarea::placeholder {
+  color: rgba(203, 213, 225, 0.55) !important;
+}
+
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group select:focus {
+  border-color: rgba(96, 165, 250, 0.55) !important;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.12) !important;
+}
+
+/* Notes / lecture badges */
+.content-badge,
+.dev-badge {
+  background: rgba(251, 191, 36, 0.12) !important;
+  border-color: rgba(251, 191, 36, 0.22) !important;
+  color: #fde68a !important;
+}
+
+/* Bottom nav clean dock */
+.bottom-nav {
+  background: rgba(15, 23, 42, 0.96) !important;
+  border: 1px solid rgba(255,255,255,0.13) !important;
+  box-shadow: 0 12px 34px rgba(0,0,0,0.34) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.nav-btn {
+  color: #cbd5e1 !important;
+}
+
+.nav-btn.active {
+  background: rgba(96, 165, 250, 0.16) !important;
+  color: #f8fafc !important;
+}
+
+/* Toast readable */
+.toast {
+  background: rgba(15, 23, 42, 0.98) !important;
+  border: 1px solid rgba(255,255,255,0.14) !important;
+  box-shadow: 0 12px 34px rgba(0,0,0,0.36) !important;
+}
+
+.toast strong {
+  color: #fbbf24 !important;
+}
+
+/* Reduce motion for daily comfort */
+.action-card,
+.course-select-card,
+.learning-btn,
+.chapter-item,
+.content-item,
+.link-btn,
+.back-mini,
+.nav-btn {
+  transition: transform 0.12s ease, background 0.12s ease !important;
+}
+
+.action-card:active,
+.course-select-card:active,
+.learning-btn:active,
+.chapter-item:active,
+.content-item:active,
+.link-btn:active,
+.back-mini:active {
+  transform: scale(0.985) !important;
+}
+    
   </style>
 </head>
 
