@@ -2364,6 +2364,296 @@ body::before {
     grid-template-columns: 1fr !important;
   }
 }
+    /* =========================================================
+   DARK / LIGHT MODE SYSTEM
+   Paste at END of CSS
+========================================================= */
+
+body.light-mode {
+  --mode-bg: #f6f7fb;
+  --mode-bg-soft: #eef2ff;
+
+  --mode-card: #ffffff;
+  --mode-card-2: #f8fafc;
+  --mode-border: #e5e7eb;
+
+  --mode-ink: #172033;
+  --mode-text: #243047;
+  --mode-muted: #667085;
+
+  --mode-primary: #3b82f6;
+  --mode-primary-soft: #dbeafe;
+
+  --mode-success: #22c55e;
+  --mode-success-soft: #dcfce7;
+
+  --mode-warning: #facc15;
+  --mode-warning-soft: #fef9c3;
+
+  --mode-purple: #8b5cf6;
+  --mode-purple-soft: #ede9fe;
+
+  --mode-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+  --mode-shadow-strong: 0 16px 34px rgba(15, 23, 42, 0.12);
+}
+
+body.dark-mode {
+  --mode-bg: #0b1220;
+  --mode-bg-soft: #111827;
+
+  --mode-card: #151f32;
+  --mode-card-2: #101827;
+  --mode-border: rgba(255,255,255,0.10);
+
+  --mode-ink: #f8fafc;
+  --mode-text: #e5e7eb;
+  --mode-muted: #aab4c8;
+
+  --mode-primary: #60a5fa;
+  --mode-primary-soft: rgba(96,165,250,0.16);
+
+  --mode-success: #34d399;
+  --mode-success-soft: rgba(52,211,153,0.16);
+
+  --mode-warning: #fbbf24;
+  --mode-warning-soft: rgba(251,191,36,0.16);
+
+  --mode-purple: #a78bfa;
+  --mode-purple-soft: rgba(167,139,250,0.16);
+
+  --mode-shadow: 0 12px 30px rgba(0, 0, 0, 0.26);
+  --mode-shadow-strong: 0 18px 42px rgba(0, 0, 0, 0.34);
+}
+
+/* Background */
+body.light-mode {
+  background:
+    radial-gradient(circle at 10% 0%, rgba(59,130,246,0.12), transparent 30%),
+    radial-gradient(circle at 90% 0%, rgba(34,197,94,0.10), transparent 28%),
+    linear-gradient(180deg, var(--mode-bg), var(--mode-bg-soft)) !important;
+  color: var(--mode-text) !important;
+}
+
+body.dark-mode {
+  background:
+    radial-gradient(circle at 10% 0%, rgba(96,165,250,0.13), transparent 30%),
+    radial-gradient(circle at 90% 0%, rgba(52,211,153,0.08), transparent 28%),
+    linear-gradient(180deg, var(--mode-bg), var(--mode-bg-soft)) !important;
+  color: var(--mode-text) !important;
+}
+
+/* Topbar */
+body.light-mode .topbar,
+body.dark-mode .topbar {
+  background: color-mix(in srgb, var(--mode-bg) 92%, transparent) !important;
+  border-bottom: 1px solid var(--mode-border) !important;
+}
+
+body.light-mode .brand h1,
+body.dark-mode .brand h1,
+body.light-mode .panel h2,
+body.dark-mode .panel h2,
+body.light-mode .panel h3,
+body.dark-mode .panel h3,
+body.light-mode .action-card h3,
+body.dark-mode .action-card h3,
+body.light-mode .course-select-card h3,
+body.dark-mode .course-select-card h3,
+body.light-mode .chapter-item h3,
+body.dark-mode .chapter-item h3,
+body.light-mode .content-item h3,
+body.dark-mode .content-item h3,
+body.light-mode .admin-student-card h3,
+body.dark-mode .admin-student-card h3,
+body.light-mode .course strong,
+body.dark-mode .course strong {
+  color: var(--mode-ink) !important;
+}
+
+/* Text */
+body.light-mode .panel p,
+body.dark-mode .panel p,
+body.light-mode .panel li,
+body.dark-mode .panel li,
+body.light-mode .action-card p,
+body.dark-mode .action-card p,
+body.light-mode .course-select-card p,
+body.dark-mode .course-select-card p,
+body.light-mode .chapter-item p,
+body.dark-mode .chapter-item p,
+body.light-mode .content-item p,
+body.dark-mode .content-item p,
+body.light-mode .admin-student-card p,
+body.dark-mode .admin-student-card p,
+body.light-mode .course p,
+body.dark-mode .course p,
+body.light-mode .member p,
+body.dark-mode .member p,
+body.light-mode .brand p,
+body.dark-mode .brand p,
+body.light-mode .input-group label,
+body.dark-mode .input-group label {
+  color: var(--mode-muted) !important;
+}
+
+/* Cards */
+body.light-mode .glass,
+body.dark-mode .glass,
+body.light-mode .panel,
+body.dark-mode .panel,
+body.light-mode .action-card,
+body.dark-mode .action-card,
+body.light-mode .course-select-card,
+body.dark-mode .course-select-card,
+body.light-mode .course-info-box,
+body.dark-mode .course-info-box,
+body.light-mode .course,
+body.dark-mode .course,
+body.light-mode .member,
+body.dark-mode .member,
+body.light-mode .admin-student-card,
+body.dark-mode .admin-student-card,
+body.light-mode .chapter-item,
+body.dark-mode .chapter-item,
+body.light-mode .content-item,
+body.dark-mode .content-item,
+body.light-mode .stat,
+body.dark-mode .stat,
+body.light-mode .learning-btn,
+body.dark-mode .learning-btn,
+body.light-mode .team-profile-card,
+body.dark-mode .team-profile-card,
+body.light-mode .team-detail-card,
+body.dark-mode .team-detail-card {
+  background: var(--mode-card) !important;
+  border: 1px solid var(--mode-border) !important;
+  box-shadow: var(--mode-shadow) !important;
+  color: var(--mode-text) !important;
+}
+
+/* Hero */
+body.light-mode .hero,
+body.dark-mode .hero {
+  background:
+    radial-gradient(circle at 18% 12%, var(--mode-success-soft), transparent 34%),
+    radial-gradient(circle at 88% 18%, var(--mode-primary-soft), transparent 34%),
+    var(--mode-card) !important;
+  border: 1px solid var(--mode-border) !important;
+  box-shadow: var(--mode-shadow-strong) !important;
+}
+
+body.light-mode .hero h2,
+body.dark-mode .hero h2 {
+  color: var(--mode-ink) !important;
+}
+
+body.light-mode .hero p,
+body.dark-mode .hero p {
+  color: var(--mode-muted) !important;
+}
+
+/* Inputs */
+body.light-mode .input-group input,
+body.light-mode .input-group textarea,
+body.light-mode .input-group select {
+  background: #f8fafc !important;
+  color: var(--mode-ink) !important;
+  border: 1px solid #dbe1ea !important;
+}
+
+body.dark-mode .input-group input,
+body.dark-mode .input-group textarea,
+body.dark-mode .input-group select {
+  background: #0f172a !important;
+  color: var(--mode-ink) !important;
+  border: 1px solid rgba(255,255,255,0.13) !important;
+}
+
+body.light-mode .input-group input::placeholder,
+body.light-mode .input-group textarea::placeholder {
+  color: #98a2b3 !important;
+}
+
+body.dark-mode .input-group input::placeholder,
+body.dark-mode .input-group textarea::placeholder {
+  color: rgba(229,231,235,0.45) !important;
+}
+
+/* Icons */
+body.light-mode .icon,
+body.light-mode .course-select-card span,
+body.light-mode .learning-btn span,
+body.light-mode .avatar,
+body.light-mode .team-profile-avatar,
+body.light-mode .team-detail-avatar {
+  background: var(--mode-primary-soft) !important;
+  color: var(--mode-primary) !important;
+  border: 1px solid #bfdbfe !important;
+}
+
+body.dark-mode .icon,
+body.dark-mode .course-select-card span,
+body.dark-mode .learning-btn span,
+body.dark-mode .avatar,
+body.dark-mode .team-profile-avatar,
+body.dark-mode .team-detail-avatar {
+  background: var(--mode-primary-soft) !important;
+  color: #bfdbfe !important;
+  border: 1px solid rgba(96,165,250,0.25) !important;
+}
+
+/* Buttons */
+body.light-mode .link-btn,
+body.dark-mode .link-btn {
+  background: var(--mode-success) !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 0 rgba(22,163,74,0.9), 0 14px 24px rgba(34,197,94,0.18) !important;
+}
+
+body.light-mode .secondary,
+body.light-mode .back-mini,
+body.dark-mode .secondary,
+body.dark-mode .back-mini {
+  background: var(--mode-card) !important;
+  color: var(--mode-ink) !important;
+  border: 1px solid var(--mode-border) !important;
+}
+
+/* Bottom nav */
+body.light-mode .bottom-nav,
+body.dark-mode .bottom-nav {
+  background: var(--mode-card) !important;
+  border: 1px solid var(--mode-border) !important;
+  box-shadow: var(--mode-shadow-strong) !important;
+}
+
+body.light-mode .nav-btn,
+body.dark-mode .nav-btn {
+  color: var(--mode-muted) !important;
+}
+
+body.light-mode .nav-btn.active,
+body.dark-mode .nav-btn.active {
+  background: var(--mode-primary-soft) !important;
+  color: var(--mode-primary) !important;
+}
+
+/* Toggle button */
+.theme-toggle-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 16px;
+  border: 1px solid var(--mode-border);
+  background: var(--mode-card);
+  color: var(--mode-ink);
+  box-shadow: var(--mode-shadow);
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.theme-toggle-btn:active {
+  transform: scale(0.96);
+}
   </style>
 </head>
 
@@ -2385,7 +2675,11 @@ body::before {
             <p>Learning Beyond the Classroom</p>
           </div>
         </div>
-
+        
+<button class="theme-toggle-btn" onclick="toggleThemeMode()" id="themeToggleBtn">
+  🌙
+</button>
+        
        <a href="https://academeforge.in/" class="time-box glass">
   <strong id="time">Website</strong>
   <span id="date">academeforge.in</span>
@@ -5724,6 +6018,28 @@ setInterval(function() {
   }
 }, 10000);
 
+  function applyThemeMode(mode) {
+  document.body.classList.remove("light-mode", "dark-mode");
+  document.body.classList.add(mode);
+
+  localStorage.setItem("academeThemeMode", mode);
+
+  const btn = document.getElementById("themeToggleBtn");
+  if (btn) {
+    btn.textContent = mode === "dark-mode" ? "☀️" : "🌙";
+  }
+}
+
+function toggleThemeMode() {
+  const isDark = document.body.classList.contains("dark-mode");
+  applyThemeMode(isDark ? "light-mode" : "dark-mode");
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const savedMode = localStorage.getItem("academeThemeMode") || "dark-mode";
+  applyThemeMode(savedMode);
+});
+  
 </script>
 
 </body>
