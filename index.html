@@ -1115,6 +1115,12 @@ html, body {
   <h3>Chapters</h3>
   <p>Add, view, edit, and delete course chapters.</p>
 </button>
+
+      <button class="course-select-card" onclick="openAdminProgress()">
+  <span>📊</span>
+  <h3>Progress</h3>
+  <p>Track student lecture and note progress.</p>
+</button>
     </div>
 
     <!-- STUDENT MANAGEMENT -->
@@ -1166,7 +1172,33 @@ html, body {
         </div>
       </div>
     </div>
+    
+<!-- PROGRESS MANAGEMENT -->
+<div class="admin-manage-box hidden-box" id="adminProgressBox" style="display:none;">
+  <div style="display:flex; justify-content:space-between; gap:10px; align-items:center;">
+    <div>
+      <h3>📊 Progress Management</h3>
+      <p>View and reset student lecture/note progress.</p>
+    </div>
 
+    <button class="back-mini" onclick="closeAdminProgress()">Back</button>
+  </div>
+
+  <div class="course-info-box">
+    <h3>Progress Records</h3>
+    <p>Shows completed lectures/notes by students.</p>
+
+    <button class="link-btn" onclick="fetchAdminProgress()">Refresh Progress</button>
+  </div>
+
+  <div class="course-info-box">
+    <h3>All Progress</h3>
+    <div id="adminProgressList" class="admin-list-box">
+      Loading progress...
+    </div>
+  </div>
+</div>
+    
     <!-- CHAPTER MANAGEMENT -->
 <div class="admin-manage-box hidden-box" id="adminChaptersBox" style="display:none;">
   <div style="display:flex; justify-content:space-between; gap:10px; align-items:center;">
@@ -3517,7 +3549,215 @@ async function deleteAdminNote(noteId) {
   showToast("Note Deleted", "Note deleted successfully.");
   await fetchAdminNotes();
 }
-  
+  /* ---------------- ADMIN PROGRESS MANAGEMENT ---------------- */
+
+async function openAdminProgress() {
+  const quickActions = document.getElementById("officeQuickActions");
+  const box = document.getElementById("adminProgressBox");
+
+  if (!box) {
+    showToast("Error", "Progress box not found in HTML.");
+    return;
+  }
+
+  if (quickActions) quickActions.style.display = "none";
+
+  if (typeof hideAllAdminBoxes === "function") {
+    hideAllAdminBoxes();
+  }
+
+  box.classList.remove("hidden-box");
+  box.style.display = "block";
+
+  await fetchAdminProgress();
+}
+
+function closeAdminProgress() {
+  const quickActions = document.getElementById("officeQuickActions");
+  const box = document.getElementById("adminProgressBox");
+
+  if (box) {
+    box.style.display = "none";
+    box.classList.add("hidden-box");
+  }
+
+  if (quickActions) quickActions.style.display = "grid";
+}
+
+async function fetchAdminProgress() {
+  const list = document.getElementById("adminProgressList");
+
+  if (!list) return;
+
+  list.innerHTML = "Loading progress...";
+
+  const { data, error } = await db
+    .from("progress")
+    .select(`
+      id,
+      student_id,
+      content_type,
+      content_id,
+      status,
+      completed_at,
+      students (
+        id,
+        name,
+        student_id
+      )
+    `)
+    .order("completed_at", { ascending: false });
+
+  if (error) {
+    console.log("Progress fetch error:", error);
+    list.innerHTML = "<div class='login-note'>Progress could not be loaded.</div>";
+    return;
+  }
+
+  await renderAdminProgress(data || []);
+}
+
+async function getProgressContentTitle(contentType, contentId) {
+  if (!contentType || !contentId) {
+    return {
+      title: "-",
+      course: "-",
+      chapter: "-"
+    };
+  }
+
+  if (contentType === "lecture") {
+    const { data, error } = await db
+      .from("lectures")
+      .select(`
+        title,
+        chapters (
+          title,
+          chapter_number,
+          courses (
+            title
+          )
+        )
+      `)
+      .eq("id", contentId)
+      .single();
+
+    if (error || !data) {
+      return {
+        title: "Lecture not found",
+        course: "-",
+        chapter: "-"
+      };
+    }
+
+    return {
+      title: data.title || "-",
+      course: data.chapters && data.chapters.courses ? data.chapters.courses.title : "-",
+      chapter: data.chapters ? "Chapter " + data.chapters.chapter_number + " - " + data.chapters.title : "-"
+    };
+  }
+
+  if (contentType === "note") {
+    const { data, error } = await db
+      .from("notes")
+      .select(`
+        title,
+        chapters (
+          title,
+          chapter_number,
+          courses (
+            title
+          )
+        )
+      `)
+      .eq("id", contentId)
+      .single();
+
+    if (error || !data) {
+      return {
+        title: "Note not found",
+        course: "-",
+        chapter: "-"
+      };
+    }
+
+    return {
+      title: data.title || "-",
+      course: data.chapters && data.chapters.courses ? data.chapters.courses.title : "-",
+      chapter: data.chapters ? "Chapter " + data.chapters.chapter_number + " - " + data.chapters.title : "-"
+    };
+  }
+
+  return {
+    title: contentId,
+    course: "-",
+    chapter: "-"
+  };
+}
+
+async function renderAdminProgress(progressRows) {
+  const list = document.getElementById("adminProgressList");
+
+  if (!list) return;
+
+  if (!progressRows.length) {
+    list.innerHTML = "<div class='login-note'>No progress found.</div>";
+    return;
+  }
+
+  list.innerHTML = "";
+
+  for (const row of progressRows) {
+    const card = document.createElement("div");
+    card.className = "admin-student-card";
+
+    const student = row.students;
+    const contentInfo = await getProgressContentTitle(row.content_type, row.content_id);
+
+    const completedTime = row.completed_at
+      ? new Date(row.completed_at).toLocaleString()
+      : "-";
+
+    card.innerHTML = `
+      <div>
+        <h3>${student ? student.name : "Unknown Student"}</h3>
+        <p><b>Student ID:</b> ${student ? student.student_id : "-"}</p>
+        <p><b>Type:</b> ${row.content_type || "-"}</p>
+        <p><b>Title:</b> ${contentInfo.title}</p>
+        <p><b>Course:</b> ${contentInfo.course}</p>
+        <p><b>Chapter:</b> ${contentInfo.chapter}</p>
+        <p><b>Status:</b> ${row.status || "-"}</p>
+        <p><b>Completed At:</b> ${completedTime}</p>
+      </div>
+
+      <div class="admin-action-row">
+        <button class="back-mini" onclick="deleteAdminProgress('${row.id}')">Reset/Delete</button>
+      </div>
+    `;
+
+    list.appendChild(card);
+  }
+}
+
+async function deleteAdminProgress(progressId) {
+  const confirmDelete = confirm("Delete this progress record?");
+
+  if (!confirmDelete) return;
+
+  const { error } = await db
+    .from("progress")
+    .delete()
+    .eq("id", progressId);
+
+  if (error) {
+    console.log("Progress delete error:", error);
+    showToast("Error", "Progress could not be deleted.");
+    return;
+  }
+
+  showToast("Progress Deleted", "Progress record removed.");
+  await fetchAdminProgress();
+}
 /* ---------------- COURSE SYSTEM ---------------- */
 
 async function fetchStudentCourses() {
