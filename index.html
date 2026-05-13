@@ -1730,7 +1730,640 @@ body::before {
 .back-mini:active {
   transform: scale(0.985) !important;
 }
-    
+    /* =========================================================
+   DUOLINGO + NOTION + STUDY APP MOBILE PATCH
+   Paste at the END of your existing CSS.
+   Safe patch: does NOT touch .hidden-box.
+========================================================= */
+
+:root {
+  --study-bg: #f6f7fb;
+  --study-bg-soft: #eef2ff;
+
+  --study-ink: #172033;
+  --study-text: #243047;
+  --study-muted: #667085;
+
+  --study-card: #ffffff;
+  --study-card-2: #f8fafc;
+  --study-border: #e5e7eb;
+
+  --study-blue: #3b82f6;
+  --study-blue-soft: #dbeafe;
+
+  --study-green: #22c55e;
+  --study-green-soft: #dcfce7;
+
+  --study-yellow: #facc15;
+  --study-yellow-soft: #fef9c3;
+
+  --study-purple: #8b5cf6;
+  --study-purple-soft: #ede9fe;
+
+  --study-pink: #ec4899;
+  --study-pink-soft: #fce7f3;
+
+  --study-red: #ef4444;
+  --study-red-soft: #fee2e2;
+
+  --study-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+  --study-shadow-strong: 0 16px 34px rgba(15, 23, 42, 0.12);
+}
+
+/* ---------- GLOBAL ---------- */
+
+body {
+  background:
+    radial-gradient(circle at 10% 0%, rgba(59,130,246,0.12), transparent 30%),
+    radial-gradient(circle at 90% 0%, rgba(34,197,94,0.10), transparent 28%),
+    linear-gradient(180deg, var(--study-bg), var(--study-bg-soft)) !important;
+  color: var(--study-text) !important;
+}
+
+body::before {
+  display: none !important;
+}
+
+.app {
+  background: transparent !important;
+}
+
+/* Better text visibility */
+.panel p,
+.panel li,
+.action-card p,
+.course-select-card p,
+.chapter-item p,
+.content-item p,
+.admin-student-card p,
+.course p,
+.member p,
+.team-profile-bio,
+.team-detail-intro,
+.brand p,
+.input-group label,
+.login-note,
+.ticker p {
+  color: var(--study-muted) !important;
+}
+
+/* ---------- TOP BAR ---------- */
+
+.topbar {
+  background: rgba(246, 247, 251, 0.94) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(229, 231, 235, 0.75);
+}
+
+.brand h1 {
+  color: var(--study-ink) !important;
+  font-weight: 900;
+}
+
+.brand p {
+  color: var(--study-muted) !important;
+}
+
+.logo,
+.app-logo {
+  background: #ffffff !important;
+  border: 2px solid var(--study-border) !important;
+  box-shadow: var(--study-shadow) !important;
+}
+
+.logo {
+  color: var(--study-blue) !important;
+}
+
+.time-box {
+  background: #ffffff !important;
+  border: 1px solid var(--study-border) !important;
+  color: var(--study-muted) !important;
+  box-shadow: var(--study-shadow);
+}
+
+.time-box strong {
+  color: var(--study-green) !important;
+}
+
+/* ---------- CARD BASE ---------- */
+
+.glass,
+.panel,
+.action-card,
+.course-select-card,
+.course-info-box,
+.course,
+.member,
+.admin-student-card,
+.chapter-item,
+.content-item,
+.stat,
+.learning-btn,
+.team-profile-card,
+.team-detail-card {
+  background: var(--study-card) !important;
+  border: 1px solid var(--study-border) !important;
+  box-shadow: var(--study-shadow) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  color: var(--study-text) !important;
+}
+
+/* ---------- PANELS ---------- */
+
+.panel {
+  border-radius: 26px !important;
+  padding: 18px !important;
+}
+
+.panel h2 {
+  color: var(--study-ink) !important;
+  font-size: 22px;
+  letter-spacing: -0.5px;
+}
+
+.panel h3 {
+  color: var(--study-ink) !important;
+}
+
+/* ---------- HERO ---------- */
+
+.hero {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(34,197,94,0.16), transparent 34%),
+    radial-gradient(circle at 88% 18%, rgba(59,130,246,0.14), transparent 34%),
+    #ffffff !important;
+  border: 1px solid var(--study-border) !important;
+  box-shadow: var(--study-shadow-strong) !important;
+  border-radius: 30px !important;
+}
+
+.hero::before {
+  display: none !important;
+}
+
+.hero h2 {
+  color: var(--study-ink) !important;
+  font-size: clamp(29px, 8.5vw, 35px) !important;
+  line-height: 1.06 !important;
+  letter-spacing: -1px !important;
+}
+
+.hero p {
+  color: var(--study-muted) !important;
+}
+
+.tag {
+  background: var(--study-green-soft) !important;
+  border: 1px solid #bbf7d0 !important;
+  color: #166534 !important;
+  font-weight: 900 !important;
+}
+
+.notice {
+  background: var(--study-yellow-soft) !important;
+  border: 1px solid #fde68a !important;
+  color: #854d0e !important;
+}
+
+/* ---------- ACTION CARDS ---------- */
+
+.action-card,
+.course-select-card,
+.learning-btn {
+  border-radius: 24px !important;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.14s ease, box-shadow 0.14s ease !important;
+}
+
+.action-card {
+  min-height: 126px;
+}
+
+.action-card::after,
+.course-select-card::after,
+.learning-btn::after {
+  content: "";
+  position: absolute;
+  right: -34px;
+  bottom: -38px;
+  width: 110px;
+  height: 110px;
+  border-radius: 999px;
+  background: rgba(59,130,246,0.08);
+  pointer-events: none;
+}
+
+.action-card:nth-child(2n)::after,
+.course-select-card:nth-child(2n)::after {
+  background: rgba(34,197,94,0.08);
+}
+
+.action-card:nth-child(3n)::after,
+.course-select-card:nth-child(3n)::after {
+  background: rgba(139,92,246,0.08);
+}
+
+.action-card h3,
+.course-select-card h3,
+.learning-btn strong {
+  color: var(--study-ink) !important;
+  font-weight: 900;
+}
+
+.action-card:active,
+.course-select-card:active,
+.learning-btn:active,
+.chapter-item:active,
+.content-item:active,
+.link-btn:active,
+.back-mini:active,
+.nav-btn:active {
+  transform: scale(0.975) !important;
+}
+
+/* Fun icons */
+.icon,
+.course-select-card span,
+.learning-btn span {
+  background: var(--study-blue-soft) !important;
+  color: var(--study-blue) !important;
+  border: 1px solid #bfdbfe !important;
+  box-shadow: none !important;
+}
+
+.action-card:nth-child(2n) .icon,
+.course-select-card:nth-child(2n) span {
+  background: var(--study-green-soft) !important;
+  color: #16a34a !important;
+  border-color: #bbf7d0 !important;
+}
+
+.action-card:nth-child(3n) .icon,
+.course-select-card:nth-child(3n) span {
+  background: var(--study-purple-soft) !important;
+  color: var(--study-purple) !important;
+  border-color: #ddd6fe !important;
+}
+
+.action-card:nth-child(4n) .icon,
+.course-select-card:nth-child(4n) span {
+  background: var(--study-yellow-soft) !important;
+  color: #ca8a04 !important;
+  border-color: #fde68a !important;
+}
+
+/* ---------- COURSE / LIST CARDS ---------- */
+
+.course-info-box,
+.admin-student-card,
+.chapter-item,
+.content-item,
+.course,
+.member,
+.stat {
+  border-radius: 22px !important;
+}
+
+.course-info-box {
+  background: #ffffff !important;
+}
+
+.chapter-item,
+.content-item {
+  cursor: pointer;
+}
+
+.chapter-item h3,
+.content-item h3,
+.admin-student-card h3,
+.course strong {
+  color: var(--study-ink) !important;
+}
+
+.content-badge,
+.dev-badge {
+  background: var(--study-blue-soft) !important;
+  border: 1px solid #bfdbfe !important;
+  color: #1d4ed8 !important;
+  font-weight: 900 !important;
+}
+
+/* ---------- FORMS ---------- */
+
+.input-group label {
+  color: var(--study-muted) !important;
+  font-weight: 800;
+}
+
+.input-group input,
+.input-group textarea,
+.input-group select {
+  background: #f8fafc !important;
+  color: var(--study-ink) !important;
+  border: 1px solid #dbe1ea !important;
+  border-radius: 16px !important;
+  min-height: 50px;
+  font-size: 14px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+}
+
+.input-group textarea {
+  min-height: 105px;
+  line-height: 1.5;
+}
+
+.input-group input::placeholder,
+.input-group textarea::placeholder {
+  color: #98a2b3 !important;
+}
+
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group select:focus {
+  outline: none !important;
+  border-color: rgba(59,130,246,0.7) !important;
+  box-shadow: 0 0 0 4px rgba(59,130,246,0.13) !important;
+}
+
+/* ---------- BUTTONS ---------- */
+
+.link-btn {
+  background: var(--study-green) !important;
+  color: #ffffff !important;
+  border-radius: 17px !important;
+  min-height: 50px;
+  font-weight: 950 !important;
+  box-shadow: 0 8px 0 #16a34a, 0 14px 24px rgba(34,197,94,0.18) !important;
+  border: 0 !important;
+}
+
+.link-btn:active {
+  transform: translateY(4px) scale(0.99) !important;
+  box-shadow: 0 4px 0 #16a34a, 0 10px 18px rgba(34,197,94,0.16) !important;
+}
+
+.secondary,
+.back-mini {
+  background: #ffffff !important;
+  color: var(--study-ink) !important;
+  border: 1px solid var(--study-border) !important;
+  box-shadow: var(--study-shadow) !important;
+}
+
+.back-mini {
+  border-radius: 15px !important;
+  font-weight: 900;
+}
+
+/* Admin action buttons smaller */
+.admin-action-row .back-mini {
+  margin-bottom: 0;
+  padding: 9px 11px;
+  font-size: 12px;
+}
+
+/* ---------- LEARNING ---------- */
+
+.learning-choice {
+  gap: 12px;
+}
+
+.learning-btn {
+  background: #ffffff !important;
+}
+
+/* ---------- TEAM ---------- */
+
+.team-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.team-profile-card {
+  border-radius: 24px !important;
+  padding: 17px;
+}
+
+.team-profile-card::before {
+  display: none !important;
+}
+
+.team-profile-top {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.team-profile-avatar,
+.team-detail-avatar,
+.avatar {
+  background: var(--study-purple-soft) !important;
+  color: var(--study-purple) !important;
+  border: 1px solid #ddd6fe !important;
+  box-shadow: none !important;
+}
+
+.team-profile-avatar {
+  width: 62px;
+  height: 62px;
+  border-radius: 21px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 950;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.team-profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.team-profile-text h3 {
+  margin: 0 0 6px;
+  color: var(--study-ink) !important;
+  font-size: 17px;
+  font-weight: 950;
+}
+
+.team-profile-text span,
+.team-detail-header span {
+  display: inline-flex;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 900;
+  background: var(--study-yellow-soft);
+  border: 1px solid #fde68a;
+  color: #854d0e;
+}
+
+.team-profile-bio {
+  margin: 13px 0 0;
+  line-height: 1.55;
+  font-size: 13px;
+}
+
+.team-read-more {
+  margin: 13px 0 0;
+  font-size: 12px;
+  font-weight: 950;
+  color: var(--study-blue);
+}
+
+.team-detail-card {
+  border-radius: 24px !important;
+  padding: 17px;
+}
+
+.team-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.team-detail-avatar {
+  width: 74px;
+  height: 74px;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: 950;
+  flex-shrink: 0;
+}
+
+.team-detail-header h2 {
+  margin: 0 0 8px;
+  color: var(--study-ink) !important;
+}
+
+.team-detail-points h3 {
+  color: var(--study-ink) !important;
+}
+
+/* ---------- INFO BLOCKS ---------- */
+
+.login-note {
+  background: var(--study-blue-soft) !important;
+  border: 1px solid #bfdbfe !important;
+  color: #1e3a8a !important;
+}
+
+.ticker {
+  background: var(--study-green-soft) !important;
+  border: 1px solid #bbf7d0 !important;
+}
+
+.ticker p {
+  color: #166534 !important;
+}
+
+.stat strong {
+  color: var(--study-blue) !important;
+}
+
+/* ---------- TOAST ---------- */
+
+.toast {
+  background: #ffffff !important;
+  color: var(--study-text) !important;
+  border: 1px solid var(--study-border) !important;
+  box-shadow: var(--study-shadow-strong) !important;
+  border-radius: 22px !important;
+}
+
+.toast strong {
+  color: var(--study-green) !important;
+}
+
+.toast p {
+  color: var(--study-muted) !important;
+}
+
+/* ---------- BOTTOM NAV ---------- */
+
+.bottom-nav {
+  background: #ffffff !important;
+  border: 1px solid var(--study-border) !important;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12) !important;
+  border-radius: 26px !important;
+  padding: 8px !important;
+}
+
+.nav-btn {
+  color: var(--study-muted) !important;
+  border-radius: 18px !important;
+  font-weight: 800;
+}
+
+.nav-btn b {
+  font-size: 18px;
+}
+
+.nav-btn.active {
+  background: var(--study-blue-soft) !important;
+  color: var(--study-blue) !important;
+}
+
+/* ---------- MOTION COMFORT ---------- */
+
+.section {
+  animation: studyAppFade 0.14s ease !important;
+}
+
+@keyframes studyAppFade {
+  from {
+    opacity: 0.96;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.action-card,
+.course-select-card,
+.learning-btn,
+.chapter-item,
+.content-item,
+.link-btn,
+.back-mini,
+.nav-btn {
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease !important;
+}
+
+/* ---------- VERY SMALL MOBILE ---------- */
+
+@media (max-width: 360px) {
+  .hero h2 {
+    font-size: 27px !important;
+  }
+
+  .actions {
+    grid-template-columns: 1fr !important;
+  }
+
+  .wide {
+    grid-column: span 1 !important;
+  }
+
+  .learning-choice,
+  .mini-row {
+    grid-template-columns: 1fr !important;
+  }
+}
   </style>
 </head>
 
