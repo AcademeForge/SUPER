@@ -1070,6 +1070,407 @@ textarea {
     padding-left: 4px;
   }
 }
+    /* =========================================================
+   GEN-Z MOBILE DESIGN PATCH
+   Paste this at the END of your existing CSS.
+   It does not change hidden/show logic.
+========================================================= */
+
+:root {
+  --neo-bg-1: #070716;
+  --neo-bg-2: #11102a;
+  --neo-pink: #ff4ecd;
+  --neo-blue: #38bdf8;
+  --neo-purple: #8b5cf6;
+  --neo-yellow: #facc15;
+  --neo-green: #2dd4bf;
+  --neo-card: rgba(255, 255, 255, 0.105);
+  --neo-card-2: rgba(255, 255, 255, 0.155);
+  --neo-border: rgba(255, 255, 255, 0.16);
+  --neo-text: #f8fafc;
+  --neo-muted: rgba(226, 232, 240, 0.72);
+  --neo-shadow: 0 18px 50px rgba(0, 0, 0, 0.34);
+}
+
+/* App background: playful aur premium */
+body {
+  background:
+    radial-gradient(circle at 10% -5%, rgba(255, 78, 205, 0.28), transparent 32%),
+    radial-gradient(circle at 95% 5%, rgba(56, 189, 248, 0.24), transparent 34%),
+    radial-gradient(circle at 50% 105%, rgba(250, 204, 21, 0.13), transparent 34%),
+    linear-gradient(145deg, var(--neo-bg-1), var(--neo-bg-2)) !important;
+  color: var(--neo-text);
+}
+
+/* Subtle grid texture */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.85), transparent 80%);
+  z-index: -1;
+}
+
+/* Topbar cleaner */
+.topbar {
+  padding: 12px 14px 10px;
+  background:
+    linear-gradient(180deg, rgba(7,7,22,0.96), rgba(7,7,22,0.72), transparent) !important;
+}
+
+.brand h1 {
+  font-size: 16px;
+  letter-spacing: -0.2px;
+}
+
+.brand p {
+  color: var(--neo-muted);
+}
+
+/* Logo glow */
+.logo,
+.app-logo {
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.12),
+    0 14px 35px rgba(255,78,205,0.18),
+    0 10px 28px rgba(56,189,248,0.12);
+}
+
+/* Glass upgrade */
+.glass,
+.panel,
+.action-card,
+.course-select-card,
+.course-info-box,
+.course,
+.member,
+.admin-student-card,
+.chapter-item,
+.content-item,
+.stat,
+.learning-btn {
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.135), rgba(255,255,255,0.055)) !important;
+  border: 1px solid var(--neo-border) !important;
+  box-shadow: var(--neo-shadow);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+/* Panels more app-like */
+.panel {
+  border-radius: 30px !important;
+  padding: 18px !important;
+}
+
+.panel h2 {
+  font-size: 22px;
+  letter-spacing: -0.5px;
+}
+
+.panel p,
+.panel li {
+  color: var(--neo-muted);
+}
+
+/* Hero: fun neon card */
+.hero {
+  border-radius: 34px !important;
+  padding: 24px 18px !important;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(255,78,205,0.20), transparent 36%),
+    radial-gradient(circle at 90% 20%, rgba(56,189,248,0.18), transparent 36%),
+    linear-gradient(145deg, rgba(255,255,255,0.14), rgba(255,255,255,0.055)) !important;
+}
+
+.hero h2 {
+  font-size: clamp(29px, 9vw, 36px) !important;
+  line-height: 1.02 !important;
+  letter-spacing: -1.3px !important;
+}
+
+.tag {
+  background: rgba(255,78,205,0.12) !important;
+  border-color: rgba(255,78,205,0.28) !important;
+  color: #ffe4fb !important;
+}
+
+/* Action cards: more tappable */
+.action-card,
+.course-select-card,
+.learning-btn {
+  border-radius: 26px !important;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease !important;
+}
+
+.action-card {
+  min-height: 128px;
+  position: relative;
+  overflow: hidden;
+}
+
+.action-card::after,
+.course-select-card::after,
+.learning-btn::after {
+  content: "";
+  position: absolute;
+  inset: auto -40px -50px auto;
+  width: 120px;
+  height: 120px;
+  border-radius: 999px;
+  background: rgba(255,78,205,0.10);
+  pointer-events: none;
+}
+
+.action-card:active,
+.course-select-card:active,
+.learning-btn:active,
+.chapter-item:active,
+.content-item:active,
+.link-btn:active,
+.back-mini:active {
+  transform: scale(0.975) !important;
+}
+
+/* Icons: candy style */
+.icon,
+.course-select-card span,
+.learning-btn span {
+  background:
+    linear-gradient(135deg, rgba(255,78,205,0.22), rgba(56,189,248,0.18)) !important;
+  border: 1px solid rgba(255,255,255,0.16) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.16);
+}
+
+/* Buttons: gradient pill */
+.link-btn {
+  border-radius: 18px !important;
+  min-height: 50px;
+  background:
+    linear-gradient(135deg, var(--neo-yellow), #fff1a8) !important;
+  color: #080816 !important;
+  font-weight: 950 !important;
+  box-shadow:
+    0 14px 32px rgba(250,204,21,0.20),
+    inset 0 1px 0 rgba(255,255,255,0.35) !important;
+}
+
+.secondary {
+  background: rgba(255,255,255,0.10) !important;
+  color: var(--neo-text) !important;
+  border: 1px solid rgba(255,255,255,0.16) !important;
+  box-shadow: none !important;
+}
+
+/* Back buttons */
+.back-mini {
+  border-radius: 15px !important;
+  background: rgba(255,255,255,0.10) !important;
+  border: 1px solid rgba(255,255,255,0.15) !important;
+  color: var(--neo-text) !important;
+  font-weight: 800;
+}
+
+/* Forms: better mobile typing */
+.input-group label {
+  color: var(--neo-muted) !important;
+  font-weight: 750;
+}
+
+.input-group input,
+.input-group textarea,
+.input-group select {
+  min-height: 50px;
+  border-radius: 18px !important;
+  background: rgba(255,255,255,0.095) !important;
+  border: 1px solid rgba(255,255,255,0.15) !important;
+  color: var(--neo-text) !important;
+  font-size: 14px;
+}
+
+.input-group textarea {
+  min-height: 105px;
+  line-height: 1.5;
+}
+
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group select:focus {
+  border-color: rgba(56,189,248,0.55) !important;
+  box-shadow: 0 0 0 3px rgba(56,189,248,0.12);
+  outline: none;
+}
+
+/* Lists/cards: cleaner */
+.course-info-box,
+.admin-student-card,
+.chapter-item,
+.content-item,
+.course {
+  border-radius: 22px !important;
+}
+
+.admin-action-row {
+  gap: 8px;
+}
+
+.admin-action-row .back-mini {
+  margin-bottom: 0;
+  font-size: 12px;
+  padding: 9px 11px;
+}
+
+/* Badges */
+.content-badge,
+.dev-badge {
+  border-radius: 999px !important;
+  font-weight: 850 !important;
+}
+
+/* Team premium cards if used */
+.team-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.team-profile-card {
+  position: relative;
+  padding: 17px;
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(255,78,205,0.14), transparent 34%),
+    linear-gradient(145deg, rgba(255,255,255,0.13), rgba(255,255,255,0.055)) !important;
+  border: 1px solid rgba(255,255,255,0.16);
+  box-shadow: var(--neo-shadow);
+  overflow: hidden;
+}
+
+.team-profile-top {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.team-profile-avatar {
+  width: 62px;
+  height: 62px;
+  border-radius: 21px;
+  background: linear-gradient(135deg, #fff, #dbeafe);
+  color: #07111f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 950;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.team-profile-text h3 {
+  margin: 0 0 6px;
+  font-size: 17px;
+}
+
+.team-profile-text span {
+  display: inline-flex;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 850;
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.team-profile-bio {
+  position: relative;
+  margin: 13px 0 0;
+  line-height: 1.55;
+  font-size: 13px;
+  color: var(--neo-muted);
+}
+
+.team-read-more {
+  position: relative;
+  margin: 13px 0 0;
+  font-size: 12px;
+  font-weight: 850;
+  color: #e0f2fe;
+}
+
+/* Bottom nav: floating app dock */
+.bottom-nav {
+  bottom: calc(10px + env(safe-area-inset-bottom)) !important;
+  width: min(450px, calc(100% - 22px)) !important;
+  padding: 8px !important;
+  border-radius: 26px !important;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.16), rgba(255,255,255,0.07)) !important;
+  border: 1px solid rgba(255,255,255,0.18) !important;
+  box-shadow:
+    0 18px 50px rgba(0,0,0,0.42),
+    inset 0 1px 0 rgba(255,255,255,0.12) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.nav-btn {
+  border-radius: 19px !important;
+  color: var(--neo-muted) !important;
+  transition: 0.18s ease;
+}
+
+.nav-btn b {
+  font-size: 18px;
+}
+
+.nav-btn.active {
+  background:
+    linear-gradient(135deg, rgba(255,78,205,0.20), rgba(56,189,248,0.16)) !important;
+  color: var(--neo-text) !important;
+}
+
+/* Toast: nicer */
+.toast {
+  border-radius: 22px !important;
+  background: rgba(8, 8, 24, 0.96) !important;
+  border: 1px solid rgba(255,255,255,0.18) !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.50) !important;
+}
+
+.toast strong {
+  color: var(--neo-yellow) !important;
+}
+
+/* Mobile small tuning */
+@media (max-width: 360px) {
+  .hero h2 {
+    font-size: 27px !important;
+  }
+
+  .actions {
+    grid-template-columns: 1fr !important;
+  }
+
+  .wide {
+    grid-column: span 1 !important;
+  }
+
+  .learning-choice,
+  .mini-row {
+    grid-template-columns: 1fr !important;
+  }
+}
   </style>
 </head>
 
