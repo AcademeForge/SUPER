@@ -851,184 +851,13 @@ html, body {
         font-size: 9px;
       }
 
-  .team-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-  margin-top: 20px;
-}
-
-.team-profile-card {
-  position: relative;
-  padding: 18px;
-  border-radius: 24px;
-  background: linear-gradient(135deg, rgba(255,255,255,0.14), rgba(255,255,255,0.06));
-  border: 1px solid rgba(255,255,255,0.18);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.18);
-  overflow: hidden;
-}
-
-.team-profile-card::before {
-  content: "";
-  position: absolute;
-  inset: -60px auto auto -60px;
-  width: 130px;
-  height: 130px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.12);
-}
-
-.founder-card {
-  grid-column: span 2;
-}
-
-.team-profile-top {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.team-profile-avatar {
-  width: 68px;
-  height: 68px;
-  border-radius: 22px;
-  background: rgba(255,255,255,0.92);
-  color: #111827;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 26px;
-  font-weight: 900;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-.team-profile-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.team-profile-text h3 {
-  margin: 0 0 6px;
-  font-size: 18px;
-}
-
-.team-profile-text span {
-  display: inline-flex;
-  padding: 5px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 700;
-  background: rgba(255,255,255,0.16);
-  border: 1px solid rgba(255,255,255,0.16);
-}
-
-.team-profile-bio {
-  position: relative;
-  margin: 14px 0 0;
-  line-height: 1.55;
-  font-size: 13px;
-  opacity: 0.9;
-}
-
-.team-read-more {
-  position: relative;
-  margin: 14px 0 0;
-  font-size: 12px;
-  font-weight: 800;
-  opacity: 0.9;
-}
-
-.clickable-card {
-  cursor: pointer;
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-}
-
-.clickable-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(255,255,255,0.35);
-  background: linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.08));
-}
-
-.team-detail-card {
-  margin-top: 18px;
-  padding: 18px;
-  border-radius: 26px;
-  background: linear-gradient(135deg, rgba(255,255,255,0.14), rgba(255,255,255,0.06));
-  border: 1px solid rgba(255,255,255,0.18);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.18);
-}
-
-.team-detail-header {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.team-detail-avatar {
-  width: 78px;
-  height: 78px;
-  border-radius: 24px;
-  background: rgba(255,255,255,0.92);
-  color: #111827;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 30px;
-  font-weight: 900;
-  flex-shrink: 0;
-}
-
-.team-detail-header h2 {
-  margin: 0 0 8px;
-}
-
-.team-detail-header span {
-  display: inline-flex;
-  padding: 6px 12px;
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 800;
-  background: rgba(255,255,255,0.16);
-  border: 1px solid rgba(255,255,255,0.16);
-}
-
-.team-detail-intro {
-  margin-top: 18px;
-  line-height: 1.7;
-  opacity: 0.95;
-}
-
-.team-detail-points {
-  margin-top: 18px;
-}
-
-.team-detail-points h3 {
-  margin-bottom: 10px;
-}
-
-.team-detail-points ul {
-  padding-left: 20px;
-  margin: 0;
-}
-
-.team-detail-points li {
-  margin-bottom: 10px;
-  line-height: 1.6;
-}
-
-@media (max-width: 700px) {
-  .team-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .founder-card {
-    grid-column: span 1;
-  }
-}
-     
+  
+      .calc-result {
+        grid-column: span 2;
+        text-align: left;
+        padding-left: 4px;
+      }
+    }
   </style>
 </head>
 
@@ -1107,7 +936,7 @@ html, body {
           </div>
         </button>
 
-        <button class="action-card glass wide" onclick="showSection('team')">
+        <button class="action-card glass wide" onclick="showSection('management')">
           <div class="icon">👥</div>
           <div>
             <h3>Management & Team</h3>
@@ -1756,89 +1585,51 @@ html, body {
       </div>
     </section>
 
-  <section id="team" class="section">
-  <div class="panel glass">
-    <h2>👥 Management & Team</h2>
-    <p>
-      AcademeForge is powered by young innovators and learners working to build a better
-      student-first learning experience.
-    </p>
+    <section id="management" class="section">
+      <div class="panel glass">
+        
+        <h2>👥 Management & Team</h2>
+        <p>
+          AcademeForge is powered by young innovators and learners working to build a better
+          student-first learning experience.
+        </p>
+<div id="teamMembersGrid">
+  <div class="login-note">Loading team members...</div>
+</div>
+        <div class="team">
+          <div class="member">
+            <div class="avatar">D</div>
+            <div>
+              <h4>Devraj Kumar</h4>
+              <p>Founder — focused on modern education, AI-powered learning, creativity, and student empowerment.</p>
+            </div>
+          </div>
 
-    <div class="team-grid">
-      <div class="team-profile-card founder-card clickable-card" onclick="openTeamDetail('devraj')">
-        <div class="team-profile-top">
-          <div class="team-profile-avatar">D</div>
+          <div class="member">
+            <div class="avatar">M</div
+              <h4>Mandeep Harsh</h4>
+              <p>Co-Founder — helping shape growth, strategy, and student learning experiences.</p>
+            </div>
+          </div>
 
-          <div class="team-profile-text">
-            <h3>Devraj Kumar</h3>
-            <span>Founder</span>
+          <div class="member">
+            <div class="avatar">A</div>
+            <div>
+              <h4>Ayush Raj</h4>
+              <p>Moderator — assisting with student coordination, platform activities, and learning environment.</p>
+            </div>
+          </div>
+
+          <div class="member">
+            <div class="avatar">P</div>
+            <div>
+              <h4>Palak Kumari Jha</h4>
+              <p>Moderator — supporting student engagement, community, and smooth learning experience.</p>
+            </div>
           </div>
         </div>
-
-        <p class="team-profile-bio">
-          Focused on modern education, AI-powered learning, creativity, and student empowerment.
-        </p>
-
-        <p class="team-read-more">Tap to read more →</p>
       </div>
-
-      <div class="team-profile-card">
-        <div class="team-profile-top">
-          <div class="team-profile-avatar">M</div>
-
-          <div class="team-profile-text">
-            <h3>Mandeep Harsh</h3>
-            <span>Co-Founder</span>
-          </div>
-        </div>
-
-        <p class="team-profile-bio">
-          Helping shape growth, strategy, and student learning experiences.
-        </p>
-      </div>
-
-      <div class="team-profile-card">
-        <div class="team-profile-top">
-          <div class="team-profile-avatar">A</div>
-
-          <div class="team-profile-text">
-            <h3>Ayush Raj</h3>
-            <span>Moderator</span>
-          </div>
-        </div>
-
-        <p class="team-profile-bio">
-          Assisting with student coordination, platform activities, and learning environment.
-        </p>
-      </div>
-
-      <div class="team-profile-card">
-        <div class="team-profile-top">
-          <div class="team-profile-avatar">P</div>
-
-          <div class="team-profile-text">
-            <h3>Palak Kumari Jha</h3>
-            <span>Moderator</span>
-          </div>
-        </div>
-
-        <p class="team-profile-bio">
-          Supporting student engagement, community, and smooth learning experience.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="teamDetail" class="section">
-  <div class="panel glass">
-    <button class="back-mini" onclick="backToTeam()">← Back to Team</button>
-
-    <div id="teamDetailContent">
-      Loading...
-    </div>
-  </div>
-</section>
+    </section>
 
     <nav class="bottom-nav glass">
       <button class="nav-btn active" data-section="home" onclick="showSection('home')">
@@ -4426,64 +4217,6 @@ setInterval(function() {
   }
 }, 10000);
 
-  const teamDetails = {
-  devraj: {
-    name: "Devraj Kumar",
-    role: "Founder",
-    avatar: "D",
-    intro:
-      "Devraj Kumar is the founder of AcademeForge, focused on building a student-first learning platform that combines modern education, creativity, AI-powered learning, and practical skill development.",
-    points: [
-      "Works on the vision and direction of AcademeForge.",
-      "Focuses on making learning more practical, clear, and accessible for students.",
-      "Explores modern tools, digital creativity, and AI-based learning ideas.",
-      "Aims to build a learning environment where students can grow with consistency and confidence."
-    ]
-  }
-};
-
-function openTeamDetail(memberKey) {
-  const member = teamDetails[memberKey];
-
-  if (!member) {
-    showToast("Error", "Team member details not found.");
-    return;
-  }
-
-  const detailBox = document.getElementById("teamDetailContent");
-
-  if (!detailBox) return;
-
-  detailBox.innerHTML = `
-    <div class="team-detail-card">
-      <div class="team-detail-header">
-        <div class="team-detail-avatar">${member.avatar}</div>
-
-        <div>
-          <h2>${member.name}</h2>
-          <span>${member.role}</span>
-        </div>
-      </div>
-
-      <p class="team-detail-intro">${member.intro}</p>
-
-      <div class="team-detail-points">
-        <h3>About</h3>
-        <ul>
-          ${member.points.map(function(point) {
-            return `<li>${point}</li>`;
-          }).join("")}
-        </ul>
-      </div>
-    </div>
-  `;
-
-  showSection("teamDetail");
-}
-
-function backToTeam() {
-  showSection("team");
-}
 </script>
 
 </body>
