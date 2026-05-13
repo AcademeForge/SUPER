@@ -2654,6 +2654,719 @@ body.dark-mode .nav-btn.active {
 .theme-toggle-btn:active {
   transform: scale(0.96);
 }
+    /* =========================================================
+   FINAL SEPARATE LIGHT + DARK STUDY DESIGN
+   Paste at END of CSS.
+   Safe: does NOT touch .hidden-box.
+========================================================= */
+
+/* ---------- MODE VARIABLES ---------- */
+
+body.light-mode {
+  --mode-bg-1: #f7f8fc;
+  --mode-bg-2: #eef4ff;
+
+  --mode-card: #ffffff;
+  --mode-card-soft: #f8fafc;
+  --mode-border: #e4e7ec;
+
+  --mode-ink: #101828;
+  --mode-text: #243047;
+  --mode-muted: #667085;
+
+  --mode-primary: #2563eb;
+  --mode-primary-soft: #dbeafe;
+
+  --mode-success: #22c55e;
+  --mode-success-soft: #dcfce7;
+
+  --mode-warning: #f59e0b;
+  --mode-warning-soft: #fef3c7;
+
+  --mode-purple: #7c3aed;
+  --mode-purple-soft: #ede9fe;
+
+  --mode-pink: #db2777;
+  --mode-pink-soft: #fce7f3;
+
+  --mode-danger: #ef4444;
+  --mode-danger-soft: #fee2e2;
+
+  --mode-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+  --mode-shadow-strong: 0 16px 34px rgba(15, 23, 42, 0.12);
+
+  --mode-btn-depth: #16a34a;
+}
+
+body.dark-mode {
+  --mode-bg-1: #07111f;
+  --mode-bg-2: #0f172a;
+
+  --mode-card: #121c2e;
+  --mode-card-soft: #0b1220;
+  --mode-border: rgba(226, 232, 240, 0.12);
+
+  --mode-ink: #f8fafc;
+  --mode-text: #e5e7eb;
+  --mode-muted: #b6c2d4;
+
+  --mode-primary: #38bdf8;
+  --mode-primary-soft: rgba(56, 189, 248, 0.16);
+
+  --mode-success: #34d399;
+  --mode-success-soft: rgba(52, 211, 153, 0.15);
+
+  --mode-warning: #fbbf24;
+  --mode-warning-soft: rgba(251, 191, 36, 0.16);
+
+  --mode-purple: #a78bfa;
+  --mode-purple-soft: rgba(167, 139, 250, 0.16);
+
+  --mode-pink: #f472b6;
+  --mode-pink-soft: rgba(244, 114, 182, 0.14);
+
+  --mode-danger: #fb7185;
+  --mode-danger-soft: rgba(251, 113, 133, 0.15);
+
+  --mode-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
+  --mode-shadow-strong: 0 18px 42px rgba(0, 0, 0, 0.36);
+
+  --mode-btn-depth: #0f766e;
+}
+
+/* ---------- BACKGROUND ---------- */
+
+body.light-mode {
+  background:
+    radial-gradient(circle at 8% -4%, rgba(37, 99, 235, 0.13), transparent 32%),
+    radial-gradient(circle at 95% 2%, rgba(34, 197, 94, 0.10), transparent 30%),
+    radial-gradient(circle at 50% 105%, rgba(245, 158, 11, 0.10), transparent 34%),
+    linear-gradient(180deg, var(--mode-bg-1), var(--mode-bg-2)) !important;
+  color: var(--mode-text) !important;
+}
+
+body.dark-mode {
+  background:
+    radial-gradient(circle at 8% -4%, rgba(56, 189, 248, 0.16), transparent 32%),
+    radial-gradient(circle at 95% 2%, rgba(167, 139, 250, 0.12), transparent 30%),
+    radial-gradient(circle at 50% 105%, rgba(52, 211, 153, 0.08), transparent 34%),
+    linear-gradient(180deg, var(--mode-bg-1), var(--mode-bg-2)) !important;
+  color: var(--mode-text) !important;
+}
+
+body.light-mode::before,
+body.dark-mode::before {
+  display: none !important;
+}
+
+/* ---------- TOPBAR ---------- */
+
+body.light-mode .topbar {
+  background: rgba(247, 248, 252, 0.94) !important;
+  border-bottom: 1px solid rgba(228, 231, 236, 0.9) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+body.dark-mode .topbar {
+  background: rgba(7, 17, 31, 0.94) !important;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.10) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+body.light-mode .brand h1,
+body.dark-mode .brand h1 {
+  color: var(--mode-ink) !important;
+  font-weight: 950;
+}
+
+body.light-mode .brand p,
+body.dark-mode .brand p {
+  color: var(--mode-muted) !important;
+}
+
+body.light-mode .logo,
+body.light-mode .app-logo {
+  background: #ffffff !important;
+  border: 2px solid var(--mode-border) !important;
+  box-shadow: var(--mode-shadow) !important;
+}
+
+body.dark-mode .logo,
+body.dark-mode .app-logo {
+  background: #0b1220 !important;
+  border: 1px solid var(--mode-border) !important;
+  box-shadow: var(--mode-shadow) !important;
+}
+
+/* ---------- BASE CARD SYSTEM ---------- */
+
+body.light-mode .glass,
+body.light-mode .panel,
+body.light-mode .action-card,
+body.light-mode .course-select-card,
+body.light-mode .course-info-box,
+body.light-mode .course,
+body.light-mode .member,
+body.light-mode .admin-student-card,
+body.light-mode .chapter-item,
+body.light-mode .content-item,
+body.light-mode .stat,
+body.light-mode .learning-btn,
+body.light-mode .team-profile-card,
+body.light-mode .team-detail-card {
+  background: var(--mode-card) !important;
+  border: 1px solid var(--mode-border) !important;
+  box-shadow: var(--mode-shadow) !important;
+  color: var(--mode-text) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+body.dark-mode .glass,
+body.dark-mode .panel,
+body.dark-mode .action-card,
+body.dark-mode .course-select-card,
+body.dark-mode .course-info-box,
+body.dark-mode .course,
+body.dark-mode .member,
+body.dark-mode .admin-student-card,
+body.dark-mode .chapter-item,
+body.dark-mode .content-item,
+body.dark-mode .stat,
+body.dark-mode .learning-btn,
+body.dark-mode .team-profile-card,
+body.dark-mode .team-detail-card {
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.055), rgba(255,255,255,0.025)),
+    var(--mode-card) !important;
+  border: 1px solid var(--mode-border) !important;
+  box-shadow: var(--mode-shadow) !important;
+  color: var(--mode-text) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* ---------- TEXT ---------- */
+
+body.light-mode .panel h2,
+body.light-mode .panel h3,
+body.light-mode .action-card h3,
+body.light-mode .course-select-card h3,
+body.light-mode .chapter-item h3,
+body.light-mode .content-item h3,
+body.light-mode .admin-student-card h3,
+body.light-mode .course strong,
+body.light-mode .member h4,
+body.light-mode .team-profile-text h3,
+body.light-mode .team-detail-header h2 {
+  color: var(--mode-ink) !important;
+}
+
+body.dark-mode .panel h2,
+body.dark-mode .panel h3,
+body.dark-mode .action-card h3,
+body.dark-mode .course-select-card h3,
+body.dark-mode .chapter-item h3,
+body.dark-mode .content-item h3,
+body.dark-mode .admin-student-card h3,
+body.dark-mode .course strong,
+body.dark-mode .member h4,
+body.dark-mode .team-profile-text h3,
+body.dark-mode .team-detail-header h2 {
+  color: var(--mode-ink) !important;
+}
+
+body.light-mode .panel p,
+body.light-mode .panel li,
+body.light-mode .action-card p,
+body.light-mode .course-select-card p,
+body.light-mode .chapter-item p,
+body.light-mode .content-item p,
+body.light-mode .admin-student-card p,
+body.light-mode .course p,
+body.light-mode .member p,
+body.light-mode .brand p,
+body.light-mode .input-group label,
+body.light-mode .team-profile-bio,
+body.light-mode .team-detail-intro {
+  color: var(--mode-muted) !important;
+}
+
+body.dark-mode .panel p,
+body.dark-mode .panel li,
+body.dark-mode .action-card p,
+body.dark-mode .course-select-card p,
+body.dark-mode .chapter-item p,
+body.dark-mode .content-item p,
+body.dark-mode .admin-student-card p,
+body.dark-mode .course p,
+body.dark-mode .member p,
+body.dark-mode .brand p,
+body.dark-mode .input-group label,
+body.dark-mode .team-profile-bio,
+body.dark-mode .team-detail-intro {
+  color: var(--mode-muted) !important;
+}
+
+/* ---------- HERO ---------- */
+
+body.light-mode .hero {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(34, 197, 94, 0.15), transparent 34%),
+    radial-gradient(circle at 88% 18%, rgba(37, 99, 235, 0.13), transparent 34%),
+    #ffffff !important;
+  border: 1px solid var(--mode-border) !important;
+  box-shadow: var(--mode-shadow-strong) !important;
+}
+
+body.dark-mode .hero {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(56, 189, 248, 0.13), transparent 34%),
+    radial-gradient(circle at 88% 18%, rgba(167, 139, 250, 0.12), transparent 34%),
+    #121c2e !important;
+  border: 1px solid var(--mode-border) !important;
+  box-shadow: var(--mode-shadow-strong) !important;
+}
+
+body.light-mode .hero::before,
+body.dark-mode .hero::before {
+  display: none !important;
+}
+
+body.light-mode .hero h2,
+body.dark-mode .hero h2 {
+  color: var(--mode-ink) !important;
+}
+
+body.light-mode .hero p,
+body.dark-mode .hero p {
+  color: var(--mode-muted) !important;
+}
+
+/* ---------- TAG / NOTICE ---------- */
+
+body.light-mode .tag {
+  background: var(--mode-success-soft) !important;
+  border: 1px solid #bbf7d0 !important;
+  color: #166534 !important;
+}
+
+body.dark-mode .tag {
+  background: var(--mode-primary-soft) !important;
+  border: 1px solid rgba(56, 189, 248, 0.25) !important;
+  color: #bae6fd !important;
+}
+
+body.light-mode .notice {
+  background: var(--mode-warning-soft) !important;
+  border: 1px solid #fde68a !important;
+  color: #854d0e !important;
+}
+
+body.dark-mode .notice {
+  background: var(--mode-warning-soft) !important;
+  border: 1px solid rgba(251, 191, 36, 0.24) !important;
+  color: #fde68a !important;
+}
+
+/* ---------- ACTION CARD DESIGN DIFFERENCE ---------- */
+
+body.light-mode .action-card,
+body.light-mode .course-select-card,
+body.light-mode .learning-btn {
+  background:
+    radial-gradient(circle at 100% 100%, rgba(37, 99, 235, 0.06), transparent 34%),
+    #ffffff !important;
+}
+
+body.dark-mode .action-card,
+body.dark-mode .course-select-card,
+body.dark-mode .learning-btn {
+  background:
+    radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.08), transparent 34%),
+    linear-gradient(145deg, rgba(255,255,255,0.055), rgba(255,255,255,0.025)),
+    #121c2e !important;
+}
+
+body.light-mode .action-card::after,
+body.light-mode .course-select-card::after,
+body.light-mode .learning-btn::after {
+  background: rgba(37, 99, 235, 0.08) !important;
+}
+
+body.dark-mode .action-card::after,
+body.dark-mode .course-select-card::after,
+body.dark-mode .learning-btn::after {
+  background: rgba(56, 189, 248, 0.08) !important;
+}
+
+/* ---------- ICONS ---------- */
+
+body.light-mode .icon,
+body.light-mode .course-select-card span,
+body.light-mode .learning-btn span {
+  background: var(--mode-primary-soft) !important;
+  color: var(--mode-primary) !important;
+  border: 1px solid #bfdbfe !important;
+}
+
+body.dark-mode .icon,
+body.dark-mode .course-select-card span,
+body.dark-mode .learning-btn span {
+  background: var(--mode-primary-soft) !important;
+  color: #bae6fd !important;
+  border: 1px solid rgba(56, 189, 248, 0.25) !important;
+}
+
+body.light-mode .action-card:nth-child(2n) .icon,
+body.light-mode .course-select-card:nth-child(2n) span {
+  background: var(--mode-success-soft) !important;
+  color: #16a34a !important;
+  border-color: #bbf7d0 !important;
+}
+
+body.dark-mode .action-card:nth-child(2n) .icon,
+body.dark-mode .course-select-card:nth-child(2n) span {
+  background: var(--mode-success-soft) !important;
+  color: #a7f3d0 !important;
+  border-color: rgba(52, 211, 153, 0.25) !important;
+}
+
+body.light-mode .action-card:nth-child(3n) .icon,
+body.light-mode .course-select-card:nth-child(3n) span {
+  background: var(--mode-purple-soft) !important;
+  color: var(--mode-purple) !important;
+  border-color: #ddd6fe !important;
+}
+
+body.dark-mode .action-card:nth-child(3n) .icon,
+body.dark-mode .course-select-card:nth-child(3n) span {
+  background: var(--mode-purple-soft) !important;
+  color: #ddd6fe !important;
+  border-color: rgba(167, 139, 250, 0.25) !important;
+}
+
+/* ---------- FORMS ---------- */
+
+body.light-mode .input-group input,
+body.light-mode .input-group textarea,
+body.light-mode .input-group select {
+  background: #f8fafc !important;
+  color: var(--mode-ink) !important;
+  border: 1px solid #dbe1ea !important;
+}
+
+body.dark-mode .input-group input,
+body.dark-mode .input-group textarea,
+body.dark-mode .input-group select {
+  background: #0b1220 !important;
+  color: var(--mode-ink) !important;
+  border: 1px solid rgba(226, 232, 240, 0.13) !important;
+}
+
+body.light-mode .input-group input::placeholder,
+body.light-mode .input-group textarea::placeholder {
+  color: #98a2b3 !important;
+}
+
+body.dark-mode .input-group input::placeholder,
+body.dark-mode .input-group textarea::placeholder {
+  color: rgba(226, 232, 240, 0.48) !important;
+}
+
+body.light-mode .input-group input:focus,
+body.light-mode .input-group textarea:focus,
+body.light-mode .input-group select:focus {
+  border-color: rgba(37, 99, 235, 0.7) !important;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.13) !important;
+}
+
+body.dark-mode .input-group input:focus,
+body.dark-mode .input-group textarea:focus,
+body.dark-mode .input-group select:focus {
+  border-color: rgba(56, 189, 248, 0.7) !important;
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.13) !important;
+}
+
+/* ---------- BUTTONS ---------- */
+
+body.light-mode .link-btn {
+  background: var(--mode-success) !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 0 #16a34a, 0 14px 24px rgba(34,197,94,0.18) !important;
+}
+
+body.dark-mode .link-btn {
+  background: linear-gradient(135deg, #14b8a6, #38bdf8) !important;
+  color: #06111f !important;
+  box-shadow: 0 8px 0 #0f766e, 0 14px 24px rgba(20,184,166,0.18) !important;
+}
+
+body.light-mode .link-btn:active,
+body.dark-mode .link-btn:active {
+  transform: translateY(4px) scale(0.99) !important;
+}
+
+body.light-mode .secondary,
+body.light-mode .back-mini {
+  background: #ffffff !important;
+  color: var(--mode-ink) !important;
+  border: 1px solid var(--mode-border) !important;
+  box-shadow: var(--mode-shadow) !important;
+}
+
+body.dark-mode .secondary,
+body.dark-mode .back-mini {
+  background: #0b1220 !important;
+  color: var(--mode-ink) !important;
+  border: 1px solid var(--mode-border) !important;
+  box-shadow: none !important;
+}
+
+/* ---------- BADGES / INFO ---------- */
+
+body.light-mode .content-badge,
+body.light-mode .dev-badge {
+  background: var(--mode-primary-soft) !important;
+  border: 1px solid #bfdbfe !important;
+  color: #1d4ed8 !important;
+}
+
+body.dark-mode .content-badge,
+body.dark-mode .dev-badge {
+  background: var(--mode-primary-soft) !important;
+  border: 1px solid rgba(56,189,248,0.25) !important;
+  color: #bae6fd !important;
+}
+
+body.light-mode .login-note {
+  background: var(--mode-primary-soft) !important;
+  border: 1px solid #bfdbfe !important;
+  color: #1e3a8a !important;
+}
+
+body.dark-mode .login-note {
+  background: var(--mode-primary-soft) !important;
+  border: 1px solid rgba(56,189,248,0.22) !important;
+  color: #dbeafe !important;
+}
+
+body.light-mode .ticker {
+  background: var(--mode-success-soft) !important;
+  border: 1px solid #bbf7d0 !important;
+}
+
+body.dark-mode .ticker {
+  background: var(--mode-success-soft) !important;
+  border: 1px solid rgba(52,211,153,0.22) !important;
+}
+
+body.light-mode .ticker p {
+  color: #166534 !important;
+}
+
+body.dark-mode .ticker p {
+  color: #d1fae5 !important;
+}
+
+/* ---------- TEAM ---------- */
+
+body.light-mode .avatar,
+body.light-mode .team-profile-avatar,
+body.light-mode .team-detail-avatar {
+  background: var(--mode-purple-soft) !important;
+  color: var(--mode-purple) !important;
+  border: 1px solid #ddd6fe !important;
+}
+
+body.dark-mode .avatar,
+body.dark-mode .team-profile-avatar,
+body.dark-mode .team-detail-avatar {
+  background: var(--mode-purple-soft) !important;
+  color: #ddd6fe !important;
+  border: 1px solid rgba(167,139,250,0.25) !important;
+}
+
+body.light-mode .team-profile-text span,
+body.light-mode .team-detail-header span {
+  background: var(--mode-warning-soft) !important;
+  border: 1px solid #fde68a !important;
+  color: #854d0e !important;
+}
+
+body.dark-mode .team-profile-text span,
+body.dark-mode .team-detail-header span {
+  background: var(--mode-warning-soft) !important;
+  border: 1px solid rgba(251,191,36,0.24) !important;
+  color: #fde68a !important;
+}
+
+/* ---------- BOTTOM NAV ---------- */
+
+body.light-mode .bottom-nav {
+  background: #ffffff !important;
+  border: 1px solid var(--mode-border) !important;
+  box-shadow: var(--mode-shadow-strong) !important;
+}
+
+body.dark-mode .bottom-nav {
+  background: #0b1220 !important;
+  border: 1px solid var(--mode-border) !important;
+  box-shadow: var(--mode-shadow-strong) !important;
+}
+
+body.light-mode .nav-btn,
+body.dark-mode .nav-btn {
+  color: var(--mode-muted) !important;
+}
+
+body.light-mode .nav-btn.active {
+  background: var(--mode-primary-soft) !important;
+  color: var(--mode-primary) !important;
+}
+
+body.dark-mode .nav-btn.active {
+  background: var(--mode-primary-soft) !important;
+  color: #bae6fd !important;
+}
+
+/* ---------- TOAST ---------- */
+
+body.light-mode .toast {
+  background: #ffffff !important;
+  color: var(--mode-text) !important;
+  border: 1px solid var(--mode-border) !important;
+  box-shadow: var(--mode-shadow-strong) !important;
+}
+
+body.dark-mode .toast {
+  background: #0b1220 !important;
+  color: var(--mode-text) !important;
+  border: 1px solid var(--mode-border) !important;
+  box-shadow: var(--mode-shadow-strong) !important;
+}
+
+body.light-mode .toast strong {
+  color: var(--mode-success) !important;
+}
+
+body.dark-mode .toast strong {
+  color: #5eead4 !important;
+}
+
+body.light-mode .toast p,
+body.dark-mode .toast p {
+  color: var(--mode-muted) !important;
+}
+
+/* ---------- WEBSITE BOX + THEME BUTTON ---------- */
+
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.theme-toggle-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 16px;
+  border: 1px solid var(--mode-border);
+  background: var(--mode-card);
+  color: var(--mode-ink);
+  box-shadow: var(--mode-shadow);
+  font-size: 18px;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+
+.theme-toggle-btn:active {
+  transform: scale(0.96);
+}
+
+body.light-mode .time-box {
+  background: #ffffff !important;
+  border: 1px solid var(--mode-border) !important;
+  color: var(--mode-muted) !important;
+  box-shadow: var(--mode-shadow) !important;
+}
+
+body.dark-mode .time-box {
+  background: #0b1220 !important;
+  border: 1px solid var(--mode-border) !important;
+  color: var(--mode-muted) !important;
+  box-shadow: none !important;
+}
+
+body.light-mode .time-box strong {
+  color: var(--mode-success) !important;
+}
+
+body.dark-mode .time-box strong {
+  color: #5eead4 !important;
+}
+
+/* ---------- MOTION COMFORT ---------- */
+
+body.light-mode .section,
+body.dark-mode .section {
+  animation: modeFade 0.14s ease !important;
+}
+
+@keyframes modeFade {
+  from {
+    opacity: 0.96;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+body.light-mode .action-card,
+body.dark-mode .action-card,
+body.light-mode .course-select-card,
+body.dark-mode .course-select-card,
+body.light-mode .learning-btn,
+body.dark-mode .learning-btn,
+body.light-mode .chapter-item,
+body.dark-mode .chapter-item,
+body.light-mode .content-item,
+body.dark-mode .content-item,
+body.light-mode .link-btn,
+body.dark-mode .link-btn,
+body.light-mode .back-mini,
+body.dark-mode .back-mini,
+body.light-mode .nav-btn,
+body.dark-mode .nav-btn {
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease !important;
+}
+
+/* ---------- SMALL MOBILE ---------- */
+
+@media (max-width: 360px) {
+  .hero h2 {
+    font-size: 27px !important;
+  }
+
+  .actions {
+    grid-template-columns: 1fr !important;
+  }
+
+  .wide {
+    grid-column: span 1 !important;
+  }
+
+  .learning-choice,
+  .mini-row {
+    grid-template-columns: 1fr !important;
+  }
+}
+    
   </style>
 </head>
 
