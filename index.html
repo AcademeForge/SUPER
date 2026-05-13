@@ -3716,6 +3716,27 @@ body.light-mode .time-box span {
 #officeQuickActions .course-select-card p {
   display: none !important;
 }
+
+  /* =========================================================
+   SAVE + CLEAR BUTTON GAP FIX
+   Course / Chapter forms
+   Paste at VERY END of CSS
+========================================================= */
+
+#adminCoursesBox .link-btn + .back-mini,
+#adminChaptersBox .link-btn + .back-mini {
+  margin-top: 10px !important;
+  margin-left: 0 !important;
+  width: 100% !important;
+  display: inline-flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+#adminCoursesBox .link-btn,
+#adminChaptersBox .link-btn {
+  margin-bottom: 0 !important;
+}
   </style>
 </head>
 
