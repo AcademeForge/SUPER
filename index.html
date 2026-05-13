@@ -3985,6 +3985,71 @@ body.dark-mode .moving-text-track span {
     height: 42px !important;
   }
 }
+    /* =========================================================
+   BANNER ORIGINAL IMAGE + EXTRA HIGHLIGHT
+   Paste at VERY END of CSS
+========================================================= */
+
+/* Dark overlay almost remove */
+.banner-slide::after {
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.00), rgba(0,0,0,0.08)),
+    linear-gradient(90deg, rgba(0,0,0,0.08), rgba(0,0,0,0.00)) !important;
+}
+
+/* Image ko original se thoda premium highlight */
+.banner-slide img {
+  filter: brightness(1.12) contrast(1.08) saturate(1.16) !important;
+  transform: scale(1.01) !important;
+}
+
+/* Text image ko dark kiye bina readable */
+.banner-overlay {
+  left: 12px !important;
+  right: 12px !important;
+  bottom: 12px !important;
+
+  background: rgba(5, 8, 22, 0.38) !important;
+  border: 1px solid rgba(255,255,255,0.24) !important;
+  border-radius: 18px !important;
+  padding: 11px 12px !important;
+
+  backdrop-filter: blur(7px) !important;
+  -webkit-backdrop-filter: blur(7px) !important;
+}
+
+/* Text clear */
+.banner-overlay span {
+  background: rgba(255,255,255,0.18) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255,255,255,0.25) !important;
+  margin-bottom: 7px !important;
+}
+
+.banner-overlay h2 {
+  color: #ffffff !important;
+  text-shadow:
+    0 2px 8px rgba(0,0,0,0.75),
+    0 0 14px rgba(255,255,255,0.16) !important;
+}
+
+.banner-overlay p {
+  color: rgba(255,255,255,0.94) !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.75) !important;
+}
+
+/* Light mode me bhi banner image same highlight rahe */
+body.light-mode .banner-slide img {
+  filter: brightness(1.12) contrast(1.08) saturate(1.16) !important;
+}
+
+/* Dark mode me thoda aur glow feel */
+body.dark-mode .home-banner-slider {
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.08),
+    0 16px 38px rgba(0,0,0,0.38),
+    0 0 30px rgba(56,189,248,0.08) !important;
+}
     
   </style>
 </head>
