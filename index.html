@@ -3366,6 +3366,179 @@ body.dark-mode .nav-btn {
     grid-template-columns: 1fr !important;
   }
 }
+    /* =========================================================
+   LIGHT MODE READABILITY FIX
+   Paste at VERY END of CSS
+========================================================= */
+
+body.light-mode {
+  --mode-ink: #0f172a !important;
+  --mode-text: #1f2937 !important;
+  --mode-muted: #475569 !important;
+  --mode-card: #ffffff !important;
+  --mode-card-soft: #f8fafc !important;
+  --mode-border: #cbd5e1 !important;
+}
+
+/* Main readable text */
+body.light-mode,
+body.light-mode .app,
+body.light-mode .section,
+body.light-mode .panel,
+body.light-mode .hero,
+body.light-mode .course-info-box,
+body.light-mode .course,
+body.light-mode .member,
+body.light-mode .admin-student-card,
+body.light-mode .chapter-item,
+body.light-mode .content-item,
+body.light-mode .action-card,
+body.light-mode .course-select-card,
+body.light-mode .learning-btn,
+body.light-mode .stat {
+  color: #1f2937 !important;
+}
+
+/* Headings: very dark */
+body.light-mode h1,
+body.light-mode h2,
+body.light-mode h3,
+body.light-mode h4,
+body.light-mode h5,
+body.light-mode h6,
+body.light-mode .brand h1,
+body.light-mode .panel h2,
+body.light-mode .panel h3,
+body.light-mode .hero h2,
+body.light-mode .action-card h3,
+body.light-mode .course-select-card h3,
+body.light-mode .chapter-item h3,
+body.light-mode .content-item h3,
+body.light-mode .admin-student-card h3,
+body.light-mode .course strong,
+body.light-mode .member h4,
+body.light-mode .team-profile-text h3,
+body.light-mode .team-detail-header h2 {
+  color: #0f172a !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+/* Paragraphs/lists: darker muted */
+body.light-mode p,
+body.light-mode li,
+body.light-mode span,
+body.light-mode small,
+body.light-mode label,
+body.light-mode .panel p,
+body.light-mode .panel li,
+body.light-mode .hero p,
+body.light-mode .action-card p,
+body.light-mode .course-select-card p,
+body.light-mode .chapter-item p,
+body.light-mode .content-item p,
+body.light-mode .admin-student-card p,
+body.light-mode .course p,
+body.light-mode .member p,
+body.light-mode .brand p,
+body.light-mode .input-group label,
+body.light-mode .team-profile-bio,
+body.light-mode .team-detail-intro {
+  color: #475569 !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+/* Cards: stronger white and border */
+body.light-mode .glass,
+body.light-mode .panel,
+body.light-mode .hero,
+body.light-mode .action-card,
+body.light-mode .course-select-card,
+body.light-mode .course-info-box,
+body.light-mode .course,
+body.light-mode .member,
+body.light-mode .admin-student-card,
+body.light-mode .chapter-item,
+body.light-mode .content-item,
+body.light-mode .stat,
+body.light-mode .learning-btn,
+body.light-mode .team-profile-card,
+body.light-mode .team-detail-card {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Inner boxes slightly different */
+body.light-mode .course-info-box,
+body.light-mode .chapter-item,
+body.light-mode .content-item,
+body.light-mode .course,
+body.light-mode .member,
+body.light-mode .admin-student-card {
+  background: #f8fafc !important;
+}
+
+/* Stats / highlight text */
+body.light-mode .stat strong,
+body.light-mode .time-box strong {
+  color: #2563eb !important;
+}
+
+/* Inputs readable */
+body.light-mode input,
+body.light-mode textarea,
+body.light-mode select,
+body.light-mode .input-group input,
+body.light-mode .input-group textarea,
+body.light-mode .input-group select {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid #94a3b8 !important;
+}
+
+body.light-mode input::placeholder,
+body.light-mode textarea::placeholder {
+  color: #64748b !important;
+  opacity: 1 !important;
+}
+
+/* Buttons readable */
+body.light-mode .back-mini,
+body.light-mode .secondary {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid #94a3b8 !important;
+}
+
+/* Bottom nav readable */
+body.light-mode .bottom-nav {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+body.light-mode .nav-btn {
+  color: #475569 !important;
+}
+
+body.light-mode .nav-btn.active {
+  background: #dbeafe !important;
+  color: #1d4ed8 !important;
+}
+
+/* Website box readable */
+body.light-mode .time-box {
+  background: #ffffff !important;
+  color: #334155 !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+body.light-mode .time-box span {
+  color: #475569 !important;
+}
     
   </style>
 </head>
