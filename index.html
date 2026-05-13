@@ -4050,7 +4050,38 @@ body.dark-mode .home-banner-slider {
     0 16px 38px rgba(0,0,0,0.38),
     0 0 30px rgba(56,189,248,0.08) !important;
 }
-    
+    .banner-overlay {
+  display: none !important;
+}
+
+.banner-slide::after {
+  display: none !important;
+}
+
+.banner-slide img {
+  filter: brightness(1.08) contrast(1.06) saturate(1.12) !important;
+  transform: none !important;
+}
+
+.home-banner-slider {
+  height: 190px !important;
+  background: transparent !important;
+}
+
+.banner-dots {
+  left: 50% !important;
+  bottom: 10px !important;
+  transform: translateX(-50%) !important;
+}
+
+.banner-dot {
+  background: rgba(255,255,255,0.55) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.35) !important;
+}
+
+.banner-dot.active {
+  background: #ffffff !important;
+}
   </style>
 </head>
 
@@ -4107,35 +4138,27 @@ body.dark-mode .home-banner-slider {
     </button>
   </div>
 
-  <!-- IMAGE BANNER SLIDER -->
-  <div class="home-banner-slider glass">
-    <div class="banner-slide active">
-      <img src="banner1.jpg.png" alt="AcademeForge Banner 1">
-      <div class="banner-overlay">
-        <span>🚧 App Preview Build</span>
-        <h2>AcademeForge App</h2>
-        <p>Student-first learning space for practical skills and real-world growth.</p>
-      </div>
-    </div>
+ <!-- IMAGE BANNER SLIDER -->
+<div class="home-banner-slider glass">
+  <div class="banner-slide active">
+    <img src="banner1.jpg.png" alt="AcademeForge Banner 1">
+  </div>
 
-    <div class="banner-slide">
-      <img src="banner2.jpg.png" alt="AcademeForge Banner 2">
-      <div class="banner-overlay">
-        <span>🎓 Skill-first Learning</span>
-        <h2>Learn Beyond Classroom</h2>
-        <p>Courses, chapters, lectures, and notes built for focused learning.</p>
-      </div>
-    </div>
+  <div class="banner-slide">
+    <img src="banner2.jpg.png" alt="AcademeForge Banner 2">
+  </div>
 
-    <div class="banner-slide">
-      <img src="banner3.jpg.png" alt="AcademeForge Banner 3">
-      <div class="banner-overlay">
-        <span>⚡ Coming Soon</span>
-        <h2>Smarter Learning Tools</h2>
-        <p>More features are being improved step by step for students.</p>
-      </div>
-    </div>
+  <div class="banner-slide">
+    <img src="banner3.jpg.png" alt="AcademeForge Banner 3">
+  </div>
 
+  <div class="banner-dots">
+    <button class="banner-dot active" onclick="goToBannerSlide(0)" aria-label="Banner 1"></button>
+    <button class="banner-dot" onclick="goToBannerSlide(1)" aria-label="Banner 2"></button>
+    <button class="banner-dot" onclick="goToBannerSlide(2)" aria-label="Banner 3"></button>
+  </div>
+</div>
+     
     <div class="banner-dots">
       <button class="banner-dot active" onclick="goToBannerSlide(0)" aria-label="Banner 1"></button>
       <button class="banner-dot" onclick="goToBannerSlide(1)" aria-label="Banner 2"></button>
