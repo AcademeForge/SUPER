@@ -4470,12 +4470,22 @@ body.light-mode .notification-new-badge {
 #notifications.active .notification-credit-fixed {
   display: flex !important;
 }
-    /* =========================================================
-   COMMUNITY SECTION
+   /* =========================================================
+   COMMUNITY FULL SYSTEM
 ========================================================= */
 
+.community-top-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
 .community-name-box,
-.community-composer {
+.community-composer,
+.community-profile-box,
+.community-moderator-login,
+.community-moderator-panel {
   margin-top: 16px;
   padding: 16px;
   border-radius: 22px;
@@ -4484,19 +4494,30 @@ body.light-mode .notification-new-badge {
 }
 
 .community-name-box h3,
-.community-composer h3 {
+.community-composer h3,
+.community-profile-box h3,
+.community-moderator-login h3,
+.community-moderator-panel h3 {
   margin: 0 0 6px;
   font-size: 17px;
 }
 
-.community-name-box p {
+.community-name-box p,
+.community-profile-box p,
+.community-moderator-login p,
+.community-moderator-panel p {
   margin: 0 0 12px;
   font-size: 13px;
   color: var(--muted);
 }
 
 .community-composer textarea,
-.community-name-box input {
+.community-composer input,
+.community-name-box input,
+.community-moderator-login input,
+.community-moderator-panel input,
+.community-moderator-panel select,
+.community-profile-box input {
   width: 100%;
   padding: 14px;
   border-radius: 16px;
@@ -4509,9 +4530,8 @@ body.light-mode .notification-new-badge {
   resize: none;
 }
 
-.community-composer textarea::placeholder,
-.community-name-box input::placeholder {
-  color: rgba(255,255,255,0.45);
+.community-moderator-panel select option {
+  color: #111827;
 }
 
 .community-user-row {
@@ -4533,6 +4553,13 @@ body.light-mode .notification-new-badge {
   font-size: 15px;
 }
 
+.community-small-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
 .community-divider {
   height: 1px;
   background: rgba(255,255,255,0.12);
@@ -4541,13 +4568,13 @@ body.light-mode .notification-new-badge {
 
 .community-posts-list {
   display: grid;
-  gap: 12px;
+  gap: 14px;
   margin-top: 14px;
 }
 
 .community-post-card {
   padding: 14px;
-  border-radius: 20px;
+  border-radius: 22px;
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.13);
 }
@@ -4558,6 +4585,12 @@ body.light-mode .notification-new-badge {
   align-items: center;
   gap: 10px;
   margin-bottom: 8px;
+}
+
+.community-name-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .community-avatar {
@@ -4571,16 +4604,6 @@ body.light-mode .notification-new-badge {
   color: #60a5fa;
   font-weight: 900;
   flex: 0 0 auto;
-}
-
-.community-name-wrap {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.community-name-wrap strong {
-  font-size: 14px;
 }
 
 .community-post-time {
@@ -4597,36 +4620,173 @@ body.light-mode .notification-new-badge {
   white-space: pre-wrap;
 }
 
+.community-post-image {
+  width: 100%;
+  margin-top: 12px;
+  border-radius: 18px;
+  max-height: 260px;
+  object-fit: cover;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.community-device-info {
+  margin-top: 8px;
+  font-size: 10px;
+  color: var(--muted);
+  opacity: 0.75;
+  word-break: break-all;
+}
+
+.community-actions-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.community-action-btn {
+  border: 0;
+  padding: 8px 11px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.09);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.community-action-btn.liked {
+  background: rgba(239,68,68,0.16);
+  color: #ef4444;
+}
+
+.community-reply-box {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+.community-reply-box textarea {
+  width: 100%;
+  min-height: 72px;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.08);
+  color: var(--text);
+  font-family: inherit;
+  resize: none;
+  outline: none;
+}
+
+.community-replies-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.community-reply-card {
+  padding: 10px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+.community-reply-card strong {
+  font-size: 12px;
+}
+
+.community-reply-card p {
+  margin: 5px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.community-edit-box {
+  margin-top: 12px;
+}
+
+.community-edit-box textarea,
+.community-edit-box input {
+  width: 100%;
+  margin-top: 8px;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.08);
+  color: var(--text);
+  font-family: inherit;
+  resize: none;
+  outline: none;
+}
+
 /* Light mode */
 body.light-mode .community-name-box,
 body.light-mode .community-composer,
-body.light-mode .community-post-card {
+body.light-mode .community-profile-box,
+body.light-mode .community-moderator-login,
+body.light-mode .community-moderator-panel,
+body.light-mode .community-post-card,
+body.light-mode .community-reply-box,
+body.light-mode .community-reply-card {
   background: #ffffff;
   border: 1px solid #dbe3ee;
   box-shadow: 0 10px 26px rgba(15,23,42,0.06);
 }
 
 body.light-mode .community-composer textarea,
-body.light-mode .community-name-box input {
+body.light-mode .community-composer input,
+body.light-mode .community-name-box input,
+body.light-mode .community-moderator-login input,
+body.light-mode .community-moderator-panel input,
+body.light-mode .community-moderator-panel select,
+body.light-mode .community-reply-box textarea,
+body.light-mode .community-edit-box textarea,
+body.light-mode .community-edit-box input {
   background: #ffffff;
   color: #0f172a;
   border: 1px solid #cbd5e1;
 }
 
-body.light-mode .community-composer textarea::placeholder,
-body.light-mode .community-name-box input::placeholder {
-  color: rgba(15,23,42,0.45);
-}
-
 body.light-mode .community-name-box p,
+body.light-mode .community-profile-box p,
+body.light-mode .community-moderator-login p,
+body.light-mode .community-moderator-panel p,
 body.light-mode .community-user-row small,
 body.light-mode .community-post-time,
-body.light-mode .community-post-message {
+body.light-mode .community-post-message,
+body.light-mode .community-reply-card p,
+body.light-mode .community-device-info {
   color: #475569;
 }
 
-body.light-mode .community-divider {
-  background: #e2e8f0;
+body.light-mode .community-action-btn {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+@media (max-width: 420px) {
+  .community-top-head,
+  .community-user-row {
+    align-items: flex-start;
+  }
+
+  .community-user-row {
+    flex-direction: column;
+  }
+
+  .community-small-actions {
+    justify-content: flex-start;
+  }
+
+  .community-action-btn {
+    font-size: 11px;
+    padding: 8px 10px;
+  }
 }
   </style>
 </head>
@@ -5435,12 +5595,107 @@ body.light-mode .community-divider {
     </section>
 
     
-    <section id="community" class="section">
+ <section id="community" class="section">
   <div class="panel glass">
-    <h2>💬 Community</h2>
-    <p>Ask questions, share updates, and interact with other students.</p>
 
-    <!-- Name Setup -->
+    <div class="community-top-head">
+      <div>
+        <h2>💬 Community</h2>
+        <p>Post, reply, like, and connect with other students.</p>
+      </div>
+
+      <button class="back-mini" onclick="toggleModeratorLoginBox()">Moderator</button>
+    </div>
+
+    <!-- MODERATOR LOGIN -->
+    <div class="community-moderator-login hidden-box" id="communityModeratorLoginBox" style="display:none;">
+      <h3>🛡️ Community Moderator</h3>
+      <p>Login to manage posts, replies, blocks and restrictions.</p>
+
+      <div class="input-group">
+        <label>Moderator ID</label>
+        <input id="moderatorIdInput" type="text" placeholder="Moderator ID">
+      </div>
+
+      <div class="input-group">
+        <label>Password</label>
+        <input id="moderatorPasswordInput" type="password" placeholder="Password">
+      </div>
+
+      <button class="link-btn" onclick="communityModeratorLogin()">Login</button>
+    </div>
+
+    <!-- MODERATOR PANEL -->
+    <div class="community-moderator-panel hidden-box" id="communityModeratorPanel" style="display:none;">
+      <div class="community-user-row">
+        <div>
+          <small>Logged in as</small>
+          <strong id="communityModeratorNameText">Community Moderator</strong>
+        </div>
+
+        <button class="back-mini" onclick="communityModeratorLogout()">Logout</button>
+      </div>
+
+      <div class="course-info-box">
+        <h3>Manual Block / Restrict</h3>
+
+        <div class="input-group">
+          <label>Block Type</label>
+          <select id="manualBlockTypeInput">
+            <option value="device">Device ID</option>
+            <option value="name">Student Name</option>
+            <option value="ip">IP Address Future</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label>Block Value</label>
+          <input id="manualBlockValueInput" type="text" placeholder="Device ID / Name / IP">
+        </div>
+
+        <div class="input-group">
+          <label>Student Name Optional</label>
+          <input id="manualBlockStudentNameInput" type="text" placeholder="Student name">
+        </div>
+
+        <div class="input-group">
+          <label>Reason</label>
+          <input id="manualBlockReasonInput" type="text" placeholder="Reason">
+        </div>
+
+        <div class="input-group">
+          <label>Duration</label>
+          <select id="manualBlockDurationInput">
+            <option value="1h">1 Hour</option>
+            <option value="6h">6 Hours</option>
+            <option value="1d">1 Day</option>
+            <option value="7d">1 Week</option>
+            <option value="30d">1 Month</option>
+            <option value="365d">1 Year</option>
+            <option value="permanent">Permanent</option>
+          </select>
+        </div>
+
+        <button class="link-btn" onclick="manualCommunityBlock()">Apply Block</button>
+      </div>
+
+      <div class="course-info-box">
+        <div class="community-user-row">
+          <div>
+            <h3>Blocked / Restricted Users</h3>
+            <p>View and unlock blocked students/devices.</p>
+          </div>
+
+          <button class="back-mini" onclick="loadCommunityBlocks()">Refresh</button>
+        </div>
+
+        <div id="communityBlocksList" class="admin-list-box">
+          Loading blocks...
+        </div>
+      </div>
+    </div>
+
+    <!-- NAME SETUP -->
     <div class="community-name-box" id="communityNameBox">
       <h3>Before posting</h3>
       <p>Enter your student name. This name will appear with your posts.</p>
@@ -5453,7 +5708,7 @@ body.light-mode .community-divider {
       <button class="link-btn" onclick="saveCommunityStudentName()">Continue</button>
     </div>
 
-    <!-- Composer -->
+    <!-- COMPOSER -->
     <div class="community-composer hidden-box" id="communityComposerBox" style="display:none;">
       <div class="community-user-row">
         <div>
@@ -5461,7 +5716,10 @@ body.light-mode .community-divider {
           <strong id="communityCurrentName">Student</strong>
         </div>
 
-        <button class="back-mini" onclick="changeCommunityName()">Change Name</button>
+        <div class="community-small-actions">
+          <button class="back-mini" onclick="openMyCommunityProfile()">My Profile</button>
+          <button class="back-mini" onclick="changeCommunityName()">Change Name</button>
+        </div>
       </div>
 
       <div class="input-group">
@@ -5469,12 +5727,34 @@ body.light-mode .community-divider {
         <textarea id="communityPostInput" rows="4" placeholder="Write something for the community..."></textarea>
       </div>
 
+      <div class="input-group">
+        <label>Image URL Optional</label>
+        <input id="communityImageInput" type="text" placeholder="Paste image URL optional">
+      </div>
+
       <button class="link-btn" onclick="postCommunityMessage()">Post</button>
+    </div>
+
+    <!-- MY PROFILE -->
+    <div class="community-profile-box hidden-box" id="communityProfileBox" style="display:none;">
+      <div class="community-user-row">
+        <div>
+          <h3>👤 My Profile</h3>
+          <p>Your posts in community.</p>
+        </div>
+
+        <button class="back-mini" onclick="closeMyCommunityProfile()">Back</button>
+      </div>
+
+      <div id="myCommunityPostsList" class="community-posts-list">
+        <div class="login-note">Loading your posts...</div>
+      </div>
     </div>
 
     <div class="community-divider"></div>
 
     <h3>Latest Posts</h3>
+
     <div id="communityPostsList" class="community-posts-list">
       <div class="login-note">Loading posts...</div>
     </div>
@@ -8493,12 +8773,35 @@ function escapeHTML(value) {
 document.addEventListener("DOMContentLoaded", function() {
   loadAppNotifications();
 });
-
-  /* =========================================================
-   COMMUNITY SECTION JAVASCRIPT
+/* =========================================================
+   COMMUNITY TAB FULL SYSTEM
+   Posts + Replies + Likes + My Profile + Moderator
+   Moderator Login from Supabase Backend Table
 ========================================================= */
 
+/* ---------- DEVICE ID ---------- */
+
+function getCommunityDeviceId() {
+  let deviceId = localStorage.getItem("communityDeviceId");
+
+  if (!deviceId) {
+    deviceId = "dev_" + Date.now() + "_" + Math.random().toString(36).slice(2, 12);
+    localStorage.setItem("communityDeviceId", deviceId);
+  }
+
+  return deviceId;
+}
+
+/* Future backend IP ke liye placeholder */
+function getCommunityIpAddress() {
+  return "";
+}
+
+/* ---------- INIT ---------- */
+
 function initCommunitySection() {
+  getCommunityDeviceId();
+
   const savedName = localStorage.getItem("communityStudentName");
 
   const nameBox = document.getElementById("communityNameBox");
@@ -8506,27 +8809,44 @@ function initCommunitySection() {
   const currentName = document.getElementById("communityCurrentName");
 
   if (savedName) {
-    if (nameBox) nameBox.style.display = "none";
-    if (composerBox) composerBox.style.display = "block";
+    if (nameBox) {
+      nameBox.classList.add("hidden-box");
+      nameBox.style.display = "none";
+    }
+
+    if (composerBox) {
+      composerBox.classList.remove("hidden-box");
+      composerBox.style.display = "block";
+    }
+
     if (currentName) currentName.textContent = savedName;
   } else {
-    if (nameBox) nameBox.style.display = "block";
-    if (composerBox) composerBox.style.display = "none";
+    if (nameBox) {
+      nameBox.classList.remove("hidden-box");
+      nameBox.style.display = "block";
+    }
+
+    if (composerBox) {
+      composerBox.classList.add("hidden-box");
+      composerBox.style.display = "none";
+    }
   }
 
+  refreshModeratorUI();
   loadCommunityPosts();
+
+  if (isModeratorLoggedIn()) {
+    loadCommunityBlocks();
+  }
 }
+
+/* ---------- NAME ---------- */
 
 function saveCommunityStudentName() {
   const input = document.getElementById("communityStudentNameInput");
   const name = input ? input.value.trim() : "";
 
-  if (!name) {
-    showToast("Name Required", "Please enter your student name.");
-    return;
-  }
-
-  if (name.length < 2) {
+  if (!name || name.length < 2) {
     showToast("Invalid Name", "Please enter a valid student name.");
     return;
   }
@@ -8544,14 +8864,203 @@ function changeCommunityName() {
   initCommunitySection();
 }
 
+/* ---------- MODERATOR LOGIN UI ---------- */
+
+function toggleModeratorLoginBox() {
+  const loginBox = document.getElementById("communityModeratorLoginBox");
+
+  if (!loginBox) return;
+
+  if (isModeratorLoggedIn()) {
+    refreshModeratorUI();
+    return;
+  }
+
+  if (loginBox.style.display === "none" || loginBox.classList.contains("hidden-box")) {
+    loginBox.classList.remove("hidden-box");
+    loginBox.style.display = "block";
+  } else {
+    loginBox.classList.add("hidden-box");
+    loginBox.style.display = "none";
+  }
+}
+
+/* ---------- MODERATOR LOGIN FROM SUPABASE ---------- */
+
+async function communityModeratorLogin() {
+  const idInput = document.getElementById("moderatorIdInput");
+  const passInput = document.getElementById("moderatorPasswordInput");
+
+  const moderatorId = idInput ? idInput.value.trim() : "";
+  const password = passInput ? passInput.value.trim() : "";
+
+  if (!moderatorId || !password) {
+    showToast("Missing Details", "Enter moderator ID and password.");
+    return;
+  }
+
+  const { data, error } = await db
+    .from("community_moderators")
+    .select("*")
+    .eq("moderator_id", moderatorId)
+    .eq("password", password)
+    .eq("is_active", true)
+    .limit(1);
+
+  if (error) {
+    console.log("Moderator login error:", error);
+    showToast("Login Error", "Moderator login failed.");
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    showToast("Login Failed", "Invalid moderator ID or password.");
+    return;
+  }
+
+  const moderator = data[0];
+
+  localStorage.setItem("communityModeratorLoggedIn", "yes");
+  localStorage.setItem("communityModeratorId", moderator.moderator_id);
+  localStorage.setItem("communityModeratorName", moderator.name || moderator.moderator_id);
+
+  if (idInput) idInput.value = "";
+  if (passInput) passInput.value = "";
+
+  showToast("Moderator Login", "Community moderator access enabled.");
+
+  refreshModeratorUI();
+  loadCommunityPosts();
+  loadCommunityBlocks();
+}
+
+function communityModeratorLogout() {
+  localStorage.removeItem("communityModeratorLoggedIn");
+  localStorage.removeItem("communityModeratorId");
+  localStorage.removeItem("communityModeratorName");
+
+  showToast("Logged Out", "Community moderator access removed.");
+
+  refreshModeratorUI();
+  loadCommunityPosts();
+}
+
+function isModeratorLoggedIn() {
+  return localStorage.getItem("communityModeratorLoggedIn") === "yes";
+}
+
+function refreshModeratorUI() {
+  const loginBox = document.getElementById("communityModeratorLoginBox");
+  const panel = document.getElementById("communityModeratorPanel");
+
+  const moderatorName = localStorage.getItem("communityModeratorName") || "Community Moderator";
+  const moderatorNameText = document.getElementById("communityModeratorNameText");
+
+  if (moderatorNameText) {
+    moderatorNameText.textContent = moderatorName;
+  }
+
+  if (isModeratorLoggedIn()) {
+    if (loginBox) {
+      loginBox.classList.add("hidden-box");
+      loginBox.style.display = "none";
+    }
+
+    if (panel) {
+      panel.classList.remove("hidden-box");
+      panel.style.display = "block";
+    }
+  } else {
+    if (panel) {
+      panel.classList.add("hidden-box");
+      panel.style.display = "none";
+    }
+  }
+}
+
+/* ---------- BLOCK TIME ---------- */
+
+function getBlockUntil(duration) {
+  const now = new Date();
+
+  if (duration === "1h") now.setHours(now.getHours() + 1);
+  else if (duration === "6h") now.setHours(now.getHours() + 6);
+  else if (duration === "1d") now.setDate(now.getDate() + 1);
+  else if (duration === "7d") now.setDate(now.getDate() + 7);
+  else if (duration === "30d") now.setDate(now.getDate() + 30);
+  else if (duration === "365d") now.setDate(now.getDate() + 365);
+  else if (duration === "permanent") return null;
+
+  return now.toISOString();
+}
+
+/* ---------- BLOCK CHECK ---------- */
+
+async function getActiveCommunityBlock(studentName) {
+  const deviceId = getCommunityDeviceId();
+  const ipAddress = getCommunityIpAddress();
+
+  const values = [deviceId, studentName];
+
+  if (ipAddress) {
+    values.push(ipAddress);
+  }
+
+  const { data, error } = await db
+    .from("community_blocks")
+    .select("*")
+    .eq("is_active", true)
+    .in("block_value", values)
+    .order("created_at", { ascending: false })
+    .limit(10);
+
+  if (error) {
+    console.log("Block check error:", error);
+    return null;
+  }
+
+  if (!data || data.length === 0) return null;
+
+  for (let i = 0; i < data.length; i++) {
+    const block = data[i];
+
+    if (!block.blocked_until) {
+      return block;
+    }
+
+    const until = new Date(block.blocked_until).getTime();
+
+    if (until > Date.now()) {
+      return block;
+    }
+  }
+
+  return null;
+}
+
+/* ---------- POST CREATE ---------- */
+
 async function postCommunityMessage() {
   const name = localStorage.getItem("communityStudentName");
+  const deviceId = getCommunityDeviceId();
+  const ipAddress = getCommunityIpAddress();
+
   const input = document.getElementById("communityPostInput");
+  const imageInput = document.getElementById("communityImageInput");
+
   const message = input ? input.value.trim() : "";
+  const imageUrl = imageInput ? imageInput.value.trim() : "";
 
   if (!name) {
     showToast("Name Required", "Please enter your name before posting.");
     initCommunitySection();
+    return;
+  }
+
+  const activeBlock = await getActiveCommunityBlock(name);
+
+  if (activeBlock) {
+    showToast("Restricted", "You are restricted from posting.");
     return;
   }
 
@@ -8567,7 +9076,10 @@ async function postCommunityMessage() {
 
   const payload = {
     student_name: name,
+    device_id: deviceId,
+    ip_address: ipAddress || null,
     message: message,
+    image_url: imageUrl || null,
     is_active: true
   };
 
@@ -8581,10 +9093,14 @@ async function postCommunityMessage() {
     return;
   }
 
-  input.value = "";
+  if (input) input.value = "";
+  if (imageInput) imageInput.value = "";
+
   showToast("Posted", "Your post has been published.");
   loadCommunityPosts();
 }
+
+/* ---------- LOAD POSTS ---------- */
 
 async function loadCommunityPosts() {
   const listBox = document.getElementById("communityPostsList");
@@ -8593,7 +9109,7 @@ async function loadCommunityPosts() {
 
   listBox.innerHTML = `<div class="login-note">Loading posts...</div>`;
 
-  const { data, error } = await db
+  const { data: posts, error } = await db
     .from("community_posts")
     .select("*")
     .eq("is_active", true)
@@ -8606,15 +9122,58 @@ async function loadCommunityPosts() {
     return;
   }
 
-  if (!data || data.length === 0) {
+  if (!posts || posts.length === 0) {
     listBox.innerHTML = `<div class="login-note">No posts yet. Be the first to post.</div>`;
     return;
   }
 
-  listBox.innerHTML = data.map(function(post) {
+  const postIds = posts.map(function(post) {
+    return post.id;
+  });
+
+  const { data: likes } = await db
+    .from("community_likes")
+    .select("*")
+    .in("post_id", postIds);
+
+  const { data: replies } = await db
+    .from("community_replies")
+    .select("*")
+    .in("post_id", postIds)
+    .eq("is_active", true)
+    .order("created_at", { ascending: true });
+
+  listBox.innerHTML = buildCommunityPostsHTML(posts, likes || [], replies || []);
+}
+
+/* ---------- BUILD POST HTML ---------- */
+
+function buildCommunityPostsHTML(posts, likes, replies) {
+  const currentName = localStorage.getItem("communityStudentName") || "";
+  const currentDeviceId = getCommunityDeviceId();
+  const moderator = isModeratorLoggedIn();
+
+  return posts.map(function(post) {
+    const postId = escapeHTML(post.id);
     const name = escapeHTML(post.student_name || "Student");
     const message = escapeHTML(post.message || "");
+    const imageUrl = escapeHTML(post.image_url || "");
+    const deviceId = escapeHTML(post.device_id || "");
     const initial = name.charAt(0).toUpperCase();
+
+    const postLikes = likes.filter(function(like) {
+      return like.post_id === post.id;
+    });
+
+    const likedByMe = postLikes.some(function(like) {
+      return like.device_id === currentDeviceId || like.student_name === currentName;
+    });
+
+    const postReplies = replies.filter(function(reply) {
+      return reply.post_id === post.id;
+    });
+
+    const isOwner = currentDeviceId && post.device_id === currentDeviceId;
 
     const timeText = post.created_at
       ? new Date(post.created_at).toLocaleString("en-IN", {
@@ -8625,8 +9184,55 @@ async function loadCommunityPosts() {
         })
       : "";
 
+    const imageHtml = imageUrl
+      ? `<img class="community-post-image" src="${imageUrl}" alt="Community post image">`
+      : "";
+
+    const ownerActions = isOwner
+      ? `
+        <button class="community-action-btn" onclick="toggleEditPostBox('${postId}')">✏️ Edit</button>
+        <button class="community-action-btn" onclick="deleteOwnCommunityPost('${postId}')">🗑️ Delete</button>
+      `
+      : "";
+
+    const moderatorDeviceInfo = moderator
+      ? `<div class="community-device-info">Device: ${deviceId || "Not saved"}</div>`
+      : "";
+
+    const moderatorActions = moderator
+      ? `
+        <button class="community-action-btn" onclick="moderatorHidePost('${postId}')">🛡️ Hide</button>
+        <button class="community-action-btn" onclick="quickBlockDevice('${deviceId}', '${name}', '1d')">⛔ Device 1D</button>
+        <button class="community-action-btn" onclick="quickBlockDevice('${deviceId}', '${name}', '7d')">⛔ Device 1W</button>
+        <button class="community-action-btn" onclick="quickBlockName('${name}', '1d')">Name 1D</button>
+      `
+      : "";
+
+    const repliesHtml = postReplies.map(function(reply) {
+      const replyId = escapeHTML(reply.id);
+      const replyName = escapeHTML(reply.student_name || "Student");
+      const replyMessage = escapeHTML(reply.message || "");
+      const replyDevice = escapeHTML(reply.device_id || "");
+
+      const replyModAction = moderator
+        ? `
+          <div class="community-device-info">Device: ${replyDevice || "Not saved"}</div>
+          <button class="community-action-btn" onclick="moderatorHideReply('${replyId}')">Hide Reply</button>
+          <button class="community-action-btn" onclick="quickBlockDevice('${replyDevice}', '${replyName}', '1d')">Block Device</button>
+        `
+        : "";
+
+      return `
+        <div class="community-reply-card">
+          <strong>${replyName}</strong>
+          <p>${replyMessage}</p>
+          ${replyModAction}
+        </div>
+      `;
+    }).join("");
+
     return `
-      <div class="community-post-card">
+      <div class="community-post-card" id="post-${postId}">
         <div class="community-post-top">
           <div class="community-name-wrap">
             <span class="community-avatar">${initial}</span>
@@ -8637,10 +9243,527 @@ async function loadCommunityPosts() {
         </div>
 
         <p class="community-post-message">${message}</p>
+        ${imageHtml}
+        ${moderatorDeviceInfo}
+
+        <div class="community-actions-row">
+          <button class="community-action-btn ${likedByMe ? "liked" : ""}" onclick="toggleCommunityLike('${postId}')">
+            ❤️ ${postLikes.length}
+          </button>
+
+          <button class="community-action-btn" onclick="toggleReplyBox('${postId}')">
+            💬 Reply ${postReplies.length}
+          </button>
+
+          ${ownerActions}
+          ${moderatorActions}
+        </div>
+
+        <div class="community-edit-box hidden-box" id="editBox-${postId}" style="display:none;">
+          <textarea id="editMessage-${postId}" rows="3">${message}</textarea>
+          <input id="editImage-${postId}" type="text" value="${imageUrl}" placeholder="Image URL optional">
+          <div class="community-actions-row">
+            <button class="community-action-btn" onclick="saveEditedCommunityPost('${postId}')">Save</button>
+            <button class="community-action-btn" onclick="toggleEditPostBox('${postId}')">Cancel</button>
+          </div>
+        </div>
+
+        <div class="community-reply-box hidden-box" id="replyBox-${postId}" style="display:none;">
+          <textarea id="replyInput-${postId}" placeholder="Write a reply..."></textarea>
+          <div class="community-actions-row">
+            <button class="community-action-btn" onclick="postCommunityReply('${postId}')">Reply</button>
+            <button class="community-action-btn" onclick="toggleReplyBox('${postId}')">Cancel</button>
+          </div>
+        </div>
+
+        <div class="community-replies-list">
+          ${repliesHtml}
+        </div>
       </div>
     `;
   }).join("");
 }
+
+/* ---------- LIKE ---------- */
+
+async function toggleCommunityLike(postId) {
+  const name = localStorage.getItem("communityStudentName");
+  const deviceId = getCommunityDeviceId();
+
+  if (!name) {
+    showToast("Name Required", "Please enter your name first.");
+    initCommunitySection();
+    return;
+  }
+
+  const { data, error } = await db
+    .from("community_likes")
+    .select("*")
+    .eq("post_id", postId)
+    .eq("device_id", deviceId)
+    .limit(1);
+
+  if (error) {
+    console.log("Like check error:", error);
+    return;
+  }
+
+  if (data && data.length > 0) {
+    await db
+      .from("community_likes")
+      .delete()
+      .eq("id", data[0].id);
+  } else {
+    await db
+      .from("community_likes")
+      .insert([{
+        post_id: postId,
+        student_name: name,
+        device_id: deviceId
+      }]);
+  }
+
+  loadCommunityPosts();
+
+  const profileBox = document.getElementById("communityProfileBox");
+  if (profileBox && profileBox.style.display === "block") {
+    loadMyCommunityPosts();
+  }
+}
+
+/* ---------- REPLY ---------- */
+
+function toggleReplyBox(postId) {
+  const box = document.getElementById("replyBox-" + postId);
+  if (!box) return;
+
+  if (box.style.display === "none" || box.classList.contains("hidden-box")) {
+    box.classList.remove("hidden-box");
+    box.style.display = "block";
+  } else {
+    box.classList.add("hidden-box");
+    box.style.display = "none";
+  }
+}
+
+async function postCommunityReply(postId) {
+  const name = localStorage.getItem("communityStudentName");
+  const deviceId = getCommunityDeviceId();
+  const ipAddress = getCommunityIpAddress();
+
+  const input = document.getElementById("replyInput-" + postId);
+  const message = input ? input.value.trim() : "";
+
+  if (!name) {
+    showToast("Name Required", "Please enter your name first.");
+    initCommunitySection();
+    return;
+  }
+
+  const activeBlock = await getActiveCommunityBlock(name);
+
+  if (activeBlock) {
+    showToast("Restricted", "You are restricted from replying.");
+    return;
+  }
+
+  if (!message) {
+    showToast("Empty Reply", "Please write a reply.");
+    return;
+  }
+
+  if (message.length > 300) {
+    showToast("Too Long", "Reply should be under 300 characters.");
+    return;
+  }
+
+  const { error } = await db
+    .from("community_replies")
+    .insert([{
+      post_id: postId,
+      student_name: name,
+      device_id: deviceId,
+      ip_address: ipAddress || null,
+      message: message,
+      is_active: true
+    }]);
+
+  if (error) {
+    console.log("Reply error:", error);
+    showToast("Error", "Reply could not be posted.");
+    return;
+  }
+
+  showToast("Replied", "Your reply has been posted.");
+  loadCommunityPosts();
+}
+
+/* ---------- EDIT / DELETE OWN ---------- */
+
+function toggleEditPostBox(postId) {
+  const box = document.getElementById("editBox-" + postId);
+  if (!box) return;
+
+  if (box.style.display === "none" || box.classList.contains("hidden-box")) {
+    box.classList.remove("hidden-box");
+    box.style.display = "block";
+  } else {
+    box.classList.add("hidden-box");
+    box.style.display = "none";
+  }
+}
+
+async function saveEditedCommunityPost(postId) {
+  const deviceId = getCommunityDeviceId();
+
+  const messageInput = document.getElementById("editMessage-" + postId);
+  const imageInput = document.getElementById("editImage-" + postId);
+
+  const message = messageInput ? messageInput.value.trim() : "";
+  const imageUrl = imageInput ? imageInput.value.trim() : "";
+
+  if (!message) {
+    showToast("Empty Post", "Post cannot be empty.");
+    return;
+  }
+
+  const { error } = await db
+    .from("community_posts")
+    .update({
+      message: message,
+      image_url: imageUrl || null,
+      updated_at: new Date().toISOString()
+    })
+    .eq("id", postId)
+    .eq("device_id", deviceId);
+
+  if (error) {
+    console.log("Edit post error:", error);
+    showToast("Error", "Post could not be edited.");
+    return;
+  }
+
+  showToast("Updated", "Post updated.");
+  loadCommunityPosts();
+  loadMyCommunityPosts();
+}
+
+async function deleteOwnCommunityPost(postId) {
+  const deviceId = getCommunityDeviceId();
+
+  const { error } = await db
+    .from("community_posts")
+    .update({
+      is_active: false,
+      deleted_by: "student",
+      delete_reason: "Deleted by student"
+    })
+    .eq("id", postId)
+    .eq("device_id", deviceId);
+
+  if (error) {
+    console.log("Delete own post error:", error);
+    showToast("Error", "Post could not be deleted.");
+    return;
+  }
+
+  showToast("Deleted", "Your post has been deleted.");
+  loadCommunityPosts();
+  loadMyCommunityPosts();
+}
+
+/* ---------- MY PROFILE ---------- */
+
+function openMyCommunityProfile() {
+  const box = document.getElementById("communityProfileBox");
+
+  if (box) {
+    box.classList.remove("hidden-box");
+    box.style.display = "block";
+  }
+
+  loadMyCommunityPosts();
+}
+
+function closeMyCommunityProfile() {
+  const box = document.getElementById("communityProfileBox");
+
+  if (box) {
+    box.classList.add("hidden-box");
+    box.style.display = "none";
+  }
+}
+
+async function loadMyCommunityPosts() {
+  const listBox = document.getElementById("myCommunityPostsList");
+  const deviceId = getCommunityDeviceId();
+
+  if (!listBox) return;
+
+  listBox.innerHTML = `<div class="login-note">Loading your posts...</div>`;
+
+  const { data: posts, error } = await db
+    .from("community_posts")
+    .select("*")
+    .eq("device_id", deviceId)
+    .eq("is_active", true)
+    .order("created_at", { ascending: false })
+    .limit(50);
+
+  if (error) {
+    console.log("My posts load error:", error);
+    listBox.innerHTML = `<div class="login-note">Your posts could not be loaded.</div>`;
+    return;
+  }
+
+  if (!posts || posts.length === 0) {
+    listBox.innerHTML = `<div class="login-note">You have not posted anything yet.</div>`;
+    return;
+  }
+
+  const postIds = posts.map(function(post) {
+    return post.id;
+  });
+
+  const { data: likes } = await db
+    .from("community_likes")
+    .select("*")
+    .in("post_id", postIds);
+
+  const { data: replies } = await db
+    .from("community_replies")
+    .select("*")
+    .in("post_id", postIds)
+    .eq("is_active", true)
+    .order("created_at", { ascending: true });
+
+  listBox.innerHTML = buildCommunityPostsHTML(posts, likes || [], replies || []);
+}
+
+/* ---------- MODERATOR HIDE ---------- */
+
+async function moderatorHidePost(postId) {
+  if (!isModeratorLoggedIn()) return;
+
+  const { error } = await db
+    .from("community_posts")
+    .update({
+      is_active: false,
+      deleted_by: "moderator",
+      delete_reason: "Hidden by community moderator"
+    })
+    .eq("id", postId);
+
+  if (error) {
+    console.log("Moderator hide post error:", error);
+    showToast("Error", "Post could not be hidden.");
+    return;
+  }
+
+  showToast("Hidden", "Post hidden by moderator.");
+  loadCommunityPosts();
+  loadMyCommunityPosts();
+}
+
+async function moderatorHideReply(replyId) {
+  if (!isModeratorLoggedIn()) return;
+
+  const { error } = await db
+    .from("community_replies")
+    .update({
+      is_active: false,
+      deleted_by: "moderator",
+      delete_reason: "Hidden by community moderator",
+      updated_at: new Date().toISOString()
+    })
+    .eq("id", replyId);
+
+  if (error) {
+    console.log("Moderator hide reply error:", error);
+    showToast("Error", "Reply could not be hidden.");
+    return;
+  }
+
+  showToast("Hidden", "Reply hidden.");
+  loadCommunityPosts();
+}
+
+/* ---------- BLOCK / UNBLOCK ---------- */
+
+async function addCommunityBlock(blockType, blockValue, studentName, duration, reason) {
+  if (!blockValue) {
+    showToast("Missing Value", "Block value missing.");
+    return;
+  }
+
+  const until = getBlockUntil(duration);
+
+  const { error } = await db
+    .from("community_blocks")
+    .insert([{
+      block_type: blockType,
+      block_value: blockValue,
+      student_name: studentName || "",
+      reason: reason || "",
+      blocked_until: until,
+      is_active: true
+    }]);
+
+  if (error) {
+    console.log("Block error:", error);
+    showToast("Error", "Block could not be applied.");
+    return;
+  }
+
+  showToast("Blocked", "Block applied successfully.");
+  loadCommunityBlocks();
+}
+
+async function manualCommunityBlock() {
+  if (!isModeratorLoggedIn()) return;
+
+  const typeInput = document.getElementById("manualBlockTypeInput");
+  const valueInput = document.getElementById("manualBlockValueInput");
+  const nameInput = document.getElementById("manualBlockStudentNameInput");
+  const reasonInput = document.getElementById("manualBlockReasonInput");
+  const durationInput = document.getElementById("manualBlockDurationInput");
+
+  const blockType = typeInput ? typeInput.value : "device";
+  const blockValue = valueInput ? valueInput.value.trim() : "";
+  const studentName = nameInput ? nameInput.value.trim() : "";
+  const reason = reasonInput ? reasonInput.value.trim() : "";
+  const duration = durationInput ? durationInput.value : "1d";
+
+  if (!blockValue) {
+    showToast("Missing Value", "Enter block value.");
+    return;
+  }
+
+  await addCommunityBlock(blockType, blockValue, studentName, duration, reason || "Manual moderator block");
+
+  if (valueInput) valueInput.value = "";
+  if (nameInput) nameInput.value = "";
+  if (reasonInput) reasonInput.value = "";
+}
+
+async function quickBlockDevice(deviceId, studentName, duration) {
+  if (!isModeratorLoggedIn()) return;
+
+  if (!deviceId) {
+    showToast("No Device ID", "This post has no device ID.");
+    return;
+  }
+
+  await addCommunityBlock("device", deviceId, studentName, duration, "Blocked by moderator from post");
+}
+
+async function quickBlockName(studentName, duration) {
+  if (!isModeratorLoggedIn()) return;
+
+  if (!studentName) {
+    showToast("No Name", "Student name missing.");
+    return;
+  }
+
+  await addCommunityBlock("name", studentName, studentName, duration, "Name restricted by moderator");
+}
+
+async function loadCommunityBlocks() {
+  const listBox = document.getElementById("communityBlocksList");
+
+  if (!listBox) return;
+
+  listBox.innerHTML = "Loading blocks...";
+
+  const { data, error } = await db
+    .from("community_blocks")
+    .select("*")
+    .eq("is_active", true)
+    .order("created_at", { ascending: false })
+    .limit(100);
+
+  if (error) {
+    console.log("Blocks load error:", error);
+    listBox.innerHTML = "Blocks could not be loaded.";
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    listBox.innerHTML = "No active blocks.";
+    return;
+  }
+
+  listBox.innerHTML = data.map(function(block) {
+    const blockId = escapeHTML(block.id);
+    const blockType = escapeHTML(block.block_type || "");
+    const blockValue = escapeHTML(block.block_value || "");
+    const studentName = escapeHTML(block.student_name || "");
+    const reason = escapeHTML(block.reason || "");
+
+    const untilText = block.blocked_until
+      ? new Date(block.blocked_until).toLocaleString("en-IN", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit"
+        })
+      : "Permanent";
+
+    return `
+      <div class="admin-list-item">
+        <div>
+          <b>${blockType.toUpperCase()} Block</b>
+          <p>${studentName || "Unknown Student"}</p>
+          <small>${blockValue}</small><br>
+          <small>Until: ${untilText}</small><br>
+          <small>Reason: ${reason || "No reason"}</small>
+        </div>
+
+        <button class="back-mini" onclick="unblockCommunityUser('${blockId}')">Unlock</button>
+      </div>
+    `;
+  }).join("");
+}
+
+async function unblockCommunityUser(blockId) {
+  if (!isModeratorLoggedIn()) return;
+
+  const { error } = await db
+    .from("community_blocks")
+    .update({
+      is_active: false
+    })
+    .eq("id", blockId);
+
+  if (error) {
+    console.log("Unblock error:", error);
+    showToast("Error", "Could not unlock.");
+    return;
+  }
+
+  showToast("Unlocked", "Block removed.");
+  loadCommunityBlocks();
+}
+
+/* ---------- SAFE TEXT ---------- */
+
+function escapeHTML(value) {
+  return String(value || "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+/* ---------- AUTO INIT IF PAGE LOADS DIRECTLY ---------- */
+
+document.addEventListener("DOMContentLoaded", function() {
+  if (document.getElementById("community")) {
+    getCommunityDeviceId();
+  }
+});
 </script>
 
 </body>
