@@ -4820,51 +4820,7 @@ body.light-mode .community-composer-box textarea {
     font-size: 10px !important;
   }
 }
-    /* =========================================================
-   COMMUNITY MODERATOR LOGIN AS POPUP
-========================================================= */
-
-.community-moderator-login {
-  position: fixed !important;
-  left: 50% !important;
-  top: 50% !important;
-  transform: translate(-50%, -50%) !important;
-
-  width: calc(100% - 34px) !important;
-  max-width: 430px !important;
-
-  z-index: 99999 !important;
-
-  padding: 18px !important;
-  border-radius: 24px !important;
-
-  background: var(--card) !important;
-  border: 1px solid var(--border) !important;
-  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.35) !important;
-}
-
-.community-moderator-login h3 {
-  margin-top: 0 !important;
-}
-
-.community-moderator-login .link-btn {
-  width: 100% !important;
-  margin-top: 10px !important;
-}
-
-/* Dark mode safe */
-body.dark .community-moderator-login {
-  background: #111827 !important;
-}
-
-/* Optional overlay feel */
-.community-moderator-login::before {
-  content: "" !important;
-  position: fixed !important;
-  inset: -200vh !important;
-  background: rgba(0, 0, 0, 0.45) !important;
-  z-index: -1 !important;
-}
+  
     /* =========================================================
    COMMUNITY MODERATOR POPUP STRONG BACKGROUND FIX
 ========================================================= */
@@ -10245,6 +10201,12 @@ function hideCommunityBlockedUsersPanel() {
   box.classList.add("hidden-box");
   box.style.display = "none";
 }
+  showToast("Moderator Login", "Community moderator access enabled.");
+
+refreshModeratorUI();
+openCommunityModeratorLogin();
+loadCommunityPosts();
+loadCommunityBlocks();
 </script>
 
 </body>
