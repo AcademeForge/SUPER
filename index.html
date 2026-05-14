@@ -9594,8 +9594,8 @@ async function uploadCommunityImageIfAny() {
 /* ---------- CREATE POST ---------- */
 
 async function createCommunityPost() {
-  const name = localStorage.getItem("communityStudentName") || "";
-  const deviceId = getCommunityDeviceId();
+  const name = localStorage.getItem("communityStudentName") || "Student";
+  const userId = getCommunityDeviceId();
 
   const input = document.getElementById("communityPostInput");
   const fileInput = document.getElementById("communityImageFileInput");
@@ -9637,9 +9637,9 @@ async function createCommunityPost() {
 
   const payload = {
     student_name: name,
-    device_id: deviceId,
+    user_id: userId,
     message: message || "",
-    image_url: imageUrl || null,
+    image_url: imageUrl,
     is_active: true
   };
 
@@ -9663,6 +9663,73 @@ async function createCommunityPost() {
   loadCommunityPosts();
   loadMyCommunityPosts();
 }
+/* ---------- LOAD POSTS ---------- */
+
+async function loadCommunityPosts() {
+  const listBox = document.getElementById("communityPostsList");
+
+  if (!listBox) return;
+
+  listBox.innerHTML = `<div class="login-note">Loading posts...</div>`;
+
+  let query = db
+    .from("community_posts")
+    .select("*")
+    .eq("is_active", true)
+    .limit(50);
+
+  if (communityFeedMode === "oldest") {
+    query = query.order("created_at", { ascending: true });
+  } else {
+    query = query.order("created_at", { ascending: false });
+  }
+
+  const { data: posts, error } = await query;
+
+  if (error) {
+    console.log("Community load error:", error);
+    listBox.innerHTML = `<div class="login-note">Community posts could not be loaded.</div>`;
+    return;
+  }
+
+  if (!posts || posts.length === 0) {
+    listBox.innerHTML = `<div class="login-note">No posts yet. Be the first to post.</div>`;
+    return;
+  }
+
+  const postIds = posts.map(function(post) {
+    return post.id;
+  });
+
+  const { data: likes } = await db
+    .from("community_likes")
+    .select("*")
+    .in("post_id", postIds);
+
+  const { data: replies } = await db
+    .from("community_replies")
+    .select("*")
+    .in("post_id", postIds)
+    .eq("is_active", true)
+    .order("created_at", { ascending: true });
+
+  let finalPosts = posts;
+
+  if (communityFeedMode === "relevant") {
+    finalPosts = posts.slice().sort(function(a, b) {
+      const aLikes = (likes || []).filter(function(l) { return l.post_id === a.id; }).length;
+      const bLikes = (likes || []).filter(function(l) { return l.post_id === b.id; }).length;
+
+      const aReplies = (replies || []).filter(function(r) { return r.post_id === a.id; }).length;
+      const bReplies = (replies || []).filter(function(r) { return r.post_id === b.id; }).length;
+
+      return (bLikes + bReplies) - (aLikes + aReplies);
+    });
+  }
+
+  listBox.innerHTML = buildCommunityPostsHTML(finalPosts, likes || [], replies || []);
+}
+
 /* ---------- BUILD POSTS HTML ---------- */
 
 function buildCommunityPostsHTML(posts, likes, replies) {
