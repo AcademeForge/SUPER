@@ -4697,23 +4697,6 @@ body.light-mode .notification-new-badge {
   cursor: pointer;
 }
 
-.community-composer-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 1200;
-  background: rgba(0,0,0,0.45);
-  display: grid;
-  place-items: end center;
-  padding: 16px;
-}
-
-.community-composer-box {
-  width: min(620px, 100%);
-  padding: 18px;
-  border-radius: 26px;
-  max-height: 88vh;
-  overflow: auto;
-}
 
 .community-composer-box textarea {
   width: 100%;
@@ -5103,7 +5086,149 @@ body.dark .community-mod-login-view input::placeholder {
     bottom: 88px !important;
   }
 }
-    
+    /* =========================================================
+   COMMUNITY WRITE POST PAGE
+========================================================= */
+
+.community-write-page {
+  width: 100%;
+  animation: communityFadeIn 0.2s ease;
+}
+
+.community-page-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 8px 0 18px;
+}
+
+.community-page-head h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.community-page-head p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  opacity: 0.75;
+}
+
+.community-write-card {
+  width: 100%;
+  padding: 16px;
+  border-radius: 22px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.08);
+}
+
+.community-write-card .input-group {
+  margin-bottom: 14px;
+}
+
+.community-write-card textarea {
+  width: 100%;
+  min-height: 150px;
+  resize: vertical;
+  border-radius: 18px;
+  padding: 14px;
+  font-size: 14px;
+}
+
+.community-write-card input[type="file"] {
+  width: 100%;
+  padding: 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.community-small-note {
+  display: block;
+  margin-top: 6px;
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+/* floating pencil inside app width */
+.community-float-write-btn {
+  position: fixed;
+  right: max(18px, calc((100vw - 520px) / 2 + 18px));
+  bottom: 88px;
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  border: none;
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  color: white;
+  font-size: 22px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 16px 35px rgba(22, 163, 74, 0.35);
+  z-index: 80;
+  cursor: pointer;
+}
+
+/* light mode */
+body:not(.dark) .community-write-card {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(15, 23, 42, 0.12);
+}
+
+/* dark mode */
+body.dark .community-write-card,
+.dark .community-write-card {
+  background: rgba(15, 23, 42, 0.92);
+  border-color: rgba(148, 163, 184, 0.24);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+}
+
+body.dark .community-write-card input[type="file"],
+.dark .community-write-card input[type="file"] {
+  background: rgba(2, 6, 23, 0.7);
+  color: #e5e7eb;
+  border-color: rgba(148, 163, 184, 0.28);
+}
+
+/* mobile friendly */
+@media (max-width: 560px) {
+  .community-page-head {
+    align-items: flex-start;
+  }
+
+  .community-write-card {
+    padding: 14px;
+    border-radius: 20px;
+  }
+
+  .community-write-card textarea {
+    min-height: 180px;
+    font-size: 15px;
+  }
+
+  .community-float-write-btn {
+    right: 18px;
+    bottom: 82px;
+    width: 54px;
+    height: 54px;
+    border-radius: 17px;
+  }
+}
+
+@keyframes communityFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
   </style>
 </head>
 
@@ -5982,16 +6107,37 @@ body.dark .community-mod-login-view input::placeholder {
     <button class="community-float-write-btn" onclick="openCommunityComposer()">✏️</button>
 
     <!-- WRITE POST MODAL -->
-    <div class="community-composer-overlay hidden-box" id="communityComposerOverlay" style="display:none;">
-      <div class="community-composer-box glass">
-        <div class="community-user-row">
-          <div>
-            <h3>✏️ Write Post</h3>
-            <p>Share something with the community.</p>
-          </div>
+  <!-- WRITE POST PAGE VIEW -->
+<div class="community-write-page hidden-box" id="communityWritePage" style="display:none;">
 
-          <button class="back-mini" onclick="closeCommunityComposer()">Close</button>
-        </div>
+  <div class="community-page-head">
+    <button class="back-mini" onclick="closeCommunityComposer()">← Back</button>
+
+    <div>
+      <h3>✏️ Write Post</h3>
+      <p>Share something with the community.</p>
+    </div>
+  </div>
+
+  <div class="community-write-card">
+
+    <div class="input-group">
+      <label>Post</label>
+      <textarea id="communityPostInput" rows="6" placeholder="Write something for the community..."></textarea>
+    </div>
+
+    <div class="input-group">
+      <label>Image</label>
+      <input id="communityImageFileInput" type="file" accept="image/*">
+      <small class="community-small-note">
+        Image upload will work after Supabase Storage setup.
+      </small>
+    </div>
+
+    <button class="link-btn" onclick="createCommunityPost()">Post</button>
+
+  </div>
+</div>
 
         <div class="input-group">
           <label>Post</label>
@@ -9182,31 +9328,59 @@ function saveCommunityNameOnce() {
 /* ---------- COMPOSER ---------- */
 
 function openCommunityComposer() {
-  const name = localStorage.getItem("communityStudentName");
+  const feedBox = document.getElementById("communityFeedBox");
+  const profileBox = document.getElementById("communityProfileBox");
+  const writePage = document.getElementById("communityWritePage");
+  const controls = document.getElementById("communityFeedControls");
+  const floatBtn = document.querySelector(".community-float-write-btn");
+  const modPage = document.getElementById("communityModeratorPage");
 
-  if (!name) {
-    showToast("Name Required", "Please set your community name first.");
-    initCommunitySection();
-    return;
+  if (feedBox) feedBox.style.display = "none";
+  if (profileBox) {
+    profileBox.classList.add("hidden-box");
+    profileBox.style.display = "none";
   }
 
-  const overlay = document.getElementById("communityComposerOverlay");
+  if (controls) controls.style.display = "none";
 
-  if (overlay) {
-    overlay.classList.remove("hidden-box");
-    overlay.style.display = "flex";
+  if (modPage) {
+    modPage.classList.add("hidden-box");
+    modPage.style.display = "none";
   }
+
+  if (writePage) {
+    writePage.classList.remove("hidden-box");
+    writePage.style.display = "block";
+  }
+
+  if (floatBtn) floatBtn.style.display = "none";
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
 }
 
 function closeCommunityComposer() {
-  const overlay = document.getElementById("communityComposerOverlay");
+  const feedBox = document.getElementById("communityFeedBox");
+  const writePage = document.getElementById("communityWritePage");
+  const controls = document.getElementById("communityFeedControls");
+  const floatBtn = document.querySelector(".community-float-write-btn");
 
-  if (overlay) {
-    overlay.classList.add("hidden-box");
-    overlay.style.display = "none";
+  if (writePage) {
+    writePage.classList.add("hidden-box");
+    writePage.style.display = "none";
   }
-}
 
+  if (feedBox) feedBox.style.display = "block";
+  if (controls) controls.style.display = "flex";
+  if (floatBtn) floatBtn.style.display = "flex";
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
 /* ---------- FEED FILTER ---------- */
 
 function setCommunityFeedMode(mode, btn) {
