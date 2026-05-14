@@ -4085,8 +4085,131 @@ body.dark-mode .home-banner-slider {
     .moving-text-track {
   animation-duration: 32s !important;
 }
-
     /* =========================================================
+   TEAM FORM SAVE + CLEAR BUTTON GAP FIX
+   Paste at VERY END of CSS
+========================================================= */
+
+#adminTeamBox .link-btn + .back-mini,
+#teamManagementBox .link-btn + .back-mini,
+#adminTeamMembersBox .link-btn + .back-mini {
+  margin-top: 10px !important;
+  margin-left: 0 !important;
+  width: 100% !important;
+
+  display: inline-flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+#adminTeamBox .link-btn,
+#teamManagementBox .link-btn,
+#adminTeamMembersBox .link-btn {
+  margin-bottom: 0 !important;
+}
+    /* =========================================================
+   DEVELOPER CREDIT LINE
+   Use on Home + Management pages
+========================================================= */
+
+.developer-credit-line {
+  margin: 12px 16px 22px !important;
+  padding: 13px 14px !important;
+  border-radius: 18px !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 3px !important;
+
+  text-align: center !important;
+  background: rgba(255,255,255,0.08) !important;
+  border: 1px solid rgba(255,255,255,0.14) !important;
+}
+
+.developer-credit-line span {
+  font-size: 13px !important;
+  font-weight: 900 !important;
+  color: var(--mode-ink, var(--text)) !important;
+}
+
+.developer-credit-line small {
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+  color: var(--mode-muted, var(--muted)) !important;
+}
+
+/* Light mode */
+body.light-mode .developer-credit-line {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 8px 18px rgba(15,23,42,0.06) !important;
+}
+
+body.light-mode .developer-credit-line span {
+  color: #0f172a !important;
+}
+
+body.light-mode .developer-credit-line small {
+  color: #475569 !important;
+}
+
+/* Dark mode */
+body.dark-mode .developer-credit-line {
+  background: rgba(255,255,255,0.07) !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+}
+
+body.dark-mode .developer-credit-line span {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .developer-credit-line small {
+  color: #cbd5e1 !important;
+}
+    #home .developer-credit-line {
+  margin-top: 28px !important;
+}
+    #management .developer-credit-line {
+  margin-top: 1px !important;
+}
+    .developer-credit-line {
+  padding: 14px 12px !important;
+  text-align: center !important;
+}
+
+.developer-credit-line p {
+  font-size: 13px !important;
+  line-height: 1.4 !important;
+  white-space: nowrap !important;
+}
+
+.developer-credit-line h3 {
+  font-size: 14px !important;
+  white-space: nowrap !important;
+}
+    .developer-credit-line {
+  width: calc(100% - 56px) !important;
+  margin: 18px auto 0 !important;
+  padding: 12px 8px !important;
+  border-radius: 22px !important;
+  text-align: center !important;
+}
+
+.developer-credit-line p:first-child {
+  font-size: 11.5px !important;
+  line-height: 1.3 !important;
+  white-space: nowrap !important;
+  letter-spacing: -0.2px !important;
+  margin: 0 !important;
+}
+
+.developer-credit-line p:last-child {
+  font-size: 12px !important;
+  line-height: 1.3 !important;
+  margin: 5px 0 0 !important;
+}
+   /* =========================================================
    ADMIN NOTIFICATION + NOTIFY SECTION
 ========================================================= */
 
@@ -4287,7 +4410,30 @@ body.light-mode .notification-new-badge {
   color: #ffffff !important;
   box-shadow: 0 0 14px rgba(220, 38, 38, 0.45) !important;
 }
-    
+    .nav-notify-wrap {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.nav-new-dot {
+  position: absolute !important;
+  top: -8px !important;
+  right: -16px !important;
+  min-width: 18px !important;
+  height: 18px !important;
+  padding: 0 5px !important;
+  border-radius: 999px !important;
+  background: #ef4444 !important;
+  color: #ffffff !important;
+  font-size: 9px !important;
+  font-weight: 900 !important;
+  line-height: 18px !important;
+  text-align: center !important;
+  box-shadow: 0 0 12px rgba(239,68,68,0.55) !important;
+  animation: newBlink 1s infinite ease-in-out !important;
+}
   </style>
 </head>
 
@@ -4328,15 +4474,15 @@ body.light-mode .notification-new-badge {
  <!-- IMAGE BANNER SLIDER -->
 <div class="home-banner-slider glass">
   <div class="banner-slide active">
-    <img src="banner1.jpg.png" alt="AcademeForge Banner 1">
+    <img src="banner1.jpg" alt="AcademeForge Banner 1">
   </div>
 
   <div class="banner-slide">
-    <img src="banner2.jpg.png" alt="AcademeForge Banner 2">
+    <img src="banner2.jpg" alt="AcademeForge Banner 2">
   </div>
 
   <div class="banner-slide">
-    <img src="banner3.jpg.png" alt="AcademeForge Banner 3">
+    <img src="banner3.jpg" alt="AcademeForge Banner 3">
   </div>
 
   <div class="banner-dots">
@@ -4402,7 +4548,11 @@ body.light-mode .notification-new-badge {
       </div>
     </button>
   </div>
-
+     
+<div class="developer-credit-line">
+  <span>Developed by Devraj Kumar</span>
+  <small>Made with ❤️ in India.</small>
+</div>
 </section>
     
     <section id="student" class="section">
@@ -4499,8 +4649,9 @@ body.light-mode .notification-new-badge {
     <div class="content-list" id="contentList"></div>
   </div>
 </section>
-  
-<!-- OFFICE QUICK ACTIONS MANAGEMENT -->
+
+     
+ <!-- OFFICE QUICK ACTIONS MANAGEMENT -->
 
 <section id="office" class="section">
   <div class="panel glass" id="officeLoginBox">
@@ -4535,6 +4686,7 @@ body.light-mode .notification-new-badge {
     </div>
 
     <!-- QUICK ACTIONS HOME -->
+    
     <div class="course-info-box" id="officeQuickActionsTitle">
       <h3>⚡ Quick Actions</h3>
     </div>
@@ -4580,12 +4732,6 @@ body.light-mode .notification-new-badge {
         <span>📖</span>
         <h3>Chapters</h3>
         <p>Create and organize chapters.</p>
-      </button>
-
-      <button class="course-select-card" onclick="openAdminTeam()">
-        <span>👥</span>
-        <h3>Team</h3>
-        <p>Add and manage team members.</p>
       </button>
     </div>
 
@@ -4681,74 +4827,69 @@ body.light-mode .notification-new-badge {
         </div>
       </div>
     </div>
-
-    <!-- TEAM MANAGEMENT -->
-    <div class="admin-manage-box hidden-box" id="adminTeamBox" style="display:none;">
-      <div style="display:flex; justify-content:space-between; gap:10px; align-items:center;">
-        <div>
-          <h3>👥 Team Management</h3>
-          <p>Add, view, edit, activate/inactivate team members.</p>
-        </div>
-
-        <button class="back-mini" onclick="closeAdminTeam()">Back</button>
-      </div>
-
-      <div class="course-info-box">
-        <h3 id="teamFormTitle">Add New Team Member</h3>
-
-        <input type="hidden" id="adminTeamEditId">
-
-        <div class="input-group">
-          <label>Name</label>
-          <input id="teamNameInput" type="text" placeholder="Team member name">
-        </div>
-
-        <div class="input-group">
-          <label>Role / Position</label>
-          <input id="teamRoleInput" type="text" placeholder="Example: Founder, Mentor, Designer">
-        </div>
-
-        <div class="input-group">
-          <label>Photo URL</label>
-          <input id="teamPhotoInput" type="text" placeholder="Paste image URL">
-        </div>
-
-        <div class="input-group">
-          <label>Bio</label>
-          <textarea id="teamBioInput" placeholder="Short bio" rows="4"></textarea>
-        </div>
-
-        <div class="input-group">
-          <label>Instagram URL</label>
-          <input id="teamInstagramInput" type="text" placeholder="Instagram profile link">
-        </div>
-
-        <div class="input-group">
-          <label>LinkedIn URL</label>
-          <input id="teamLinkedinInput" type="text" placeholder="LinkedIn profile link">
-        </div>
-
-        <div class="input-group">
-          <label>Display Order</label>
-          <input id="teamOrderInput" type="number" placeholder="Example: 1">
-        </div>
-
-        <div class="admin-action-row">
-          <button class="link-btn" onclick="saveAdminTeamMember()">Save Team Member</button>
-          <button class="link-btn secondary" onclick="resetAdminTeamForm()">Clear</button>
-        </div>
-      </div>
-
-      <div class="course-info-box">
-        <h3>All Team Members</h3>
-        <div id="adminTeamList" class="admin-list-box">
-          Loading team members...
-        </div>
-      </div>
+    
+<!-- TEAM MANAGEMENT -->
+<div class="admin-manage-box hidden-box" id="adminTeamBox" style="display:none;">
+  <div style="display:flex; justify-content:space-between; gap:10px; align-items:center;">
+    <div>
+      <h3>👥 Team Management</h3>
+      <p>Add, view, edit, activate/inactivate team members.</p>
     </div>
 
+    <button class="back-mini" onclick="closeAdminTeam()">Back</button>
   </div>
-</section>
+
+  <div class="course-info-box">
+    <h3 id="teamFormTitle">Add New Team Member</h3>
+
+    <input type="hidden" id="adminTeamEditId">
+
+    <div class="input-group">
+      <label>Name</label>
+      <input id="teamNameInput" type="text" placeholder="Team member name">
+    </div>
+
+    <div class="input-group">
+      <label>Role / Position</label>
+      <input id="teamRoleInput" type="text" placeholder="Example: Founder, Mentor, Designer">
+    </div>
+
+    <div class="input-group">
+      <label>Photo URL</label>
+      <input id="teamPhotoInput" type="text" placeholder="Paste image URL">
+    </div>
+
+    <div class="input-group">
+      <label>Bio</label>
+      <textarea id="teamBioInput" placeholder="Short bio" rows="4"></textarea>
+    </div>
+
+    <div class="input-group">
+      <label>Instagram URL</label>
+      <input id="teamInstagramInput" type="text" placeholder="Instagram profile link">
+    </div>
+
+    <div class="input-group">
+      <label>LinkedIn URL</label>
+      <input id="teamLinkedinInput" type="text" placeholder="LinkedIn profile link">
+    </div>
+
+    <div class="input-group">
+      <label>Display Order</label>
+      <input id="teamOrderInput" type="number" placeholder="Example: 1">
+    </div>
+
+    <button class="link-btn" onclick="saveAdminTeamMember()">Save Team Member</button>
+    <button class="back-mini" onclick="resetAdminTeamForm()">Clear</button>
+  </div>
+
+  <div class="course-info-box">
+    <h3>All Team Members</h3>
+    <div id="adminTeamList" class="admin-list-box">
+      hello
+    </div>
+  </div>
+</div>
     
     <!-- CHAPTER MANAGEMENT -->
 <div class="admin-manage-box hidden-box" id="adminChaptersBox" style="display:none;">
@@ -5120,9 +5261,7 @@ body.light-mode .notification-new-badge {
           AcademeForge is powered by young innovators and learners working to build a better
           student-first learning experience.
         </p>
-<div id="teamMembersGrid">
-  <div class="login-note">Loading team members...</div>
-</div>
+        
         <div class="team">
           <div class="member">
             <div class="avatar">D</div>
@@ -5155,6 +5294,11 @@ body.light-mode .notification-new-badge {
               <p>Moderator — supporting student engagement, community, and smooth learning experience.</p>
             </div>
           </div>
+          
+          <div class="developer-credit-line">
+  <span>© 2026 AcademeForge by Devraj Kumar.</span>
+  <small>Made with ❤️ in India.</small>
+</div>
         </div>
       </div>
     </section>
@@ -5179,10 +5323,10 @@ body.light-mode .notification-new-badge {
         <b>✨</b>
         Explore
       </button>
-
-      <button class="nav-btn" onclick="showSection('notifications')">
-  <b>🔔</b>
-  Notify
+      
+  <button class="nav-btn" data-section="notifications" onclick="showSection('notifications')">
+  <b class="nav-notify-wrap">🔔</b>
+  <span>Notify</span>
 </button>
     </nav>
 
@@ -5238,8 +5382,17 @@ function showSection(sectionId) {
     activeButton.classList.add("active");
   }
 if (sectionId === "notifications") {
-  loadAppNotifications();
+  loadAppNotifications().then(function() {
+    const latestCard = document.querySelector(".notification-item");
+    const latestDataTime = window.latestNotificationTime || "";
+
+    if (latestDataTime) {
+      setSeenNotificationTime(latestDataTime);
+      updateNotifyBadge([]);
+    }
+  });
 }
+
   window.scrollTo({
     top: 0,
     behavior: "smooth"
@@ -7211,7 +7364,7 @@ async function fetchAdminTeamMembers() {
 
   if (!list) return;
 
-  list.innerHTML = "Loading team members...";
+  list.innerHTML = "Hello students";
 
   const { data, error } = await db
     .from("team_members")
@@ -7765,7 +7918,7 @@ function toggleThemeMode() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  const savedMode = localStorage.getItem("academeThemeMode") || "dark-mode";
+  const savedMode = localStorage.getItem("academeThemeMode") || "light-mode";
   applyThemeMode(savedMode);
 });
 
@@ -7800,18 +7953,104 @@ function goToBannerSlide(index) {
 
 function startBannerSlider() {
   if (bannerSlideTimer) clearInterval(bannerSlideTimer);
-  bannerSlideTimer = setInterval(nextBannerSlide, 3500);
+  bannerSlideTimer = setInterval(nextBannerSlide, 4500);
 }
 
 document.addEventListener("DOMContentLoaded", function() {
   showBannerSlide(0);
   startBannerSlider();
-  loadAppNotifications();
 });
-  /* =========================================================
-   ADMIN POST NOTIFICATION + STUDENT NOTIFY SECTION
-========================================================= */
+  /* ================================
+   OFFICE NOTIFICATION JAVASCRIPT
+================================ */
 
+/* Hide all office admin manage boxes */
+function hideAllAdminManageBoxes() {
+  const boxes = document.querySelectorAll(".admin-manage-box");
+
+  boxes.forEach(function(box) {
+    box.classList.add("hidden-box");
+    box.style.display = "none";
+  });
+}
+
+/* Show office quick actions home */
+function showOfficeQuickActions() {
+  const quickActions = document.getElementById("officeQuickActions");
+  const quickTitle = document.getElementById("officeQuickActionsTitle");
+
+  if (quickActions) {
+    quickActions.style.display = "grid";
+  }
+
+  if (quickTitle) {
+    quickTitle.style.display = "block";
+  }
+}
+
+/* Hide office quick actions home */
+function hideOfficeQuickActions() {
+  const quickActions = document.getElementById("officeQuickActions");
+  const quickTitle = document.getElementById("officeQuickActionsTitle");
+
+  if (quickActions) {
+    quickActions.style.display = "none";
+  }
+
+  if (quickTitle) {
+    quickTitle.style.display = "none";
+  }
+}
+
+/* Open notification panel from quick actions */
+function openAdminNotifications() {
+  hideAllAdminManageBoxes();
+  hideOfficeQuickActions();
+
+  const box = document.getElementById("notificationManageBox");
+
+  if (box) {
+    box.classList.remove("hidden-box");
+    box.style.display = "block";
+  }
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+/* Close notification panel and return to quick actions */
+function closeAdminNotifications() {
+  const box = document.getElementById("notificationManageBox");
+
+  if (box) {
+    box.classList.add("hidden-box");
+    box.style.display = "none";
+  }
+
+  showOfficeQuickActions();
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+/* Clear notification form */
+function clearNotificationForm() {
+  const title = document.getElementById("adminNotificationTitle");
+  const message = document.getElementById("adminNotificationMessage");
+  const batch = document.getElementById("adminNotificationBatch");
+  const type = document.getElementById("adminNotificationType");
+
+  if (title) title.value = "";
+  if (message) message.value = "";
+  if (batch) batch.value = "";
+  if (type) type.value = "General";
+}
+
+/* Post notification to Supabase */
 async function postAdminNotification() {
   const titleInput = document.getElementById("adminNotificationTitle");
   const messageInput = document.getElementById("adminNotificationMessage");
@@ -7820,23 +8059,25 @@ async function postAdminNotification() {
 
   const title = titleInput ? titleInput.value.trim() : "";
   const message = messageInput ? messageInput.value.trim() : "";
-  const batch = batchInput ? batchInput.value.trim() : "All";
+  const batch = batchInput ? batchInput.value.trim() : "";
   const type = typeInput ? typeInput.value : "General";
 
   if (!title || !message) {
-    showToast("Missing Details", "Please enter title and message.");
+    showToast("Missing Details", "Please enter notification title and message.");
     return;
   }
 
+  const payload = {
+    title: title,
+    message: message,
+    batch: batch || "All",
+    type: type || "General",
+    is_active: true
+  };
+
   const { error } = await db
     .from("app_notifications")
-    .insert({
-      title: title,
-      message: message,
-      batch: batch || "All",
-      type: type || "General",
-      is_active: true
-    });
+    .insert([payload]);
 
   if (error) {
     console.log("Notification post error:", error);
@@ -7844,40 +8085,17 @@ async function postAdminNotification() {
     return;
   }
 
-  showToast("Notification Posted", "Students can now see this update.");
-
+  showToast("Posted", "Notification posted successfully.");
   clearNotificationForm();
   loadAppNotifications();
 }
 
-function clearNotificationForm() {
-  const titleInput = document.getElementById("adminNotificationTitle");
-  const messageInput = document.getElementById("adminNotificationMessage");
-  const batchInput = document.getElementById("adminNotificationBatch");
-  const typeInput = document.getElementById("adminNotificationType");
-
-  if (titleInput) titleInput.value = "";
-  if (messageInput) messageInput.value = "";
-  if (batchInput) batchInput.value = "";
-  if (typeInput) typeInput.value = "General";
-}
-
-function formatNotificationDate(dateString) {
-  if (!dateString) return "";
-
-  const date = new Date(dateString);
-
-  return date.toLocaleString("en-IN", {
-    day: "2-digit",
-    month: "short",
-    hour: "2-digit",
-    minute: "2-digit"
-  });
-}
-
+  
+/* Load notifications for Notify section and home ticker */
+  
 async function loadAppNotifications() {
-  const list = document.getElementById("notificationsList");
-  const ticker = document.getElementById("tickerText");
+  const listBox = document.getElementById("notificationsList");
+  const tickerText = document.getElementById("tickerText");
 
   const { data, error } = await db
     .from("app_notifications")
@@ -7889,45 +8107,143 @@ async function loadAppNotifications() {
   if (error) {
     console.log("Notification load error:", error);
 
-    if (list) {
-      list.innerHTML = `<div class="notification-empty">Notifications could not be loaded.</div>`;
+    if (listBox) {
+      listBox.innerHTML = `
+        <div class="notification-empty">
+          Notifications could not be loaded.
+        </div>
+      `;
     }
 
     return;
   }
 
-  if (ticker && data && data.length > 0) {
-    ticker.textContent = `${data[0].title}: ${data[0].message}`;
+  if (tickerText && data && data.length > 0) {
+    tickerText.textContent = "🔔 " + data[0].title + " — " + data[0].message;
   }
-
-  if (!list) return;
-
-  if (!data || data.length === 0) {
-    list.innerHTML = `<div class="notification-empty">No notifications yet.</div>`;
+window.latestNotificationTime = getLatestNotificationTime(data);
+  
+  if (!listBox) {
+    updateNotifyBadge(data);
     return;
   }
 
-  list.innerHTML = data.map(function(item, index) {
-    const isLatest = index === 0;
+  if (!data || data.length === 0) {
+    listBox.innerHTML = `
+      <div class="notification-empty">
+        No notifications yet.
+      </div>
+    `;
+
+    updateNotifyBadge([]);
+    return;
+  }
+
+  listBox.innerHTML = data.map(function(item, index) {
+    const latestClass = index === 0 ? "latest-notification" : "";
+
+    const newBadge = index === 0
+      ? `<span class="notification-new-badge">NEW</span>`
+      : "";
+
+    const dateText = item.created_at
+      ? new Date(item.created_at).toLocaleDateString("en-IN", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric"
+        })
+      : "";
+
+    const timeText = item.created_at
+      ? new Date(item.created_at).toLocaleTimeString("en-IN", {
+          hour: "2-digit",
+          minute: "2-digit"
+        })
+      : "";
 
     return `
-      <div class="notification-item ${isLatest ? "latest-notification" : ""}">
+      <div class="notification-item ${latestClass}">
         <div class="notification-top-row">
-          <span class="notification-badge">${item.type || "General"}</span>
+          <span class="notification-badge">${escapeHTML(item.type || "General")}</span>
 
           <div class="notification-right-tags">
-            ${isLatest ? `<span class="notification-new-badge">NEW</span>` : ""}
-            <span class="notification-batch">${item.batch || "All"}</span>
+            ${newBadge}
+            <span class="notification-batch">${escapeHTML(item.batch || "All")}</span>
           </div>
         </div>
 
-        <h3>${item.title}</h3>
-        <p>${item.message}</p>
-        <small>${formatNotificationDate(item.created_at)}</small>
+        <h3>${escapeHTML(item.title || "Notification")}</h3>
+        <p>${escapeHTML(item.message || "")}</p>
+        <small>${dateText} ${timeText}</small>
       </div>
     `;
   }).join("");
+
+  updateNotifyBadge(data);
 }
+  /* Extra..... */
+
+  function getLatestNotificationTime(data) {
+  if (!data || data.length === 0) return "";
+
+  return data[0].created_at || data[0].id || "";
+}
+
+function getSeenNotificationTime() {
+  return localStorage.getItem("af_seen_notification_time") || "";
+}
+
+function setSeenNotificationTime(value) {
+  if (!value) return;
+  localStorage.setItem("af_seen_notification_time", value);
+}
+  
+/* Update bottom nav blinking NEW badge */
+
+  
+function updateNotifyBadge(data) {
+  const notifyBtn = document.querySelector('.nav-btn[data-section="notifications"]');
+
+  if (!notifyBtn) return;
+
+  const oldBadge = notifyBtn.querySelector(".nav-new-dot");
+  if (oldBadge) oldBadge.remove();
+
+  if (!data || data.length === 0) return;
+
+  const latestTime = getLatestNotificationTime(data);
+  const seenTime = getSeenNotificationTime();
+
+  if (latestTime && latestTime !== seenTime) {
+    const badge = document.createElement("span");
+    badge.className = "nav-new-dot";
+    badge.textContent = "NEW";
+
+    const icon = notifyBtn.querySelector(".nav-notify-wrap") || notifyBtn.querySelector("b");
+
+    if (icon) {
+      icon.appendChild(badge);
+    } else {
+      notifyBtn.appendChild(badge);
+    }
+  }
+}
+  
+/* Escape HTML for safe rendering */
+
+function escapeHTML(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+/* Auto load notifications on page load */
+document.addEventListener("DOMContentLoaded", function() {
+  loadAppNotifications();
+});
 </script>
 
 </body>
