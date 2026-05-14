@@ -4434,6 +4434,143 @@ body.light-mode .notification-new-badge {
   box-shadow: 0 0 12px rgba(239,68,68,0.55) !important;
   animation: newBlink 1s infinite ease-in-out !important;
 }
+  .notifications-section {
+  min-height: calc(100vh - 190px);
+  display: flex;
+  flex-direction: column;
+}
+
+.notifications-panel {
+  max-height: calc(100vh - 285px);
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.notifications-panel::-webkit-scrollbar {
+  display: none;
+}
+
+.notification-credit-bottom {
+  margin-top: auto;
+  margin-bottom: 100px;
+}
+    .notification-credit-fixed {
+  position: fixed !important;
+  left: 50% !important;
+  bottom: 105px !important;
+  transform: translateX(-50%) !important;
+  width: calc(100% - 56px) !important;
+  max-width: 520px !important;
+  z-index: 50 !important;
+}
+.notification-credit-fixed {
+  display: none !important;
+}
+
+#notifications.active .notification-credit-fixed {
+  display: flex !important;
+}
+    /* =========================================================
+   STUDENT LECTURE LIST + VIDEO PLAYER
+========================================================= */
+
+#studentChapterLectureList {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.student-lecture-card {
+  width: 100%;
+  padding: 20px;
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.08);
+  text-align: center;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.student-lecture-card:hover {
+  transform: translateY(-2px);
+}
+
+.student-lecture-card .lecture-pill {
+  display: inline-flex;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(59,130,246,0.16);
+  border: 1px solid rgba(59,130,246,0.22);
+  color: #2563eb;
+  font-size: 13px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.student-lecture-card h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.student-lecture-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.video-player-panel {
+  padding-bottom: 22px;
+}
+
+.video-player-panel h2 {
+  margin-top: 24px;
+  margin-bottom: 10px;
+  font-size: 24px;
+  line-height: 1.25;
+}
+
+.video-player-panel p {
+  margin-bottom: 18px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.video-player-box {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #000;
+  border: 1px solid rgba(255,255,255,0.14);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+}
+
+.video-player-box iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: none;
+}
+
+body.light-mode .student-lecture-card {
+  background: #ffffff;
+  border: 1px solid #dbe3ee;
+  box-shadow: 0 10px 26px rgba(15,23,42,0.06);
+}
+
+body.light-mode .video-player-box {
+  border: 1px solid #dbe3ee;
+  box-shadow: 0 18px 40px rgba(15,23,42,0.10);
+}
+
+@media (max-width: 420px) {
+  .video-player-panel h2 {
+    font-size: 22px;
+  }
+
+  .video-player-box {
+    border-radius: 18px;
+  }
+}
   </style>
 </head>
 
@@ -5249,6 +5386,32 @@ body.light-mode .notification-new-badge {
 
     <div id="notificationsList" class="notifications-list">
       <div class="notification-empty">No notifications yet.</div>
+    </div>
+
+    <div class="developer-credit-line notification-credit">
+      <span>© 2026 AcademeForge by Devraj Kumar.</span>
+      <small>Made with ❤️ in India.</small>
+    </div>
+  </div>
+</section>
+    
+<!-- STUDENT VIDEO PLAYER SECTION -->
+<section id="studentVideoPlayerSection" class="section">
+  <div class="panel glass video-player-panel">
+    <button class="back-mini" onclick="backToLectureList()">← Back to Lectures</button>
+
+    <h2 id="playerLectureTitle">🎥 Lecture Video</h2>
+    <p id="playerLectureDesc">Watch your selected lecture here.</p>
+
+    <div class="video-player-box">
+      <iframe
+        id="lectureVideoIframe"
+        src=""
+        title="AcademeForge Lecture Video"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
     </div>
   </div>
 </section>
@@ -8244,6 +8407,107 @@ function escapeHTML(value) {
 document.addEventListener("DOMContentLoaded", function() {
   loadAppNotifications();
 });
+/* =========================================================
+   STUDENT LECTURE LIST + VIDEO PLAYER
+========================================================= */
+
+#studentChapterLectureList {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.student-lecture-card {
+  width: 100%;
+  padding: 20px;
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.08);
+  text-align: center;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.student-lecture-card:hover {
+  transform: translateY(-2px);
+}
+
+.student-lecture-card .lecture-pill {
+  display: inline-flex;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(59,130,246,0.16);
+  border: 1px solid rgba(59,130,246,0.22);
+  color: #2563eb;
+  font-size: 13px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.student-lecture-card h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.student-lecture-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.video-player-panel {
+  padding-bottom: 22px;
+}
+
+.video-player-panel h2 {
+  margin-top: 24px;
+  margin-bottom: 10px;
+  font-size: 24px;
+  line-height: 1.25;
+}
+
+.video-player-panel p {
+  margin-bottom: 18px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.video-player-box {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #000;
+  border: 1px solid rgba(255,255,255,0.14);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+}
+
+.video-player-box iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: none;
+}
+
+body.light-mode .student-lecture-card {
+  background: #ffffff;
+  border: 1px solid #dbe3ee;
+  box-shadow: 0 10px 26px rgba(15,23,42,0.06);
+}
+
+body.light-mode .video-player-box {
+  border: 1px solid #dbe3ee;
+  box-shadow: 0 18px 40px rgba(15,23,42,0.10);
+}
+
+@media (max-width: 420px) {
+  .video-player-panel h2 {
+    font-size: 22px;
+  }
+
+  .video-player-box {
+    border-radius: 18px;
+  }
+}
 </script>
 
 </body>
