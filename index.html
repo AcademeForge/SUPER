@@ -5271,6 +5271,81 @@ body.dark .community-write-card input[type="file"],
     transform: translateY(0);
   }
 }
+    /* =========================================================
+   FINAL OVERRIDE: COMMUNITY FLOATING PENCIL FIX
+   Paste this at the END of CSS
+========================================================= */
+
+#community .community-float-write-btn {
+  position: fixed !important;
+
+  right: max(18px, calc((100vw - 430px) / 2 + 18px)) !important;
+  bottom: 92px !important;
+
+  width: 58px !important;
+  height: 58px !important;
+  min-width: 58px !important;
+  min-height: 58px !important;
+
+  border-radius: 999px !important;
+  border: none !important;
+  outline: none !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  font-size: 22px !important;
+  line-height: 1 !important;
+  font-weight: 800 !important;
+
+  background: linear-gradient(135deg, #16a34a, #22c55e) !important;
+  color: #ffffff !important;
+
+  box-shadow: 0 14px 30px rgba(22, 163, 74, 0.35) !important;
+  z-index: 99999 !important;
+
+  cursor: pointer !important;
+}
+
+#community .community-float-write-btn:hover {
+  transform: translateY(-2px) scale(1.03) !important;
+}
+
+#community .community-float-write-btn:active {
+  transform: scale(0.96) !important;
+}
+
+@media (max-width: 520px) {
+  #community .community-float-write-btn {
+    right: 18px !important;
+    bottom: 88px !important;
+
+    width: 56px !important;
+    height: 56px !important;
+    min-width: 56px !important;
+    min-height: 56px !important;
+
+    font-size: 21px !important;
+  }
+}
+
+@media (max-width: 360px) {
+  #community .community-float-write-btn {
+    right: 14px !important;
+    bottom: 84px !important;
+
+    width: 52px !important;
+    height: 52px !important;
+    min-width: 52px !important;
+    min-height: 52px !important;
+
+    font-size: 19px !important;
+  }
+}
   </style>
 </head>
 
