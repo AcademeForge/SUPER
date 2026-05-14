@@ -4470,6 +4470,164 @@ body.light-mode .notification-new-badge {
 #notifications.active .notification-credit-fixed {
   display: flex !important;
 }
+    /* =========================================================
+   COMMUNITY SECTION
+========================================================= */
+
+.community-name-box,
+.community-composer {
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 22px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.13);
+}
+
+.community-name-box h3,
+.community-composer h3 {
+  margin: 0 0 6px;
+  font-size: 17px;
+}
+
+.community-name-box p {
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.community-composer textarea,
+.community-name-box input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.08);
+  color: var(--text);
+  outline: none;
+  font-family: inherit;
+  font-size: 14px;
+  resize: none;
+}
+
+.community-composer textarea::placeholder,
+.community-name-box input::placeholder {
+  color: rgba(255,255,255,0.45);
+}
+
+.community-user-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.community-user-row small {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  margin-bottom: 3px;
+}
+
+.community-user-row strong {
+  font-size: 15px;
+}
+
+.community-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.12);
+  margin: 18px 0;
+}
+
+.community-posts-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.community-post-card {
+  padding: 14px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.13);
+}
+
+.community-post-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.community-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(59,130,246,0.14);
+  color: #60a5fa;
+  font-weight: 900;
+  flex: 0 0 auto;
+}
+
+.community-name-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.community-name-wrap strong {
+  font-size: 14px;
+}
+
+.community-post-time {
+  font-size: 11px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.community-post-message {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--muted);
+  white-space: pre-wrap;
+}
+
+/* Light mode */
+body.light-mode .community-name-box,
+body.light-mode .community-composer,
+body.light-mode .community-post-card {
+  background: #ffffff;
+  border: 1px solid #dbe3ee;
+  box-shadow: 0 10px 26px rgba(15,23,42,0.06);
+}
+
+body.light-mode .community-composer textarea,
+body.light-mode .community-name-box input {
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+}
+
+body.light-mode .community-composer textarea::placeholder,
+body.light-mode .community-name-box input::placeholder {
+  color: rgba(15,23,42,0.45);
+}
+
+body.light-mode .community-name-box p,
+body.light-mode .community-user-row small,
+body.light-mode .community-post-time,
+body.light-mode .community-post-message {
+  color: #475569;
+}
+
+body.light-mode .community-divider {
+  background: #e2e8f0;
+}
   </style>
 </head>
 
@@ -5275,6 +5433,53 @@ body.light-mode .notification-new-badge {
         <button class="link-btn secondary" onclick="copyWebsite()">Copy Website Link</button>
       </div>
     </section>
+
+    
+    <section id="community" class="section">
+  <div class="panel glass">
+    <h2>💬 Community</h2>
+    <p>Ask questions, share updates, and interact with other students.</p>
+
+    <!-- Name Setup -->
+    <div class="community-name-box" id="communityNameBox">
+      <h3>Before posting</h3>
+      <p>Enter your student name. This name will appear with your posts.</p>
+
+      <div class="input-group">
+        <label>Student Name</label>
+        <input id="communityStudentNameInput" type="text" placeholder="Example: Devraj Kumar">
+      </div>
+
+      <button class="link-btn" onclick="saveCommunityStudentName()">Continue</button>
+    </div>
+
+    <!-- Composer -->
+    <div class="community-composer hidden-box" id="communityComposerBox" style="display:none;">
+      <div class="community-user-row">
+        <div>
+          <small>Posting as</small>
+          <strong id="communityCurrentName">Student</strong>
+        </div>
+
+        <button class="back-mini" onclick="changeCommunityName()">Change Name</button>
+      </div>
+
+      <div class="input-group">
+        <label>Write Post</label>
+        <textarea id="communityPostInput" rows="4" placeholder="Write something for the community..."></textarea>
+      </div>
+
+      <button class="link-btn" onclick="postCommunityMessage()">Post</button>
+    </div>
+
+    <div class="community-divider"></div>
+
+    <h3>Latest Posts</h3>
+    <div id="communityPostsList" class="community-posts-list">
+      <div class="login-note">Loading posts...</div>
+    </div>
+  </div>
+</section>
     
 <section id="notifications" class="section">
   <div class="panel glass">
@@ -5360,10 +5565,10 @@ body.light-mode .notification-new-badge {
         Office
       </button>
 
-      <button class="nav-btn" data-section="explore" onclick="showSection('explore')">
-        <b>✨</b>
-        Explore
-      </button>
+     <button class="nav-btn" data-section="community" onclick="showSection('community')">
+  <b>💬</b>
+  Community
+</button>
       
   <button class="nav-btn" data-section="notifications" onclick="showSection('notifications')">
   <b class="nav-notify-wrap">🔔</b>
@@ -5432,6 +5637,9 @@ if (sectionId === "notifications") {
       updateNotifyBadge([]);
     }
   });
+}
+  if (sectionId === "community") {
+  initCommunitySection();
 }
 
   window.scrollTo({
@@ -8285,6 +8493,154 @@ function escapeHTML(value) {
 document.addEventListener("DOMContentLoaded", function() {
   loadAppNotifications();
 });
+
+  /* =========================================================
+   COMMUNITY SECTION JAVASCRIPT
+========================================================= */
+
+function initCommunitySection() {
+  const savedName = localStorage.getItem("communityStudentName");
+
+  const nameBox = document.getElementById("communityNameBox");
+  const composerBox = document.getElementById("communityComposerBox");
+  const currentName = document.getElementById("communityCurrentName");
+
+  if (savedName) {
+    if (nameBox) nameBox.style.display = "none";
+    if (composerBox) composerBox.style.display = "block";
+    if (currentName) currentName.textContent = savedName;
+  } else {
+    if (nameBox) nameBox.style.display = "block";
+    if (composerBox) composerBox.style.display = "none";
+  }
+
+  loadCommunityPosts();
+}
+
+function saveCommunityStudentName() {
+  const input = document.getElementById("communityStudentNameInput");
+  const name = input ? input.value.trim() : "";
+
+  if (!name) {
+    showToast("Name Required", "Please enter your student name.");
+    return;
+  }
+
+  if (name.length < 2) {
+    showToast("Invalid Name", "Please enter a valid student name.");
+    return;
+  }
+
+  localStorage.setItem("communityStudentName", name);
+  initCommunitySection();
+}
+
+function changeCommunityName() {
+  localStorage.removeItem("communityStudentName");
+
+  const input = document.getElementById("communityStudentNameInput");
+  if (input) input.value = "";
+
+  initCommunitySection();
+}
+
+async function postCommunityMessage() {
+  const name = localStorage.getItem("communityStudentName");
+  const input = document.getElementById("communityPostInput");
+  const message = input ? input.value.trim() : "";
+
+  if (!name) {
+    showToast("Name Required", "Please enter your name before posting.");
+    initCommunitySection();
+    return;
+  }
+
+  if (!message) {
+    showToast("Empty Post", "Please write something before posting.");
+    return;
+  }
+
+  if (message.length > 500) {
+    showToast("Too Long", "Post should be under 500 characters.");
+    return;
+  }
+
+  const payload = {
+    student_name: name,
+    message: message,
+    is_active: true
+  };
+
+  const { error } = await db
+    .from("community_posts")
+    .insert([payload]);
+
+  if (error) {
+    console.log("Community post error:", error);
+    showToast("Error", "Post could not be published.");
+    return;
+  }
+
+  input.value = "";
+  showToast("Posted", "Your post has been published.");
+  loadCommunityPosts();
+}
+
+async function loadCommunityPosts() {
+  const listBox = document.getElementById("communityPostsList");
+
+  if (!listBox) return;
+
+  listBox.innerHTML = `<div class="login-note">Loading posts...</div>`;
+
+  const { data, error } = await db
+    .from("community_posts")
+    .select("*")
+    .eq("is_active", true)
+    .order("created_at", { ascending: false })
+    .limit(50);
+
+  if (error) {
+    console.log("Community load error:", error);
+    listBox.innerHTML = `<div class="login-note">Community posts could not be loaded.</div>`;
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    listBox.innerHTML = `<div class="login-note">No posts yet. Be the first to post.</div>`;
+    return;
+  }
+
+  listBox.innerHTML = data.map(function(post) {
+    const name = escapeHTML(post.student_name || "Student");
+    const message = escapeHTML(post.message || "");
+    const initial = name.charAt(0).toUpperCase();
+
+    const timeText = post.created_at
+      ? new Date(post.created_at).toLocaleString("en-IN", {
+          day: "2-digit",
+          month: "short",
+          hour: "2-digit",
+          minute: "2-digit"
+        })
+      : "";
+
+    return `
+      <div class="community-post-card">
+        <div class="community-post-top">
+          <div class="community-name-wrap">
+            <span class="community-avatar">${initial}</span>
+            <strong>${name}</strong>
+          </div>
+
+          <span class="community-post-time">${timeText}</span>
+        </div>
+
+        <p class="community-post-message">${message}</p>
+      </div>
+    `;
+  }).join("");
+}
 </script>
 
 </body>
