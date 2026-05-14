@@ -4927,6 +4927,195 @@ body.dark .community-moderator-login input::placeholder {
   background: rgba(2, 6, 23, 0.72) !important;
   backdrop-filter: blur(5px) !important;
 }
+    /* =========================================================
+   COMMUNITY MODERATOR PAGE VIEW COMMON
+========================================================= */
+
+.community-moderator-page {
+  width: 100%;
+  margin-top: 14px;
+}
+
+.community-page-head,
+.community-mod-topbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.community-page-head h3 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.community-muted-text {
+  margin: 8px 0 16px;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.community-mod-topbar {
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 18px;
+}
+
+.community-mod-title {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.community-mod-title strong {
+  font-size: 15px;
+}
+
+.community-mod-title small {
+  font-size: 11px;
+  opacity: 0.75;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.community-menu-btn {
+  width: 42px;
+  height: 38px;
+  border-radius: 14px;
+  border: none;
+  font-size: 20px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.community-mod-menu {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 18px;
+  display: grid;
+  gap: 8px;
+}
+
+.community-mod-menu button {
+  width: 100%;
+  padding: 11px 12px;
+  border-radius: 14px;
+  border: none;
+  font-weight: 800;
+  text-align: left;
+  cursor: pointer;
+}
+
+.community-blocked-panel {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 20px;
+}
+
+.community-mod-login-view .link-btn {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Moderator login ko normal page jaisa rakho */
+.community-mod-login-view {
+  padding: 14px;
+  border-radius: 22px;
+}
+
+/* Moderator dashboard spacing */
+.community-mod-dashboard-view {
+  padding-bottom: 10px;
+}
+    /* =========================================================
+   COMMUNITY MODERATOR LIGHT MODE
+========================================================= */
+
+body:not(.dark) .community-mod-login-view,
+body:not(.dark) .community-mod-topbar,
+body:not(.dark) .community-mod-menu,
+body:not(.dark) .community-blocked-panel {
+  background: linear-gradient(145deg, #ffffff, #eef5ff);
+  color: #111827;
+  border: 1px solid rgba(148, 163, 184, 0.55);
+  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.10);
+}
+
+body:not(.dark) .community-muted-text {
+  color: #475569;
+}
+
+body:not(.dark) .community-menu-btn {
+  background: #e0f2fe;
+  color: #0f172a;
+  border: 1px solid rgba(14, 165, 233, 0.35);
+}
+
+body:not(.dark) .community-mod-menu button {
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+}
+
+body:not(.dark) .community-mod-menu button:hover {
+  background: #f1f5f9;
+}
+
+body:not(.dark) .community-mod-login-view input {
+  background: #ffffff;
+  color: #111827;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+}
+
+body:not(.dark) .community-mod-login-view input::placeholder {
+  color: #64748b;
+}
+    /* =========================================================
+   COMMUNITY MODERATOR DARK MODE
+========================================================= */
+
+body.dark .community-mod-login-view,
+body.dark .community-mod-topbar,
+body.dark .community-mod-menu,
+body.dark .community-blocked-panel {
+  background: linear-gradient(145deg, #0f172a, #1e293b);
+  color: #f8fafc;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
+}
+
+body.dark .community-muted-text {
+  color: #cbd5e1;
+}
+
+body.dark .community-menu-btn {
+  background: #020617;
+  color: #f8fafc;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+body.dark .community-mod-menu button {
+  background: #020617;
+  color: #f8fafc;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+body.dark .community-mod-menu button:hover {
+  background: #111827;
+}
+
+body.dark .community-mod-login-view input {
+  background: #020617;
+  color: #f8fafc;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+}
+
+body.dark .community-mod-login-view input::placeholder {
+  color: #94a3b8;
+}
   </style>
 </head>
 
@@ -5831,43 +6020,76 @@ body.dark .community-moderator-login input::placeholder {
       </div>
     </div>
 
-    <!-- MODERATOR LOGIN -->
-    <div class="community-moderator-login hidden-box" id="communityModeratorLoginBox" style="display:none;">
+   <!-- MODERATOR PAGE VIEW -->
+<div class="community-moderator-page hidden-box" id="communityModeratorPage" style="display:none;">
+
+  <!-- MODERATOR LOGIN VIEW -->
+  <div class="community-mod-login-view" id="communityModeratorLoginView">
+    <div class="community-page-head">
+      <button class="back-mini" onclick="closeCommunityModeratorPage()">← Back</button>
       <h3>🛡️ Community Moderator</h3>
-      <p>Login to manage posts, replies, blocks and restrictions.</p>
-
-      <div class="input-group">
-        <label>Moderator ID</label>
-        <input id="moderatorIdInput" type="text" placeholder="Moderator ID">
-      </div>
-
-      <div class="input-group">
-        <label>Password</label>
-        <input id="moderatorPasswordInput" type="password" placeholder="Password">
-      </div>
-
-      <button class="link-btn" onclick="communityModeratorLogin()">Login</button>
-      <button class="link-btn secondary" onclick="closeCommunityModeratorLogin()">Cancel</button>
     </div>
 
-    <!-- MODERATOR PANEL -->
-    <div class="community-moderator-panel hidden-box" id="communityModeratorPanel" style="display:none;">
+    <p class="community-muted-text">
+      Login to manage posts, replies, blocks and restrictions.
+    </p>
+
+    <div class="input-group">
+      <label>Moderator ID</label>
+      <input id="moderatorIdInput" type="text" placeholder="Moderator ID">
+    </div>
+
+    <div class="input-group">
+      <label>Password</label>
+      <input id="moderatorPasswordInput" type="password" placeholder="Password">
+    </div>
+
+    <button class="link-btn" onclick="communityModeratorLogin()">Login</button>
+  </div>
+
+  <!-- MODERATOR DASHBOARD VIEW -->
+  <div class="community-mod-dashboard-view hidden-box" id="communityModeratorDashboardView" style="display:none;">
+
+    <div class="community-mod-topbar">
+      <button class="back-mini" onclick="closeCommunityModeratorPage()">← Back</button>
+
+      <div class="community-mod-title">
+        <strong>Moderator</strong>
+        <small id="communityModeratorNameText">Admin</small>
+      </div>
+
+      <button class="community-menu-btn" onclick="toggleCommunityModMenu()">☰</button>
+    </div>
+
+    <!-- HAMBURGER MENU -->
+    <div class="community-mod-menu hidden-box" id="communityModeratorMenu" style="display:none;">
+      <button onclick="showCommunityBlockedUsersPanel()">Blocked Users</button>
+      <button onclick="communityModeratorLogout()">Logout</button>
+    </div>
+
+    <!-- BLOCKED USERS PANEL -->
+    <div class="community-blocked-panel hidden-box" id="communityBlockedPanel" style="display:none;">
       <div class="community-user-row">
         <div>
-          <small>Logged in as</small>
-          <strong id="communityModeratorNameText">Community Moderator</strong>
+          <h3>Blocked Users</h3>
+          <p>Manage restricted devices or users.</p>
         </div>
 
-        <button class="back-mini" onclick="communityModeratorLogout()">Logout</button>
+        <button class="back-mini" onclick="hideCommunityBlockedUsersPanel()">Close</button>
       </div>
 
-      <div class="course-info-box">
-        <h3>Blocked Users</h3>
-        <div id="communityBlockedUsersList" class="community-feed-list">
-          Loading blocked users...
-        </div>
+      <div id="communityBlockedUsersList" class="community-feed-list">
+        Loading blocked users...
       </div>
     </div>
+
+    <h3 class="community-section-title">Moderator Feed</h3>
+    <p class="community-muted-text">
+      You can hide posts, hide replies, and restrict devices from the post cards.
+    </p>
+
+  </div>
+</div>
 
   </div>
 </section>
@@ -9929,6 +10151,100 @@ document.addEventListener("DOMContentLoaded", function() {
     initCommunitySection();
   }
 });
+
+  /* ---------- COMMUNITY MODERATOR PAGE NAV ---------- */
+
+function openCommunityModeratorLogin() {
+  const feedBox = document.getElementById("communityFeedBox");
+  const controls = document.getElementById("communityFeedControls");
+  const profileBox = document.getElementById("communityProfileBox");
+  const loginBox = document.getElementById("communityModeratorLoginBox");
+  const panel = document.getElementById("communityModeratorPanel");
+
+  if (feedBox) feedBox.style.display = "none";
+  if (controls) controls.style.display = "none";
+  if (profileBox) {
+    profileBox.classList.add("hidden-box");
+    profileBox.style.display = "none";
+  }
+
+  if (isModeratorLoggedIn()) {
+    if (loginBox) {
+      loginBox.classList.add("hidden-box");
+      loginBox.style.display = "none";
+    }
+
+    if (panel) {
+      panel.classList.remove("hidden-box");
+      panel.style.display = "block";
+    }
+
+    loadCommunityBlocks();
+  } else {
+    if (panel) {
+      panel.classList.add("hidden-box");
+      panel.style.display = "none";
+    }
+
+    if (loginBox) {
+      loginBox.classList.remove("hidden-box");
+      loginBox.style.display = "block";
+    }
+  }
+}
+
+function closeCommunityModeratorPage() {
+  const feedBox = document.getElementById("communityFeedBox");
+  const controls = document.getElementById("communityFeedControls");
+  const loginBox = document.getElementById("communityModeratorLoginBox");
+  const panel = document.getElementById("communityModeratorPanel");
+
+  if (loginBox) {
+    loginBox.classList.add("hidden-box");
+    loginBox.style.display = "none";
+  }
+
+  if (panel) {
+    panel.classList.add("hidden-box");
+    panel.style.display = "none";
+  }
+
+  if (feedBox) feedBox.style.display = "block";
+  if (controls) controls.style.display = "flex";
+
+  loadCommunityPosts();
+}
+
+function toggleCommunityModMenu() {
+  const menu = document.getElementById("communityModMenuBox");
+  if (!menu) return;
+
+  if (menu.style.display === "none" || menu.classList.contains("hidden-box")) {
+    menu.classList.remove("hidden-box");
+    menu.style.display = "block";
+  } else {
+    menu.classList.add("hidden-box");
+    menu.style.display = "none";
+  }
+}
+
+function showCommunityBlockedUsersPanel() {
+  const box = document.getElementById("communityBlockedUsersPanel");
+  if (!box) return;
+
+  box.classList.remove("hidden-box");
+  box.style.display = "block";
+
+  loadCommunityBlocks();
+}
+
+function hideCommunityBlockedUsersPanel() {
+  const box = document.getElementById("communityBlockedUsersPanel");
+  if (!box) return;
+
+  box.classList.add("hidden-box");
+  box.style.display = "none";
+}
 </script>
 
 </body>
