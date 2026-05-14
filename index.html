@@ -9740,26 +9740,30 @@ function openMyCommunityProfile() {
 
   loadMyCommunityPosts();
 }
-
 function closeMyCommunityProfile() {
-  const box = document.getElementById("communityProfileBox");
+  const profileBox = document.getElementById("communityProfileBox");
   const feedBox = document.getElementById("communityFeedBox");
   const controls = document.getElementById("communityFeedControls");
 
-  if (box) {
-    box.classList.add("hidden-box");
-    box.style.display = "none";
+  if (profileBox) {
+    profileBox.classList.add("hidden-box");
+    profileBox.style.display = "none";
   }
 
   if (feedBox) feedBox.style.display = "block";
-  if (controls) controls.style.display = "grid";
+  if (controls) controls.style.display = "flex";
+
+  loadCommunityPosts();
 }
 
 async function loadMyCommunityPosts() {
   const listBox = document.getElementById("communityMyPostsList");
   const deviceId = getCommunityDeviceId();
 
-  if (!listBox) return;
+  if (!listBox) {
+    console.log("communityMyPostsList not found");
+    return;
+  }
 
   listBox.innerHTML = `<div class="login-note">Loading your posts...</div>`;
 
@@ -9803,30 +9807,27 @@ async function loadMyCommunityPosts() {
 
 /* ---------- MODERATOR UI ---------- */
 
-function openCommunityModeratorLogin() {
-  const loginBox = document.getElementById("communityModeratorLoginBox");
+function openMyCommunityProfile() {
+  const profileBox = document.getElementById("communityProfileBox");
+  const feedBox = document.getElementById("communityFeedBox");
+  const controls = document.getElementById("communityFeedControls");
+  const modPage = document.getElementById("communityModeratorPage");
 
-  if (!loginBox) return;
+  if (feedBox) feedBox.style.display = "none";
+  if (controls) controls.style.display = "none";
 
-  if (isModeratorLoggedIn()) {
-    refreshModeratorUI();
-    loadCommunityBlocks();
-    return;
+  if (modPage) {
+    modPage.classList.add("hidden-box");
+    modPage.style.display = "none";
   }
 
-  loginBox.classList.remove("hidden-box");
-  loginBox.style.display = "block";
+  if (profileBox) {
+    profileBox.classList.remove("hidden-box");
+    profileBox.style.display = "block";
+  }
+
+  loadMyCommunityPosts();
 }
-
-function closeCommunityModeratorLogin() {
-  const loginBox = document.getElementById("communityModeratorLoginBox");
-
-  if (!loginBox) return;
-
-  loginBox.classList.add("hidden-box");
-  loginBox.style.display = "none";
-}
-
 /* ---------- MODERATOR LOGIN ---------- */
 
 async function communityModeratorLogin() {
