@@ -9300,25 +9300,14 @@ async function uploadCommunityImageIfAny() {
 /* ---------- CREATE POST ---------- */
 
 async function createCommunityPost() {
-  const name = localStorage.getItem("communityStudentName");
+  const name = localStorage.getItem("communityStudentName") || localStorage.getItem("communityName") || "";
   const deviceId = getCommunityDeviceId();
-  const ipAddress = getCommunityIpAddress();
 
   const input = document.getElementById("communityPostInput");
-  const fileInput = document.getElementById("communityImageFileInput");
-
   const message = input ? input.value.trim() : "";
 
   if (!name) {
     showToast("Name Required", "Please set your community name first.");
-    initCommunitySection();
-    return;
-  }
-
-  const activeBlock = await getActiveCommunityBlock(name);
-
-  if (activeBlock) {
-    showToast("Restricted", "You are restricted from posting.");
     return;
   }
 
@@ -9332,37 +9321,39 @@ async function createCommunityPost() {
     return;
   }
 
-  const imageUrl = await uploadCommunityImageIfAny();
+  const activeBlock = await getActiveCommunityBlock(name);
+
+  if (activeBlock) {
+    showToast("Restricted", "You are restricted from posting.");
+    return;
+  }
 
   const payload = {
     student_name: name,
     device_id: deviceId,
-    ip_address: ipAddress || null,
     message: message,
-    image_url: imageUrl || null,
     is_active: true
   };
 
-  const { error } = await db
+  const { data, error } = await db
     .from("community_posts")
-    .insert([payload]);
+    .insert([payload])
+    .select();
 
   if (error) {
-    console.log("Community post error:", error);
-    showToast("Error", "Post could not be published.");
+    console.log("POST ERROR FULL:", error);
+    alert("Post Error: " + error.message);
     return;
   }
 
+  console.log("POST CREATED:", data);
+
   if (input) input.value = "";
-  if (fileInput) fileInput.value = "";
 
   closeCommunityComposer();
-
   showToast("Posted", "Your post has been published.");
   loadCommunityPosts();
-  loadMyCommunityPosts();
 }
-
 /* ---------- LOAD POSTS ---------- */
 
 async function loadCommunityPosts() {
