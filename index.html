@@ -4500,9 +4500,9 @@ body.light-mode .notification-new-badge {
   </div>
 </section>
   
-   <!-- OFFICE QUICK ACTIONS MANAGEMENT -->
-     
-    <section id="office" class="section">
+<!-- OFFICE QUICK ACTIONS MANAGEMENT -->
+
+<section id="office" class="section">
   <div class="panel glass" id="officeLoginBox">
     <h2>🏢 Office Login</h2>
     <p>Login with your Office ID and password to access AcademeForge admin dashboard.</p>
@@ -4520,7 +4520,7 @@ body.light-mode .notification-new-badge {
     <button class="link-btn" onclick="officeLogin()">Login</button>
 
     <div class="login-note">
-     Management access only. Students, please use Student Login.
+      Management access only. Students, please use Student Login.
     </div>
   </div>
 
@@ -4534,94 +4534,104 @@ body.light-mode .notification-new-badge {
       <button class="back-mini" onclick="officeLogout()">Logout</button>
     </div>
 
-    <div class="course-info-box">
+    <!-- QUICK ACTIONS HOME -->
+    <div class="course-info-box" id="officeQuickActionsTitle">
       <h3>⚡ Quick Actions</h3>
     </div>
 
     <div class="course-select-grid" id="officeQuickActions">
-        <button class="course-select-card" onclick="openAdminCourses()">
-        <span>📚</span>
-        <h3>Courses</h3>
+      <button class="course-select-card" onclick="openAdminNotifications()">
+        <span>🔔</span>
+        <h3>Post Notification</h3>
+        <p>Send lecture, notes, batch and announcement updates.</p>
       </button>
-      
-      <button class="course-select-card" onclick="openAdminCourses()">
-        <span>📚</span>
-        <h3>🔔 Post Notification</h3>
-      </button>
-      
+
       <button class="course-select-card" onclick="openAdminStudents()">
         <span>🎓</span>
         <h3>Students</h3>
+        <p>Add, view and manage student accounts.</p>
       </button>
 
       <button class="course-select-card" onclick="openAdminCourses()">
         <span>📚</span>
         <h3>Courses</h3>
+        <p>Create and manage course programs.</p>
       </button>
 
       <button class="course-select-card" onclick="openAdminAssignCourse()">
         <span>🔗</span>
         <h3>Assign Course</h3>
+        <p>Assign courses to enrolled students.</p>
       </button>
 
-    <button class="course-select-card" onclick="openAdminLectures()">
-  <span>🎥</span>
-  <h3>Lectures</h3>
-</button>
-      
-   <button class="course-select-card" onclick="openAdminNotes()">
-  <span>📝</span>
-  <h3>Notes</h3>
-</button>
+      <button class="course-select-card" onclick="openAdminLectures()">
+        <span>🎥</span>
+        <h3>Lectures</h3>
+        <p>Add and manage video lectures.</p>
+      </button>
 
-     <button class="course-select-card" onclick="openAdminChapters()">
-  <span>📖</span>
-  <h3>Chapters</h3>
-</button>
+      <button class="course-select-card" onclick="openAdminNotes()">
+        <span>📝</span>
+        <h3>Notes</h3>
+        <p>Upload and manage study notes.</p>
+      </button>
 
-     <button class="course-select-card" onclick="openAdminTeam()">
-  <span>👥</span>
-  <h3>Team</h3>
-  <p>Under Development.</p>
-</button>
+      <button class="course-select-card" onclick="openAdminChapters()">
+        <span>📖</span>
+        <h3>Chapters</h3>
+        <p>Create and organize chapters.</p>
+      </button>
+
+      <button class="course-select-card" onclick="openAdminTeam()">
+        <span>👥</span>
+        <h3>Team</h3>
+        <p>Add and manage team members.</p>
+      </button>
     </div>
 
-     <!-- NOTIFICATION MANAGEMENT -->
-<div class="admin-manage-box glass" id="notificationManageBox">
-  <h3>🔔 Post Notification</h3>
-  <p>Create updates for students about lectures, notes, batches, and announcements.</p>
+    <!-- NOTIFICATION MANAGEMENT -->
+    <div class="admin-manage-box hidden-box" id="notificationManageBox" style="display:none;">
+      <div style="display:flex; justify-content:space-between; gap:10px; align-items:center;">
+        <div>
+          <h3>🔔 Post Notification</h3>
+          <p>Create updates for students about lectures, notes, batches, and announcements.</p>
+        </div>
 
-  <div class="input-group">
-    <label>Notification Title</label>
-    <input id="adminNotificationTitle" type="text" placeholder="Example: New lecture uploaded">
-  </div>
+        <button class="back-mini" onclick="closeAdminNotifications()">Back</button>
+      </div>
 
-  <div class="input-group">
-    <label>Message</label>
-    <input id="adminNotificationMessage" type="text" placeholder="Example: AF Nexus Batch 1 Lecture 3 is now available.">
-  </div>
+      <div class="input-group">
+        <label>Notification Title</label>
+        <input id="adminNotificationTitle" type="text" placeholder="Example: New lecture uploaded">
+      </div>
 
-  <div class="input-group">
-    <label>Batch</label>
-    <input id="adminNotificationBatch" type="text" placeholder="Example: AF Nexus Batch 1 / All">
-  </div>
+      <div class="input-group">
+        <label>Message</label>
+        <input id="adminNotificationMessage" type="text" placeholder="Example: AF Nexus Batch 1 Lecture 3 is now available.">
+      </div>
 
-  <div class="input-group">
-    <label>Type</label>
-    <select id="adminNotificationType">
-      <option value="Lecture">Lecture</option>
-      <option value="Notes">Notes</option>
-      <option value="Batch Update">Batch Update</option>
-      <option value="Announcement">Announcement</option>
-      <option value="General">General</option>
-    </select>
-  </div>
+      <div class="input-group">
+        <label>Batch</label>
+        <input id="adminNotificationBatch" type="text" placeholder="Example: AF Nexus Batch 1 / All">
+      </div>
 
-  <div class="admin-action-row notification-action-row">
-    <button class="link-btn" onclick="postAdminNotification()">Post Notification</button>
-    <button class="link-btn secondary" onclick="clearNotificationForm()">Clear</button>
-  </div>
-</div>
+      <div class="input-group">
+        <label>Type</label>
+        <select id="adminNotificationType">
+          <option value="Lecture">Lecture</option>
+          <option value="Notes">Notes</option>
+          <option value="Batch Update">Batch Update</option>
+          <option value="Announcement">Announcement</option>
+          <option value="General">General</option>
+        </select>
+      </div>
+
+      <div class="admin-action-row notification-action-row">
+        <button class="link-btn" onclick="postAdminNotification()">Post Notification</button>
+        <button class="link-btn secondary" onclick="clearNotificationForm()">Clear</button>
+      </div>
+    </div>
+
     <!-- STUDENT MANAGEMENT -->
     <div class="admin-manage-box hidden-box" id="adminStudentsBox" style="display:none;">
       <div style="display:flex; justify-content:space-between; gap:10px; align-items:center;">
@@ -4671,69 +4681,74 @@ body.light-mode .notification-new-badge {
         </div>
       </div>
     </div>
-    
-<!-- TEAM MANAGEMENT -->
-<div class="admin-manage-box hidden-box" id="adminTeamBox" style="display:none;">
-  <div style="display:flex; justify-content:space-between; gap:10px; align-items:center;">
-    <div>
-      <h3>👥 Team Management</h3>
-      <p>Add, view, edit, activate/inactivate team members.</p>
+
+    <!-- TEAM MANAGEMENT -->
+    <div class="admin-manage-box hidden-box" id="adminTeamBox" style="display:none;">
+      <div style="display:flex; justify-content:space-between; gap:10px; align-items:center;">
+        <div>
+          <h3>👥 Team Management</h3>
+          <p>Add, view, edit, activate/inactivate team members.</p>
+        </div>
+
+        <button class="back-mini" onclick="closeAdminTeam()">Back</button>
+      </div>
+
+      <div class="course-info-box">
+        <h3 id="teamFormTitle">Add New Team Member</h3>
+
+        <input type="hidden" id="adminTeamEditId">
+
+        <div class="input-group">
+          <label>Name</label>
+          <input id="teamNameInput" type="text" placeholder="Team member name">
+        </div>
+
+        <div class="input-group">
+          <label>Role / Position</label>
+          <input id="teamRoleInput" type="text" placeholder="Example: Founder, Mentor, Designer">
+        </div>
+
+        <div class="input-group">
+          <label>Photo URL</label>
+          <input id="teamPhotoInput" type="text" placeholder="Paste image URL">
+        </div>
+
+        <div class="input-group">
+          <label>Bio</label>
+          <textarea id="teamBioInput" placeholder="Short bio" rows="4"></textarea>
+        </div>
+
+        <div class="input-group">
+          <label>Instagram URL</label>
+          <input id="teamInstagramInput" type="text" placeholder="Instagram profile link">
+        </div>
+
+        <div class="input-group">
+          <label>LinkedIn URL</label>
+          <input id="teamLinkedinInput" type="text" placeholder="LinkedIn profile link">
+        </div>
+
+        <div class="input-group">
+          <label>Display Order</label>
+          <input id="teamOrderInput" type="number" placeholder="Example: 1">
+        </div>
+
+        <div class="admin-action-row">
+          <button class="link-btn" onclick="saveAdminTeamMember()">Save Team Member</button>
+          <button class="link-btn secondary" onclick="resetAdminTeamForm()">Clear</button>
+        </div>
+      </div>
+
+      <div class="course-info-box">
+        <h3>All Team Members</h3>
+        <div id="adminTeamList" class="admin-list-box">
+          Loading team members...
+        </div>
+      </div>
     </div>
 
-    <button class="back-mini" onclick="closeAdminTeam()">Back</button>
   </div>
-
-  <div class="course-info-box">
-    <h3 id="teamFormTitle">Add New Team Member</h3>
-
-    <input type="hidden" id="adminTeamEditId">
-
-    <div class="input-group">
-      <label>Name</label>
-      <input id="teamNameInput" type="text" placeholder="Team member name">
-    </div>
-
-    <div class="input-group">
-      <label>Role / Position</label>
-      <input id="teamRoleInput" type="text" placeholder="Example: Founder, Mentor, Designer">
-    </div>
-
-    <div class="input-group">
-      <label>Photo URL</label>
-      <input id="teamPhotoInput" type="text" placeholder="Paste image URL">
-    </div>
-
-    <div class="input-group">
-      <label>Bio</label>
-      <textarea id="teamBioInput" placeholder="Short bio" rows="4"></textarea>
-    </div>
-
-    <div class="input-group">
-      <label>Instagram URL</label>
-      <input id="teamInstagramInput" type="text" placeholder="Instagram profile link">
-    </div>
-
-    <div class="input-group">
-      <label>LinkedIn URL</label>
-      <input id="teamLinkedinInput" type="text" placeholder="LinkedIn profile link">
-    </div>
-
-    <div class="input-group">
-      <label>Display Order</label>
-      <input id="teamOrderInput" type="number" placeholder="Example: 1">
-    </div>
-
-    <button class="link-btn" onclick="saveAdminTeamMember()">Save Team Member</button>
-    <button class="back-mini" onclick="resetAdminTeamForm()">Clear</button>
-  </div>
-
-  <div class="course-info-box">
-    <h3>All Team Members</h3>
-    <div id="adminTeamList" class="admin-list-box">
-      Loading team members...
-    </div>
-  </div>
-</div>
+</section>
     
     <!-- CHAPTER MANAGEMENT -->
 <div class="admin-manage-box hidden-box" id="adminChaptersBox" style="display:none;">
