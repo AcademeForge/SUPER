@@ -8407,106 +8407,229 @@ function escapeHTML(value) {
 document.addEventListener("DOMContentLoaded", function() {
   loadAppNotifications();
 });
-/* =========================================================
-   STUDENT LECTURE LIST + VIDEO PLAYER
+  /* =========================================================
+   STUDENT BACKEND-DRIVEN LECTURES + VIDEO PLAYER
+   Tables:
+   chapters
+   lectures
 ========================================================= */
 
-#studentChapterLectureList {
-  display: grid;
-  gap: 14px;
-  margin-top: 18px;
-}
+let currentStudentCourseId = null;
+let currentStudentCourseTitle = "";
+let currentStudentChapterId = null;
+let currentStudentChapterTitle = "";
 
-.student-lecture-card {
-  width: 100%;
-  padding: 20px;
-  border-radius: 24px;
-  border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(255,255,255,0.08);
-  text-align: center;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
+/* Start Learning button se call hoga */
+function startStudentLearning(courseId, courseTitle) {
+  currentStudentCourseId = courseId;
+  currentStudentCourseTitle = courseTitle || "Course Learning";
 
-.student-lecture-card:hover {
-  transform: translateY(-2px);
-}
+  const titleBox = document.getElementById("studentLearningCourseTitle");
 
-.student-lecture-card .lecture-pill {
-  display: inline-flex;
-  padding: 8px 18px;
-  border-radius: 999px;
-  background: rgba(59,130,246,0.16);
-  border: 1px solid rgba(59,130,246,0.22);
-  color: #2563eb;
-  font-size: 13px;
-  font-weight: 800;
-  margin-bottom: 12px;
-}
-
-.student-lecture-card h3 {
-  margin: 0 0 8px;
-  font-size: 20px;
-}
-
-.student-lecture-card p {
-  margin: 0;
-  color: var(--muted);
-}
-
-.video-player-panel {
-  padding-bottom: 22px;
-}
-
-.video-player-panel h2 {
-  margin-top: 24px;
-  margin-bottom: 10px;
-  font-size: 24px;
-  line-height: 1.25;
-}
-
-.video-player-panel p {
-  margin-bottom: 18px;
-  color: var(--muted);
-  line-height: 1.5;
-}
-
-.video-player-box {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  border-radius: 22px;
-  overflow: hidden;
-  background: #000;
-  border: 1px solid rgba(255,255,255,0.14);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.18);
-}
-
-.video-player-box iframe {
-  width: 100%;
-  height: 100%;
-  display: block;
-  border: none;
-}
-
-body.light-mode .student-lecture-card {
-  background: #ffffff;
-  border: 1px solid #dbe3ee;
-  box-shadow: 0 10px 26px rgba(15,23,42,0.06);
-}
-
-body.light-mode .video-player-box {
-  border: 1px solid #dbe3ee;
-  box-shadow: 0 18px 40px rgba(15,23,42,0.10);
-}
-
-@media (max-width: 420px) {
-  .video-player-panel h2 {
-    font-size: 22px;
+  if (titleBox) {
+    titleBox.textContent = currentStudentCourseTitle + " Learning";
   }
 
-  .video-player-box {
-    border-radius: 18px;
+  showSection("studentLearningOptions");
+}
+
+/* Course details par wapas */
+function backToCourseDetails() {
+  showSection("studentCourseDetails");
+}
+
+/* Lectures card click */
+async function openStudentLectureChapters() {
+  const listBox = document.getElementById("studentLectureChaptersList");
+
+  if (listBox) {
+    listBox.innerHTML = `<div class="login-note">Loading chapters...</div>`;
   }
+
+  showSection("studentLectureChapters");
+  await loadStudentLectureChapters();
+}
+
+/* Chapters backend se load */
+async function loadStudentLectureChapters() {
+  const listBox = document.getElementById("studentLectureChaptersList");
+
+  if (!listBox) return;
+
+  if (!currentStudentCourseId) {
+    listBox.innerHTML = `<div class="login-note">Course not selected.</div>`;
+    return;
+  }
+
+  const { data, error } = await db
+    .from("chapters")
+    .select("*")
+    .eq("course_id", currentStudentCourseId)
+    .order("chapter_number", { ascending: true });
+
+  if (error) {
+    console.log("Chapter load error:", error);
+    listBox.innerHTML = `<div class="login-note">Chapters could not be loaded.</div>`;
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    listBox.innerHTML = `<div class="login-note">No chapters available.</div>`;
+    return;
+  }
+
+  listBox.innerHTML = data.map(function(chapter) {
+    const chapterId = escapeHTML(chapter.id);
+    const chapterTitle = escapeHTML(chapter.title || "Chapter");
+    const chapterNumber = chapter.chapter_number || "";
+
+    return `
+      <button class="student-dynamic-card"
+        onclick="openStudentChapterLectures('${chapterId}', '${chapterTitle}')">
+
+        <h3>Chapter ${chapterNumber}: ${chapterTitle}</h3>
+        <p>Open lecture list</p>
+      </button>
+    `;
+  }).join("");
+}
+
+/* Chapter click ke baad lectures page */
+async function openStudentChapterLectures(chapterId, chapterTitle) {
+  currentStudentChapterId = chapterId;
+  currentStudentChapterTitle = chapterTitle || "Chapter Lectures";
+
+  const titleBox = document.getElementById("studentChapterLectureTitle");
+  const listBox = document.getElementById("studentChapterLectureList");
+
+  if (titleBox) {
+    titleBox.textContent = currentStudentChapterTitle;
+  }
+
+  if (listBox) {
+    listBox.innerHTML = `<div class="login-note">Loading lectures...</div>`;
+  }
+
+  showSection("studentChapterLectures");
+  await loadStudentChapterLectures();
+}
+
+/* Lectures backend se load */
+async function loadStudentChapterLectures() {
+  const listBox = document.getElementById("studentChapterLectureList");
+
+  if (!listBox) return;
+
+  if (!currentStudentChapterId) {
+    listBox.innerHTML = `<div class="login-note">Chapter not selected.</div>`;
+    return;
+  }
+
+  const { data, error } = await db
+    .from("lectures")
+    .select("*")
+    .eq("chapter_id", currentStudentChapterId)
+    .order("lecture_number", { ascending: true });
+
+  if (error) {
+    console.log("Lecture load error:", error);
+    listBox.innerHTML = `<div class="login-note">Lectures could not be loaded.</div>`;
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    listBox.innerHTML = `<div class="login-note">No lectures available in this chapter.</div>`;
+    return;
+  }
+
+  listBox.innerHTML = data.map(function(lecture) {
+    const title = escapeHTML(lecture.title || "Lecture");
+    const description = escapeHTML(lecture.description || "Tap to play.");
+    const videoUrl = escapeHTML(lecture.video_url || "");
+    const lectureNumber = lecture.lecture_number || "";
+
+    return `
+      <button class="student-dynamic-card"
+        onclick="playLectureInsideApp('${videoUrl}', '${title}', '${description}')">
+
+        <span class="lecture-pill">Lecture ${lectureNumber}</span>
+        <h3>${title}</h3>
+        <p>${description}</p>
+      </button>
+    `;
+  }).join("");
+}
+
+/* YouTube URL ko embed URL me convert */
+function getYouTubeEmbedUrl(url) {
+  if (!url) return "";
+
+  const value = String(url).trim();
+  let videoId = "";
+
+  if (value.includes("youtu.be/")) {
+    videoId = value.split("youtu.be/")[1].split("?")[0].split("&")[0];
+  } else if (value.includes("youtube.com/watch")) {
+    const params = new URLSearchParams(value.split("?")[1] || "");
+    videoId = params.get("v") || "";
+  } else if (value.includes("youtube.com/embed/")) {
+    videoId = value.split("youtube.com/embed/")[1].split("?")[0].split("&")[0];
+  } else if (value.includes("youtube.com/shorts/")) {
+    videoId = value.split("youtube.com/shorts/")[1].split("?")[0].split("&")[0];
+  }
+
+  if (!videoId) return "";
+
+  return "https://www.youtube.com/embed/" + videoId + "?rel=0&modestbranding=1";
+}
+
+/* App ke andar video play */
+function playLectureInsideApp(videoUrl, lectureTitle, lectureDesc) {
+  const iframe = document.getElementById("lectureVideoIframe");
+  const titleBox = document.getElementById("playerLectureTitle");
+  const descBox = document.getElementById("playerLectureDesc");
+
+  const embedUrl = getYouTubeEmbedUrl(videoUrl);
+
+  if (!embedUrl) {
+    showToast("Invalid Video", "This lecture video link is not valid.");
+    return;
+  }
+
+  if (iframe) {
+    iframe.src = embedUrl;
+  }
+
+  if (titleBox) {
+    titleBox.textContent = lectureTitle || "Lecture Video";
+  }
+
+  if (descBox) {
+    descBox.textContent = lectureDesc || "Watch your selected lecture here.";
+  }
+
+  showSection("studentVideoPlayerSection");
+}
+
+/* Video se lecture list par back */
+function backToLectureList() {
+  const iframe = document.getElementById("lectureVideoIframe");
+
+  if (iframe) {
+    iframe.src = "";
+  }
+
+  showSection("studentChapterLectures");
+}
+
+/* Safe text */
+function escapeHTML(value) {
+  return String(value || "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 }
 </script>
 
