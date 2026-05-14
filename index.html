@@ -10114,11 +10114,13 @@ function openCommunityModeratorLogin() {
   const feedBox = document.getElementById("communityFeedBox");
   const controls = document.getElementById("communityFeedControls");
   const profileBox = document.getElementById("communityProfileBox");
+
   const loginBox = document.getElementById("communityModeratorLoginBox");
   const panel = document.getElementById("communityModeratorPanel");
 
   if (feedBox) feedBox.style.display = "none";
   if (controls) controls.style.display = "none";
+
   if (profileBox) {
     profileBox.classList.add("hidden-box");
     profileBox.style.display = "none";
@@ -10145,10 +10147,15 @@ function openCommunityModeratorLogin() {
     if (loginBox) {
       loginBox.classList.remove("hidden-box");
       loginBox.style.display = "block";
+      loginBox.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    } else {
+      console.log("communityModeratorLoginBox not found");
     }
   }
 }
-
 function closeCommunityModeratorPage() {
   const feedBox = document.getElementById("communityFeedBox");
   const controls = document.getElementById("communityFeedControls");
@@ -10196,6 +10203,149 @@ function showCommunityBlockedUsersPanel() {
 
 function hideCommunityBlockedUsersPanel() {
   const box = document.getElementById("communityBlockedUsersPanel");
+  if (!box) return;
+
+  box.classList.add("hidden-box");
+  box.style.display = "none";
+}
+  /* ---------- COMMUNITY MODERATOR PAGE VIEW FIX ---------- */
+
+function openCommunityModeratorLogin() {
+  const feedBox = document.getElementById("communityFeedBox");
+  const controls = document.getElementById("communityFeedControls");
+  const profileBox = document.getElementById("communityProfileBox");
+  const modPage = document.getElementById("communityModeratorPage");
+  const loginView = document.getElementById("communityModeratorLoginView");
+  const dashboardView = document.getElementById("communityModeratorDashboardView");
+
+  if (feedBox) feedBox.style.display = "none";
+  if (controls) controls.style.display = "none";
+
+  if (profileBox) {
+    profileBox.classList.add("hidden-box");
+    profileBox.style.display = "none";
+  }
+
+  if (modPage) {
+    modPage.classList.remove("hidden-box");
+    modPage.style.display = "block";
+  }
+
+  if (isModeratorLoggedIn()) {
+    if (loginView) loginView.style.display = "none";
+
+    if (dashboardView) {
+      dashboardView.classList.remove("hidden-box");
+      dashboardView.style.display = "block";
+    }
+
+    loadCommunityBlocks();
+  } else {
+    if (dashboardView) {
+      dashboardView.classList.add("hidden-box");
+      dashboardView.style.display = "none";
+    }
+
+    if (loginView) {
+      loginView.classList.remove("hidden-box");
+      loginView.style.display = "block";
+    }
+  }
+}
+
+function closeCommunityModeratorPage() {
+  const feedBox = document.getElementById("communityFeedBox");
+  const controls = document.getElementById("communityFeedControls");
+  const modPage = document.getElementById("communityModeratorPage");
+  const loginView = document.getElementById("communityModeratorLoginView");
+  const dashboardView = document.getElementById("communityModeratorDashboardView");
+  const menu = document.getElementById("communityModeratorMenu");
+  const blockedPanel = document.getElementById("communityBlockedPanel");
+
+  if (modPage) {
+    modPage.classList.add("hidden-box");
+    modPage.style.display = "none";
+  }
+
+  if (loginView) loginView.style.display = "none";
+
+  if (dashboardView) {
+    dashboardView.classList.add("hidden-box");
+    dashboardView.style.display = "none";
+  }
+
+  if (menu) {
+    menu.classList.add("hidden-box");
+    menu.style.display = "none";
+  }
+
+  if (blockedPanel) {
+    blockedPanel.classList.add("hidden-box");
+    blockedPanel.style.display = "none";
+  }
+
+  if (feedBox) feedBox.style.display = "block";
+  if (controls) controls.style.display = "flex";
+
+  loadCommunityPosts();
+}
+
+function refreshModeratorUI() {
+  const loginView = document.getElementById("communityModeratorLoginView");
+  const dashboardView = document.getElementById("communityModeratorDashboardView");
+  const moderatorNameText = document.getElementById("communityModeratorNameText");
+
+  const moderatorName = localStorage.getItem("communityModeratorName") || "Community Moderator";
+
+  if (moderatorNameText) {
+    moderatorNameText.textContent = moderatorName;
+  }
+
+  if (isModeratorLoggedIn()) {
+    if (loginView) loginView.style.display = "none";
+
+    if (dashboardView) {
+      dashboardView.classList.remove("hidden-box");
+      dashboardView.style.display = "block";
+    }
+  } else {
+    if (dashboardView) {
+      dashboardView.classList.add("hidden-box");
+      dashboardView.style.display = "none";
+    }
+
+    if (loginView) {
+      loginView.classList.remove("hidden-box");
+      loginView.style.display = "block";
+    }
+  }
+}
+
+function toggleCommunityModMenu() {
+  const menu = document.getElementById("communityModeratorMenu");
+  if (!menu) return;
+
+  if (menu.style.display === "none" || menu.classList.contains("hidden-box")) {
+    menu.classList.remove("hidden-box");
+    menu.style.display = "block";
+  } else {
+    menu.classList.add("hidden-box");
+    menu.style.display = "none";
+  }
+}
+
+function showCommunityBlockedUsersPanel() {
+  const box = document.getElementById("communityBlockedPanel");
+  if (!box) return;
+
+  box.classList.remove("hidden-box");
+  box.style.display = "block";
+
+  loadCommunityBlocks();
+}
+
+function hideCommunityBlockedUsersPanel() {
+  const box = document.getElementById("communityBlockedPanel");
   if (!box) return;
 
   box.classList.add("hidden-box");
