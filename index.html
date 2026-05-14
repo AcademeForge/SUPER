@@ -4681,20 +4681,62 @@ body.light-mode .notification-new-badge {
   color: var(--text);
 }
 
+/* FLOATING WRITE BUTTON - FIXED ABOVE BOTTOM NAV */
 .community-float-write-btn {
   position: fixed;
-  right: 22px;
-  bottom: 105px;
+  right: max(18px, calc((100vw - 430px) / 2 + 18px));
+  bottom: 92px;
+
   width: 58px;
   height: 58px;
-  border-radius: 22px;
+  border-radius: 50%;
+
   border: none;
-  background: #22c55e;
-  color: #ffffff;
-  font-size: 24px;
-  box-shadow: 0 18px 40px rgba(34,197,94,0.35);
-  z-index: 999;
+  outline: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 22px;
+  font-weight: 800;
   cursor: pointer;
+
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  color: #ffffff;
+
+  box-shadow: 0 14px 30px rgba(22, 163, 74, 0.35);
+  z-index: 9999;
+}
+
+.community-float-write-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+}
+
+.community-float-write-btn:active {
+  transform: scale(0.96);
+}
+
+/* MOBILE FIX */
+@media (max-width: 520px) {
+  .community-float-write-btn {
+    right: 18px;
+    bottom: 88px;
+    width: 56px;
+    height: 56px;
+    font-size: 21px;
+  }
+}
+
+/* VERY SMALL MOBILE */
+@media (max-width: 360px) {
+  .community-float-write-btn {
+    right: 14px;
+    bottom: 84px;
+    width: 52px;
+    height: 52px;
+    font-size: 19px;
+  }
 }
 
 
