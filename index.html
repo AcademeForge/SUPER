@@ -5720,29 +5720,26 @@ body.dark-mode .create-id-box p,
 
    <div class="auth-tabs">
   <button id="magicTabBtn" type="button" class="auth-tab active">
-    Magic Link
+    Google
   </button>
 
   <button id="otpTabBtn" type="button" class="auth-tab">
     OTP
   </button>
 </div>
-
-    <!-- MAGIC LINK BOX -->
-    <div id="magicBox" class="auth-box">
-      <label>Email Address</label>
-      <input id="magicEmail" type="email" placeholder="Enter your email address">
-
+ 
+  <!-- MAGIC LINK BOX -->
+  
      <button class="google-btn" onclick="loginWithGoogle()">
   <span class="google-icon">G</span>
-  Continue with Google
+  Verify with Google
 </button>
 
       <p class="auth-help">
-        We’ll send you a secure login link on your email.
+        securely verify with google.
       </p>
     </div>
-
+  
     <!-- OTP BOX -->
     <div id="otpBox" class="auth-box" style="display:none;">
       <label>Email Address</label>
@@ -5760,11 +5757,7 @@ body.dark-mode .create-id-box p,
           Verify OTP
         </button>
       </div>
-
-      <p class="auth-help">
-        We’ll email you a 6 digit code for login.
-      </p>
-    </div>
+    
 
     <div id="authMessage" class="auth-message"></div>
   </div>
