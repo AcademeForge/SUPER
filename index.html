@@ -5466,171 +5466,195 @@ body.dark-mode .create-id-box p,
 .dark-mode .create-id-box p {
   color: #cbd5e1;
 }
-    /* ================================
-   EMAIL MAGIC LINK SECURITY GATE
-================================ */
-
-.email-login-gate {
+    /* AUTH GATE */
+.auth-gate {
   position: fixed;
   inset: 0;
   z-index: 999999;
-  min-height: 100vh;
   background:
-    radial-gradient(circle at top left, rgba(22, 163, 74, 0.18), transparent 34%),
+    radial-gradient(circle at top, rgba(22, 163, 74, 0.12), transparent 35%),
     linear-gradient(135deg, #f8fafc, #eef6ff);
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   padding: 18px;
 }
 
-.email-login-card {
+.auth-card {
   width: 100%;
   max-width: 430px;
   background: rgba(255, 255, 255, 0.96);
   border: 1px solid rgba(148, 163, 184, 0.35);
   border-radius: 30px;
   padding: 26px;
-  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.16);
+  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.14);
   text-align: center;
 }
 
-.email-login-logo {
-  width: 78px;
-  height: 78px;
-  margin: 0 auto 16px;
+.auth-logo {
+  width: 74px;
+  height: 74px;
+  margin: 0 auto 14px;
   border-radius: 24px;
-  background: white;
+  background: #ecfdf5;
   display: grid;
   place-items: center;
-  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.10);
-  overflow: hidden;
+  font-size: 34px;
+  box-shadow: inset 0 0 0 1px rgba(22, 163, 74, 0.14);
 }
 
-.email-login-logo img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  padding: 10px;
-}
-
-.email-login-card h2 {
-  margin: 0 0 8px;
+.auth-card h2 {
+  margin: 0;
   font-size: 28px;
   color: #0f172a;
 }
 
-.email-login-card p {
-  margin: 0 0 22px;
+.auth-subtitle {
+  margin: 8px 0 18px;
   color: #64748b;
-  line-height: 1.55;
+  line-height: 1.5;
+}
+
+.auth-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: #e2e8f0;
+  padding: 5px;
+  border-radius: 18px;
+  margin-bottom: 18px;
+  gap: 5px;
+}
+
+.auth-tab {
+  border: 0;
+  padding: 12px 10px;
+  border-radius: 14px;
+  background: transparent;
+  color: #475569;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.auth-tab.active {
+  background: #16a34a;
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(22, 163, 74, 0.22);
+}
+
+.auth-box {
+  text-align: left;
+}
+
+.auth-box label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 900;
+  color: #334155;
+}
+
+.auth-box input {
+  width: 100%;
+  padding: 15px 16px;
+  border-radius: 17px;
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  outline: none;
   font-size: 15px;
 }
 
-.email-login-input-box {
-  text-align: left;
-  margin-bottom: 16px;
-}
-
-.email-login-input-box label {
-  display: block;
-  font-weight: 800;
-  color: #334155;
-  font-size: 14px;
-  margin-bottom: 8px;
-}
-
-.email-login-input-box input {
-  width: 100%;
-  border: 1px solid #cbd5e1;
-  background: #fff;
-  border-radius: 18px;
-  padding: 15px 16px;
-  font-size: 16px;
-  outline: none;
-  color: #0f172a;
-}
-
-.email-login-input-box input:focus {
+.auth-box input:focus {
   border-color: #16a34a;
   box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.10);
 }
 
-#sendSecurityLoginBtn {
+.auth-main-btn {
   width: 100%;
   border: 0;
+  margin-top: 14px;
+  padding: 15px 18px;
   border-radius: 18px;
-  padding: 16px 18px;
   background: #16a34a;
   color: white;
-  font-size: 16px;
   font-weight: 900;
+  font-size: 15px;
   cursor: pointer;
-  box-shadow: 0 14px 34px rgba(22, 163, 74, 0.25);
+  box-shadow: 0 14px 30px rgba(22, 163, 74, 0.22);
 }
 
-#sendSecurityLoginBtn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+.auth-main-btn.secondary {
+  background: #0f172a;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.20);
 }
 
-.security-login-message {
+.auth-help {
+  text-align: center;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 13px 0 0;
+}
+
+.auth-message {
   display: none;
   margin-top: 14px;
-  padding: 13px 14px;
+  padding: 12px 13px;
   border-radius: 16px;
   font-weight: 800;
   line-height: 1.45;
+  text-align: left;
   font-size: 14px;
 }
 
-.security-login-message.ok {
+.auth-message.ok {
   display: block;
   background: #dcfce7;
   color: #166534;
 }
 
-.security-login-message.err {
+.auth-message.err {
   display: block;
   background: #fee2e2;
   color: #991b1b;
 }
 
-/* Dark mode support if your app uses body.dark */
-body.dark .email-login-gate,
-.dark .email-login-gate {
-  background:
-    radial-gradient(circle at top left, rgba(34, 197, 94, 0.20), transparent 34%),
-    linear-gradient(135deg, #020617, #0f172a);
-}
+@media (prefers-color-scheme: dark) {
+  .auth-gate {
+    background:
+      radial-gradient(circle at top, rgba(22, 163, 74, 0.18), transparent 35%),
+      linear-gradient(135deg, #020617, #0f172a);
+  }
 
-body.dark .email-login-card,
-.dark .email-login-card {
-  background: rgba(15, 23, 42, 0.96);
-  border-color: rgba(148, 163, 184, 0.22);
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
-}
+  .auth-card {
+    background: rgba(15, 23, 42, 0.96);
+    border-color: rgba(148, 163, 184, 0.22);
+  }
 
-body.dark .email-login-card h2,
-.dark .email-login-card h2 {
-  color: #f8fafc;
-}
+  .auth-card h2 {
+    color: #f8fafc;
+  }
 
-body.dark .email-login-card p,
-.dark .email-login-card p {
-  color: #cbd5e1;
-}
+  .auth-subtitle,
+  .auth-help {
+    color: #94a3b8;
+  }
 
-body.dark .email-login-input-box label,
-.dark .email-login-input-box label {
-  color: #e2e8f0;
-}
+  .auth-tabs {
+    background: #1e293b;
+  }
 
-body.dark .email-login-input-box input,
-.dark .email-login-input-box input {
-  background: #020617;
-  border-color: #334155;
-  color: #f8fafc;
+  .auth-tab {
+    color: #cbd5e1;
+  }
+
+  .auth-box label {
+    color: #e2e8f0;
+  }
+
+  .auth-box input {
+    background: #020617;
+    border-color: #334155;
+    color: #f8fafc;
+  }
 }
   </style>
 </head>
@@ -5643,35 +5667,63 @@ body.dark .email-login-input-box input,
   <p>Learning Beyond The Classroom</p>
 </div>
 
-  <!-- EMAIL MAGIC LINK SECURITY GATE -->
-<div id="emailLoginGate" class="email-login-gate">
-  <div class="email-login-card">
-    <div class="email-login-logo">
-      <img src="AF LOGO 1.jpeg" alt="AcademeForge Logo">
-    </div>
+ <!-- AUTH GATE SCREEN -->
+<div id="authGate" class="auth-gate">
+  <div class="auth-card">
+    <div class="auth-logo">🔐</div>
 
     <h2>Secure Access</h2>
-
-    <p>
-      Enter your email to continue to AcademeForge.
-      We’ll send you a secure login link.
+    <p class="auth-subtitle">
+      Login to continue to AcademeForge.
     </p>
 
-    <div class="email-login-input-box">
-      <label>Email Address</label>
-      <input
-        id="securityLoginEmail"
-        type="email"
-        placeholder="your@email.com"
-        autocomplete="email"
-      >
+    <div class="auth-tabs">
+      <button id="magicTabBtn" class="auth-tab active" onclick="switchAuthMode('magic')">
+        Magic Link
+      </button>
+      <button id="otpTabBtn" class="auth-tab" onclick="switchAuthMode('otp')">
+        OTP
+      </button>
     </div>
 
-    <button id="sendSecurityLoginBtn" onclick="sendSecurityMagicLink()">
-      Send Login Link
-    </button>
+    <!-- MAGIC LINK BOX -->
+    <div id="magicBox" class="auth-box">
+      <label>Email Address</label>
+      <input id="magicEmail" type="email" placeholder="Enter your email address">
 
-    <div id="securityLoginMessage" class="security-login-message"></div>
+      <button class="auth-main-btn" onclick="sendMagicLink()">
+        Send Magic Link
+      </button>
+
+      <p class="auth-help">
+        We’ll send you a secure login link on your email.
+      </p>
+    </div>
+
+    <!-- OTP BOX -->
+    <div id="otpBox" class="auth-box" style="display:none;">
+      <label>Email Address</label>
+      <input id="otpEmail" type="email" placeholder="Enter your email address">
+
+      <button class="auth-main-btn" onclick="sendOtpCode()">
+        Send OTP
+      </button>
+
+      <div id="otpVerifyArea" style="display:none; margin-top:14px;">
+        <label>Enter OTP</label>
+        <input id="otpCode" type="text" inputmode="numeric" maxlength="6" placeholder="6 digit OTP">
+
+        <button class="auth-main-btn secondary" onclick="verifyOtpCode()">
+          Verify OTP
+        </button>
+      </div>
+
+      <p class="auth-help">
+        We’ll email you a 6 digit code for login.
+      </p>
+    </div>
+
+    <div id="authMessage" class="auth-message"></div>
   </div>
 </div>
   
@@ -10988,118 +11040,167 @@ function hideCommunityBlockedUsersPanel() {
   window.location.href = "https://academeforge.github.io/PAYMENTPAGE/";
 }
 
-  /* ================================
-   EMAIL MAGIC LINK SECURITY GATE
-================================ */
+<script>
+  const APP_REDIRECT_URL = "https://academeforge.github.io/YA/";
 
-function showSecurityLoginMessage(type, text) {
-  const box = document.getElementById("securityLoginMessage");
-  if (!box) return;
+  function showAuthMessage(type, text) {
+    const box = document.getElementById("authMessage");
+    if (!box) return;
 
-  box.className = "security-login-message " + type;
-  box.textContent = text;
-}
-
-function showEmailLoginGate() {
-  const gate = document.getElementById("emailLoginGate");
-
-  if (gate) {
-    gate.style.display = "flex";
+    box.className = "auth-message " + type;
+    box.textContent = text;
   }
 
-  document.body.style.overflow = "hidden";
-}
+  function switchAuthMode(mode) {
+    const magicBox = document.getElementById("magicBox");
+    const otpBox = document.getElementById("otpBox");
+    const magicTabBtn = document.getElementById("magicTabBtn");
+    const otpTabBtn = document.getElementById("otpTabBtn");
 
-function hideEmailLoginGate() {
-  const gate = document.getElementById("emailLoginGate");
+    showAuthMessage("", "");
 
-  if (gate) {
-    gate.style.display = "none";
+    if (mode === "magic") {
+      magicBox.style.display = "block";
+      otpBox.style.display = "none";
+
+      magicTabBtn.classList.add("active");
+      otpTabBtn.classList.remove("active");
+    } else {
+      magicBox.style.display = "none";
+      otpBox.style.display = "block";
+
+      otpTabBtn.classList.add("active");
+      magicTabBtn.classList.remove("active");
+    }
   }
 
-  document.body.style.overflow = "";
-}
+  async function checkAuthSession() {
+    const authGate = document.getElementById("authGate");
 
-async function checkSecurityLogin() {
-  try {
     const { data, error } = await db.auth.getSession();
 
     if (error) {
       console.log("Session check error:", error);
-      showEmailLoginGate();
+      if (authGate) authGate.style.display = "flex";
       return;
     }
 
     if (data && data.session) {
-      hideEmailLoginGate();
+      if (authGate) authGate.style.display = "none";
     } else {
-      showEmailLoginGate();
+      if (authGate) authGate.style.display = "flex";
     }
-  } catch (err) {
-    console.log("Security login check error:", err);
-    showEmailLoginGate();
-  }
-}
-
-async function sendSecurityMagicLink() {
-  const emailInput = document.getElementById("securityLoginEmail");
-  const btn = document.getElementById("sendSecurityLoginBtn");
-
-  if (!emailInput || !btn) return;
-
-  const email = emailInput.value.trim().toLowerCase();
-
-  if (!email || !email.includes("@")) {
-    showSecurityLoginMessage("err", "Please enter a valid email address.");
-    return;
   }
 
-  btn.disabled = true;
-  btn.textContent = "Sending...";
+  db.auth.onAuthStateChange(function(event, session) {
+    const authGate = document.getElementById("authGate");
 
-  try {
-    const redirectUrl = window.location.origin + window.location.pathname;
+    console.log("Auth event:", event);
+
+    if (session) {
+      if (authGate) authGate.style.display = "none";
+    } else {
+      if (authGate) authGate.style.display = "flex";
+    }
+  });
+
+  async function sendMagicLink() {
+    const emailInput = document.getElementById("magicEmail");
+    const email = emailInput.value.trim();
+
+    if (!email || !email.includes("@")) {
+      showAuthMessage("err", "Enter a valid email address.");
+      return;
+    }
+
+    showAuthMessage("ok", "Sending magic link...");
 
     const { error } = await db.auth.signInWithOtp({
       email: email,
       options: {
-        emailRedirectTo: redirectUrl
+        emailRedirectTo: APP_REDIRECT_URL
       }
     });
 
     if (error) {
-      console.log("Magic link send error:", error);
-      showSecurityLoginMessage("err", error.message || "Could not send login link.");
-      btn.disabled = false;
-      btn.textContent = "Send Login Link";
+      console.log("Magic link error:", error);
+      showAuthMessage("err", error.message || "Could not send magic link.");
       return;
     }
 
-    showSecurityLoginMessage(
-      "ok",
-      "Login link sent. Please check your email and click the link to continue."
-    );
-
-    btn.textContent = "Login Link Sent";
-  } catch (err) {
-    console.log("Magic link error:", err);
-    showSecurityLoginMessage("err", "Something went wrong. Please try again.");
-    btn.disabled = false;
-    btn.textContent = "Send Login Link";
+    showAuthMessage("ok", "Magic link sent. Check your email inbox.");
   }
-}
 
-db.auth.onAuthStateChange(function(event, session) {
-  if (session) {
-    hideEmailLoginGate();
-  } else {
-    showEmailLoginGate();
+  async function sendOtpCode() {
+    const emailInput = document.getElementById("otpEmail");
+    const email = emailInput.value.trim();
+
+    if (!email || !email.includes("@")) {
+      showAuthMessage("err", "Enter a valid email address.");
+      return;
+    }
+
+    showAuthMessage("ok", "Sending OTP...");
+
+    const { error } = await db.auth.signInWithOtp({
+      email: email,
+      options: {
+        shouldCreateUser: true
+      }
+    });
+
+    if (error) {
+      console.log("OTP send error:", error);
+      showAuthMessage("err", error.message || "Could not send OTP.");
+      return;
+    }
+
+    document.getElementById("otpVerifyArea").style.display = "block";
+    showAuthMessage("ok", "OTP sent. Check your email inbox.");
   }
-});
 
-document.addEventListener("DOMContentLoaded", function() {
-  checkSecurityLogin();
-});
+  async function verifyOtpCode() {
+    const email = document.getElementById("otpEmail").value.trim();
+    const token = document.getElementById("otpCode").value.trim();
+
+    if (!email || !email.includes("@")) {
+      showAuthMessage("err", "Enter a valid email address.");
+      return;
+    }
+
+    if (!token || token.length < 6) {
+      showAuthMessage("err", "Enter valid 6 digit OTP.");
+      return;
+    }
+
+    showAuthMessage("ok", "Verifying OTP...");
+
+    const { data, error } = await db.auth.verifyOtp({
+      email: email,
+      token: token,
+      type: "email"
+    });
+
+    if (error) {
+      console.log("OTP verify error:", error);
+      showAuthMessage("err", error.message || "Invalid OTP.");
+      return;
+    }
+
+    if (data && data.session) {
+      showAuthMessage("ok", "Login successful.");
+      document.getElementById("authGate").style.display = "none";
+    } else {
+      showAuthMessage("err", "OTP verified but session not created.");
+    }
+  }
+
+  async function logoutAcademeForge() {
+    await db.auth.signOut();
+    document.getElementById("authGate").style.display = "flex";
+  }
+
+  checkAuthSession();
 </script>
 
 </body>
