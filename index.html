@@ -5735,7 +5735,33 @@ body.dark-mode .create-id-box p,
 .auth-gate::after {
   pointer-events: none;
 }
-    
+    /* FINAL AUTH TAB FIX */
+.auth-card {
+  overflow: visible;
+}
+
+.auth-tabs {
+  position: relative;
+  z-index: 999;
+}
+
+.auth-tab {
+  position: relative;
+  z-index: 1000;
+  pointer-events: auto !important;
+}
+
+#googleBox,
+#otpBox,
+#authMessage {
+  position: relative;
+  z-index: 10;
+}
+
+#googleTabBtn,
+#otpTabBtn {
+  pointer-events: auto !important;
+}
   </style>
 </head>
 
