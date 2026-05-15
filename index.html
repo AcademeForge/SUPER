@@ -5696,72 +5696,7 @@ body.dark-mode .create-id-box p,
   font-weight: 900;
   font-family: Arial, sans-serif;
 }
-    /* AUTH CLICK FIX */
-.auth-gate {
-  pointer-events: auto;
-}
-
-.auth-card {
-  position: relative;
-  z-index: 10;
-  pointer-events: auto;
-}
-
-.auth-tabs {
-  position: relative;
-  z-index: 50;
-  pointer-events: auto;
-}
-
-.auth-tab {
-  position: relative;
-  z-index: 51;
-  pointer-events: auto;
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.auth-box,
-.google-btn,
-.auth-main-btn {
-  position: relative;
-  z-index: 20;
-  pointer-events: auto;
-}
-
-.auth-card::before,
-.auth-card::after,
-.auth-gate::before,
-.auth-gate::after {
-  pointer-events: none;
-}
-    /* FINAL AUTH TAB FIX */
-.auth-card {
-  overflow: visible;
-}
-
-.auth-tabs {
-  position: relative;
-  z-index: 999;
-}
-
-.auth-tab {
-  position: relative;
-  z-index: 1000;
-  pointer-events: auto !important;
-}
-
-#googleBox,
-#otpBox,
-#authMessage {
-  position: relative;
-  z-index: 10;
-}
-
-#googleTabBtn,
-#otpTabBtn {
-  pointer-events: auto !important;
-}
+    
   </style>
 </head>
 
@@ -5773,7 +5708,7 @@ body.dark-mode .create-id-box p,
   <p>Learning Beyond The Classroom</p>
 </div>
 
-<!-- AUTH GATE SCREEN -->
+ <!-- AUTH GATE SCREEN -->
 <div id="authGate" class="auth-gate">
   <div class="auth-card">
     <div class="auth-logo">🔐</div>
@@ -5783,34 +5718,34 @@ body.dark-mode .create-id-box p,
       Login to continue to AcademeForge.
     </p>
 
-    <div class="auth-tabs">
-      <button id="googleTabBtn" type="button" class="auth-tab active">
-        Google
-      </button>
+   <div class="auth-tabs">
+  <button id="magicTabBtn" type="button" class="auth-tab active">
+    Google
+  </button>
 
-      <button id="otpTabBtn" type="button" class="auth-tab">
-        OTP
-      </button>
-    </div>
-
-    <!-- GOOGLE BOX -->
-    <div id="googleBox" class="auth-box">
-      <button class="google-btn" type="button" onclick="loginWithGoogle()">
-        <span class="google-icon">G</span>
-        Verify with Google
-      </button>
+  <button id="otpTabBtn" type="button" class="auth-tab">
+    OTP
+  </button>
+</div>
+ 
+  <!-- MAGIC LINK BOX -->
+  
+     <button class="google-btn" onclick="loginWithGoogle()">
+  <span class="google-icon">G</span>
+  Verify with Google
+</button>
 
       <p class="auth-help">
-        Securely verify your account with Google.
+        securely verify with google.
       </p>
     </div>
-
+  
     <!-- OTP BOX -->
     <div id="otpBox" class="auth-box" style="display:none;">
       <label>Email Address</label>
       <input id="otpEmail" type="email" placeholder="Enter your email address">
 
-      <button class="auth-main-btn" type="button" onclick="sendOtpCode()">
+      <button class="auth-main-btn" onclick="sendOtpCode()">
         Send OTP
       </button>
 
@@ -5818,15 +5753,11 @@ body.dark-mode .create-id-box p,
         <label>Enter OTP</label>
         <input id="otpCode" type="text" inputmode="numeric" maxlength="6" placeholder="6 digit OTP">
 
-        <button class="auth-main-btn secondary" type="button" onclick="verifyOtpCode()">
+        <button class="auth-main-btn secondary" onclick="verifyOtpCode()">
           Verify OTP
         </button>
       </div>
-
-      <p class="auth-help">
-        We’ll send a 6-digit login code to your email.
-      </p>
-    </div>
+    
 
     <div id="authMessage" class="auth-message"></div>
   </div>
@@ -11148,30 +11079,23 @@ function hideCommunityBlockedUsersPanel() {
 
   const APP_REDIRECT_URL = "https://academeforge.github.io/SUPER/";
 
-function showAuthMessage(type, text) {
-  const box = document.getElementById("authMessage");
-  if (!box) return;
+  function showAuthMessage(type, text) {
+    const box = document.getElementById("authMessage");
+    if (!box) return;
 
-  box.className = "auth-message " + type;
-  box.textContent = text;
-}
+    box.className = "auth-message " + type;
+    box.textContent = text;
+  }
 
-
-function switchAuthMode(mode) {
-  const googleBox = document.getElementById("googleBox");
+ function switchAuthMode(mode) {
+  const magicBox = document.getElementById("magicBox");
   const otpBox = document.getElementById("otpBox");
-  const googleTabBtn = document.getElementById("googleTabBtn");
+  const magicTabBtn = document.getElementById("magicTabBtn");
   const otpTabBtn = document.getElementById("otpTabBtn");
   const authMessage = document.getElementById("authMessage");
 
-  console.log("Switch mode:", mode);
-
-  if (!googleBox) console.log("googleBox missing");
-  if (!otpBox) console.log("otpBox missing");
-  if (!googleTabBtn) console.log("googleTabBtn missing");
-  if (!otpTabBtn) console.log("otpTabBtn missing");
-
-  if (!googleBox || !otpBox || !googleTabBtn || !otpTabBtn) {
+  if (!magicBox || !otpBox || !magicTabBtn || !otpTabBtn) {
+    console.log("Auth tab elements missing");
     return;
   }
 
@@ -11180,73 +11104,167 @@ function switchAuthMode(mode) {
     authMessage.textContent = "";
   }
 
-  if (mode === "google") {
-    googleBox.style.display = "block";
+  if (mode === "magic") {
+    magicBox.style.display = "block";
     otpBox.style.display = "none";
 
-    googleTabBtn.classList.add("active");
+    magicTabBtn.classList.add("active");
     otpTabBtn.classList.remove("active");
   }
 
   if (mode === "otp") {
-    googleBox.style.display = "none";
+    magicBox.style.display = "none";
     otpBox.style.display = "block";
 
     otpTabBtn.classList.add("active");
-    googleTabBtn.classList.remove("active");
+    magicTabBtn.classList.remove("active");
   }
 }
 
-window.addEventListener("load", function () {
-  const googleTabBtn = document.getElementById("googleTabBtn");
+document.addEventListener("DOMContentLoaded", function () {
+  const magicTabBtn = document.getElementById("magicTabBtn");
   const otpTabBtn = document.getElementById("otpTabBtn");
 
-  if (googleTabBtn) {
-    googleTabBtn.onclick = function () {
-      switchAuthMode("google");
-    };
+  if (magicTabBtn) {
+    magicTabBtn.addEventListener("click", function () {
+      switchAuthMode("magic");
+    });
   }
 
   if (otpTabBtn) {
-    otpTabBtn.onclick = function () {
+    otpTabBtn.addEventListener("click", function () {
       switchAuthMode("otp");
-    };
-  }
-
-  switchAuthMode("google");
-});
-  
-async function checkAuthSession() {
-  const authGate = document.getElementById("authGate");
-
-  const { data, error } = await db.auth.getSession();
-
-  if (error) {
-    console.log("Session check error:", error);
-    if (authGate) authGate.style.display = "flex";
-    return;
-  }
-
-  if (data && data.session) {
-    if (authGate) authGate.style.display = "none";
-  } else {
-    if (authGate) authGate.style.display = "flex";
-  }
-}
-
-db.auth.onAuthStateChange(function(event, session) {
-  const authGate = document.getElementById("authGate");
-
-  console.log("Auth event:", event);
-
-  if (session) {
-    if (authGate) authGate.style.display = "none";
-  } else {
-    if (authGate) authGate.style.display = "flex";
+    });
   }
 });
+  async function checkAuthSession() {
+    const authGate = document.getElementById("authGate");
 
-async function loginWithGoogle() {
+    const { data, error } = await db.auth.getSession();
+
+    if (error) {
+      console.log("Session check error:", error);
+      if (authGate) authGate.style.display = "flex";
+      return;
+    }
+
+    if (data && data.session) {
+      if (authGate) authGate.style.display = "none";
+    } else {
+      if (authGate) authGate.style.display = "flex";
+    }
+  }
+
+  db.auth.onAuthStateChange(function(event, session) {
+    const authGate = document.getElementById("authGate");
+
+    console.log("Auth event:", event);
+
+    if (session) {
+      if (authGate) authGate.style.display = "none";
+    } else {
+      if (authGate) authGate.style.display = "flex";
+    }
+  });
+
+  async function sendMagicLink() {
+    const emailInput = document.getElementById("magicEmail");
+    const email = emailInput.value.trim();
+
+    if (!email || !email.includes("@")) {
+      showAuthMessage("err", "Enter a valid email address.");
+      return;
+    }
+
+    showAuthMessage("ok", "Sending magic link...");
+
+    const { error } = await db.auth.signInWithOtp({
+      email: email,
+      options: {
+        emailRedirectTo: APP_REDIRECT_URL
+      }
+    });
+
+    if (error) {
+      console.log("Magic link error:", error);
+      showAuthMessage("err", error.message || "Could not send magic link.");
+      return;
+    }
+
+    showAuthMessage("ok", "Magic link sent. Check your email inbox.");
+  }
+
+  async function sendOtpCode() {
+    const emailInput = document.getElementById("otpEmail");
+    const email = emailInput.value.trim();
+
+    if (!email || !email.includes("@")) {
+      showAuthMessage("err", "Enter a valid email address.");
+      return;
+    }
+
+    showAuthMessage("ok", "Sending OTP...");
+
+    const { error } = await db.auth.signInWithOtp({
+      email: email,
+      options: {
+        shouldCreateUser: true
+      }
+    });
+
+    if (error) {
+      console.log("OTP send error:", error);
+      showAuthMessage("err", error.message || "Could not send OTP.");
+      return;
+    }
+
+    document.getElementById("otpVerifyArea").style.display = "block";
+    showAuthMessage("ok", "OTP sent. Check your email inbox.");
+  }
+
+  async function verifyOtpCode() {
+    const email = document.getElementById("otpEmail").value.trim();
+    const token = document.getElementById("otpCode").value.trim();
+
+    if (!email || !email.includes("@")) {
+      showAuthMessage("err", "Enter a valid email address.");
+      return;
+    }
+
+    if (!token || token.length < 6) {
+      showAuthMessage("err", "Enter valid 6 digit OTP.");
+      return;
+    }
+
+    showAuthMessage("ok", "Verifying OTP...");
+
+    const { data, error } = await db.auth.verifyOtp({
+      email: email,
+      token: token,
+      type: "email"
+    });
+
+    if (error) {
+      console.log("OTP verify error:", error);
+      showAuthMessage("err", error.message || "Invalid OTP.");
+      return;
+    }
+
+    if (data && data.session) {
+      showAuthMessage("ok", "Login successful.");
+      document.getElementById("authGate").style.display = "none";
+    } else {
+      showAuthMessage("err", "OTP verified but session not created.");
+    }
+  }
+
+  async function logoutAcademeForge() {
+    await db.auth.signOut();
+    document.getElementById("authGate").style.display = "flex";
+  }
+
+  checkAuthSession();
+  async function loginWithGoogle() {
   const { error } = await db.auth.signInWithOAuth({
     provider: "google",
     options: {
@@ -11257,84 +11275,6 @@ async function loginWithGoogle() {
   if (error) {
     showAuthMessage("err", error.message);
   }
-}
-
-async function sendOtpCode() {
-  const emailInput = document.getElementById("otpEmail");
-  const email = emailInput.value.trim();
-
-  if (!email || !email.includes("@")) {
-    showAuthMessage("err", "Enter a valid email address.");
-    return;
-  }
-
-  showAuthMessage("ok", "Sending OTP...");
-
-  const { error } = await db.auth.signInWithOtp({
-    email: email,
-    options: {
-      shouldCreateUser: true
-    }
-  });
-
-  if (error) {
-    console.log("OTP send error:", error);
-    showAuthMessage("err", error.message || "Could not send OTP.");
-    return;
-  }
-
-  const otpVerifyArea = document.getElementById("otpVerifyArea");
-  if (otpVerifyArea) otpVerifyArea.style.display = "block";
-
-  showAuthMessage("ok", "OTP sent. Check your email inbox.");
-}
-
-async function verifyOtpCode() {
-  const email = document.getElementById("otpEmail").value.trim();
-  const token = document.getElementById("otpCode").value.trim();
-
-  if (!email || !email.includes("@")) {
-    showAuthMessage("err", "Enter a valid email address.");
-    return;
-  }
-
-  if (!token || token.length < 6) {
-    showAuthMessage("err", "Enter valid 6 digit OTP.");
-    return;
-  }
-
-  showAuthMessage("ok", "Verifying OTP...");
-
-  const { data, error } = await db.auth.verifyOtp({
-    email: email,
-    token: token,
-    type: "email"
-  });
-
-  if (error) {
-    console.log("OTP verify error:", error);
-    showAuthMessage("err", error.message || "Invalid OTP.");
-    return;
-  }
-
-  if (data && data.session) {
-    showAuthMessage("ok", "Login successful.");
-
-    const authGate = document.getElementById("authGate");
-    if (authGate) authGate.style.display = "none";
-  } else {
-    showAuthMessage("err", "OTP verified but session not created.");
-  }
-}
-
-async function logoutAcademeForge() {
-  await db.auth.signOut();
-
-  const authGate = document.getElementById("authGate");
-  if (authGate) authGate.style.display = "flex";
-}
-
-checkAuthSession();
 }
 </script>
 
