@@ -5466,6 +5466,172 @@ body.dark-mode .create-id-box p,
 .dark-mode .create-id-box p {
   color: #cbd5e1;
 }
+    /* ================================
+   EMAIL MAGIC LINK SECURITY GATE
+================================ */
+
+.email-login-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(22, 163, 74, 0.18), transparent 34%),
+    linear-gradient(135deg, #f8fafc, #eef6ff);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+
+.email-login-card {
+  width: 100%;
+  max-width: 430px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 30px;
+  padding: 26px;
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.16);
+  text-align: center;
+}
+
+.email-login-logo {
+  width: 78px;
+  height: 78px;
+  margin: 0 auto 16px;
+  border-radius: 24px;
+  background: white;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.10);
+  overflow: hidden;
+}
+
+.email-login-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 10px;
+}
+
+.email-login-card h2 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  color: #0f172a;
+}
+
+.email-login-card p {
+  margin: 0 0 22px;
+  color: #64748b;
+  line-height: 1.55;
+  font-size: 15px;
+}
+
+.email-login-input-box {
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.email-login-input-box label {
+  display: block;
+  font-weight: 800;
+  color: #334155;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.email-login-input-box input {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  border-radius: 18px;
+  padding: 15px 16px;
+  font-size: 16px;
+  outline: none;
+  color: #0f172a;
+}
+
+.email-login-input-box input:focus {
+  border-color: #16a34a;
+  box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.10);
+}
+
+#sendSecurityLoginBtn {
+  width: 100%;
+  border: 0;
+  border-radius: 18px;
+  padding: 16px 18px;
+  background: #16a34a;
+  color: white;
+  font-size: 16px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 14px 34px rgba(22, 163, 74, 0.25);
+}
+
+#sendSecurityLoginBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.security-login-message {
+  display: none;
+  margin-top: 14px;
+  padding: 13px 14px;
+  border-radius: 16px;
+  font-weight: 800;
+  line-height: 1.45;
+  font-size: 14px;
+}
+
+.security-login-message.ok {
+  display: block;
+  background: #dcfce7;
+  color: #166534;
+}
+
+.security-login-message.err {
+  display: block;
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* Dark mode support if your app uses body.dark */
+body.dark .email-login-gate,
+.dark .email-login-gate {
+  background:
+    radial-gradient(circle at top left, rgba(34, 197, 94, 0.20), transparent 34%),
+    linear-gradient(135deg, #020617, #0f172a);
+}
+
+body.dark .email-login-card,
+.dark .email-login-card {
+  background: rgba(15, 23, 42, 0.96);
+  border-color: rgba(148, 163, 184, 0.22);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+}
+
+body.dark .email-login-card h2,
+.dark .email-login-card h2 {
+  color: #f8fafc;
+}
+
+body.dark .email-login-card p,
+.dark .email-login-card p {
+  color: #cbd5e1;
+}
+
+body.dark .email-login-input-box label,
+.dark .email-login-input-box label {
+  color: #e2e8f0;
+}
+
+body.dark .email-login-input-box input,
+.dark .email-login-input-box input {
+  background: #020617;
+  border-color: #334155;
+  color: #f8fafc;
+}
   </style>
 </head>
 
@@ -5476,6 +5642,39 @@ body.dark-mode .create-id-box p,
   <h1>AcademeForge</h1>
   <p>Learning Beyond The Classroom</p>
 </div>
+
+  <!-- EMAIL MAGIC LINK SECURITY GATE -->
+<div id="emailLoginGate" class="email-login-gate">
+  <div class="email-login-card">
+    <div class="email-login-logo">
+      <img src="AF LOGO 1.jpeg" alt="AcademeForge Logo">
+    </div>
+
+    <h2>Secure Access</h2>
+
+    <p>
+      Enter your email to continue to AcademeForge.
+      We’ll send you a secure login link.
+    </p>
+
+    <div class="email-login-input-box">
+      <label>Email Address</label>
+      <input
+        id="securityLoginEmail"
+        type="email"
+        placeholder="your@email.com"
+        autocomplete="email"
+      >
+    </div>
+
+    <button id="sendSecurityLoginBtn" onclick="sendSecurityMagicLink()">
+      Send Login Link
+    </button>
+
+    <div id="securityLoginMessage" class="security-login-message"></div>
+  </div>
+</div>
+  
   <main class="app">
 
     <header class="topbar">
@@ -10788,6 +10987,119 @@ function hideCommunityBlockedUsersPanel() {
   function openCreateStudentIdPage() {
   window.location.href = "https://academeforge.github.io/PAYMENTPAGE/";
 }
+
+  /* ================================
+   EMAIL MAGIC LINK SECURITY GATE
+================================ */
+
+function showSecurityLoginMessage(type, text) {
+  const box = document.getElementById("securityLoginMessage");
+  if (!box) return;
+
+  box.className = "security-login-message " + type;
+  box.textContent = text;
+}
+
+function showEmailLoginGate() {
+  const gate = document.getElementById("emailLoginGate");
+
+  if (gate) {
+    gate.style.display = "flex";
+  }
+
+  document.body.style.overflow = "hidden";
+}
+
+function hideEmailLoginGate() {
+  const gate = document.getElementById("emailLoginGate");
+
+  if (gate) {
+    gate.style.display = "none";
+  }
+
+  document.body.style.overflow = "";
+}
+
+async function checkSecurityLogin() {
+  try {
+    const { data, error } = await db.auth.getSession();
+
+    if (error) {
+      console.log("Session check error:", error);
+      showEmailLoginGate();
+      return;
+    }
+
+    if (data && data.session) {
+      hideEmailLoginGate();
+    } else {
+      showEmailLoginGate();
+    }
+  } catch (err) {
+    console.log("Security login check error:", err);
+    showEmailLoginGate();
+  }
+}
+
+async function sendSecurityMagicLink() {
+  const emailInput = document.getElementById("securityLoginEmail");
+  const btn = document.getElementById("sendSecurityLoginBtn");
+
+  if (!emailInput || !btn) return;
+
+  const email = emailInput.value.trim().toLowerCase();
+
+  if (!email || !email.includes("@")) {
+    showSecurityLoginMessage("err", "Please enter a valid email address.");
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = "Sending...";
+
+  try {
+    const redirectUrl = window.location.origin + window.location.pathname;
+
+    const { error } = await db.auth.signInWithOtp({
+      email: email,
+      options: {
+        emailRedirectTo: redirectUrl
+      }
+    });
+
+    if (error) {
+      console.log("Magic link send error:", error);
+      showSecurityLoginMessage("err", error.message || "Could not send login link.");
+      btn.disabled = false;
+      btn.textContent = "Send Login Link";
+      return;
+    }
+
+    showSecurityLoginMessage(
+      "ok",
+      "Login link sent. Please check your email and click the link to continue."
+    );
+
+    btn.textContent = "Login Link Sent";
+  } catch (err) {
+    console.log("Magic link error:", err);
+    showSecurityLoginMessage("err", "Something went wrong. Please try again.");
+    btn.disabled = false;
+    btn.textContent = "Send Login Link";
+  }
+}
+
+db.auth.onAuthStateChange(function(event, session) {
+  if (session) {
+    hideEmailLoginGate();
+  } else {
+    showEmailLoginGate();
+  }
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+  checkSecurityLogin();
+});
 </script>
 
 </body>
