@@ -5668,6 +5668,34 @@ body.dark-mode .create-id-box p,
   user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
+    .google-btn {
+  width: 100%;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  background: rgba(255, 255, 255, 0.92);
+  color: #0f172a;
+  padding: 14px 16px;
+  border-radius: 18px;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.12);
+}
+
+.google-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #4285f4;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  font-family: Arial, sans-serif;
+}
     
   </style>
 </head>
@@ -5705,9 +5733,10 @@ body.dark-mode .create-id-box p,
       <label>Email Address</label>
       <input id="magicEmail" type="email" placeholder="Enter your email address">
 
-      <button class="auth-main-btn" onclick="sendMagicLink()">
-        Send Magic Link
-      </button>
+     <button class="google-btn" onclick="loginWithGoogle()">
+  <span class="google-icon">G</span>
+  Continue with Google
+</button>
 
       <p class="auth-help">
         We’ll send you a secure login link on your email.
@@ -11242,6 +11271,18 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   checkAuthSession();
+  async function loginWithGoogle() {
+  const { error } = await db.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: "https://academeforge.github.io/SUPER/"
+    }
+  });
+
+  if (error) {
+    showAuthMessage("err", error.message);
+  }
+}
 </script>
 
 </body>
