@@ -11086,6 +11086,7 @@ function showAuthMessage(type, text) {
   box.textContent = text;
 }
 
+
 function switchAuthMode(mode) {
   const googleBox = document.getElementById("googleBox");
   const otpBox = document.getElementById("otpBox");
@@ -11093,8 +11094,14 @@ function switchAuthMode(mode) {
   const otpTabBtn = document.getElementById("otpTabBtn");
   const authMessage = document.getElementById("authMessage");
 
+  console.log("Switch mode:", mode);
+
+  if (!googleBox) console.log("googleBox missing");
+  if (!otpBox) console.log("otpBox missing");
+  if (!googleTabBtn) console.log("googleTabBtn missing");
+  if (!otpTabBtn) console.log("otpTabBtn missing");
+
   if (!googleBox || !otpBox || !googleTabBtn || !otpTabBtn) {
-    console.log("Auth tab elements missing");
     return;
   }
 
@@ -11120,25 +11127,25 @@ function switchAuthMode(mode) {
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+window.addEventListener("load", function () {
   const googleTabBtn = document.getElementById("googleTabBtn");
   const otpTabBtn = document.getElementById("otpTabBtn");
 
   if (googleTabBtn) {
-    googleTabBtn.addEventListener("click", function () {
+    googleTabBtn.onclick = function () {
       switchAuthMode("google");
-    });
+    };
   }
 
   if (otpTabBtn) {
-    otpTabBtn.addEventListener("click", function () {
+    otpTabBtn.onclick = function () {
       switchAuthMode("otp");
-    });
+    };
   }
 
   switchAuthMode("google");
 });
-
+  
 async function checkAuthSession() {
   const authGate = document.getElementById("authGate");
 
