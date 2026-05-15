@@ -5656,6 +5656,19 @@ body.dark-mode .create-id-box p,
     color: #f8fafc;
   }
 }
+    .auth-tabs {
+  position: relative;
+  z-index: 5;
+}
+
+.auth-tab {
+  position: relative;
+  z-index: 6;
+  pointer-events: auto;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+    
   </style>
 </head>
 
@@ -5677,14 +5690,15 @@ body.dark-mode .create-id-box p,
       Login to continue to AcademeForge.
     </p>
 
-    <div class="auth-tabs">
-      <button id="magicTabBtn" class="auth-tab active" onclick="switchAuthMode('magic')">
-        Magic Link
-      </button>
-      <button id="otpTabBtn" class="auth-tab" onclick="switchAuthMode('otp')">
-        OTP
-      </button>
-    </div>
+   <div class="auth-tabs">
+  <button id="magicTabBtn" type="button" class="auth-tab active">
+    Magic Link
+  </button>
+
+  <button id="otpTabBtn" type="button" class="auth-tab">
+    OTP
+  </button>
+</div>
 
     <!-- MAGIC LINK BOX -->
     <div id="magicBox" class="auth-box">
@@ -11041,7 +11055,7 @@ function hideCommunityBlockedUsersPanel() {
 }
 
 <script>
-  const APP_REDIRECT_URL = "https://academeforge.github.io/YA/";
+  const APP_REDIRECT_URL = "https://academeforge.github.io/SUPER/";
 
   function showAuthMessage(type, text) {
     const box = document.getElementById("authMessage");
@@ -11051,29 +11065,56 @@ function hideCommunityBlockedUsersPanel() {
     box.textContent = text;
   }
 
-  function switchAuthMode(mode) {
-    const magicBox = document.getElementById("magicBox");
-    const otpBox = document.getElementById("otpBox");
-    const magicTabBtn = document.getElementById("magicTabBtn");
-    const otpTabBtn = document.getElementById("otpTabBtn");
+ function switchAuthMode(mode) {
+  const magicBox = document.getElementById("magicBox");
+  const otpBox = document.getElementById("otpBox");
+  const magicTabBtn = document.getElementById("magicTabBtn");
+  const otpTabBtn = document.getElementById("otpTabBtn");
+  const authMessage = document.getElementById("authMessage");
 
-    showAuthMessage("", "");
-
-    if (mode === "magic") {
-      magicBox.style.display = "block";
-      otpBox.style.display = "none";
-
-      magicTabBtn.classList.add("active");
-      otpTabBtn.classList.remove("active");
-    } else {
-      magicBox.style.display = "none";
-      otpBox.style.display = "block";
-
-      otpTabBtn.classList.add("active");
-      magicTabBtn.classList.remove("active");
-    }
+  if (!magicBox || !otpBox || !magicTabBtn || !otpTabBtn) {
+    console.log("Auth tab elements missing");
+    return;
   }
 
+  if (authMessage) {
+    authMessage.className = "auth-message";
+    authMessage.textContent = "";
+  }
+
+  if (mode === "magic") {
+    magicBox.style.display = "block";
+    otpBox.style.display = "none";
+
+    magicTabBtn.classList.add("active");
+    otpTabBtn.classList.remove("active");
+  }
+
+  if (mode === "otp") {
+    magicBox.style.display = "none";
+    otpBox.style.display = "block";
+
+    otpTabBtn.classList.add("active");
+    magicTabBtn.classList.remove("active");
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const magicTabBtn = document.getElementById("magicTabBtn");
+  const otpTabBtn = document.getElementById("otpTabBtn");
+
+  if (magicTabBtn) {
+    magicTabBtn.addEventListener("click", function () {
+      switchAuthMode("magic");
+    });
+  }
+
+  if (otpTabBtn) {
+    otpTabBtn.addEventListener("click", function () {
+      switchAuthMode("otp");
+    });
+  }
+});
   async function checkAuthSession() {
     const authGate = document.getElementById("authGate");
 
