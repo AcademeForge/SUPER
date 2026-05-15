@@ -5696,6 +5696,45 @@ body.dark-mode .create-id-box p,
   font-weight: 900;
   font-family: Arial, sans-serif;
 }
+    /* AUTH CLICK FIX */
+.auth-gate {
+  pointer-events: auto;
+}
+
+.auth-card {
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.auth-tabs {
+  position: relative;
+  z-index: 50;
+  pointer-events: auto;
+}
+
+.auth-tab {
+  position: relative;
+  z-index: 51;
+  pointer-events: auto;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.auth-box,
+.google-btn,
+.auth-main-btn {
+  position: relative;
+  z-index: 20;
+  pointer-events: auto;
+}
+
+.auth-card::before,
+.auth-card::after,
+.auth-gate::before,
+.auth-gate::after {
+  pointer-events: none;
+}
     
   </style>
 </head>
