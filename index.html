@@ -6205,6 +6205,142 @@ body.dark-mode .create-id-box p,
     color: #86efac;
   }
 }
+    /* ==============================
+   AF Text Visibility Fix
+   Light + Dark Mode Safe
+================================ */
+
+#studentaf,
+#studentaf * {
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Browser ko forced color mixing se bachane ke liye */
+#studentaf {
+  color-scheme: light dark;
+}
+
+/* Light mode text clarity */
+.student-titleaf {
+  color: #0f172a !important;
+  text-shadow: none;
+}
+
+.student-subtitleaf,
+.student-helpaf {
+  color: #475569 !important;
+}
+
+.student-labelaf {
+  color: #1e293b !important;
+}
+
+.student-tabaf {
+  color: #334155 !important;
+}
+
+.student-tabaf.active {
+  color: #ffffff !important;
+}
+
+.student-inputaf {
+  color: #0f172a !important;
+  background: rgba(255, 255, 255, 0.98) !important;
+}
+
+.student-inputaf::placeholder {
+  color: #64748b !important;
+  opacity: 1;
+}
+
+.student-noteaf {
+  color: #1e3a8a !important;
+}
+
+.student-noteaf b {
+  color: #166534 !important;
+}
+
+/* Dark mode text clarity */
+@media (prefers-color-scheme: dark) {
+  .student-cardaf {
+    background: rgba(15, 23, 42, 0.97) !important;
+  }
+
+  .student-titleaf {
+    color: #ffffff !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+  }
+
+  .student-subtitleaf {
+    color: #e2e8f0 !important;
+  }
+
+  .student-helpaf {
+    color: #cbd5e1 !important;
+  }
+
+  .student-labelaf {
+    color: #f1f5f9 !important;
+  }
+
+  .student-tabaf {
+    color: #e2e8f0 !important;
+  }
+
+  .student-tabaf.active {
+    color: #ffffff !important;
+  }
+
+  .student-inputaf {
+    background: rgba(248, 250, 252, 0.96) !important;
+    color: #0f172a !important;
+    border-color: rgba(226, 232, 240, 0.75) !important;
+  }
+
+  .student-inputaf::placeholder {
+    color: #475569 !important;
+    opacity: 1;
+  }
+
+  .student-inputaf:focus {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border-color: #22c55e !important;
+  }
+
+  .student-link-btnaf {
+    background: rgba(219, 234, 254, 0.16) !important;
+    color: #bfdbfe !important;
+  }
+
+  .student-noteaf {
+    background: linear-gradient(
+      135deg,
+      rgba(30, 64, 175, 0.34),
+      rgba(22, 101, 52, 0.30)
+    ) !important;
+    color: #e0f2fe !important;
+    border-color: rgba(191, 219, 254, 0.20) !important;
+  }
+
+  .student-noteaf b {
+    color: #bbf7d0 !important;
+  }
+
+  .student-messageaf.ok {
+    background: rgba(22, 101, 52, 0.28) !important;
+    color: #bbf7d0 !important;
+    border-color: rgba(134, 239, 172, 0.22) !important;
+  }
+
+  .student-messageaf.err {
+    background: rgba(127, 29, 29, 0.30) !important;
+    color: #fecaca !important;
+    border-color: rgba(252, 165, 165, 0.22) !important;
+  }
+}
   </style>
 </head>
 
