@@ -6429,80 +6429,6 @@ body.dark-mode .create-id-box p,
 </div>
   </div>
 
-
-  <div class="panel glass hidden-box" id="courseSelectBox">
-    <h2>📚 Select Course</h2>
-<p id="studentWelcomeText">Welcome Student</p>
-    <p>Your enrolled programs are ready to explore.</p>
-
-    <div class="course-select-grid" id="courseCards"></div>
-<button class="link-btn secondary" onclick="logoutStudent()">Logout</button>
-  </div>
-
-  <div class="panel glass hidden-box" id="courseDetailsBox">
-    <button class="back-mini" onclick="backToCourses()">← Back to Courses</button>
-
-    <h2 id="courseTitle">Course Name</h2>
-    <p id="courseIntro">Course intro will appear here.</p>
-
-    <div class="course-info-box">
-      <h3>📌 Course Details</h3>
-      <p id="courseDetails"></p>
-    </div>
-
-    <div class="course-info-box">
-      <h3>🧾 Syllabus</h3>
-      <ul id="courseSyllabus"></ul>
-    </div>
-
-    <div class="course-info-box">
-      <h3>🏫 Facilities</h3>
-      <ul id="courseFacilities"></ul>
-    </div>
-
-    <button class="link-btn" onclick="startLearning()">Start Learning</button>
-  </div>
-
-  <div class="panel glass hidden-box" id="learningBox">
-    <button class="back-mini" onclick="backToCourseDetails()">← Back to Course</button>
-
-    <h2 id="learningTitle">Start Learning</h2>
-    <p>Select what you want to access.</p>
-
-    <div class="learning-choice">
-      <button class="learning-btn" onclick="openLearningMode('lectures')">
-        <span>🎥</span>
-        <strong>Lectures</strong>
-        <small>Chapter-wise video lecture list</small>
-      </button>
-
-      <button class="learning-btn" onclick="openLearningMode('notes')">
-        <span>📝</span>
-        <strong>Notes</strong>
-        <small>Chapter-wise study notes list</small>
-      </button>
-    </div>
-  </div>
-
-  <div class="panel glass hidden-box" id="chapterBox">
-    <button class="back-mini" onclick="backToLearning()">← Back</button>
-
-    <h2 id="chapterModeTitle">Lectures</h2>
-    <p>Select a chapter to continue.</p>
-
-    <div class="chapter-list" id="chapterList"></div>
-  </div>
-
-  <div class="panel glass hidden-box" id="contentBox">
-    <button class="back-mini" onclick="backToChapters()">← Back to Chapters</button>
-
-    <h2 id="contentTitle">Chapter Content</h2>
-    <p id="contentSubtitle">Select and study one by one.</p>
-
-    <div class="content-list" id="contentList"></div>
-  </div>
-</section>
-
      
  <!-- OFFICE QUICK ACTIONS MANAGEMENT -->
 
@@ -7227,7 +7153,77 @@ body.dark-mode .create-id-box p,
         <b>academeforge@gmail.com</b> with your name and WhatsApp number.
       </div>
     </div>
+    
+  <div class="panel glass hidden-box" id="courseSelectBox">
+    <h2>📚 Select Course</h2>
+<p id="studentWelcomeText">Welcome Student</p>
+    <p>Your enrolled programs are ready to explore.</p>
 
+    <div class="course-select-grid" id="courseCards"></div>
+<button class="link-btn secondary" onclick="logoutStudent()">Logout</button>
+  </div>
+
+  <div class="panel glass hidden-box" id="courseDetailsBox">
+    <button class="back-mini" onclick="backToCourses()">← Back to Courses</button>
+
+    <h2 id="courseTitle">Course Name</h2>
+    <p id="courseIntro">Course intro will appear here.</p>
+
+    <div class="course-info-box">
+      <h3>📌 Course Details</h3>
+      <p id="courseDetails"></p>
+    </div>
+
+    <div class="course-info-box">
+      <h3>🧾 Syllabus</h3>
+      <ul id="courseSyllabus"></ul>
+    </div>
+
+    <div class="course-info-box">
+      <h3>🏫 Facilities</h3>
+      <ul id="courseFacilities"></ul>
+    </div>
+
+    <button class="link-btn" onclick="startLearning()">Start Learning</button>
+  </div>
+
+  <div class="panel glass hidden-box" id="learningBox">
+    <button class="back-mini" onclick="backToCourseDetails()">← Back to Course</button>
+
+    <h2 id="learningTitle">Start Learning</h2>
+    <p>Select what you want to access.</p>
+
+    <div class="learning-choice">
+      <button class="learning-btn" onclick="openLearningMode('lectures')">
+        <span>🎥</span>
+        <strong>Lectures</strong>
+        <small>Chapter-wise video lecture list</small>
+      </button>
+
+      <button class="learning-btn" onclick="openLearningMode('notes')">
+        <span>📝</span>
+        <strong>Notes</strong>
+        <small>Chapter-wise study notes list</small>
+      </button>
+    </div>
+  </div>
+
+  <div class="panel glass hidden-box" id="chapterBox">
+    <button class="back-mini" onclick="backToLearning()">← Back</button>
+
+    <h2 id="chapterModeTitle">Lectures</h2>
+    <p>Select a chapter to continue.</p>
+
+    <div class="chapter-list" id="chapterList"></div>
+  </div>
+
+  <div class="panel glass hidden-box" id="contentBox">
+    <button class="back-mini" onclick="backToChapters()">← Back to Chapters</button>
+
+    <h2 id="contentTitle">Chapter Content</h2>
+    <p id="contentSubtitle">Select and study one by one.</p>
+
+    <div class="content-list" id="contentList"></div>
   </div>
 </section>
     
