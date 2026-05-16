@@ -7124,28 +7124,42 @@ body.dark-mode .create-id-box p,
         </p>
       </div>
 
-      <!-- FORGOT PASSWORD BOX -->
-      <div id="studentForgotBoxaf" class="student-boxaf" style="display:none;">
-        <label class="student-labelaf">Phone Number</label>
-        <input
-          id="forgotPhoneaf"
-          class="student-inputaf"
-          type="tel"
-          placeholder="Enter your registered phone number"
-        >
+<!-- FORGOT PASSWORD BOX -->
+<div id="studentForgotBoxaf" class="student-boxaf" style="display:none;">
+  <label class="student-labelaf">Student ID / Phone / Email</label>
+  <input
+    id="forgotLoginaf"
+    class="student-inputaf"
+    type="text"
+    placeholder="Enter your Student ID, phone, or email"
+  >
 
-        <button class="student-main-btnaf" type="button" onclick="sendPasswordResetaf()">
-          Send Reset Link
-        </button>
+  <button class="student-main-btnaf" type="button" onclick="findStudentForResetaf()">
+    Find Account
+  </button>
 
-        <button class="student-link-btnaf" type="button" onclick="switchStudentModeaf('login')">
-          Back to Login
-        </button>
+  <div id="resetPasswordAreaaf" style="display:none; margin-top:14px;">
+    <label class="student-labelaf">New Password</label>
+    <input
+      id="newPasswordaf"
+      class="student-inputaf"
+      type="password"
+      placeholder="Create new password"
+    >
 
-        <p class="student-helpaf">
-          We’ll send a secure password reset link to your registered email.
-        </p>
-      </div>
+    <button class="student-main-btnaf secondary" type="button" onclick="resetStudentPasswordaf()">
+      Reset Password
+    </button>
+  </div>
+
+  <button class="student-link-btnaf" type="button" onclick="switchStudentModeaf('login')">
+    Back to Login
+  </button>
+
+  <p class="student-helpaf">
+    OTP verification will be added next. For now, reset works after account match.
+  </p>
+</div>
 
       <div id="studentMessageaf" class="student-messageaf"></div>
 
