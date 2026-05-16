@@ -5803,7 +5803,200 @@ body.dark-mode .create-id-box p,
   transform: scale(0.95);
   filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.38));
 }
-    
+    .student-wrapaf {
+  padding: 18px;
+}
+
+.student-cardaf {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 26px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.12);
+}
+
+.student-iconaf {
+  width: 70px;
+  height: 70px;
+  border-radius: 22px;
+  background: #ecfdf5;
+  display: grid;
+  place-items: center;
+  font-size: 32px;
+  margin-bottom: 14px;
+}
+
+.student-titleaf {
+  margin: 0 0 8px;
+  font-size: 30px;
+  color: #0f172a;
+}
+
+.student-subtitleaf {
+  margin: 0 0 20px;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.student-tabsaf {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  background: #e2e8f0;
+  padding: 6px;
+  border-radius: 18px;
+  margin-bottom: 18px;
+}
+
+.student-tabaf {
+  border: 0;
+  padding: 13px 12px;
+  border-radius: 14px;
+  background: transparent;
+  color: #475569;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.student-tabaf.active {
+  background: #16a34a;
+  color: #fff;
+  box-shadow: 0 12px 24px rgba(22, 163, 74, 0.22);
+}
+
+.student-boxaf {
+  text-align: left;
+}
+
+.student-labelaf {
+  display: block;
+  margin: 14px 0 8px;
+  font-weight: 900;
+  color: #334155;
+}
+
+.student-inputaf {
+  width: 100%;
+  padding: 15px 16px;
+  border-radius: 17px;
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  outline: none;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.student-inputaf:focus {
+  border-color: #16a34a;
+  box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.10);
+}
+
+.student-main-btnaf {
+  width: 100%;
+  border: 0;
+  margin-top: 16px;
+  padding: 15px 18px;
+  border-radius: 18px;
+  background: #16a34a;
+  color: white;
+  font-weight: 900;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 14px 30px rgba(22, 163, 74, 0.22);
+}
+
+.student-link-btnaf {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  margin-top: 14px;
+  color: #2563eb;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.student-helpaf {
+  text-align: center;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 13px 0 0;
+}
+
+.student-messageaf {
+  display: none;
+  margin-top: 14px;
+  padding: 12px 13px;
+  border-radius: 16px;
+  font-weight: 800;
+  line-height: 1.45;
+  text-align: left;
+  font-size: 14px;
+}
+
+.student-messageaf.ok {
+  display: block;
+  background: #dcfce7;
+  color: #166534;
+}
+
+.student-messageaf.err {
+  display: block;
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.student-noteaf {
+  margin-top: 18px;
+  padding: 15px;
+  border-radius: 18px;
+  background: #dbeafe;
+  color: #1e3a8a;
+  font-weight: 800;
+  line-height: 1.6;
+}
+
+@media (prefers-color-scheme: dark) {
+  .student-cardaf {
+    background: rgba(15, 23, 42, 0.94);
+    border-color: rgba(148, 163, 184, 0.22);
+  }
+
+  .student-titleaf {
+    color: #f8fafc;
+  }
+
+  .student-subtitleaf,
+  .student-helpaf {
+    color: #94a3b8;
+  }
+
+  .student-tabsaf {
+    background: #1e293b;
+  }
+
+  .student-tabaf {
+    color: #cbd5e1;
+  }
+
+  .student-labelaf {
+    color: #e2e8f0;
+  }
+
+  .student-inputaf {
+    background: #020617;
+    border-color: #334155;
+    color: #f8fafc;
+  }
+
+  .student-noteaf {
+    background: rgba(30, 64, 175, 0.22);
+    color: #bfdbfe;
+  }
+}
   </style>
 </head>
 
@@ -5995,11 +6188,17 @@ body.dark-mode .create-id-box p,
 </div>
 </section>
     
- <section id="student" class="section">
+ <!--  <section id="student" class="section">
   <div class="panel glass" id="studentLoginBox">
     <h2>🎓 Student Login</h2>
-    <p>Login with your Student ID and password to access AF Nexus learning dashboard.</p>
-
+    <p>Login with your Student ID and password to access AF Nexus learning dashboard.</p> -->
+    
+<section id="studentaf" class="section">
+  <div class="student-pageaf">
+    <h2>Student ID</h2>
+    <p>Create or login with your AcademeForge Student ID.</p>
+  </div>
+  
     <div class="input-group">
       <label>Student ID</label>
       <input id="studentId" type="text" placeholder="Example: abc@gmail.com" />
@@ -6028,6 +6227,138 @@ body.dark-mode .create-id-box p,
   Our Support team will get back to you as soon as possible.
 </div>
   </div>
+  
+<section id="studentaf" class="section">
+  <div class="student-wrapaf">
+
+    <div class="student-cardaf">
+      <div class="student-iconaf">🎓</div>
+
+      <h2 class="student-titleaf">Student ID Access</h2>
+      <p class="student-subtitleaf">
+        Login with your verified Student ID to access courses, batches, and community features.
+      </p>
+
+      <div class="student-tabsaf">
+        <button
+          type="button"
+          id="loginTabBtnaf"
+          class="student-tabaf active"
+          onclick="switchStudentModeaf('login')"
+        >
+          Login
+        </button>
+
+        <button
+          type="button"
+          id="createTabBtnaf"
+          class="student-tabaf"
+          onclick="switchStudentModeaf('create')"
+        >
+          Create ID
+        </button>
+      </div>
+
+      <!-- LOGIN BOX -->
+      <div id="studentLoginBoxaf" class="student-boxaf">
+        <label class="student-labelaf">Student ID / Phone Number</label>
+        <input
+          id="loginPhoneaf"
+          class="student-inputaf"
+          type="tel"
+          placeholder="Enter your phone number"
+        >
+
+        <label class="student-labelaf">Password</label>
+        <input
+          id="loginPasswordaf"
+          class="student-inputaf"
+          type="password"
+          placeholder="Enter password"
+        >
+
+        <button class="student-main-btnaf" type="button" onclick="loginStudentaf()">
+          Login
+        </button>
+
+        <button class="student-link-btnaf" type="button" onclick="switchStudentModeaf('forgot')">
+          Forgot Password?
+        </button>
+      </div>
+
+      <!-- CREATE ID BOX -->
+      <div id="studentCreateBoxaf" class="student-boxaf" style="display:none;">
+        <label class="student-labelaf">Full Name</label>
+        <input
+          id="createNameaf"
+          class="student-inputaf"
+          type="text"
+          placeholder="Enter your full name"
+        >
+
+        <label class="student-labelaf">Phone Number</label>
+        <input
+          id="createPhoneaf"
+          class="student-inputaf"
+          type="tel"
+          placeholder="Enter phone number"
+        >
+
+        <label class="student-labelaf">Email Address</label>
+        <input
+          id="createEmailaf"
+          class="student-inputaf"
+          type="email"
+          placeholder="Enter email address"
+        >
+
+        <label class="student-labelaf">Create Password</label>
+        <input
+          id="createPasswordaf"
+          class="student-inputaf"
+          type="password"
+          placeholder="Create password"
+        >
+
+        <button class="student-main-btnaf" type="button" onclick="createStudentIdaf()">
+          Create Student ID
+        </button>
+
+        <p class="student-helpaf">
+          Your phone number will be used as your AcademeForge Student ID.
+        </p>
+      </div>
+
+      <!-- FORGOT PASSWORD BOX -->
+      <div id="studentForgotBoxaf" class="student-boxaf" style="display:none;">
+        <label class="student-labelaf">Phone Number</label>
+        <input
+          id="forgotPhoneaf"
+          class="student-inputaf"
+          type="tel"
+          placeholder="Enter your registered phone number"
+        >
+
+        <button class="student-main-btnaf" type="button" onclick="sendPasswordResetaf()">
+          Send Reset Link
+        </button>
+
+        <button class="student-link-btnaf" type="button" onclick="switchStudentModeaf('login')">
+          Back to Login
+        </button>
+
+        <p class="student-helpaf">
+          We’ll send a secure password reset link to your registered email.
+        </p>
+      </div>
+
+      <div id="studentMessageaf" class="student-messageaf"></div>
+
+      <div class="student-noteaf">
+        If you face any issue while creating your Student ID, email us at
+        <b>academeforge@gmail.com</b> with your name and WhatsApp number.
+      </div>
+    </div>
 
 
   <div class="panel glass hidden-box" id="courseSelectBox">
@@ -6946,7 +7277,7 @@ body.dark-mode .create-id-box p,
         Home
       </button>
 
-      <button class="nav-btn" data-section="student" onclick="showSection('student')">
+      <button class="nav-btn" data-section="studentaf" onclick="showSection('studentaf')">
         <b>🎓</b>
         Student
       </button>
@@ -6977,11 +7308,24 @@ body.dark-mode .create-id-box p,
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
+
+  /* OLD BACKEND - existing code ke liye */
 const SUPABASE_URL = "https://nltmolhlwgsrxadknzzq.supabase.co";
 
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5sdG1vbGhsd2dzcnhhZGtuenpxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg2MDMyMzksImV4cCI6MjA5NDE3OTIzOX0.HEvMlpp6XFbD9MuQhxFwsNpfvzfev3ISkJbA93SvMXc";
 
 const db = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+
+/* NEW BACKEND - new student system ke liye */
+const STUDENT_SUPABASE_URL = "https://afooyyydhlwngzssgqih.supabase.co";
+
+const STUDENT_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFmb295eXlkaGx3bmd6c3NncWloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg2NDQxMjgsImV4cCI6MjA5NDIyMDEyOH0.KG0XO0oP_2MpewHoIwTtbrKg5FkyOYRUtVzLH1MSJiE";
+
+const studentDb = supabase.createClient(
+  STUDENT_SUPABASE_URL,
+  STUDENT_SUPABASE_ANON_KEY
+);
 
 const websiteLink = "https://academeforge.in";
 
@@ -11396,6 +11740,63 @@ document.addEventListener("DOMContentLoaded", function () {
   if (error) {
     showAuthMessage("err", error.message);
   }
+}
+  function showStudentMessageaf(type, text) {
+  const box = document.getElementById("studentMessageaf");
+  if (!box) return;
+
+  box.className = "student-messageaf " + type;
+  box.textContent = text;
+}
+
+function switchStudentModeaf(mode) {
+  const loginBox = document.getElementById("studentLoginBoxaf");
+  const createBox = document.getElementById("studentCreateBoxaf");
+  const forgotBox = document.getElementById("studentForgotBoxaf");
+
+  const loginTabBtn = document.getElementById("loginTabBtnaf");
+  const createTabBtn = document.getElementById("createTabBtnaf");
+
+  const msg = document.getElementById("studentMessageaf");
+  if (msg) {
+    msg.className = "student-messageaf";
+    msg.textContent = "";
+  }
+
+  if (!loginBox || !createBox || !forgotBox) return;
+
+  loginBox.style.display = "none";
+  createBox.style.display = "none";
+  forgotBox.style.display = "none";
+
+  if (loginTabBtn) loginTabBtn.classList.remove("active");
+  if (createTabBtn) createTabBtn.classList.remove("active");
+
+  if (mode === "login") {
+    loginBox.style.display = "block";
+    if (loginTabBtn) loginTabBtn.classList.add("active");
+  }
+
+  if (mode === "create") {
+    createBox.style.display = "block";
+    if (createTabBtn) createTabBtn.classList.add("active");
+  }
+
+  if (mode === "forgot") {
+    forgotBox.style.display = "block";
+  }
+}
+
+function loginStudentaf() {
+  showStudentMessageaf("ok", "Login system will connect with new backend.");
+}
+
+function createStudentIdaf() {
+  showStudentMessageaf("ok", "Student ID creation will connect with new backend.");
+}
+
+function sendPasswordResetaf() {
+  showStudentMessageaf("ok", "Password reset will connect with new backend.");
 }
 </script>
 
