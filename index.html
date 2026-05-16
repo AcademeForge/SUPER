@@ -11946,10 +11946,17 @@ async function logoutAcademeForge() {
 }
 /* ==============================
    NEW STUDENT SECTION JS - AF
-   Backend: OLD Supabase client = db
-   Table: students
-   Columns: uuid, student_id, name, password, mobile, email, status
+   Backend: NEW Supabase client = studentDb
+   Table: students_af
+   Columns:
+   id, student_id, name, mobile, email, password,
+   status, email_verified, created_at
+
+   NOTE:
+   OTP abhi add nahi hai.
 ================================ */
+
+let afResetStudentId = null;
 
 function showStudentMessageaf(type, text) {
   const box = document.getElementById("studentMessageaf");
@@ -11957,6 +11964,15 @@ function showStudentMessageaf(type, text) {
 
   box.className = "student-messageaf " + type;
   box.textContent = text;
+}
+
+function getStudentBackendaf() {
+  if (typeof studentDb !== "undefined") return studentDb;
+  return null;
+}
+
+function cleanPhoneaf(value) {
+  return String(value || "").trim().replace(/\D/g, "");
 }
 
 function switchStudentModeaf(mode) {
@@ -11967,11 +11983,16 @@ function switchStudentModeaf(mode) {
   const loginTabBtn = document.getElementById("loginTabBtnaf");
   const createTabBtn = document.getElementById("createTabBtnaf");
 
+  const resetArea = document.getElementById("resetPasswordAreaaf");
+
   const msg = document.getElementById("studentMessageaf");
   if (msg) {
     msg.className = "student-messageaf";
     msg.textContent = "";
   }
+
+  afResetStudentId = null;
+  if (resetArea) resetArea.style.display = "none";
 
   if (!loginBox || !createBox || !forgotBox) {
     console.log("Student AF boxes missing");
@@ -11999,12 +12020,13 @@ function switchStudentModeaf(mode) {
     forgotBox.style.display = "block";
   }
 }
+
 async function loginStudentaf() {
   const idInput = document.getElementById("loginPhoneaf");
   const passwordInput = document.getElementById("loginPasswordaf");
 
   const loginId = idInput ? idInput.value.trim() : "";
-  const cleanLoginId = loginId.replace(/\D/g, "");
+  const cleanLoginId = cleanPhoneaf(loginId);
   const password = passwordInput ? passwordInput.value.trim() : "";
 
   if (!loginId) {
@@ -12017,7 +12039,9 @@ async function loginStudentaf() {
     return;
   }
 
-  if (typeof studentDb === "undefined") {
+  const backend = getStudentBackendaf();
+
+  if (!backend) {
     showStudentMessageaf("err", "New student backend is not connected.");
     return;
   }
@@ -12025,7 +12049,7 @@ async function loginStudentaf() {
   showStudentMessageaf("info", "Checking your login...");
 
   try {
-    const { data, error } = await studentDb
+    const { data, error } = await backend
       .from("students_af")
       .select("*")
       .or(
@@ -12033,7 +12057,7 @@ async function loginStudentaf() {
       );
 
     if (error) {
-      console.log("New backend login error:", error);
+      console.log("Login error:", error);
       showStudentMessageaf("err", "Login error: " + error.message);
       return;
     }
@@ -12059,25 +12083,235 @@ async function loginStudentaf() {
       return;
     }
 
-    localStorage.setItem("af_student_logged_in", "true");
-    localStorage.setItem("af_student_uuid", student.id || "");
-    localStorage.setItem("af_student_id", student.student_id || student.mobile || "");
-    localStorage.setItem("af_student_mobile", student.mobile || "");
-    localStorage.setItem("af_student_name", student.name || "Student");
-    localStorage.setItem("af_student_email", student.email || "");
-
+    saveStudentSessionaf(student);
     openCourseSectionAfterLoginaf(student);
 
   } catch (err) {
-    console.error("New backend login catch:", err);
+    console.error("Login catch:", err);
     showStudentMessageaf("err", "Login failed: " + err.message);
   }
 }
-function openCourseSectionAfterLoginaf(studentData) {
-  const authCard =
-    document.getElementById("studentAuthCardaf") ||
-    document.querySelector(".student-cardaf");
 
+async function createStudentIdaf() {
+  const nameInput = document.getElementById("createNameaf");
+  const phoneInput = document.getElementById("createPhoneaf");
+  const emailInput = document.getElementById("createEmailaf");
+  const passwordInput = document.getElementById("createPasswordaf");
+
+  const name = nameInput ? nameInput.value.trim() : "";
+  const mobile = phoneInput ? cleanPhoneaf(phoneInput.value) : "";
+  const email = emailInput ? emailInput.value.trim().toLowerCase() : "";
+  const password = passwordInput ? passwordInput.value.trim() : "";
+
+  if (!name || name.length < 3) {
+    showStudentMessageaf("err", "Enter your full name.");
+    return;
+  }
+
+  if (!mobile || mobile.length < 10) {
+    showStudentMessageaf("err", "Enter a valid phone number.");
+    return;
+  }
+
+  if (!email || !email.includes("@")) {
+    showStudentMessageaf("err", "Enter a valid email address.");
+    return;
+  }
+
+  if (!password || password.length < 4) {
+    showStudentMessageaf("err", "Create a password with at least 4 characters.");
+    return;
+  }
+
+  const backend = getStudentBackendaf();
+
+  if (!backend) {
+    showStudentMessageaf("err", "New student backend is not connected.");
+    return;
+  }
+
+  showStudentMessageaf("info", "Creating your Student ID...");
+
+  try {
+    const { data: existing, error: checkError } = await backend
+      .from("students_af")
+      .select("id, mobile, email, student_id")
+      .or(`mobile.eq.${mobile},email.eq.${email},student_id.eq.${mobile}`);
+
+    if (checkError) {
+      console.log("Duplicate check error:", checkError);
+      showStudentMessageaf("err", "Could not check existing account.");
+      return;
+    }
+
+    if (existing && existing.length > 0) {
+      const mobileExists = existing.some(s => String(s.mobile) === mobile);
+      const emailExists = existing.some(s => String(s.email).toLowerCase() === email);
+      const studentIdExists = existing.some(s => String(s.student_id) === mobile);
+
+      if (mobileExists || studentIdExists) {
+        showStudentMessageaf("err", "This phone number is already registered.");
+        return;
+      }
+
+      if (emailExists) {
+        showStudentMessageaf("err", "This email is already registered.");
+        return;
+      }
+    }
+
+    const newStudent = {
+      student_id: mobile,
+      name: name,
+      mobile: mobile,
+      email: email,
+      password: password,
+      status: "active",
+      email_verified: false
+    };
+
+    const { data, error } = await backend
+      .from("students_af")
+      .insert([newStudent])
+      .select("*")
+      .single();
+
+    if (error) {
+      console.log("Create student error:", error);
+      showStudentMessageaf("err", "Could not create Student ID: " + error.message);
+      return;
+    }
+
+    saveStudentSessionaf(data);
+    showStudentMessageaf("ok", "Student ID created successfully.");
+    openCourseSectionAfterLoginaf(data);
+
+  } catch (err) {
+    console.error("Create Student ID catch:", err);
+    showStudentMessageaf("err", "Create ID failed: " + err.message);
+  }
+}
+
+async function findStudentForResetaf() {
+  const input = document.getElementById("forgotLoginaf");
+  const value = input ? input.value.trim() : "";
+  const cleanValue = cleanPhoneaf(value);
+
+  if (!value) {
+    showStudentMessageaf("err", "Enter your Student ID, phone, or email.");
+    return;
+  }
+
+  const backend = getStudentBackendaf();
+
+  if (!backend) {
+    showStudentMessageaf("err", "New student backend is not connected.");
+    return;
+  }
+
+  showStudentMessageaf("info", "Finding your account...");
+
+  try {
+    const emailValue = value.toLowerCase();
+
+    const { data, error } = await backend
+      .from("students_af")
+      .select("*")
+      .or(
+        `student_id.eq.${value},student_id.eq.${cleanValue},mobile.eq.${value},mobile.eq.${cleanValue},email.eq.${emailValue}`
+      )
+      .limit(1);
+
+    if (error) {
+      console.log("Find reset error:", error);
+      showStudentMessageaf("err", "Account search failed: " + error.message);
+      return;
+    }
+
+    if (!data || data.length === 0) {
+      showStudentMessageaf("err", "No account found with this detail.");
+      return;
+    }
+
+    afResetStudentId = data[0].id;
+
+    const resetArea = document.getElementById("resetPasswordAreaaf");
+    if (resetArea) resetArea.style.display = "block";
+
+    showStudentMessageaf("ok", "Account found. Create your new password.");
+
+  } catch (err) {
+    console.error("Find reset catch:", err);
+    showStudentMessageaf("err", "Account search failed: " + err.message);
+  }
+}
+
+async function resetStudentPasswordaf() {
+  const newPasswordInput = document.getElementById("newPasswordaf");
+  const newPassword = newPasswordInput ? newPasswordInput.value.trim() : "";
+
+  if (!afResetStudentId) {
+    showStudentMessageaf("err", "Please find your account first.");
+    return;
+  }
+
+  if (!newPassword || newPassword.length < 4) {
+    showStudentMessageaf("err", "New password must be at least 4 characters.");
+    return;
+  }
+
+  const backend = getStudentBackendaf();
+
+  if (!backend) {
+    showStudentMessageaf("err", "New student backend is not connected.");
+    return;
+  }
+
+  showStudentMessageaf("info", "Resetting your password...");
+
+  try {
+    const { error } = await backend
+      .from("students_af")
+      .update({ password: newPassword })
+      .eq("id", afResetStudentId);
+
+    if (error) {
+      console.log("Reset password error:", error);
+      showStudentMessageaf("err", "Password reset failed: " + error.message);
+      return;
+    }
+
+    afResetStudentId = null;
+
+    const resetArea = document.getElementById("resetPasswordAreaaf");
+    if (resetArea) resetArea.style.display = "none";
+
+    const newPasswordInput = document.getElementById("newPasswordaf");
+    if (newPasswordInput) newPasswordInput.value = "";
+
+    showStudentMessageaf("ok", "Password reset successful. Please login now.");
+
+    setTimeout(function () {
+      switchStudentModeaf("login");
+    }, 900);
+
+  } catch (err) {
+    console.error("Reset password catch:", err);
+    showStudentMessageaf("err", "Password reset failed: " + err.message);
+  }
+}
+
+function saveStudentSessionaf(student) {
+  localStorage.setItem("af_student_logged_in", "true");
+  localStorage.setItem("af_student_uuid", student.id || "");
+  localStorage.setItem("af_student_id", student.student_id || student.mobile || "");
+  localStorage.setItem("af_student_mobile", student.mobile || "");
+  localStorage.setItem("af_student_name", student.name || "Student");
+  localStorage.setItem("af_student_email", student.email || "");
+}
+
+function openCourseSectionAfterLoginaf(studentData) {
+  const authCard = document.getElementById("studentAuthCardaf");
   const courseSelectBox = document.getElementById("courseSelectBox");
   const courseDetailsBox = document.getElementById("courseDetailsBox");
   const welcomeText = document.getElementById("studentWelcomeText");
@@ -12115,16 +12349,6 @@ function openCourseSectionAfterLoginaf(studentData) {
   if (typeof loadStudentCourses === "function") {
     loadStudentCourses(studentData);
   }
-
-  showStudentMessageaf("ok", "Login successful.");
-}
-
-function createStudentIdaf() {
-  showStudentMessageaf("info", "Create Student ID backend will connect here.");
-}
-
-function sendPasswordResetaf() {
-  showStudentMessageaf("info", "Password reset backend will connect here.");
 }
 
 function logoutStudent() {
@@ -12135,10 +12359,7 @@ function logoutStudent() {
   localStorage.removeItem("af_student_name");
   localStorage.removeItem("af_student_email");
 
-  const authCard =
-    document.getElementById("studentAuthCardaf") ||
-    document.querySelector(".student-cardaf");
-
+  const authCard = document.getElementById("studentAuthCardaf");
   const courseSelectBox = document.getElementById("courseSelectBox");
   const courseDetailsBox = document.getElementById("courseDetailsBox");
 
@@ -12159,13 +12380,12 @@ function logoutStudent() {
   switchStudentModeaf("login");
 }
 
-/* Page reload ke baad already login hai to course section open */
 document.addEventListener("DOMContentLoaded", function () {
   const loggedIn = localStorage.getItem("af_student_logged_in");
 
   if (loggedIn === "true") {
     const studentData = {
-      uuid: localStorage.getItem("af_student_uuid"),
+      id: localStorage.getItem("af_student_uuid"),
       student_id: localStorage.getItem("af_student_id"),
       mobile: localStorage.getItem("af_student_mobile"),
       name: localStorage.getItem("af_student_name"),
