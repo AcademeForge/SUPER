@@ -6517,6 +6517,194 @@ body.dark-mode .create-id-box p,
     border-color: #ef4444 !important;
   }
 }
+    /* =====================================
+   FINAL AF VISIBILITY FIX
+   Works with system dark + JS dark toggle
+   Paste at VERY END
+===================================== */
+
+/* Base / Light Mode */
+#studentaf .student-titleaf,
+#studentaf h1.student-titleaf,
+#studentaf h2.student-titleaf {
+  color: #000000 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.35) !important;
+}
+
+#studentaf .student-subtitleaf,
+#studentaf .student-helpaf,
+#studentaf .student-labelaf,
+#studentaf .student-tabaf,
+#studentaf .student-noteaf {
+  color: #000000 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+#studentaf .student-noteaf b {
+  color: #15803d !important;
+}
+
+/* Light mode input dark */
+#studentaf .student-inputaf {
+  background: #020617 !important;
+  color: #ffffff !important;
+  border: 2px solid #16a34a !important;
+  opacity: 1 !important;
+}
+
+#studentaf .student-inputaf::placeholder {
+  color: #e5e7eb !important;
+  opacity: 1 !important;
+}
+
+/* Green buttons */
+#studentaf .student-main-btnaf,
+#studentaf .student-tabaf.active {
+  background: linear-gradient(135deg, #15803d, #22c55e) !important;
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+/* Forgot Password deep red */
+#studentaf .student-link-btnaf {
+  background: linear-gradient(135deg, #7f1d1d, #b91c1c) !important;
+  color: #ffffff !important;
+  opacity: 1 !important;
+  border: 1px solid rgba(255,255,255,0.18) !important;
+  box-shadow: 0 12px 28px rgba(127, 29, 29, 0.35) !important;
+}
+
+#studentaf .student-link-btnaf:hover {
+  background: linear-gradient(135deg, #991b1b, #dc2626) !important;
+}
+
+
+/* =====================================
+   DARK MODE - covers all common toggles
+===================================== */
+
+@media (prefers-color-scheme: dark) {
+  #studentaf .student-titleaf,
+  #studentaf h1.student-titleaf,
+  #studentaf h2.student-titleaf {
+    color: #ffffff !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    text-shadow:
+      0 2px 8px rgba(0,0,0,0.9),
+      0 0 10px rgba(34,197,94,0.25) !important;
+  }
+
+  #studentaf .student-subtitleaf,
+  #studentaf .student-helpaf,
+  #studentaf .student-labelaf,
+  #studentaf .student-tabaf,
+  #studentaf .student-noteaf {
+    color: #ffffff !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.75) !important;
+  }
+
+  #studentaf .student-inputaf {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 2px solid #22c55e !important;
+  }
+
+  #studentaf .student-inputaf::placeholder {
+    color: #374151 !important;
+    opacity: 1 !important;
+  }
+}
+
+/* If your app uses body.dark */
+body.dark #studentaf .student-titleaf,
+body.dark-mode #studentaf .student-titleaf,
+body.darktheme #studentaf .student-titleaf,
+html.dark #studentaf .student-titleaf,
+html.dark-mode #studentaf .student-titleaf,
+html[data-theme="dark"] #studentaf .student-titleaf,
+body[data-theme="dark"] #studentaf .student-titleaf {
+  color: #ffffff !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  text-shadow:
+    0 2px 8px rgba(0,0,0,0.9),
+    0 0 10px rgba(34,197,94,0.30) !important;
+}
+
+/* Dark mode all text */
+body.dark #studentaf .student-subtitleaf,
+body.dark #studentaf .student-helpaf,
+body.dark #studentaf .student-labelaf,
+body.dark #studentaf .student-tabaf,
+body.dark #studentaf .student-noteaf,
+
+body.dark-mode #studentaf .student-subtitleaf,
+body.dark-mode #studentaf .student-helpaf,
+body.dark-mode #studentaf .student-labelaf,
+body.dark-mode #studentaf .student-tabaf,
+body.dark-mode #studentaf .student-noteaf,
+
+html.dark #studentaf .student-subtitleaf,
+html.dark #studentaf .student-helpaf,
+html.dark #studentaf .student-labelaf,
+html.dark #studentaf .student-tabaf,
+html.dark #studentaf .student-noteaf,
+
+html[data-theme="dark"] #studentaf .student-subtitleaf,
+html[data-theme="dark"] #studentaf .student-helpaf,
+html[data-theme="dark"] #studentaf .student-labelaf,
+html[data-theme="dark"] #studentaf .student-tabaf,
+html[data-theme="dark"] #studentaf .student-noteaf,
+
+body[data-theme="dark"] #studentaf .student-subtitleaf,
+body[data-theme="dark"] #studentaf .student-helpaf,
+body[data-theme="dark"] #studentaf .student-labelaf,
+body[data-theme="dark"] #studentaf .student-tabaf,
+body[data-theme="dark"] #studentaf .student-noteaf {
+  color: #ffffff !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.75) !important;
+}
+
+/* Dark mode input white */
+body.dark #studentaf .student-inputaf,
+body.dark-mode #studentaf .student-inputaf,
+html.dark #studentaf .student-inputaf,
+html[data-theme="dark"] #studentaf .student-inputaf,
+body[data-theme="dark"] #studentaf .student-inputaf {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border: 2px solid #22c55e !important;
+}
+
+/* Dark mode placeholder */
+body.dark #studentaf .student-inputaf::placeholder,
+body.dark-mode #studentaf .student-inputaf::placeholder,
+html.dark #studentaf .student-inputaf::placeholder,
+html[data-theme="dark"] #studentaf .student-inputaf::placeholder,
+body[data-theme="dark"] #studentaf .student-inputaf::placeholder {
+  color: #374151 !important;
+  opacity: 1 !important;
+}
+
+/* Dark mode forgot password red */
+body.dark #studentaf .student-link-btnaf,
+body.dark-mode #studentaf .student-link-btnaf,
+html.dark #studentaf .student-link-btnaf,
+html[data-theme="dark"] #studentaf .student-link-btnaf,
+body[data-theme="dark"] #studentaf .student-link-btnaf {
+  background: linear-gradient(135deg, #7f1d1d, #dc2626) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255,255,255,0.22) !important;
+  box-shadow: 0 12px 28px rgba(220, 38, 38, 0.32) !important;
+}
   </style>
 </head>
 
