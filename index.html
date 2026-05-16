@@ -13687,21 +13687,6 @@ function logoutStudentaf() {
 
   location.reload();
 }
-
-/* ==============================
-   Auto Load If Already Logged In
-================================ */
-
-document.addEventListener("DOMContentLoaded", function () {
-  const studentUuidaf =
-    localStorage.getItem("af_student_uuid") ||
-    localStorage.getItem("student_uuid") ||
-    localStorage.getItem("student_id_uuid");
-
-  if (studentUuidaf) {
-    loadStudentCoursesaf();
-  }
-});
 </script>
 </body>
 </html>
