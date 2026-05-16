@@ -7697,6 +7697,81 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
         <b>academeforge@gmail.com</b> with your name and WhatsApp number.
       </div>
     </div>
+
+    <div class="panel glass hidden-box" id="courseSelectBox">
+  <h2>📚 Select Course</h2>
+  <p id="studentWelcomeTextaf">Welcome Student</p>
+  <p>Your enrolled programs are ready to explore.</p>
+
+  <div class="course-select-grid" id="courseCardsaf"></div>
+
+  <button class="link-btn secondary" onclick="logoutStudentaf()">Logout</button>
+</div>
+
+<div class="panel glass hidden-box" id="courseDetailsBoxaf">
+  <button class="back-mini" onclick="backToCoursesaf()">← Back to Courses</button>
+
+  <h2 id="courseTitleaf">Course Name</h2>
+  <p id="courseIntroaf">Course intro will appear here.</p>
+
+  <div class="course-info-box">
+    <h3>📌 Course Details</h3>
+    <p id="courseDetailsaf"></p>
+  </div>
+
+  <div class="course-info-box">
+    <h3>🧾 Syllabus</h3>
+    <ul id="courseSyllabusaf"></ul>
+  </div>
+
+  <div class="course-info-box">
+    <h3>🏫 Facilities</h3>
+    <ul id="courseFacilitiesaf"></ul>
+  </div>
+
+  <button class="link-btn" onclick="startLearningaf()">Start Learning</button>
+</div>
+
+<div class="panel glass hidden-box" id="learningBoxaf">
+  <button class="back-mini" onclick="backToCourseDetailsaf()">← Back to Course</button>
+
+  <h2 id="learningTitleaf">Start Learning</h2>
+  <p>Select what you want to access.</p>
+
+  <div class="learning-choice">
+    <button class="learning-btn" onclick="openLearningModeaf('lectures')">
+      <span>🎥</span>
+      <strong>Lectures</strong>
+      <small>Chapter-wise video lecture list</small>
+    </button>
+
+    <button class="learning-btn" onclick="openLearningModeaf('notes')">
+      <span>📝</span>
+      <strong>Notes</strong>
+      <small>Chapter-wise study notes list</small>
+    </button>
+  </div>
+</div>
+
+<div class="panel glass hidden-box" id="chapterBoxaf">
+  <button class="back-mini" onclick="backToLearningaf()">← Back</button>
+
+  <h2 id="chapterModeTitleaf">Lectures</h2>
+  <p>Select a chapter to continue.</p>
+
+  <div class="chapter-list" id="chapterListaf"></div>
+</div>
+
+<div class="panel glass hidden-box" id="contentBoxaf">
+  <button class="back-mini" onclick="backToChaptersaf()">← Back to Chapters</button>
+
+  <h2 id="contentTitleaf">Chapter Content</h2>
+  <p id="contentSubtitleaf">Select and study one by one.</p>
+
+  <div class="content-list" id="contentListaf"></div>
+</div>
+    </section>
+   <!--   
     <div class="panel glass hidden-box" id="courseSelectBox">
     <h2>📚 Select Course</h2>
 <p id="studentWelcomeText">Welcome Student</p>
@@ -7767,7 +7842,7 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
     <p id="contentSubtitle">Select and study one by one.</p>
 
     <div class="content-list" id="contentList"></div>
-  </div>
+  </div> -->
 </section>
     
      <!-- Community Tab -->
