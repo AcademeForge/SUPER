@@ -11985,16 +11985,13 @@ function switchStudentModeaf(mode) {
     forgotBox.style.display = "block";
   }
 }
-
 async function loginStudentaf() {
-  const phoneInput = document.getElementById("loginPhoneaf");
+  const idInput = document.getElementById("loginPhoneaf");
   const passwordInput = document.getElementById("loginPasswordaf");
 
-  let loginId = phoneInput ? phoneInput.value.trim() : "";
-  const password = passwordInput ? passwordInput.value.trim() : "";
-
-  // remove spaces, dashes, brackets from phone input
+  const loginId = idInput ? idInput.value.trim() : "";
   const cleanLoginId = loginId.replace(/\D/g, "");
+  const password = passwordInput ? passwordInput.value.trim() : "";
 
   if (!loginId) {
     showStudentMessageaf("err", "Enter your Student ID / phone number.");
@@ -12006,32 +12003,29 @@ async function loginStudentaf() {
     return;
   }
 
-  if (typeof db === "undefined") {
-    showStudentMessageaf("err", "Backend is not connected. db not found.");
+  if (typeof studentDb === "undefined") {
+    showStudentMessageaf("err", "New student backend is not connected.");
     return;
   }
 
   showStudentMessageaf("info", "Checking your login...");
 
   try {
-    // Search by mobile OR student_id
-    const { data, error } = await db
-      .from("students")
+    const { data, error } = await studentDb
+      .from("students_af")
       .select("*")
       .or(
-        `mobile.eq.${loginId},mobile.eq.${cleanLoginId},student_id.eq.${loginId},student_id.eq.${cleanLoginId}`
+        `student_id.eq.${loginId},student_id.eq.${cleanLoginId},mobile.eq.${loginId},mobile.eq.${cleanLoginId}`
       );
 
-    console.log("AF LOGIN SEARCH:", data);
-    console.log("AF LOGIN ERROR:", error);
-
     if (error) {
-      showStudentMessageaf("err", "Login search error: " + error.message);
+      console.log("New backend login error:", error);
+      showStudentMessageaf("err", "Login error: " + error.message);
       return;
     }
 
     if (!data || data.length === 0) {
-      showStudentMessageaf("err", "No student found with this Student ID / phone number.");
+      showStudentMessageaf("err", "No student found with this ID / phone number.");
       return;
     }
 
@@ -12047,12 +12041,12 @@ async function loginStudentaf() {
     const status = String(student.status || "").trim().toLowerCase();
 
     if (status !== "active") {
-      showStudentMessageaf("err", "Student found, but account is not active.");
+      showStudentMessageaf("err", "Your account is not active.");
       return;
     }
 
     localStorage.setItem("af_student_logged_in", "true");
-    localStorage.setItem("af_student_uuid", student.uuid || "");
+    localStorage.setItem("af_student_uuid", student.id || "");
     localStorage.setItem("af_student_id", student.student_id || student.mobile || "");
     localStorage.setItem("af_student_mobile", student.mobile || "");
     localStorage.setItem("af_student_name", student.name || "Student");
@@ -12061,8 +12055,8 @@ async function loginStudentaf() {
     openCourseSectionAfterLoginaf(student);
 
   } catch (err) {
-    console.error("AF LOGIN CATCH ERROR:", err);
-    showStudentMessageaf("err", "Catch error: " + err.message);
+    console.error("New backend login catch:", err);
+    showStudentMessageaf("err", "Login failed: " + err.message);
   }
 }
 function openCourseSectionAfterLoginaf(studentData) {
