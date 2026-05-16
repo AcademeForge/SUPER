@@ -7230,6 +7230,345 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
     color: #fecaca;
   }
 }
+    /* ==============================
+   AF STUDENT DASHBOARD THEME FIX
+   Paste at very END of CSS file
+   Light = white bg + black text
+   Dark = dark bg + white text
+================================ */
+
+/* ---------- LIGHT MODE DEFAULT ---------- */
+
+#studentaf {
+  background:
+    radial-gradient(circle at top left, rgba(22, 163, 74, 0.12), transparent 34%),
+    radial-gradient(circle at top right, rgba(37, 99, 235, 0.10), transparent 32%),
+    linear-gradient(135deg, #ffffff 0%, #f8fafc 45%, #f0fdf4 100%) !important;
+  color: #0f172a !important;
+}
+
+#studentaf .student-dashboardaf,
+#studentaf #courseSelectBox,
+#studentaf #noCourseBoxaf,
+#studentaf #courseDetailsBoxaf,
+#studentaf #learningBoxaf,
+#studentaf #chapterBoxaf,
+#studentaf #contentBoxaf {
+  background: rgba(255, 255, 255, 0.96) !important;
+  color: #0f172a !important;
+  border: 1px solid rgba(148, 163, 184, 0.34) !important;
+  box-shadow:
+    0 24px 70px rgba(15, 23, 42, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.78) !important;
+}
+
+/* Main headings/text light */
+#studentaf .student-dashboardaf h1,
+#studentaf .student-dashboardaf h2,
+#studentaf .student-dashboardaf h3,
+#studentaf #courseSelectBox h1,
+#studentaf #courseSelectBox h2,
+#studentaf #courseSelectBox h3,
+#studentaf #courseDetailsBoxaf h1,
+#studentaf #courseDetailsBoxaf h2,
+#studentaf #courseDetailsBoxaf h3,
+#studentaf #learningBoxaf h1,
+#studentaf #learningBoxaf h2,
+#studentaf #learningBoxaf h3,
+#studentaf #chapterBoxaf h1,
+#studentaf #chapterBoxaf h2,
+#studentaf #chapterBoxaf h3,
+#studentaf #contentBoxaf h1,
+#studentaf #contentBoxaf h2,
+#studentaf #contentBoxaf h3 {
+  color: #0f172a !important;
+}
+
+/* Paragraph/list/small light */
+#studentaf .student-dashboardaf p,
+#studentaf .student-dashboardaf li,
+#studentaf .student-dashboardaf small,
+#studentaf #courseSelectBox p,
+#studentaf #courseSelectBox li,
+#studentaf #courseSelectBox small,
+#studentaf #courseDetailsBoxaf p,
+#studentaf #courseDetailsBoxaf li,
+#studentaf #courseDetailsBoxaf small,
+#studentaf #learningBoxaf p,
+#studentaf #learningBoxaf li,
+#studentaf #learningBoxaf small,
+#studentaf #chapterBoxaf p,
+#studentaf #chapterBoxaf li,
+#studentaf #chapterBoxaf small,
+#studentaf #contentBoxaf p,
+#studentaf #contentBoxaf li,
+#studentaf #contentBoxaf small {
+  color: #334155 !important;
+}
+
+/* Welcome green */
+#studentaf #studentWelcomeTextaf {
+  color: #15803d !important;
+  font-weight: 950 !important;
+}
+
+/* Course cards light */
+#studentaf .course-cardaf,
+#studentaf .learning-btnaf,
+#studentaf .chapter-itemaf,
+#studentaf .content-itemaf,
+#studentaf .course-info-boxaf {
+  background:
+    linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
+  color: #0f172a !important;
+  border: 1px solid rgba(148, 163, 184, 0.30) !important;
+}
+
+/* Card text light */
+#studentaf .course-cardaf h3,
+#studentaf .course-cardaf strong,
+#studentaf .learning-btnaf strong,
+#studentaf .chapter-itemaf strong,
+#studentaf .content-itemaf strong,
+#studentaf .course-info-boxaf h3 {
+  color: #0f172a !important;
+}
+
+#studentaf .course-cardaf p,
+#studentaf .course-cardaf small,
+#studentaf .learning-btnaf small,
+#studentaf .chapter-itemaf small,
+#studentaf .content-itemaf small,
+#studentaf .course-info-boxaf p,
+#studentaf .course-info-boxaf li {
+  color: #334155 !important;
+}
+
+/* Green highlight light */
+#studentaf .course-info-boxaf h3,
+#studentaf .durationaf,
+#studentaf .unlockedaf .chapter-statusaf {
+  color: #166534 !important;
+}
+
+/* Red highlight light */
+#studentaf .student-logoutaf,
+#studentaf .lockedaf .chapter-statusaf,
+#studentaf .locked-btnaf,
+#studentaf .no-course-cardaf h2 {
+  color: #991b1b !important;
+}
+
+/* Icon bg light */
+#studentaf .course-card-iconaf,
+#studentaf .course-detail-iconaf {
+  background: linear-gradient(135deg, #dcfce7, #eff6ff) !important;
+  border: 1px solid rgba(22, 163, 74, 0.18) !important;
+}
+
+/* Buttons light */
+#studentaf .back-miniaf {
+  background: rgba(37, 99, 235, 0.10) !important;
+  color: #1d4ed8 !important;
+}
+
+#studentaf .student-logoutaf {
+  background: rgba(153, 27, 27, 0.10) !important;
+  color: #991b1b !important;
+}
+
+#studentaf .content-actionaf:not(:disabled),
+#studentaf .student-main-btnaf {
+  background: linear-gradient(135deg, #16a34a, #22c55e) !important;
+  color: #ffffff !important;
+}
+
+/* Status badges light */
+#studentaf .unlockedaf .chapter-statusaf {
+  background: rgba(22, 163, 74, 0.12) !important;
+  color: #166534 !important;
+}
+
+#studentaf .lockedaf .chapter-statusaf,
+#studentaf .locked-btnaf {
+  background: rgba(153, 27, 27, 0.10) !important;
+  color: #991b1b !important;
+}
+
+/* Info states light */
+#studentaf .loading-textaf {
+  background: rgba(37, 99, 235, 0.08) !important;
+  color: #1d4ed8 !important;
+}
+
+#studentaf .empty-textaf {
+  background: rgba(148, 163, 184, 0.12) !important;
+  color: #475569 !important;
+}
+
+#studentaf .error-textaf {
+  background: rgba(153, 27, 27, 0.10) !important;
+  color: #991b1b !important;
+}
+
+
+/* ---------- DARK MODE ---------- */
+
+@media (prefers-color-scheme: dark) {
+  #studentaf {
+    background:
+      radial-gradient(circle at top left, rgba(34, 197, 94, 0.16), transparent 34%),
+      radial-gradient(circle at top right, rgba(59, 130, 246, 0.14), transparent 32%),
+      linear-gradient(135deg, #020617 0%, #0f172a 48%, #052e16 100%) !important;
+    color: #f8fafc !important;
+  }
+
+  #studentaf .student-dashboardaf,
+  #studentaf #courseSelectBox,
+  #studentaf #noCourseBoxaf,
+  #studentaf #courseDetailsBoxaf,
+  #studentaf #learningBoxaf,
+  #studentaf #chapterBoxaf,
+  #studentaf #contentBoxaf {
+    background: rgba(15, 23, 42, 0.94) !important;
+    color: #f8fafc !important;
+    border-color: rgba(148, 163, 184, 0.20) !important;
+    box-shadow:
+      0 24px 70px rgba(0, 0, 0, 0.34),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+  }
+
+  #studentaf .student-dashboardaf h1,
+  #studentaf .student-dashboardaf h2,
+  #studentaf .student-dashboardaf h3,
+  #studentaf #courseSelectBox h1,
+  #studentaf #courseSelectBox h2,
+  #studentaf #courseSelectBox h3,
+  #studentaf #courseDetailsBoxaf h1,
+  #studentaf #courseDetailsBoxaf h2,
+  #studentaf #courseDetailsBoxaf h3,
+  #studentaf #learningBoxaf h1,
+  #studentaf #learningBoxaf h2,
+  #studentaf #learningBoxaf h3,
+  #studentaf #chapterBoxaf h1,
+  #studentaf #chapterBoxaf h2,
+  #studentaf #chapterBoxaf h3,
+  #studentaf #contentBoxaf h1,
+  #studentaf #contentBoxaf h2,
+  #studentaf #contentBoxaf h3 {
+    color: #ffffff !important;
+  }
+
+  #studentaf .student-dashboardaf p,
+  #studentaf .student-dashboardaf li,
+  #studentaf .student-dashboardaf small,
+  #studentaf #courseSelectBox p,
+  #studentaf #courseSelectBox li,
+  #studentaf #courseSelectBox small,
+  #studentaf #courseDetailsBoxaf p,
+  #studentaf #courseDetailsBoxaf li,
+  #studentaf #courseDetailsBoxaf small,
+  #studentaf #learningBoxaf p,
+  #studentaf #learningBoxaf li,
+  #studentaf #learningBoxaf small,
+  #studentaf #chapterBoxaf p,
+  #studentaf #chapterBoxaf li,
+  #studentaf #chapterBoxaf small,
+  #studentaf #contentBoxaf p,
+  #studentaf #contentBoxaf li,
+  #studentaf #contentBoxaf small {
+    color: #cbd5e1 !important;
+  }
+
+  #studentaf #studentWelcomeTextaf {
+    color: #86efac !important;
+  }
+
+  #studentaf .course-cardaf,
+  #studentaf .learning-btnaf,
+  #studentaf .chapter-itemaf,
+  #studentaf .content-itemaf,
+  #studentaf .course-info-boxaf {
+    background:
+      linear-gradient(135deg, rgba(2, 6, 23, 0.82), rgba(15, 23, 42, 0.86)) !important;
+    color: #f8fafc !important;
+    border-color: rgba(148, 163, 184, 0.18) !important;
+  }
+
+  #studentaf .course-cardaf h3,
+  #studentaf .course-cardaf strong,
+  #studentaf .learning-btnaf strong,
+  #studentaf .chapter-itemaf strong,
+  #studentaf .content-itemaf strong,
+  #studentaf .course-info-boxaf h3 {
+    color: #ffffff !important;
+  }
+
+  #studentaf .course-cardaf p,
+  #studentaf .course-cardaf small,
+  #studentaf .learning-btnaf small,
+  #studentaf .chapter-itemaf small,
+  #studentaf .content-itemaf small,
+  #studentaf .course-info-boxaf p,
+  #studentaf .course-info-boxaf li {
+    color: #cbd5e1 !important;
+  }
+
+  #studentaf .course-info-boxaf h3,
+  #studentaf .durationaf,
+  #studentaf .unlockedaf .chapter-statusaf {
+    color: #86efac !important;
+  }
+
+  #studentaf .student-logoutaf,
+  #studentaf .lockedaf .chapter-statusaf,
+  #studentaf .locked-btnaf,
+  #studentaf .no-course-cardaf h2 {
+    color: #fecaca !important;
+  }
+
+  #studentaf .course-card-iconaf,
+  #studentaf .course-detail-iconaf {
+    background: linear-gradient(135deg, rgba(22, 163, 74, 0.22), rgba(37, 99, 235, 0.18)) !important;
+    border-color: rgba(148, 163, 184, 0.18) !important;
+  }
+
+  #studentaf .back-miniaf {
+    background: rgba(59, 130, 246, 0.16) !important;
+    color: #93c5fd !important;
+  }
+
+  #studentaf .student-logoutaf {
+    background: rgba(239, 68, 68, 0.14) !important;
+    color: #fecaca !important;
+  }
+
+  #studentaf .unlockedaf .chapter-statusaf {
+    background: rgba(34, 197, 94, 0.14) !important;
+    color: #86efac !important;
+  }
+
+  #studentaf .lockedaf .chapter-statusaf,
+  #studentaf .locked-btnaf {
+    background: rgba(239, 68, 68, 0.14) !important;
+    color: #fecaca !important;
+  }
+
+  #studentaf .loading-textaf {
+    background: rgba(59, 130, 246, 0.14) !important;
+    color: #bfdbfe !important;
+  }
+
+  #studentaf .empty-textaf {
+    background: rgba(148, 163, 184, 0.12) !important;
+    color: #cbd5e1 !important;
+  }
+
+  #studentaf .error-textaf {
+    background: rgba(239, 68, 68, 0.14) !important;
+    color: #fecaca !important;
+  }
+}
   </style>
 </head>
 
