@@ -11990,10 +11990,13 @@ async function loginStudentaf() {
   const phoneInput = document.getElementById("loginPhoneaf");
   const passwordInput = document.getElementById("loginPasswordaf");
 
-  const phone = phoneInput ? phoneInput.value.trim() : "";
+  let loginId = phoneInput ? phoneInput.value.trim() : "";
   const password = passwordInput ? passwordInput.value.trim() : "";
 
-  if (!phone) {
+  // remove spaces, dashes, brackets from phone input
+  const cleanLoginId = loginId.replace(/\D/g, "");
+
+  if (!loginId) {
     showStudentMessageaf("err", "Enter your Student ID / phone number.");
     return;
   }
@@ -12005,82 +12008,57 @@ async function loginStudentaf() {
 
   if (typeof db === "undefined") {
     showStudentMessageaf("err", "Backend is not connected. db not found.");
-    console.log("db not found");
     return;
   }
 
-  showStudentMessageaf("info", "Checking backend...");
+  showStudentMessageaf("info", "Checking your login...");
 
   try {
-    // TEST 1: Can we read students table?
-    const testRead = await db
+    // Search by mobile OR student_id
+    const { data, error } = await db
       .from("students")
       .select("*")
-      .limit(3);
+      .or(
+        `mobile.eq.${loginId},mobile.eq.${cleanLoginId},student_id.eq.${loginId},student_id.eq.${cleanLoginId}`
+      );
 
-    console.log("AF TEST READ:", testRead);
+    console.log("AF LOGIN SEARCH:", data);
+    console.log("AF LOGIN ERROR:", error);
 
-    if (testRead.error) {
-      showStudentMessageaf("err", "Table read error: " + testRead.error.message);
+    if (error) {
+      showStudentMessageaf("err", "Login search error: " + error.message);
       return;
     }
 
-    // TEST 2: Find by mobile only
-    const mobileCheck = await db
-      .from("students")
-      .select("*")
-      .eq("mobile", phone);
-
-    console.log("AF MOBILE CHECK:", mobileCheck);
-
-    if (mobileCheck.error) {
-      showStudentMessageaf("err", "Mobile check error: " + mobileCheck.error.message);
+    if (!data || data.length === 0) {
+      showStudentMessageaf("err", "No student found with this Student ID / phone number.");
       return;
     }
 
-    if (!mobileCheck.data || mobileCheck.data.length === 0) {
-      showStudentMessageaf("err", "No student found with this phone number.");
-      return;
-    }
-
-    // TEST 3: Find by mobile + password
-    const passCheck = await db
-      .from("students")
-      .select("*")
-      .eq("mobile", phone)
-      .eq("password", password);
-
-    console.log("AF PASSWORD CHECK:", passCheck);
-
-    if (passCheck.error) {
-      showStudentMessageaf("err", "Password check error: " + passCheck.error.message);
-      return;
-    }
-
-    if (!passCheck.data || passCheck.data.length === 0) {
-      showStudentMessageaf("err", "Phone found, but password is wrong.");
-      return;
-    }
-
-    // TEST 4: Active status check
-    const activeStudent = passCheck.data.find(function (student) {
-      return String(student.status || "").trim().toLowerCase() === "active";
+    const student = data.find(function (s) {
+      return String(s.password || "").trim() === password;
     });
 
-    if (!activeStudent) {
-      showStudentMessageaf("err", "Student found, but status is not active.");
-      console.log("Status values found:", passCheck.data.map(s => s.status));
+    if (!student) {
+      showStudentMessageaf("err", "Student found, but password is wrong.");
+      return;
+    }
+
+    const status = String(student.status || "").trim().toLowerCase();
+
+    if (status !== "active") {
+      showStudentMessageaf("err", "Student found, but account is not active.");
       return;
     }
 
     localStorage.setItem("af_student_logged_in", "true");
-    localStorage.setItem("af_student_uuid", activeStudent.uuid || "");
-    localStorage.setItem("af_student_id", activeStudent.student_id || activeStudent.mobile || "");
-    localStorage.setItem("af_student_mobile", activeStudent.mobile || "");
-    localStorage.setItem("af_student_name", activeStudent.name || "Student");
-    localStorage.setItem("af_student_email", activeStudent.email || "");
+    localStorage.setItem("af_student_uuid", student.uuid || "");
+    localStorage.setItem("af_student_id", student.student_id || student.mobile || "");
+    localStorage.setItem("af_student_mobile", student.mobile || "");
+    localStorage.setItem("af_student_name", student.name || "Student");
+    localStorage.setItem("af_student_email", student.email || "");
 
-    openCourseSectionAfterLoginaf(activeStudent);
+    openCourseSectionAfterLoginaf(student);
 
   } catch (err) {
     console.error("AF LOGIN CATCH ERROR:", err);
