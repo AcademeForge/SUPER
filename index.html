@@ -12040,6 +12040,27 @@ function createStudentIdaf() {
 function sendPasswordResetaf() {
   showStudentMessageaf("ok", "Password reset backend will connect here.");
 }
+  function logoutStudent() {
+  const authCard = document.getElementById("studentAuthCardaf");
+  const courseSelectBox = document.getElementById("courseSelectBox");
+  const courseDetailsBox = document.getElementById("courseDetailsBox");
+
+  if (courseSelectBox) {
+    courseSelectBox.classList.add("hidden-box");
+    courseSelectBox.style.display = "none";
+  }
+
+  if (courseDetailsBox) {
+    courseDetailsBox.classList.add("hidden-box");
+    courseDetailsBox.style.display = "none";
+  }
+
+  if (authCard) {
+    authCard.style.display = "block";
+  }
+
+  switchStudentModeaf("login");
+}
   
 </script>
 </body>
