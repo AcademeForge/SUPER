@@ -7098,7 +7098,7 @@ body.dark-mode .create-id-box p,
 <section id="studentaf" class="section">
   <div class="student-wrapaf">
 
-    <div class="student-cardaf">
+    <div class="student-cardaf" id="studentAuthCardaf">
       <div class="student-iconaf">🎓</div>
 
       <h2 class="student-titleaf">Student ID Access</h2>
@@ -11924,7 +11924,127 @@ async function logoutAcademeForge() {
     authGate.style.display = "flex";
   }
 }
-</script>
+  /* ==============================
+   NEW STUDENT SECTION JS - AF
+   Backend abhi connect nahi hai
+================================ */
 
+function showStudentMessageaf(type, text) {
+  const box = document.getElementById("studentMessageaf");
+  if (!box) return;
+
+  box.className = "student-messageaf " + type;
+  box.textContent = text;
+}
+
+function switchStudentModeaf(mode) {
+  const loginBox = document.getElementById("studentLoginBoxaf");
+  const createBox = document.getElementById("studentCreateBoxaf");
+  const forgotBox = document.getElementById("studentForgotBoxaf");
+
+  const loginTabBtn = document.getElementById("loginTabBtnaf");
+  const createTabBtn = document.getElementById("createTabBtnaf");
+
+  const msg = document.getElementById("studentMessageaf");
+  if (msg) {
+    msg.className = "student-messageaf";
+    msg.textContent = "";
+  }
+
+  if (!loginBox || !createBox || !forgotBox) {
+    console.log("Student AF boxes missing");
+    return;
+  }
+
+  loginBox.style.display = "none";
+  createBox.style.display = "none";
+  forgotBox.style.display = "none";
+
+  if (loginTabBtn) loginTabBtn.classList.remove("active");
+  if (createTabBtn) createTabBtn.classList.remove("active");
+
+  if (mode === "login") {
+    loginBox.style.display = "block";
+    if (loginTabBtn) loginTabBtn.classList.add("active");
+  }
+
+  if (mode === "create") {
+    createBox.style.display = "block";
+    if (createTabBtn) createTabBtn.classList.add("active");
+  }
+
+  if (mode === "forgot") {
+    forgotBox.style.display = "block";
+  }
+}
+
+function loginStudentaf() {
+  const phoneInput = document.getElementById("loginPhoneaf");
+  const passwordInput = document.getElementById("loginPasswordaf");
+
+  const phone = phoneInput ? phoneInput.value.trim() : "";
+  const password = passwordInput ? passwordInput.value.trim() : "";
+
+  if (!phone) {
+    showStudentMessageaf("err", "Enter your Student ID / phone number.");
+    return;
+  }
+
+  if (!password) {
+    showStudentMessageaf("err", "Enter your password.");
+    return;
+  }
+
+  const authCard = document.getElementById("studentAuthCardaf");
+  const courseSelectBox = document.getElementById("courseSelectBox");
+  const courseDetailsBox = document.getElementById("courseDetailsBox");
+  const welcomeText = document.getElementById("studentWelcomeText");
+
+  if (authCard) {
+    authCard.style.display = "none";
+  }
+
+  if (courseDetailsBox) {
+    courseDetailsBox.classList.add("hidden-box");
+    courseDetailsBox.style.display = "none";
+  }
+
+  if (courseSelectBox) {
+    courseSelectBox.classList.remove("hidden-box");
+    courseSelectBox.style.display = "block";
+  } else {
+    console.log("courseSelectBox not found");
+  }
+
+  if (welcomeText) {
+    welcomeText.textContent = "Welcome Student";
+  }
+
+  /*
+    Agar old course cards render karne ka function hai,
+    to ye auto call karne ki koshish karega.
+  */
+  if (typeof renderCourses === "function") {
+    renderCourses();
+  }
+
+  if (typeof loadCourses === "function") {
+    loadCourses();
+  }
+
+  if (typeof loadStudentCourses === "function") {
+    loadStudentCourses();
+  }
+}
+
+function createStudentIdaf() {
+  showStudentMessageaf("ok", "Create Student ID backend will connect here.");
+}
+
+function sendPasswordResetaf() {
+  showStudentMessageaf("ok", "Password reset backend will connect here.");
+}
+  
+</script>
 </body>
 </html>
