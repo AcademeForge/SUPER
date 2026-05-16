@@ -11709,63 +11709,7 @@ document.addEventListener("DOMContentLoaded", function () {
     showAuthMessage("err", error.message);
   }
 }
-  function showStudentMessageaf(type, text) {
-  const box = document.getElementById("studentMessageaf");
-  if (!box) return;
-
-  box.className = "student-messageaf " + type;
-  box.textContent = text;
-}
-
-function switchStudentModeaf(mode) {
-  const loginBox = document.getElementById("studentLoginBoxaf");
-  const createBox = document.getElementById("studentCreateBoxaf");
-  const forgotBox = document.getElementById("studentForgotBoxaf");
-
-  const loginTabBtn = document.getElementById("loginTabBtnaf");
-  const createTabBtn = document.getElementById("createTabBtnaf");
-
-  const msg = document.getElementById("studentMessageaf");
-  if (msg) {
-    msg.className = "student-messageaf";
-    msg.textContent = "";
-  }
-
-  if (!loginBox || !createBox || !forgotBox) return;
-
-  loginBox.style.display = "none";
-  createBox.style.display = "none";
-  forgotBox.style.display = "none";
-
-  if (loginTabBtn) loginTabBtn.classList.remove("active");
-  if (createTabBtn) createTabBtn.classList.remove("active");
-
-  if (mode === "login") {
-    loginBox.style.display = "block";
-    if (loginTabBtn) loginTabBtn.classList.add("active");
-  }
-
-  if (mode === "create") {
-    createBox.style.display = "block";
-    if (createTabBtn) createTabBtn.classList.add("active");
-  }
-
-  if (mode === "forgot") {
-    forgotBox.style.display = "block";
-  }
-}
-
-function loginStudentaf() {
-  showStudentMessageaf("ok", "Login system will connect with new backend.");
-}
-
-function createStudentIdaf() {
-  showStudentMessageaf("ok", "Student ID creation will connect with new backend.");
-}
-
-function sendPasswordResetaf() {
-  showStudentMessageaf("ok", "Password reset will connect with new backend.");
-}
+ 
 </script>
 
 </body>
