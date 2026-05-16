@@ -5907,7 +5907,7 @@ body.dark-mode .create-id-box p,
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 7px;
-  padding: 6px; 
+  padding: 6px;
   margin: 0 0 18px;
   border-radius: 20px;
   background: #e2e8f0;
@@ -7569,13 +7569,9 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
     color: #fecaca !important;
   }
 }
- /* ==============================
+  /* ==============================
    BATCH PURCHASE SECTION - AF
 ================================ */
-
-.hidden-box {
-  display: none !important;
-}
 
 #batchaf {
   min-height: 100vh;
@@ -7595,6 +7591,10 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
 
 .batch-pageaf {
   width: 100%;
+}
+
+.hidden-box {
+  display: none !important;
 }
 
 .batch-topbaraf {
@@ -7658,6 +7658,8 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
   grid-template-columns: 1fr;
   gap: 18px;
 }
+
+/* Batch Card */
 
 .batch-cardaf {
   overflow: hidden;
@@ -7956,39 +7958,6 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
   padding-left: 19px;
 }
 
-/* Enrolled State */
-
-.batch-enrolled-btnaf {
-  background: linear-gradient(135deg, #15803d, #22c55e) !important;
-  color: #ffffff !important;
-  cursor: not-allowed !important;
-  opacity: 1 !important;
-  box-shadow: 0 12px 26px rgba(34, 197, 94, 0.22) !important;
-}
-
-.batch-enrolled-cardaf {
-  border-color: rgba(34, 197, 94, 0.38) !important;
-}
-
-.batch-enrolled-btnaf:disabled {
-  filter: none !important;
-  transform: none !important;
-}
-
-.batch-enrolled-tagaf {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: fit-content;
-  padding: 7px 11px;
-  border-radius: 999px;
-  background: rgba(34, 197, 94, 0.13);
-  color: #15803d;
-  border: 1px solid rgba(34, 197, 94, 0.22);
-  font-size: 12px;
-  font-weight: 950;
-}
-
 /* Mobile */
 
 @media (max-width: 520px) {
@@ -8106,7 +8075,39 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
     background: rgba(59, 130, 246, 0.16);
     color: #93c5fd;
   }
+}
+    .batch-enrolled-btnaf {
+  background: linear-gradient(135deg, #15803d, #22c55e) !important;
+  color: #ffffff !important;
+  cursor: not-allowed !important;
+  opacity: 1 !important;
+  box-shadow: 0 12px 26px rgba(34, 197, 94, 0.22) !important;
+}
 
+.batch-enrolled-cardaf {
+  border-color: rgba(34, 197, 94, 0.38) !important;
+}
+
+.batch-enrolled-btnaf:disabled {
+  filter: none !important;
+  transform: none !important;
+}
+
+.batch-enrolled-tagaf {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: rgba(34, 197, 94, 0.13);
+  color: #15803d;
+  border: 1px solid rgba(34, 197, 94, 0.22);
+  font-size: 12px;
+  font-weight: 950;
+}
+
+@media (prefers-color-scheme: dark) {
   .batch-enrolled-tagaf {
     background: rgba(34, 197, 94, 0.18);
     color: #86efac;
@@ -8211,7 +8212,8 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
        <a href="https://academeforge.in/" class="time-box glass">
   <strong id="time">Website</strong>
   <span id="date">academeforge.in</span>
-</a>   
+</a>
+        
       </div>
 
     </header>
@@ -8253,6 +8255,8 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
       <span>🔔This is Beta version, Contents of AF Nexus is being updated....</span>
       <span>🔔This is Beta version, Contents of AF Nexus is being updated....</span>
       <span>🔔This is Beta version, Contents of AF Nexus is being updated....</span>
+      <span>🔔This is Beta version, Contents of AF Nexus is being updated....</span>
+      <span>🔔This is Beta version, Contents of AF Nexus is being updated....</span>
     </div>
   </div>
 
@@ -8266,8 +8270,605 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
       </div>
     </button>
 
-    <!-- EXPLORE ACADEMEFORGE BUTTON -->
+    <button class="action-card glass" onclick="showSection('office')">
+      <div class="icon">🏢</div>
+      <div>
+        <h3>Office Login</h3>
+        <p>For team, office, management, and internal operations.</p>
+      </div>
+    </button>
+  </div>
 
+  <!-- EXPLORE + TEAM -->
+  <div class="actions home-extra-actions">
+    <button class="action-card glass wide" onclick="showSection('explore')">
+      <div class="icon">✨</div>
+      <div>
+        <h3>Explore Without Login</h3>
+        <p>Read about AcademeForge, courses, programs, AST, and contact details.</p>
+      </div>
+    </button>
+
+    <button class="action-card glass wide" onclick="showSection('management')">
+      <div class="icon">👥</div>
+      <div>
+        <h3>Management & Team</h3>
+        <p>Know the people behind AcademeForge and their roles.</p>
+      </div>
+    </button>
+  </div>
+     
+<div class="developer-credit-line">
+  <span>Developed by Devraj Kumar</span>
+  <small>Made with ❤️ in India.</small>
+</div>
+</section>
+
+     <!-- LOGIN OLD -->
+    
+ <section id="student" class="section">
+  <div class="panel glass" id="studentLoginBox">
+    <h2>🎓 Student Login</h2>
+    <p>Login with your Student ID and password to access AF Nexus learning dashboard.</p>
+
+    <div class="input-group">
+      <label>Student ID</label>
+      <input id="studentId" type="text" placeholder="Example: abc@gmail.com" />
+    </div>
+
+    <div class="input-group">
+      <label>Password</label>
+      <input id="studentPassword" type="password" placeholder="Enter Password" />
+    </div>
+
+    <button class="link-btn" onclick="studentLogin()">Login</button>
+
+    <!-- CREATE STUDENT ID BOX -->
+    <div class="create-id-box">
+      <h3>Don't have Login ID & Password?</h3>
+      <p>Create your Student ID, select courses, complete payment, and start learning.</p>
+
+      <button type="button" class="create-id-btn" onclick="openCreateStudentIdPage()">
+        Create Student ID
+      </button>
+    </div>
+
+ <div class="login-note">
+  If you face any issue while creating your Student ID, please email us at
+  <strong>academeforge@gmail.com</strong> with your name and WhatsApp number.
+  Our Support team will get back to you as soon as possible.
+</div>
+  </div>
+</div>
+</section>
+     
+ <!-- OFFICE QUICK ACTIONS MANAGEMENT -->
+
+<section id="office" class="section">
+  <div class="panel glass" id="officeLoginBox">
+    <h2>🏢 Office Login</h2>
+    <p>Login with your Office ID and password to access AcademeForge admin dashboard.</p>
+
+    <div class="input-group">
+      <label>Office ID</label>
+      <input id="officeId" type="text" placeholder="Example: founder" />
+    </div>
+
+    <div class="input-group">
+      <label>Password</label>
+      <input id="officePassword" type="password" placeholder="Enter Password" />
+    </div>
+
+    <button class="link-btn" onclick="officeLogin()">Login</button>
+
+    <div class="login-note">
+      Management access only. Students, please use Student Login.
+    </div>
+  </div>
+
+  <div class="panel glass hidden-box" id="officeDashboardBox" style="display:none;">
+    <div style="display:flex; justify-content:space-between; gap:10px; align-items:center;">
+      <div>
+        <h2>🏢 Office Dashboard</h2>
+        <p id="officeWelcomeText">Welcome, Admin</p>
+      </div>
+
+      <button class="back-mini" onclick="officeLogout()">Logout</button>
+    </div>
+
+    <!-- QUICK ACTIONS HOME -->
+    
+    <div class="course-info-box" id="officeQuickActionsTitle">
+      <h3>⚡ Quick Actions</h3>
+    </div>
+
+    <div class="course-select-grid" id="officeQuickActions">
+      <button class="course-select-card" onclick="openAdminNotifications()">
+        <span>🔔</span>
+        <h3>Post Notification</h3>
+        <p>Send lecture, notes, batch and announcement updates.</p>
+      </button>
+
+      <button class="course-select-card" onclick="openAdminStudents()">
+        <span>🎓</span>
+        <h3>Students</h3>
+        <p>Add, view and manage student accounts.</p>
+      </button>
+
+      <button class="course-select-card" onclick="openAdminCourses()">
+        <span>📚</span>
+        <h3>Courses</h3>
+        <p>Create and manage course programs.</p>
+      </button>
+
+      <button class="course-select-card" onclick="openAdminAssignCourse()">
+        <span>🔗</span>
+        <h3>Assign Course</h3>
+        <p>Assign courses to enrolled students.</p>
+      </button>
+
+      <button class="course-select-card" onclick="openAdminLectures()">
+        <span>🎥</span>
+        <h3>Lectures</h3>
+        <p>Add and manage video lectures.</p>
+      </button>
+
+      <button class="course-select-card" onclick="openAdminNotes()">
+        <span>📝</span>
+        <h3>Notes</h3>
+        <p>Upload and manage study notes.</p>
+      </button>
+
+      <button class="course-select-card" onclick="openAdminChapters()">
+        <span>📖</span>
+        <h3>Chapters</h3>
+        <p>Create and organize chapters.</p>
+      </button>
+    </div>
+
+    <!-- NOTIFICATION MANAGEMENT -->
+    <div class="admin-manage-box hidden-box" id="notificationManageBox" style="display:none;">
+      <div style="display:flex; justify-content:space-between; gap:10px; align-items:center;">
+        <div>
+          <h3>🔔 Post Notification</h3>
+          <p>Create updates for students about lectures, notes, batches, and announcements.</p>
+        </div>
+
+        <button class="back-mini" onclick="closeAdminNotifications()">Back</button>
+      </div>
+
+      <div class="input-group">
+        <label>Notification Title</label>
+        <input id="adminNotificationTitle" type="text" placeholder="Example: New lecture uploaded">
+      </div>
+
+      <div class="input-group">
+        <label>Message</label>
+        <input id="adminNotificationMessage" type="text" placeholder="Example: AF Nexus Batch 1 Lecture 3 is now available.">
+      </div>
+
+      <div class="input-group">
+        <label>Batch</label>
+        <input id="adminNotificationBatch" type="text" placeholder="Example: AF Nexus Batch 1 / All">
+      </div>
+
+      <div class="input-group">
+        <label>Type</label>
+        <select id="adminNotificationType">
+          <option value="Lecture">Lecture</option>
+          <option value="Notes">Notes</option>
+          <option value="Batch Update">Batch Update</option>
+          <option value="Announcement">Announcement</option>
+          <option value="General">General</option>
+        </select>
+      </div>
+
+      <div class="admin-action-row notification-action-row">
+        <button class="link-btn" onclick="postAdminNotification()">Post Notification</button>
+        <button class="link-btn secondary" onclick="clearNotificationForm()">Clear</button>
+      </div>
+    </div>
+
+    <!-- STUDENT MANAGEMENT -->
+    <div class="admin-manage-box hidden-box" id="adminStudentsBox" style="display:none;">
+      <div style="display:flex; justify-content:space-between; gap:10px; align-items:center;">
+        <div>
+          <h3>🎓 Student Management</h3>
+          <p>Add, view, update password, and activate/inactivate students.</p>
+        </div>
+
+        <button class="back-mini" onclick="closeAdminStudents()">Back</button>
+      </div>
+
+      <div class="course-info-box">
+        <h3>Add New Student</h3>
+
+        <div class="input-group">
+          <label>Student ID / Email</label>
+          <input id="adminStudentId" type="text" placeholder="Example: student@email.com">
+        </div>
+
+        <div class="input-group">
+          <label>Name</label>
+          <input id="adminStudentName" type="text" placeholder="Student name">
+        </div>
+
+        <div class="input-group">
+          <label>Password</label>
+          <input id="adminStudentPassword" type="text" placeholder="Password">
+        </div>
+
+        <div class="input-group">
+          <label>Mobile</label>
+          <input id="adminStudentMobile" type="text" placeholder="Mobile number">
+        </div>
+
+        <div class="input-group">
+          <label>Email</label>
+          <input id="adminStudentEmail" type="email" placeholder="Email">
+        </div>
+
+        <button class="link-btn" onclick="addAdminStudent()">Add Student</button>
+      </div>
+
+      <div class="course-info-box">
+        <h3>All Students</h3>
+        <div id="adminStudentsList" class="admin-list-box">
+          Loading students...
+        </div>
+      </div>
+    </div>
+    
+<!-- TEAM MANAGEMENT -->
+<div class="admin-manage-box hidden-box" id="adminTeamBox" style="display:none;">
+  <div style="display:flex; justify-content:space-between; gap:10px; align-items:center;">
+    <div>
+      <h3>👥 Team Management</h3>
+      <p>Add, view, edit, activate/inactivate team members.</p>
+    </div>
+
+    <button class="back-mini" onclick="closeAdminTeam()">Back</button>
+  </div>
+
+  <div class="course-info-box">
+    <h3 id="teamFormTitle">Add New Team Member</h3>
+
+    <input type="hidden" id="adminTeamEditId">
+
+    <div class="input-group">
+      <label>Name</label>
+      <input id="teamNameInput" type="text" placeholder="Team member name">
+    </div>
+
+    <div class="input-group">
+      <label>Role / Position</label>
+      <input id="teamRoleInput" type="text" placeholder="Example: Founder, Mentor, Designer">
+    </div>
+
+    <div class="input-group">
+      <label>Photo URL</label>
+      <input id="teamPhotoInput" type="text" placeholder="Paste image URL">
+    </div>
+
+    <div class="input-group">
+      <label>Bio</label>
+      <textarea id="teamBioInput" placeholder="Short bio" rows="4"></textarea>
+    </div>
+
+    <div class="input-group">
+      <label>Instagram URL</label>
+      <input id="teamInstagramInput" type="text" placeholder="Instagram profile link">
+    </div>
+
+    <div class="input-group">
+      <label>LinkedIn URL</label>
+      <input id="teamLinkedinInput" type="text" placeholder="LinkedIn profile link">
+    </div>
+
+    <div class="input-group">
+      <label>Display Order</label>
+      <input id="teamOrderInput" type="number" placeholder="Example: 1">
+    </div>
+
+    <button class="link-btn" onclick="saveAdminTeamMember()">Save Team Member</button>
+    <button class="back-mini" onclick="resetAdminTeamForm()">Clear</button>
+  </div>
+
+  <div class="course-info-box">
+    <h3>All Team Members</h3>
+    <div id="adminTeamList" class="admin-list-box">
+      hello
+    </div>
+  </div>
+</div>
+    
+    <!-- CHAPTER MANAGEMENT -->
+<div class="admin-manage-box hidden-box" id="adminChaptersBox" style="display:none;">
+  <div style="display:flex; justify-content:space-between; gap:10px; align-items:center;">
+    <div>
+      <h3>📖 Chapter Management</h3>
+      <p>Add, view, edit, and delete chapters.</p>
+    </div>
+
+    <button class="back-mini" onclick="closeAdminChapters()">Back</button>
+  </div>
+
+  <div class="course-info-box">
+    <h3 id="chapterFormTitle">Add New Chapter</h3>
+
+    <input type="hidden" id="adminChapterEditId">
+
+    <div class="input-group">
+      <label>Course</label>
+      <select id="chapterCourseSelect">
+        <option value="">Select course</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label>Chapter Number</label>
+      <input id="chapterNumberInput" type="number" placeholder="Example: 1">
+    </div>
+
+    <div class="input-group">
+      <label>Chapter Title</label>
+      <input id="chapterTitleInput" type="text" placeholder="Chapter title">
+    </div>
+
+    <div class="input-group">
+      <label>Description</label>
+      <textarea id="chapterDescriptionInput" placeholder="Chapter description"></textarea>
+    </div>
+
+    <button class="link-btn" onclick="saveAdminChapter()">Save Chapter</button>
+    <button class="back-mini" onclick="resetAdminChapterForm()">Clear</button>
+  </div>
+
+  <div class="course-info-box">
+    <h3>All Chapters</h3>
+    <div id="adminChaptersList" class="admin-list-box">
+      Loading chapters...
+    </div>
+  </div>
+</div>
+    
+    <!-- COURSE MANAGEMENT -->
+    <div class="admin-manage-box hidden-box" id="adminCoursesBox" style="display:none;">
+      <div style="display:flex; justify-content:space-between; gap:10px; align-items:center;">
+        <div>
+          <h3>📚 Course Management</h3>
+          <p>Add, view, and edit courses.</p>
+        </div>
+
+        <button class="back-mini" onclick="closeAdminCourses()">Back</button>
+      </div>
+
+      <div class="course-info-box">
+        <h3 id="courseFormTitle">Add New Course</h3>
+
+        <input type="hidden" id="adminCourseEditId">
+
+        <div class="input-group">
+          <label>Course Title</label>
+          <input id="adminCourseTitle" type="text" placeholder="Example: Video & Media Editing">
+        </div>
+
+        <div class="input-group">
+          <label>Course Slug</label>
+          <input id="adminCourseSlug" type="text" placeholder="Example: video-editing">
+        </div>
+
+        <div class="input-group">
+          <label>Icon</label>
+          <input id="adminCourseIcon" type="text" placeholder="Example: 🎬">
+        </div>
+
+        <div class="input-group">
+          <label>Short Description</label>
+          <input id="adminCourseShortDescription" type="text" placeholder="Short course intro">
+        </div>
+
+        <div class="input-group">
+          <label>Details</label>
+          <textarea id="adminCourseDetails" placeholder="Full course details" rows="4"></textarea>
+        </div>
+
+        <div class="input-group">
+          <label>Facilities</label>
+          <textarea id="adminCourseFacilities" placeholder="Write one facility per line" rows="4"></textarea>
+        </div>
+
+        <button class="link-btn" onclick="saveAdminCourse()">Save Course</button>
+        <button class="back-mini" onclick="resetAdminCourseForm()">Clear</button>
+      </div>
+
+      <div class="course-info-box">
+        <h3>All Courses</h3>
+        <div id="adminCoursesList" class="admin-list-box">
+          Loading courses...
+        </div>
+      </div>
+    </div>
+  <!-- LECTURE MANAGEMENT -->
+<div class="admin-manage-box hidden-box" id="adminLecturesBox" style="display:none;">
+  <div style="display:flex; justify-content:space-between; gap:10px; align-items:center;">
+    <div>
+      <h3>🎥 Lecture Management</h3>
+      <p>Add, view, update, lock/unlock lectures.</p>
+    </div>
+
+    <button class="back-mini" onclick="closeAdminLectures()">Back</button>
+  </div>
+
+  <div class="course-info-box">
+    <h3>Add New Lecture</h3>
+
+    <div class="input-group">
+      <label>Course</label>
+      <select id="lectureCourseSelect" onchange="loadLectureChapters()">
+        <option value="">Select course</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label>Chapter</label>
+      <select id="lectureChapterSelect">
+        <option value="">Select chapter</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label>Lecture Number</label>
+      <input id="lectureNumberInput" type="number" placeholder="Example: 1">
+    </div>
+
+    <div class="input-group">
+      <label>Lecture Title</label>
+      <input id="lectureTitleInput" type="text" placeholder="Lecture title">
+    </div>
+
+    <div class="input-group">
+      <label>Description</label>
+      <textarea id="lectureDescriptionInput" placeholder="Lecture description"></textarea>
+    </div>
+
+    <div class="input-group">
+      <label>Video URL</label>
+      <input id="lectureVideoUrlInput" type="text" placeholder="YouTube / Drive / video link">
+    </div>
+
+    <div class="input-group">
+      <label>Duration</label>
+      <input id="lectureDurationInput" type="text" placeholder="Example: 12 min">
+    </div>
+
+    <div class="input-group">
+      <label>Lock Status</label>
+      <select id="lectureLockInput">
+        <option value="false">Unlocked</option>
+        <option value="true">Locked</option>
+      </select>
+    </div>
+
+    <button class="link-btn" onclick="addAdminLecture()">Add Lecture</button>
+  </div>
+
+  <div class="course-info-box">
+    <h3>All Lectures</h3>
+    <div id="adminLecturesList" class="admin-list-box">
+      Loading lectures...
+    </div>
+  </div>
+</div>
+
+    <!-- NOTES MANAGEMENT -->
+<div class="admin-manage-box hidden-box" id="adminNotesBox" style="display:none;">
+  <div style="display:flex; justify-content:space-between; gap:10px; align-items:center;">
+    <div>
+      <h3>📝 Notes Management</h3>
+      <p>Add, view, update, lock/unlock notes.</p>
+    </div>
+
+    <button class="back-mini" onclick="closeAdminNotes()">Back</button>
+  </div>
+
+  <div class="course-info-box">
+    <h3>Add New Note</h3>
+
+    <div class="input-group">
+      <label>Course</label>
+      <select id="noteCourseSelect" onchange="loadNoteChapters()">
+        <option value="">Select course</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label>Chapter</label>
+      <select id="noteChapterSelect">
+        <option value="">Select chapter</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label>Note Number</label>
+      <input id="noteNumberInput" type="number" placeholder="Example: 1">
+    </div>
+
+    <div class="input-group">
+      <label>Note Title</label>
+      <input id="noteTitleInput" type="text" placeholder="Note title">
+    </div>
+
+    <div class="input-group">
+      <label>Text Content</label>
+      <textarea id="noteContentInput" placeholder="Write note content here..." rows="5"></textarea>
+    </div>
+
+    <div class="input-group">
+      <label>PDF URL</label>
+      <input id="notePdfUrlInput" type="text" placeholder="Paste PDF link">
+    </div>
+
+    <div class="input-group">
+      <label>Lock Status</label>
+      <select id="noteLockInput">
+        <option value="false">Unlocked</option>
+        <option value="true">Locked</option>
+      </select>
+    </div>
+
+    <button class="link-btn" onclick="addAdminNote()">Add Note</button>
+  </div>
+
+  <div class="course-info-box">
+    <h3>All Notes</h3>
+    <div id="adminNotesList" class="admin-list-box">
+      Loading notes...
+    </div>
+  </div>
+</div>
+    
+    <!-- ASSIGN COURSE -->
+    <div class="admin-manage-box hidden-box" id="adminAssignCourseBox" style="display:none;">
+      <div style="display:flex; justify-content:space-between; gap:10px; align-items:center;">
+        <div>
+          <h3>🔗 Assign Course</h3>
+          <p>Assign courses to selected students.</p>
+        </div>
+
+        <button class="back-mini" onclick="closeAdminAssignCourse()">Back</button>
+      </div>
+
+      <div class="course-info-box">
+        <h3>Select Student and Course</h3>
+
+        <div class="input-group">
+          <label>Student</label>
+          <select id="assignStudentSelect">
+            <option value="">Loading students...</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label>Course</label>
+          <select id="assignCourseSelect">
+            <option value="">Loading courses...</option>
+          </select>
+        </div>
+
+        <button class="link-btn" onclick="assignCourseToStudent()">Assign Course</button>
+      </div>
+
+      <div class="course-info-box">
+        <h3>Current Assignments</h3>
+        <div id="assignedCoursesList" class="admin-list-box">
+          Loading assignments...
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
     <section id="explore" class="section">
       <div class="panel glass">
         <h2>✨ Explore AcademeForge</h2>
@@ -8652,12 +9253,11 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
 </div>
    </section> 
 
-    
    <!-- ==============================
      BATCH PURCHASE SECTION - AF
 ================================ -->
 
-<section id="batchaf" class="section hidden-box">
+<section id="batchaf" class="section hidden-box" style="display:none;">
   <div class="batch-wrapaf">
 
     <!-- Batch List Page -->
@@ -8681,11 +9281,13 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
       </div>
 
       <div class="batch-gridaf" id="batchCardsaf"></div>
+      
     </div>
 
     <!-- Batch Details Page -->
-    <div class="batch-pageaf hidden-box" id="batchDetailsBoxaf">
-
+    
+    <div class="batch-pageaf hidden-box" id="batchDetailsBoxaf" style="display:none;">
+      
       <button class="batch-backaf" type="button" onclick="backToBatchListaf()">
         ← Back to Batches
       </button>
@@ -8708,14 +9310,14 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
           </p>
 
           <div class="batch-price-rowaf">
-            <strong id="batchDetailPriceaf">₹49</strong>
-            <del id="batchDetailOldPriceaf">₹99</del>
+            <strong id="batchDetailPriceaf">₹499</strong>
+            <del id="batchDetailOldPriceaf">₹999</del>
             <span id="batchDetailOffaf">51% OFF</span>
           </div>
 
-          <button id="batchDetailBuyBtnaf" class="batch-buy-mainaf" type="button" onclick="buySelectedBatchaf()">
-            Buy Now
-          </button>
+         <button id="batchDetailBuyBtnaf" class="batch-buy-mainaf" type="button" onclick="buySelectedBatchaf()">
+          Buy Now
+         </button>
         </div>
       </div>
 
@@ -8737,9 +9339,83 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
     </div>
 
   </div>
-</section>
+</section>   
     
+   <!--   
+    <div class="panel glass hidden-box" id="courseSelectBox">
+    <h2>📚 Select Course</h2>
+<p id="studentWelcomeText">Welcome Student</p>
+    <p>Your enrolled programs are ready to explore.</p>
 
+    <div class="course-select-grid" id="courseCards"></div>
+<button class="link-btn secondary" onclick="logoutStudent()">Logout</button>
+  </div>
+
+  <div class="panel glass hidden-box" id="courseDetailsBox">
+    <button class="back-mini" onclick="backToCourses()">← Back to Courses</button>
+
+    <h2 id="courseTitle">Course Name</h2>
+    <p id="courseIntro">Course intro will appear here.</p>
+
+    <div class="course-info-box">
+      <h3>📌 Course Details</h3>
+      <p id="courseDetails"></p>
+    </div>
+
+    <div class="course-info-box">
+      <h3>🧾 Syllabus</h3>
+      <ul id="courseSyllabus"></ul>
+    </div>
+
+    <div class="course-info-box">
+      <h3>🏫 Facilities</h3>
+      <ul id="courseFacilities"></ul>
+    </div>
+
+    <button class="link-btn" onclick="startLearning()">Start Learning</button>
+  </div>
+
+  <div class="panel glass hidden-box" id="learningBox">
+    <button class="back-mini" onclick="backToCourseDetails()">← Back to Course</button>
+
+    <h2 id="learningTitle">Start Learning</h2>
+    <p>Select what you want to access.</p>
+
+    <div class="learning-choice">
+      <button class="learning-btn" onclick="openLearningMode('lectures')">
+        <span>🎥</span>
+        <strong>Lectures</strong>
+        <small>Chapter-wise video lecture list</small>
+      </button>
+
+      <button class="learning-btn" onclick="openLearningMode('notes')">
+        <span>📝</span>
+        <strong>Notes</strong>
+        <small>Chapter-wise study notes list</small>
+      </button>
+    </div>
+  </div>
+
+  <div class="panel glass hidden-box" id="chapterBox">
+    <button class="back-mini" onclick="backToLearning()">← Back</button>
+
+    <h2 id="chapterModeTitle">Lectures</h2>
+    <p>Select a chapter to continue.</p>
+
+    <div class="chapter-list" id="chapterList"></div>
+  </div>
+
+  <div class="panel glass hidden-box" id="contentBox">
+    <button class="back-mini" onclick="backToChapters()">← Back to Chapters</button>
+
+    <h2 id="contentTitle">Chapter Content</h2>
+    <p id="contentSubtitle">Select and study one by one.</p>
+
+    <div class="content-list" id="contentList"></div>
+  </div> -->
+
+
+    
      <!-- ==============================
       Community Tab
 ================================ -->
@@ -9013,7 +9689,7 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
     Student
   </button>
 
-  <button class="nav-btn" data-section="batchaf" onclick="showSection('batchaf')">
+  <button class="nav-btn" data-section="batchaf" onclick="showSection('batchaf'); openBatchSectionaf();">
     <b>📚</b>
     Batches
   </button>
@@ -9028,6 +9704,7 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
     <span>Notify</span>
   </button>
 </nav>
+
   </main>
 
   <div class="toast" id="toast">
@@ -14700,6 +15377,15 @@ document.addEventListener("DOMContentLoaded", function () {
    Price: 49
    Old price: 99
    Discount: 51% OFF
+
+   Flow:
+   Batch section open
+   -> enrolled courses check
+   -> card shows Buy Now / Already Enrolled
+   -> Razorpay success
+   -> optional payment record
+   -> student_courses access add
+   -> UI refresh
 ================================ */
 
 const RAZORPAY_KEY_ID = "rzp_test_SpO0DdKfoz5wRu";
@@ -14929,17 +15615,19 @@ async function loadEnrolledBatchSlugsaf() {
 
 /* ==============================
    OPEN / RENDER BATCH SECTION
-   Important:
-   Ye function section ko display:block nahi karega.
-   Section open/hide ka kaam showSection('batchaf') karega.
 ================================ */
 
 async function openBatchSectionaf() {
+  const batchSection = afBatchEl("batchaf");
+
+  if (batchSection) {
+    batchSection.classList.remove("hidden-box");
+    batchSection.style.display = "block";
+  }
+
   showBatchListaf();
 
-  if (typeof loadEnrolledBatchSlugsaf === "function") {
-    await loadEnrolledBatchSlugsaf();
-  }
+  await loadEnrolledBatchSlugsaf();
 
   renderBatchesaf(afBatches);
 }
@@ -14950,10 +15638,12 @@ function showBatchListaf() {
 
   if (details) {
     details.classList.add("hidden-box");
+    details.style.display = "none";
   }
 
   if (list) {
     list.classList.remove("hidden-box");
+    list.style.display = "block";
   }
 }
 
@@ -15091,10 +15781,12 @@ function openBatchDetailsaf(batchId) {
 
   if (list) {
     list.classList.add("hidden-box");
+    list.style.display = "none";
   }
 
   if (details) {
     details.classList.remove("hidden-box");
+    details.style.display = "block";
   }
 
   const img = afBatchEl("batchDetailImageaf");
@@ -15268,7 +15960,11 @@ function startBatchPaymentaf(batch) {
 
     let message = "Payment failed. Please try again.";
 
-    if (response && response.error && response.error.description) {
+    if (
+      response &&
+      response.error &&
+      response.error.description
+    ) {
       message = response.error.description;
     }
 
@@ -15287,8 +15983,13 @@ async function saveBatchPaymentaf(batch, razorpayResponse) {
   const backend = getBatchBackendaf();
   const student = getCurrentStudentaf();
 
-  if (!backend || !student.id) {
-    console.log("Payment record skipped.");
+  if (!backend) {
+    console.log("Backend not connected. Payment record skipped.");
+    return false;
+  }
+
+  if (!student.id) {
+    console.log("Student UUID missing. Payment record skipped.");
     return false;
   }
 
@@ -15403,45 +16104,38 @@ async function grantBatchAccessaf(courseSlug) {
 
   } catch (err) {
     console.error("grantBatchAccessaf error:", err);
-    alert("Payment successful, but access update failed.");
+    alert("Payment successful, but access update failed: " + err.message);
     return false;
   }
 }
 
-/* ==============================
-   REFRESH STUDENT COURSES
-================================ */
-
 function refreshStudentCoursesAfterPurchaseaf(student) {
-  try {
-    if (typeof loadStudentCoursesaf === "function") {
-      loadStudentCoursesaf(student);
-      return;
-    }
-
-    if (typeof loadStudentCourses === "function") {
-      loadStudentCourses(student);
-      return;
-    }
-
-    console.log("Student course refresh function not found.");
-  } catch (err) {
-    console.error("refreshStudentCoursesAfterPurchaseaf error:", err);
+  if (typeof loadStudentCoursesaf === "function") {
+    loadStudentCoursesaf(student);
+    return;
   }
+
+  if (typeof loadStudentCourses === "function") {
+    loadStudentCourses(student);
+    return;
+  }
+
+  console.log("Course refresh function not found.");
 }
 
 /* ==============================
-   AUTO RENDER ONLY
-   Ye section ko show nahi karega.
+   AUTO RENDER IF SECTION EXISTS
 ================================ */
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   const batchSection = afBatchEl("batchaf");
 
   if (batchSection) {
+    await loadEnrolledBatchSlugsaf();
     renderBatchesaf(afBatches);
   }
 });
+  
   </script>
 </body>
 </html>
