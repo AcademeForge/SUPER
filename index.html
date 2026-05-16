@@ -15612,7 +15612,6 @@ async function loadEnrolledBatchSlugsaf() {
     return [];
   }
 }
-
 /* ==============================
    OPEN / RENDER BATCH SECTION
 ================================ */
@@ -15620,14 +15619,22 @@ async function loadEnrolledBatchSlugsaf() {
 async function openBatchSectionaf() {
   const batchSection = afBatchEl("batchaf");
 
-  if (batchSection) {
-    batchSection.classList.remove("hidden-box");
-    batchSection.style.display = "block";
+  if (!batchSection) {
+    console.log("batchaf section not found");
+    return;
   }
+
+  /*
+    Important:
+    Section ko show/hide karne ka kaam showSection('batchaf') karega.
+    Yaha sirf batch ke andar ka content reset/render hoga.
+  */
 
   showBatchListaf();
 
-  await loadEnrolledBatchSlugsaf();
+  if (typeof loadEnrolledBatchSlugsaf === "function") {
+    await loadEnrolledBatchSlugsaf();
+  }
 
   renderBatchesaf(afBatches);
 }
@@ -15739,7 +15746,6 @@ function renderBatchesaf(list) {
     `;
   }).join("");
 }
-
 function filterBatchesaf() {
   const input = afBatchEl("batchSearchInputaf");
   const query = input ? input.value.trim().toLowerCase() : "";
