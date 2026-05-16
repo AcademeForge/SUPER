@@ -11930,28 +11930,12 @@ async function logoutAcademeForge() {
     authGate.style.display = "flex";
   }
 }
- /* ==============================
+/* ==============================
    NEW STUDENT SECTION JS - AF
-   Backend connected
+   Backend: OLD Supabase client = db
    Table: students
-   Columns: mobile, password, status, name, email, student_id
-
-   IMPORTANT:
-   - Agar tumhare backend client ka naam studentDb hai, ye studentDb use karega.
-   - Agar tumhare backend client ka naam db hai, ye db use karega.
+   Columns: uuid, student_id, name, password, mobile, email, status
 ================================ */
-
-function getStudentBackendaf() {
-  if (typeof studentDb !== "undefined") {
-    return studentDb;
-  }
-
-  if (typeof db !== "undefined") {
-    return db;
-  }
-
-  return null;
-}
 
 function showStudentMessageaf(type, text) {
   const box = document.getElementById("studentMessageaf");
@@ -12019,28 +12003,28 @@ async function loginStudentaf() {
     return;
   }
 
-  const backend = getStudentBackendaf();
-
-  if (!backend) {
-    showStudentMessageaf("err", "Student backend is not connected.");
-    console.log("No Supabase client found. Expected studentDb or db.");
+  if (typeof db === "undefined") {
+    showStudentMessageaf("err", "Backend is not connected.");
+    console.log("db not found");
     return;
   }
 
   showStudentMessageaf("info", "Checking your login...");
 
   try {
-    const { data, error } = await backend
+    const { data, error } = await db
       .from("students")
-      .select("id, student_id, name, mobile, email, password, status")
+      .select("*")
       .eq("mobile", phone)
       .eq("password", password)
       .eq("status", "active")
       .maybeSingle();
 
+    console.log("AF LOGIN DATA:", data);
+    console.log("AF LOGIN ERROR:", error);
+
     if (error) {
-      console.log("Login query error:", error);
-      showStudentMessageaf("err", "Login failed. Please try again.");
+      showStudentMessageaf("err", error.message || "Login failed. Please try again.");
       return;
     }
 
@@ -12050,6 +12034,7 @@ async function loginStudentaf() {
     }
 
     localStorage.setItem("af_student_logged_in", "true");
+    localStorage.setItem("af_student_uuid", data.uuid || "");
     localStorage.setItem("af_student_id", data.student_id || data.mobile || "");
     localStorage.setItem("af_student_mobile", data.mobile || "");
     localStorage.setItem("af_student_name", data.name || "Student");
@@ -12058,8 +12043,8 @@ async function loginStudentaf() {
     openCourseSectionAfterLoginaf(data);
 
   } catch (err) {
-    console.error("Login failed:", err);
-    showStudentMessageaf("err", "Login failed. Please try again.");
+    console.error("AF LOGIN CATCH ERROR:", err);
+    showStudentMessageaf("err", err.message || "Login failed. Please try again.");
   }
 }
 
@@ -12119,6 +12104,7 @@ function sendPasswordResetaf() {
 
 function logoutStudent() {
   localStorage.removeItem("af_student_logged_in");
+  localStorage.removeItem("af_student_uuid");
   localStorage.removeItem("af_student_id");
   localStorage.removeItem("af_student_mobile");
   localStorage.removeItem("af_student_name");
@@ -12148,12 +12134,13 @@ function logoutStudent() {
   switchStudentModeaf("login");
 }
 
-/* Optional: page reload ke baad agar already login hai to course section open */
+/* Page reload ke baad already login hai to course section open */
 document.addEventListener("DOMContentLoaded", function () {
   const loggedIn = localStorage.getItem("af_student_logged_in");
 
   if (loggedIn === "true") {
     const studentData = {
+      uuid: localStorage.getItem("af_student_uuid"),
       student_id: localStorage.getItem("af_student_id"),
       mobile: localStorage.getItem("af_student_mobile"),
       name: localStorage.getItem("af_student_name"),
