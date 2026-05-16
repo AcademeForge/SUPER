@@ -8076,6 +8076,44 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
     color: #93c5fd;
   }
 }
+    .batch-enrolled-btnaf {
+  background: linear-gradient(135deg, #15803d, #22c55e) !important;
+  color: #ffffff !important;
+  cursor: not-allowed !important;
+  opacity: 1 !important;
+  box-shadow: 0 12px 26px rgba(34, 197, 94, 0.22) !important;
+}
+
+.batch-enrolled-cardaf {
+  border-color: rgba(34, 197, 94, 0.38) !important;
+}
+
+.batch-enrolled-btnaf:disabled {
+  filter: none !important;
+  transform: none !important;
+}
+
+.batch-enrolled-tagaf {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: rgba(34, 197, 94, 0.13);
+  color: #15803d;
+  border: 1px solid rgba(34, 197, 94, 0.22);
+  font-size: 12px;
+  font-weight: 950;
+}
+
+@media (prefers-color-scheme: dark) {
+  .batch-enrolled-tagaf {
+    background: rgba(34, 197, 94, 0.18);
+    color: #86efac;
+    border-color: rgba(134, 239, 172, 0.25);
+  }
+}
   </style>
 </head>
 
@@ -15313,13 +15351,21 @@ document.addEventListener("DOMContentLoaded", function () {
     openCourseSectionAfterLoginaf(studentData);
   }
 });
-
-  /* ==============================
+/* ==============================
    BATCH PURCHASE JS - AF
    Frontend Razorpay Checkout
    Price: 49
    Old price: 99
    Discount: 51% OFF
+
+   Flow:
+   Batch section open
+   -> enrolled courses check
+   -> card shows Buy Now / Already Enrolled
+   -> Razorpay success
+   -> optional payment record
+   -> student_courses access add
+   -> UI refresh
 ================================ */
 
 const RAZORPAY_KEY_ID = "rzp_test_SpO0DdKfoz5wRu";
@@ -15329,6 +15375,7 @@ const afBatchOldPrice = 99;
 const afBatchDiscount = Math.round(((afBatchOldPrice - afBatchPrice) / afBatchOldPrice) * 100);
 
 let afSelectedBatch = null;
+let afEnrolledCourseSlugs = [];
 
 const afBatches = [
   {
@@ -15487,11 +15534,70 @@ function getBatchBackendaf() {
   return null;
 }
 
+function getCurrentStudentaf() {
+  return {
+    id: localStorage.getItem("af_student_uuid") || "",
+    student_id: localStorage.getItem("af_student_id") || "",
+    mobile: localStorage.getItem("af_student_mobile") || "",
+    name: localStorage.getItem("af_student_name") || "Student",
+    email: localStorage.getItem("af_student_email") || ""
+  };
+}
+
+function isBatchEnrolledaf(courseSlug) {
+  return afEnrolledCourseSlugs.includes(courseSlug);
+}
+
+/* ==============================
+   ENROLLED COURSE CHECK
+================================ */
+
+async function loadEnrolledBatchSlugsaf() {
+  const backend = getBatchBackendaf();
+  const student = getCurrentStudentaf();
+
+  afEnrolledCourseSlugs = [];
+
+  if (!backend || !student.id) {
+    return [];
+  }
+
+  try {
+    const { data, error } = await backend
+      .from("student_courses")
+      .select(`
+        status,
+        courses (
+          slug
+        )
+      `)
+      .eq("student_id", student.id)
+      .eq("status", "active");
+
+    if (error) {
+      console.error("Enrolled batch check error:", error);
+      return [];
+    }
+
+    afEnrolledCourseSlugs = (data || [])
+      .map(function (row) {
+        return row.courses && row.courses.slug ? row.courses.slug : "";
+      })
+      .filter(Boolean);
+
+    return afEnrolledCourseSlugs;
+
+  } catch (err) {
+    console.error("loadEnrolledBatchSlugsaf error:", err);
+    return [];
+  }
+}
+
 /* ==============================
    OPEN / RENDER BATCH SECTION
 ================================ */
 
-function openBatchSectionaf() {
+async function openBatchSectionaf() {
   const batchSection = afBatchEl("batchaf");
 
   if (batchSection) {
@@ -15500,6 +15606,9 @@ function openBatchSectionaf() {
   }
 
   showBatchListaf();
+
+  await loadEnrolledBatchSlugsaf();
+
   renderBatchesaf(afBatches);
 }
 
@@ -15543,8 +15652,10 @@ function renderBatchesaf(list) {
   }
 
   box.innerHTML = list.map(function (batch) {
+    const enrolled = isBatchEnrolledaf(batch.courseSlug);
+
     return `
-      <div class="batch-cardaf">
+      <div class="batch-cardaf ${enrolled ? "batch-enrolled-cardaf" : ""}">
         <div class="batch-img-wrapaf" onclick="openBatchDetailsaf('${batch.id}')">
           <span class="batch-loaderaf"></span>
           <img
@@ -15571,10 +15682,12 @@ function renderBatchesaf(list) {
 
           <div class="batch-statusaf">
             <span class="batch-dotaf"></span>
-            <span>${batch.status}</span>
+            <span>${enrolled ? "Enrolled" : batch.status}</span>
             <span>|</span>
-            <span>${batch.startText}</span>
+            <span>${enrolled ? "Access active" : batch.startText}</span>
           </div>
+
+          ${enrolled ? `<div class="batch-enrolled-tagaf">✓ Already Enrolled</div>` : ""}
 
           <div class="batch-price-actionaf">
             <div class="batch-priceaf">
@@ -15586,9 +15699,15 @@ function renderBatchesaf(list) {
             </div>
 
             <div class="batch-buy-rowaf">
-              <button class="batch-buy-btnaf" type="button" onclick="buyBatchDirectaf('${batch.id}')">
-                Buy Now
-              </button>
+              ${
+                enrolled
+                  ? `<button class="batch-buy-btnaf batch-enrolled-btnaf" type="button" disabled>
+                      Already Enrolled
+                    </button>`
+                  : `<button class="batch-buy-btnaf" type="button" onclick="buyBatchDirectaf('${batch.id}')">
+                      Buy Now
+                    </button>`
+              }
 
               <button class="batch-arrowaf" type="button" onclick="openBatchDetailsaf('${batch.id}')">
                 ›
@@ -15661,6 +15780,9 @@ function openBatchDetailsaf(batchId) {
   const learn = afBatchEl("batchLearnListaf");
   const facilities = afBatchEl("batchFacilityListaf");
   const fullDetails = afBatchEl("batchFullDetailsaf");
+  const detailBuyBtn = afBatchEl("batchDetailBuyBtnaf");
+
+  const enrolled = isBatchEnrolledaf(batch.courseSlug);
 
   if (img) img.src = batch.image;
   if (category) category.textContent = batch.category;
@@ -15684,6 +15806,18 @@ function openBatchDetailsaf(batchId) {
     }).join("");
   }
 
+  if (detailBuyBtn) {
+    if (enrolled) {
+      detailBuyBtn.textContent = "Already Enrolled";
+      detailBuyBtn.disabled = true;
+      detailBuyBtn.classList.add("batch-enrolled-btnaf");
+    } else {
+      detailBuyBtn.textContent = "Buy Now";
+      detailBuyBtn.disabled = false;
+      detailBuyBtn.classList.remove("batch-enrolled-btnaf");
+    }
+  }
+
   window.scrollTo({
     top: 0,
     behavior: "smooth"
@@ -15704,6 +15838,11 @@ function buyBatchDirectaf(batchId) {
     return;
   }
 
+  if (isBatchEnrolledaf(batch.courseSlug)) {
+    alert("You are already enrolled in this batch.");
+    return;
+  }
+
   afSelectedBatch = batch;
   startBatchPaymentaf(batch);
 }
@@ -15711,6 +15850,11 @@ function buyBatchDirectaf(batchId) {
 function buySelectedBatchaf() {
   if (!afSelectedBatch) {
     alert("Please select a batch first.");
+    return;
+  }
+
+  if (isBatchEnrolledaf(afSelectedBatch.courseSlug)) {
+    alert("You are already enrolled in this batch.");
     return;
   }
 
@@ -15722,12 +15866,15 @@ function buySelectedBatchaf() {
 ================================ */
 
 function startBatchPaymentaf(batch) {
-  const studentUuid = localStorage.getItem("af_student_uuid");
-  const studentName = localStorage.getItem("af_student_name") || "Student";
-  const studentEmail = localStorage.getItem("af_student_email") || "";
-  const studentMobile = localStorage.getItem("af_student_mobile") || "";
+  const backend = getBatchBackendaf();
+  const student = getCurrentStudentaf();
 
-  if (!studentUuid) {
+  if (!backend) {
+    alert("Student backend not connected.");
+    return;
+  }
+
+  if (!student.id) {
     alert("Please login before purchasing this batch.");
     return;
   }
@@ -15747,12 +15894,12 @@ function startBatchPaymentaf(batch) {
     description: batch.title,
     image: "",
     prefill: {
-      name: studentName,
-      email: studentEmail,
-      contact: studentMobile
+      name: student.name,
+      email: student.email,
+      contact: student.mobile
     },
     notes: {
-      student_uuid: studentUuid,
+      student_uuid: student.id,
       course_slug: batch.courseSlug,
       batch_id: batch.id,
       batch_title: batch.title
@@ -15761,10 +15908,23 @@ function startBatchPaymentaf(batch) {
       color: "#16a34a"
     },
     handler: async function (response) {
-      console.log("Razorpay success:", response);
+      console.log("Razorpay payment success:", response);
 
       await saveBatchPaymentaf(batch, response);
-      await grantBatchAccessaf(batch.courseSlug);
+
+      const accessAdded = await grantBatchAccessaf(batch.courseSlug);
+
+      if (accessAdded) {
+        await loadEnrolledBatchSlugsaf();
+
+        alert("Payment successful! Batch access added.");
+
+        refreshStudentCoursesAfterPurchaseaf(student);
+
+        renderBatchesaf(afBatches);
+
+        backToBatchListaf();
+      }
     },
     modal: {
       ondismiss: function () {
@@ -15796,59 +15956,29 @@ function startBatchPaymentaf(batch) {
 
 /* ==============================
    OPTIONAL PAYMENT RECORD
-   Table nahi hai to ye silently skip ho jayega
+   Table nahi hai to silently skip
 ================================ */
 
 async function saveBatchPaymentaf(batch, razorpayResponse) {
   const backend = getBatchBackendaf();
+  const student = getCurrentStudentaf();
 
   if (!backend) {
     console.log("Backend not connected. Payment record skipped.");
-    return;
+    return false;
   }
 
-  const studentUuid = localStorage.getItem("af_student_uuid");
-
-  if (!studentUuid) {
+  if (!student.id) {
     console.log("Student UUID missing. Payment record skipped.");
-    return;
+    return false;
   }
-
-  /*
-    Agar tum payment record rakhna chahte ho to Supabase me ye table bana sakte ho:
-
-    create table if not exists public.batch_payments_af (
-      id uuid primary key default gen_random_uuid(),
-      student_id uuid not null references public.students_af(id) on delete cascade,
-      course_slug text not null,
-      batch_id text not null,
-      batch_title text not null,
-      amount int not null,
-      currency text not null default 'INR',
-      razorpay_payment_id text,
-      status text not null default 'paid',
-      created_at timestamptz not null default now()
-    );
-
-    alter table public.batch_payments_af enable row level security;
-
-    create policy "Allow public insert batch_payments_af"
-    on public.batch_payments_af
-    for insert
-    with check (true);
-
-    create policy "Allow public read batch_payments_af"
-    on public.batch_payments_af
-    for select
-    using (true);
-  */
 
   try {
     const { error } = await backend
       .from("batch_payments_af")
       .insert([
         {
-          student_id: studentUuid,
+          student_id: student.id,
           course_slug: batch.courseSlug,
           batch_id: batch.id,
           batch_title: batch.title,
@@ -15861,9 +15991,14 @@ async function saveBatchPaymentaf(batch, razorpayResponse) {
 
     if (error) {
       console.log("Payment record skipped:", error.message);
+      return false;
     }
+
+    return true;
+
   } catch (err) {
     console.log("Payment record error skipped:", err.message);
+    return false;
   }
 }
 
@@ -15874,80 +16009,113 @@ async function saveBatchPaymentaf(batch, razorpayResponse) {
 
 async function grantBatchAccessaf(courseSlug) {
   const backend = getBatchBackendaf();
+  const student = getCurrentStudentaf();
 
   if (!backend) {
     alert("Payment successful, but student backend is not connected.");
-    return;
+    return false;
   }
 
-  const studentUuid = localStorage.getItem("af_student_uuid");
-
-  if (!studentUuid) {
+  if (!student.id) {
     alert("Payment successful, but student login session was not found.");
-    return;
+    return false;
   }
 
   try {
     const { data: courseData, error: courseError } = await backend
       .from("courses")
-      .select("id, title")
+      .select("id, title, slug")
       .eq("slug", courseSlug)
       .single();
 
     if (courseError || !courseData) {
       console.error("Course find error:", courseError);
       alert("Payment successful, but course was not found.");
-      return;
+      return false;
     }
 
-    const { error: accessError } = await backend
+    const { data: existingAccess, error: existingError } = await backend
       .from("student_courses")
-      .upsert(
+      .select("id, status")
+      .eq("student_id", student.id)
+      .eq("course_id", courseData.id)
+      .maybeSingle();
+
+    if (existingError) {
+      console.error("Existing access check error:", existingError);
+      alert("Payment successful, but access check failed: " + existingError.message);
+      return false;
+    }
+
+    if (existingAccess && existingAccess.id) {
+      const { error: updateError } = await backend
+        .from("student_courses")
+        .update({
+          status: "active"
+        })
+        .eq("id", existingAccess.id);
+
+      if (updateError) {
+        console.error("Access update error:", updateError);
+        alert("Payment successful, but access update failed: " + updateError.message);
+        return false;
+      }
+
+      return true;
+    }
+
+    const { error: insertError } = await backend
+      .from("student_courses")
+      .insert([
         {
-          student_id: studentUuid,
+          student_id: student.id,
           course_id: courseData.id,
           status: "active"
-        },
-        {
-          onConflict: "student_id,course_id"
         }
-      );
+      ]);
 
-    if (accessError) {
-      console.error("Access insert error:", accessError);
-      alert("Payment successful, but access could not be added: " + accessError.message);
-      return;
+    if (insertError) {
+      console.error("Access insert error:", insertError);
+      alert("Payment successful, but access could not be added: " + insertError.message);
+      return false;
     }
 
-    alert("Payment successful! Batch access added.");
-
-    if (typeof loadStudentCoursesaf === "function") {
-      loadStudentCoursesaf();
-    }
-
-    if (typeof loadStudentCourses === "function") {
-      loadStudentCourses({
-        id: studentUuid
-      });
-    }
+    return true;
 
   } catch (err) {
     console.error("grantBatchAccessaf error:", err);
-    alert("Payment successful, but access update failed.");
+    alert("Payment successful, but access update failed: " + err.message);
+    return false;
   }
+}
+
+function refreshStudentCoursesAfterPurchaseaf(student) {
+  if (typeof loadStudentCoursesaf === "function") {
+    loadStudentCoursesaf(student);
+    return;
+  }
+
+  if (typeof loadStudentCourses === "function") {
+    loadStudentCourses(student);
+    return;
+  }
+
+  console.log("Course refresh function not found.");
 }
 
 /* ==============================
    AUTO RENDER IF SECTION EXISTS
 ================================ */
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   const batchSection = afBatchEl("batchaf");
 
   if (batchSection) {
+    await loadEnrolledBatchSlugsaf();
     renderBatchesaf(afBatches);
   }
 });
+  
   </script>
 </body>
 </html>
