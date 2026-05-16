@@ -11930,12 +11930,28 @@ async function logoutAcademeForge() {
     authGate.style.display = "flex";
   }
 }
-  /* ==============================
+ /* ==============================
    NEW STUDENT SECTION JS - AF
-   Backend connected with studentDb
+   Backend connected
    Table: students
    Columns: mobile, password, status, name, email, student_id
+
+   IMPORTANT:
+   - Agar tumhare backend client ka naam studentDb hai, ye studentDb use karega.
+   - Agar tumhare backend client ka naam db hai, ye db use karega.
 ================================ */
+
+function getStudentBackendaf() {
+  if (typeof studentDb !== "undefined") {
+    return studentDb;
+  }
+
+  if (typeof db !== "undefined") {
+    return db;
+  }
+
+  return null;
+}
 
 function showStudentMessageaf(type, text) {
   const box = document.getElementById("studentMessageaf");
@@ -12003,31 +12019,38 @@ async function loginStudentaf() {
     return;
   }
 
-  if (typeof studentDb === "undefined") {
+  const backend = getStudentBackendaf();
+
+  if (!backend) {
     showStudentMessageaf("err", "Student backend is not connected.");
-    console.log("studentDb not found");
+    console.log("No Supabase client found. Expected studentDb or db.");
     return;
   }
 
   showStudentMessageaf("info", "Checking your login...");
 
   try {
-    const { data, error } = await studentDb
+    const { data, error } = await backend
       .from("students")
-      .select("*")
+      .select("id, student_id, name, mobile, email, password, status")
       .eq("mobile", phone)
       .eq("password", password)
       .eq("status", "active")
-      .single();
+      .maybeSingle();
 
-    if (error || !data) {
-      console.log("Login error:", error);
+    if (error) {
+      console.log("Login query error:", error);
+      showStudentMessageaf("err", "Login failed. Please try again.");
+      return;
+    }
+
+    if (!data) {
       showStudentMessageaf("err", "Invalid Student ID or password.");
       return;
     }
 
     localStorage.setItem("af_student_logged_in", "true");
-    localStorage.setItem("af_student_id", data.student_id || data.mobile);
+    localStorage.setItem("af_student_id", data.student_id || data.mobile || "");
     localStorage.setItem("af_student_mobile", data.mobile || "");
     localStorage.setItem("af_student_name", data.name || "Student");
     localStorage.setItem("af_student_email", data.email || "");
@@ -12035,13 +12058,16 @@ async function loginStudentaf() {
     openCourseSectionAfterLoginaf(data);
 
   } catch (err) {
-    console.error(err);
+    console.error("Login failed:", err);
     showStudentMessageaf("err", "Login failed. Please try again.");
   }
 }
 
 function openCourseSectionAfterLoginaf(studentData) {
-  const authCard = document.getElementById("studentAuthCardaf");
+  const authCard =
+    document.getElementById("studentAuthCardaf") ||
+    document.querySelector(".student-cardaf");
+
   const courseSelectBox = document.getElementById("courseSelectBox");
   const courseDetailsBox = document.getElementById("courseDetailsBox");
   const welcomeText = document.getElementById("studentWelcomeText");
@@ -12060,13 +12086,13 @@ function openCourseSectionAfterLoginaf(studentData) {
     courseSelectBox.style.display = "block";
   } else {
     console.log("courseSelectBox not found");
+    showStudentMessageaf("err", "Course section not found.");
+    return;
   }
 
   if (welcomeText) {
     welcomeText.textContent = "Welcome " + ((studentData && studentData.name) || "Student");
   }
-
-  showStudentMessageaf("ok", "Login successful.");
 
   if (typeof renderCourses === "function") {
     renderCourses();
@@ -12077,16 +12103,18 @@ function openCourseSectionAfterLoginaf(studentData) {
   }
 
   if (typeof loadStudentCourses === "function") {
-    loadStudentCourses();
+    loadStudentCourses(studentData);
   }
+
+  showStudentMessageaf("ok", "Login successful.");
 }
 
 function createStudentIdaf() {
-  showStudentMessageaf("ok", "Create Student ID backend will connect here.");
+  showStudentMessageaf("info", "Create Student ID backend will connect here.");
 }
 
 function sendPasswordResetaf() {
-  showStudentMessageaf("ok", "Password reset backend will connect here.");
+  showStudentMessageaf("info", "Password reset backend will connect here.");
 }
 
 function logoutStudent() {
@@ -12096,7 +12124,10 @@ function logoutStudent() {
   localStorage.removeItem("af_student_name");
   localStorage.removeItem("af_student_email");
 
-  const authCard = document.getElementById("studentAuthCardaf");
+  const authCard =
+    document.getElementById("studentAuthCardaf") ||
+    document.querySelector(".student-cardaf");
+
   const courseSelectBox = document.getElementById("courseSelectBox");
   const courseDetailsBox = document.getElementById("courseDetailsBox");
 
@@ -12116,6 +12147,22 @@ function logoutStudent() {
 
   switchStudentModeaf("login");
 }
+
+/* Optional: page reload ke baad agar already login hai to course section open */
+document.addEventListener("DOMContentLoaded", function () {
+  const loggedIn = localStorage.getItem("af_student_logged_in");
+
+  if (loggedIn === "true") {
+    const studentData = {
+      student_id: localStorage.getItem("af_student_id"),
+      mobile: localStorage.getItem("af_student_mobile"),
+      name: localStorage.getItem("af_student_name"),
+      email: localStorage.getItem("af_student_email")
+    };
+
+    openCourseSectionAfterLoginaf(studentData);
+  }
+});
 </script>
 </body>
 </html>
