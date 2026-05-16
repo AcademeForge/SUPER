@@ -7569,7 +7569,513 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
     color: #fecaca !important;
   }
 }
-  
+  /* ==============================
+   BATCH PURCHASE SECTION - AF
+================================ */
+
+#batchaf {
+  min-height: 100vh;
+  padding: 18px 14px 90px;
+  background:
+    radial-gradient(circle at top left, rgba(22, 163, 74, 0.08), transparent 32%),
+    radial-gradient(circle at top right, rgba(37, 99, 235, 0.08), transparent 32%),
+    linear-gradient(135deg, #ffffff 0%, #f8fafc 52%, #f0fdf4 100%);
+  color: #0f172a;
+}
+
+.batch-wrapaf {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.batch-pageaf {
+  width: 100%;
+}
+
+.hidden-box {
+  display: none !important;
+}
+
+.batch-topbaraf {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.batch-topbaraf h2 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 30px;
+  line-height: 1.15;
+  font-weight: 950;
+  letter-spacing: -0.04em;
+}
+
+.batch-topbaraf p {
+  margin: 7px 0 0;
+  color: #64748b;
+  font-size: 15px;
+  font-weight: 750;
+}
+
+.batch-search-boxaf {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 54px;
+  margin: 0 0 18px;
+  padding: 0 15px;
+  border-radius: 18px;
+  background: #ffffff;
+  border: 1px solid rgba(148, 163, 184, 0.34);
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+}
+
+.batch-search-boxaf span {
+  font-size: 22px;
+  opacity: 0.8;
+}
+
+.batch-search-boxaf input {
+  width: 100%;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: #0f172a;
+  font-size: 16px;
+  font-weight: 750;
+}
+
+.batch-search-boxaf input::placeholder {
+  color: #64748b;
+}
+
+.batch-gridaf {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+/* Batch Card */
+
+.batch-cardaf {
+  overflow: hidden;
+  border-radius: 26px;
+  background: #ffffff;
+  border: 1px solid rgba(148, 163, 184, 0.30);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
+}
+
+.batch-img-wrapaf {
+  position: relative;
+  width: 100%;
+  background: #f1f5f9;
+  cursor: pointer;
+}
+
+.batch-imgaf {
+  width: 100%;
+  display: block;
+  aspect-ratio: 16 / 8;
+  object-fit: cover;
+}
+
+.batch-loaderaf {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 4px solid rgba(22, 163, 74, 0.18);
+  border-top-color: #16a34a;
+  animation: batchSpinaf 0.9s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes batchSpinaf {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.batch-card-bodyaf {
+  padding: 16px 16px 18px;
+}
+
+.batch-card-metaaf {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 9px;
+}
+
+.batch-categoryaf {
+  margin: 0;
+  color: #ea580c;
+  font-size: 14px;
+  font-weight: 950;
+}
+
+.batch-languageaf {
+  padding: 5px 10px;
+  border-radius: 9px;
+  border: 1px solid rgba(15, 23, 42, 0.22);
+  color: #0f172a;
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: 0.03em;
+}
+
+.batch-titleaf {
+  margin: 0;
+  color: #0f172a;
+  font-size: 22px;
+  line-height: 1.25;
+  font-weight: 950;
+  cursor: pointer;
+}
+
+.batch-subaf {
+  margin: 10px 0 0;
+  color: #475569;
+  font-size: 14px;
+  line-height: 1.55;
+  font-weight: 750;
+}
+
+.batch-statusaf {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 13px 0;
+  color: #334155;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.batch-dotaf {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #be123c;
+}
+
+.batch-price-actionaf {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.batch-priceaf {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.batch-price-lineaf {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+}
+
+.batch-price-lineaf strong {
+  color: #0f172a;
+  font-size: 24px;
+  font-weight: 950;
+}
+
+.batch-price-lineaf del {
+  color: #64748b;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.batch-offaf {
+  color: #15803d;
+  font-size: 15px;
+  font-weight: 950;
+}
+
+.batch-buy-rowaf {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.batch-buy-btnaf {
+  min-width: 150px;
+  border: 0;
+  border-radius: 16px;
+  padding: 15px 18px;
+  background: #111827;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 950;
+  cursor: pointer;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.18);
+}
+
+.batch-arrowaf {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.40);
+  background: #ffffff;
+  color: #111827;
+  font-size: 30px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Details Page */
+
+.batch-backaf {
+  border: 0;
+  margin-bottom: 14px;
+  padding: 10px 13px;
+  border-radius: 14px;
+  background: rgba(37, 99, 235, 0.10);
+  color: #1d4ed8;
+  font-size: 13px;
+  font-weight: 950;
+  cursor: pointer;
+}
+
+.batch-detail-cardaf {
+  overflow: hidden;
+  border-radius: 26px;
+  background: #ffffff;
+  border: 1px solid rgba(148, 163, 184, 0.30);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
+}
+
+.batch-detail-imgaf {
+  width: 100%;
+  display: block;
+  aspect-ratio: 16 / 8;
+  object-fit: cover;
+  background: #f1f5f9;
+}
+
+.batch-detail-bodyaf {
+  padding: 17px;
+}
+
+.batch-detail-headrowaf {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.batch-detail-headrowaf h2 {
+  margin: 4px 0 0;
+  color: #0f172a;
+  font-size: 25px;
+  line-height: 1.2;
+  font-weight: 950;
+}
+
+.batch-detail-descaf {
+  margin: 12px 0 0;
+  color: #475569;
+  font-size: 14.5px;
+  line-height: 1.65;
+  font-weight: 750;
+}
+
+.batch-price-rowaf {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  margin: 16px 0;
+}
+
+.batch-price-rowaf strong {
+  color: #0f172a;
+  font-size: 28px;
+  font-weight: 950;
+}
+
+.batch-price-rowaf del {
+  color: #64748b;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.batch-price-rowaf span {
+  color: #15803d;
+  font-size: 15px;
+  font-weight: 950;
+}
+
+.batch-buy-mainaf {
+  width: 100%;
+  border: 0;
+  border-radius: 18px;
+  padding: 15px 18px;
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 950;
+  cursor: pointer;
+  box-shadow: 0 16px 34px rgba(22, 163, 74, 0.24);
+}
+
+.batch-info-boxaf {
+  margin-top: 15px;
+  padding: 16px;
+  border-radius: 22px;
+  background: #ffffff;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+}
+
+.batch-info-boxaf h3 {
+  margin: 0 0 10px;
+  color: #166534;
+  font-size: 16px;
+  font-weight: 950;
+}
+
+.batch-info-boxaf p,
+.batch-info-boxaf li {
+  color: #334155;
+  font-size: 14px;
+  line-height: 1.65;
+  font-weight: 750;
+}
+
+.batch-info-boxaf ul {
+  margin: 0;
+  padding-left: 19px;
+}
+
+/* Mobile */
+
+@media (max-width: 520px) {
+  #batchaf {
+    padding: 14px 12px 88px;
+  }
+
+  .batch-topbaraf h2 {
+    font-size: 28px;
+  }
+
+  .batch-card-bodyaf {
+    padding: 15px;
+  }
+
+  .batch-titleaf {
+    font-size: 21px;
+  }
+
+  .batch-price-actionaf {
+    align-items: flex-end;
+  }
+
+  .batch-buy-btnaf {
+    min-width: 138px;
+    padding: 14px 16px;
+  }
+
+  .batch-arrowaf {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+/* Dark Mode */
+
+@media (prefers-color-scheme: dark) {
+  #batchaf {
+    background:
+      radial-gradient(circle at top left, rgba(34, 197, 94, 0.16), transparent 34%),
+      radial-gradient(circle at top right, rgba(59, 130, 246, 0.14), transparent 32%),
+      linear-gradient(135deg, #020617 0%, #0f172a 48%, #052e16 100%);
+    color: #f8fafc;
+  }
+
+  .batch-topbaraf h2,
+  .batch-titleaf,
+  .batch-price-lineaf strong,
+  .batch-detail-headrowaf h2,
+  .batch-price-rowaf strong {
+    color: #ffffff;
+  }
+
+  .batch-topbaraf p,
+  .batch-subaf,
+  .batch-statusaf,
+  .batch-detail-descaf,
+  .batch-info-boxaf p,
+  .batch-info-boxaf li {
+    color: #cbd5e1;
+  }
+
+  .batch-search-boxaf,
+  .batch-cardaf,
+  .batch-detail-cardaf,
+  .batch-info-boxaf {
+    background: rgba(15, 23, 42, 0.94);
+    border-color: rgba(148, 163, 184, 0.20);
+    box-shadow:
+      0 24px 70px rgba(0, 0, 0, 0.34),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .batch-search-boxaf input {
+    color: #ffffff;
+  }
+
+  .batch-search-boxaf input::placeholder {
+    color: #94a3b8;
+  }
+
+  .batch-img-wrapaf,
+  .batch-detail-imgaf {
+    background: #020617;
+  }
+
+  .batch-languageaf {
+    border-color: rgba(226, 232, 240, 0.34);
+    color: #e2e8f0;
+  }
+
+  .batch-price-lineaf del,
+  .batch-price-rowaf del {
+    color: #94a3b8;
+  }
+
+  .batch-offaf,
+  .batch-price-rowaf span,
+  .batch-info-boxaf h3 {
+    color: #86efac;
+  }
+
+  .batch-buy-btnaf {
+    background: #ffffff;
+    color: #020617;
+  }
+
+  .batch-arrowaf {
+    background: rgba(2, 6, 23, 0.72);
+    color: #ffffff;
+    border-color: rgba(148, 163, 184, 0.22);
+  }
+
+  .batch-backaf {
+    background: rgba(59, 130, 246, 0.16);
+    color: #93c5fd;
+  }
+}
   </style>
 </head>
 
@@ -8960,6 +9466,93 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
   </div>
 </section>
 
+    <!-- ==============================
+     BATCH PURCHASE SECTION - AF
+================================ -->
+
+<section id="batchaf" class="section hidden-box">
+  <div class="batch-wrapaf">
+
+    <!-- Batch List Page -->
+    <div class="batch-pageaf" id="batchListBoxaf">
+
+      <div class="batch-topbaraf">
+        <div>
+          <h2>All Batches</h2>
+          <p id="batchCountTextaf">5 batches available</p>
+        </div>
+      </div>
+
+      <div class="batch-search-boxaf">
+        <span>🔍</span>
+        <input
+          id="batchSearchInputaf"
+          type="text"
+          placeholder="Search for batches"
+          oninput="filterBatchesaf()"
+        >
+      </div>
+
+      <div class="batch-gridaf" id="batchCardsaf"></div>
+    </div>
+
+
+    <!-- Batch Details Page -->
+    <div class="batch-pageaf hidden-box" id="batchDetailsBoxaf">
+
+      <button class="batch-backaf" type="button" onclick="backToBatchListaf()">
+        ← Back to Batches
+      </button>
+
+      <div class="batch-detail-cardaf">
+        <img id="batchDetailImageaf" src="" alt="Batch Image" class="batch-detail-imgaf">
+
+        <div class="batch-detail-bodyaf">
+          <div class="batch-detail-headrowaf">
+            <div>
+              <p class="batch-categoryaf" id="batchDetailCategoryaf">Target</p>
+              <h2 id="batchDetailTitleaf">Batch Name</h2>
+            </div>
+
+            <span class="batch-languageaf" id="batchDetailLanguageaf">HINGLISH</span>
+          </div>
+
+          <p class="batch-detail-descaf" id="batchDetailDescaf">
+            Batch description will appear here.
+          </p>
+
+          <div class="batch-price-rowaf">
+            <strong id="batchDetailPriceaf">₹49</strong>
+            <del id="batchDetailOldPriceaf">₹99</del>
+            <span id="batchDetailOffaf">51% OFF</span>
+          </div>
+
+          <button class="batch-buy-mainaf" type="button" onclick="buySelectedBatchaf()">
+            Buy Now
+          </button>
+        </div>
+      </div>
+
+      <div class="batch-info-boxaf">
+        <h3>📌 What you will learn</h3>
+        <ul id="batchLearnListaf"></ul>
+      </div>
+
+      <div class="batch-info-boxaf">
+        <h3>🏫 Batch Facilities</h3>
+        <ul id="batchFacilityListaf"></ul>
+      </div>
+
+      <div class="batch-info-boxaf">
+        <h3>🧾 Batch Details</h3>
+        <p id="batchFullDetailsaf"></p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+    
     <!-- NOTIFICATION SECTION -->
     
 <section id="notifications" class="section">
@@ -9040,11 +9633,11 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
         <b>🎓</b>
         Student
       </button>
-
-      <button class="nav-btn" data-section="office" onclick="showSection('office')">
-        <b>🏢</b>
-        Office
-      </button>
+      
+  <button class="nav-btn" data-section="batchaf" onclick="showSection('batchaf'); openBatchSectionaf();">
+  <b>📚</b>
+  Batches
+</button>
 
      <button class="nav-btn" data-section="community" onclick="showSection('community')">
   <b>💬</b>
@@ -14718,6 +15311,641 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     openCourseSectionAfterLoginaf(studentData);
+  }
+});
+
+  /* ==============================
+   BATCH PURCHASE JS - AF
+   Frontend Razorpay Checkout
+   Price: 49
+   Old price: 99
+   Discount: 51% OFF
+================================ */
+
+const RAZORPAY_KEY_ID = "rzp_test_SpO0DdKfoz5wRu";
+
+const afBatchPrice = 49;
+const afBatchOldPrice = 99;
+const afBatchDiscount = Math.round(((afBatchOldPrice - afBatchPrice) / afBatchOldPrice) * 100);
+
+let afSelectedBatch = null;
+
+const afBatches = [
+  {
+    id: "video-editing",
+    courseSlug: "video-editing",
+    image: "Course 1.jpeg",
+    category: "Target",
+    language: "HINGLISH",
+    title: "Video & Media Editing Mastery",
+    subtitle: "Learn editing, storytelling, reels, shorts, and professional content creation.",
+    status: "Ongoing",
+    startText: "Started recently",
+    price: afBatchPrice,
+    oldPrice: afBatchOldPrice,
+    details:
+      "A practical batch for learners who want to build strong video editing skills for reels, shorts, YouTube content, social media creatives, and professional digital projects.",
+    learn: [
+      "Timeline editing and clean workflow",
+      "Reels, shorts, and social media video structure",
+      "Transitions, captions, audio sync, and color correction",
+      "Content planning and storytelling basics",
+      "Project-based editing practice"
+    ],
+    facilities: [
+      "Chapter-wise learning",
+      "Lecture and notes support",
+      "Practice-based tasks",
+      "Future certificate support",
+      "Batch access after successful purchase"
+    ]
+  },
+  {
+    id: "graphic-design",
+    courseSlug: "graphic-design",
+    image: "Course 2.jpeg",
+    category: "Target",
+    language: "HINGLISH",
+    title: "Creative & Graphic Design Mastery",
+    subtitle: "Design posters, thumbnails, banners, brand creatives, and visual content.",
+    status: "Ongoing",
+    startText: "Started recently",
+    price: afBatchPrice,
+    oldPrice: afBatchOldPrice,
+    details:
+      "A creative batch focused on design fundamentals, social media creatives, thumbnails, posters, brand layouts, typography, and portfolio-ready visual design practice.",
+    learn: [
+      "Design principles and layout basics",
+      "Poster, banner, and thumbnail design",
+      "Typography, color balance, and spacing",
+      "Brand-style social media creatives",
+      "Portfolio-focused design practice"
+    ],
+    facilities: [
+      "Design practice tasks",
+      "Creative assignments",
+      "Notes for quick revision",
+      "Portfolio guidance",
+      "Future project review"
+    ]
+  },
+  {
+    id: "ai-coding",
+    courseSlug: "ai-coding",
+    image: "Course 3.jpeg",
+    category: "Target",
+    language: "HINGLISH",
+    title: "AI Coding & Logic Foundation",
+    subtitle: "Build coding logic, AI basics, prompts, and beginner-friendly programming thinking.",
+    status: "Ongoing",
+    startText: "Started recently",
+    price: afBatchPrice,
+    oldPrice: afBatchOldPrice,
+    details:
+      "A beginner-friendly batch designed to build programming thinking, logic, AI-assisted coding workflow, problem solving, and project structure from the ground level.",
+    learn: [
+      "Logic building and problem solving",
+      "Programming basics for beginners",
+      "AI-assisted coding workflow",
+      "Prompt thinking for coding tasks",
+      "Mini project planning and structure"
+    ],
+    facilities: [
+      "Beginner-friendly explanations",
+      "Practice questions",
+      "Chapter-wise notes",
+      "Mini project ideas",
+      "Future coding dashboard support"
+    ]
+  },
+  {
+    id: "freelancing",
+    courseSlug: "freelancing",
+    image: "Course 4.jpeg",
+    category: "Target",
+    language: "HINGLISH",
+    title: "Freelancing & Monetization Roadmap",
+    subtitle: "Understand digital earning, freelancing basics, client work, and skill monetization.",
+    status: "Ongoing",
+    startText: "Started recently",
+    price: afBatchPrice,
+    oldPrice: afBatchOldPrice,
+    details:
+      "A practical batch for students who want to understand freelancing basics, profile building, client communication, service packaging, pricing, and online earning discipline.",
+    learn: [
+      "Freelancing basics and service selection",
+      "Profile and portfolio building",
+      "Client communication fundamentals",
+      "Pricing and delivery discipline",
+      "Online earning mindset and roadmap"
+    ],
+    facilities: [
+      "Freelancing roadmap",
+      "Profile guidance",
+      "Notes and examples",
+      "Practical task ideas",
+      "Future mentorship support"
+    ]
+  },
+  {
+    id: "ai-prompt-engineering",
+    courseSlug: "ai-prompt-engineering",
+    image: "Course 5.jpeg",
+    category: "Target",
+    language: "HINGLISH",
+    title: "AI & Prompt Engineering",
+    subtitle: "Master AI tools, prompt structure, productivity workflows, and practical automation thinking.",
+    status: "Ongoing",
+    startText: "Started recently",
+    price: afBatchPrice,
+    oldPrice: afBatchOldPrice,
+    details:
+      "A modern AI-focused batch covering prompt engineering, AI tool usage, structured prompting, productivity workflows, content generation, research support, and practical AI implementation for students and creators.",
+    learn: [
+      "Prompt engineering fundamentals",
+      "AI tools for study, content, and productivity",
+      "Structured prompts for better output",
+      "Research, writing, and automation workflows",
+      "Practical AI use cases for real projects"
+    ],
+    facilities: [
+      "Prompt templates and examples",
+      "Practice-based AI tasks",
+      "Chapter-wise notes",
+      "Real workflow demonstrations",
+      "Future AI project support"
+    ]
+  }
+];
+
+function afBatchEl(id) {
+  return document.getElementById(id);
+}
+
+function getBatchBackendaf() {
+  if (typeof studentDb !== "undefined") return studentDb;
+  return null;
+}
+
+/* ==============================
+   OPEN / RENDER BATCH SECTION
+================================ */
+
+function openBatchSectionaf() {
+  const batchSection = afBatchEl("batchaf");
+
+  if (batchSection) {
+    batchSection.classList.remove("hidden-box");
+    batchSection.style.display = "block";
+  }
+
+  showBatchListaf();
+  renderBatchesaf(afBatches);
+}
+
+function showBatchListaf() {
+  const list = afBatchEl("batchListBoxaf");
+  const details = afBatchEl("batchDetailsBoxaf");
+
+  if (details) {
+    details.classList.add("hidden-box");
+    details.style.display = "none";
+  }
+
+  if (list) {
+    list.classList.remove("hidden-box");
+    list.style.display = "block";
+  }
+}
+
+function backToBatchListaf() {
+  showBatchListaf();
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+function renderBatchesaf(list) {
+  const box = afBatchEl("batchCardsaf");
+  const count = afBatchEl("batchCountTextaf");
+
+  if (!box) return;
+
+  if (count) {
+    count.textContent = list.length + " batches available";
+  }
+
+  if (!list.length) {
+    box.innerHTML = '<p class="empty-textaf">No batch found.</p>';
+    return;
+  }
+
+  box.innerHTML = list.map(function (batch) {
+    return `
+      <div class="batch-cardaf">
+        <div class="batch-img-wrapaf" onclick="openBatchDetailsaf('${batch.id}')">
+          <span class="batch-loaderaf"></span>
+          <img
+            class="batch-imgaf"
+            src="${batch.image}"
+            alt="${batch.title}"
+            loading="lazy"
+            onload="this.previousElementSibling.style.display='none'"
+            onerror="this.previousElementSibling.style.display='none'"
+          >
+        </div>
+
+        <div class="batch-card-bodyaf">
+          <div class="batch-card-metaaf">
+            <p class="batch-categoryaf">${batch.category}</p>
+            <span class="batch-languageaf">${batch.language}</span>
+          </div>
+
+          <h3 class="batch-titleaf" onclick="openBatchDetailsaf('${batch.id}')">
+            ${batch.title}
+          </h3>
+
+          <p class="batch-subaf">${batch.subtitle}</p>
+
+          <div class="batch-statusaf">
+            <span class="batch-dotaf"></span>
+            <span>${batch.status}</span>
+            <span>|</span>
+            <span>${batch.startText}</span>
+          </div>
+
+          <div class="batch-price-actionaf">
+            <div class="batch-priceaf">
+              <div class="batch-price-lineaf">
+                <strong>₹${batch.price}</strong>
+                <del>₹${batch.oldPrice}</del>
+              </div>
+              <span class="batch-offaf">${afBatchDiscount}% OFF</span>
+            </div>
+
+            <div class="batch-buy-rowaf">
+              <button class="batch-buy-btnaf" type="button" onclick="buyBatchDirectaf('${batch.id}')">
+                Buy Now
+              </button>
+
+              <button class="batch-arrowaf" type="button" onclick="openBatchDetailsaf('${batch.id}')">
+                ›
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+function filterBatchesaf() {
+  const input = afBatchEl("batchSearchInputaf");
+  const query = input ? input.value.trim().toLowerCase() : "";
+
+  if (!query) {
+    renderBatchesaf(afBatches);
+    return;
+  }
+
+  const filtered = afBatches.filter(function (batch) {
+    return (
+      batch.title.toLowerCase().includes(query) ||
+      batch.subtitle.toLowerCase().includes(query) ||
+      batch.courseSlug.toLowerCase().includes(query)
+    );
+  });
+
+  renderBatchesaf(filtered);
+}
+
+/* ==============================
+   BATCH DETAILS
+================================ */
+
+function openBatchDetailsaf(batchId) {
+  const batch = afBatches.find(function (item) {
+    return item.id === batchId;
+  });
+
+  if (!batch) {
+    alert("Batch not found.");
+    return;
+  }
+
+  afSelectedBatch = batch;
+
+  const list = afBatchEl("batchListBoxaf");
+  const details = afBatchEl("batchDetailsBoxaf");
+
+  if (list) {
+    list.classList.add("hidden-box");
+    list.style.display = "none";
+  }
+
+  if (details) {
+    details.classList.remove("hidden-box");
+    details.style.display = "block";
+  }
+
+  const img = afBatchEl("batchDetailImageaf");
+  const category = afBatchEl("batchDetailCategoryaf");
+  const language = afBatchEl("batchDetailLanguageaf");
+  const title = afBatchEl("batchDetailTitleaf");
+  const desc = afBatchEl("batchDetailDescaf");
+  const price = afBatchEl("batchDetailPriceaf");
+  const oldPrice = afBatchEl("batchDetailOldPriceaf");
+  const off = afBatchEl("batchDetailOffaf");
+  const learn = afBatchEl("batchLearnListaf");
+  const facilities = afBatchEl("batchFacilityListaf");
+  const fullDetails = afBatchEl("batchFullDetailsaf");
+
+  if (img) img.src = batch.image;
+  if (category) category.textContent = batch.category;
+  if (language) language.textContent = batch.language;
+  if (title) title.textContent = batch.title;
+  if (desc) desc.textContent = batch.subtitle;
+  if (price) price.textContent = "₹" + batch.price;
+  if (oldPrice) oldPrice.textContent = "₹" + batch.oldPrice;
+  if (off) off.textContent = afBatchDiscount + "% OFF";
+  if (fullDetails) fullDetails.textContent = batch.details;
+
+  if (learn) {
+    learn.innerHTML = batch.learn.map(function (item) {
+      return `<li>${item}</li>`;
+    }).join("");
+  }
+
+  if (facilities) {
+    facilities.innerHTML = batch.facilities.map(function (item) {
+      return `<li>${item}</li>`;
+    }).join("");
+  }
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+/* ==============================
+   BUY BUTTONS
+================================ */
+
+function buyBatchDirectaf(batchId) {
+  const batch = afBatches.find(function (item) {
+    return item.id === batchId;
+  });
+
+  if (!batch) {
+    alert("Batch not found.");
+    return;
+  }
+
+  afSelectedBatch = batch;
+  startBatchPaymentaf(batch);
+}
+
+function buySelectedBatchaf() {
+  if (!afSelectedBatch) {
+    alert("Please select a batch first.");
+    return;
+  }
+
+  startBatchPaymentaf(afSelectedBatch);
+}
+
+/* ==============================
+   RAZORPAY CHECKOUT
+================================ */
+
+function startBatchPaymentaf(batch) {
+  const studentUuid = localStorage.getItem("af_student_uuid");
+  const studentName = localStorage.getItem("af_student_name") || "Student";
+  const studentEmail = localStorage.getItem("af_student_email") || "";
+  const studentMobile = localStorage.getItem("af_student_mobile") || "";
+
+  if (!studentUuid) {
+    alert("Please login before purchasing this batch.");
+    return;
+  }
+
+  if (typeof Razorpay === "undefined") {
+    alert("Razorpay checkout script not loaded. Add checkout.js script before this JS.");
+    return;
+  }
+
+  const amountInPaise = Number(batch.price) * 100;
+
+  const options = {
+    key: RAZORPAY_KEY_ID,
+    amount: amountInPaise,
+    currency: "INR",
+    name: "AcademeForge",
+    description: batch.title,
+    image: "",
+    prefill: {
+      name: studentName,
+      email: studentEmail,
+      contact: studentMobile
+    },
+    notes: {
+      student_uuid: studentUuid,
+      course_slug: batch.courseSlug,
+      batch_id: batch.id,
+      batch_title: batch.title
+    },
+    theme: {
+      color: "#16a34a"
+    },
+    handler: async function (response) {
+      console.log("Razorpay success:", response);
+
+      await saveBatchPaymentaf(batch, response);
+      await grantBatchAccessaf(batch.courseSlug);
+    },
+    modal: {
+      ondismiss: function () {
+        console.log("Razorpay checkout closed.");
+      }
+    }
+  };
+
+  const razorpayCheckout = new Razorpay(options);
+
+  razorpayCheckout.on("payment.failed", function (response) {
+    console.error("Razorpay failed:", response);
+
+    let message = "Payment failed. Please try again.";
+
+    if (
+      response &&
+      response.error &&
+      response.error.description
+    ) {
+      message = response.error.description;
+    }
+
+    alert(message);
+  });
+
+  razorpayCheckout.open();
+}
+
+/* ==============================
+   OPTIONAL PAYMENT RECORD
+   Table nahi hai to ye silently skip ho jayega
+================================ */
+
+async function saveBatchPaymentaf(batch, razorpayResponse) {
+  const backend = getBatchBackendaf();
+
+  if (!backend) {
+    console.log("Backend not connected. Payment record skipped.");
+    return;
+  }
+
+  const studentUuid = localStorage.getItem("af_student_uuid");
+
+  if (!studentUuid) {
+    console.log("Student UUID missing. Payment record skipped.");
+    return;
+  }
+
+  /*
+    Agar tum payment record rakhna chahte ho to Supabase me ye table bana sakte ho:
+
+    create table if not exists public.batch_payments_af (
+      id uuid primary key default gen_random_uuid(),
+      student_id uuid not null references public.students_af(id) on delete cascade,
+      course_slug text not null,
+      batch_id text not null,
+      batch_title text not null,
+      amount int not null,
+      currency text not null default 'INR',
+      razorpay_payment_id text,
+      status text not null default 'paid',
+      created_at timestamptz not null default now()
+    );
+
+    alter table public.batch_payments_af enable row level security;
+
+    create policy "Allow public insert batch_payments_af"
+    on public.batch_payments_af
+    for insert
+    with check (true);
+
+    create policy "Allow public read batch_payments_af"
+    on public.batch_payments_af
+    for select
+    using (true);
+  */
+
+  try {
+    const { error } = await backend
+      .from("batch_payments_af")
+      .insert([
+        {
+          student_id: studentUuid,
+          course_slug: batch.courseSlug,
+          batch_id: batch.id,
+          batch_title: batch.title,
+          amount: batch.price,
+          currency: "INR",
+          razorpay_payment_id: razorpayResponse.razorpay_payment_id || "",
+          status: "paid"
+        }
+      ]);
+
+    if (error) {
+      console.log("Payment record skipped:", error.message);
+    }
+  } catch (err) {
+    console.log("Payment record error skipped:", err.message);
+  }
+}
+
+/* ==============================
+   AFTER PAYMENT SUCCESS
+   Add access in student_courses
+================================ */
+
+async function grantBatchAccessaf(courseSlug) {
+  const backend = getBatchBackendaf();
+
+  if (!backend) {
+    alert("Payment successful, but student backend is not connected.");
+    return;
+  }
+
+  const studentUuid = localStorage.getItem("af_student_uuid");
+
+  if (!studentUuid) {
+    alert("Payment successful, but student login session was not found.");
+    return;
+  }
+
+  try {
+    const { data: courseData, error: courseError } = await backend
+      .from("courses")
+      .select("id, title")
+      .eq("slug", courseSlug)
+      .single();
+
+    if (courseError || !courseData) {
+      console.error("Course find error:", courseError);
+      alert("Payment successful, but course was not found.");
+      return;
+    }
+
+    const { error: accessError } = await backend
+      .from("student_courses")
+      .upsert(
+        {
+          student_id: studentUuid,
+          course_id: courseData.id,
+          status: "active"
+        },
+        {
+          onConflict: "student_id,course_id"
+        }
+      );
+
+    if (accessError) {
+      console.error("Access insert error:", accessError);
+      alert("Payment successful, but access could not be added: " + accessError.message);
+      return;
+    }
+
+    alert("Payment successful! Batch access added.");
+
+    if (typeof loadStudentCoursesaf === "function") {
+      loadStudentCoursesaf();
+    }
+
+    if (typeof loadStudentCourses === "function") {
+      loadStudentCourses({
+        id: studentUuid
+      });
+    }
+
+  } catch (err) {
+    console.error("grantBatchAccessaf error:", err);
+    alert("Payment successful, but access update failed.");
+  }
+}
+
+/* ==============================
+   AUTO RENDER IF SECTION EXISTS
+================================ */
+
+document.addEventListener("DOMContentLoaded", function () {
+  const batchSection = afBatchEl("batchaf");
+
+  if (batchSection) {
+    renderBatchesaf(afBatches);
   }
 });
   </script>
