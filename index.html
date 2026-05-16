@@ -12004,50 +12004,89 @@ async function loginStudentaf() {
   }
 
   if (typeof db === "undefined") {
-    showStudentMessageaf("err", "Backend is not connected.");
+    showStudentMessageaf("err", "Backend is not connected. db not found.");
     console.log("db not found");
     return;
   }
 
-  showStudentMessageaf("info", "Checking your login...");
+  showStudentMessageaf("info", "Checking backend...");
 
   try {
-    const { data, error } = await db
+    // TEST 1: Can we read students table?
+    const testRead = await db
       .from("students")
       .select("*")
-      .eq("mobile", phone)
-      .eq("password", password)
-      .eq("status", "active")
-      .maybeSingle();
+      .limit(3);
 
-    console.log("AF LOGIN DATA:", data);
-    console.log("AF LOGIN ERROR:", error);
+    console.log("AF TEST READ:", testRead);
 
-    if (error) {
-      showStudentMessageaf("err", error.message || "Login failed. Please try again.");
+    if (testRead.error) {
+      showStudentMessageaf("err", "Table read error: " + testRead.error.message);
       return;
     }
 
-    if (!data) {
-      showStudentMessageaf("err", "Invalid Student ID or password.");
+    // TEST 2: Find by mobile only
+    const mobileCheck = await db
+      .from("students")
+      .select("*")
+      .eq("mobile", phone);
+
+    console.log("AF MOBILE CHECK:", mobileCheck);
+
+    if (mobileCheck.error) {
+      showStudentMessageaf("err", "Mobile check error: " + mobileCheck.error.message);
+      return;
+    }
+
+    if (!mobileCheck.data || mobileCheck.data.length === 0) {
+      showStudentMessageaf("err", "No student found with this phone number.");
+      return;
+    }
+
+    // TEST 3: Find by mobile + password
+    const passCheck = await db
+      .from("students")
+      .select("*")
+      .eq("mobile", phone)
+      .eq("password", password);
+
+    console.log("AF PASSWORD CHECK:", passCheck);
+
+    if (passCheck.error) {
+      showStudentMessageaf("err", "Password check error: " + passCheck.error.message);
+      return;
+    }
+
+    if (!passCheck.data || passCheck.data.length === 0) {
+      showStudentMessageaf("err", "Phone found, but password is wrong.");
+      return;
+    }
+
+    // TEST 4: Active status check
+    const activeStudent = passCheck.data.find(function (student) {
+      return String(student.status || "").trim().toLowerCase() === "active";
+    });
+
+    if (!activeStudent) {
+      showStudentMessageaf("err", "Student found, but status is not active.");
+      console.log("Status values found:", passCheck.data.map(s => s.status));
       return;
     }
 
     localStorage.setItem("af_student_logged_in", "true");
-    localStorage.setItem("af_student_uuid", data.uuid || "");
-    localStorage.setItem("af_student_id", data.student_id || data.mobile || "");
-    localStorage.setItem("af_student_mobile", data.mobile || "");
-    localStorage.setItem("af_student_name", data.name || "Student");
-    localStorage.setItem("af_student_email", data.email || "");
+    localStorage.setItem("af_student_uuid", activeStudent.uuid || "");
+    localStorage.setItem("af_student_id", activeStudent.student_id || activeStudent.mobile || "");
+    localStorage.setItem("af_student_mobile", activeStudent.mobile || "");
+    localStorage.setItem("af_student_name", activeStudent.name || "Student");
+    localStorage.setItem("af_student_email", activeStudent.email || "");
 
-    openCourseSectionAfterLoginaf(data);
+    openCourseSectionAfterLoginaf(activeStudent);
 
   } catch (err) {
     console.error("AF LOGIN CATCH ERROR:", err);
-    showStudentMessageaf("err", err.message || "Login failed. Please try again.");
+    showStudentMessageaf("err", "Catch error: " + err.message);
   }
 }
-
 function openCourseSectionAfterLoginaf(studentData) {
   const authCard =
     document.getElementById("studentAuthCardaf") ||
