@@ -8303,6 +8303,8 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
   <small>Made with ❤️ in India.</small>
 </div>
 </section>
+
+     <!-- LOGIN OLD -->
     
  <section id="student" class="section">
   <div class="panel glass" id="studentLoginBox">
@@ -9249,6 +9251,95 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
 
   <div class="content-listaf" id="contentListaf"></div>
 </div>
+   </section> 
+
+   <!-- ==============================
+     BATCH PURCHASE SECTION - AF
+================================ -->
+
+<section id="batchaf" class="section hidden-box">
+  <div class="batch-wrapaf">
+
+    <!-- Batch List Page -->
+    <div class="batch-pageaf" id="batchListBoxaf">
+
+      <div class="batch-topbaraf">
+        <div>
+          <h2>All Batches</h2>
+          <p id="batchCountTextaf">5 batches available</p>
+        </div>
+      </div>
+
+      <div class="batch-search-boxaf">
+        <span>🔍</span>
+        <input
+          id="batchSearchInputaf"
+          type="text"
+          placeholder="Search for batches"
+          oninput="filterBatchesaf()"
+        >
+      </div>
+
+      <div class="batch-gridaf" id="batchCardsaf"></div>
+      
+    </div>
+
+    <!-- Batch Details Page -->
+    
+    <div class="batch-pageaf hidden-box" id="batchDetailsBoxaf">
+
+      <button class="batch-backaf" type="button" onclick="backToBatchListaf()">
+        ← Back to Batches
+      </button>
+
+      <div class="batch-detail-cardaf">
+        <img id="batchDetailImageaf" src="" alt="Batch Image" class="batch-detail-imgaf">
+
+        <div class="batch-detail-bodyaf">
+          <div class="batch-detail-headrowaf">
+            <div>
+              <p class="batch-categoryaf" id="batchDetailCategoryaf">Target</p>
+              <h2 id="batchDetailTitleaf">Batch Name</h2>
+            </div>
+
+            <span class="batch-languageaf" id="batchDetailLanguageaf">HINGLISH</span>
+          </div>
+
+          <p class="batch-detail-descaf" id="batchDetailDescaf">
+            Batch description will appear here.
+          </p>
+
+          <div class="batch-price-rowaf">
+            <strong id="batchDetailPriceaf">₹499</strong>
+            <del id="batchDetailOldPriceaf">₹999</del>
+            <span id="batchDetailOffaf">51% OFF</span>
+          </div>
+
+         <button id="batchDetailBuyBtnaf" class="batch-buy-mainaf" type="button" onclick="buySelectedBatchaf()">
+          Buy Now
+         </button>
+        </div>
+      </div>
+
+      <div class="batch-info-boxaf">
+        <h3>📌 What you will learn</h3>
+        <ul id="batchLearnListaf"></ul>
+      </div>
+
+      <div class="batch-info-boxaf">
+        <h3>🏫 Batch Facilities</h3>
+        <ul id="batchFacilityListaf"></ul>
+      </div>
+
+      <div class="batch-info-boxaf">
+        <h3>🧾 Batch Details</h3>
+        <p id="batchFullDetailsaf"></p>
+      </div>
+
+    </div>
+
+  </div>
+</section>   
     
    <!--   
     <div class="panel glass hidden-box" id="courseSelectBox">
@@ -9322,9 +9413,13 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
 
     <div class="content-list" id="contentList"></div>
   </div> -->
-</section>
+
+
     
-     <!-- Community Tab -->
+     <!-- ==============================
+      <!-- Community Tab -->
+================================ -->
+    
     
 <section id="community" class="section">
   <div class="panel glass community-panel">
@@ -9504,94 +9599,11 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
   </div>
 </section>
 
-    <!-- ==============================
-     BATCH PURCHASE SECTION - AF
-================================ -->
-
-<section id="batchaf" class="section hidden-box">
-  <div class="batch-wrapaf">
-
-    <!-- Batch List Page -->
-    <div class="batch-pageaf" id="batchListBoxaf">
-
-      <div class="batch-topbaraf">
-        <div>
-          <h2>All Batches</h2>
-          <p id="batchCountTextaf">5 batches available</p>
-        </div>
-      </div>
-
-      <div class="batch-search-boxaf">
-        <span>🔍</span>
-        <input
-          id="batchSearchInputaf"
-          type="text"
-          placeholder="Search for batches"
-          oninput="filterBatchesaf()"
-        >
-      </div>
-
-      <div class="batch-gridaf" id="batchCardsaf"></div>
-    </div>
+   
 
 
-    <!-- Batch Details Page -->
-    <div class="batch-pageaf hidden-box" id="batchDetailsBoxaf">
-
-      <button class="batch-backaf" type="button" onclick="backToBatchListaf()">
-        ← Back to Batches
-      </button>
-
-      <div class="batch-detail-cardaf">
-        <img id="batchDetailImageaf" src="" alt="Batch Image" class="batch-detail-imgaf">
-
-        <div class="batch-detail-bodyaf">
-          <div class="batch-detail-headrowaf">
-            <div>
-              <p class="batch-categoryaf" id="batchDetailCategoryaf">Target</p>
-              <h2 id="batchDetailTitleaf">Batch Name</h2>
-            </div>
-
-            <span class="batch-languageaf" id="batchDetailLanguageaf">HINGLISH</span>
-          </div>
-
-          <p class="batch-detail-descaf" id="batchDetailDescaf">
-            Batch description will appear here.
-          </p>
-
-          <div class="batch-price-rowaf">
-            <strong id="batchDetailPriceaf">₹499</strong>
-            <del id="batchDetailOldPriceaf">₹999</del>
-            <span id="batchDetailOffaf">51% OFF</span>
-          </div>
-
-         <button id="batchDetailBuyBtnaf" class="batch-buy-mainaf" type="button" onclick="buySelectedBatchaf()">
-  Buy Now
-</button>
-        </div>
-      </div>
-
-      <div class="batch-info-boxaf">
-        <h3>📌 What you will learn</h3>
-        <ul id="batchLearnListaf"></ul>
-      </div>
-
-      <div class="batch-info-boxaf">
-        <h3>🏫 Batch Facilities</h3>
-        <ul id="batchFacilityListaf"></ul>
-      </div>
-
-      <div class="batch-info-boxaf">
-        <h3>🧾 Batch Details</h3>
-        <p id="batchFullDetailsaf"></p>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-    
-    <!-- NOTIFICATION SECTION -->
+      <!-----------------------     N        ---------------------------------------> 
+  <!-----------------------   NOTIFICATION SECTION  --------------------------------------->    
     
 <section id="notifications" class="section">
   <div class="panel glass">
@@ -9610,14 +9622,16 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
     </div>
   </div>
 </section>
+
+  <!-----------------------  👥 Management & Team --------------------------------------->
     
     <section id="management" class="section">
       <div class="panel glass">
         
         <h2>👥 Management & Team</h2>
         <p>
-          AcademeForge is powered by young innovators and learners working to build a better
-          student-first learning experience.
+          AcademeForge is powered by LAZY team working to build a BAKWAS
+          learning experience.
         </p>
         
         <div class="team">
@@ -9625,7 +9639,7 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
             <div class="avatar">D</div>
             <div>
               <h4>Devraj Kumar</h4>
-              <p>Founder — focused on modern education, AI-powered learning, creativity, and student empowerment.</p>
+              <p>Founder : ALL ROUNDER</p>
             </div>
           </div>
 
@@ -9633,7 +9647,7 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
             <div class="avatar">M</div>
             <div>
               <h4>Mandeep Harsh</h4>
-              <p>Co-Founder — helping shape growth, strategy, and student learning experiences.</p>
+              <p>Co-Founder : NO WORK TO DO</p>
             </div>
           </div>
 
@@ -9641,7 +9655,7 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
             <div class="avatar">A</div>
             <div>
               <h4>Ayush Raj</h4>
-              <p>Moderator — assisting with student coordination, platform activities, and learning environment.</p>
+              <p>Moderator : NO WORK TO DO</p>
             </div>
           </div>
 
@@ -9649,7 +9663,7 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
             <div class="avatar">P</div>
             <div>
               <h4>Palak Kumari Jha</h4>
-              <p>Moderator — supporting student engagement, community, and smooth learning experience.</p>
+              <p>Moderator : NO WORK TO DO</p>
             </div>
           </div>
           
@@ -9660,7 +9674,9 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
         </div>
       </div>
     </section>
-
+    
+  <!-----------------------  NAV BUTTONS --------------------------------------->
+    
     <nav class="bottom-nav glass">
       <button class="nav-btn active" data-section="home" onclick="showSection('home')">
         <b>🏠</b>
@@ -9694,7 +9710,10 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
   <strong>Notification</strong>
   <p>Message</p>
 </div>
+  
+  <!-----------------------  JAVA SCRIPT STARTS --------------------------------------->
 
+  
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
