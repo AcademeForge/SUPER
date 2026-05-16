@@ -7520,6 +7520,16 @@ const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 
 const db = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+  /* NEW BACKEND - new student system ke liye */
+const STUDENT_SUPABASE_URL = "https://afooyyydhlwngzssgqih.supabase.co";
+
+const STUDENT_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFmb295eXlkaGx3bmd6c3NncWloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg2NDQxMjgsImV4cCI6MjA5NDIyMDEyOH0.KG0XO0oP_2MpewHoIwTtbrKg5FkyOYRUtVzLH1MSJiE";
+
+const studentDb = supabase.createClient(
+  STUDENT_SUPABASE_URL,
+  STUDENT_SUPABASE_ANON_KEY
+);
+  
 const websiteLink = "https://academeforge.in";
 
 
