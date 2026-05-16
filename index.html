@@ -7115,12 +7115,27 @@ body.dark-mode .create-id-box p,
           placeholder="Create password"
         >
 
-        <button class="student-main-btnaf" type="button" onclick="createStudentIdaf()">
-          Create Student ID
-        </button>
+    <button class="student-main-btnaf" type="button" onclick="sendCreateOtpaf()">
+  Send Email OTP
+</button>
+
+<div id="createOtpAreaaf" style="display:none; margin-top:14px;">
+  <label class="student-labelaf">Email OTP</label>
+  <input
+    id="createOtpaf"
+    class="student-inputaf"
+    type="text"
+    maxlength="6"
+    placeholder="Enter OTP sent to your email"
+  >
+
+  <button class="student-main-btnaf secondary" type="button" onclick="verifyCreateOtpAndCreateIdaf()">
+    Verify OTP & Create ID
+  </button>
+</div>
 
         <p class="student-helpaf">
-          Your phone number will be used as your AcademeForge Student ID.
+          Your phone number will be used as your Student ID.
         </p>
       </div>
 
@@ -11962,15 +11977,17 @@ async function logoutAcademeForge() {
    NEW STUDENT SECTION JS - AF
    Backend: NEW Supabase client = studentDb
    Table: students_af
-   Columns:
-   id, student_id, name, mobile, email, password,
-   status, email_verified, created_at
 
-   NOTE:
-   OTP abhi add nahi hai.
+   Create ID:
+   form fill -> Supabase Email OTP -> verify OTP -> insert student
+
+   Forgot Password:
+   find account -> Supabase Email OTP -> verify OTP -> reset password
 ================================ */
 
-let afResetStudentId = null;
+let afPendingCreateStudent = null;
+let afResetStudent = null;
+let afForgotOtpVerified = false;
 
 function showStudentMessageaf(type, text) {
   const box = document.getElementById("studentMessageaf");
@@ -11989,6 +12006,65 @@ function cleanPhoneaf(value) {
   return String(value || "").trim().replace(/\D/g, "");
 }
 
+async function sendSupabaseEmailOtpaf(email, shouldCreateUserValue) {
+  const backend = getStudentBackendaf();
+
+  if (!backend) {
+    return {
+      ok: false,
+      message: "New student backend is not connected."
+    };
+  }
+
+  const { error } = await backend.auth.signInWithOtp({
+    email: email,
+    options: {
+      shouldCreateUser: shouldCreateUserValue
+    }
+  });
+
+  if (error) {
+    return {
+      ok: false,
+      message: error.message
+    };
+  }
+
+  return {
+    ok: true,
+    message: "OTP sent successfully."
+  };
+}
+
+async function verifySupabaseEmailOtpaf(email, otp) {
+  const backend = getStudentBackendaf();
+
+  if (!backend) {
+    return {
+      ok: false,
+      message: "New student backend is not connected."
+    };
+  }
+
+  const { data, error } = await backend.auth.verifyOtp({
+    email: email,
+    token: otp,
+    type: "email"
+  });
+
+  if (error) {
+    return {
+      ok: false,
+      message: error.message
+    };
+  }
+
+  return {
+    ok: true,
+    data: data
+  };
+}
+
 function switchStudentModeaf(mode) {
   const loginBox = document.getElementById("studentLoginBoxaf");
   const createBox = document.getElementById("studentCreateBoxaf");
@@ -11997,6 +12073,8 @@ function switchStudentModeaf(mode) {
   const loginTabBtn = document.getElementById("loginTabBtnaf");
   const createTabBtn = document.getElementById("createTabBtnaf");
 
+  const createOtpArea = document.getElementById("createOtpAreaaf");
+  const forgotOtpArea = document.getElementById("forgotOtpAreaaf");
   const resetArea = document.getElementById("resetPasswordAreaaf");
 
   const msg = document.getElementById("studentMessageaf");
@@ -12005,7 +12083,12 @@ function switchStudentModeaf(mode) {
     msg.textContent = "";
   }
 
-  afResetStudentId = null;
+  afPendingCreateStudent = null;
+  afResetStudent = null;
+  afForgotOtpVerified = false;
+
+  if (createOtpArea) createOtpArea.style.display = "none";
+  if (forgotOtpArea) forgotOtpArea.style.display = "none";
   if (resetArea) resetArea.style.display = "none";
 
   if (!loginBox || !createBox || !forgotBox) {
@@ -12034,6 +12117,10 @@ function switchStudentModeaf(mode) {
     forgotBox.style.display = "block";
   }
 }
+
+/* =========================
+   LOGIN
+========================= */
 
 async function loginStudentaf() {
   const idInput = document.getElementById("loginPhoneaf");
@@ -12106,7 +12193,11 @@ async function loginStudentaf() {
   }
 }
 
-async function createStudentIdaf() {
+/* =========================
+   CREATE ID WITH EMAIL OTP
+========================= */
+
+async function sendCreateOtpaf() {
   const nameInput = document.getElementById("createNameaf");
   const phoneInput = document.getElementById("createPhoneaf");
   const emailInput = document.getElementById("createEmailaf");
@@ -12144,7 +12235,7 @@ async function createStudentIdaf() {
     return;
   }
 
-  showStudentMessageaf("info", "Creating your Student ID...");
+  showStudentMessageaf("info", "Checking existing account...");
 
   try {
     const { data: existing, error: checkError } = await backend
@@ -12153,8 +12244,7 @@ async function createStudentIdaf() {
       .or(`mobile.eq.${mobile},email.eq.${email},student_id.eq.${mobile}`);
 
     if (checkError) {
-      console.log("Duplicate check error:", checkError);
-      showStudentMessageaf("err", "Could not check existing account.");
+      showStudentMessageaf("err", "Could not check existing account: " + checkError.message);
       return;
     }
 
@@ -12174,27 +12264,84 @@ async function createStudentIdaf() {
       }
     }
 
-    const newStudent = {
+    afPendingCreateStudent = {
       student_id: mobile,
       name: name,
       mobile: mobile,
       email: email,
       password: password,
       status: "active",
-      email_verified: false
+      email_verified: true
     };
+
+    showStudentMessageaf("info", "Sending OTP to your email...");
+
+    const otpResult = await sendSupabaseEmailOtpaf(email, true);
+
+    if (!otpResult.ok) {
+      showStudentMessageaf("err", "OTP send failed: " + otpResult.message);
+      return;
+    }
+
+    const otpArea = document.getElementById("createOtpAreaaf");
+    if (otpArea) otpArea.style.display = "block";
+
+    showStudentMessageaf("ok", "OTP sent to your email. Please verify to create your Student ID.");
+
+  } catch (err) {
+    console.error("Send create OTP catch:", err);
+    showStudentMessageaf("err", "OTP send failed: " + err.message);
+  }
+}
+
+async function verifyCreateOtpAndCreateIdaf() {
+  const otpInput = document.getElementById("createOtpaf");
+  const otp = otpInput ? otpInput.value.trim() : "";
+
+  if (!afPendingCreateStudent) {
+    showStudentMessageaf("err", "Please fill the form and send OTP first.");
+    return;
+  }
+
+  if (!otp) {
+    showStudentMessageaf("err", "Enter OTP.");
+    return;
+  }
+
+  const backend = getStudentBackendaf();
+
+  if (!backend) {
+    showStudentMessageaf("err", "New student backend is not connected.");
+    return;
+  }
+
+  showStudentMessageaf("info", "Verifying OTP...");
+
+  try {
+    const verifyResult = await verifySupabaseEmailOtpaf(
+      afPendingCreateStudent.email,
+      otp
+    );
+
+    if (!verifyResult.ok) {
+      showStudentMessageaf("err", "Invalid OTP: " + verifyResult.message);
+      return;
+    }
+
+    showStudentMessageaf("info", "Creating your Student ID...");
 
     const { data, error } = await backend
       .from("students_af")
-      .insert([newStudent])
+      .insert([afPendingCreateStudent])
       .select("*")
       .single();
 
     if (error) {
-      console.log("Create student error:", error);
       showStudentMessageaf("err", "Could not create Student ID: " + error.message);
       return;
     }
+
+    afPendingCreateStudent = null;
 
     saveStudentSessionaf(data);
     showStudentMessageaf("ok", "Student ID created successfully.");
@@ -12205,6 +12352,10 @@ async function createStudentIdaf() {
     showStudentMessageaf("err", "Create ID failed: " + err.message);
   }
 }
+
+/* =========================
+   FORGOT PASSWORD WITH EMAIL OTP
+========================= */
 
 async function findStudentForResetaf() {
   const input = document.getElementById("forgotLoginaf");
@@ -12237,7 +12388,6 @@ async function findStudentForResetaf() {
       .limit(1);
 
     if (error) {
-      console.log("Find reset error:", error);
       showStudentMessageaf("err", "Account search failed: " + error.message);
       return;
     }
@@ -12247,12 +12397,35 @@ async function findStudentForResetaf() {
       return;
     }
 
-    afResetStudentId = data[0].id;
+    afResetStudent = data[0];
+    afForgotOtpVerified = false;
 
+    showStudentMessageaf("info", "Sending OTP to your registered email...");
+
+    let otpResult = await sendSupabaseEmailOtpaf(afResetStudent.email, false);
+
+    /*
+      Agar Auth user pehle create nahi hua hai,
+      to fallback true se OTP bhej do.
+      Ye useful hai old/test data ke liye.
+    */
+    if (!otpResult.ok) {
+      console.log("Forgot OTP first attempt failed:", otpResult.message);
+      otpResult = await sendSupabaseEmailOtpaf(afResetStudent.email, true);
+    }
+
+    if (!otpResult.ok) {
+      showStudentMessageaf("err", "OTP send failed: " + otpResult.message);
+      return;
+    }
+
+    const otpArea = document.getElementById("forgotOtpAreaaf");
     const resetArea = document.getElementById("resetPasswordAreaaf");
-    if (resetArea) resetArea.style.display = "block";
 
-    showStudentMessageaf("ok", "Account found. Create your new password.");
+    if (otpArea) otpArea.style.display = "block";
+    if (resetArea) resetArea.style.display = "none";
+
+    showStudentMessageaf("ok", "OTP sent to your registered email. Please verify.");
 
   } catch (err) {
     console.error("Find reset catch:", err);
@@ -12260,12 +12433,57 @@ async function findStudentForResetaf() {
   }
 }
 
+async function verifyForgotOtpaf() {
+  const otpInput = document.getElementById("forgotOtpaf");
+  const otp = otpInput ? otpInput.value.trim() : "";
+
+  if (!afResetStudent) {
+    showStudentMessageaf("err", "Please find your account first.");
+    return;
+  }
+
+  if (!otp) {
+    showStudentMessageaf("err", "Enter OTP.");
+    return;
+  }
+
+  showStudentMessageaf("info", "Verifying OTP...");
+
+  try {
+    const verifyResult = await verifySupabaseEmailOtpaf(
+      afResetStudent.email,
+      otp
+    );
+
+    if (!verifyResult.ok) {
+      showStudentMessageaf("err", "Invalid OTP: " + verifyResult.message);
+      return;
+    }
+
+    afForgotOtpVerified = true;
+
+    const resetArea = document.getElementById("resetPasswordAreaaf");
+    if (resetArea) resetArea.style.display = "block";
+
+    showStudentMessageaf("ok", "Email verified. Create your new password.");
+
+  } catch (err) {
+    console.error("Forgot OTP verify catch:", err);
+    showStudentMessageaf("err", "OTP verification failed: " + err.message);
+  }
+}
+
 async function resetStudentPasswordaf() {
   const newPasswordInput = document.getElementById("newPasswordaf");
   const newPassword = newPasswordInput ? newPasswordInput.value.trim() : "";
 
-  if (!afResetStudentId) {
+  if (!afResetStudent) {
     showStudentMessageaf("err", "Please find your account first.");
+    return;
+  }
+
+  if (!afForgotOtpVerified) {
+    showStudentMessageaf("err", "Please verify email OTP first.");
     return;
   }
 
@@ -12287,21 +12505,23 @@ async function resetStudentPasswordaf() {
     const { error } = await backend
       .from("students_af")
       .update({ password: newPassword })
-      .eq("id", afResetStudentId);
+      .eq("id", afResetStudent.id);
 
     if (error) {
-      console.log("Reset password error:", error);
       showStudentMessageaf("err", "Password reset failed: " + error.message);
       return;
     }
 
-    afResetStudentId = null;
+    afResetStudent = null;
+    afForgotOtpVerified = false;
 
     const resetArea = document.getElementById("resetPasswordAreaaf");
-    if (resetArea) resetArea.style.display = "none";
+    const otpArea = document.getElementById("forgotOtpAreaaf");
+    const newPasswordInput2 = document.getElementById("newPasswordaf");
 
-    const newPasswordInput = document.getElementById("newPasswordaf");
-    if (newPasswordInput) newPasswordInput.value = "";
+    if (resetArea) resetArea.style.display = "none";
+    if (otpArea) otpArea.style.display = "none";
+    if (newPasswordInput2) newPasswordInput2.value = "";
 
     showStudentMessageaf("ok", "Password reset successful. Please login now.");
 
@@ -12314,6 +12534,10 @@ async function resetStudentPasswordaf() {
     showStudentMessageaf("err", "Password reset failed: " + err.message);
   }
 }
+
+/* =========================
+   SESSION + COURSE OPEN
+========================= */
 
 function saveStudentSessionaf(student) {
   localStorage.setItem("af_student_logged_in", "true");
