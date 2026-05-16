@@ -6691,7 +6691,146 @@ body.dark-mode .create-id-box p,
         <button class="link-btn secondary" onclick="copyWebsite()">Copy Website Link</button>
       </div>
     </section>
+    
+<!-- NEW STUDENT SECTION -->
 
+<section id="studentaf" class="section">
+  <div class="student-wrapaf">
+
+    <div class="student-cardaf">
+      <div class="student-iconaf">🎓</div>
+
+      <h2 class="student-titleaf">Student ID Access</h2>
+
+      <p class="student-subtitleaf">
+        Login with your verified Student ID to access courses, batches, and community features.
+      </p>
+
+      <div class="student-tabsaf">
+        <button
+          type="button"
+          id="loginTabBtnaf"
+          class="student-tabaf active"
+          onclick="switchStudentModeaf('login')"
+        >
+          Login
+        </button>
+
+        <button
+          type="button"
+          id="createTabBtnaf"
+          class="student-tabaf"
+          onclick="switchStudentModeaf('create')"
+        >
+          Create ID
+        </button>
+      </div>
+
+      <!-- LOGIN BOX -->
+      <div id="studentLoginBoxaf" class="student-boxaf">
+        <label class="student-labelaf">Student ID / Phone Number</label>
+        <input
+          id="loginPhoneaf"
+          class="student-inputaf"
+          type="tel"
+          placeholder="Enter your phone number"
+        >
+
+        <label class="student-labelaf">Password</label>
+        <input
+          id="loginPasswordaf"
+          class="student-inputaf"
+          type="password"
+          placeholder="Enter password"
+        >
+
+        <button class="student-main-btnaf" type="button" onclick="loginStudentaf()">
+          Login
+        </button>
+
+        <button class="student-link-btnaf" type="button" onclick="switchStudentModeaf('forgot')">
+          Forgot Password?
+        </button>
+      </div>
+
+      <!-- CREATE ID BOX -->
+      <div id="studentCreateBoxaf" class="student-boxaf" style="display:none;">
+        <label class="student-labelaf">Full Name</label>
+        <input
+          id="createNameaf"
+          class="student-inputaf"
+          type="text"
+          placeholder="Enter your full name"
+        >
+
+        <label class="student-labelaf">Phone Number</label>
+        <input
+          id="createPhoneaf"
+          class="student-inputaf"
+          type="tel"
+          placeholder="Enter phone number"
+        >
+
+        <label class="student-labelaf">Email Address</label>
+        <input
+          id="createEmailaf"
+          class="student-inputaf"
+          type="email"
+          placeholder="Enter email address"
+        >
+
+        <label class="student-labelaf">Create Password</label>
+        <input
+          id="createPasswordaf"
+          class="student-inputaf"
+          type="password"
+          placeholder="Create password"
+        >
+
+        <button class="student-main-btnaf" type="button" onclick="createStudentIdaf()">
+          Create Student ID
+        </button>
+
+        <p class="student-helpaf">
+          Your phone number will be used as your AcademeForge Student ID.
+        </p>
+      </div>
+
+      <!-- FORGOT PASSWORD BOX -->
+      <div id="studentForgotBoxaf" class="student-boxaf" style="display:none;">
+        <label class="student-labelaf">Phone Number</label>
+        <input
+          id="forgotPhoneaf"
+          class="student-inputaf"
+          type="tel"
+          placeholder="Enter your registered phone number"
+        >
+
+        <button class="student-main-btnaf" type="button" onclick="sendPasswordResetaf()">
+          Send Reset Link
+        </button>
+
+        <button class="student-link-btnaf" type="button" onclick="switchStudentModeaf('login')">
+          Back to Login
+        </button>
+
+        <p class="student-helpaf">
+          We’ll send a secure password reset link to your registered email.
+        </p>
+      </div>
+
+      <div id="studentMessageaf" class="student-messageaf"></div>
+
+      <div class="student-noteaf">
+        If you face any issue while creating your Student ID, email us at
+        <b>academeforge@gmail.com</b> with your name and WhatsApp number.
+      </div>
+    </div>
+
+  </div>
+</section>
+    
+     <!-- Community Tab -->
     
 <section id="community" class="section">
   <div class="panel glass community-panel">
