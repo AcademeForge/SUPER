@@ -9733,8 +9733,6 @@ const studentDb = supabase.createClient(
   STUDENT_SUPABASE_URL,
   STUDENT_SUPABASE_ANON_KEY
 );
-
-  const RAZORPAY_KEY_ID = "rzp_test_SpO0DdKfoz5wRu";
   
 const websiteLink = "https://academeforge.in";
 
@@ -15373,17 +15371,15 @@ document.addEventListener("DOMContentLoaded", function () {
     openCourseSectionAfterLoginaf(studentData);
   }
 });
-
 /* ==============================
    BATCH PURCHASE SECTION - AF
-   Works with existing HTML
 ================================ */
+
+const RAZORPAY_KEY_ID = "rzp_test_SpO0DdKfoz5wRu";
 
 const afBatchPrice = 49;
 const afBatchOldPrice = 99;
-const afBatchDiscount = Math.round(
-  ((afBatchOldPrice - afBatchPrice) / afBatchOldPrice) * 100
-);
+const afBatchDiscount = Math.round(((afBatchOldPrice - afBatchPrice) / afBatchOldPrice) * 100);
 
 let afSelectedBatch = null;
 let afEnrolledCourseSlugs = [];
@@ -15540,10 +15536,11 @@ function afBatchEl(id) {
   return document.getElementById(id);
 }
 
-/* ==============================
-   BACKEND CLIENT
-================================ */
-
+/* 
+  Backend client:
+  App me agar studentDb hai to studentDb use hoga.
+  Agar db hai to db use hoga.
+*/
 function getBatchBackendaf() {
   if (typeof studentDb !== "undefined") return studentDb;
   if (typeof db !== "undefined") return db;
@@ -15602,6 +15599,7 @@ async function loadEnrolledBatchSlugsaf() {
       .filter(Boolean);
 
     return afEnrolledCourseSlugs;
+
   } catch (err) {
     console.error("loadEnrolledBatchSlugsaf error:", err);
     return [];
@@ -15610,9 +15608,6 @@ async function loadEnrolledBatchSlugsaf() {
 
 /* ==============================
    OPEN / RENDER BATCH SECTION
-   IMPORTANT:
-   Ye function section ko global show nahi karega.
-   showSection('batchaf') ka kaam section open karna hai.
 ================================ */
 
 async function openBatchSectionaf() {
@@ -15646,10 +15641,6 @@ function backToBatchListaf() {
     behavior: "smooth"
   });
 }
-
-/* ==============================
-   RENDER BATCH CARDS
-================================ */
 
 function renderBatchesaf(list) {
   const box = afBatchEl("batchCardsaf");
@@ -15878,7 +15869,7 @@ function buySelectedBatchaf() {
 
 /* ==============================
    RAZORPAY CHECKOUT
-   Same simple flow as old payment page
+   Same style as old payment page
 ================================ */
 
 function startBatchPaymentaf(batch) {
@@ -15937,8 +15928,6 @@ function startBatchPaymentaf(batch) {
     },
     handler: async function (response) {
       try {
-        console.log("Batch payment success:", response);
-
         const accessAdded = await grantBatchAccessaf(batch.courseSlug);
 
         if (accessAdded) {
@@ -15947,12 +15936,13 @@ function startBatchPaymentaf(batch) {
           alert("Payment successful! Batch access added.");
 
           if (typeof refreshStudentCoursesAfterPurchaseaf === "function") {
-            await refreshStudentCoursesAfterPurchaseaf(student);
+            refreshStudentCoursesAfterPurchaseaf(student);
           }
 
           renderBatchesaf(afBatches);
           backToBatchListaf();
         }
+
       } catch (err) {
         console.error("After batch payment error:", err);
         alert(err.message || "Payment successful, but access could not be added.");
@@ -15988,7 +15978,7 @@ function startBatchPaymentaf(batch) {
 
 /* ==============================
    AFTER PAYMENT SUCCESS
-   Add access in student_courses only
+   Add access in student_courses
 ================================ */
 
 async function grantBatchAccessaf(courseSlug) {
@@ -16065,6 +16055,7 @@ async function grantBatchAccessaf(courseSlug) {
     }
 
     return true;
+
   } catch (err) {
     console.error("grantBatchAccessaf error:", err);
     alert("Payment successful, but access could not be added.");
@@ -16081,7 +16072,6 @@ async function refreshStudentCoursesAfterPurchaseaf(student) {
     await loadStudentCoursesaf(student);
   }
 }
-
   </script>
 </body>
 </html>
