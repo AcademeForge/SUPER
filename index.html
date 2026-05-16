@@ -7569,7 +7569,7 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
     color: #fecaca !important;
   }
 }
-    .app {
+   .app {
   min-height: 100vh;
   background: var(--bg);
   color: var(--text);
@@ -7600,6 +7600,7 @@ body.dark {
 .topbar {
   width: 100%;
   padding: 26px 42px;
+  box-sizing: border-box;
 }
 
 .top-row {
@@ -7614,6 +7615,8 @@ body.dark {
   display: flex;
   align-items: center;
   gap: 24px;
+  overflow: visible;
+  min-width: 0;
 }
 
 .brand h1 {
@@ -7638,24 +7641,15 @@ body.dark {
   width: 180px;
   height: 118px;
   border-radius: 26px;
-
-  /* Important part */
   object-fit: cover;
   object-position: center;
   transform: scale(1.18);
-
   background: #ffffff;
   padding: 0;
-
   border: 1px solid var(--card-border);
   box-shadow: var(--shadow);
-
   display: block;
-}
-
-/* Logo wrapper feel using image itself */
-.brand {
-  overflow: visible;
+  flex-shrink: 0;
 }
 
 /* Theme button */
@@ -7671,6 +7665,7 @@ body.dark {
   box-shadow: var(--shadow);
   backdrop-filter: blur(16px);
   transition: transform 0.25s ease, background 0.3s ease, color 0.3s ease;
+  flex-shrink: 0;
 }
 
 .theme-toggle-btn:hover {
@@ -7684,18 +7679,16 @@ body.dark {
   padding: 0 36px;
   border-radius: 32px;
   text-decoration: none;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   background: var(--card);
   border: 1px solid var(--card-border);
   box-shadow: var(--shadow);
   backdrop-filter: blur(16px);
-
   transition: transform 0.25s ease, background 0.3s ease, color 0.3s ease;
+  flex-shrink: 0;
 }
 
 .time-box:hover {
@@ -7723,113 +7716,133 @@ body.dark {
   backdrop-filter: blur(16px);
 }
 
-/* Responsive */
-@media (max-width: 850px) {
-  .topbar {
-    padding: 20px;
-  }
-
-  .top-row {
-    flex-wrap: wrap;
-  }
-
-  .brand {
-    width: 100%;
-  }
-
-  .app-logo {
-    width: 135px;
-    height: 92px;
-    border-radius: 22px;
-    transform: scale(1.2);
-  }
-
-  .theme-toggle-btn {
-    width: 82px;
-    height: 68px;
-    font-size: 1.8rem;
-  }
-
-  .time-box {
-    min-width: 210px;
-    height: 78px;
-    border-radius: 24px;
-  }
-}
-    /* Mobile only header fix */
+/* Mobile only */
 @media (max-width: 768px) {
   .topbar {
-    padding: 14px 12px;
+    padding: 12px 10px;
   }
 
   .top-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 8px;
+    gap: 7px;
     flex-wrap: nowrap;
+    width: 100%;
   }
 
   .brand {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    min-width: 0;
+    gap: 8px;
     flex: 1;
+    min-width: 0;
+    width: auto;
   }
 
   .app-logo {
-    width: 58px;
-    height: 58px;
-    border-radius: 14px;
-    object-fit: cover;
-    object-position: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 13px;
     transform: scale(1.35);
-    padding: 0;
-    flex-shrink: 0;
+  }
+
+  .brand div {
+    min-width: 0;
   }
 
   .brand h1 {
-    font-size: 1.15rem;
-    line-height: 1.05;
-    margin: 0;
+    font-size: clamp(0.95rem, 4.5vw, 1.25rem);
+    line-height: 1;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: 0.2px;
   }
 
   .brand p {
-    font-size: 0.62rem;
+    font-size: clamp(0.48rem, 2.3vw, 0.68rem);
     line-height: 1.1;
     margin-top: 4px;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: 0.1px;
   }
 
   .theme-toggle-btn {
-    width: 42px;
-    height: 42px;
-    min-width: 42px;
-    border-radius: 13px;
-    font-size: 1.2rem;
-    padding: 0;
-    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 12px;
+    font-size: 1.15rem;
   }
 
   .time-box {
-    min-width: 82px;
-    height: 42px;
-    padding: 0 8px;
-    border-radius: 14px;
-    flex-shrink: 0;
+    min-width: 74px;
+    height: 40px;
+    padding: 0 6px;
+    border-radius: 13px;
   }
 
   .time-box strong {
-    font-size: 0.78rem;
-    line-height: 1;
+    font-size: 0.72rem;
   }
 
   .time-box span {
-    font-size: 0.52rem;
     margin-top: 3px;
-    line-height: 1;
+    font-size: 0.47rem;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 380px) {
+  .topbar {
+    padding: 10px 8px;
+  }
+
+  .top-row {
+    gap: 5px;
+  }
+
+  .brand {
+    gap: 6px;
+  }
+
+  .app-logo {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    transform: scale(1.38);
+  }
+
+  .brand h1 {
+    font-size: 0.92rem;
+  }
+
+  .brand p {
+    font-size: 0.46rem;
+  }
+
+  .theme-toggle-btn {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 11px;
+    font-size: 1rem;
+  }
+
+  .time-box {
+    min-width: 68px;
+    height: 36px;
+    padding: 0 5px;
+    border-radius: 12px;
+  }
+
+  .time-box strong {
+    font-size: 0.66rem;
+  }
+
+  .time-box span {
+    font-size: 0.42rem;
   }
 }
   </style>
