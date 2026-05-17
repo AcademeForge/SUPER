@@ -16865,7 +16865,42 @@ function getProfileBackendAf() {
 }
 
 function getStudentLoginIdAf() {
-  return localStorage.getItem("af_student_uuid") || "";
+  const directId =
+    localStorage.getItem("af_student_uuid") ||
+    localStorage.getItem("af_student_id") ||
+    localStorage.getItem("student_id") ||
+    "";
+
+  if (directId) return directId;
+
+  const possibleKeys = [
+    "af_logged_student",
+    "afStudent",
+    "af_student",
+    "loggedStudent",
+    "studentData"
+  ];
+
+  for (let i = 0; i < possibleKeys.length; i++) {
+    try {
+      const raw = localStorage.getItem(possibleKeys[i]);
+      if (!raw) continue;
+
+      const obj = JSON.parse(raw);
+
+      if (obj && obj.id) return obj.id;
+      if (obj && obj.student_id) return obj.student_id;
+      if (obj && obj.uuid) return obj.uuid;
+    } catch (err) {}
+  }
+
+  if (typeof loggedStudent !== "undefined" && loggedStudent) {
+    if (loggedStudent.id) return loggedStudent.id;
+    if (loggedStudent.student_id) return loggedStudent.student_id;
+    if (loggedStudent.uuid) return loggedStudent.uuid;
+  }
+
+  return "";
 }
 
 function getStudentFallbackDataAf() {
