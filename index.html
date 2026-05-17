@@ -9844,6 +9844,224 @@ body.dark-mode .developer-credit-line {
     transition: none !important;
   }
 }
+
+    /* =========================================================
+   AF HOME BANNER + MARQUEE FINAL FIX
+   Paste at VERY END of CSS
+========================================================= */
+
+/* ---------- IMAGE BANNER POLISH ---------- */
+
+.home-banner-slider {
+  position: relative !important;
+  width: 100% !important;
+  aspect-ratio: 16 / 8.6 !important;
+  min-height: 170px !important;
+  max-height: 270px !important;
+  border-radius: 30px !important;
+  overflow: hidden !important;
+  margin: 10px 0 14px !important;
+  background:
+    linear-gradient(135deg, rgba(49, 92, 255, 0.16), rgba(0, 184, 148, 0.12)) !important;
+  box-shadow:
+    0 22px 55px rgba(15, 23, 42, 0.16),
+    inset 0 1px 0 rgba(255,255,255,0.45) !important;
+  touch-action: pan-y !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+}
+
+.home-banner-slider::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.02), rgba(15, 23, 42, 0.22)),
+    radial-gradient(circle at 18% 12%, rgba(255,255,255,0.24), transparent 30%);
+}
+
+.banner-slide {
+  position: absolute !important;
+  inset: 0 !important;
+  opacity: 0 !important;
+  transform: translateX(18px) scale(1.025) !important;
+  transition:
+    opacity 0.48s ease,
+    transform 0.58s cubic-bezier(.2,.8,.2,1) !important;
+  pointer-events: none !important;
+}
+
+.banner-slide.active {
+  opacity: 1 !important;
+  transform: translateX(0) scale(1) !important;
+  z-index: 2 !important;
+}
+
+.banner-slide img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+  pointer-events: none !important;
+  -webkit-user-drag: none !important;
+}
+
+/* Hide duplicate dots outside slider */
+#home > .banner-dots {
+  display: none !important;
+}
+
+.home-banner-slider .banner-dots {
+  position: absolute !important;
+  left: 50% !important;
+  bottom: 12px !important;
+  transform: translateX(-50%) !important;
+  z-index: 8 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  padding: 7px 9px !important;
+  border-radius: 999px !important;
+  background: rgba(15, 23, 42, 0.38) !important;
+  backdrop-filter: blur(14px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(150%) !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.18) !important;
+}
+
+.banner-dot {
+  width: 7px !important;
+  height: 7px !important;
+  border: 0 !important;
+  padding: 0 !important;
+  border-radius: 999px !important;
+  background: rgba(255,255,255,0.55) !important;
+  cursor: pointer !important;
+  transition:
+    width 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease !important;
+}
+
+.banner-dot.active {
+  width: 24px !important;
+  background: #ffffff !important;
+}
+
+.banner-dot:active {
+  transform: scale(0.85);
+}
+
+/* ---------- MOVING TEXT FIX ---------- */
+
+.moving-text-banner {
+  position: relative !important;
+  width: 100% !important;
+  overflow: hidden !important;
+  border-radius: 18px !important;
+  margin: 0 0 14px !important;
+  padding: 0 !important;
+  background:
+    linear-gradient(90deg, rgba(49, 92, 255, 0.10), rgba(0, 184, 148, 0.10)) !important;
+  border: 1px solid rgba(148, 163, 184, 0.18) !important;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08) !important;
+  white-space: nowrap !important;
+}
+
+.moving-text-banner::before,
+.moving-text-banner::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 42px;
+  height: 100%;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.moving-text-banner::before {
+  left: 0;
+  background: linear-gradient(90deg, rgba(255,255,255,0.92), transparent);
+}
+
+.moving-text-banner::after {
+  right: 0;
+  background: linear-gradient(270deg, rgba(255,255,255,0.92), transparent);
+}
+
+.moving-text-track {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 34px !important;
+  width: max-content !important;
+  min-width: max-content !important;
+  padding: 11px 0 !important;
+  will-change: transform !important;
+  animation: afMarqueeMove 18s linear infinite !important;
+  transform: translate3d(0,0,0);
+}
+
+.moving-text-track span {
+  display: inline-block !important;
+  flex: 0 0 auto !important;
+  font-size: 12px !important;
+  line-height: 1 !important;
+  font-weight: 900 !important;
+  color: #1e293b !important;
+  letter-spacing: -0.01em !important;
+  white-space: nowrap !important;
+}
+
+.moving-text-banner:hover .moving-text-track,
+.moving-text-banner:active .moving-text-track {
+  animation-play-state: paused !important;
+}
+
+@keyframes afMarqueeMove {
+  0% {
+    transform: translate3d(0,0,0);
+  }
+
+  100% {
+    transform: translate3d(-50%,0,0);
+  }
+}
+
+/* Dark mode fade fix */
+body.dark .moving-text-banner::before,
+body.dark-mode .moving-text-banner::before {
+  background: linear-gradient(90deg, rgba(15,23,42,0.92), transparent) !important;
+}
+
+body.dark .moving-text-banner::after,
+body.dark-mode .moving-text-banner::after {
+  background: linear-gradient(270deg, rgba(15,23,42,0.92), transparent) !important;
+}
+
+body.dark .moving-text-track span,
+body.dark-mode .moving-text-track span {
+  color: #e2e8f0 !important;
+}
+
+/* Small phones */
+@media (max-width: 380px) {
+  .home-banner-slider {
+    min-height: 150px !important;
+    border-radius: 25px !important;
+  }
+
+  .moving-text-track {
+    animation-duration: 15s !important;
+  }
+}
+
+/* Motion reduce */
+@media (prefers-reduced-motion: reduce) {
+  .moving-text-track {
+    animation-duration: 35s !important;
+  }
+}
   </style>
 </head>
 
@@ -19373,6 +19591,194 @@ function afClearStudentLoginStorage() {
 
 document.addEventListener("DOMContentLoaded", function() {
   afRenderCard();
+});
+
+  /* =========================================================
+   AF HOME BANNER SWIPE + TOUCH PAUSE + MARQUEE FIX
+   Paste at END of JS
+========================================================= */
+
+let afBannerIndex = 0;
+let afBannerTimer = null;
+let afBannerPaused = false;
+
+function afGetBannerSlides() {
+  return document.querySelectorAll(".home-banner-slider .banner-slide");
+}
+
+function afGetBannerDots() {
+  return document.querySelectorAll(".home-banner-slider .banner-dot");
+}
+
+function afShowBannerSlide(index) {
+  const slides = afGetBannerSlides();
+  const dots = afGetBannerDots();
+
+  if (!slides.length) return;
+
+  if (index < 0) {
+    index = slides.length - 1;
+  }
+
+  if (index >= slides.length) {
+    index = 0;
+  }
+
+  afBannerIndex = index;
+
+  slides.forEach(function(slide, i) {
+    slide.classList.toggle("active", i === afBannerIndex);
+  });
+
+  dots.forEach(function(dot, i) {
+    dot.classList.toggle("active", i === afBannerIndex);
+  });
+}
+
+/* Keep your old onclick working */
+function goToBannerSlide(index) {
+  afShowBannerSlide(index);
+  afRestartBannerAuto();
+}
+
+function afNextBannerSlide() {
+  afShowBannerSlide(afBannerIndex + 1);
+}
+
+function afPrevBannerSlide() {
+  afShowBannerSlide(afBannerIndex - 1);
+}
+
+function afStartBannerAuto() {
+  afStopBannerAuto();
+
+  afBannerTimer = setInterval(function() {
+    if (!afBannerPaused) {
+      afNextBannerSlide();
+    }
+  }, 3600);
+}
+
+function afStopBannerAuto() {
+  if (afBannerTimer) {
+    clearInterval(afBannerTimer);
+    afBannerTimer = null;
+  }
+}
+
+function afRestartBannerAuto() {
+  afStopBannerAuto();
+  afStartBannerAuto();
+}
+
+function afInitBannerSwipe() {
+  const slider = document.querySelector(".home-banner-slider");
+
+  if (!slider) return;
+
+  let startX = 0;
+  let startY = 0;
+  let endX = 0;
+  let isTouching = false;
+  let touchStartTime = 0;
+
+  slider.addEventListener("touchstart", function(e) {
+    if (!e.touches || !e.touches.length) return;
+
+    isTouching = true;
+    afBannerPaused = true;
+
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    endX = startX;
+    touchStartTime = Date.now();
+  }, { passive: true });
+
+  slider.addEventListener("touchmove", function(e) {
+    if (!isTouching || !e.touches || !e.touches.length) return;
+
+    endX = e.touches[0].clientX;
+
+    const currentY = e.touches[0].clientY;
+    const diffX = Math.abs(endX - startX);
+    const diffY = Math.abs(currentY - startY);
+
+    if (diffX > diffY && diffX > 10) {
+      e.preventDefault();
+    }
+  }, { passive: false });
+
+  slider.addEventListener("touchend", function() {
+    if (!isTouching) return;
+
+    const diff = endX - startX;
+    const touchTime = Date.now() - touchStartTime;
+
+    if (Math.abs(diff) > 45) {
+      if (diff < 0) {
+        afNextBannerSlide();
+      } else {
+        afPrevBannerSlide();
+      }
+
+      afRestartBannerAuto();
+    }
+
+    isTouching = false;
+
+    setTimeout(function() {
+      afBannerPaused = false;
+    }, Math.max(650, 1200 - touchTime));
+  });
+
+  slider.addEventListener("touchcancel", function() {
+    isTouching = false;
+
+    setTimeout(function() {
+      afBannerPaused = false;
+    }, 700);
+  });
+
+  /* Desktop mouse hold pause also */
+  slider.addEventListener("mouseenter", function() {
+    afBannerPaused = true;
+  });
+
+  slider.addEventListener("mouseleave", function() {
+    afBannerPaused = false;
+  });
+
+  slider.addEventListener("mousedown", function() {
+    afBannerPaused = true;
+  });
+
+  slider.addEventListener("mouseup", function() {
+    setTimeout(function() {
+      afBannerPaused = false;
+    }, 500);
+  });
+}
+
+/* Marquee fix: duplicate content if width is small */
+function afFixMovingTextMarquee() {
+  const track = document.querySelector(".moving-text-track");
+
+  if (!track) return;
+
+  if (track.dataset.afFixed === "yes") return;
+
+  const originalHTML = track.innerHTML;
+
+  track.innerHTML = originalHTML + originalHTML;
+
+  track.dataset.afFixed = "yes";
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  afShowBannerSlide(0);
+  afInitBannerSwipe();
+  afStartBannerAuto();
+  afFixMovingTextMarquee();
 });
   </script>
 </body>
