@@ -8708,6 +8708,411 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
     text-align: left;
   }
 }
+    /* ==============================
+   AF STUDENT PROFILE DASHBOARD
+================================ */
+
+.student-profile-card {
+  text-align: left;
+}
+
+.student-profile-card-icon {
+  background: linear-gradient(135deg, #6d5dfc, #00c896);
+  color: #fff;
+}
+
+.student-profile-card h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 950;
+  letter-spacing: -0.03em;
+}
+
+.student-profile-card p {
+  margin: 5px 0 0;
+  font-size: 13px;
+  font-weight: 800;
+  opacity: 0.72;
+}
+
+.af-profile-wrap {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 16px 14px 92px;
+}
+
+.af-profile-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px;
+  border-radius: 26px;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.af-profile-hero::before {
+  content: "";
+  position: absolute;
+  inset: -80px auto auto -80px;
+  width: 190px;
+  height: 190px;
+  background: radial-gradient(circle, rgba(109, 93, 252, 0.28), transparent 68%);
+  pointer-events: none;
+}
+
+.af-back-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: rgba(109, 93, 252, 0.14);
+  color: #6d5dfc;
+  font-size: 12px;
+  font-weight: 950;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.af-avatar {
+  width: 58px;
+  height: 58px;
+  border-radius: 20px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #6d5dfc, #00c896);
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 950;
+  box-shadow: 0 16px 34px rgba(109, 93, 252, 0.22);
+  flex: 0 0 58px;
+  z-index: 1;
+}
+
+.af-hero-text {
+  z-index: 1;
+  padding-right: 70px;
+}
+
+.af-hero-text h2 {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.15;
+  font-weight: 950;
+  letter-spacing: -0.04em;
+}
+
+.af-hero-text p {
+  margin: 6px 0 0;
+  font-size: 13px;
+  font-weight: 800;
+  opacity: 0.7;
+}
+
+.af-panel {
+  padding: 16px;
+  border-radius: 24px;
+  margin-bottom: 16px;
+}
+
+.af-panel-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 13px;
+}
+
+.af-panel-head h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 950;
+  letter-spacing: -0.02em;
+}
+
+.af-panel-head p {
+  margin: 5px 0 0;
+  font-size: 13px;
+  font-weight: 800;
+  opacity: 0.66;
+}
+
+.af-mini-btn {
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 13px;
+  background: rgba(109, 93, 252, 0.14);
+  color: #6d5dfc;
+  font-size: 12px;
+  font-weight: 950;
+  cursor: pointer;
+}
+
+.af-detail-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.af-detail-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 13px;
+  border-radius: 18px;
+  background: rgba(148, 163, 184, 0.10);
+  border: 1px solid rgba(148, 163, 184, 0.10);
+}
+
+.af-detail-row span {
+  font-size: 12px;
+  font-weight: 900;
+  opacity: 0.62;
+}
+
+.af-detail-row strong {
+  font-size: 14px;
+  font-weight: 950;
+  text-align: right;
+  word-break: break-word;
+}
+
+.af-batch-list {
+  display: grid;
+  gap: 10px;
+}
+
+.af-batch-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  padding: 13px;
+  border-radius: 18px;
+  background: rgba(109, 93, 252, 0.08);
+  border: 1px solid rgba(109, 93, 252, 0.13);
+}
+
+.af-batch-item h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 950;
+}
+
+.af-batch-item p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  font-weight: 800;
+  opacity: 0.66;
+}
+
+.af-batch-status {
+  padding: 6px 9px;
+  border-radius: 999px;
+  background: rgba(0, 200, 150, 0.14);
+  color: #00a67d;
+  font-size: 11px;
+  font-weight: 950;
+  white-space: nowrap;
+}
+
+.af-empty {
+  margin: 0;
+  padding: 14px;
+  border-radius: 16px;
+  background: rgba(148, 163, 184, 0.10);
+  text-align: center;
+  font-size: 13px;
+  font-weight: 850;
+  opacity: 0.72;
+}
+
+.af-delete-box {
+  border-radius: 18px;
+  background: rgba(148, 163, 184, 0.10);
+  padding: 13px;
+}
+
+.af-delete-box summary {
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 950;
+}
+
+.af-delete-form {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.af-delete-form label,
+.af-modal-card label {
+  font-size: 12px;
+  font-weight: 900;
+  opacity: 0.72;
+}
+
+.af-delete-form input,
+.af-delete-form textarea,
+.af-modal-card input {
+  width: 100%;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  outline: none;
+  border-radius: 15px;
+  padding: 12px 13px;
+  background: rgba(255, 255, 255, 0.78);
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.af-delete-form textarea {
+  min-height: 82px;
+  resize: vertical;
+}
+
+.af-danger-note {
+  margin: 0 0 4px;
+  padding: 12px;
+  border-radius: 16px;
+  background: rgba(244, 63, 94, 0.08);
+  color: #e11d48;
+  font-size: 12px;
+  font-weight: 850;
+  line-height: 1.45;
+}
+
+.af-danger-btn,
+.af-primary-btn {
+  border: 0;
+  border-radius: 15px;
+  padding: 12px 14px;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 950;
+  cursor: pointer;
+}
+
+.af-primary-btn {
+  background: linear-gradient(135deg, #6d5dfc, #00c896);
+}
+
+.af-danger-btn {
+  background: #e11d48;
+}
+
+.af-danger-dark {
+  background: #be123c;
+}
+
+.af-otp-box {
+  display: grid;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.af-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(15, 23, 42, 0.48);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.af-modal-card {
+  position: relative;
+  width: min(94vw, 430px);
+  display: grid;
+  gap: 10px;
+  padding: 18px;
+  border-radius: 24px;
+}
+
+.af-modal-card h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 950;
+}
+
+.af-modal-card p {
+  margin: 0 0 4px;
+  font-size: 13px;
+  font-weight: 800;
+  opacity: 0.68;
+}
+
+.af-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 12px;
+  background: rgba(148, 163, 184, 0.16);
+  color: inherit;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.af-hidden {
+  display: none !important;
+}
+
+/* Light mode safety */
+body.light-mode .af-detail-row,
+body.light .af-detail-row,
+.light-mode .af-detail-row,
+.light .af-detail-row {
+  background: rgba(15, 23, 42, 0.04);
+}
+
+body.light-mode .af-delete-form input,
+body.light-mode .af-delete-form textarea,
+body.light-mode .af-modal-card input,
+body.light .af-delete-form input,
+body.light .af-delete-form textarea,
+body.light .af-modal-card input,
+.light-mode .af-delete-form input,
+.light-mode .af-delete-form textarea,
+.light-mode .af-modal-card input,
+.light .af-delete-form input,
+.light .af-delete-form textarea,
+.light .af-modal-card input {
+  background: #ffffff;
+  color: #0f172a;
+}
+
+@media (max-width: 560px) {
+  .af-profile-wrap {
+    padding: 14px 12px 90px;
+  }
+
+  .af-profile-hero {
+    padding: 16px;
+    border-radius: 24px;
+  }
+
+  .af-hero-text h2 {
+    font-size: 22px;
+  }
+
+  .af-detail-row {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .af-detail-row strong {
+    text-align: left;
+  }
+}
   </style>
 </head>
 
@@ -8864,11 +9269,11 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
       </div>
     </button>
     
-<button class="action-card glass student-profile-card" type="button" onclick="openStudentDashboardCard()">
-  <div class="icon">👤</div>
+<button class="action-card glass student-profile-card" type="button" onclick="openStudentDashboardCardAf(event)">
+  <div class="icon student-profile-card-icon">👤</div>
   <div>
-    <h3 id="studentDashboardCardName">Hi, Student</h3>
-    <p id="studentDashboardCardSub">View Profile</p>
+    <h3 id="studentDashboardCardNameAf">Hi, Student</h3>
+    <p id="studentDashboardCardSubAf">Login to view profile</p>
   </div>
 </button>
   
@@ -9848,125 +10253,121 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
 </div>
    </section> 
 
- <!-- ==============================
-    STUDENT PROFILE DASHBOARD - AF
-================================ -->
+<section id="studentDashboardAf" class="section">
+  <div class="af-profile-wrap">
 
-   <section id="studentDashboard" class="section">
-  <div class="student-profile-page">
-    <div class="student-profile-top glass">
-      <button class="student-profile-back" type="button" onclick="showSection('home')">← Back</button>
+    <div class="af-profile-hero glass">
+      <button class="af-back-btn" type="button" onclick="showSection('home')">← Back</button>
 
-      <div class="student-profile-avatar" id="studentProfileAvatar">S</div>
+      <div class="af-avatar" id="afProfileAvatar">S</div>
 
-      <div>
-        <h2 id="studentProfileName">Student</h2>
-        <p id="studentProfileEmail">View and manage your profile</p>
+      <div class="af-hero-text">
+        <h2 id="afProfileHeroName">Student</h2>
+        <p id="afProfileHeroSub">View and manage your dashboard</p>
       </div>
     </div>
 
-    <div class="student-panel glass">
-      <div class="student-panel-head">
+    <div class="af-panel glass">
+      <div class="af-panel-head">
         <div>
           <h3>Your Details</h3>
           <p>Name, email and phone number</p>
         </div>
 
-        <button class="student-small-btn" type="button" onclick="openYourDetailsEditAf()">
-          Edit
-        </button>
+        <button class="af-mini-btn" type="button" onclick="openYourDetailsEditAf()">Edit</button>
       </div>
 
-      <div class="student-detail-list">
-        <div class="student-detail-row">
+      <div class="af-detail-grid">
+        <div class="af-detail-row">
           <span>Name</span>
-          <strong id="studentInfoName">-</strong>
+          <strong id="afInfoName">-</strong>
         </div>
 
-        <div class="student-detail-row">
+        <div class="af-detail-row">
           <span>Email</span>
-          <strong id="studentInfoEmail">-</strong>
+          <strong id="afInfoEmail">-</strong>
         </div>
 
-        <div class="student-detail-row">
+        <div class="af-detail-row">
           <span>Phone Number</span>
-          <strong id="studentInfoPhone">-</strong>
+          <strong id="afInfoMobile">-</strong>
         </div>
       </div>
     </div>
 
-    <div class="student-panel glass">
-      <div class="student-panel-head">
+    <div class="af-panel glass">
+      <div class="af-panel-head">
         <div>
           <h3>Other Details</h3>
-          <p>State and district details</p>
+          <p>State, district and class</p>
         </div>
 
-        <button class="student-small-btn" type="button" onclick="openOtherDetailsEditAf()">
-          Edit
-        </button>
+        <button class="af-mini-btn" type="button" onclick="openOtherDetailsEditAf()">Edit</button>
       </div>
 
-      <div class="student-detail-list">
-        <div class="student-detail-row">
+      <div class="af-detail-grid">
+        <div class="af-detail-row">
           <span>State</span>
-          <strong id="studentInfoState">-</strong>
+          <strong id="afInfoState">-</strong>
         </div>
 
-        <div class="student-detail-row">
+        <div class="af-detail-row">
           <span>District</span>
-          <strong id="studentInfoDistrict">-</strong>
+          <strong id="afInfoDistrict">-</strong>
+        </div>
+
+        <div class="af-detail-row">
+          <span>Class</span>
+          <strong id="afInfoClass">-</strong>
         </div>
       </div>
     </div>
 
-    <div class="student-panel glass">
-      <div class="student-panel-head">
+    <div class="af-panel glass">
+      <div class="af-panel-head">
         <div>
           <h3>Batch Enrolled In</h3>
-          <p>Your active enrolled batches/courses</p>
+          <p>Your enrolled courses or batches</p>
         </div>
       </div>
 
-      <div id="studentBatchList" class="student-batch-list">
-        <p class="student-empty-text">No enrolled batch found.</p>
+      <div id="afBatchList" class="af-batch-list">
+        <p class="af-empty">No enrolled batch found.</p>
       </div>
     </div>
 
-    <div class="student-panel glass">
-      <div class="student-panel-head">
+    <div class="af-panel glass">
+      <div class="af-panel-head">
         <div>
           <h3>Additional Setting</h3>
-          <p>Manage sensitive account actions</p>
+          <p>Account safety and sensitive actions</p>
         </div>
       </div>
 
-      <details class="student-additional-settings">
+      <details class="af-delete-box">
         <summary>Delete Account</summary>
 
-        <div class="student-delete-form">
-          <p class="student-warning-text">
-            To delete your account, enter your email and phone number. We will verify using email OTP.
+        <div class="af-delete-form">
+          <p class="af-danger-note">
+            Enter your registered email and phone number. OTP verification is required before deleting.
           </p>
 
           <label>Email</label>
-          <input id="deleteAccountEmailAf" type="email" placeholder="Enter your email">
+          <input id="afDeleteEmail" type="email" placeholder="Registered email">
 
           <label>Phone Number</label>
-          <input id="deleteAccountPhoneAf" type="tel" placeholder="Enter your phone number">
+          <input id="afDeleteMobile" type="tel" placeholder="Registered phone number">
 
           <label>Reason optional</label>
-          <textarea id="deleteAccountReasonAf" placeholder="Why do you want to delete your account?"></textarea>
+          <textarea id="afDeleteReason" placeholder="Reason for deleting account"></textarea>
 
-          <button class="student-delete-btn" type="button" onclick="sendDeleteAccountOtpAf()">
-            Send OTP
-          </button>
+          <button class="af-danger-btn" type="button" onclick="sendDeleteAccountOtpAf()">Send OTP</button>
 
-          <div id="deleteOtpBoxAf" class="student-otp-box hidden-box">
+          <div id="afDeleteOtpBox" class="af-otp-box af-hidden">
             <label>Enter OTP</label>
-            <input id="deleteAccountOtpAf" type="text" placeholder="Enter email OTP">
+            <input id="afDeleteOtp" type="text" placeholder="Email OTP">
 
-            <button class="student-delete-confirm-btn" type="button" onclick="confirmDeleteAccountAf()">
+            <button class="af-danger-btn af-danger-dark" type="button" onclick="confirmDeleteAccountAf()">
               Verify OTP & Delete Account
             </button>
           </div>
@@ -9975,53 +10376,54 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
     </div>
   </div>
 
-  <div id="yourDetailsModalAf" class="student-modal hidden-box">
-    <div class="student-modal-card glass">
-      <button class="student-modal-close" type="button" onclick="closeStudentModalAf('yourDetailsModalAf')">×</button>
+  <!-- Edit Your Details Modal -->
+  <div id="afYourDetailsModal" class="af-modal af-hidden">
+    <div class="af-modal-card glass">
+      <button class="af-modal-close" type="button" onclick="closeAfModal('afYourDetailsModal')">×</button>
 
       <h3>Edit Your Details</h3>
       <p>OTP will be sent to your email before saving changes.</p>
 
       <label>Name</label>
-      <input id="editStudentNameAf" type="text" placeholder="Enter name">
+      <input id="afEditName" type="text" placeholder="Enter name">
 
       <label>Email</label>
-      <input id="editStudentEmailAf" type="email" placeholder="Enter email">
+      <input id="afEditEmail" type="email" placeholder="Enter email">
 
       <label>Phone Number</label>
-      <input id="editStudentPhoneAf" type="tel" placeholder="Enter phone number">
+      <input id="afEditMobile" type="tel" placeholder="Enter phone number">
 
-      <button class="student-primary-btn" type="button" onclick="sendYourDetailsOtpAf()">
-        Send OTP
-      </button>
+      <button class="af-primary-btn" type="button" onclick="sendYourDetailsOtpAf()">Send OTP</button>
 
-      <div id="yourDetailsOtpBoxAf" class="student-otp-box hidden-box">
+      <div id="afYourDetailsOtpBox" class="af-otp-box af-hidden">
         <label>Enter OTP</label>
-        <input id="editYourDetailsOtpAf" type="text" placeholder="Enter email OTP">
+        <input id="afEditOtp" type="text" placeholder="Email OTP">
 
-        <button class="student-primary-btn" type="button" onclick="confirmYourDetailsEditAf()">
+        <button class="af-primary-btn" type="button" onclick="confirmYourDetailsEditAf()">
           Verify OTP & Save
         </button>
       </div>
     </div>
   </div>
 
-  <div id="otherDetailsModalAf" class="student-modal hidden-box">
-    <div class="student-modal-card glass">
-      <button class="student-modal-close" type="button" onclick="closeStudentModalAf('otherDetailsModalAf')">×</button>
+  <!-- Edit Other Details Modal -->
+  <div id="afOtherDetailsModal" class="af-modal af-hidden">
+    <div class="af-modal-card glass">
+      <button class="af-modal-close" type="button" onclick="closeAfModal('afOtherDetailsModal')">×</button>
 
       <h3>Edit Other Details</h3>
-      <p>Update your state and district.</p>
+      <p>These details are saved in profile details table.</p>
 
       <label>State</label>
-      <input id="editStudentStateAf" type="text" placeholder="Enter state">
+      <input id="afEditState" type="text" placeholder="Enter state">
 
       <label>District</label>
-      <input id="editStudentDistrictAf" type="text" placeholder="Enter district">
+      <input id="afEditDistrict" type="text" placeholder="Enter district">
 
-      <button class="student-primary-btn" type="button" onclick="saveOtherDetailsAf()">
-        Save Details
-      </button>
+      <label>Class</label>
+      <input id="afEditClass" type="text" placeholder="Enter class">
+
+      <button class="af-primary-btn" type="button" onclick="saveOtherDetailsAf()">Save Details</button>
     </div>
   </div>
 </section>
@@ -16841,32 +17243,30 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 /* ==============================
-   STUDENT PROFILE DASHBOARD V3
-   FIXED AUTO CLOSE + LOGOUT ISSUE
+   AF STUDENT PROFILE DASHBOARD
+   Works with students_af columns:
+   name, mobile, password, email, status
 ================================ */
 
-let currentStudentProfileAf = null;
-let currentStudentExtraAf = null;
-let pendingYourDetailsEditAf = null;
-let pendingDeleteAccountAf = null;
+let afCurrentStudent = null;
+let afCurrentExtra = null;
+let afPendingEdit = null;
+let afPendingDelete = null;
 
-/* ==============================
-   SAFE MESSAGE / TOAST
-================================ */
-
-function showProfileMessageAf(message, type, title) {
+function afMsg(message, type, title) {
   if (typeof showAfToast === "function") {
     showAfToast(message, type || "info", title || "Message");
     return;
   }
 
+  if (typeof showToast === "function") {
+    showToast(title || "Message", message);
+    return;
+  }
+
   if (typeof showStudentMessageaf === "function") {
     showStudentMessageaf(
-      type === "error"
-        ? "err"
-        : type === "success"
-        ? "ok"
-        : "info",
+      type === "error" ? "err" : type === "success" ? "ok" : "info",
       message
     );
     return;
@@ -16875,11 +17275,7 @@ function showProfileMessageAf(message, type, title) {
   alert((title ? title + ": " : "") + message);
 }
 
-/* ==============================
-   BACKEND
-================================ */
-
-function getProfileBackendAf() {
+function afBackend() {
   if (typeof getStudentBackendaf === "function") {
     return getStudentBackendaf();
   }
@@ -16891,18 +17287,28 @@ function getProfileBackendAf() {
   return null;
 }
 
-/* ==============================
-   LOGIN DETECTION
-================================ */
+/* 
+  IMPORTANT:
+  Tumhare students_af me id/student_id screenshot me visible nahi hai.
+  Isliye login student ko email/mobile/name se identify kar rahe hain.
+*/
+function afGetLoginData() {
+  const data = {
+    name: "",
+    email: "",
+    mobile: "",
+    id: ""
+  };
 
-function getStudentLoginIdAf() {
-  const directId =
-    localStorage.getItem("af_student_uuid") ||
-    localStorage.getItem("af_student_id") ||
-    localStorage.getItem("student_id") ||
-    "";
+  const directName = localStorage.getItem("af_student_name") || "";
+  const directEmail = localStorage.getItem("af_student_email") || "";
+  const directMobile = localStorage.getItem("af_student_mobile") || "";
+  const directId = localStorage.getItem("af_student_uuid") || localStorage.getItem("af_student_id") || "";
 
-  if (directId) return directId;
+  if (directName) data.name = directName;
+  if (directEmail) data.email = directEmail;
+  if (directMobile) data.mobile = directMobile;
+  if (directId) data.id = directId;
 
   const possibleKeys = [
     "af_logged_student",
@@ -16915,1117 +17321,695 @@ function getStudentLoginIdAf() {
   for (let i = 0; i < possibleKeys.length; i++) {
     try {
       const raw = localStorage.getItem(possibleKeys[i]);
-
       if (!raw) continue;
 
       const obj = JSON.parse(raw);
+      if (!obj) continue;
 
-      if (obj && obj.id) return obj.id;
-      if (obj && obj.student_id) return obj.student_id;
-      if (obj && obj.uuid) return obj.uuid;
-    } catch (err) {}
+      data.id = data.id || obj.id || obj.uuid || obj.student_id || "";
+      data.name = data.name || obj.name || obj.full_name || obj.student_name || "";
+      data.email = data.email || obj.email || "";
+      data.mobile = data.mobile || obj.mobile || obj.phone || obj.phone_number || "";
+    } catch (e) {}
   }
 
   if (typeof loggedStudent !== "undefined" && loggedStudent) {
-    if (loggedStudent.id) return loggedStudent.id;
-    if (loggedStudent.student_id) return loggedStudent.student_id;
-    if (loggedStudent.uuid) return loggedStudent.uuid;
+    data.id = data.id || loggedStudent.id || loggedStudent.uuid || loggedStudent.student_id || "";
+    data.name = data.name || loggedStudent.name || loggedStudent.full_name || loggedStudent.student_name || "";
+    data.email = data.email || loggedStudent.email || "";
+    data.mobile = data.mobile || loggedStudent.mobile || loggedStudent.phone || loggedStudent.phone_number || "";
   }
 
-  return "";
+  return data;
 }
 
-function getStudentFallbackDataAf() {
-  return {
-    id: localStorage.getItem("af_student_uuid") || "",
-    student_id: localStorage.getItem("af_student_id") || "",
-    name: localStorage.getItem("af_student_name") || "",
-    email: localStorage.getItem("af_student_email") || "",
-    mobile: localStorage.getItem("af_student_mobile") || ""
-  };
+function afIsLoggedIn() {
+  const d = afGetLoginData();
+  return !!(d.email || d.mobile || d.name || d.id);
 }
 
-/* ==============================
-   HELPERS
-================================ */
-
-function setTextAf(id, value) {
+function afSetText(id, value) {
   const el = document.getElementById(id);
-
-  if (el) {
-    el.textContent =
-      value && String(value).trim()
-        ? value
-        : "-";
-  }
+  if (el) el.textContent = value && String(value).trim() ? value : "-";
 }
 
-function getInputAf(id) {
+function afGetInput(id) {
   const el = document.getElementById(id);
   return el ? el.value.trim() : "";
 }
 
-function setInputAf(id, value) {
+function afSetInput(id, value) {
   const el = document.getElementById(id);
-
-  if (el) {
-    el.value = value || "";
-  }
+  if (el) el.value = value || "";
 }
 
-function getStudentInitialAf(name) {
-  if (!name || !String(name).trim()) {
-    return "S";
-  }
-
-  return String(name)
-    .trim()
-    .charAt(0)
-    .toUpperCase();
+function afInitial(name) {
+  return name && String(name).trim() ? String(name).trim().charAt(0).toUpperCase() : "S";
 }
 
-function closeStudentModalAf(id) {
-  const modal = document.getElementById(id);
-
-  if (modal) {
-    modal.classList.add("hidden-box");
-  }
+function openAfModal(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.remove("af-hidden");
 }
 
-function openStudentModalAf(id) {
-  const modal = document.getElementById(id);
-
-  if (modal) {
-    modal.classList.remove("hidden-box");
-  }
+function closeAfModal(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.add("af-hidden");
 }
 
-/* ==============================
-   OTP
-================================ */
-
-async function sendProfileOtpAf(email, purpose) {
-  if (!email) {
-    throw new Error("Email is required.");
-  }
+async function afSendOtp(email) {
+  if (!email) throw new Error("Email is required.");
 
   if (typeof sendSupabaseEmailOtpaf !== "function") {
-    throw new Error("OTP send backend not connected.");
+    throw new Error("OTP send function not found.");
   }
 
-  let otpResult = await sendSupabaseEmailOtpaf(email, false);
+  let res = await sendSupabaseEmailOtpaf(email, false);
 
-  if (!otpResult || !otpResult.ok) {
-    console.log(
-      "Profile OTP first attempt failed:",
-      otpResult ? otpResult.message : "No response"
-    );
-
-    otpResult = await sendSupabaseEmailOtpaf(email, true);
+  if (!res || !res.ok) {
+    res = await sendSupabaseEmailOtpaf(email, true);
   }
 
-  if (!otpResult || !otpResult.ok) {
-    throw new Error(
-      otpResult && otpResult.message
-        ? otpResult.message
-        : "OTP send failed."
-    );
-  }
-
-  return otpResult;
-}
-
-async function verifyProfileOtpAf(email, otp, purpose) {
-  if (!email) {
-    throw new Error("Email is required.");
-  }
-
-  if (!otp) {
-    throw new Error("OTP is required.");
-  }
-
-  if (typeof verifySupabaseEmailOtpaf !== "function") {
-    throw new Error("OTP verify backend not connected.");
-  }
-
-  const verifyResult = await verifySupabaseEmailOtpaf(email, otp);
-
-  if (!verifyResult || !verifyResult.ok) {
-    throw new Error(
-      verifyResult && verifyResult.message
-        ? verifyResult.message
-        : "Invalid OTP."
-    );
+  if (!res || !res.ok) {
+    throw new Error(res && res.message ? res.message : "OTP send failed.");
   }
 
   return true;
 }
 
-/* ==============================
-   PROFILE FETCH
-================================ */
+async function afVerifyOtp(email, otp) {
+  if (!email) throw new Error("Email is required.");
+  if (!otp) throw new Error("OTP is required.");
 
-async function fetchStudentProfileAf() {
-  const studentId = getStudentLoginIdAf();
-
-  if (!studentId) {
-    return null;
+  if (typeof verifySupabaseEmailOtpaf !== "function") {
+    throw new Error("OTP verify function not found.");
   }
 
-  const backend = getProfileBackendAf();
+  const res = await verifySupabaseEmailOtpaf(email, otp);
+
+  if (!res || !res.ok) {
+    throw new Error(res && res.message ? res.message : "Invalid OTP.");
+  }
+
+  return true;
+}
+
+async function afFetchStudent() {
+  const backend = afBackend();
 
   if (!backend) {
-    showProfileMessageAf(
-      "Student backend not connected.",
-      "error",
-      "Backend Error"
-    );
-
+    afMsg("Student backend not connected.", "error", "Backend Error");
     return null;
   }
 
-  let result = await backend
-    .from("students_af")
-    .select(`
-      id,
-      student_id,
-      name,
-      email,
-      mobile,
-      phone,
-      state,
-      city,
-      class,
-      class_name,
-      status
-    `)
-    .eq("id", studentId)
-    .maybeSingle();
+  const login = afGetLoginData();
 
-  if (!result.data && !result.error) {
+  if (!afIsLoggedIn()) {
+    return null;
+  }
+
+  let query = backend
+    .from("students_af")
+    .select("name, mobile, email, status");
+
+  let result = null;
+
+  if (login.email) {
+    result = await query.eq("email", login.email).maybeSingle();
+  }
+
+  if ((!result || !result.data) && login.mobile) {
     result = await backend
       .from("students_af")
-      .select(`
-        id,
-        student_id,
-        name,
-        email,
-        mobile,
-        phone,
-        state,
-        city,
-        class,
-        class_name,
-        status
-      `)
-      .eq("student_id", studentId)
+      .select("name, mobile, email, status")
+      .eq("mobile", login.mobile)
       .maybeSingle();
   }
 
-  const data = result.data;
-  const error = result.error;
+  if ((!result || !result.data) && login.name) {
+    result = await backend
+      .from("students_af")
+      .select("name, mobile, email, status")
+      .eq("name", login.name)
+      .maybeSingle();
+  }
 
-  if (error) {
-    console.error("Profile fetch error:", error);
-
-    showProfileMessageAf(
-      "Could not fetch your dashboard.",
-      "error",
-      "Profile Error"
-    );
-
+  if (result && result.error) {
+    console.error("students_af fetch error:", result.error);
+    afMsg("Could not fetch student details: " + result.error.message, "error", "Fetch Error");
     return null;
   }
 
-  if (!data) {
-    const fallback = getStudentFallbackDataAf();
-
-    return fallback.id
-      ? fallback
-      : null;
+  if (!result || !result.data) {
+    return {
+      name: login.name || "Student",
+      email: login.email || "",
+      mobile: login.mobile || "",
+      status: "active"
+    };
   }
 
-  if (data.status === "deleted") {
-    showProfileMessageAf(
-      "This account is deleted.",
-      "error",
-      "Account Deleted"
-    );
-
+  if (result.data.status === "deleted") {
+    afMsg("This account is marked as deleted.", "error", "Account Deleted");
     return null;
   }
 
-  return data;
+  return result.data;
 }
 
-async function fetchStudentExtraDetailsAf(studentId) {
-  if (!studentId) {
-    return null;
-  }
+function afStudentKey(student) {
+  if (!student) return "";
+  return student.email || student.mobile || student.name || "";
+}
 
-  const backend = getProfileBackendAf();
+async function afFetchExtra(student) {
+  const backend = afBackend();
+  if (!backend || !student) return null;
 
-  if (!backend) {
-    return null;
-  }
+  const key = afStudentKey(student);
+  if (!key) return null;
 
   const { data, error } = await backend
     .from("student_profile_details_af")
-    .select(`
-      id,
-      student_id,
-      name,
-      state,
-      district
-    `)
-    .eq("student_id", studentId)
+    .select("student_key, name, state, district, class_name")
+    .eq("student_key", key)
     .maybeSingle();
 
   if (error) {
-    console.error("Extra details fetch error:", error);
+    console.error("extra fetch error:", error);
     return null;
   }
 
   return data;
 }
 
-async function upsertStudentExtraDetailsAf(payload) {
-  const studentId = getStudentLoginIdAf();
+async function afUpsertExtra(payload) {
+  const backend = afBackend();
 
-  if (!studentId) {
-    throw new Error("Student login not found.");
-  }
+  if (!backend) throw new Error("Backend not connected.");
+  if (!afCurrentStudent) throw new Error("Student profile not loaded.");
 
-  const backend = getProfileBackendAf();
+  const key = afStudentKey(afCurrentStudent);
 
-  if (!backend) {
-    throw new Error("Backend not connected.");
-  }
+  if (!key) throw new Error("Student key not found.");
 
   const finalPayload = {
-    student_id: studentId,
+    student_key: key,
     ...payload,
     updated_at: new Date().toISOString()
   };
 
   const { data, error } = await backend
     .from("student_profile_details_af")
-    .upsert(finalPayload, {
-      onConflict: "student_id"
-    })
+    .upsert(finalPayload, { onConflict: "student_key" })
     .select()
     .maybeSingle();
 
-  if (error) {
-    throw new Error(error.message);
-  }
+  if (error) throw new Error(error.message);
 
-  currentStudentExtraAf = data;
-
+  afCurrentExtra = data;
   return data;
 }
 
-/* ==============================
-   ENROLLED COURSES
-================================ */
+async function afFetchBatches(student) {
+  const backend = afBackend();
+  if (!backend || !student) return [];
 
-async function fetchStudentEnrolledBatchesAf(studentId) {
-  if (!studentId) {
-    return [];
-  }
+  const email = student.email || "";
+  const mobile = student.mobile || "";
 
-  const backend = getProfileBackendAf();
+  /*
+    Tumhare student_courses table ka exact columns nahi dikh raha.
+    Isliye safe try:
+    1) email se
+    2) mobile se
+    Agar columns match nahi hue to empty show karega, page break nahi hoga.
+  */
 
-  if (!backend) {
-    return [];
-  }
+  try {
+    if (email) {
+      const { data, error } = await backend
+        .from("student_courses")
+        .select("*")
+        .eq("email", email);
 
-  const { data, error } = await backend
-    .from("student_courses")
-    .select(`
-      id,
-      course_id,
-      status,
-      courses (
-        id,
-        title,
-        slug
-      )
-    `)
-    .eq("student_id", studentId)
-    .eq("status", "active");
-
-  if (error) {
-    console.error("Batch fetch error:", error);
-    return [];
-  }
-
-  return data || [];
-}
-
-/* ==============================
-   MERGED DATA
-================================ */
-
-function getMergedStudentNameAf() {
-  return (
-    currentStudentExtraAf?.name ||
-    currentStudentProfileAf?.name ||
-    localStorage.getItem("af_student_name") ||
-    "Student"
-  );
-}
-
-function getMergedStudentEmailAf() {
-  return (
-    currentStudentProfileAf?.email ||
-    localStorage.getItem("af_student_email") ||
-    "-"
-  );
-}
-
-function getMergedStudentPhoneAf() {
-  return (
-    currentStudentProfileAf?.mobile ||
-    currentStudentProfileAf?.phone ||
-    localStorage.getItem("af_student_mobile") ||
-    "-"
-  );
-}
-
-function getMergedStudentStateAf() {
-  return (
-    currentStudentExtraAf?.state ||
-    currentStudentProfileAf?.state ||
-    "-"
-  );
-}
-
-function getMergedStudentDistrictAf() {
-  return (
-    currentStudentExtraAf?.district ||
-    currentStudentProfileAf?.city ||
-    "-"
-  );
-}
-
-/* ==============================
-   CARD RENDER
-================================ */
-
-function renderStudentDashboardCardAf(profile) {
-  const nameEl = document.getElementById("studentDashboardCardName");
-  const subEl = document.getElementById("studentDashboardCardSub");
-
-  const studentId = getStudentLoginIdAf();
-
-  if (!studentId) {
-    if (nameEl) {
-      nameEl.textContent = "Hi, Student";
+      if (!error && data) return data;
     }
+  } catch (e) {}
 
-    if (subEl) {
-      subEl.textContent = "Login to view profile";
+  try {
+    if (mobile) {
+      const { data, error } = await backend
+        .from("student_courses")
+        .select("*")
+        .eq("mobile", mobile);
+
+      if (!error && data) return data;
     }
+  } catch (e) {}
 
+  return [];
+}
+
+function afMergedName() {
+  return afCurrentExtra?.name || afCurrentStudent?.name || afGetLoginData().name || "Student";
+}
+
+function afMergedEmail() {
+  return afCurrentStudent?.email || afGetLoginData().email || "-";
+}
+
+function afMergedMobile() {
+  return afCurrentStudent?.mobile || afGetLoginData().mobile || "-";
+}
+
+function afMergedState() {
+  return afCurrentExtra?.state || "-";
+}
+
+function afMergedDistrict() {
+  return afCurrentExtra?.district || "-";
+}
+
+function afMergedClass() {
+  return afCurrentExtra?.class_name || "-";
+}
+
+function afRenderCard() {
+  const nameEl = document.getElementById("studentDashboardCardNameAf");
+  const subEl = document.getElementById("studentDashboardCardSubAf");
+
+  if (!afIsLoggedIn()) {
+    if (nameEl) nameEl.textContent = "Hi, Student";
+    if (subEl) subEl.textContent = "Login to view profile";
     return;
   }
 
-  const name = getMergedStudentNameAf();
+  const name = afMergedName();
 
-  if (nameEl) {
-    nameEl.textContent =
-      name
-        ? "Hi, " + name
-        : "Hi, Student";
-  }
-
-  if (subEl) {
-    subEl.textContent = "View Profile";
-  }
+  if (nameEl) nameEl.textContent = "Hi, " + name;
+  if (subEl) subEl.textContent = "View Profile";
 }
 
-/* ==============================
-   PROFILE RENDER
-================================ */
+function afRenderProfile(batches) {
+  const name = afMergedName();
+  const email = afMergedEmail();
+  const mobile = afMergedMobile();
 
-function renderStudentProfileAf(enrolledRows) {
-  const name = getMergedStudentNameAf();
-  const email = getMergedStudentEmailAf();
-  const phone = getMergedStudentPhoneAf();
-  const state = getMergedStudentStateAf();
-  const district = getMergedStudentDistrictAf();
+  afSetText("afProfileAvatar", afInitial(name));
+  afSetText("afProfileHeroName", name);
+  afSetText("afProfileHeroSub", "View and manage your dashboard");
 
-  setTextAf("studentProfileName", name);
+  afSetText("afInfoName", name);
+  afSetText("afInfoEmail", email);
+  afSetText("afInfoMobile", mobile);
 
-  setTextAf(
-    "studentProfileEmail",
-    "View and manage your profile"
-  );
+  afSetText("afInfoState", afMergedState());
+  afSetText("afInfoDistrict", afMergedDistrict());
+  afSetText("afInfoClass", afMergedClass());
 
-  setTextAf(
-    "studentProfileAvatar",
-    getStudentInitialAf(name)
-  );
-
-  setTextAf("studentInfoName", name);
-  setTextAf("studentInfoEmail", email);
-  setTextAf("studentInfoPhone", phone);
-  setTextAf("studentInfoState", state);
-  setTextAf("studentInfoDistrict", district);
-
-  const list = document.getElementById("studentBatchList");
-
+  const list = document.getElementById("afBatchList");
   if (!list) return;
 
-  if (!enrolledRows || !enrolledRows.length) {
-    list.innerHTML = `
-      <p class="student-empty-text">
-        No enrolled batch found.
-      </p>
-    `;
-
+  if (!batches || !batches.length) {
+    list.innerHTML = `<p class="af-empty">No enrolled batch found.</p>`;
     return;
   }
 
-  list.innerHTML = enrolledRows
-    .map(function(row) {
-      const courseTitle =
-        row.courses?.title ||
-        ("Course " + row.course_id);
+  list.innerHTML = batches.map(function(row) {
+    const title =
+      row.course_name ||
+      row.batch_name ||
+      row.title ||
+      row.course_id ||
+      "Enrolled Batch";
 
-      const courseSlug =
-        row.courses?.slug ||
-        row.course_id;
+    const sub =
+      row.status ||
+      row.created_at ||
+      "Active";
 
-      return `
-        <div class="student-batch-item">
-          <div>
-            <h4>${courseTitle}</h4>
-            <p>${courseSlug}</p>
-          </div>
-
-          <span class="student-batch-status">
-            Active
-          </span>
+    return `
+      <div class="af-batch-item">
+        <div>
+          <h4>${title}</h4>
+          <p>${sub}</p>
         </div>
-      `;
-    })
-    .join("");
-}
-
-/* ==============================
-   OPEN DASHBOARD
-================================ */
-
-async function openStudentDashboardCard() {
-  const studentId = getStudentLoginIdAf();
-
-  if (!studentId) {
-    showProfileMessageAf(
-      "Login to fetch your dashboard.",
-      "warning",
-      "Login Required"
-    );
-
-    return;
-  }
-
-  const backend = getProfileBackendAf();
-
-  if (!backend) {
-    showProfileMessageAf(
-      "Student backend not connected.",
-      "error",
-      "Backend Error"
-    );
-
-    return;
-  }
-
-  showSection("studentDashboard");
-
-  setTextAf("studentProfileName", "Loading...");
-  setTextAf("studentProfileEmail", "Fetching your dashboard...");
-  setTextAf("studentInfoName", "Loading...");
-  setTextAf("studentInfoEmail", "Loading...");
-  setTextAf("studentInfoPhone", "Loading...");
-  setTextAf("studentInfoState", "Loading...");
-  setTextAf("studentInfoDistrict", "Loading...");
-
-  const batchList = document.getElementById("studentBatchList");
-
-  if (batchList) {
-    batchList.innerHTML = `
-      <p class="student-empty-text">
-        Loading enrolled batches...
-      </p>
+        <span class="af-batch-status">Active</span>
+      </div>
     `;
-  }
-
-  const profile = await fetchStudentProfileAf();
-
-  if (!profile) {
-    showProfileMessageAf(
-      "Could not fetch your dashboard. Please login again.",
-      "warning",
-      "Login Required"
-    );
-
-    setTextAf("studentProfileName", "Login Required");
-
-    setTextAf(
-      "studentProfileEmail",
-      "Please login again to continue."
-    );
-
-    setTextAf("studentInfoName", "-");
-    setTextAf("studentInfoEmail", "-");
-    setTextAf("studentInfoPhone", "-");
-    setTextAf("studentInfoState", "-");
-    setTextAf("studentInfoDistrict", "-");
-
-    if (batchList) {
-      batchList.innerHTML = `
-        <p class="student-empty-text">
-          Please login again to view enrolled batches.
-        </p>
-      `;
-    }
-
-    return;
-  }
-
-  currentStudentProfileAf = profile;
-
-  currentStudentExtraAf =
-    await fetchStudentExtraDetailsAf(
-      profile.id || studentId
-    );
-
-  const enrolledRows =
-    await fetchStudentEnrolledBatchesAf(
-      profile.id || studentId
-    );
-
-  renderStudentDashboardCardAf(profile);
-  renderStudentProfileAf(enrolledRows);
+  }).join("");
 }
 
-/* ==============================
-   REFRESH BUTTON
-================================ */
-
-async function refreshStudentDashboardButtonAf() {
-  const studentId = getStudentLoginIdAf();
-
-  if (!studentId) {
-    currentStudentProfileAf = null;
-    currentStudentExtraAf = null;
-
-    renderStudentDashboardCardAf(null);
-
-    return;
+async function openStudentDashboardCardAf(event) {
+  if (event) {
+    event.preventDefault();
+    event.stopPropagation();
   }
 
-  const profile = await fetchStudentProfileAf();
-
-  if (profile) {
-    currentStudentProfileAf = profile;
-
-    currentStudentExtraAf =
-      await fetchStudentExtraDetailsAf(
-        profile.id || studentId
-      );
-
-    renderStudentDashboardCardAf(profile);
-  } else {
-    renderStudentDashboardCardAf(null);
+  if (!afIsLoggedIn()) {
+    afMsg("Login to fetch your dashboard.", "warning", "Login Required");
+    return false;
   }
+
+  showSection("studentDashboardAf");
+
+  afSetText("afProfileHeroName", "Loading...");
+  afSetText("afProfileHeroSub", "Fetching your details...");
+  afSetText("afInfoName", "Loading...");
+  afSetText("afInfoEmail", "Loading...");
+  afSetText("afInfoMobile", "Loading...");
+  afSetText("afInfoState", "Loading...");
+  afSetText("afInfoDistrict", "Loading...");
+  afSetText("afInfoClass", "Loading...");
+
+  const list = document.getElementById("afBatchList");
+  if (list) list.innerHTML = `<p class="af-empty">Loading enrolled batches...</p>`;
+
+  const student = await afFetchStudent();
+
+  if (!student) {
+    afMsg("Could not fetch your dashboard. Please login again.", "warning", "Login Required");
+
+    afSetText("afProfileHeroName", "Login Required");
+    afSetText("afProfileHeroSub", "Please login again.");
+    afSetText("afInfoName", "-");
+    afSetText("afInfoEmail", "-");
+    afSetText("afInfoMobile", "-");
+    afSetText("afInfoState", "-");
+    afSetText("afInfoDistrict", "-");
+    afSetText("afInfoClass", "-");
+
+    if (list) list.innerHTML = `<p class="af-empty">Please login again to view enrolled batches.</p>`;
+
+    return false;
+  }
+
+  afCurrentStudent = student;
+  afCurrentExtra = await afFetchExtra(student);
+
+  const batches = await afFetchBatches(student);
+
+  afRenderCard();
+  afRenderProfile(batches);
+
+  return false;
 }
-
-/* ==============================
-   EDIT YOUR DETAILS
-================================ */
 
 function openYourDetailsEditAf() {
-  if (!getStudentLoginIdAf()) {
-    showProfileMessageAf(
-      "Login required.",
-      "warning",
-      "Login Required"
-    );
-
+  if (!afIsLoggedIn()) {
+    afMsg("Login to edit your details.", "warning", "Login Required");
     return;
   }
 
-  setInputAf(
-    "editStudentNameAf",
-    getMergedStudentNameAf() === "Student"
-      ? ""
-      : getMergedStudentNameAf()
-  );
+  afSetInput("afEditName", afMergedName() === "Student" ? "" : afMergedName());
+  afSetInput("afEditEmail", afMergedEmail() === "-" ? "" : afMergedEmail());
+  afSetInput("afEditMobile", afMergedMobile() === "-" ? "" : afMergedMobile());
 
-  setInputAf(
-    "editStudentEmailAf",
-    getMergedStudentEmailAf() === "-"
-      ? ""
-      : getMergedStudentEmailAf()
-  );
+  const box = document.getElementById("afYourDetailsOtpBox");
+  if (box) box.classList.add("af-hidden");
 
-  setInputAf(
-    "editStudentPhoneAf",
-    getMergedStudentPhoneAf() === "-"
-      ? ""
-      : getMergedStudentPhoneAf()
-  );
+  afSetInput("afEditOtp", "");
 
-  const otpBox =
-    document.getElementById("yourDetailsOtpBoxAf");
-
-  if (otpBox) {
-    otpBox.classList.add("hidden-box");
-  }
-
-  openStudentModalAf("yourDetailsModalAf");
+  openAfModal("afYourDetailsModal");
 }
 
 async function sendYourDetailsOtpAf() {
-  const name = getInputAf("editStudentNameAf");
-  const email = getInputAf("editStudentEmailAf");
-  const phone = getInputAf("editStudentPhoneAf");
+  const name = afGetInput("afEditName");
+  const email = afGetInput("afEditEmail");
+  const mobile = afGetInput("afEditMobile");
 
-  if (!name || !email || !phone) {
-    showProfileMessageAf(
-      "Please fill all fields.",
-      "warning",
-      "Missing Details"
-    );
-
+  if (!name || !email || !mobile) {
+    afMsg("Please fill name, email and phone number.", "warning", "Missing Details");
     return;
   }
 
-  pendingYourDetailsEditAf = {
-    name,
-    email,
-    phone
-  };
+  afPendingEdit = { name, email, mobile };
 
   try {
-    await sendProfileOtpAf(email, "profile_edit");
+    await afSendOtp(email);
 
-    const otpBox =
-      document.getElementById("yourDetailsOtpBoxAf");
+    const box = document.getElementById("afYourDetailsOtpBox");
+    if (box) box.classList.remove("af-hidden");
 
-    if (otpBox) {
-      otpBox.classList.remove("hidden-box");
-    }
-
-    showProfileMessageAf(
-      "OTP sent to your email.",
-      "success",
-      "OTP Sent"
-    );
+    afMsg("OTP sent to your email.", "success", "OTP Sent");
   } catch (err) {
-    console.error(err);
-
-    showProfileMessageAf(
-      err.message || "OTP send failed.",
-      "error",
-      "OTP Error"
-    );
+    afMsg(err.message || "OTP send failed.", "error", "OTP Error");
   }
 }
 
 async function confirmYourDetailsEditAf() {
-  if (!pendingYourDetailsEditAf) {
-    showProfileMessageAf(
-      "Please send OTP first.",
-      "warning",
-      "OTP Required"
-    );
-
+  if (!afPendingEdit) {
+    afMsg("Please send OTP first.", "warning", "OTP Required");
     return;
   }
 
-  const otp = getInputAf("editYourDetailsOtpAf");
+  const otp = afGetInput("afEditOtp");
 
   if (!otp) {
-    showProfileMessageAf(
-      "Enter OTP.",
-      "warning",
-      "OTP Required"
-    );
-
+    afMsg("Enter OTP.", "warning", "OTP Required");
     return;
   }
 
-  const backend = getProfileBackendAf();
+  const backend = afBackend();
 
   if (!backend) {
-    showProfileMessageAf(
-      "Backend not connected.",
-      "error",
-      "Backend Error"
-    );
-
+    afMsg("Backend not connected.", "error", "Backend Error");
     return;
   }
 
   try {
-    await verifyProfileOtpAf(
-      pendingYourDetailsEditAf.email,
-      otp,
-      "profile_edit"
-    );
+    await afVerifyOtp(afPendingEdit.email, otp);
 
-    const studentId = getStudentLoginIdAf();
+    const oldStudent = afCurrentStudent || await afFetchStudent();
 
-    const { error } = await backend
+    let updateQuery = backend
       .from("students_af")
       .update({
-        email: pendingYourDetailsEditAf.email,
-        mobile: pendingYourDetailsEditAf.phone,
-        name: pendingYourDetailsEditAf.name
-      })
-      .eq("id", studentId);
+        name: afPendingEdit.name,
+        email: afPendingEdit.email,
+        mobile: afPendingEdit.mobile
+      });
 
-    if (error) {
-      throw new Error(error.message);
+    if (oldStudent && oldStudent.email) {
+      updateQuery = updateQuery.eq("email", oldStudent.email);
+    } else if (oldStudent && oldStudent.mobile) {
+      updateQuery = updateQuery.eq("mobile", oldStudent.mobile);
+    } else if (oldStudent && oldStudent.name) {
+      updateQuery = updateQuery.eq("name", oldStudent.name);
+    } else {
+      throw new Error("Old student record not found.");
     }
 
-    await upsertStudentExtraDetailsAf({
-      name: pendingYourDetailsEditAf.name
+    const { error } = await updateQuery;
+
+    if (error) throw new Error(error.message);
+
+    afCurrentStudent = {
+      name: afPendingEdit.name,
+      email: afPendingEdit.email,
+      mobile: afPendingEdit.mobile,
+      status: "active"
+    };
+
+    localStorage.setItem("af_student_name", afPendingEdit.name);
+    localStorage.setItem("af_student_email", afPendingEdit.email);
+    localStorage.setItem("af_student_mobile", afPendingEdit.mobile);
+
+    await afUpsertExtra({
+      name: afPendingEdit.name
     });
 
-    localStorage.setItem(
-      "af_student_name",
-      pendingYourDetailsEditAf.name
-    );
+    afPendingEdit = null;
 
-    localStorage.setItem(
-      "af_student_email",
-      pendingYourDetailsEditAf.email
-    );
+    closeAfModal("afYourDetailsModal");
 
-    localStorage.setItem(
-      "af_student_mobile",
-      pendingYourDetailsEditAf.phone
-    );
+    afMsg("Profile updated successfully.", "success", "Updated");
 
-    pendingYourDetailsEditAf = null;
-
-    closeStudentModalAf("yourDetailsModalAf");
-
-    showProfileMessageAf(
-      "Profile updated successfully.",
-      "success",
-      "Updated"
-    );
-
-    await openStudentDashboardCard();
+    await openStudentDashboardCardAf();
 
   } catch (err) {
-    console.error(err);
-
-    showProfileMessageAf(
-      err.message || "OTP verification failed.",
-      "error",
-      "Update Failed"
-    );
+    afMsg(err.message || "Update failed.", "error", "Update Failed");
   }
 }
 
-/* ==============================
-   OTHER DETAILS
-================================ */
-
 function openOtherDetailsEditAf() {
-  if (!getStudentLoginIdAf()) {
-    showProfileMessageAf(
-      "Login required.",
-      "warning",
-      "Login Required"
-    );
-
+  if (!afIsLoggedIn()) {
+    afMsg("Login to edit details.", "warning", "Login Required");
     return;
   }
 
-  setInputAf(
-    "editStudentStateAf",
-    getMergedStudentStateAf() === "-"
-      ? ""
-      : getMergedStudentStateAf()
-  );
+  afSetInput("afEditState", afMergedState() === "-" ? "" : afMergedState());
+  afSetInput("afEditDistrict", afMergedDistrict() === "-" ? "" : afMergedDistrict());
+  afSetInput("afEditClass", afMergedClass() === "-" ? "" : afMergedClass());
 
-  setInputAf(
-    "editStudentDistrictAf",
-    getMergedStudentDistrictAf() === "-"
-      ? ""
-      : getMergedStudentDistrictAf()
-  );
-
-  openStudentModalAf("otherDetailsModalAf");
+  openAfModal("afOtherDetailsModal");
 }
 
 async function saveOtherDetailsAf() {
-  const state = getInputAf("editStudentStateAf");
-  const district = getInputAf("editStudentDistrictAf");
+  const state = afGetInput("afEditState");
+  const district = afGetInput("afEditDistrict");
+  const className = afGetInput("afEditClass");
 
-  if (!state || !district) {
-    showProfileMessageAf(
-      "Please fill state and district.",
-      "warning",
-      "Missing Details"
-    );
-
+  if (!state || !district || !className) {
+    afMsg("Please fill state, district and class.", "warning", "Missing Details");
     return;
   }
 
   try {
-    await upsertStudentExtraDetailsAf({
-      state,
-      district
+    if (!afCurrentStudent) {
+      afCurrentStudent = await afFetchStudent();
+    }
+
+    await afUpsertExtra({
+      state: state,
+      district: district,
+      class_name: className
     });
 
-    closeStudentModalAf("otherDetailsModalAf");
+    closeAfModal("afOtherDetailsModal");
 
-    showProfileMessageAf(
-      "Details updated successfully.",
-      "success",
-      "Updated"
-    );
+    afMsg("Details updated successfully.", "success", "Updated");
 
-    await openStudentDashboardCard();
+    await openStudentDashboardCardAf();
 
   } catch (err) {
-    console.error(err);
-
-    showProfileMessageAf(
-      err.message || "Update failed.",
-      "error",
-      "Update Failed"
-    );
+    afMsg(err.message || "Update failed.", "error", "Update Failed");
   }
 }
 
-/* ==============================
-   DELETE ACCOUNT
-================================ */
-
 async function sendDeleteAccountOtpAf() {
-  const email = getInputAf("deleteAccountEmailAf");
-  const phone = getInputAf("deleteAccountPhoneAf");
-  const reason = getInputAf("deleteAccountReasonAf");
+  const email = afGetInput("afDeleteEmail");
+  const mobile = afGetInput("afDeleteMobile");
+  const reason = afGetInput("afDeleteReason");
 
-  if (!getStudentLoginIdAf()) {
-    showProfileMessageAf(
-      "Login required.",
-      "warning",
-      "Login Required"
-    );
-
+  if (!afIsLoggedIn()) {
+    afMsg("Login required.", "warning", "Login Required");
     return;
   }
 
-  if (!email || !phone) {
-    showProfileMessageAf(
-      "Please fill email and phone number.",
-      "warning",
-      "Missing Details"
-    );
-
+  if (!email || !mobile) {
+    afMsg("Please enter email and phone number.", "warning", "Missing Details");
     return;
   }
 
-  pendingDeleteAccountAf = {
-    email,
-    phone,
-    reason
-  };
+  afPendingDelete = { email, mobile, reason };
 
   try {
-    await sendProfileOtpAf(email, "delete_account");
+    await afSendOtp(email);
 
-    const otpBox =
-      document.getElementById("deleteOtpBoxAf");
+    const box = document.getElementById("afDeleteOtpBox");
+    if (box) box.classList.remove("af-hidden");
 
-    if (otpBox) {
-      otpBox.classList.remove("hidden-box");
-    }
-
-    showProfileMessageAf(
-      "OTP sent to your email.",
-      "success",
-      "OTP Sent"
-    );
-
+    afMsg("OTP sent to your email.", "success", "OTP Sent");
   } catch (err) {
-    console.error(err);
-
-    showProfileMessageAf(
-      err.message || "OTP send failed.",
-      "error",
-      "OTP Error"
-    );
+    afMsg(err.message || "OTP send failed.", "error", "OTP Error");
   }
 }
 
 async function confirmDeleteAccountAf() {
-  if (!pendingDeleteAccountAf) {
-    showProfileMessageAf(
-      "Please send OTP first.",
-      "warning",
-      "OTP Required"
-    );
-
+  if (!afPendingDelete) {
+    afMsg("Please send OTP first.", "warning", "OTP Required");
     return;
   }
 
-  const otp = getInputAf("deleteAccountOtpAf");
+  const otp = afGetInput("afDeleteOtp");
 
   if (!otp) {
-    showProfileMessageAf(
-      "Enter OTP.",
-      "warning",
-      "OTP Required"
-    );
-
+    afMsg("Enter OTP.", "warning", "OTP Required");
     return;
   }
 
-  const backend = getProfileBackendAf();
+  const backend = afBackend();
 
   if (!backend) {
-    showProfileMessageAf(
-      "Backend not connected.",
-      "error",
-      "Backend Error"
-    );
-
+    afMsg("Backend not connected.", "error", "Backend Error");
     return;
   }
 
   try {
-    await verifyProfileOtpAf(
-      pendingDeleteAccountAf.email,
-      otp,
-      "delete_account"
-    );
+    await afVerifyOtp(afPendingDelete.email, otp);
 
-    const studentId = getStudentLoginIdAf();
+    const student = afCurrentStudent || await afFetchStudent();
+    const extra = afCurrentExtra || await afFetchExtra(student);
 
-    const profile =
-      currentStudentProfileAf ||
-      await fetchStudentProfileAf();
-
-    const extra =
-      currentStudentExtraAf ||
-      await fetchStudentExtraDetailsAf(studentId);
-
-    const deleteRecord = {
-      student_id: studentId,
-      student_code:
-        profile?.student_id ||
-        localStorage.getItem("af_student_id") ||
-        "",
-
-      name:
-        extra?.name ||
-        profile?.name ||
-        localStorage.getItem("af_student_name") ||
-        "",
-
-      email: pendingDeleteAccountAf.email,
-      phone: pendingDeleteAccountAf.phone,
-
-      state:
-        extra?.state ||
-        profile?.state ||
-        "",
-
-      district:
-        extra?.district ||
-        profile?.city ||
-        "",
-
-      delete_reason:
-        pendingDeleteAccountAf.reason || "",
-
+    const backup = {
+      name: student?.name || "",
+      email: afPendingDelete.email,
+      phone: afPendingDelete.mobile,
+      state: extra?.state || "",
+      district: extra?.district || "",
+      delete_reason: afPendingDelete.reason || "",
       status: "deleted",
-
       raw_profile: {
-        profile: profile || {},
+        student: student || {},
         extra: extra || {}
       }
     };
 
-    const { error: insertError } =
-      await backend
-        .from("deleted_accounts_af")
-        .insert([deleteRecord]);
+    const { error: insertError } = await backend
+      .from("deleted_accounts_af")
+      .insert([backup]);
 
-    if (insertError) {
-      throw new Error(insertError.message);
+    if (insertError) throw new Error(insertError.message);
+
+    let updateQuery = backend
+      .from("students_af")
+      .update({ status: "deleted" });
+
+    if (student?.email) {
+      updateQuery = updateQuery.eq("email", student.email);
+    } else if (student?.mobile) {
+      updateQuery = updateQuery.eq("mobile", student.mobile);
+    } else if (student?.name) {
+      updateQuery = updateQuery.eq("name", student.name);
+    } else {
+      throw new Error("Student record not found.");
     }
 
-    const { error: deleteError } =
-      await backend
-        .from("students_af")
-        .update({
-          status: "deleted"
-        })
-        .eq("id", studentId);
+    const { error: updateError } = await updateQuery;
 
-    if (deleteError) {
-      throw new Error(deleteError.message);
-    }
+    if (updateError) throw new Error(updateError.message);
 
-    /* CLEAR STORAGE */
+    afClearStudentLoginStorage();
 
-    localStorage.removeItem("af_student_uuid");
-    localStorage.removeItem("af_student_id");
-    localStorage.removeItem("student_id");
-    localStorage.removeItem("af_student_name");
-    localStorage.removeItem("af_student_email");
-    localStorage.removeItem("af_student_mobile");
-    localStorage.removeItem("af_logged_student");
-    localStorage.removeItem("afStudent");
-    localStorage.removeItem("af_student");
-    localStorage.removeItem("loggedStudent");
-    localStorage.removeItem("studentData");
+    afCurrentStudent = null;
+    afCurrentExtra = null;
+    afPendingDelete = null;
 
-    currentStudentProfileAf = null;
-    currentStudentExtraAf = null;
-    pendingDeleteAccountAf = null;
+    afRenderCard();
 
-    refreshStudentDashboardButtonAf();
-
-    showProfileMessageAf(
-      "Your account has been deleted.",
-      "success",
-      "Account Deleted"
-    );
+    afMsg("Your account has been deleted.", "success", "Account Deleted");
 
     showSection("home");
 
   } catch (err) {
-    console.error(err);
-
-    showProfileMessageAf(
-      err.message || "Delete failed.",
-      "error",
-      "Delete Failed"
-    );
+    afMsg(err.message || "Delete failed.", "error", "Delete Failed");
   }
 }
 
-/* ==============================
-   INIT
-================================ */
+function afClearStudentLoginStorage() {
+  localStorage.removeItem("af_student_uuid");
+  localStorage.removeItem("af_student_id");
+  localStorage.removeItem("student_id");
+  localStorage.removeItem("af_student_name");
+  localStorage.removeItem("af_student_email");
+  localStorage.removeItem("af_student_mobile");
+  localStorage.removeItem("af_logged_student");
+  localStorage.removeItem("afStudent");
+  localStorage.removeItem("af_student");
+  localStorage.removeItem("loggedStudent");
+  localStorage.removeItem("studentData");
+}
+
+/*
+  Agar tumhare existing logout function me call karna ho:
+  logout ke end me ye line add kar dena:
+  afClearStudentLoginStorage(); afRenderCard();
+*/
 
 document.addEventListener("DOMContentLoaded", function() {
-  refreshStudentDashboardButtonAf();
+  afRenderCard();
 });
   </script>
 </body>
