@@ -16840,17 +16840,44 @@ document.addEventListener("DOMContentLoaded", function() {
   openBatchSectionaf();
 });
 
- /* ==============================
-   STUDENT PROFILE DASHBOARD V2
-   Backend: getStudentBackendaf()
-   Main table: students_af
-   OTP: sendSupabaseEmailOtpaf / verifySupabaseEmailOtpaf
+/* ==============================
+   STUDENT PROFILE DASHBOARD V3
+   FIXED AUTO CLOSE + LOGOUT ISSUE
 ================================ */
 
 let currentStudentProfileAf = null;
 let currentStudentExtraAf = null;
 let pendingYourDetailsEditAf = null;
 let pendingDeleteAccountAf = null;
+
+/* ==============================
+   SAFE MESSAGE / TOAST
+================================ */
+
+function showProfileMessageAf(message, type, title) {
+  if (typeof showAfToast === "function") {
+    showAfToast(message, type || "info", title || "Message");
+    return;
+  }
+
+  if (typeof showStudentMessageaf === "function") {
+    showStudentMessageaf(
+      type === "error"
+        ? "err"
+        : type === "success"
+        ? "ok"
+        : "info",
+      message
+    );
+    return;
+  }
+
+  alert((title ? title + ": " : "") + message);
+}
+
+/* ==============================
+   BACKEND
+================================ */
 
 function getProfileBackendAf() {
   if (typeof getStudentBackendaf === "function") {
@@ -16863,6 +16890,10 @@ function getProfileBackendAf() {
 
   return null;
 }
+
+/* ==============================
+   LOGIN DETECTION
+================================ */
 
 function getStudentLoginIdAf() {
   const directId =
@@ -16884,6 +16915,7 @@ function getStudentLoginIdAf() {
   for (let i = 0; i < possibleKeys.length; i++) {
     try {
       const raw = localStorage.getItem(possibleKeys[i]);
+
       if (!raw) continue;
 
       const obj = JSON.parse(raw);
@@ -16913,10 +16945,18 @@ function getStudentFallbackDataAf() {
   };
 }
 
+/* ==============================
+   HELPERS
+================================ */
+
 function setTextAf(id, value) {
   const el = document.getElementById(id);
+
   if (el) {
-    el.textContent = value && String(value).trim() ? value : "-";
+    el.textContent =
+      value && String(value).trim()
+        ? value
+        : "-";
   }
 }
 
@@ -16927,18 +16967,26 @@ function getInputAf(id) {
 
 function setInputAf(id, value) {
   const el = document.getElementById(id);
+
   if (el) {
     el.value = value || "";
   }
 }
 
 function getStudentInitialAf(name) {
-  if (!name || !String(name).trim()) return "S";
-  return String(name).trim().charAt(0).toUpperCase();
+  if (!name || !String(name).trim()) {
+    return "S";
+  }
+
+  return String(name)
+    .trim()
+    .charAt(0)
+    .toUpperCase();
 }
 
 function closeStudentModalAf(id) {
   const modal = document.getElementById(id);
+
   if (modal) {
     modal.classList.add("hidden-box");
   }
@@ -16946,10 +16994,15 @@ function closeStudentModalAf(id) {
 
 function openStudentModalAf(id) {
   const modal = document.getElementById(id);
+
   if (modal) {
     modal.classList.remove("hidden-box");
   }
 }
+
+/* ==============================
+   OTP
+================================ */
 
 async function sendProfileOtpAf(email, purpose) {
   if (!email) {
@@ -16957,18 +17010,26 @@ async function sendProfileOtpAf(email, purpose) {
   }
 
   if (typeof sendSupabaseEmailOtpaf !== "function") {
-    throw new Error("OTP send function not found: sendSupabaseEmailOtpaf");
+    throw new Error("OTP send backend not connected.");
   }
 
   let otpResult = await sendSupabaseEmailOtpaf(email, false);
 
   if (!otpResult || !otpResult.ok) {
-    console.log("Profile OTP first attempt failed:", otpResult ? otpResult.message : "No response");
+    console.log(
+      "Profile OTP first attempt failed:",
+      otpResult ? otpResult.message : "No response"
+    );
+
     otpResult = await sendSupabaseEmailOtpaf(email, true);
   }
 
   if (!otpResult || !otpResult.ok) {
-    throw new Error(otpResult && otpResult.message ? otpResult.message : "OTP send failed.");
+    throw new Error(
+      otpResult && otpResult.message
+        ? otpResult.message
+        : "OTP send failed."
+    );
   }
 
   return otpResult;
@@ -16984,7 +17045,7 @@ async function verifyProfileOtpAf(email, otp, purpose) {
   }
 
   if (typeof verifySupabaseEmailOtpaf !== "function") {
-    throw new Error("OTP verify function not found: verifySupabaseEmailOtpaf");
+    throw new Error("OTP verify backend not connected.");
   }
 
   const verifyResult = await verifySupabaseEmailOtpaf(email, otp);
@@ -17000,6 +17061,10 @@ async function verifyProfileOtpAf(email, otp, purpose) {
   return true;
 }
 
+/* ==============================
+   PROFILE FETCH
+================================ */
+
 async function fetchStudentProfileAf() {
   const studentId = getStudentLoginIdAf();
 
@@ -17010,29 +17075,83 @@ async function fetchStudentProfileAf() {
   const backend = getProfileBackendAf();
 
   if (!backend) {
-    showAfToast("Student backend not connected.", "error", "Backend Error");
+    showProfileMessageAf(
+      "Student backend not connected.",
+      "error",
+      "Backend Error"
+    );
+
     return null;
   }
 
-  const { data, error } = await backend
+  let result = await backend
     .from("students_af")
-    .select("id, student_id, name, email, mobile, phone, state, city, class, class_name, status")
+    .select(`
+      id,
+      student_id,
+      name,
+      email,
+      mobile,
+      phone,
+      state,
+      city,
+      class,
+      class_name,
+      status
+    `)
     .eq("id", studentId)
     .maybeSingle();
 
+  if (!result.data && !result.error) {
+    result = await backend
+      .from("students_af")
+      .select(`
+        id,
+        student_id,
+        name,
+        email,
+        mobile,
+        phone,
+        state,
+        city,
+        class,
+        class_name,
+        status
+      `)
+      .eq("student_id", studentId)
+      .maybeSingle();
+  }
+
+  const data = result.data;
+  const error = result.error;
+
   if (error) {
-    console.error("Student profile fetch error:", error);
-    showAfToast("Could not fetch your dashboard.", "error", "Profile Error");
+    console.error("Profile fetch error:", error);
+
+    showProfileMessageAf(
+      "Could not fetch your dashboard.",
+      "error",
+      "Profile Error"
+    );
+
     return null;
   }
 
   if (!data) {
     const fallback = getStudentFallbackDataAf();
-    return fallback.id ? fallback : null;
+
+    return fallback.id
+      ? fallback
+      : null;
   }
 
   if (data.status === "deleted") {
-    showAfToast("This account is marked as deleted.", "error", "Account Deleted");
+    showProfileMessageAf(
+      "This account is deleted.",
+      "error",
+      "Account Deleted"
+    );
+
     return null;
   }
 
@@ -17052,7 +17171,13 @@ async function fetchStudentExtraDetailsAf(studentId) {
 
   const { data, error } = await backend
     .from("student_profile_details_af")
-    .select("id, student_id, name, state, district")
+    .select(`
+      id,
+      student_id,
+      name,
+      state,
+      district
+    `)
     .eq("student_id", studentId)
     .maybeSingle();
 
@@ -17066,14 +17191,15 @@ async function fetchStudentExtraDetailsAf(studentId) {
 
 async function upsertStudentExtraDetailsAf(payload) {
   const studentId = getStudentLoginIdAf();
-  const backend = getProfileBackendAf();
 
   if (!studentId) {
-    throw new Error("Student login session not found.");
+    throw new Error("Student login not found.");
   }
 
+  const backend = getProfileBackendAf();
+
   if (!backend) {
-    throw new Error("Student backend not connected.");
+    throw new Error("Backend not connected.");
   }
 
   const finalPayload = {
@@ -17095,8 +17221,13 @@ async function upsertStudentExtraDetailsAf(payload) {
   }
 
   currentStudentExtraAf = data;
+
   return data;
 }
+
+/* ==============================
+   ENROLLED COURSES
+================================ */
 
 async function fetchStudentEnrolledBatchesAf(studentId) {
   if (!studentId) {
@@ -17125,73 +17256,98 @@ async function fetchStudentEnrolledBatchesAf(studentId) {
     .eq("status", "active");
 
   if (error) {
-    console.error("Student enrolled batches fetch error:", error);
+    console.error("Batch fetch error:", error);
     return [];
   }
 
   return data || [];
 }
 
+/* ==============================
+   MERGED DATA
+================================ */
+
 function getMergedStudentNameAf() {
   return (
-    currentStudentExtraAf && currentStudentExtraAf.name
-      ? currentStudentExtraAf.name
-      : currentStudentProfileAf && currentStudentProfileAf.name
-        ? currentStudentProfileAf.name
-        : localStorage.getItem("af_student_name") || "Student"
+    currentStudentExtraAf?.name ||
+    currentStudentProfileAf?.name ||
+    localStorage.getItem("af_student_name") ||
+    "Student"
   );
 }
 
 function getMergedStudentEmailAf() {
   return (
-    currentStudentProfileAf && currentStudentProfileAf.email
-      ? currentStudentProfileAf.email
-      : localStorage.getItem("af_student_email") || "-"
+    currentStudentProfileAf?.email ||
+    localStorage.getItem("af_student_email") ||
+    "-"
   );
 }
 
 function getMergedStudentPhoneAf() {
   return (
-    currentStudentProfileAf && (currentStudentProfileAf.mobile || currentStudentProfileAf.phone)
-      ? (currentStudentProfileAf.mobile || currentStudentProfileAf.phone)
-      : localStorage.getItem("af_student_mobile") || "-"
+    currentStudentProfileAf?.mobile ||
+    currentStudentProfileAf?.phone ||
+    localStorage.getItem("af_student_mobile") ||
+    "-"
   );
 }
 
 function getMergedStudentStateAf() {
   return (
-    currentStudentExtraAf && currentStudentExtraAf.state
-      ? currentStudentExtraAf.state
-      : currentStudentProfileAf && currentStudentProfileAf.state
-        ? currentStudentProfileAf.state
-        : "-"
+    currentStudentExtraAf?.state ||
+    currentStudentProfileAf?.state ||
+    "-"
   );
 }
 
 function getMergedStudentDistrictAf() {
   return (
-    currentStudentExtraAf && currentStudentExtraAf.district
-      ? currentStudentExtraAf.district
-      : currentStudentProfileAf && currentStudentProfileAf.city
-        ? currentStudentProfileAf.city
-        : "-"
+    currentStudentExtraAf?.district ||
+    currentStudentProfileAf?.city ||
+    "-"
   );
 }
+
+/* ==============================
+   CARD RENDER
+================================ */
 
 function renderStudentDashboardCardAf(profile) {
   const nameEl = document.getElementById("studentDashboardCardName");
   const subEl = document.getElementById("studentDashboardCardSub");
 
+  const studentId = getStudentLoginIdAf();
+
+  if (!studentId) {
+    if (nameEl) {
+      nameEl.textContent = "Hi, Student";
+    }
+
+    if (subEl) {
+      subEl.textContent = "Login to view profile";
+    }
+
+    return;
+  }
+
   const name = getMergedStudentNameAf();
 
   if (nameEl) {
-    nameEl.textContent = name ? "Hi, " + name : "Hi, Student";
+    nameEl.textContent =
+      name
+        ? "Hi, " + name
+        : "Hi, Student";
   }
 
   if (subEl) {
     subEl.textContent = "View Profile";
   }
 }
+
+/* ==============================
+   PROFILE RENDER
+================================ */
 
 function renderStudentProfileAf(enrolledRows) {
   const name = getMergedStudentNameAf();
@@ -17201,8 +17357,16 @@ function renderStudentProfileAf(enrolledRows) {
   const district = getMergedStudentDistrictAf();
 
   setTextAf("studentProfileName", name);
-  setTextAf("studentProfileEmail", "View and manage your profile");
-  setTextAf("studentProfileAvatar", getStudentInitialAf(name));
+
+  setTextAf(
+    "studentProfileEmail",
+    "View and manage your profile"
+  );
+
+  setTextAf(
+    "studentProfileAvatar",
+    getStudentInitialAf(name)
+  );
 
   setTextAf("studentInfoName", name);
   setTextAf("studentInfoEmail", email);
@@ -17211,41 +17375,71 @@ function renderStudentProfileAf(enrolledRows) {
   setTextAf("studentInfoDistrict", district);
 
   const list = document.getElementById("studentBatchList");
+
   if (!list) return;
 
   if (!enrolledRows || !enrolledRows.length) {
-    list.innerHTML = `<p class="student-empty-text">No enrolled batch found.</p>`;
+    list.innerHTML = `
+      <p class="student-empty-text">
+        No enrolled batch found.
+      </p>
+    `;
+
     return;
   }
 
-  list.innerHTML = enrolledRows.map(function(row) {
-    const courseTitle =
-      row.courses && row.courses.title
-        ? row.courses.title
-        : "Course " + row.course_id;
+  list.innerHTML = enrolledRows
+    .map(function(row) {
+      const courseTitle =
+        row.courses?.title ||
+        ("Course " + row.course_id);
 
-    const courseSlug =
-      row.courses && row.courses.slug
-        ? row.courses.slug
-        : row.course_id;
+      const courseSlug =
+        row.courses?.slug ||
+        row.course_id;
 
-    return `
-      <div class="student-batch-item">
-        <div>
-          <h4>${courseTitle}</h4>
-          <p>${courseSlug}</p>
+      return `
+        <div class="student-batch-item">
+          <div>
+            <h4>${courseTitle}</h4>
+            <p>${courseSlug}</p>
+          </div>
+
+          <span class="student-batch-status">
+            Active
+          </span>
         </div>
-        <span class="student-batch-status">Active</span>
-      </div>
-    `;
-  }).join("");
+      `;
+    })
+    .join("");
 }
+
+/* ==============================
+   OPEN DASHBOARD
+================================ */
 
 async function openStudentDashboardCard() {
   const studentId = getStudentLoginIdAf();
 
   if (!studentId) {
-    showAfToast("Login to fetch your dashboard.", "warning", "Login Required");
+    showProfileMessageAf(
+      "Login to fetch your dashboard.",
+      "warning",
+      "Login Required"
+    );
+
+    return;
+  }
+
+  const backend = getProfileBackendAf();
+
+  if (!backend) {
+    showProfileMessageAf(
+      "Student backend not connected.",
+      "error",
+      "Backend Error"
+    );
+
     return;
   }
 
@@ -17260,26 +17454,67 @@ async function openStudentDashboardCard() {
   setTextAf("studentInfoDistrict", "Loading...");
 
   const batchList = document.getElementById("studentBatchList");
+
   if (batchList) {
-    batchList.innerHTML = `<p class="student-empty-text">Loading enrolled batches...</p>`;
+    batchList.innerHTML = `
+      <p class="student-empty-text">
+        Loading enrolled batches...
+      </p>
+    `;
   }
 
   const profile = await fetchStudentProfileAf();
 
   if (!profile) {
-    showAfToast("Login to fetch your dashboard.", "warning", "Login Required");
-    showSection("home");
+    showProfileMessageAf(
+      "Could not fetch your dashboard. Please login again.",
+      "warning",
+      "Login Required"
+    );
+
+    setTextAf("studentProfileName", "Login Required");
+
+    setTextAf(
+      "studentProfileEmail",
+      "Please login again to continue."
+    );
+
+    setTextAf("studentInfoName", "-");
+    setTextAf("studentInfoEmail", "-");
+    setTextAf("studentInfoPhone", "-");
+    setTextAf("studentInfoState", "-");
+    setTextAf("studentInfoDistrict", "-");
+
+    if (batchList) {
+      batchList.innerHTML = `
+        <p class="student-empty-text">
+          Please login again to view enrolled batches.
+        </p>
+      `;
+    }
+
     return;
   }
 
   currentStudentProfileAf = profile;
-  currentStudentExtraAf = await fetchStudentExtraDetailsAf(profile.id || studentId);
 
-  const enrolledRows = await fetchStudentEnrolledBatchesAf(profile.id || studentId);
+  currentStudentExtraAf =
+    await fetchStudentExtraDetailsAf(
+      profile.id || studentId
+    );
+
+  const enrolledRows =
+    await fetchStudentEnrolledBatchesAf(
+      profile.id || studentId
+    );
 
   renderStudentDashboardCardAf(profile);
   renderStudentProfileAf(enrolledRows);
 }
+
+/* ==============================
+   REFRESH BUTTON
+================================ */
 
 async function refreshStudentDashboardButtonAf() {
   const studentId = getStudentLoginIdAf();
@@ -17287,7 +17522,9 @@ async function refreshStudentDashboardButtonAf() {
   if (!studentId) {
     currentStudentProfileAf = null;
     currentStudentExtraAf = null;
+
     renderStudentDashboardCardAf(null);
+
     return;
   }
 
@@ -17295,28 +17532,60 @@ async function refreshStudentDashboardButtonAf() {
 
   if (profile) {
     currentStudentProfileAf = profile;
-    currentStudentExtraAf = await fetchStudentExtraDetailsAf(profile.id || studentId);
+
+    currentStudentExtraAf =
+      await fetchStudentExtraDetailsAf(
+        profile.id || studentId
+      );
+
     renderStudentDashboardCardAf(profile);
   } else {
     renderStudentDashboardCardAf(null);
   }
 }
 
+/* ==============================
+   EDIT YOUR DETAILS
+================================ */
+
 function openYourDetailsEditAf() {
   if (!getStudentLoginIdAf()) {
-    showAfToast("Login to edit your details.", "warning", "Login Required");
+    showProfileMessageAf(
+      "Login required.",
+      "warning",
+      "Login Required"
+    );
+
     return;
   }
 
-  setInputAf("editStudentNameAf", getMergedStudentNameAf() === "Student" ? "" : getMergedStudentNameAf());
-  setInputAf("editStudentEmailAf", getMergedStudentEmailAf() === "-" ? "" : getMergedStudentEmailAf());
-  setInputAf("editStudentPhoneAf", getMergedStudentPhoneAf() === "-" ? "" : getMergedStudentPhoneAf());
+  setInputAf(
+    "editStudentNameAf",
+    getMergedStudentNameAf() === "Student"
+      ? ""
+      : getMergedStudentNameAf()
+  );
 
-  const otpBox = document.getElementById("yourDetailsOtpBoxAf");
-  if (otpBox) otpBox.classList.add("hidden-box");
+  setInputAf(
+    "editStudentEmailAf",
+    getMergedStudentEmailAf() === "-"
+      ? ""
+      : getMergedStudentEmailAf()
+  );
 
-  const otpInput = document.getElementById("editYourDetailsOtpAf");
-  if (otpInput) otpInput.value = "";
+  setInputAf(
+    "editStudentPhoneAf",
+    getMergedStudentPhoneAf() === "-"
+      ? ""
+      : getMergedStudentPhoneAf()
+  );
+
+  const otpBox =
+    document.getElementById("yourDetailsOtpBoxAf");
+
+  if (otpBox) {
+    otpBox.classList.add("hidden-box");
+  }
 
   openStudentModalAf("yourDetailsModalAf");
 }
@@ -17327,55 +17596,92 @@ async function sendYourDetailsOtpAf() {
   const phone = getInputAf("editStudentPhoneAf");
 
   if (!name || !email || !phone) {
-    showAfToast("Please fill name, email and phone number.", "warning", "Missing Details");
+    showProfileMessageAf(
+      "Please fill all fields.",
+      "warning",
+      "Missing Details"
+    );
+
     return;
   }
 
   pendingYourDetailsEditAf = {
-    name: name,
-    email: email,
-    phone: phone
+    name,
+    email,
+    phone
   };
 
   try {
     await sendProfileOtpAf(email, "profile_edit");
 
-    const otpBox = document.getElementById("yourDetailsOtpBoxAf");
-    if (otpBox) otpBox.classList.remove("hidden-box");
+    const otpBox =
+      document.getElementById("yourDetailsOtpBoxAf");
 
-    showAfToast("OTP sent to your email.", "success", "OTP Sent");
+    if (otpBox) {
+      otpBox.classList.remove("hidden-box");
+    }
+
+    showProfileMessageAf(
+      "OTP sent to your email.",
+      "success",
+      "OTP Sent"
+    );
   } catch (err) {
     console.error(err);
-    showAfToast(err.message || "Could not send OTP.", "error", "OTP Error");
+
+    showProfileMessageAf(
+      err.message || "OTP send failed.",
+      "error",
+      "OTP Error"
+    );
   }
 }
 
 async function confirmYourDetailsEditAf() {
   if (!pendingYourDetailsEditAf) {
-    showAfToast("Please send OTP first.", "warning", "OTP Required");
+    showProfileMessageAf(
+      "Please send OTP first.",
+      "warning",
+      "OTP Required"
+    );
+
     return;
   }
 
   const otp = getInputAf("editYourDetailsOtpAf");
 
   if (!otp) {
-    showAfToast("Please enter OTP.", "warning", "OTP Required");
+    showProfileMessageAf(
+      "Enter OTP.",
+      "warning",
+      "OTP Required"
+    );
+
     return;
   }
 
   const backend = getProfileBackendAf();
 
   if (!backend) {
-    showAfToast("Student backend not connected.", "error", "Backend Error");
+    showProfileMessageAf(
+      "Backend not connected.",
+      "error",
+      "Backend Error"
+    );
+
     return;
   }
 
   try {
-    await verifyProfileOtpAf(pendingYourDetailsEditAf.email, otp, "profile_edit");
+    await verifyProfileOtpAf(
+      pendingYourDetailsEditAf.email,
+      otp,
+      "profile_edit"
+    );
 
     const studentId = getStudentLoginIdAf();
 
-    const { error: updateStudentError } = await backend
+    const { error } = await backend
       .from("students_af")
       .update({
         email: pendingYourDetailsEditAf.email,
@@ -17384,39 +17690,80 @@ async function confirmYourDetailsEditAf() {
       })
       .eq("id", studentId);
 
-    if (updateStudentError) {
-      throw new Error(updateStudentError.message);
+    if (error) {
+      throw new Error(error.message);
     }
 
     await upsertStudentExtraDetailsAf({
       name: pendingYourDetailsEditAf.name
     });
 
-    localStorage.setItem("af_student_name", pendingYourDetailsEditAf.name);
-    localStorage.setItem("af_student_email", pendingYourDetailsEditAf.email);
-    localStorage.setItem("af_student_mobile", pendingYourDetailsEditAf.phone);
+    localStorage.setItem(
+      "af_student_name",
+      pendingYourDetailsEditAf.name
+    );
+
+    localStorage.setItem(
+      "af_student_email",
+      pendingYourDetailsEditAf.email
+    );
+
+    localStorage.setItem(
+      "af_student_mobile",
+      pendingYourDetailsEditAf.phone
+    );
 
     pendingYourDetailsEditAf = null;
 
     closeStudentModalAf("yourDetailsModalAf");
 
-    showAfToast("Your details updated successfully.", "success", "Profile Updated");
+    showProfileMessageAf(
+      "Profile updated successfully.",
+      "success",
+      "Updated"
+    );
 
     await openStudentDashboardCard();
+
   } catch (err) {
     console.error(err);
-    showAfToast(err.message || "OTP verification failed.", "error", "Update Failed");
+
+    showProfileMessageAf(
+      err.message || "OTP verification failed.",
+      "error",
+      "Update Failed"
+    );
   }
 }
 
+/* ==============================
+   OTHER DETAILS
+================================ */
+
 function openOtherDetailsEditAf() {
   if (!getStudentLoginIdAf()) {
-    showAfToast("Login to edit your details.", "warning", "Login Required");
+    showProfileMessageAf(
+      "Login required.",
+      "warning",
+      "Login Required"
+    );
+
     return;
   }
 
-  setInputAf("editStudentStateAf", getMergedStudentStateAf() === "-" ? "" : getMergedStudentStateAf());
-  setInputAf("editStudentDistrictAf", getMergedStudentDistrictAf() === "-" ? "" : getMergedStudentDistrictAf());
+  setInputAf(
+    "editStudentStateAf",
+    getMergedStudentStateAf() === "-"
+      ? ""
+      : getMergedStudentStateAf()
+  );
+
+  setInputAf(
+    "editStudentDistrictAf",
+    getMergedStudentDistrictAf() === "-"
+      ? ""
+      : getMergedStudentDistrictAf()
+  );
 
   openStudentModalAf("otherDetailsModalAf");
 }
@@ -17426,26 +17773,45 @@ async function saveOtherDetailsAf() {
   const district = getInputAf("editStudentDistrictAf");
 
   if (!state || !district) {
-    showAfToast("Please fill state and district.", "warning", "Missing Details");
+    showProfileMessageAf(
+      "Please fill state and district.",
+      "warning",
+      "Missing Details"
+    );
+
     return;
   }
 
   try {
     await upsertStudentExtraDetailsAf({
-      state: state,
-      district: district
+      state,
+      district
     });
 
     closeStudentModalAf("otherDetailsModalAf");
 
-    showAfToast("Other details updated successfully.", "success", "Details Updated");
+    showProfileMessageAf(
+      "Details updated successfully.",
+      "success",
+      "Updated"
+    );
 
     await openStudentDashboardCard();
+
   } catch (err) {
     console.error(err);
-    showAfToast(err.message || "Could not update details.", "error", "Update Failed");
+
+    showProfileMessageAf(
+      err.message || "Update failed.",
+      "error",
+      "Update Failed"
+    );
   }
 }
+
+/* ==============================
+   DELETE ACCOUNT
+================================ */
 
 async function sendDeleteAccountOtpAf() {
   const email = getInputAf("deleteAccountEmailAf");
@@ -17453,121 +17819,214 @@ async function sendDeleteAccountOtpAf() {
   const reason = getInputAf("deleteAccountReasonAf");
 
   if (!getStudentLoginIdAf()) {
-    showAfToast("Login to delete your account.", "warning", "Login Required");
+    showProfileMessageAf(
+      "Login required.",
+      "warning",
+      "Login Required"
+    );
+
     return;
   }
 
   if (!email || !phone) {
-    showAfToast("Please enter email and phone number.", "warning", "Missing Details");
+    showProfileMessageAf(
+      "Please fill email and phone number.",
+      "warning",
+      "Missing Details"
+    );
+
     return;
   }
 
   pendingDeleteAccountAf = {
-    email: email,
-    phone: phone,
-    reason: reason
+    email,
+    phone,
+    reason
   };
 
   try {
     await sendProfileOtpAf(email, "delete_account");
 
-    const otpBox = document.getElementById("deleteOtpBoxAf");
-    if (otpBox) otpBox.classList.remove("hidden-box");
+    const otpBox =
+      document.getElementById("deleteOtpBoxAf");
 
-    showAfToast("OTP sent to your email.", "success", "OTP Sent");
+    if (otpBox) {
+      otpBox.classList.remove("hidden-box");
+    }
+
+    showProfileMessageAf(
+      "OTP sent to your email.",
+      "success",
+      "OTP Sent"
+    );
+
   } catch (err) {
     console.error(err);
-    showAfToast(err.message || "Could not send OTP.", "error", "OTP Error");
+
+    showProfileMessageAf(
+      err.message || "OTP send failed.",
+      "error",
+      "OTP Error"
+    );
   }
 }
 
 async function confirmDeleteAccountAf() {
   if (!pendingDeleteAccountAf) {
-    showAfToast("Please send OTP first.", "warning", "OTP Required");
+    showProfileMessageAf(
+      "Please send OTP first.",
+      "warning",
+      "OTP Required"
+    );
+
     return;
   }
 
   const otp = getInputAf("deleteAccountOtpAf");
 
   if (!otp) {
-    showAfToast("Please enter OTP.", "warning", "OTP Required");
+    showProfileMessageAf(
+      "Enter OTP.",
+      "warning",
+      "OTP Required"
+    );
+
     return;
   }
 
   const backend = getProfileBackendAf();
 
   if (!backend) {
-    showAfToast("Student backend not connected.", "error", "Backend Error");
+    showProfileMessageAf(
+      "Backend not connected.",
+      "error",
+      "Backend Error"
+    );
+
     return;
   }
 
   try {
-    await verifyProfileOtpAf(pendingDeleteAccountAf.email, otp, "delete_account");
+    await verifyProfileOtpAf(
+      pendingDeleteAccountAf.email,
+      otp,
+      "delete_account"
+    );
 
     const studentId = getStudentLoginIdAf();
 
-    const profile = currentStudentProfileAf || await fetchStudentProfileAf();
-    const extra = currentStudentExtraAf || await fetchStudentExtraDetailsAf(studentId);
+    const profile =
+      currentStudentProfileAf ||
+      await fetchStudentProfileAf();
+
+    const extra =
+      currentStudentExtraAf ||
+      await fetchStudentExtraDetailsAf(studentId);
 
     const deleteRecord = {
       student_id: studentId,
-      student_code: profile && profile.student_id ? profile.student_id : localStorage.getItem("af_student_id") || "",
-      name: extra && extra.name ? extra.name : profile && profile.name ? profile.name : localStorage.getItem("af_student_name") || "",
+      student_code:
+        profile?.student_id ||
+        localStorage.getItem("af_student_id") ||
+        "",
+
+      name:
+        extra?.name ||
+        profile?.name ||
+        localStorage.getItem("af_student_name") ||
+        "",
+
       email: pendingDeleteAccountAf.email,
       phone: pendingDeleteAccountAf.phone,
-      state: extra && extra.state ? extra.state : profile && profile.state ? profile.state : "",
-      district: extra && extra.district ? extra.district : profile && profile.city ? profile.city : "",
-      delete_reason: pendingDeleteAccountAf.reason || "",
+
+      state:
+        extra?.state ||
+        profile?.state ||
+        "",
+
+      district:
+        extra?.district ||
+        profile?.city ||
+        "",
+
+      delete_reason:
+        pendingDeleteAccountAf.reason || "",
+
       status: "deleted",
+
       raw_profile: {
         profile: profile || {},
         extra: extra || {}
       }
     };
 
-    const { error: insertDeleteError } = await backend
-      .from("deleted_accounts_af")
-      .insert([deleteRecord]);
+    const { error: insertError } =
+      await backend
+        .from("deleted_accounts_af")
+        .insert([deleteRecord]);
 
-    if (insertDeleteError) {
-      throw new Error(insertDeleteError.message);
+    if (insertError) {
+      throw new Error(insertError.message);
     }
 
-    const { error: softDeleteError } = await backend
-      .from("students_af")
-      .update({
-        status: "deleted"
-      })
-      .eq("id", studentId);
+    const { error: deleteError } =
+      await backend
+        .from("students_af")
+        .update({
+          status: "deleted"
+        })
+        .eq("id", studentId);
 
-    if (softDeleteError) {
-      throw new Error(softDeleteError.message);
+    if (deleteError) {
+      throw new Error(deleteError.message);
     }
+
+    /* CLEAR STORAGE */
 
     localStorage.removeItem("af_student_uuid");
     localStorage.removeItem("af_student_id");
+    localStorage.removeItem("student_id");
     localStorage.removeItem("af_student_name");
     localStorage.removeItem("af_student_email");
     localStorage.removeItem("af_student_mobile");
+    localStorage.removeItem("af_logged_student");
+    localStorage.removeItem("afStudent");
+    localStorage.removeItem("af_student");
+    localStorage.removeItem("loggedStudent");
+    localStorage.removeItem("studentData");
 
-    pendingDeleteAccountAf = null;
     currentStudentProfileAf = null;
     currentStudentExtraAf = null;
+    pendingDeleteAccountAf = null;
 
-    showAfToast("Your account has been deleted.", "success", "Account Deleted");
+    refreshStudentDashboardButtonAf();
+
+    showProfileMessageAf(
+      "Your account has been deleted.",
+      "success",
+      "Account Deleted"
+    );
 
     showSection("home");
-    refreshStudentDashboardButtonAf();
+
   } catch (err) {
     console.error(err);
-    showAfToast(err.message || "Could not delete account.", "error", "Delete Failed");
+
+    showProfileMessageAf(
+      err.message || "Delete failed.",
+      "error",
+      "Delete Failed"
+    );
   }
 }
+
+/* ==============================
+   INIT
+================================ */
 
 document.addEventListener("DOMContentLoaded", function() {
   refreshStudentDashboardButtonAf();
 });
-  
   </script>
 </body>
 </html>
