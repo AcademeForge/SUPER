@@ -17244,14 +17244,25 @@ document.addEventListener("DOMContentLoaded", function() {
 
 /* ==============================
    AF STUDENT PROFILE DASHBOARD
-   Works with students_af columns:
+   FINAL FIXED SCRIPT
+   students_af columns:
    name, mobile, password, email, status
+
+   courses columns:
+   id, title, slug, icon, short_description
+
+   state/district:
+   saved only in student_profile_details_af
 ================================ */
 
 let afCurrentStudent = null;
 let afCurrentExtra = null;
 let afPendingEdit = null;
 let afPendingDelete = null;
+
+/* ==============================
+   MESSAGE / POPUP
+================================ */
 
 function afMsg(message, type, title) {
   if (typeof showAfToast === "function") {
@@ -17275,6 +17286,10 @@ function afMsg(message, type, title) {
   alert((title ? title + ": " : "") + message);
 }
 
+/* ==============================
+   BACKEND
+================================ */
+
 function afBackend() {
   if (typeof getStudentBackendaf === "function") {
     return getStudentBackendaf();
@@ -17287,57 +17302,118 @@ function afBackend() {
   return null;
 }
 
-/* 
-  IMPORTANT:
-  Tumhare students_af me id/student_id screenshot me visible nahi hai.
-  Isliye login student ko email/mobile/name se identify kar rahe hain.
-*/
+/* ==============================
+   LOGIN DATA DETECTION
+================================ */
+
 function afGetLoginData() {
   const data = {
+    id: "",
     name: "",
     email: "",
-    mobile: "",
-    id: ""
+    mobile: ""
   };
 
-  const directName = localStorage.getItem("af_student_name") || "";
-  const directEmail = localStorage.getItem("af_student_email") || "";
-  const directMobile = localStorage.getItem("af_student_mobile") || "";
-  const directId = localStorage.getItem("af_student_uuid") || localStorage.getItem("af_student_id") || "";
+  data.id =
+    localStorage.getItem("af_student_uuid") ||
+    localStorage.getItem("af_student_id") ||
+    localStorage.getItem("student_id") ||
+    "";
 
-  if (directName) data.name = directName;
-  if (directEmail) data.email = directEmail;
-  if (directMobile) data.mobile = directMobile;
-  if (directId) data.id = directId;
+  data.name =
+    localStorage.getItem("af_student_name") ||
+    "";
+
+  data.email =
+    localStorage.getItem("af_student_email") ||
+    "";
+
+  data.mobile =
+    localStorage.getItem("af_student_mobile") ||
+    "";
 
   const possibleKeys = [
     "af_logged_student",
     "afStudent",
     "af_student",
     "loggedStudent",
-    "studentData"
+    "studentData",
+    "currentStudent",
+    "student"
   ];
 
   for (let i = 0; i < possibleKeys.length; i++) {
     try {
       const raw = localStorage.getItem(possibleKeys[i]);
+
       if (!raw) continue;
 
       const obj = JSON.parse(raw);
+
       if (!obj) continue;
 
-      data.id = data.id || obj.id || obj.uuid || obj.student_id || "";
-      data.name = data.name || obj.name || obj.full_name || obj.student_name || "";
-      data.email = data.email || obj.email || "";
-      data.mobile = data.mobile || obj.mobile || obj.phone || obj.phone_number || "";
+      data.id =
+        data.id ||
+        obj.id ||
+        obj.uuid ||
+        obj.student_id ||
+        obj.studentId ||
+        "";
+
+      data.name =
+        data.name ||
+        obj.name ||
+        obj.full_name ||
+        obj.student_name ||
+        obj.studentName ||
+        "";
+
+      data.email =
+        data.email ||
+        obj.email ||
+        obj.student_email ||
+        "";
+
+      data.mobile =
+        data.mobile ||
+        obj.mobile ||
+        obj.phone ||
+        obj.phone_number ||
+        obj.student_mobile ||
+        "";
     } catch (e) {}
   }
 
   if (typeof loggedStudent !== "undefined" && loggedStudent) {
-    data.id = data.id || loggedStudent.id || loggedStudent.uuid || loggedStudent.student_id || "";
-    data.name = data.name || loggedStudent.name || loggedStudent.full_name || loggedStudent.student_name || "";
-    data.email = data.email || loggedStudent.email || "";
-    data.mobile = data.mobile || loggedStudent.mobile || loggedStudent.phone || loggedStudent.phone_number || "";
+    data.id =
+      data.id ||
+      loggedStudent.id ||
+      loggedStudent.uuid ||
+      loggedStudent.student_id ||
+      loggedStudent.studentId ||
+      "";
+
+    data.name =
+      data.name ||
+      loggedStudent.name ||
+      loggedStudent.full_name ||
+      loggedStudent.student_name ||
+      loggedStudent.studentName ||
+      "";
+
+    data.email =
+      data.email ||
+      loggedStudent.email ||
+      loggedStudent.student_email ||
+      "";
+
+    data.mobile =
+      data.mobile ||
+      loggedStudent.mobile ||
+      loggedStudent.phone ||
+      loggedStudent.phone_number ||
+      loggedStudent.student_mobile ||
+      "";
   }
 
   return data;
@@ -17345,40 +17421,86 @@ function afGetLoginData() {
 
 function afIsLoggedIn() {
   const d = afGetLoginData();
-  return !!(d.email || d.mobile || d.name || d.id);
+
+  return !!(
+    d.email ||
+    d.mobile ||
+    d.name ||
+    d.id
+  );
 }
+
+/* ==============================
+   HELPERS
+================================ */
 
 function afSetText(id, value) {
   const el = document.getElementById(id);
-  if (el) el.textContent = value && String(value).trim() ? value : "-";
+
+  if (el) {
+    el.textContent =
+      value && String(value).trim()
+        ? value
+        : "-";
+  }
 }
 
 function afGetInput(id) {
   const el = document.getElementById(id);
-  return el ? el.value.trim() : "";
+
+  return el
+    ? el.value.trim()
+    : "";
 }
 
 function afSetInput(id, value) {
   const el = document.getElementById(id);
-  if (el) el.value = value || "";
+
+  if (el) {
+    el.value = value || "";
+  }
 }
 
 function afInitial(name) {
-  return name && String(name).trim() ? String(name).trim().charAt(0).toUpperCase() : "S";
+  if (!name || !String(name).trim()) {
+    return "S";
+  }
+
+  return String(name)
+    .trim()
+    .charAt(0)
+    .toUpperCase();
 }
 
 function openAfModal(id) {
   const el = document.getElementById(id);
-  if (el) el.classList.remove("af-hidden");
+
+  if (el) {
+    el.classList.remove("af-hidden");
+  }
 }
 
 function closeAfModal(id) {
   const el = document.getElementById(id);
-  if (el) el.classList.add("af-hidden");
+
+  if (el) {
+    el.classList.add("af-hidden");
+  }
 }
 
+function afSafeText(value) {
+  if (value === null || value === undefined) return "";
+  return String(value);
+}
+
+/* ==============================
+   OTP
+================================ */
+
 async function afSendOtp(email) {
-  if (!email) throw new Error("Email is required.");
+  if (!email) {
+    throw new Error("Email is required.");
+  }
 
   if (typeof sendSupabaseEmailOtpaf !== "function") {
     throw new Error("OTP send function not found.");
@@ -17387,19 +17509,33 @@ async function afSendOtp(email) {
   let res = await sendSupabaseEmailOtpaf(email, false);
 
   if (!res || !res.ok) {
+    console.log(
+      "Profile OTP first attempt failed:",
+      res ? res.message : "No response"
+    );
+
     res = await sendSupabaseEmailOtpaf(email, true);
   }
 
   if (!res || !res.ok) {
-    throw new Error(res && res.message ? res.message : "OTP send failed.");
+    throw new Error(
+      res && res.message
+        ? res.message
+        : "OTP send failed."
+    );
   }
 
   return true;
 }
 
 async function afVerifyOtp(email, otp) {
-  if (!email) throw new Error("Email is required.");
-  if (!otp) throw new Error("OTP is required.");
+  if (!email) {
+    throw new Error("Email is required.");
+  }
+
+  if (!otp) {
+    throw new Error("OTP is required.");
+  }
 
   if (typeof verifySupabaseEmailOtpaf !== "function") {
     throw new Error("OTP verify function not found.");
@@ -17408,17 +17544,30 @@ async function afVerifyOtp(email, otp) {
   const res = await verifySupabaseEmailOtpaf(email, otp);
 
   if (!res || !res.ok) {
-    throw new Error(res && res.message ? res.message : "Invalid OTP.");
+    throw new Error(
+      res && res.message
+        ? res.message
+        : "Invalid OTP."
+    );
   }
 
   return true;
 }
 
+/* ==============================
+   STUDENT FETCH
+================================ */
+
 async function afFetchStudent() {
   const backend = afBackend();
 
   if (!backend) {
-    afMsg("Student backend not connected.", "error", "Backend Error");
+    afMsg(
+      "Student backend not connected.",
+      "error",
+      "Backend Error"
+    );
+
     return null;
   }
 
@@ -17428,14 +17577,14 @@ async function afFetchStudent() {
     return null;
   }
 
-  let query = backend
-    .from("students_af")
-    .select("name, mobile, email, status");
-
   let result = null;
 
   if (login.email) {
-    result = await query.eq("email", login.email).maybeSingle();
+    result = await backend
+      .from("students_af")
+      .select("name, mobile, email, status")
+      .eq("email", login.email)
+      .maybeSingle();
   }
 
   if ((!result || !result.data) && login.mobile) {
@@ -17456,7 +17605,13 @@ async function afFetchStudent() {
 
   if (result && result.error) {
     console.error("students_af fetch error:", result.error);
-    afMsg("Could not fetch student details: " + result.error.message, "error", "Fetch Error");
+
+    afMsg(
+      "Could not fetch student details: " + result.error.message,
+      "error",
+      "Fetch Error"
+    );
+
     return null;
   }
 
@@ -17470,7 +17625,12 @@ async function afFetchStudent() {
   }
 
   if (result.data.status === "deleted") {
-    afMsg("This account is marked as deleted.", "error", "Account Deleted");
+    afMsg(
+      "This account is marked as deleted.",
+      "error",
+      "Account Deleted"
+    );
+
     return null;
   }
 
@@ -17479,39 +17639,67 @@ async function afFetchStudent() {
 
 function afStudentKey(student) {
   if (!student) return "";
-  return student.email || student.mobile || student.name || "";
+
+  return (
+    student.email ||
+    student.mobile ||
+    student.name ||
+    ""
+  );
 }
+
+/* ==============================
+   EXTRA DETAILS FETCH / SAVE
+   state/district only here
+================================ */
 
 async function afFetchExtra(student) {
   const backend = afBackend();
-  if (!backend || !student) return null;
+
+  if (!backend || !student) {
+    return null;
+  }
 
   const key = afStudentKey(student);
-  if (!key) return null;
+
+  if (!key) {
+    return null;
+  }
 
   const { data, error } = await backend
     .from("student_profile_details_af")
-    .select("student_key, name, state, district, class_name")
+    .select("student_key, state, district, class_name")
     .eq("student_key", key)
     .maybeSingle();
 
   if (error) {
-    console.error("extra fetch error:", error);
+    console.error("Profile extra fetch error:", error);
     return null;
   }
 
-  return data;
+  return data || null;
 }
 
 async function afUpsertExtra(payload) {
   const backend = afBackend();
 
-  if (!backend) throw new Error("Backend not connected.");
-  if (!afCurrentStudent) throw new Error("Student profile not loaded.");
+  if (!backend) {
+    throw new Error("Backend not connected.");
+  }
+
+  if (!afCurrentStudent) {
+    afCurrentStudent = await afFetchStudent();
+  }
+
+  if (!afCurrentStudent) {
+    throw new Error("Student profile not loaded.");
+  }
 
   const key = afStudentKey(afCurrentStudent);
 
-  if (!key) throw new Error("Student key not found.");
+  if (!key) {
+    throw new Error("Student key not found.");
+  }
 
   const finalPayload = {
     student_key: key,
@@ -17521,94 +17709,283 @@ async function afUpsertExtra(payload) {
 
   const { data, error } = await backend
     .from("student_profile_details_af")
-    .upsert(finalPayload, { onConflict: "student_key" })
+    .upsert(finalPayload, {
+      onConflict: "student_key"
+    })
     .select()
     .maybeSingle();
 
-  if (error) throw new Error(error.message);
+  if (error) {
+    throw new Error(error.message);
+  }
 
   afCurrentExtra = data;
+
   return data;
 }
 
-async function afFetchBatches(student) {
+/* ==============================
+   ENROLLED COURSES FETCH
+================================ */
+
+async function afFetchCoursesByIds(courseIds) {
   const backend = afBackend();
-  if (!backend || !student) return [];
 
-  const email = student.email || "";
-  const mobile = student.mobile || "";
+  if (!backend || !courseIds || !courseIds.length) {
+    return [];
+  }
 
-  /*
-    Tumhare student_courses table ka exact columns nahi dikh raha.
-    Isliye safe try:
-    1) email se
-    2) mobile se
-    Agar columns match nahi hue to empty show karega, page break nahi hoga.
-  */
+  const uniqueIds = [
+    ...new Set(
+      courseIds
+        .filter(Boolean)
+        .map(function(id) {
+          return String(id);
+        })
+    )
+  ];
 
-  try {
-    if (email) {
-      const { data, error } = await backend
-        .from("student_courses")
-        .select("*")
-        .eq("email", email);
+  if (!uniqueIds.length) {
+    return [];
+  }
 
-      if (!error && data) return data;
-    }
-  } catch (e) {}
+  const { data, error } = await backend
+    .from("courses")
+    .select("id, title, slug, icon, short_description")
+    .in("id", uniqueIds);
 
-  try {
-    if (mobile) {
-      const { data, error } = await backend
-        .from("student_courses")
-        .select("*")
-        .eq("mobile", mobile);
+  if (error) {
+    console.error("courses fetch by ids error:", error);
+    return [];
+  }
 
-      if (!error && data) return data;
-    }
-  } catch (e) {}
-
-  return [];
+  return data || [];
 }
 
+async function afTryStudentCourseQuery(column, value) {
+  const backend = afBackend();
+
+  if (!backend || !column || !value) {
+    return [];
+  }
+
+  try {
+    const { data, error } = await backend
+      .from("student_courses")
+      .select("*")
+      .eq(column, value);
+
+    if (error) {
+      console.warn(
+        "student_courses query failed:",
+        column,
+        error.message
+      );
+
+      return [];
+    }
+
+    return data || [];
+  } catch (err) {
+    console.warn(
+      "student_courses query catch:",
+      column,
+      err.message
+    );
+
+    return [];
+  }
+}
+
+async function afFetchBatches(student) {
+  if (!student) {
+    return [];
+  }
+
+  const login = afGetLoginData();
+
+  const possibleQueries = [
+    ["email", student.email],
+    ["student_email", student.email],
+    ["mobile", student.mobile],
+    ["student_mobile", student.mobile],
+    ["phone", student.mobile],
+    ["student_phone", student.mobile],
+    ["name", student.name],
+    ["student_name", student.name],
+    ["student_key", afStudentKey(student)],
+    ["student_key", login.email],
+    ["student_key", login.mobile],
+    ["student_id", login.id],
+    ["student_uuid", login.id]
+  ];
+
+  let rows = [];
+
+  for (let i = 0; i < possibleQueries.length; i++) {
+    const column = possibleQueries[i][0];
+    const value = possibleQueries[i][1];
+
+    if (!value) continue;
+
+    const found = await afTryStudentCourseQuery(column, value);
+
+    if (found && found.length) {
+      rows = found;
+      break;
+    }
+  }
+
+  if (!rows.length) {
+    console.warn(
+      "No enrolled courses found. Check student_courses columns and matching values."
+    );
+
+    return [];
+  }
+
+  const courseIds = rows
+    .map(function(row) {
+      return (
+        row.course_id ||
+        row.courseId ||
+        row.course_uuid ||
+        row.course ||
+        ""
+      );
+    })
+    .filter(Boolean);
+
+  const courseData = await afFetchCoursesByIds(courseIds);
+
+  const courseMap = {};
+
+  courseData.forEach(function(course) {
+    courseMap[String(course.id)] = course;
+  });
+
+  return rows.map(function(row) {
+    const id =
+      row.course_id ||
+      row.courseId ||
+      row.course_uuid ||
+      row.course ||
+      "";
+
+    const matchedCourse = courseMap[String(id)] || null;
+
+    return {
+      raw: row,
+      course: matchedCourse,
+      title:
+        matchedCourse?.title ||
+        row.course_title ||
+        row.course_name ||
+        row.batch_name ||
+        row.title ||
+        id ||
+        "Enrolled Course",
+
+      slug:
+        matchedCourse?.slug ||
+        row.course_slug ||
+        row.slug ||
+        "",
+
+      icon:
+        matchedCourse?.icon ||
+        row.icon ||
+        "📚",
+
+      status:
+        row.status ||
+        row.access_status ||
+        "active"
+    };
+  });
+}
+
+/* ==============================
+   MERGED DISPLAY DATA
+================================ */
+
 function afMergedName() {
-  return afCurrentExtra?.name || afCurrentStudent?.name || afGetLoginData().name || "Student";
+  return (
+    afCurrentStudent?.name ||
+    afGetLoginData().name ||
+    "Student"
+  );
 }
 
 function afMergedEmail() {
-  return afCurrentStudent?.email || afGetLoginData().email || "-";
+  return (
+    afCurrentStudent?.email ||
+    afGetLoginData().email ||
+    "-"
+  );
 }
 
 function afMergedMobile() {
-  return afCurrentStudent?.mobile || afGetLoginData().mobile || "-";
+  return (
+    afCurrentStudent?.mobile ||
+    afGetLoginData().mobile ||
+    "-"
+  );
 }
 
 function afMergedState() {
-  return afCurrentExtra?.state || "-";
+  return (
+    afCurrentExtra && afCurrentExtra.state
+      ? afCurrentExtra.state
+      : "Not added yet"
+  );
 }
 
 function afMergedDistrict() {
-  return afCurrentExtra?.district || "-";
+  return (
+    afCurrentExtra && afCurrentExtra.district
+      ? afCurrentExtra.district
+      : "Not added yet"
+  );
 }
 
 function afMergedClass() {
-  return afCurrentExtra?.class_name || "-";
+  return (
+    afCurrentExtra && afCurrentExtra.class_name
+      ? afCurrentExtra.class_name
+      : "Not added yet"
+  );
 }
+
+/* ==============================
+   RENDER CARD / PROFILE
+================================ */
 
 function afRenderCard() {
   const nameEl = document.getElementById("studentDashboardCardNameAf");
   const subEl = document.getElementById("studentDashboardCardSubAf");
 
   if (!afIsLoggedIn()) {
-    if (nameEl) nameEl.textContent = "Hi, Student";
-    if (subEl) subEl.textContent = "Login to view profile";
+    if (nameEl) {
+      nameEl.textContent = "Hi, Student";
+    }
+
+    if (subEl) {
+      subEl.textContent = "Login to view profile";
+    }
+
     return;
   }
 
   const name = afMergedName();
 
-  if (nameEl) nameEl.textContent = "Hi, " + name;
-  if (subEl) subEl.textContent = "View Profile";
+  if (nameEl) {
+    nameEl.textContent = "Hi, " + name;
+  }
+
+  if (subEl) {
+    subEl.textContent = "View Profile";
+  }
 }
 
 function afRenderProfile(batches) {
@@ -17629,37 +18006,51 @@ function afRenderProfile(batches) {
   afSetText("afInfoClass", afMergedClass());
 
   const list = document.getElementById("afBatchList");
-  if (!list) return;
 
-  if (!batches || !batches.length) {
-    list.innerHTML = `<p class="af-empty">No enrolled batch found.</p>`;
+  if (!list) {
     return;
   }
 
-  list.innerHTML = batches.map(function(row) {
-    const title =
-      row.course_name ||
-      row.batch_name ||
-      row.title ||
-      row.course_id ||
-      "Enrolled Batch";
-
-    const sub =
-      row.status ||
-      row.created_at ||
-      "Active";
-
-    return `
-      <div class="af-batch-item">
-        <div>
-          <h4>${title}</h4>
-          <p>${sub}</p>
-        </div>
-        <span class="af-batch-status">Active</span>
-      </div>
+  if (!batches || !batches.length) {
+    list.innerHTML = `
+      <p class="af-empty">
+        No enrolled course found.
+      </p>
     `;
-  }).join("");
+
+    return;
+  }
+
+  list.innerHTML = batches
+    .map(function(item) {
+      const title = afSafeText(item.title || "Enrolled Course");
+      const slug = afSafeText(item.slug || item.status || "Active");
+      const icon = afSafeText(item.icon || "📚");
+      const status = afSafeText(item.status || "active");
+
+      return `
+        <div class="af-batch-item">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span style="font-size:22px;">${icon}</span>
+
+            <div>
+              <h4>${title}</h4>
+              <p>${slug}</p>
+            </div>
+          </div>
+
+          <span class="af-batch-status">
+            ${status}
+          </span>
+        </div>
+      `;
+    })
+    .join("");
 }
+
+/* ==============================
+   OPEN DASHBOARD
+================================ */
 
 async function openStudentDashboardCardAf(event) {
   if (event) {
@@ -17668,7 +18059,12 @@ async function openStudentDashboardCardAf(event) {
   }
 
   if (!afIsLoggedIn()) {
-    afMsg("Login to fetch your dashboard.", "warning", "Login Required");
+    afMsg(
+      "Login to fetch your dashboard.",
+      "warning",
+      "Login Required"
+    );
+
     return false;
   }
 
@@ -17684,12 +18080,23 @@ async function openStudentDashboardCardAf(event) {
   afSetText("afInfoClass", "Loading...");
 
   const list = document.getElementById("afBatchList");
-  if (list) list.innerHTML = `<p class="af-empty">Loading enrolled batches...</p>`;
+
+  if (list) {
+    list.innerHTML = `
+      <p class="af-empty">
+        Loading enrolled courses...
+      </p>
+    `;
+  }
 
   const student = await afFetchStudent();
 
   if (!student) {
-    afMsg("Could not fetch your dashboard. Please login again.", "warning", "Login Required");
+    afMsg(
+      "Could not fetch your dashboard. Please login again.",
+      "warning",
+      "Login Required"
+    );
 
     afSetText("afProfileHeroName", "Login Required");
     afSetText("afProfileHeroSub", "Please login again.");
@@ -17700,15 +18107,24 @@ async function openStudentDashboardCardAf(event) {
     afSetText("afInfoDistrict", "-");
     afSetText("afInfoClass", "-");
 
-    if (list) list.innerHTML = `<p class="af-empty">Please login again to view enrolled batches.</p>`;
+    if (list) {
+      list.innerHTML = `
+        <p class="af-empty">
+          Please login again to view enrolled courses.
+        </p>
+      `;
+    }
 
     return false;
   }
 
   afCurrentStudent = student;
-  afCurrentExtra = await afFetchExtra(student);
 
-  const batches = await afFetchBatches(student);
+  afCurrentExtra =
+    await afFetchExtra(student);
+
+  const batches =
+    await afFetchBatches(student);
 
   afRenderCard();
   afRenderProfile(batches);
@@ -17716,18 +18132,47 @@ async function openStudentDashboardCardAf(event) {
   return false;
 }
 
+/* ==============================
+   EDIT YOUR DETAILS
+================================ */
+
 function openYourDetailsEditAf() {
   if (!afIsLoggedIn()) {
-    afMsg("Login to edit your details.", "warning", "Login Required");
+    afMsg(
+      "Login to edit your details.",
+      "warning",
+      "Login Required"
+    );
+
     return;
   }
 
-  afSetInput("afEditName", afMergedName() === "Student" ? "" : afMergedName());
-  afSetInput("afEditEmail", afMergedEmail() === "-" ? "" : afMergedEmail());
-  afSetInput("afEditMobile", afMergedMobile() === "-" ? "" : afMergedMobile());
+  afSetInput(
+    "afEditName",
+    afMergedName() === "Student"
+      ? ""
+      : afMergedName()
+  );
+
+  afSetInput(
+    "afEditEmail",
+    afMergedEmail() === "-"
+      ? ""
+      : afMergedEmail()
+  );
+
+  afSetInput(
+    "afEditMobile",
+    afMergedMobile() === "-"
+      ? ""
+      : afMergedMobile()
+  );
 
   const box = document.getElementById("afYourDetailsOtpBox");
-  if (box) box.classList.add("af-hidden");
+
+  if (box) {
+    box.classList.add("af-hidden");
+  }
 
   afSetInput("afEditOtp", "");
 
@@ -17740,48 +18185,88 @@ async function sendYourDetailsOtpAf() {
   const mobile = afGetInput("afEditMobile");
 
   if (!name || !email || !mobile) {
-    afMsg("Please fill name, email and phone number.", "warning", "Missing Details");
+    afMsg(
+      "Please fill name, email and phone number.",
+      "warning",
+      "Missing Details"
+    );
+
     return;
   }
 
-  afPendingEdit = { name, email, mobile };
+  afPendingEdit = {
+    name,
+    email,
+    mobile
+  };
 
   try {
     await afSendOtp(email);
 
     const box = document.getElementById("afYourDetailsOtpBox");
-    if (box) box.classList.remove("af-hidden");
 
-    afMsg("OTP sent to your email.", "success", "OTP Sent");
+    if (box) {
+      box.classList.remove("af-hidden");
+    }
+
+    afMsg(
+      "OTP sent to your email.",
+      "success",
+      "OTP Sent"
+    );
   } catch (err) {
-    afMsg(err.message || "OTP send failed.", "error", "OTP Error");
+    afMsg(
+      err.message || "OTP send failed.",
+      "error",
+      "OTP Error"
+    );
   }
 }
 
 async function confirmYourDetailsEditAf() {
   if (!afPendingEdit) {
-    afMsg("Please send OTP first.", "warning", "OTP Required");
+    afMsg(
+      "Please send OTP first.",
+      "warning",
+      "OTP Required"
+    );
+
     return;
   }
 
   const otp = afGetInput("afEditOtp");
 
   if (!otp) {
-    afMsg("Enter OTP.", "warning", "OTP Required");
+    afMsg(
+      "Enter OTP.",
+      "warning",
+      "OTP Required"
+    );
+
     return;
   }
 
   const backend = afBackend();
 
   if (!backend) {
-    afMsg("Backend not connected.", "error", "Backend Error");
+    afMsg(
+      "Backend not connected.",
+      "error",
+      "Backend Error"
+    );
+
     return;
   }
 
   try {
-    await afVerifyOtp(afPendingEdit.email, otp);
+    await afVerifyOtp(
+      afPendingEdit.email,
+      otp
+    );
 
-    const oldStudent = afCurrentStudent || await afFetchStudent();
+    const oldStudent =
+      afCurrentStudent ||
+      await afFetchStudent();
 
     let updateQuery = backend
       .from("students_af")
@@ -17792,18 +18277,23 @@ async function confirmYourDetailsEditAf() {
       });
 
     if (oldStudent && oldStudent.email) {
-      updateQuery = updateQuery.eq("email", oldStudent.email);
+      updateQuery =
+        updateQuery.eq("email", oldStudent.email);
     } else if (oldStudent && oldStudent.mobile) {
-      updateQuery = updateQuery.eq("mobile", oldStudent.mobile);
+      updateQuery =
+        updateQuery.eq("mobile", oldStudent.mobile);
     } else if (oldStudent && oldStudent.name) {
-      updateQuery = updateQuery.eq("name", oldStudent.name);
+      updateQuery =
+        updateQuery.eq("name", oldStudent.name);
     } else {
       throw new Error("Old student record not found.");
     }
 
     const { error } = await updateQuery;
 
-    if (error) throw new Error(error.message);
+    if (error) {
+      throw new Error(error.message);
+    }
 
     afCurrentStudent = {
       name: afPendingEdit.name,
@@ -17812,9 +18302,20 @@ async function confirmYourDetailsEditAf() {
       status: "active"
     };
 
-    localStorage.setItem("af_student_name", afPendingEdit.name);
-    localStorage.setItem("af_student_email", afPendingEdit.email);
-    localStorage.setItem("af_student_mobile", afPendingEdit.mobile);
+    localStorage.setItem(
+      "af_student_name",
+      afPendingEdit.name
+    );
+
+    localStorage.setItem(
+      "af_student_email",
+      afPendingEdit.email
+    );
+
+    localStorage.setItem(
+      "af_student_mobile",
+      afPendingEdit.mobile
+    );
 
     await afUpsertExtra({
       name: afPendingEdit.name
@@ -17824,24 +18325,58 @@ async function confirmYourDetailsEditAf() {
 
     closeAfModal("afYourDetailsModal");
 
-    afMsg("Profile updated successfully.", "success", "Updated");
+    afMsg(
+      "Profile updated successfully.",
+      "success",
+      "Updated"
+    );
 
     await openStudentDashboardCardAf();
 
   } catch (err) {
-    afMsg(err.message || "Update failed.", "error", "Update Failed");
+    afMsg(
+      err.message || "Update failed.",
+      "error",
+      "Update Failed"
+    );
   }
 }
 
+/* ==============================
+   OTHER DETAILS
+================================ */
+
 function openOtherDetailsEditAf() {
   if (!afIsLoggedIn()) {
-    afMsg("Login to edit details.", "warning", "Login Required");
+    afMsg(
+      "Login to edit details.",
+      "warning",
+      "Login Required"
+    );
+
     return;
   }
 
-  afSetInput("afEditState", afMergedState() === "-" ? "" : afMergedState());
-  afSetInput("afEditDistrict", afMergedDistrict() === "-" ? "" : afMergedDistrict());
-  afSetInput("afEditClass", afMergedClass() === "-" ? "" : afMergedClass());
+  afSetInput(
+    "afEditState",
+    afCurrentExtra && afCurrentExtra.state
+      ? afCurrentExtra.state
+      : ""
+  );
+
+  afSetInput(
+    "afEditDistrict",
+    afCurrentExtra && afCurrentExtra.district
+      ? afCurrentExtra.district
+      : ""
+  );
+
+  afSetInput(
+    "afEditClass",
+    afCurrentExtra && afCurrentExtra.class_name
+      ? afCurrentExtra.class_name
+      : ""
+  );
 
   openAfModal("afOtherDetailsModal");
 }
@@ -17851,8 +18386,13 @@ async function saveOtherDetailsAf() {
   const district = afGetInput("afEditDistrict");
   const className = afGetInput("afEditClass");
 
-  if (!state || !district || !className) {
-    afMsg("Please fill state, district and class.", "warning", "Missing Details");
+  if (!state || !district) {
+    afMsg(
+      "Please fill state and district.",
+      "warning",
+      "Missing Details"
+    );
+
     return;
   }
 
@@ -17864,19 +18404,33 @@ async function saveOtherDetailsAf() {
     await afUpsertExtra({
       state: state,
       district: district,
-      class_name: className
+      class_name: className || ""
     });
 
     closeAfModal("afOtherDetailsModal");
 
-    afMsg("Details updated successfully.", "success", "Updated");
+    afMsg(
+      "State and district saved successfully.",
+      "success",
+      "Saved"
+    );
 
     await openStudentDashboardCardAf();
 
   } catch (err) {
-    afMsg(err.message || "Update failed.", "error", "Update Failed");
+    console.error("Save other details error:", err);
+
+    afMsg(
+      err.message || "Could not save details.",
+      "error",
+      "Save Failed"
+    );
   }
 }
+
+/* ==============================
+   DELETE ACCOUNT
+================================ */
 
 async function sendDeleteAccountOtpAf() {
   const email = afGetInput("afDeleteEmail");
@@ -17884,54 +18438,102 @@ async function sendDeleteAccountOtpAf() {
   const reason = afGetInput("afDeleteReason");
 
   if (!afIsLoggedIn()) {
-    afMsg("Login required.", "warning", "Login Required");
+    afMsg(
+      "Login required.",
+      "warning",
+      "Login Required"
+    );
+
     return;
   }
 
   if (!email || !mobile) {
-    afMsg("Please enter email and phone number.", "warning", "Missing Details");
+    afMsg(
+      "Please enter email and phone number.",
+      "warning",
+      "Missing Details"
+    );
+
     return;
   }
 
-  afPendingDelete = { email, mobile, reason };
+  afPendingDelete = {
+    email,
+    mobile,
+    reason
+  };
 
   try {
     await afSendOtp(email);
 
     const box = document.getElementById("afDeleteOtpBox");
-    if (box) box.classList.remove("af-hidden");
 
-    afMsg("OTP sent to your email.", "success", "OTP Sent");
+    if (box) {
+      box.classList.remove("af-hidden");
+    }
+
+    afMsg(
+      "OTP sent to your email.",
+      "success",
+      "OTP Sent"
+    );
   } catch (err) {
-    afMsg(err.message || "OTP send failed.", "error", "OTP Error");
+    afMsg(
+      err.message || "OTP send failed.",
+      "error",
+      "OTP Error"
+    );
   }
 }
 
 async function confirmDeleteAccountAf() {
   if (!afPendingDelete) {
-    afMsg("Please send OTP first.", "warning", "OTP Required");
+    afMsg(
+      "Please send OTP first.",
+      "warning",
+      "OTP Required"
+    );
+
     return;
   }
 
   const otp = afGetInput("afDeleteOtp");
 
   if (!otp) {
-    afMsg("Enter OTP.", "warning", "OTP Required");
+    afMsg(
+      "Enter OTP.",
+      "warning",
+      "OTP Required"
+    );
+
     return;
   }
 
   const backend = afBackend();
 
   if (!backend) {
-    afMsg("Backend not connected.", "error", "Backend Error");
+    afMsg(
+      "Backend not connected.",
+      "error",
+      "Backend Error"
+    );
+
     return;
   }
 
   try {
-    await afVerifyOtp(afPendingDelete.email, otp);
+    await afVerifyOtp(
+      afPendingDelete.email,
+      otp
+    );
 
-    const student = afCurrentStudent || await afFetchStudent();
-    const extra = afCurrentExtra || await afFetchExtra(student);
+    const student =
+      afCurrentStudent ||
+      await afFetchStudent();
+
+    const extra =
+      afCurrentExtra ||
+      await afFetchExtra(student);
 
     const backup = {
       name: student?.name || "",
@@ -17947,29 +18549,41 @@ async function confirmDeleteAccountAf() {
       }
     };
 
-    const { error: insertError } = await backend
-      .from("deleted_accounts_af")
-      .insert([backup]);
+    const { error: insertError } =
+      await backend
+        .from("deleted_accounts_af")
+        .insert([backup]);
 
-    if (insertError) throw new Error(insertError.message);
+    if (insertError) {
+      throw new Error(insertError.message);
+    }
 
-    let updateQuery = backend
-      .from("students_af")
-      .update({ status: "deleted" });
+    let updateQuery =
+      backend
+        .from("students_af")
+        .update({
+          status: "deleted"
+        });
 
     if (student?.email) {
-      updateQuery = updateQuery.eq("email", student.email);
+      updateQuery =
+        updateQuery.eq("email", student.email);
     } else if (student?.mobile) {
-      updateQuery = updateQuery.eq("mobile", student.mobile);
+      updateQuery =
+        updateQuery.eq("mobile", student.mobile);
     } else if (student?.name) {
-      updateQuery = updateQuery.eq("name", student.name);
+      updateQuery =
+        updateQuery.eq("name", student.name);
     } else {
       throw new Error("Student record not found.");
     }
 
-    const { error: updateError } = await updateQuery;
+    const { error: updateError } =
+      await updateQuery;
 
-    if (updateError) throw new Error(updateError.message);
+    if (updateError) {
+      throw new Error(updateError.message);
+    }
 
     afClearStudentLoginStorage();
 
@@ -17979,14 +18593,26 @@ async function confirmDeleteAccountAf() {
 
     afRenderCard();
 
-    afMsg("Your account has been deleted.", "success", "Account Deleted");
+    afMsg(
+      "Your account has been deleted.",
+      "success",
+      "Account Deleted"
+    );
 
     showSection("home");
 
   } catch (err) {
-    afMsg(err.message || "Delete failed.", "error", "Delete Failed");
+    afMsg(
+      err.message || "Delete failed.",
+      "error",
+      "Delete Failed"
+    );
   }
 }
+
+/* ==============================
+   LOGOUT STORAGE CLEAR
+================================ */
 
 function afClearStudentLoginStorage() {
   localStorage.removeItem("af_student_uuid");
@@ -18000,13 +18626,19 @@ function afClearStudentLoginStorage() {
   localStorage.removeItem("af_student");
   localStorage.removeItem("loggedStudent");
   localStorage.removeItem("studentData");
+  localStorage.removeItem("currentStudent");
+  localStorage.removeItem("student");
 }
 
 /*
-  Agar tumhare existing logout function me call karna ho:
-  logout ke end me ye line add kar dena:
-  afClearStudentLoginStorage(); afRenderCard();
+  Existing logout function ke end me ye add karna:
+  afClearStudentLoginStorage();
+  afRenderCard();
 */
+
+/* ==============================
+   INIT
+================================ */
 
 document.addEventListener("DOMContentLoaded", function() {
   afRenderCard();
