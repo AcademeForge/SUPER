@@ -8350,6 +8350,364 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
     text-align: left;
   }
 }
+
+    /* ==============================
+   STUDENT PROFILE DASHBOARD AF
+================================ */
+
+.student-profile-card h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 950;
+  letter-spacing: -0.02em;
+}
+
+.student-profile-card p {
+  margin: 5px 0 0;
+  font-size: 13px;
+  font-weight: 750;
+  opacity: 0.78;
+}
+
+.student-profile-page {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 18px 14px 90px;
+}
+
+.student-profile-top {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px;
+  border-radius: 26px;
+  margin-bottom: 16px;
+}
+
+.student-profile-back {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: rgba(99, 102, 241, 0.14);
+  color: #6366f1;
+  font-size: 12px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.student-profile-avatar {
+  width: 58px;
+  height: 58px;
+  border-radius: 20px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #6366f1, #22c55e);
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 950;
+  box-shadow: 0 16px 32px rgba(99, 102, 241, 0.22);
+  flex: 0 0 58px;
+}
+
+.student-profile-top h2 {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.15;
+  font-weight: 950;
+  letter-spacing: -0.04em;
+}
+
+.student-profile-top p {
+  margin: 6px 0 0;
+  font-size: 13px;
+  font-weight: 750;
+  opacity: 0.72;
+}
+
+.student-panel {
+  padding: 16px;
+  border-radius: 24px;
+  margin-bottom: 16px;
+}
+
+.student-panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 13px;
+}
+
+.student-panel-head h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 950;
+  letter-spacing: -0.02em;
+}
+
+.student-panel-head p {
+  margin: 5px 0 0;
+  font-size: 13px;
+  font-weight: 750;
+  opacity: 0.68;
+}
+
+.student-small-btn {
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 13px;
+  background: rgba(99, 102, 241, 0.14);
+  color: #4f46e5;
+  font-size: 12px;
+  font-weight: 950;
+  cursor: pointer;
+}
+
+.student-detail-list {
+  display: grid;
+  gap: 10px;
+}
+
+.student-detail-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 13px;
+  border-radius: 18px;
+  background: rgba(148, 163, 184, 0.10);
+}
+
+.student-detail-row span {
+  font-size: 12px;
+  font-weight: 850;
+  opacity: 0.62;
+}
+
+.student-detail-row strong {
+  font-size: 14px;
+  font-weight: 950;
+  text-align: right;
+  word-break: break-word;
+}
+
+.student-batch-list {
+  display: grid;
+  gap: 10px;
+}
+
+.student-batch-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 13px;
+  border-radius: 18px;
+  background: rgba(99, 102, 241, 0.08);
+  border: 1px solid rgba(99, 102, 241, 0.12);
+}
+
+.student-batch-item h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 950;
+}
+
+.student-batch-item p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  font-weight: 750;
+  opacity: 0.68;
+}
+
+.student-batch-status {
+  padding: 6px 9px;
+  border-radius: 999px;
+  background: rgba(34, 197, 94, 0.14);
+  color: #16a34a;
+  font-size: 11px;
+  font-weight: 950;
+  white-space: nowrap;
+}
+
+.student-empty-text {
+  margin: 0;
+  padding: 14px;
+  border-radius: 16px;
+  background: rgba(148, 163, 184, 0.10);
+  font-size: 13px;
+  font-weight: 800;
+  opacity: 0.72;
+  text-align: center;
+}
+
+.student-additional-settings {
+  border-radius: 18px;
+  background: rgba(148, 163, 184, 0.10);
+  padding: 13px;
+}
+
+.student-additional-settings summary {
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 950;
+}
+
+.student-delete-form {
+  margin-top: 14px;
+  display: grid;
+  gap: 10px;
+}
+
+.student-delete-form label,
+.student-modal-card label {
+  font-size: 12px;
+  font-weight: 900;
+  opacity: 0.72;
+}
+
+.student-delete-form input,
+.student-delete-form textarea,
+.student-modal-card input {
+  width: 100%;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  outline: none;
+  border-radius: 15px;
+  padding: 12px 13px;
+  background: rgba(255, 255, 255, 0.72);
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 750;
+}
+
+.student-delete-form textarea {
+  min-height: 82px;
+  resize: vertical;
+}
+
+.student-warning-text {
+  margin: 0 0 4px;
+  padding: 12px;
+  border-radius: 16px;
+  background: rgba(244, 63, 94, 0.08);
+  color: #e11d48;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.student-delete-btn,
+.student-delete-confirm-btn {
+  border: 0;
+  border-radius: 15px;
+  padding: 12px 14px;
+  background: #e11d48;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 950;
+  cursor: pointer;
+}
+
+.student-delete-confirm-btn {
+  background: #be123c;
+}
+
+.student-primary-btn {
+  border: 0;
+  border-radius: 15px;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, #4f46e5, #22c55e);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 950;
+  cursor: pointer;
+}
+
+.student-otp-box {
+  display: grid;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.student-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(15, 23, 42, 0.46);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.student-modal-card {
+  position: relative;
+  width: min(94vw, 430px);
+  display: grid;
+  gap: 10px;
+  padding: 18px;
+  border-radius: 24px;
+}
+
+.student-modal-card h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 950;
+}
+
+.student-modal-card p {
+  margin: 0 0 4px;
+  font-size: 13px;
+  font-weight: 750;
+  opacity: 0.68;
+}
+
+.student-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 12px;
+  background: rgba(148, 163, 184, 0.16);
+  color: inherit;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.hidden-box {
+  display: none !important;
+}
+
+@media (max-width: 560px) {
+  .student-profile-page {
+    padding: 14px 12px 88px;
+  }
+
+  .student-profile-top {
+    padding: 16px;
+    border-radius: 24px;
+  }
+
+  .student-profile-top h2 {
+    font-size: 22px;
+  }
+
+  .student-detail-row {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .student-detail-row strong {
+    text-align: left;
+  }
+}
   </style>
 </head>
 
@@ -8505,14 +8863,15 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
         <p>Access your course dashboard.</p>
       </div>
     </button>
-
-   <button class="action-card glass student-profile-card" type="button" onclick="openStudentDashboardCard()">
+    
+<button class="action-card glass student-profile-card" type="button" onclick="openStudentDashboardCard()">
   <div class="icon">👤</div>
   <div>
     <h3 id="studentDashboardCardName">Hi, Student</h3>
     <p id="studentDashboardCardSub">View Profile</p>
   </div>
 </button>
+  
   </div>
 
   <!-- EXPLORE + TEAM -->
@@ -9493,7 +9852,7 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
     STUDENT PROFILE DASHBOARD - AF
 ================================ -->
 
-    <section id="studentDashboard" class="section">
+   <section id="studentDashboard" class="section">
   <div class="student-profile-page">
     <div class="student-profile-top glass">
       <button class="student-profile-back" type="button" onclick="showSection('home')">← Back</button>
@@ -9506,7 +9865,6 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
       </div>
     </div>
 
-    <!-- YOUR DETAILS -->
     <div class="student-panel glass">
       <div class="student-panel-head">
         <div>
@@ -9537,7 +9895,6 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
       </div>
     </div>
 
-    <!-- OTHER DETAILS -->
     <div class="student-panel glass">
       <div class="student-panel-head">
         <div>
@@ -9563,7 +9920,6 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
       </div>
     </div>
 
-    <!-- BATCHES -->
     <div class="student-panel glass">
       <div class="student-panel-head">
         <div>
@@ -9577,7 +9933,6 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
       </div>
     </div>
 
-    <!-- ADDITIONAL SETTINGS -->
     <div class="student-panel glass">
       <div class="student-panel-head">
         <div>
@@ -9620,7 +9975,6 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
     </div>
   </div>
 
-  <!-- YOUR DETAILS EDIT MODAL -->
   <div id="yourDetailsModalAf" class="student-modal hidden-box">
     <div class="student-modal-card glass">
       <button class="student-modal-close" type="button" onclick="closeStudentModalAf('yourDetailsModalAf')">×</button>
@@ -9652,7 +10006,6 @@ body[data-theme="dark"] #studentaf .student-link-btnaf {
     </div>
   </div>
 
-  <!-- OTHER DETAILS EDIT MODAL -->
   <div id="otherDetailsModalAf" class="student-modal hidden-box">
     <div class="student-modal-card glass">
       <button class="student-modal-close" type="button" onclick="closeStudentModalAf('otherDetailsModalAf')">×</button>
@@ -16487,15 +16840,29 @@ document.addEventListener("DOMContentLoaded", function() {
   openBatchSectionaf();
 });
 
-  /* ==============================
+ /* ==============================
    STUDENT PROFILE DASHBOARD V2
-   Uses new backend: studentDb
+   Backend: getStudentBackendaf()
+   Main table: students_af
+   OTP: sendSupabaseEmailOtpaf / verifySupabaseEmailOtpaf
 ================================ */
 
 let currentStudentProfileAf = null;
 let currentStudentExtraAf = null;
 let pendingYourDetailsEditAf = null;
 let pendingDeleteAccountAf = null;
+
+function getProfileBackendAf() {
+  if (typeof getStudentBackendaf === "function") {
+    return getStudentBackendaf();
+  }
+
+  if (typeof studentDb !== "undefined") {
+    return studentDb;
+  }
+
+  return null;
+}
 
 function getStudentLoginIdAf() {
   return localStorage.getItem("af_student_uuid") || "";
@@ -16549,45 +16916,53 @@ function openStudentModalAf(id) {
   }
 }
 
-/* 
-  OTP BACKEND CONNECTOR
-  Tumhare existing OTP backend ko yaha connect karna hai.
-  Agar tumhare paas already functions hain, to in functions ke andar wahi call kar do.
-*/
-
 async function sendProfileOtpAf(email, purpose) {
-  /*
-    Example if you have edge function:
-    const { data, error } = await studentDb.functions.invoke("send-email-otp", {
-      body: { email: email, purpose: purpose }
-    });
-    if (error) throw new Error(error.message);
-    return data;
-  */
-
-  if (typeof sendEmailOtpAf === "function") {
-    return await sendEmailOtpAf(email, purpose);
+  if (!email) {
+    throw new Error("Email is required.");
   }
 
-  throw new Error("OTP send backend not connected in sendProfileOtpAf().");
+  if (typeof sendSupabaseEmailOtpaf !== "function") {
+    throw new Error("OTP send function not found: sendSupabaseEmailOtpaf");
+  }
+
+  let otpResult = await sendSupabaseEmailOtpaf(email, false);
+
+  if (!otpResult || !otpResult.ok) {
+    console.log("Profile OTP first attempt failed:", otpResult ? otpResult.message : "No response");
+    otpResult = await sendSupabaseEmailOtpaf(email, true);
+  }
+
+  if (!otpResult || !otpResult.ok) {
+    throw new Error(otpResult && otpResult.message ? otpResult.message : "OTP send failed.");
+  }
+
+  return otpResult;
 }
 
 async function verifyProfileOtpAf(email, otp, purpose) {
-  /*
-    Example if you have edge function:
-    const { data, error } = await studentDb.functions.invoke("verify-email-otp", {
-      body: { email: email, otp: otp, purpose: purpose }
-    });
-    if (error) throw new Error(error.message);
-    if (!data || !data.verified) throw new Error("Invalid OTP.");
-    return true;
-  */
-
-  if (typeof verifyEmailOtpAf === "function") {
-    return await verifyEmailOtpAf(email, otp, purpose);
+  if (!email) {
+    throw new Error("Email is required.");
   }
 
-  throw new Error("OTP verify backend not connected in verifyProfileOtpAf().");
+  if (!otp) {
+    throw new Error("OTP is required.");
+  }
+
+  if (typeof verifySupabaseEmailOtpaf !== "function") {
+    throw new Error("OTP verify function not found: verifySupabaseEmailOtpaf");
+  }
+
+  const verifyResult = await verifySupabaseEmailOtpaf(email, otp);
+
+  if (!verifyResult || !verifyResult.ok) {
+    throw new Error(
+      verifyResult && verifyResult.message
+        ? verifyResult.message
+        : "Invalid OTP."
+    );
+  }
+
+  return true;
 }
 
 async function fetchStudentProfileAf() {
@@ -16597,14 +16972,16 @@ async function fetchStudentProfileAf() {
     return null;
   }
 
-  if (typeof studentDb === "undefined") {
+  const backend = getProfileBackendAf();
+
+  if (!backend) {
     showAfToast("Student backend not connected.", "error", "Backend Error");
     return null;
   }
 
-  const { data, error } = await studentDb
-    .from("students")
-    .select("id, student_id, name, email, mobile, phone, state, city, class, class_name")
+  const { data, error } = await backend
+    .from("students_af")
+    .select("id, student_id, name, email, mobile, phone, state, city, class, class_name, status")
     .eq("id", studentId)
     .maybeSingle();
 
@@ -16619,15 +16996,26 @@ async function fetchStudentProfileAf() {
     return fallback.id ? fallback : null;
   }
 
+  if (data.status === "deleted") {
+    showAfToast("This account is marked as deleted.", "error", "Account Deleted");
+    return null;
+  }
+
   return data;
 }
 
 async function fetchStudentExtraDetailsAf(studentId) {
-  if (!studentId || typeof studentDb === "undefined") {
+  if (!studentId) {
     return null;
   }
 
-  const { data, error } = await studentDb
+  const backend = getProfileBackendAf();
+
+  if (!backend) {
+    return null;
+  }
+
+  const { data, error } = await backend
     .from("student_profile_details_af")
     .select("id, student_id, name, state, district")
     .eq("student_id", studentId)
@@ -16643,9 +17031,14 @@ async function fetchStudentExtraDetailsAf(studentId) {
 
 async function upsertStudentExtraDetailsAf(payload) {
   const studentId = getStudentLoginIdAf();
+  const backend = getProfileBackendAf();
 
   if (!studentId) {
     throw new Error("Student login session not found.");
+  }
+
+  if (!backend) {
+    throw new Error("Student backend not connected.");
   }
 
   const finalPayload = {
@@ -16654,7 +17047,7 @@ async function upsertStudentExtraDetailsAf(payload) {
     updated_at: new Date().toISOString()
   };
 
-  const { data, error } = await studentDb
+  const { data, error } = await backend
     .from("student_profile_details_af")
     .upsert(finalPayload, {
       onConflict: "student_id"
@@ -16671,11 +17064,17 @@ async function upsertStudentExtraDetailsAf(payload) {
 }
 
 async function fetchStudentEnrolledBatchesAf(studentId) {
-  if (!studentId || typeof studentDb === "undefined") {
+  if (!studentId) {
     return [];
   }
 
-  const { data, error } = await studentDb
+  const backend = getProfileBackendAf();
+
+  if (!backend) {
+    return [];
+  }
+
+  const { data, error } = await backend
     .from("student_courses")
     .select(`
       id,
@@ -16868,8 +17267,6 @@ async function refreshStudentDashboardButtonAf() {
   }
 }
 
-/* YOUR DETAILS EDIT */
-
 function openYourDetailsEditAf() {
   if (!getStudentLoginIdAf()) {
     showAfToast("Login to edit your details.", "warning", "Login Required");
@@ -16882,6 +17279,9 @@ function openYourDetailsEditAf() {
 
   const otpBox = document.getElementById("yourDetailsOtpBoxAf");
   if (otpBox) otpBox.classList.add("hidden-box");
+
+  const otpInput = document.getElementById("editYourDetailsOtpAf");
+  if (otpInput) otpInput.value = "";
 
   openStudentModalAf("yourDetailsModalAf");
 }
@@ -16928,19 +17328,20 @@ async function confirmYourDetailsEditAf() {
     return;
   }
 
+  const backend = getProfileBackendAf();
+
+  if (!backend) {
+    showAfToast("Student backend not connected.", "error", "Backend Error");
+    return;
+  }
+
   try {
     await verifyProfileOtpAf(pendingYourDetailsEditAf.email, otp, "profile_edit");
 
-    /*
-      Email/phone usually main students table me hote hain.
-      Agar tum update allow karna chahte ho to yaha students table update hoga.
-      Name ko extra table me bhi save kar rahe hain.
-    */
-
     const studentId = getStudentLoginIdAf();
 
-    const { error: updateStudentError } = await studentDb
-      .from("students")
+    const { error: updateStudentError } = await backend
+      .from("students_af")
       .update({
         email: pendingYourDetailsEditAf.email,
         mobile: pendingYourDetailsEditAf.phone,
@@ -16960,6 +17361,8 @@ async function confirmYourDetailsEditAf() {
     localStorage.setItem("af_student_email", pendingYourDetailsEditAf.email);
     localStorage.setItem("af_student_mobile", pendingYourDetailsEditAf.phone);
 
+    pendingYourDetailsEditAf = null;
+
     closeStudentModalAf("yourDetailsModalAf");
 
     showAfToast("Your details updated successfully.", "success", "Profile Updated");
@@ -16970,8 +17373,6 @@ async function confirmYourDetailsEditAf() {
     showAfToast(err.message || "OTP verification failed.", "error", "Update Failed");
   }
 }
-
-/* OTHER DETAILS EDIT */
 
 function openOtherDetailsEditAf() {
   if (!getStudentLoginIdAf()) {
@@ -17010,8 +17411,6 @@ async function saveOtherDetailsAf() {
     showAfToast(err.message || "Could not update details.", "error", "Update Failed");
   }
 }
-
-/* DELETE ACCOUNT */
 
 async function sendDeleteAccountOtpAf() {
   const email = getInputAf("deleteAccountEmailAf");
@@ -17060,6 +17459,13 @@ async function confirmDeleteAccountAf() {
     return;
   }
 
+  const backend = getProfileBackendAf();
+
+  if (!backend) {
+    showAfToast("Student backend not connected.", "error", "Backend Error");
+    return;
+  }
+
   try {
     await verifyProfileOtpAf(pendingDeleteAccountAf.email, otp, "delete_account");
 
@@ -17084,7 +17490,7 @@ async function confirmDeleteAccountAf() {
       }
     };
 
-    const { error: insertDeleteError } = await studentDb
+    const { error: insertDeleteError } = await backend
       .from("deleted_accounts_af")
       .insert([deleteRecord]);
 
@@ -17092,31 +17498,15 @@ async function confirmDeleteAccountAf() {
       throw new Error(insertDeleteError.message);
     }
 
-    /*
-      Actual account delete:
-      Frontend se auth user hard-delete secure nahi hota.
-      Agar tumhare backend/edge function me delete account bana hai,
-      to yaha call karo.
-    */
+    const { error: softDeleteError } = await backend
+      .from("students_af")
+      .update({
+        status: "deleted"
+      })
+      .eq("id", studentId);
 
-    if (typeof deleteStudentAccountBackendAf === "function") {
-      await deleteStudentAccountBackendAf(studentId);
-    } else {
-      /*
-        Fallback: students table me status update.
-        Agar students table me status column nahi hai, to ye fail ho sakta hai.
-        Is case me status column add karo ya backend function connect karo.
-      */
-      const { error: softDeleteError } = await studentDb
-        .from("students")
-        .update({
-          status: "deleted"
-        })
-        .eq("id", studentId);
-
-      if (softDeleteError) {
-        console.warn("Soft delete skipped:", softDeleteError.message);
-      }
+    if (softDeleteError) {
+      throw new Error(softDeleteError.message);
     }
 
     localStorage.removeItem("af_student_uuid");
@@ -17125,7 +17515,11 @@ async function confirmDeleteAccountAf() {
     localStorage.removeItem("af_student_email");
     localStorage.removeItem("af_student_mobile");
 
-    showAfToast("Your account deletion request has been completed.", "success", "Account Deleted");
+    pendingDeleteAccountAf = null;
+    currentStudentProfileAf = null;
+    currentStudentExtraAf = null;
+
+    showAfToast("Your account has been deleted.", "success", "Account Deleted");
 
     showSection("home");
     refreshStudentDashboardButtonAf();
