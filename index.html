@@ -19323,6 +19323,251 @@ body.dark-mode .settings-app-version-box span {
   }
 }
 
+/* =========================================================
+   SETTINGS SUPPORT ROW FINAL COMPACT FIX
+   Paste at VERY END of CSS
+========================================================= */
+
+.settings-support-list {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.settings-support-row {
+  width: 100% !important;
+  min-height: 54px !important;
+  height: 54px !important;
+  border: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0 !important;
+  cursor: pointer !important;
+  font-family: inherit !important;
+  text-align: left !important;
+  color: #334155 !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+.settings-support-left {
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  min-width: 0 !important;
+}
+
+.settings-support-icon {
+  width: 28px !important;
+  min-width: 28px !important;
+  height: 28px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 18px !important;
+  line-height: 1 !important;
+  color: #6b7280 !important;
+  font-weight: 800 !important;
+}
+
+.settings-support-left span:last-child {
+  font-size: 14px !important;
+  line-height: 1.2 !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.01em !important;
+  color: #334155 !important;
+  text-shadow: none !important;
+}
+
+.settings-support-row .settings-arrow {
+  font-size: 18px !important;
+  color: #0f172a !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+}
+
+.settings-support-divider {
+  width: 100% !important;
+  height: 1px !important;
+  margin: 10px 0 12px !important;
+  background: rgba(15, 23, 42, 0.12) !important;
+  border-radius: 999px !important;
+}
+
+/* Logout red */
+.settings-logout-row {
+  min-height: 54px !important;
+  height: 54px !important;
+}
+
+.settings-logout-row .settings-support-left span:last-child,
+.settings-logout-row .settings-row-left span:last-child {
+  color: #b91c1c !important;
+  -webkit-text-fill-color: #b91c1c !important;
+}
+
+.settings-logout-icon,
+.settings-logout-row .settings-row-icon {
+  color: #b91c1c !important;
+  -webkit-text-fill-color: #b91c1c !important;
+  font-size: 20px !important;
+}
+
+/* If you used settings-row class for logout */
+.settings-row.settings-logout-row {
+  color: #b91c1c !important;
+}
+
+.settings-row.settings-logout-row .settings-row-left span:last-child {
+  color: #b91c1c !important;
+  -webkit-text-fill-color: #b91c1c !important;
+}
+
+/* App version compact */
+.settings-app-version-box {
+  width: 100% !important;
+  padding: 10px 0 22px !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 5px !important;
+  color: #111827 !important;
+}
+
+.settings-app-version-box strong {
+  font-size: 17px !important;
+  line-height: 1.2 !important;
+  font-weight: 1000 !important;
+  color: #111827 !important;
+  text-shadow: none !important;
+}
+
+.settings-app-version-box span {
+  font-size: 14px !important;
+  line-height: 1.25 !important;
+  font-weight: 700 !important;
+  color: #475569 !important;
+  text-shadow: none !important;
+}
+
+/* Dark mode */
+html.dark-mode .settings-support-left span:last-child,
+body.dark-mode .settings-support-left span:last-child {
+  color: #e5e7eb !important;
+}
+
+html.dark-mode .settings-support-icon,
+body.dark-mode .settings-support-icon {
+  color: #94a3b8 !important;
+}
+
+html.dark-mode .settings-support-row .settings-arrow,
+body.dark-mode .settings-support-row .settings-arrow {
+  color: #e5e7eb !important;
+}
+
+html.dark-mode .settings-logout-row .settings-support-left span:last-child,
+body.dark-mode .settings-logout-row .settings-support-left span:last-child,
+html.dark-mode .settings-logout-row .settings-row-left span:last-child,
+body.dark-mode .settings-logout-row .settings-row-left span:last-child,
+html.dark-mode .settings-logout-icon,
+body.dark-mode .settings-logout-icon,
+html.dark-mode .settings-logout-row .settings-row-icon,
+body.dark-mode .settings-logout-row .settings-row-icon {
+  color: #fb7185 !important;
+  -webkit-text-fill-color: #fb7185 !important;
+}
+
+html.dark-mode .settings-app-version-box strong,
+body.dark-mode .settings-app-version-box strong {
+  color: #f9fafb !important;
+}
+
+html.dark-mode .settings-app-version-box span,
+body.dark-mode .settings-app-version-box span {
+  color: #cbd5e1 !important;
+}
+
+@media (max-width: 768px) {
+  .settings-support-row {
+    min-height: 54px !important;
+    height: 54px !important;
+  }
+
+  .settings-support-left {
+    gap: 14px !important;
+  }
+
+  .settings-support-icon {
+    width: 28px !important;
+    min-width: 28px !important;
+    height: 28px !important;
+    font-size: 18px !important;
+  }
+
+  .settings-support-left span:last-child {
+    font-size: 14px !important;
+  }
+
+  .settings-app-version-box strong {
+    font-size: 17px !important;
+  }
+
+  .settings-app-version-box span {
+    font-size: 14px !important;
+  }
+}
+
+    
+.af-toast-message {
+  position: fixed !important;
+  left: 50% !important;
+  bottom: 92px !important;
+  transform: translateX(-50%) !important;
+  z-index: 999999 !important;
+  max-width: calc(100vw - 32px) !important;
+  padding: 12px 16px !important;
+  border-radius: 999px !important;
+  font-size: 13px !important;
+  line-height: 1.2 !important;
+  font-weight: 900 !important;
+  text-align: center !important;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.22) !important;
+  display: none;
+  pointer-events: none !important;
+}
+
+.af-toast-message.is-success {
+  background: #dcfce7 !important;
+  color: #166534 !important;
+  border: 1px solid rgba(22, 101, 52, 0.18) !important;
+}
+
+.af-toast-message.is-error {
+  background: #fee2e2 !important;
+  color: #991b1b !important;
+  border: 1px solid rgba(153, 27, 27, 0.18) !important;
+}
+
+html.dark-mode .af-toast-message.is-success,
+body.dark-mode .af-toast-message.is-success {
+  background: #052e16 !important;
+  color: #bbf7d0 !important;
+  border-color: rgba(187, 247, 208, 0.18) !important;
+}
+
+html.dark-mode .af-toast-message.is-error,
+body.dark-mode .af-toast-message.is-error {
+  background: #450a0a !important;
+  color: #fecaca !important;
+  border-color: rgba(254, 202, 202, 0.18) !important;
+}
+
+
 </style>
 </head>
 
@@ -20720,51 +20965,52 @@ body.dark-mode .settings-app-version-box span {
       </button>
     </div>
 
-   <button
-  type="button"
-  class="settings-row settings-row-btn"
-  onclick="showSection('management')"
-  aria-label="Open About Us"
->
-  <div class="settings-row-left">
-    <span class="settings-row-icon" aria-hidden="true">ⓘ</span>
-    <span>About Us</span>
-  </div>
-  <span class="settings-arrow" aria-hidden="true">›</span>
-</button>
+ <div class="settings-support-list">
+  <button
+    type="button"
+    class="settings-support-row"
+    onclick="showSection('management')"
+    aria-label="Open About Us"
+  >
+    <div class="settings-support-left">
+      <span class="settings-support-icon" aria-hidden="true">ⓘ</span>
+      <span>About Us</span>
+    </div>
+    <span class="settings-arrow" aria-hidden="true">›</span>
+  </button>
 
-<button
-  type="button"
-  class="settings-row settings-row-btn"
-  onclick="openContactUsPage()"
-  aria-label="Open Contact Us"
->
-  <div class="settings-row-left">
-    <span class="settings-row-icon" aria-hidden="true">☎</span>
-    <span>Contact Us</span>
-  </div>
-  <span class="settings-arrow" aria-hidden="true">›</span>
-</button>
+  <button
+    type="button"
+    class="settings-support-row"
+    onclick="openContactUsPage()"
+    aria-label="Open Contact Us"
+  >
+    <div class="settings-support-left">
+      <span class="settings-support-icon" aria-hidden="true">☎</span>
+      <span>Contact Us</span>
+    </div>
+    <span class="settings-arrow" aria-hidden="true">›</span>
+  </button>
 
-<div class="settings-support-divider"></div>
+  <div class="settings-support-divider"></div>
 
-<button
-  type="button"
-  class="settings-row settings-row-btn settings-logout-row"
-  onclick="logoutStudentaf()"
-  aria-label="Logout"
->
-  <div class="settings-row-left">
-    <span class="settings-row-icon settings-logout-icon" aria-hidden="true">↩</span>
-    <span>Logout</span>
-  </div>
-</button>
+  <button
+    type="button"
+    class="settings-support-row settings-logout-row"
+    onclick="logoutStudentafWithMessage()"
+    aria-label="Logout"
+  >
+    <div class="settings-support-left">
+      <span class="settings-support-icon settings-logout-icon" aria-hidden="true">↩</span>
+      <span>Logout</span>
+    </div>
+  </button>
+</div>
 
 <div class="settings-app-version-box">
   <strong>App Version: 09.01.2024</strong>
   <span>Made with ❤️ in India</span>
 </div>
-  </div>
 </section>
 
 <!-- ==============================
@@ -33284,6 +33530,47 @@ async function submitContactRequestAf(event) {
       submitBtn.disabled = false;
       submitBtn.textContent = "Submit Request";
     }
+  }
+}
+  
+function showAfToastMessage(message, type) {
+  try {
+    let toast = document.getElementById("afToastMessage");
+
+    if (!toast) {
+      toast = document.createElement("div");
+      toast.id = "afToastMessage";
+      toast.setAttribute("role", "status");
+      toast.setAttribute("aria-live", "polite");
+      document.body.appendChild(toast);
+    }
+
+    toast.className = "af-toast-message " + (type === "error" ? "is-error" : "is-success");
+    toast.textContent = message;
+    toast.style.display = "block";
+
+    window.clearTimeout(window.__afToastTimer);
+    window.__afToastTimer = window.setTimeout(function () {
+      toast.style.display = "none";
+    }, 2200);
+  } catch (error) {
+    console.error("showAfToastMessage failed:", error);
+    alert(message);
+  }
+}
+
+function logoutStudentafWithMessage() {
+  try {
+    if (typeof logoutStudentaf === "function") {
+      logoutStudentaf();
+    }
+
+    window.setTimeout(function () {
+      showAfToastMessage("Logged out successfully.", "success");
+    }, 120);
+  } catch (error) {
+    console.error("logoutStudentafWithMessage failed:", error);
+    showAfToastMessage("Logout failed. Please try again.", "error");
   }
 }
 
