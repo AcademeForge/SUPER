@@ -29280,28 +29280,34 @@ async function saveOtherDetailsAf() {
 }
 
 
+
 /* =========================================================
-   ACCOUNT DELETION REQUEST - AF
+   ACCOUNT DELETION REQUEST FORM SUBMIT ONLY - AF
+   UI says 90 days. Backend only stores request data.
 ========================================================= */
 
-const AF_ACCOUNT_DELETION_EDGE_URL =
-  "https://afooyyydhlwngzssgqih.supabase.co/functions/v1/account-deletion-request";
+const AF_ACCOUNT_DELETE_REQUEST_EDGE_URL =
+  "https://afooyyydhlwngzssgqih.supabase.co/functions/v1/account-delete-request";
 
 function setAfDeleteAccountMessageNew(type, message) {
-  const messageBox = document.getElementById("afDeleteAccountMessageNew");
-  if (!messageBox) return;
+  try {
+    const messageBox = document.getElementById("afDeleteAccountMessageNew");
+    if (!messageBox) return;
 
-  messageBox.classList.remove("is-success", "is-error");
-  messageBox.textContent = "";
+    messageBox.classList.remove("is-success", "is-error");
+    messageBox.textContent = "";
 
-  if (!message) {
-    messageBox.style.display = "none";
-    return;
+    if (!message) {
+      messageBox.style.display = "none";
+      return;
+    }
+
+    messageBox.textContent = message;
+    messageBox.classList.add(type === "success" ? "is-success" : "is-error");
+    messageBox.style.display = "block";
+  } catch (error) {
+    console.error("setAfDeleteAccountMessageNew failed:", error);
   }
-
-  messageBox.textContent = message;
-  messageBox.classList.add(type === "success" ? "is-success" : "is-error");
-  messageBox.style.display = "block";
 }
 
 function getAfDeleteFieldValueNew(id) {
@@ -29312,8 +29318,8 @@ function getAfDeleteFieldValueNew(id) {
 
 function getAfDeviceIdForDeleteNew() {
   try {
-    const storageKey = "af_device_id";
-    let deviceId = localStorage.getItem(storageKey);
+    const key = "af_device_id";
+    let deviceId = localStorage.getItem(key);
 
     if (!deviceId) {
       deviceId =
@@ -29321,7 +29327,7 @@ function getAfDeviceIdForDeleteNew() {
         Date.now().toString(36) +
         "_" +
         Math.random().toString(36).slice(2);
-      localStorage.setItem(storageKey, deviceId);
+      localStorage.setItem(key, deviceId);
     }
 
     return deviceId;
@@ -29331,7 +29337,7 @@ function getAfDeviceIdForDeleteNew() {
 }
 
 function getAfCurrentStudentForDeleteNew() {
-  const possibleKeys = [
+  const keys = [
     "af_current_student",
     "af_logged_student",
     "af_student_session",
@@ -29342,74 +29348,18 @@ function getAfCurrentStudentForDeleteNew() {
     "current_student_af"
   ];
 
-  for (let i = 0; i < possibleKeys.length; i += 1) {
+  for (let i = 0; i < keys.length; i += 1) {
     try {
-      const raw = localStorage.getItem(possibleKeys[i]);
+      const raw = localStorage.getItem(keys[i]);
       if (!raw) continue;
 
       const parsed = JSON.parse(raw);
       if (parsed && typeof parsed === "object") {
         const student = parsed.student || parsed.data || parsed.user || parsed;
-        if (student && typeof student === "object") {
-          return student;
-        }
+        if (student && typeof student === "object") return student;
       }
-    } catch (error) {
-      continue;
-    }
+    } catch (error) {}
   }
-
-/* =========================================================
-   CANCEL PENDING DELETE REQUEST AFTER LOGIN - AF
-   Call cancelPendingDeletionRequestAfterLoginAf(student) after successful login
-========================================================= */
-
-async function cancelPendingDeletionRequestAfterLoginAf(student) {
-  try {
-    if (!student || typeof supabase === "undefined" || !supabase) return;
-
-    const email = String(
-      student.email ||
-      student.registered_email ||
-      student.student_email ||
-      ""
-    ).trim().toLowerCase();
-
-    const phone = String(
-      student.phone ||
-      student.mobile ||
-      student.mobile_number ||
-      student.registered_phone ||
-      ""
-    ).trim();
-
-    if (!email && !phone) return;
-
-    let query = supabase
-      .from("account_deletion_requests_af")
-      .update({
-        request_status: "cancelled_by_login",
-        cancelled_at: new Date().toISOString()
-      })
-      .in("request_status", ["pending", "approved"]);
-
-    if (email && phone) {
-      query = query.or(`registered_email.eq.${email},registered_phone.eq.${phone}`);
-    } else if (email) {
-      query = query.eq("registered_email", email);
-    } else {
-      query = query.eq("registered_phone", phone);
-    }
-
-    const { error } = await query;
-
-    if (error) {
-      console.warn("Pending deletion cancellation failed:", error);
-    }
-  } catch (error) {
-    console.warn("cancelPendingDeletionRequestAfterLoginAf failed:", error);
-  }
-}
 
   return {
     id:
@@ -29528,6 +29478,7 @@ async function submitAfDeleteAccountRequestNew(event) {
         student.id ||
         student.uuid ||
         student.student_uuid ||
+        student.student_id ||
         null,
 
       student_identifier:
@@ -29566,7 +29517,7 @@ async function submitAfDeleteAccountRequestNew(event) {
       submitBtn.textContent = "Submitting Request...";
     }
 
-    const response = await fetch(AF_ACCOUNT_DELETION_EDGE_URL, {
+    const response = await fetch(AF_ACCOUNT_DELETE_REQUEST_EDGE_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -29600,7 +29551,7 @@ async function submitAfDeleteAccountRequestNew(event) {
 
     setAfDeleteAccountMessageNew(
       "success",
-      "Your deletion request has been submitted. Your account is scheduled for deletion after 90 days."
+      "Your account deletion request has been submitted successfully."
     );
   } catch (error) {
     console.error("submitAfDeleteAccountRequestNew failed:", error);
@@ -29637,59 +29588,6 @@ window.showAfDeleteAccountInfoNew = function () {
     console.error("showAfDeleteAccountInfoNew override failed:", error);
   }
 };
-
- 
-/* =========================================================
-   CANCEL PENDING DELETE REQUEST AFTER LOGIN - AF
-   Call cancelPendingDeletionRequestAfterLoginAf(student) after successful login
-========================================================= */
-
-async function cancelPendingDeletionRequestAfterLoginAf(student) {
-  try {
-    if (!student || typeof supabase === "undefined" || !supabase) return;
-
-    const email = String(
-      student.email ||
-      student.registered_email ||
-      student.student_email ||
-      ""
-    ).trim().toLowerCase();
-
-    const phone = String(
-      student.phone ||
-      student.mobile ||
-      student.mobile_number ||
-      student.registered_phone ||
-      ""
-    ).trim();
-
-    if (!email && !phone) return;
-
-    let query = supabase
-      .from("account_deletion_requests_af")
-      .update({
-        request_status: "cancelled_by_login",
-        cancelled_at: new Date().toISOString()
-      })
-      .in("request_status", ["pending", "approved"]);
-
-    if (email && phone) {
-      query = query.or(`registered_email.eq.${email},registered_phone.eq.${phone}`);
-    } else if (email) {
-      query = query.eq("registered_email", email);
-    } else {
-      query = query.eq("registered_phone", phone);
-    }
-
-    const { error } = await query;
-
-    if (error) {
-      console.warn("Pending deletion cancellation failed:", error);
-    }
-  } catch (error) {
-    console.warn("cancelPendingDeletionRequestAfterLoginAf failed:", error);
-  }
-}
 
 /* ==============================
    LOGOUT STORAGE CLEAR
