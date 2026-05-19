@@ -19567,22 +19567,180 @@ body.dark-mode .af-toast-message.is-error {
   border-color: rgba(254, 202, 202, 0.18) !important;
 }
 
-   
+
 /* =========================================================
-   DELETE ACCOUNT REQUEST FORM - AF
+   ADDITIONAL SETTINGS + DELETE ACCOUNT FORM V2 - AF
+   New IDs/classes. Safe to paste at END.
 ========================================================= */
 
-.af-delete-policy-card-new {
+.af-extra-hidden-v2 {
+  display: none !important;
+}
+
+.af-additional-settings-panel-v2 {
   width: 100% !important;
-  padding: 14px 14px !important;
-  margin: 14px 0 16px !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+}
+
+.af-extra-settings-toggle-v2 {
+  width: 100% !important;
+  border: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  padding: 0 !important;
+  cursor: pointer !important;
+  font-family: inherit !important;
+  text-align: left !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+.af-extra-settings-icon-v2 {
+  width: 44px !important;
+  min-width: 44px !important;
+  height: 44px !important;
+  border-radius: 16px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: rgba(59, 130, 246, 0.12) !important;
+  font-size: 21px !important;
+  line-height: 1 !important;
+}
+
+.af-extra-settings-text-v2 {
+  min-width: 0 !important;
+  flex: 1 1 auto !important;
+  display: grid !important;
+  gap: 4px !important;
+}
+
+.af-extra-settings-text-v2 strong {
+  color: #0f172a !important;
+  font-size: 15px !important;
+  line-height: 1.2 !important;
+  font-weight: 1000 !important;
+  text-shadow: none !important;
+}
+
+.af-extra-settings-text-v2 small {
+  color: #64748b !important;
+  font-size: 12px !important;
+  line-height: 1.25 !important;
+  font-weight: 750 !important;
+  text-shadow: none !important;
+}
+
+.af-extra-settings-arrow-v2 {
+  color: #334155 !important;
+  font-size: 20px !important;
+  line-height: 1 !important;
+  font-weight: 1000 !important;
+  transition: transform 180ms ease !important;
+}
+
+.af-extra-settings-toggle-v2.is-open .af-extra-settings-arrow-v2 {
+  transform: rotate(180deg) !important;
+}
+
+.af-extra-settings-body-v2 {
+  width: 100% !important;
+  margin-top: 16px !important;
+  box-sizing: border-box !important;
+}
+
+.af-delete-open-btn-v2 {
+  width: 100% !important;
+  border: 1px solid rgba(239, 68, 68, 0.18) !important;
+  outline: 0 !important;
+  border-radius: 18px !important;
+  background: linear-gradient(135deg, rgba(254, 242, 242, 0.98), rgba(255, 247, 237, 0.98)) !important;
+  padding: 14px 15px !important;
+  display: grid !important;
+  gap: 4px !important;
+  cursor: pointer !important;
+  text-align: left !important;
+  font-family: inherit !important;
+  box-sizing: border-box !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+.af-delete-open-btn-v2 span {
+  color: #b91c1c !important;
+  font-size: 14px !important;
+  line-height: 1.2 !important;
+  font-weight: 1000 !important;
+}
+
+.af-delete-open-btn-v2 small {
+  color: #7f1d1d !important;
+  font-size: 12px !important;
+  line-height: 1.3 !important;
+  font-weight: 750 !important;
+}
+
+.af-delete-request-box-v2 {
+  width: 100% !important;
+  margin-top: 14px !important;
+  padding: 14px !important;
+  border-radius: 22px !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  border: 1px solid rgba(148, 163, 184, 0.28) !important;
+  box-shadow: 0 18px 44px rgba(15, 23, 42, 0.08) !important;
+  box-sizing: border-box !important;
+}
+
+.af-delete-request-head-v2 {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  margin-bottom: 14px !important;
+}
+
+.af-delete-request-alert-v2 {
+  width: 42px !important;
+  min-width: 42px !important;
+  height: 42px !important;
+  border-radius: 50% !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #fee2e2 !important;
+  color: #b91c1c !important;
+  font-size: 22px !important;
+  font-weight: 1000 !important;
+}
+
+.af-delete-request-head-v2 h4 {
+  margin: 0 !important;
+  color: #111827 !important;
+  font-size: 16px !important;
+  line-height: 1.2 !important;
+  font-weight: 1000 !important;
+}
+
+.af-delete-request-head-v2 p {
+  margin: 4px 0 0 !important;
+  color: #64748b !important;
+  font-size: 12px !important;
+  line-height: 1.25 !important;
+  font-weight: 750 !important;
+}
+
+.af-delete-policy-card-v2 {
+  width: 100% !important;
+  padding: 14px !important;
+  margin: 0 0 16px !important;
   border-radius: 18px !important;
   background: linear-gradient(135deg, rgba(254, 226, 226, 0.95), rgba(255, 247, 237, 0.95)) !important;
   border: 1px solid rgba(220, 38, 38, 0.18) !important;
   box-sizing: border-box !important;
 }
 
-.af-delete-policy-card-new strong {
+.af-delete-policy-card-v2 strong {
   display: block !important;
   margin-bottom: 8px !important;
   color: #991b1b !important;
@@ -19591,7 +19749,7 @@ body.dark-mode .af-toast-message.is-error {
   line-height: 1.25 !important;
 }
 
-.af-delete-policy-card-new p {
+.af-delete-policy-card-v2 p {
   margin: 0 0 8px !important;
   color: #7f1d1d !important;
   font-size: 13px !important;
@@ -19599,23 +19757,23 @@ body.dark-mode .af-toast-message.is-error {
   font-weight: 750 !important;
 }
 
-.af-delete-policy-card-new p:last-child {
+.af-delete-policy-card-v2 p:last-child {
   margin-bottom: 0 !important;
 }
 
-.af-delete-account-form-new {
+.af-delete-form-v2 {
   width: 100% !important;
   display: grid !important;
   gap: 14px !important;
 }
 
-.af-delete-field-new {
+.af-delete-field-v2 {
   width: 100% !important;
   display: grid !important;
   gap: 7px !important;
 }
 
-.af-delete-field-new label {
+.af-delete-field-v2 label {
   color: #334155 !important;
   font-size: 13px !important;
   line-height: 1.2 !important;
@@ -19624,9 +19782,9 @@ body.dark-mode .af-toast-message.is-error {
   text-shadow: none !important;
 }
 
-.af-delete-field-new input,
-.af-delete-field-new select,
-.af-delete-field-new textarea {
+.af-delete-field-v2 input,
+.af-delete-field-v2 select,
+.af-delete-field-v2 textarea {
   width: 100% !important;
   border: 1px solid rgba(100, 116, 139, 0.42) !important;
   outline: 0 !important;
@@ -19644,37 +19802,37 @@ body.dark-mode .af-toast-message.is-error {
   color-scheme: light !important;
 }
 
-.af-delete-field-new input,
-.af-delete-field-new select {
+.af-delete-field-v2 input,
+.af-delete-field-v2 select {
   min-height: 52px !important;
 }
 
-.af-delete-field-new textarea {
+.af-delete-field-v2 textarea {
   min-height: 132px !important;
   resize: vertical !important;
   line-height: 1.5 !important;
 }
 
-.af-delete-field-new input::placeholder,
-.af-delete-field-new textarea::placeholder {
+.af-delete-field-v2 input::placeholder,
+.af-delete-field-v2 textarea::placeholder {
   color: #64748b !important;
   -webkit-text-fill-color: #64748b !important;
   opacity: 1 !important;
 }
 
-.af-delete-field-new input:focus,
-.af-delete-field-new select:focus,
-.af-delete-field-new textarea:focus {
+.af-delete-field-v2 input:focus,
+.af-delete-field-v2 select:focus,
+.af-delete-field-v2 textarea:focus {
   border-color: #ef4444 !important;
   box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.14) !important;
 }
 
-.af-delete-confirm-row-new {
+.af-delete-confirm-v2 {
   width: 100% !important;
   display: flex !important;
   align-items: flex-start !important;
   gap: 10px !important;
-  padding: 12px 12px !important;
+  padding: 12px !important;
   border-radius: 16px !important;
   background: rgba(248, 250, 252, 0.96) !important;
   border: 1px solid rgba(148, 163, 184, 0.3) !important;
@@ -19682,22 +19840,22 @@ body.dark-mode .af-toast-message.is-error {
   cursor: pointer !important;
 }
 
-.af-delete-confirm-row-new input {
+.af-delete-confirm-v2 input {
   width: 18px !important;
+  min-width: 18px !important;
   height: 18px !important;
   margin-top: 2px !important;
   accent-color: #dc2626 !important;
-  flex: 0 0 auto !important;
 }
 
-.af-delete-confirm-row-new span {
+.af-delete-confirm-v2 span {
   color: #334155 !important;
   font-size: 12.5px !important;
   line-height: 1.5 !important;
   font-weight: 850 !important;
 }
 
-.af-delete-account-message-new {
+.af-delete-message-v2 {
   display: none !important;
   border-radius: 14px !important;
   padding: 12px 14px !important;
@@ -19706,21 +19864,21 @@ body.dark-mode .af-toast-message.is-error {
   font-weight: 900 !important;
 }
 
-.af-delete-account-message-new.is-success {
+.af-delete-message-v2.is-success {
   display: block !important;
   color: #166534 !important;
   background: #dcfce7 !important;
   border: 1px solid rgba(22, 101, 52, 0.18) !important;
 }
 
-.af-delete-account-message-new.is-error {
+.af-delete-message-v2.is-error {
   display: block !important;
   color: #b91c1c !important;
   background: #fee2e2 !important;
   border: 1px solid rgba(185, 28, 28, 0.18) !important;
 }
 
-.af-delete-submit-btn-new {
+.af-delete-submit-v2 {
   width: 100% !important;
   min-height: 56px !important;
   border: 0 !important;
@@ -19736,12 +19894,12 @@ body.dark-mode .af-toast-message.is-error {
   -webkit-tap-highlight-color: transparent !important;
 }
 
-.af-delete-submit-btn-new:disabled {
+.af-delete-submit-v2:disabled {
   opacity: 0.68 !important;
   cursor: not-allowed !important;
 }
 
-.af-delete-return-btn-new {
+.af-delete-home-btn-v2 {
   width: 100% !important;
   min-height: 52px !important;
   border: 1px solid rgba(148, 163, 184, 0.36) !important;
@@ -19756,48 +19914,72 @@ body.dark-mode .af-toast-message.is-error {
   box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08) !important;
 }
 
-/* Dark mode readable form */
-html.dark-mode .af-delete-field-new label,
-body.dark-mode .af-delete-field-new label {
-  color: #e5e7eb !important;
+/* Dark mode */
+html.dark-mode .af-extra-settings-text-v2 strong,
+body.dark-mode .af-extra-settings-text-v2 strong {
+  color: #f8fafc !important;
 }
 
-html.dark-mode .af-delete-field-new input,
-body.dark-mode .af-delete-field-new input,
-html.dark-mode .af-delete-field-new select,
-body.dark-mode .af-delete-field-new select,
-html.dark-mode .af-delete-field-new textarea,
-body.dark-mode .af-delete-field-new textarea {
+html.dark-mode .af-extra-settings-text-v2 small,
+body.dark-mode .af-extra-settings-text-v2 small,
+html.dark-mode .af-extra-settings-arrow-v2,
+body.dark-mode .af-extra-settings-arrow-v2 {
+  color: #cbd5e1 !important;
+}
+
+html.dark-mode .af-delete-request-box-v2,
+body.dark-mode .af-delete-request-box-v2 {
+  background: rgba(15, 23, 42, 0.88) !important;
+  border-color: rgba(148, 163, 184, 0.24) !important;
+}
+
+html.dark-mode .af-delete-request-head-v2 h4,
+body.dark-mode .af-delete-request-head-v2 h4,
+html.dark-mode .af-delete-field-v2 label,
+body.dark-mode .af-delete-field-v2 label {
+  color: #f8fafc !important;
+}
+
+html.dark-mode .af-delete-request-head-v2 p,
+body.dark-mode .af-delete-request-head-v2 p {
+  color: #cbd5e1 !important;
+}
+
+html.dark-mode .af-delete-field-v2 input,
+body.dark-mode .af-delete-field-v2 input,
+html.dark-mode .af-delete-field-v2 select,
+body.dark-mode .af-delete-field-v2 select,
+html.dark-mode .af-delete-field-v2 textarea,
+body.dark-mode .af-delete-field-v2 textarea {
   background: #ffffff !important;
   color: #111827 !important;
   -webkit-text-fill-color: #111827 !important;
 }
 
-html.dark-mode .af-delete-confirm-row-new,
-body.dark-mode .af-delete-confirm-row-new {
+html.dark-mode .af-delete-confirm-v2,
+body.dark-mode .af-delete-confirm-v2 {
   background: rgba(15, 23, 42, 0.72) !important;
   border-color: rgba(148, 163, 184, 0.28) !important;
 }
 
-html.dark-mode .af-delete-confirm-row-new span,
-body.dark-mode .af-delete-confirm-row-new span {
+html.dark-mode .af-delete-confirm-v2 span,
+body.dark-mode .af-delete-confirm-v2 span {
   color: #e5e7eb !important;
 }
 
 @media (max-width: 768px) {
-  .af-delete-policy-card-new {
+  .af-delete-request-box-v2 {
     padding: 13px !important;
-    border-radius: 16px !important;
+    border-radius: 20px !important;
   }
 
-  .af-delete-field-new input,
-  .af-delete-field-new select,
-  .af-delete-field-new textarea {
+  .af-delete-field-v2 input,
+  .af-delete-field-v2 select,
+  .af-delete-field-v2 textarea {
     font-size: 14px !important;
     border-radius: 15px !important;
   }
 }
-
 
 </style>
 </head>
@@ -20439,128 +20621,152 @@ body.dark-mode .af-delete-confirm-row-new span {
         <p class="af-empty">No enrolled batch found.</p>
       </div>
     </div>
-<!-- Additional Setting Panel -->
-<div class="af-panel glass af-additional-settings-panel">
-  <button
-    id="afAdditionalSettingsBtnNew"
-    class="af-settings-main-btn"
-    type="button"
-    onclick="toggleAfAdditionalSettingsNew()"
-  >
-    <span class="af-settings-icon-new">⚙️</span>
+<!-- ==============================
+     ADDITIONAL SETTINGS PANEL V2 - AF
+================================ -->
 
-    <span class="af-settings-text-new">
+<div class="af-panel glass af-additional-settings-panel-v2">
+  <button
+    id="afExtraSettingsToggleV2"
+    class="af-extra-settings-toggle-v2"
+    type="button"
+    onclick="toggleAfExtraSettingsV2()"
+    aria-expanded="false"
+    aria-controls="afExtraSettingsBodyV2"
+  >
+    <span class="af-extra-settings-icon-v2" aria-hidden="true">⚙️</span>
+
+    <span class="af-extra-settings-text-v2">
       <strong>Additional Setting</strong>
       <small>Account safety and sensitive actions</small>
     </span>
 
-    <span id="afAdditionalSettingsArrowNew" class="af-settings-arrow-new">⌄</span>
+    <span id="afExtraSettingsArrowV2" class="af-extra-settings-arrow-v2" aria-hidden="true">⌄</span>
   </button>
-<div id="afDeleteAccountInfoBoxNew" class="af-delete-info-box-new af-hidden">
-  <div class="af-delete-info-top-new">
-    <div class="af-delete-info-icon-new">!</div>
-    <div>
-      <h4>Account Deletion Request</h4>
-      <p>Secure verification required</p>
-    </div>
-  </div>
 
-  <div class="af-delete-policy-card-new">
-    <strong>Important account deletion policy</strong>
-    <p>
-      Your account deletion request will be reviewed by our team. If approved,
-      your account will be scheduled for deletion after 90 days.
-    </p>
-    <p>
-      If you log in again before the 90-day period ends, your deletion request
-      may be cancelled automatically for account safety.
-    </p>
-  </div>
-
-  <form id="afDeleteAccountRequestFormNew" class="af-delete-account-form-new" onsubmit="submitAfDeleteAccountRequestNew(event)">
-    <div class="af-delete-field-new">
-      <label for="afDeleteFullNameNew">Full Name</label>
-      <input
-        id="afDeleteFullNameNew"
-        name="full_name"
-        type="text"
-        autocomplete="name"
-        placeholder="Enter your full name"
-        maxlength="90"
-        required
-      />
-    </div>
-
-    <div class="af-delete-field-new">
-      <label for="afDeleteEmailNew">Registered Email</label>
-      <input
-        id="afDeleteEmailNew"
-        name="registered_email"
-        type="email"
-        autocomplete="email"
-        placeholder="Enter your registered email"
-        maxlength="140"
-        required
-      />
-    </div>
-
-    <div class="af-delete-field-new">
-      <label for="afDeletePhoneNew">Registered Phone Number</label>
-      <input
-        id="afDeletePhoneNew"
-        name="registered_phone"
-        type="tel"
-        inputmode="tel"
-        autocomplete="tel"
-        placeholder="Enter your registered phone number"
-        maxlength="18"
-        required
-      />
-    </div>
-
-    <div class="af-delete-field-new">
-      <label for="afDeleteReasonNew">Why do you want to delete your account?</label>
-      <select id="afDeleteReasonNew" name="delete_reason" required>
-        <option value="">Select a reason</option>
-        <option value="No longer using the platform">No longer using the platform</option>
-        <option value="Created another account">Created another account</option>
-        <option value="Privacy or data concern">Privacy or data concern</option>
-        <option value="Course or access issue">Course or access issue</option>
-        <option value="Technical issue">Technical issue</option>
-        <option value="Other reason">Other reason</option>
-      </select>
-    </div>
-
-    <div class="af-delete-field-new">
-      <label for="afDeleteDetailsNew">Additional Details</label>
-      <textarea
-        id="afDeleteDetailsNew"
-        name="additional_details"
-        rows="5"
-        placeholder="Explain your reason clearly. This helps our team verify and process your request."
-        maxlength="1200"
-        required
-      ></textarea>
-    </div>
-
-    <label class="af-delete-confirm-row-new" for="afDeleteConfirmNew">
-      <input id="afDeleteConfirmNew" type="checkbox" required />
-      <span>
-        I understand that my account may be deleted after 90 days and this request may be cancelled if I log in before deletion is completed.
-      </span>
-    </label>
-
-    <div id="afDeleteAccountMessageNew" class="af-delete-account-message-new" aria-live="polite"></div>
-
-    <button id="afDeleteSubmitBtnNew" class="af-delete-submit-btn-new" type="submit">
-      Submit Deletion Request
+  <div id="afExtraSettingsBodyV2" class="af-extra-settings-body-v2 af-extra-hidden-v2">
+    <button
+      id="afDeleteAccountOpenBtnV2"
+      class="af-delete-open-btn-v2"
+      type="button"
+      onclick="openAfDeleteAccountRequestV2()"
+      aria-expanded="false"
+      aria-controls="afDeleteAccountRequestBoxV2"
+    >
+      <span>Delete Account</span>
+      <small>Permanent account removal request</small>
     </button>
 
-    <button class="af-delete-return-btn-new" type="button" onclick="showSection('home')">
-      Return To HomePage
-    </button>
-  </form>
-</div>
+    <div id="afDeleteAccountRequestBoxV2" class="af-delete-request-box-v2 af-extra-hidden-v2">
+      <div class="af-delete-request-head-v2">
+        <div class="af-delete-request-alert-v2" aria-hidden="true">!</div>
+        <div>
+          <h4>Account Deletion Request</h4>
+          <p>Secure verification required</p>
+        </div>
+      </div>
+
+      <div class="af-delete-policy-card-v2">
+        <strong>Important account deletion policy</strong>
+        <p>
+          Your account deletion request will be reviewed by our team. If approved,
+          your account will be scheduled for deletion after 90 days.
+        </p>
+        <p>
+          If you log in again before the 90-day period ends, your deletion request
+          may be cancelled automatically for account safety.
+        </p>
+      </div>
+
+      <form
+        id="afDeleteAccountFormV2"
+        class="af-delete-form-v2"
+        onsubmit="submitAfDeleteAccountRequestV2(event)"
+      >
+        <div class="af-delete-field-v2">
+          <label for="afDeleteFullNameV2">Full Name</label>
+          <input
+            id="afDeleteFullNameV2"
+            name="full_name"
+            type="text"
+            autocomplete="name"
+            placeholder="Enter your full name"
+            maxlength="90"
+            required
+          />
+        </div>
+
+        <div class="af-delete-field-v2">
+          <label for="afDeleteEmailV2">Registered Email</label>
+          <input
+            id="afDeleteEmailV2"
+            name="registered_email"
+            type="email"
+            autocomplete="email"
+            placeholder="Enter your registered email"
+            maxlength="140"
+            required
+          />
+        </div>
+
+        <div class="af-delete-field-v2">
+          <label for="afDeletePhoneV2">Registered Phone Number</label>
+          <input
+            id="afDeletePhoneV2"
+            name="registered_phone"
+            type="tel"
+            inputmode="tel"
+            autocomplete="tel"
+            placeholder="Enter your registered phone number"
+            maxlength="18"
+            required
+          />
+        </div>
+
+        <div class="af-delete-field-v2">
+          <label for="afDeleteReasonV2">Why do you want to delete your account?</label>
+          <select id="afDeleteReasonV2" name="delete_reason" required>
+            <option value="">Select a reason</option>
+            <option value="No longer using the platform">No longer using the platform</option>
+            <option value="Created another account">Created another account</option>
+            <option value="Privacy or data concern">Privacy or data concern</option>
+            <option value="Course or access issue">Course or access issue</option>
+            <option value="Technical issue">Technical issue</option>
+            <option value="Other reason">Other reason</option>
+          </select>
+        </div>
+
+        <div class="af-delete-field-v2">
+          <label for="afDeleteDetailsV2">Additional Details</label>
+          <textarea
+            id="afDeleteDetailsV2"
+            name="additional_details"
+            rows="5"
+            placeholder="Explain your reason clearly. This helps our team verify and process your request."
+            maxlength="1200"
+            required
+          ></textarea>
+        </div>
+
+        <label class="af-delete-confirm-v2" for="afDeleteConfirmV2">
+          <input id="afDeleteConfirmV2" type="checkbox" required />
+          <span>
+            I understand that my account may be deleted after 90 days and this request may be cancelled if I log in before deletion is completed.
+          </span>
+        </label>
+
+        <div id="afDeleteMessageV2" class="af-delete-message-v2" aria-live="polite"></div>
+
+        <button id="afDeleteSubmitBtnV2" class="af-delete-submit-v2" type="submit">
+          Submit Deletion Request
+        </button>
+
+        <button class="af-delete-home-btn-v2" type="button" onclick="showSection('home')">
+          Return To HomePage
+        </button>
+      </form>
+    </div>
+  </div>
 </div>
 </section>
     
@@ -21155,13 +21361,13 @@ body.dark-mode .af-delete-confirm-row-new span {
       <div class="settings-profile-info">
         <h2 id="settingsStudentName">Hi, Devraj</h2>
         <button
-          type="button"
-          class="settings-profile-link"
-          onclick="openSettingsProfile()"
-          aria-label="View profile"
-        >
-          View profile
-        </button>
+  type="button"
+  class="settings-profile-link"
+  onclick="openStudentDashboardFromSettingsAf()"
+  aria-label="View profile"
+>
+  View profile
+</button>
       </div>
     </div>
 
@@ -28695,6 +28901,81 @@ async function afFetchStudent() {
   return result.data;
 }
 
+/* ==============================
+   EXTRA DETAILS FETCH / SAVE
+   state/district/class only here
+================================ */
+
+async function afFetchExtra(student) {
+  const backend = afBackend();
+
+  if (!backend || !student) {
+    return null;
+  }
+
+  const key = afStudentKey(student);
+
+  if (!key) {
+    return null;
+  }
+
+  const { data, error } = await backend
+    .from("student_profile_details_af")
+    .select("student_key, state, district, class_name")
+    .eq("student_key", key)
+    .maybeSingle();
+
+  if (error) {
+    console.error("Profile extra fetch error:", error);
+    return null;
+  }
+
+  return data || null;
+}
+
+async function afUpsertExtra(payload) {
+  const backend = afBackend();
+
+  if (!backend) {
+    throw new Error("Backend not connected.");
+  }
+
+  if (!afCurrentStudent) {
+    afCurrentStudent = await afFetchStudent();
+  }
+
+  if (!afCurrentStudent) {
+    throw new Error("Student profile not loaded.");
+  }
+
+  const key = afStudentKey(afCurrentStudent);
+
+  if (!key) {
+    throw new Error("Student key not found.");
+  }
+
+  const finalPayload = {
+    student_key: key,
+    ...payload,
+    updated_at: new Date().toISOString()
+  };
+
+  const { data, error } = await backend
+    .from("student_profile_details_af")
+    .upsert(finalPayload, {
+      onConflict: "student_key"
+    })
+    .select()
+    .maybeSingle();
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  afCurrentExtra = data;
+
+  return data;
+}
 
 /* ==============================
    ENROLLED COURSES FETCH
@@ -29279,315 +29560,187 @@ async function saveOtherDetailsAf() {
   }
 }
 
+/* ==============================
+   DELETE ACCOUNT
+================================ */
 
+async function sendDeleteAccountOtpAf() {
+  const email = afGetInput("afDeleteEmail");
+  const mobile = afGetInput("afDeleteMobile");
+  const reason = afGetInput("afDeleteReason");
 
-/* =========================================================
-   ACCOUNT DELETION REQUEST FORM SUBMIT ONLY - AF
-   UI says 90 days. Backend only stores request data.
-========================================================= */
+  if (!afIsLoggedIn()) {
+    afMsg(
+      "Login required.",
+      "warning",
+      "Login Required"
+    );
 
-const AF_ACCOUNT_DELETE_REQUEST_EDGE_URL =
-  "https://afooyyydhlwngzssgqih.supabase.co/functions/v1/account-delete-request";
-
-function setAfDeleteAccountMessageNew(type, message) {
-  try {
-    const messageBox = document.getElementById("afDeleteAccountMessageNew");
-    if (!messageBox) return;
-
-    messageBox.classList.remove("is-success", "is-error");
-    messageBox.textContent = "";
-
-    if (!message) {
-      messageBox.style.display = "none";
-      return;
-    }
-
-    messageBox.textContent = message;
-    messageBox.classList.add(type === "success" ? "is-success" : "is-error");
-    messageBox.style.display = "block";
-  } catch (error) {
-    console.error("setAfDeleteAccountMessageNew failed:", error);
-  }
-}
-
-function getAfDeleteFieldValueNew(id) {
-  const element = document.getElementById(id);
-  if (!element) return "";
-  return String(element.value || "").trim();
-}
-
-function getAfDeviceIdForDeleteNew() {
-  try {
-    const key = "af_device_id";
-    let deviceId = localStorage.getItem(key);
-
-    if (!deviceId) {
-      deviceId =
-        "web_" +
-        Date.now().toString(36) +
-        "_" +
-        Math.random().toString(36).slice(2);
-      localStorage.setItem(key, deviceId);
-    }
-
-    return deviceId;
-  } catch (error) {
-    return "unknown_device";
-  }
-}
-
-function getAfCurrentStudentForDeleteNew() {
-  const keys = [
-    "af_current_student",
-    "af_logged_student",
-    "af_student_session",
-    "af_student_data",
-    "studentaf_session",
-    "student_session_af",
-    "currentStudentaf",
-    "current_student_af"
-  ];
-
-  for (let i = 0; i < keys.length; i += 1) {
-    try {
-      const raw = localStorage.getItem(keys[i]);
-      if (!raw) continue;
-
-      const parsed = JSON.parse(raw);
-      if (parsed && typeof parsed === "object") {
-        const student = parsed.student || parsed.data || parsed.user || parsed;
-        if (student && typeof student === "object") return student;
-      }
-    } catch (error) {}
+    return;
   }
 
-  return {
-    id:
-      localStorage.getItem("af_student_id") ||
-      localStorage.getItem("student_id_af") ||
-      localStorage.getItem("studentIdaf") ||
-      "",
-    student_id:
-      localStorage.getItem("af_student_identifier") ||
-      localStorage.getItem("student_id_af") ||
-      localStorage.getItem("studentIdaf") ||
-      "",
-    name:
-      localStorage.getItem("af_student_name") ||
-      localStorage.getItem("student_name_af") ||
-      localStorage.getItem("studentNameaf") ||
-      "",
-    email:
-      localStorage.getItem("af_student_email") ||
-      localStorage.getItem("student_email_af") ||
-      localStorage.getItem("studentEmailaf") ||
-      "",
-    phone:
-      localStorage.getItem("af_student_phone") ||
-      localStorage.getItem("student_phone_af") ||
-      localStorage.getItem("studentPhoneaf") ||
-      ""
+  if (!email || !mobile) {
+    afMsg(
+      "Please enter email and phone number.",
+      "warning",
+      "Missing Details"
+    );
+
+    return;
+  }
+
+  afPendingDelete = {
+    email,
+    mobile,
+    reason
   };
-}
-
-function prefillAfDeleteAccountFormNew() {
-  try {
-    const student = getAfCurrentStudentForDeleteNew();
-
-    const fullNameInput = document.getElementById("afDeleteFullNameNew");
-    const emailInput = document.getElementById("afDeleteEmailNew");
-    const phoneInput = document.getElementById("afDeletePhoneNew");
-
-    const name =
-      student.name ||
-      student.full_name ||
-      student.student_name ||
-      student.display_name ||
-      "";
-
-    const email =
-      student.email ||
-      student.registered_email ||
-      student.student_email ||
-      "";
-
-    const phone =
-      student.phone ||
-      student.mobile ||
-      student.mobile_number ||
-      student.registered_phone ||
-      "";
-
-    if (fullNameInput && !fullNameInput.value) fullNameInput.value = name;
-    if (emailInput && !emailInput.value) emailInput.value = email;
-    if (phoneInput && !phoneInput.value) phoneInput.value = phone;
-  } catch (error) {
-    console.error("prefillAfDeleteAccountFormNew failed:", error);
-  }
-}
-
-function validateAfDeleteAccountPayloadNew(payload) {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-  const indianMobileRegex = /^(\+91)?[6-9]\d{9}$/;
-  const internationalMobileRegex = /^\+\d{8,15}$/;
-  const normalizedPhone = payload.registered_phone.replace(/[^\d+]/g, "");
-
-  if (payload.full_name.length < 2) {
-    return "Please enter your full name.";
-  }
-
-  if (!emailRegex.test(payload.registered_email)) {
-    return "Please enter a valid registered email.";
-  }
-
-  if (
-    !indianMobileRegex.test(normalizedPhone) &&
-    !internationalMobileRegex.test(normalizedPhone)
-  ) {
-    return "Please enter a valid registered phone number.";
-  }
-
-  if (!payload.delete_reason) {
-    return "Please select why you want to delete your account.";
-  }
-
-  if (payload.additional_details.length < 10) {
-    return "Please explain your reason in at least 10 characters.";
-  }
-
-  const confirmBox = document.getElementById("afDeleteConfirmNew");
-  if (!confirmBox || !confirmBox.checked) {
-    return "Please confirm the account deletion policy.";
-  }
-
-  return "";
-}
-
-async function submitAfDeleteAccountRequestNew(event) {
-  event.preventDefault();
-
-  const submitBtn = document.getElementById("afDeleteSubmitBtnNew");
 
   try {
-    setAfDeleteAccountMessageNew("", "");
+    await afSendOtp(email);
 
-    const student = getAfCurrentStudentForDeleteNew();
+    const box = document.getElementById("afDeleteOtpBox");
 
-    const payload = {
-      student_id:
-        student.id ||
-        student.uuid ||
-        student.student_uuid ||
-        student.student_id ||
-        null,
+    if (box) {
+      box.classList.remove("af-hidden");
+    }
 
-      student_identifier:
-        student.student_id ||
-        student.phone ||
-        student.mobile ||
-        student.mobile_number ||
-        student.email ||
-        null,
+    afMsg(
+      "OTP sent to your email.",
+      "success",
+      "OTP Sent"
+    );
+  } catch (err) {
+    afMsg(
+      err.message || "OTP send failed.",
+      "error",
+      "OTP Error"
+    );
+  }
+}
 
-      student_name:
-        student.name ||
-        student.full_name ||
-        student.student_name ||
-        null,
+async function confirmDeleteAccountAf() {
+  if (!afPendingDelete) {
+    afMsg(
+      "Please send OTP first.",
+      "warning",
+      "OTP Required"
+    );
 
-      full_name: getAfDeleteFieldValueNew("afDeleteFullNameNew"),
-      registered_email: getAfDeleteFieldValueNew("afDeleteEmailNew").toLowerCase(),
-      registered_phone: getAfDeleteFieldValueNew("afDeletePhoneNew"),
-      delete_reason: getAfDeleteFieldValueNew("afDeleteReasonNew"),
-      additional_details: getAfDeleteFieldValueNew("afDeleteDetailsNew"),
+    return;
+  }
 
-      page_url: window.location.href,
-      user_agent: navigator.userAgent,
-      device_id: getAfDeviceIdForDeleteNew()
+  const otp = afGetInput("afDeleteOtp");
+
+  if (!otp) {
+    afMsg(
+      "Enter OTP.",
+      "warning",
+      "OTP Required"
+    );
+
+    return;
+  }
+
+  const backend = afBackend();
+
+  if (!backend) {
+    afMsg(
+      "Backend not connected.",
+      "error",
+      "Backend Error"
+    );
+
+    return;
+  }
+
+  try {
+    await afVerifyOtp(
+      afPendingDelete.email,
+      otp
+    );
+
+    const student =
+      afCurrentStudent ||
+      await afFetchStudent();
+
+    const extra =
+      afCurrentExtra ||
+      await afFetchExtra(student);
+
+    const backup = {
+      name: student?.name || "",
+      email: afPendingDelete.email,
+      phone: afPendingDelete.mobile,
+      state: extra?.state || "",
+      district: extra?.district || "",
+      delete_reason: afPendingDelete.reason || "",
+      status: "deleted",
+      raw_profile: {
+        student: student || {},
+        extra: extra || {}
+      }
     };
 
-    const validationError = validateAfDeleteAccountPayloadNew(payload);
-    if (validationError) {
-      setAfDeleteAccountMessageNew("error", validationError);
-      return;
+    const { error: insertError } =
+      await backend
+        .from("deleted_accounts_af")
+        .insert([backup]);
+
+    if (insertError) {
+      throw new Error(insertError.message);
     }
 
-    if (submitBtn) {
-      submitBtn.disabled = true;
-      submitBtn.textContent = "Submitting Request...";
+    let updateQuery =
+      backend
+        .from("students_af")
+        .update({
+          status: "deleted"
+        });
+
+    if (student?.email) {
+      updateQuery =
+        updateQuery.eq("email", student.email);
+    } else if (student?.mobile) {
+      updateQuery =
+        updateQuery.eq("mobile", student.mobile);
+    } else if (student?.name) {
+      updateQuery =
+        updateQuery.eq("name", student.name);
+    } else {
+      throw new Error("Student record not found.");
     }
 
-    const response = await fetch(AF_ACCOUNT_DELETE_REQUEST_EDGE_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "apikey": typeof SUPABASE_ANON_KEY !== "undefined" ? SUPABASE_ANON_KEY : "",
-        "Authorization":
-          typeof SUPABASE_ANON_KEY !== "undefined"
-            ? "Bearer " + SUPABASE_ANON_KEY
-            : ""
-      },
-      body: JSON.stringify(payload)
-    });
+    const { error: updateError } =
+      await updateQuery;
 
-    let result = null;
-
-    try {
-      result = await response.json();
-    } catch (jsonError) {
-      result = null;
+    if (updateError) {
+      throw new Error(updateError.message);
     }
 
-    if (!response.ok || !result || result.success !== true) {
-      throw new Error(
-        result && result.message
-          ? result.message
-          : "Unable to submit deletion request right now."
-      );
-    }
+    afClearStudentLoginStorage();
 
-    const form = document.getElementById("afDeleteAccountRequestFormNew");
-    if (form) form.reset();
+    afCurrentStudent = null;
+    afCurrentExtra = null;
+    afPendingDelete = null;
 
-    setAfDeleteAccountMessageNew(
+    afRenderCard();
+
+    afMsg(
+      "Your account has been deleted.",
       "success",
-      "Your account deletion request has been submitted successfully."
+      "Account Deleted"
     );
-  } catch (error) {
-    console.error("submitAfDeleteAccountRequestNew failed:", error);
-    setAfDeleteAccountMessageNew(
+
+    showSection("home");
+
+  } catch (err) {
+    afMsg(
+      err.message || "Delete failed.",
       "error",
-      error && error.message
-        ? error.message
-        : "Something went wrong. Please try again."
+      "Delete Failed"
     );
-  } finally {
-    if (submitBtn) {
-      submitBtn.disabled = false;
-      submitBtn.textContent = "Submit Deletion Request";
-    }
   }
 }
-
-const oldShowAfDeleteAccountInfoNew =
-  typeof window.showAfDeleteAccountInfoNew === "function"
-    ? window.showAfDeleteAccountInfoNew
-    : null;
-
-window.showAfDeleteAccountInfoNew = function () {
-  try {
-    if (oldShowAfDeleteAccountInfoNew) {
-      oldShowAfDeleteAccountInfoNew();
-    } else {
-      const box = document.getElementById("afDeleteAccountInfoBoxNew");
-      if (box) box.classList.remove("af-hidden");
-    }
-
-    window.setTimeout(prefillAfDeleteAccountFormNew, 80);
-  } catch (error) {
-    console.error("showAfDeleteAccountInfoNew override failed:", error);
-  }
-};
 
 /* ==============================
    LOGOUT STORAGE CLEAR
@@ -29623,6 +29776,131 @@ function afClearStudentLoginStorage() {
 document.addEventListener("DOMContentLoaded", function() {
   afRenderCard();
 });
+
+  
+/* =========================================================
+   SETTINGS VIEW PROFILE -> WORKING STUDENT DASHBOARD - AF
+   Opens #studentDashboardAf and triggers existing fetch/render logic
+========================================================= */
+
+function openStudentDashboardFromSettingsAf() {
+  try {
+    const dashboardSection = document.getElementById("studentDashboardAf");
+
+    if (!dashboardSection) {
+      console.error("studentDashboardAf section not found.");
+      return;
+    }
+
+    if (typeof showSection === "function") {
+      showSection("studentDashboardAf");
+    } else {
+      document.querySelectorAll(".section, .app-section").forEach(function (section) {
+        section.classList.remove("active");
+        section.style.display = "none";
+      });
+
+      dashboardSection.classList.add("active");
+      dashboardSection.style.display = "block";
+    }
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    window.setTimeout(function () {
+      if (typeof loadStudentDashboardAf === "function") {
+        loadStudentDashboardAf();
+        return;
+      }
+
+      if (typeof loadAfStudentDashboard === "function") {
+        loadAfStudentDashboard();
+        return;
+      }
+
+      if (typeof fetchStudentDashboardAf === "function") {
+        fetchStudentDashboardAf();
+        return;
+      }
+
+      if (typeof renderStudentDashboardAf === "function") {
+        renderStudentDashboardAf();
+        return;
+      }
+
+      if (typeof openSettingsProfile === "function") {
+        openSettingsProfile();
+        return;
+      }
+
+      console.warn("No dashboard fetch function found. Section opened only.");
+    }, 80);
+  } catch (error) {
+    console.error("openStudentDashboardFromSettingsAf failed:", error);
+  }
+}
+
+/* =========================================================
+   SETTINGS NAME SYNC FROM WORKING PROFILE PAGE - AF
+========================================================= */
+
+function syncSettingsNameFromStudentDashboardAf() {
+  try {
+    const settingsNameEl = document.getElementById("settingsStudentName");
+    if (!settingsNameEl) return;
+
+    const profileNameEl = document.getElementById("afProfileHeroName");
+    const detailNameEl = document.getElementById("afInfoName");
+
+    const profileName = profileNameEl ? String(profileNameEl.textContent || "").trim() : "";
+    const detailName = detailNameEl ? String(detailNameEl.textContent || "").trim() : "";
+
+    const finalName =
+      profileName && profileName !== "Student" && profileName !== "-"
+        ? profileName
+        : detailName && detailName !== "-"
+          ? detailName
+          : "";
+
+    settingsNameEl.textContent = finalName ? "Hi, " + finalName.replace(/^Hi,\s*/i, "") : "Hi, Student";
+  } catch (error) {
+    console.error("syncSettingsNameFromStudentDashboardAf failed:", error);
+  }
+}
+
+(function () {
+  const previousShowSection = window.showSection;
+
+  window.showSection = function (sectionId) {
+    if (typeof previousShowSection === "function") {
+      previousShowSection.apply(this, arguments);
+    } else {
+      document.querySelectorAll(".section, .app-section").forEach(function (section) {
+        section.classList.remove("active");
+        section.style.display = "none";
+      });
+
+      const target = document.getElementById(sectionId);
+      if (target) {
+        target.classList.add("active");
+        target.style.display = "block";
+      }
+    }
+
+    if (sectionId === "settings") {
+      window.setTimeout(syncSettingsNameFromStudentDashboardAf, 150);
+      window.setTimeout(syncSettingsNameFromStudentDashboardAf, 700);
+    }
+
+    if (sectionId === "studentDashboardAf") {
+      window.setTimeout(syncSettingsNameFromStudentDashboardAf, 700);
+    }
+  };
+
+  document.addEventListener("DOMContentLoaded", function () {
+    window.setTimeout(syncSettingsNameFromStudentDashboardAf, 700);
+  });
+})();
+
   /* =========================================================
    AF HOME BANNER SWIPE + TOUCH PAUSE + MARQUEE FIX
    Paste at END of JS
@@ -30423,8 +30701,6 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 
-  cancelPendingDeletionRequestAfterLoginAf(student);
-
   /* =========================================================
    AF ADDITIONAL SETTINGS MANUAL DELETE FLOW
    Paste at END of JS
@@ -30450,7 +30726,6 @@ function showAfDeleteAccountInfoNew() {
 
   box.classList.toggle("af-hidden");
 }
-  
 /* =========================================================
    AF NEXUS COMMUNITY V2 - EDGE FUNCTION VERSION
    Paste at END of your main JS file
@@ -33919,6 +34194,352 @@ function logoutStudentafWithMessage() {
   } catch (error) {
     console.error("logoutStudentafWithMessage failed:", error);
     showAfToastMessage("Logout failed. Please try again.", "error");
+  }
+}
+
+/* =========================================================
+   ACCOUNT DELETE REQUEST V2 - AF
+   New IDs/classes. Safe to paste at END.
+   Only submits request data to Supabase Edge Function.
+========================================================= */
+
+const AF_ACCOUNT_DELETE_REQUEST_EDGE_URL_V2 =
+  "https://afooyyydhlwngzssgqih.supabase.co/functions/v1/account-delete-request";
+
+function afByIdV2(id) {
+  return document.getElementById(id);
+}
+
+function toggleAfExtraSettingsV2() {
+  try {
+    const toggleBtn = afByIdV2("afExtraSettingsToggleV2");
+    const body = afByIdV2("afExtraSettingsBodyV2");
+    const arrow = afByIdV2("afExtraSettingsArrowV2");
+
+    if (!body) return;
+
+    const willOpen = body.classList.contains("af-extra-hidden-v2");
+
+    body.classList.toggle("af-extra-hidden-v2", !willOpen);
+
+    if (toggleBtn) {
+      toggleBtn.classList.toggle("is-open", willOpen);
+      toggleBtn.setAttribute("aria-expanded", willOpen ? "true" : "false");
+    }
+
+    if (arrow) {
+      arrow.textContent = willOpen ? "⌃" : "⌄";
+    }
+  } catch (error) {
+    console.error("toggleAfExtraSettingsV2 failed:", error);
+  }
+}
+
+function openAfDeleteAccountRequestV2() {
+  try {
+    const btn = afByIdV2("afDeleteAccountOpenBtnV2");
+    const box = afByIdV2("afDeleteAccountRequestBoxV2");
+
+    if (!box) return;
+
+    const willOpen = box.classList.contains("af-extra-hidden-v2");
+
+    box.classList.toggle("af-extra-hidden-v2", !willOpen);
+
+    if (btn) {
+      btn.setAttribute("aria-expanded", willOpen ? "true" : "false");
+    }
+
+    if (willOpen) {
+      window.setTimeout(prefillAfDeleteAccountFormV2, 80);
+      window.setTimeout(function () {
+        try {
+          box.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        } catch (error) {}
+      }, 120);
+    }
+  } catch (error) {
+    console.error("openAfDeleteAccountRequestV2 failed:", error);
+  }
+}
+
+function setAfDeleteMessageV2(type, message) {
+  try {
+    const messageBox = afByIdV2("afDeleteMessageV2");
+    if (!messageBox) return;
+
+    messageBox.classList.remove("is-success", "is-error");
+    messageBox.textContent = "";
+
+    if (!message) {
+      messageBox.style.display = "none";
+      return;
+    }
+
+    messageBox.textContent = message;
+    messageBox.classList.add(type === "success" ? "is-success" : "is-error");
+    messageBox.style.display = "block";
+  } catch (error) {
+    console.error("setAfDeleteMessageV2 failed:", error);
+  }
+}
+
+function getAfFieldValueV2(id) {
+  const element = afByIdV2(id);
+  if (!element) return "";
+  return String(element.value || "").trim();
+}
+
+function getAfDeviceIdV2() {
+  try {
+    const key = "af_device_id";
+    let deviceId = localStorage.getItem(key);
+
+    if (!deviceId) {
+      deviceId =
+        "web_" +
+        Date.now().toString(36) +
+        "_" +
+        Math.random().toString(36).slice(2);
+      localStorage.setItem(key, deviceId);
+    }
+
+    return deviceId;
+  } catch (error) {
+    return "unknown_device";
+  }
+}
+
+function getAfCurrentStudentV2() {
+  const keys = [
+    "af_current_student",
+    "af_logged_student",
+    "af_student_session",
+    "af_student_data",
+    "studentaf_session",
+    "student_session_af",
+    "currentStudentaf",
+    "current_student_af"
+  ];
+
+  for (let i = 0; i < keys.length; i += 1) {
+    try {
+      const raw = localStorage.getItem(keys[i]);
+      if (!raw) continue;
+
+      const parsed = JSON.parse(raw);
+      if (parsed && typeof parsed === "object") {
+        const student = parsed.student || parsed.data || parsed.user || parsed;
+        if (student && typeof student === "object") return student;
+      }
+    } catch (error) {}
+  }
+
+  return {
+    id:
+      localStorage.getItem("af_student_id") ||
+      localStorage.getItem("student_id_af") ||
+      localStorage.getItem("studentIdaf") ||
+      "",
+    student_id:
+      localStorage.getItem("af_student_identifier") ||
+      localStorage.getItem("student_id_af") ||
+      localStorage.getItem("studentIdaf") ||
+      "",
+    name:
+      localStorage.getItem("af_student_name") ||
+      localStorage.getItem("student_name_af") ||
+      localStorage.getItem("studentNameaf") ||
+      "",
+    email:
+      localStorage.getItem("af_student_email") ||
+      localStorage.getItem("student_email_af") ||
+      localStorage.getItem("studentEmailaf") ||
+      "",
+    phone:
+      localStorage.getItem("af_student_phone") ||
+      localStorage.getItem("student_phone_af") ||
+      localStorage.getItem("studentPhoneaf") ||
+      ""
+  };
+}
+
+function prefillAfDeleteAccountFormV2() {
+  try {
+    const student = getAfCurrentStudentV2();
+
+    const fullNameInput = afByIdV2("afDeleteFullNameV2");
+    const emailInput = afByIdV2("afDeleteEmailV2");
+    const phoneInput = afByIdV2("afDeletePhoneV2");
+
+    const name =
+      student.name ||
+      student.full_name ||
+      student.student_name ||
+      student.display_name ||
+      "";
+
+    const email =
+      student.email ||
+      student.registered_email ||
+      student.student_email ||
+      "";
+
+    const phone =
+      student.phone ||
+      student.mobile ||
+      student.mobile_number ||
+      student.registered_phone ||
+      "";
+
+    if (fullNameInput && !fullNameInput.value) fullNameInput.value = name;
+    if (emailInput && !emailInput.value) emailInput.value = email;
+    if (phoneInput && !phoneInput.value) phoneInput.value = phone;
+  } catch (error) {
+    console.error("prefillAfDeleteAccountFormV2 failed:", error);
+  }
+}
+
+function validateAfDeletePayloadV2(payload) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+  const indianMobileRegex = /^(\+91)?[6-9]\d{9}$/;
+  const internationalMobileRegex = /^\+\d{8,15}$/;
+  const normalizedPhone = payload.registered_phone.replace(/[^\d+]/g, "");
+
+  if (payload.full_name.length < 2) {
+    return "Please enter your full name.";
+  }
+
+  if (!emailRegex.test(payload.registered_email)) {
+    return "Please enter a valid registered email.";
+  }
+
+  if (
+    !indianMobileRegex.test(normalizedPhone) &&
+    !internationalMobileRegex.test(normalizedPhone)
+  ) {
+    return "Please enter a valid registered phone number.";
+  }
+
+  if (!payload.delete_reason) {
+    return "Please select why you want to delete your account.";
+  }
+
+  if (payload.additional_details.length < 10) {
+    return "Please explain your reason in at least 10 characters.";
+  }
+
+  const confirmBox = afByIdV2("afDeleteConfirmV2");
+  if (!confirmBox || !confirmBox.checked) {
+    return "Please confirm the account deletion policy.";
+  }
+
+  return "";
+}
+
+async function submitAfDeleteAccountRequestV2(event) {
+  event.preventDefault();
+
+  const submitBtn = afByIdV2("afDeleteSubmitBtnV2");
+
+  try {
+    setAfDeleteMessageV2("", "");
+
+    const student = getAfCurrentStudentV2();
+
+    const payload = {
+      student_id:
+        student.id ||
+        student.uuid ||
+        student.student_uuid ||
+        student.student_id ||
+        null,
+
+      student_identifier:
+        student.student_id ||
+        student.phone ||
+        student.mobile ||
+        student.mobile_number ||
+        student.email ||
+        null,
+
+      student_name:
+        student.name ||
+        student.full_name ||
+        student.student_name ||
+        null,
+
+      full_name: getAfFieldValueV2("afDeleteFullNameV2"),
+      registered_email: getAfFieldValueV2("afDeleteEmailV2").toLowerCase(),
+      registered_phone: getAfFieldValueV2("afDeletePhoneV2"),
+      delete_reason: getAfFieldValueV2("afDeleteReasonV2"),
+      additional_details: getAfFieldValueV2("afDeleteDetailsV2"),
+
+      page_url: window.location.href,
+      user_agent: navigator.userAgent,
+      device_id: getAfDeviceIdV2()
+    };
+
+    const validationError = validateAfDeletePayloadV2(payload);
+    if (validationError) {
+      setAfDeleteMessageV2("error", validationError);
+      return;
+    }
+
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Submitting Request...";
+    }
+
+    const response = await fetch(AF_ACCOUNT_DELETE_REQUEST_EDGE_URL_V2, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": typeof SUPABASE_ANON_KEY !== "undefined" ? SUPABASE_ANON_KEY : "",
+        "Authorization":
+          typeof SUPABASE_ANON_KEY !== "undefined"
+            ? "Bearer " + SUPABASE_ANON_KEY
+            : ""
+      },
+      body: JSON.stringify(payload)
+    });
+
+    let result = null;
+
+    try {
+      result = await response.json();
+    } catch (jsonError) {
+      result = null;
+    }
+
+    if (!response.ok || !result || result.success !== true) {
+      throw new Error(
+        result && result.message
+          ? result.message
+          : "Unable to submit deletion request right now."
+      );
+    }
+
+    const form = afByIdV2("afDeleteAccountFormV2");
+    if (form) form.reset();
+
+    setAfDeleteMessageV2(
+      "success",
+      "Your account deletion request has been submitted successfully."
+    );
+  } catch (error) {
+    console.error("submitAfDeleteAccountRequestV2 failed:", error);
+    setAfDeleteMessageV2(
+      "error",
+      error && error.message
+        ? error.message
+        : "Something went wrong. Please try again."
+    );
+  } finally {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Submit Deletion Request";
+    }
   }
 }
 
