@@ -20073,6 +20073,131 @@ body.settings-dark-mode #courseaf .course-card-textaf p {
   font-weight: 950 !important;
   text-align: center !important;
 }
+
+    /* =========================================================
+   IMPORTANT: COURSE FETCH UI OVERRIDE
+   Paste at END of CSS
+========================================================= */
+
+#courseaf #chapterModeTitleaf,
+#courseaf #contentTitleaf,
+#courseaf #learningTitleaf,
+#courseaf .chapter-itemaf strong,
+#courseaf .content-itemaf strong,
+#courseaf .af-real-chapter-card strong,
+#courseaf .af-real-content-card strong {
+  color: #ffffff !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+#courseaf #contentSubtitleaf,
+#courseaf .student-dash-subaf,
+#courseaf .chapter-itemaf small,
+#courseaf .content-itemaf small,
+#courseaf .af-real-chapter-card small,
+#courseaf .af-real-content-card small {
+  color: rgba(255, 255, 255, 0.86) !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.86) !important;
+}
+
+#courseaf .af-course-loading-card,
+#courseaf .af-course-empty-card,
+#courseaf .af-course-inline-message {
+  width: 100% !important;
+  padding: 18px !important;
+  border-radius: 20px !important;
+  background: rgba(8, 15, 31, 0.78) !important;
+  border: 1px solid rgba(148, 163, 184, 0.18) !important;
+  color: #ffffff !important;
+  box-sizing: border-box !important;
+}
+
+#courseaf .af-course-loading-card {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+#courseaf .af-course-loading-card span {
+  font-size: 22px !important;
+}
+
+#courseaf .af-course-loading-card strong,
+#courseaf .af-course-empty-card strong,
+#courseaf .af-course-inline-message h3 {
+  color: #ffffff !important;
+  font-size: 14px !important;
+  font-weight: 950 !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+#courseaf .af-course-empty-card p,
+#courseaf .af-course-inline-message p {
+  margin: 8px 0 0 !important;
+  color: rgba(255, 255, 255, 0.78) !important;
+  font-size: 13px !important;
+  line-height: 1.45 !important;
+  font-weight: 800 !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.78) !important;
+}
+
+#courseaf .af-course-inline-icon {
+  width: 42px !important;
+  height: 42px !important;
+  display: grid !important;
+  place-items: center !important;
+  border-radius: 14px !important;
+  background: rgba(37, 99, 235, 0.18) !important;
+  margin-bottom: 10px !important;
+  font-size: 22px !important;
+}
+
+#courseaf .af-real-chapter-card,
+#courseaf .af-real-content-card {
+  width: 100% !important;
+  padding: 15px !important;
+  border-radius: 18px !important;
+  background: rgba(8, 15, 31, 0.78) !important;
+  border: 1px solid rgba(148, 163, 184, 0.18) !important;
+  box-shadow: none !important;
+}
+
+#courseaf .af-real-chapter-card .chapter-item-leftaf strong,
+#courseaf .af-real-content-card .content-item-leftaf strong {
+  color: #ffffff !important;
+  font-size: 14px !important;
+  line-height: 1.25 !important;
+  font-weight: 950 !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+#courseaf .af-real-chapter-card .chapter-item-leftaf small,
+#courseaf .af-real-content-card .content-item-leftaf small {
+  color: rgba(255, 255, 255, 0.82) !important;
+  font-size: 12px !important;
+  line-height: 1.45 !important;
+  font-weight: 800 !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.82) !important;
+}
+
+#courseaf .af-real-chapter-card .chapter-item-arrowaf,
+#courseaf .af-real-content-card .content-item-actionaf {
+  min-width: 58px !important;
+  padding: 8px 10px !important;
+  border-radius: 999px !important;
+  background: rgba(37, 99, 235, 0.18) !important;
+  color: #93c5fd !important;
+  font-size: 11px !important;
+  font-weight: 950 !important;
+  text-align: center !important;
+  -webkit-text-fill-color: #93c5fd !important;
+}
   </style>
 </head>
 
@@ -27219,59 +27344,17 @@ function saveStudentSessionaf(student, sessionToken, deviceId) {
   }
 }
 
-/* =========================
-   COURSE SAFE LOADER
-========================= */
-
-function loadStudentCoursesSafeAF() {
-  try {
-    syncStudentAuthAndCourseStateAF();
-
-    if (!afStudentIsLoggedInSeparated()) {
-      return;
-    }
-
-    if (typeof loadStudentCourses === "function") {
-      loadStudentCourses();
-    }
-
-    if (typeof loadMyCourses === "function") {
-      loadMyCourses();
-    }
-
-    if (typeof loadStudentDashboard === "function") {
-      loadStudentDashboard();
-    }
-
-    if (typeof afLoadStudentDashboard === "function") {
-      afLoadStudentDashboard();
-    }
-
-    if (typeof openCourseSectionAfterLoginaf === "function") {
-      const student = {
-        id: localStorage.getItem("af_student_uuid") || "",
-        student_id: localStorage.getItem("af_student_id") || "",
-        mobile: localStorage.getItem("af_student_mobile") || "",
-        name: localStorage.getItem("af_student_name") || "Student",
-        email: localStorage.getItem("af_student_email") || ""
-      };
-
-      openCourseSectionAfterLoginaf(student);
-    }
-  } catch (error) {
-    console.error("loadStudentCoursesSafeAF failed:", error);
-  }
-}
-
-
+<script>
 /* =========================================================
-   COURSE SECTION JS - AF
-   FIXED FOR NEW #courseaf + OLD COURSE FLOW IDS
+   ACADEMEFORGE COURSE SECTION - COMPLETE FIXED JS
+   Replace old course JS + all old course patches with this single script.
 
-   This replacement keeps:
-   - Same backend: student-courses-af
-   - Same session keys
-   - Same old HTML IDs:
+   Requires existing:
+   - Supabase client as studentDb OR supabase + SUPABASE_PROJECT_URL + SUPABASE_ANON_KEY
+   - HTML IDs:
+     courseaf
+     studentCourseLoggedOutStateaf
+     studentCourseUnlockedAreaaf
      courseSelectBox
      courseCardsaf
      noCourseBoxaf
@@ -27279,12 +27362,24 @@ function loadStudentCoursesSafeAF() {
      learningBoxaf
      chapterBoxaf
      contentBoxaf
+     studentWelcomeTextaf
+     courseDetailIconaf
+     courseTitleaf
+     courseIntroaf
+     courseDetailsaf
+     courseSyllabusaf
+     courseFacilitiesaf
+     learningTitleaf
+     chapterModeTitleaf
      chapterListaf
+     contentTitleaf
+     contentSubtitleaf
      contentListaf
 
-   Delete old course JS and paste this after:
-   1. Supabase/studentDb setup
-   2. Student login/create JS
+   Backend:
+   - Edge Function: student-courses-af
+   - Tables fallback:
+     chapters, lectures, notes
 ========================================================= */
 
 (function () {
@@ -27292,20 +27387,31 @@ function loadStudentCoursesSafeAF() {
 
   var AF_COURSE_EDGE_FUNCTION = "student-courses-af";
 
+  var AF_TABLES = {
+    chapters: "chapters",
+    lectures: "lectures",
+    notes: "notes"
+  };
+
+  var AF_CACHE_VERSION = "v2";
+  var AF_CACHE_TTL_MS = 6 * 60 * 60 * 1000;
+
   var afCourseState = {
     loading: false,
     courses: [],
     selectedCourse: null,
-    selectedMode: "",
+    selectedMode: "lectures",
     selectedChapter: null,
     lastLoadedAt: 0
   };
 
+  window.afCourseState = afCourseState;
+
   /* =========================
-     BASIC HELPERS
+     CORE HELPERS
   ========================= */
 
-  function afCourseBackend() {
+  function afCourseDb() {
     try {
       if (typeof studentDb !== "undefined" && studentDb) {
         return studentDb;
@@ -27319,9 +27425,10 @@ function loadStudentCoursesSafeAF() {
         return supabase.createClient(SUPABASE_PROJECT_URL, SUPABASE_ANON_KEY);
       }
 
+      console.error("AF Course: Supabase client missing.");
       return null;
     } catch (error) {
-      console.error("afCourseBackend failed:", error);
+      console.error("afCourseDb failed:", error);
       return null;
     }
   }
@@ -27330,14 +27437,14 @@ function loadStudentCoursesSafeAF() {
     return document.getElementById(id);
   }
 
-  function afCourseSafeText(value, fallback) {
+  function afCourseText(value, fallback) {
     if (value === null || value === undefined) return fallback || "";
     var text = String(value).trim();
     return text ? text : fallback || "";
   }
 
-  function afCourseEscapeHtml(value) {
-    return afCourseSafeText(value, "")
+  function afCourseHtml(value) {
+    return afCourseText(value, "")
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;")
@@ -27345,17 +27452,32 @@ function loadStudentCoursesSafeAF() {
       .replace(/'/g, "&#039;");
   }
 
-  function afCourseEscapeAttr(value) {
-    return afCourseEscapeHtml(value).replace(/`/g, "&#096;");
+  function afCourseAttr(value) {
+    return afCourseHtml(value).replace(/`/g, "&#096;");
+  }
+
+  function afCourseSetText(id, value) {
+    var el = afCourseEl(id);
+    if (el) el.textContent = value || "";
+  }
+
+  function afCourseSetHtml(id, value) {
+    var el = afCourseEl(id);
+    if (el) el.innerHTML = value || "";
   }
 
   function afCourseIsUuid(value) {
+    return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{12}$/i.test(
+      String(value || "").trim()
+    );
+  }
+
+  function afCourseSafeJsonParse(value, fallback) {
     try {
-      return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{12}$/i.test(
-        String(value || "").trim()
-      );
+      if (!value) return fallback;
+      return JSON.parse(value);
     } catch (error) {
-      return false;
+      return fallback;
     }
   }
 
@@ -27406,10 +27528,10 @@ function loadStudentCoursesSafeAF() {
   function afCourseFormatDate(value) {
     try {
       if (!value) return "";
-
       var date = new Date(value);
+
       if (Number.isNaN(date.getTime())) {
-        return afCourseSafeText(value, "");
+        return afCourseText(value, "");
       }
 
       return date.toLocaleDateString("en-IN", {
@@ -27418,8 +27540,39 @@ function loadStudentCoursesSafeAF() {
         year: "numeric"
       });
     } catch (error) {
-      return afCourseSafeText(value, "");
+      return afCourseText(value, "");
     }
+  }
+
+  function afCourseUniqueArray(values) {
+    var seen = {};
+    var output = [];
+
+    values.forEach(function (value) {
+      var text = afCourseText(value, "");
+      if (!text) return;
+      if (seen[text]) return;
+      seen[text] = true;
+      output.push(text);
+    });
+
+    return output;
+  }
+
+  function afCourseSortRows(rows) {
+    return rows.sort(function (a, b) {
+      var ao = Number(a.order_no || a.sort_order || a.position || a.chapter_no || 0);
+      var bo = Number(b.order_no || b.sort_order || b.position || b.chapter_no || 0);
+
+      if (ao !== bo) return ao - bo;
+
+      var ac = new Date(a.created_at || a.inserted_at || 0).getTime();
+      var bc = new Date(b.created_at || b.inserted_at || 0).getTime();
+
+      if (!Number.isNaN(ac) && !Number.isNaN(bc) && ac !== bc) return ac - bc;
+
+      return 0;
+    });
   }
 
   /* =========================
@@ -27436,22 +27589,35 @@ function loadStudentCoursesSafeAF() {
       var studentEmail = localStorage.getItem("af_student_email");
       var sessionToken = localStorage.getItem("af_session_token");
 
+      var legacyStudentId =
+        localStorage.getItem("af_logged_student_id") ||
+        localStorage.getItem("student_id_af") ||
+        localStorage.getItem("studentIdaf") ||
+        localStorage.getItem("student_id") ||
+        localStorage.getItem("loggedStudentIdaf") ||
+        localStorage.getItem("logged_student_id") ||
+        "";
+
+      if (!studentId && legacyStudentId) {
+        studentId = legacyStudentId;
+      }
+
       var isLoggedIn =
         loggedIn === "true" ||
         loggedIn === "1" ||
         afCourseIsUuid(studentUuid) ||
-        (studentId && String(studentId).trim().length >= 4) ||
-        (studentMobile && String(studentMobile).trim().length >= 8) ||
-        (sessionToken && String(sessionToken).trim().length >= 8);
+        afCourseText(studentId, "").length >= 1 ||
+        afCourseText(studentMobile, "").length >= 8 ||
+        afCourseText(sessionToken, "").length >= 8;
 
       return {
         isLoggedIn: Boolean(isLoggedIn),
-        studentUuid: afCourseSafeText(studentUuid, ""),
-        studentId: afCourseSafeText(studentId, ""),
-        studentName: afCourseSafeText(studentName, "Student"),
-        studentMobile: afCourseSafeText(studentMobile, ""),
-        studentEmail: afCourseSafeText(studentEmail, ""),
-        sessionToken: afCourseSafeText(sessionToken, "")
+        studentUuid: afCourseText(studentUuid, ""),
+        studentId: afCourseText(studentId, ""),
+        studentName: afCourseText(studentName, "Student"),
+        studentMobile: afCourseText(studentMobile, ""),
+        studentEmail: afCourseText(studentEmail, ""),
+        sessionToken: afCourseText(sessionToken, "")
       };
     } catch (error) {
       console.error("afCourseGetSession failed:", error);
@@ -27468,9 +27634,160 @@ function loadStudentCoursesSafeAF() {
     }
   }
 
+  function afCourseGetCacheStudentKey() {
+    var session = afCourseGetSession();
+
+    return (
+      session.studentUuid ||
+      session.studentId ||
+      session.studentMobile ||
+      session.sessionToken ||
+      "guest"
+    );
+  }
+
+  function afCourseCacheKey(type, id) {
+    return (
+      "af_course_cache_" +
+      AF_CACHE_VERSION +
+      "_" +
+      afCourseGetCacheStudentKey() +
+      "_" +
+      type +
+      "_" +
+      afCourseText(id, "root")
+    );
+  }
+
+  function afCourseReadCache(type, id) {
+    try {
+      var key = afCourseCacheKey(type, id);
+      var payload = afCourseSafeJsonParse(localStorage.getItem(key), null);
+
+      if (!payload || typeof payload !== "object") return null;
+      if (payload.version !== AF_CACHE_VERSION) return null;
+      if (!payload.saved_at) return null;
+
+      if (Date.now() - Number(payload.saved_at) > AF_CACHE_TTL_MS) {
+        localStorage.removeItem(key);
+        return null;
+      }
+
+      return payload.data || null;
+    } catch (error) {
+      console.error("afCourseReadCache failed:", error);
+      return null;
+    }
+  }
+
+  function afCourseWriteCache(type, id, data) {
+    try {
+      var key = afCourseCacheKey(type, id);
+
+      localStorage.setItem(
+        key,
+        JSON.stringify({
+          version: AF_CACHE_VERSION,
+          saved_at: Date.now(),
+          student_key: afCourseGetCacheStudentKey(),
+          type: type,
+          id: afCourseText(id, "root"),
+          data: data
+        })
+      );
+
+      return true;
+    } catch (error) {
+      console.warn("afCourseWriteCache failed:", error);
+      return false;
+    }
+  }
+
+  function afCourseRemoveCachePrefix(prefix) {
+    try {
+      var keys = [];
+
+      for (var index = 0; index < localStorage.length; index += 1) {
+        var key = localStorage.key(index);
+        if (key && key.indexOf(prefix) === 0) keys.push(key);
+      }
+
+      keys.forEach(function (key) {
+        localStorage.removeItem(key);
+      });
+    } catch (error) {
+      console.error("afCourseRemoveCachePrefix failed:", error);
+    }
+  }
+
+  window.clearAfCourseDeviceCache = function clearAfCourseDeviceCache() {
+    afCourseRemoveCachePrefix("af_course_cache_" + AF_CACHE_VERSION + "_" + afCourseGetCacheStudentKey());
+  };
+
+  window.clearAllAfCourseDeviceCache = function clearAllAfCourseDeviceCache() {
+    afCourseRemoveCachePrefix("af_course_cache_" + AF_CACHE_VERSION + "_");
+  };
+
+  /* =========================
+     PANEL HELPERS
+  ========================= */
+
   function afCourseSetHidden(el, hidden) {
     if (!el) return;
     el.hidden = Boolean(hidden);
+  }
+
+  function afCourseHideAllPanels() {
+    var ids = [
+      "courseSelectBox",
+      "noCourseBoxaf",
+      "courseDetailsBoxaf",
+      "learningBoxaf",
+      "chapterBoxaf",
+      "contentBoxaf"
+    ];
+
+    ids.forEach(function (id) {
+      var el = afCourseEl(id);
+      if (!el) return;
+      el.classList.add("hidden-box");
+      el.style.display = "none";
+    });
+  }
+
+  function afCourseShowPanel(panelId) {
+    afCourseHideAllPanels();
+
+    var panel = afCourseEl(panelId);
+    if (!panel) return;
+
+    panel.classList.remove("hidden-box");
+    panel.style.display = "block";
+  }
+
+  function afCourseShowInlineMessage(panelId, icon, title, message) {
+    if (panelId === "courseSelectBox") {
+      afCourseShowPanel("courseSelectBox");
+
+      afCourseSetHtml(
+        "courseCardsaf",
+        '<div class="af-course-inline-message">' +
+          '<div class="af-course-inline-icon" aria-hidden="true">' +
+          afCourseHtml(icon || "📚") +
+          "</div>" +
+          "<h3>" +
+          afCourseHtml(title || "Courses") +
+          "</h3>" +
+          "<p>" +
+          afCourseHtml(message || "") +
+          "</p>" +
+          "</div>"
+      );
+
+      return;
+    }
+
+    afCourseShowPanel(panelId);
   }
 
   function syncStudentCourseAuthStateAF() {
@@ -27486,6 +27803,9 @@ function loadStudentCoursesSafeAF() {
         afCourseHideAllPanels();
         afCourseState.courses = [];
         afCourseState.loading = false;
+        afCourseState.selectedCourse = null;
+        afCourseState.selectedMode = "lectures";
+        afCourseState.selectedChapter = null;
         return false;
       }
 
@@ -27500,92 +27820,11 @@ function loadStudentCoursesSafeAF() {
   }
 
   /* =========================
-     PANEL HELPERS
-  ========================= */
-
-  function afCourseHideAllPanels() {
-    try {
-      var ids = [
-        "courseSelectBox",
-        "noCourseBoxaf",
-        "courseDetailsBoxaf",
-        "learningBoxaf",
-        "chapterBoxaf",
-        "contentBoxaf"
-      ];
-
-      ids.forEach(function (id) {
-        var el = afCourseEl(id);
-
-        if (el) {
-          el.classList.add("hidden-box");
-          el.style.display = "none";
-        }
-      });
-    } catch (error) {
-      console.error("afCourseHideAllPanels failed:", error);
-    }
-  }
-
-  function afCourseShowPanel(panelId) {
-    try {
-      afCourseHideAllPanels();
-
-      var panel = afCourseEl(panelId);
-
-      if (panel) {
-        panel.classList.remove("hidden-box");
-        panel.style.display = "block";
-      }
-    } catch (error) {
-      console.error("afCourseShowPanel failed:", error);
-    }
-  }
-
-  function afCourseSetHtml(id, html) {
-    var el = afCourseEl(id);
-    if (el) el.innerHTML = html || "";
-  }
-
-  function afCourseSetText(id, text) {
-    var el = afCourseEl(id);
-    if (el) el.textContent = text || "";
-  }
-
-  function afCourseShowInlineMessage(panelId, icon, title, message) {
-    try {
-      if (panelId === "courseSelectBox") {
-        afCourseShowPanel("courseSelectBox");
-
-        afCourseSetHtml(
-          "courseCardsaf",
-          '<div class="af-course-inline-message">' +
-            '<div class="af-course-inline-icon" aria-hidden="true">' + afCourseEscapeHtml(icon || "📚") + '</div>' +
-            '<h3>' + afCourseEscapeHtml(title || "Courses") + '</h3>' +
-            '<p>' + afCourseEscapeHtml(message || "") + '</p>' +
-          '</div>'
-        );
-
-        return;
-      }
-
-      if (panelId === "noCourseBoxaf") {
-        afCourseShowPanel("noCourseBoxaf");
-        return;
-      }
-
-      afCourseShowPanel(panelId);
-    } catch (error) {
-      console.error("afCourseShowInlineMessage failed:", error);
-    }
-  }
-
-  /* =========================
-     BACKEND
+     EDGE FUNCTION
   ========================= */
 
   async function afCourseEdgeCall(functionName, payload) {
-    var backend = afCourseBackend();
+    var db = afCourseDb();
 
     if (!navigator.onLine) {
       return {
@@ -27594,7 +27833,7 @@ function loadStudentCoursesSafeAF() {
       };
     }
 
-    if (!backend || !backend.functions || typeof backend.functions.invoke !== "function") {
+    if (!db || !db.functions || typeof db.functions.invoke !== "function") {
       return {
         ok: false,
         message: "Student backend is not connected."
@@ -27602,7 +27841,7 @@ function loadStudentCoursesSafeAF() {
     }
 
     try {
-      var response = await backend.functions.invoke(functionName, {
+      var response = await db.functions.invoke(functionName, {
         body: payload || {}
       });
 
@@ -27631,7 +27870,7 @@ function loadStudentCoursesSafeAF() {
 
       return response.data;
     } catch (error) {
-      console.error("afCourseEdgeCall catch:", error);
+      console.error("afCourseEdgeCall failed:", error);
 
       return {
         ok: false,
@@ -27654,45 +27893,62 @@ function loadStudentCoursesSafeAF() {
       };
     }
 
-    var title = afCourseSafeText(
+    var title = afCourseText(
       item.title ||
-      item.name ||
-      item.lecture_title ||
-      item.note_title ||
-      item.content_title ||
-      item.topic ||
-      (mode === "notes" ? "Note " + (index + 1) : "Lecture " + (index + 1)),
+        item.name ||
+        item.lecture_title ||
+        item.note_title ||
+        item.content_title ||
+        item.topic ||
+        item.heading ||
+        item.file_name ||
+        item.video_title ||
+        item.pdf_title ||
+        (mode === "notes" ? "Note " + (index + 1) : "Lecture " + (index + 1)),
       mode === "notes" ? "Note " + (index + 1) : "Lecture " + (index + 1)
     );
 
-    var description = afCourseSafeText(
+    var description = afCourseText(
       item.description ||
-      item.details ||
-      item.subtitle ||
-      item.short_description,
+        item.details ||
+        item.subtitle ||
+        item.short_description ||
+        item.content_description ||
+        item.summary,
       ""
     );
 
-    var url = afCourseSafeText(
+    var url = afCourseText(
       item.url ||
-      item.link ||
-      item.video_url ||
-      item.note_url ||
-      item.file_url ||
-      item.pdf_url ||
-      item.content_url ||
-      "",
+        item.link ||
+        item.video_url ||
+        item.note_url ||
+        item.file_url ||
+        item.pdf_url ||
+        item.content_url ||
+        item.drive_url ||
+        item.youtube_url ||
+        item.vimeo_url ||
+        item.source_url ||
+        item.material_url,
       ""
     );
-
-    var type = afCourseSafeText(item.type || mode || "", mode || "");
 
     return {
-      id: afCourseSafeText(item.id || item.content_id || index, String(index)),
+      id: afCourseText(
+        item.id ||
+          item.content_id ||
+          item.lecture_id ||
+          item.note_id ||
+          item.uuid ||
+          index,
+        String(index)
+      ),
       title: title,
       description: description,
       url: url,
-      type: type,
+      type: mode,
+      order_no: Number(item.order_no || item.sort_order || item.position || index + 1),
       raw: item
     };
   }
@@ -27708,21 +27964,25 @@ function loadStudentCoursesSafeAF() {
       };
     }
 
-    var title = afCourseSafeText(
+    var title = afCourseText(
       chapter.title ||
-      chapter.name ||
-      chapter.chapter_title ||
-      chapter.chapter_name ||
-      chapter.topic ||
-      "Chapter " + (index + 1),
+        chapter.name ||
+        chapter.chapter_title ||
+        chapter.chapter_name ||
+        chapter.topic ||
+        chapter.heading ||
+        "Chapter " + (index + 1),
       "Chapter " + (index + 1)
     );
 
-    var description = afCourseSafeText(
+    var description = afCourseText(
       chapter.description ||
-      chapter.details ||
-      chapter.subtitle ||
-      "",
+        chapter.details ||
+        chapter.chapter_description ||
+        chapter.short_description ||
+        chapter.subtitle ||
+        chapter.intro ||
+        chapter.summary,
       ""
     );
 
@@ -27732,6 +27992,7 @@ function loadStudentCoursesSafeAF() {
       chapter.video_lectures ||
       chapter.lecture_list ||
       chapter.classes ||
+      chapter.contents ||
       [];
 
     var notesRaw =
@@ -27751,9 +28012,12 @@ function loadStudentCoursesSafeAF() {
     });
 
     return {
-      id: afCourseSafeText(chapter.id || chapter.chapter_id || index, String(index)),
+      id: afCourseText(chapter.id || chapter.chapter_id || chapter.uuid || index, String(index)),
+      chapter_id: afCourseText(chapter.chapter_id || chapter.id || chapter.uuid || index, String(index)),
       title: title,
+      name: title,
       description: description,
+      order_no: Number(chapter.order_no || chapter.sort_order || chapter.chapter_no || chapter.position || index + 1),
       lectures: lectures,
       notes: notes,
       raw: chapter,
@@ -27761,9 +28025,9 @@ function loadStudentCoursesSafeAF() {
     };
   }
 
-  function afCourseExtractChapters(courseRaw, normalizedCourse) {
+  function afCourseExtractChapters(rawCourse, normalizedCourse) {
     try {
-      var raw = courseRaw || {};
+      var raw = rawCourse || {};
 
       var chaptersRaw =
         raw.chapters ||
@@ -27772,36 +28036,37 @@ function loadStudentCoursesSafeAF() {
         raw.syllabus_chapters ||
         raw.modules ||
         raw.units ||
+        raw.lessons ||
         [];
 
       var parsedChapters = afCourseArrayFromAny(chaptersRaw);
 
       if (parsedChapters.length) {
-        return parsedChapters.map(function (chapter, index) {
-          return afCourseNormalizeChapter(chapter, index, normalizedCourse);
-        });
+        return parsedChapters
+          .map(function (chapter, index) {
+            return afCourseNormalizeChapter(chapter, index, normalizedCourse);
+          })
+          .sort(function (a, b) {
+            return Number(a.order_no || 0) - Number(b.order_no || 0);
+          });
       }
 
-      /*
-        Fallback:
-        If backend sends flat lectures/notes directly on course,
-        create one virtual chapter so Continue Learning still works.
-      */
       var flatLectures = afCourseArrayFromAny(
         raw.lectures ||
-        raw.videos ||
-        raw.video_lectures ||
-        raw.lecture_list ||
-        []
+          raw.videos ||
+          raw.video_lectures ||
+          raw.lecture_list ||
+          raw.classes ||
+          []
       );
 
       var flatNotes = afCourseArrayFromAny(
         raw.notes ||
-        raw.pdfs ||
-        raw.study_notes ||
-        raw.note_list ||
-        raw.materials ||
-        []
+          raw.pdfs ||
+          raw.study_notes ||
+          raw.note_list ||
+          raw.materials ||
+          []
       );
 
       if (flatLectures.length || flatNotes.length) {
@@ -27830,90 +28095,95 @@ function loadStudentCoursesSafeAF() {
   function afCourseNormalizeCourse(rawCourse) {
     var course = rawCourse && typeof rawCourse === "object" ? rawCourse : {};
 
-    var id = afCourseSafeText(
+    var id = afCourseText(
       course.id ||
-      course.course_id ||
-      course.batch_id ||
-      course.enrollment_id ||
-      course.access_id,
+        course.course_id ||
+        course.batch_id ||
+        course.enrollment_id ||
+        course.access_id ||
+        course.uuid,
       ""
     );
 
-    var title = afCourseSafeText(
+    var title = afCourseText(
       course.title ||
-      course.course_title ||
-      course.course_name ||
-      course.name ||
-      course.batch_name,
+        course.course_title ||
+        course.course_name ||
+        course.name ||
+        course.batch_name,
       "Course"
     );
 
-    var intro = afCourseSafeText(
+    var intro = afCourseText(
       course.intro ||
-      course.short_description ||
-      course.description ||
-      course.course_description ||
-      course.subtitle,
+        course.short_description ||
+        course.description ||
+        course.course_description ||
+        course.subtitle,
       "Course details will be available soon."
     );
 
-    var details = afCourseSafeText(
+    var details = afCourseText(
       course.details ||
-      course.course_details ||
-      course.full_description ||
-      course.long_description ||
-      course.description,
+        course.course_details ||
+        course.full_description ||
+        course.long_description ||
+        course.description,
       intro
     );
 
-    var icon = afCourseSafeText(course.icon || course.emoji || course.course_icon, "📘");
+    var icon = afCourseText(course.icon || course.emoji || course.course_icon, "📘");
 
-    var status = afCourseSafeText(
+    var status = afCourseText(
       course.status ||
-      course.enrollment_status ||
-      course.access_status,
+        course.enrollment_status ||
+        course.access_status,
       "active"
     );
 
-    var batchName = afCourseSafeText(
+    var batchName = afCourseText(
       course.batch_name ||
-      course.batch ||
-      course.group_name,
+        course.batch ||
+        course.group_name,
       ""
     );
 
-    var startDate = afCourseSafeText(
+    var startDate = afCourseText(
       course.start_date ||
-      course.batch_start_date ||
-      course.created_at,
+        course.batch_start_date ||
+        course.created_at,
       ""
     );
 
-    var endDate = afCourseSafeText(
+    var endDate = afCourseText(
       course.end_date ||
-      course.expiry_date ||
-      course.valid_until,
+        course.expiry_date ||
+        course.valid_until,
       ""
     );
 
     var syllabus = afCourseArrayFromAny(
       course.syllabus ||
-      course.course_syllabus ||
-      course.syllabus_points ||
-      course.topics ||
-      []
+        course.course_syllabus ||
+        course.syllabus_points ||
+        course.topics ||
+        []
     );
 
     var facilities = afCourseArrayFromAny(
       course.facilities ||
-      course.course_facilities ||
-      course.features ||
-      []
+        course.course_facilities ||
+        course.features ||
+        []
     );
 
     var normalized = {
       id: id,
+      course_id: afCourseText(course.course_id || id, id),
+      batch_id: afCourseText(course.batch_id || "", ""),
       title: title,
+      course_name: title,
+      name: title,
       intro: intro,
       details: details,
       icon: icon,
@@ -27941,6 +28211,7 @@ function loadStudentCoursesSafeAF() {
       if (Array.isArray(result.enrolled_courses)) return result.enrolled_courses;
       if (Array.isArray(result.batches)) return result.batches;
       if (Array.isArray(result.items)) return result.items;
+      if (Array.isArray(result.enrollments)) return result.enrollments;
 
       return [];
     } catch (error) {
@@ -27949,27 +28220,271 @@ function loadStudentCoursesSafeAF() {
   }
 
   /* =========================
-     RENDER COURSES
+     ID HELPERS
+  ========================= */
+
+  function afCourseCandidateIds(course) {
+    return afCourseUniqueArray([
+      course && course.id,
+      course && course.course_id,
+      course && course.batch_id,
+      course && course.access_course_id,
+      course && course.student_course_id,
+      course && course.enrollment_id,
+      course && course.uuid,
+      course && course.raw && course.raw.id,
+      course && course.raw && course.raw.course_id,
+      course && course.raw && course.raw.batch_id,
+      course && course.raw && course.raw.access_course_id,
+      course && course.raw && course.raw.student_course_id,
+      course && course.raw && course.raw.enrollment_id,
+      course && course.raw && course.raw.uuid
+    ]);
+  }
+
+  function afChapterCandidateIds(chapter) {
+    return afCourseUniqueArray([
+      chapter && chapter.id,
+      chapter && chapter.chapter_id,
+      chapter && chapter.uuid,
+      chapter && chapter.raw && chapter.raw.id,
+      chapter && chapter.raw && chapter.raw.chapter_id,
+      chapter && chapter.raw && chapter.raw.uuid
+    ]);
+  }
+
+  function afCoursePrimaryId(course) {
+    var ids = afCourseCandidateIds(course);
+    return ids[0] || "unknown_course";
+  }
+
+  function afChapterPrimaryId(chapter) {
+    var ids = afChapterCandidateIds(chapter);
+    return ids[0] || "unknown_chapter";
+  }
+
+  /* =========================
+     SUPABASE FETCH FALLBACKS
+  ========================= */
+
+  async function afCourseTrySelect(label, query) {
+    try {
+      var response = await query;
+
+      if (!response) return [];
+
+      if (response.error) {
+        console.warn("AF query skipped:", label, response.error.message || response.error);
+        return [];
+      }
+
+      if (Array.isArray(response.data)) {
+        console.log("AF query success:", label, response.data.length, response.data);
+        return response.data;
+      }
+
+      return [];
+    } catch (error) {
+      console.warn("AF query failed:", label, error);
+      return [];
+    }
+  }
+
+  async function afFetchChaptersFromTables(course) {
+    var db = afCourseDb();
+    if (!db) return [];
+
+    var ids = afCourseCandidateIds(course);
+    if (!ids.length) return [];
+
+    var allRows = [];
+    var seen = {};
+
+    for (var i = 0; i < ids.length; i += 1) {
+      var courseId = ids[i];
+
+      var queryList = [
+        {
+          label: "chapters.course_id=" + courseId,
+          query: db.from(AF_TABLES.chapters).select("*").eq("course_id", courseId)
+        },
+        {
+          label: "chapters.batch_id=" + courseId,
+          query: db.from(AF_TABLES.chapters).select("*").eq("batch_id", courseId)
+        },
+        {
+          label: "chapters.course=" + courseId,
+          query: db.from(AF_TABLES.chapters).select("*").eq("course", courseId)
+        },
+        {
+          label: "chapters.batch=" + courseId,
+          query: db.from(AF_TABLES.chapters).select("*").eq("batch", courseId)
+        },
+        {
+          label: "chapters.course_uuid=" + courseId,
+          query: db.from(AF_TABLES.chapters).select("*").eq("course_uuid", courseId)
+        }
+      ];
+
+      for (var q = 0; q < queryList.length; q += 1) {
+        var rows = await afCourseTrySelect(queryList[q].label, queryList[q].query);
+
+        rows.forEach(function (row) {
+          var key = afCourseText(row.id || row.chapter_id || row.uuid || JSON.stringify(row), "");
+          if (!key || seen[key]) return;
+          seen[key] = true;
+          allRows.push(row);
+        });
+      }
+    }
+
+    allRows = afCourseSortRows(allRows);
+
+    return allRows.map(function (row, index) {
+      return afCourseNormalizeChapter(row, index, course);
+    });
+  }
+
+  async function afFetchContentFromTables(chapter, mode) {
+    var db = afCourseDb();
+    if (!db) return [];
+
+    var safeMode = mode === "notes" ? "notes" : "lectures";
+    var table = safeMode === "notes" ? AF_TABLES.notes : AF_TABLES.lectures;
+    var ids = afChapterCandidateIds(chapter);
+
+    if (!ids.length) return [];
+
+    var allRows = [];
+    var seen = {};
+
+    for (var i = 0; i < ids.length; i += 1) {
+      var chapterId = ids[i];
+
+      var queryList = [
+        {
+          label: table + ".chapter_id=" + chapterId,
+          query: db.from(table).select("*").eq("chapter_id", chapterId)
+        },
+        {
+          label: table + ".chapter=" + chapterId,
+          query: db.from(table).select("*").eq("chapter", chapterId)
+        },
+        {
+          label: table + ".chapter_uuid=" + chapterId,
+          query: db.from(table).select("*").eq("chapter_uuid", chapterId)
+        }
+      ];
+
+      for (var q = 0; q < queryList.length; q += 1) {
+        var rows = await afCourseTrySelect(queryList[q].label, queryList[q].query);
+
+        rows.forEach(function (row) {
+          var key = afCourseText(
+            row.id || row.lecture_id || row.note_id || row.content_id || row.uuid || JSON.stringify(row),
+            ""
+          );
+
+          if (!key || seen[key]) return;
+          seen[key] = true;
+          allRows.push(row);
+        });
+      }
+    }
+
+    allRows = afCourseSortRows(allRows);
+
+    return allRows.map(function (row, index) {
+      return afCourseNormalizeContentItem(row, index, safeMode);
+    });
+  }
+
+  async function afEnsureCourseChapters(course, forceRefresh) {
+    var courseId = afCoursePrimaryId(course);
+    var force = forceRefresh === true || forceRefresh === "force";
+
+    if (!force && Array.isArray(course.chapters) && course.chapters.length > 0) {
+      return course.chapters;
+    }
+
+    if (!force) {
+      var cached = afCourseReadCache("chapters", courseId);
+
+      if (Array.isArray(cached) && cached.length > 0) {
+        course.chapters = cached.map(function (chapter, index) {
+          return afCourseNormalizeChapter(chapter.raw || chapter, index, course);
+        });
+
+        return course.chapters;
+      }
+    }
+
+    var fetched = await afFetchChaptersFromTables(course);
+
+    if (Array.isArray(fetched) && fetched.length > 0) {
+      course.chapters = fetched;
+      afCourseWriteCache("chapters", courseId, fetched);
+      return fetched;
+    }
+
+    course.chapters = Array.isArray(course.chapters) ? course.chapters : [];
+    return course.chapters;
+  }
+
+  async function afEnsureChapterContent(chapter, mode, forceRefresh) {
+    var safeMode = mode === "notes" ? "notes" : "lectures";
+    var chapterId = afChapterPrimaryId(chapter);
+    var force = forceRefresh === true || forceRefresh === "force";
+
+    if (!force) {
+      var existing = safeMode === "notes" ? chapter.notes : chapter.lectures;
+
+      if (Array.isArray(existing) && existing.length > 0) {
+        return existing.map(function (item, index) {
+          return afCourseNormalizeContentItem(item.raw || item, index, safeMode);
+        });
+      }
+
+      var cached = afCourseReadCache(safeMode, chapterId);
+
+      if (Array.isArray(cached) && cached.length > 0) {
+        if (safeMode === "notes") {
+          chapter.notes = cached;
+        } else {
+          chapter.lectures = cached;
+        }
+
+        return cached;
+      }
+    }
+
+    var fetched = await afFetchContentFromTables(chapter, safeMode);
+
+    if (Array.isArray(fetched) && fetched.length > 0) {
+      if (safeMode === "notes") {
+        chapter.notes = fetched;
+      } else {
+        chapter.lectures = fetched;
+      }
+
+      afCourseWriteCache(safeMode, chapterId, fetched);
+      return fetched;
+    }
+
+    return [];
+  }
+
+  /* =========================
+     COURSE CARD RENDER
   ========================= */
 
   function afCourseBuildMeta(course) {
     var meta = [];
 
-    if (course.batchName) {
-      meta.push("Batch: " + course.batchName);
-    }
-
-    if (course.status) {
-      meta.push("Status: " + course.status);
-    }
-
-    if (course.startDate) {
-      meta.push("Start: " + afCourseFormatDate(course.startDate));
-    }
-
-    if (course.endDate) {
-      meta.push("Valid till: " + afCourseFormatDate(course.endDate));
-    }
+    if (course.batchName) meta.push("Batch: " + course.batchName);
+    if (course.status) meta.push("Status: " + course.status);
+    if (course.startDate) meta.push("Start: " + afCourseFormatDate(course.startDate));
+    if (course.endDate) meta.push("Valid till: " + afCourseFormatDate(course.endDate));
 
     return meta;
   }
@@ -27991,53 +28506,73 @@ function loadStudentCoursesSafeAF() {
 
       if (!Array.isArray(courses) || courses.length === 0) {
         afCourseState.courses = [];
+        afCourseWriteCache("courses", "enrolled", []);
         afCourseShowPanel("noCourseBoxaf");
         return;
       }
 
       var normalizedCourses = courses
-        .map(afCourseNormalizeCourse)
+        .map(function (course) {
+          return afCourseNormalizeCourse(course);
+        })
         .filter(function (course) {
           return course && (course.id || course.title);
         });
 
       afCourseState.courses = normalizedCourses;
+      afCourseWriteCache("courses", "enrolled", normalizedCourses);
 
       if (!normalizedCourses.length) {
         afCourseShowPanel("noCourseBoxaf");
         return;
       }
 
-      cards.innerHTML = normalizedCourses.map(function (course, index) {
-        var meta = afCourseBuildMeta(course);
+      cards.innerHTML = normalizedCourses
+        .map(function (course, index) {
+          var meta = afCourseBuildMeta(course);
 
-        var metaHtml = meta.length
-          ? '<div class="course-card-metaaf">' +
-              meta.map(function (item) {
-                return '<span>' + afCourseEscapeHtml(item) + '</span>';
-              }).join("") +
-            '</div>'
-          : "";
+          var metaHtml = meta.length
+            ? '<div class="course-card-metaaf">' +
+              meta
+                .map(function (item) {
+                  return "<span>" + afCourseHtml(item) + "</span>";
+                })
+                .join("") +
+              "</div>"
+            : "";
 
-        var chapterCount = Array.isArray(course.chapters) ? course.chapters.length : 0;
+          var chapterCount = Array.isArray(course.chapters) ? course.chapters.length : 0;
 
-        return (
-          '<button type="button" class="course-cardaf" data-course-index="' + String(index) + '" onclick="openCourseDetailsaf(\'' + afCourseEscapeAttr(course.id || index) + '\')">' +
+          return (
+            '<button type="button" class="course-cardaf" data-course-index="' +
+            String(index) +
+            '" onclick="openCourseDetailsaf(\'' +
+            afCourseAttr(course.id || index) +
+            "')\">" +
             '<div class="course-card-topaf">' +
-              '<div class="course-card-iconaf" aria-hidden="true">' + afCourseEscapeHtml(course.icon) + '</div>' +
-              '<div class="course-card-textaf">' +
-                '<h3>' + afCourseEscapeHtml(course.title) + '</h3>' +
-                '<p>' + afCourseEscapeHtml(course.intro) + '</p>' +
-              '</div>' +
-            '</div>' +
+            '<div class="course-card-iconaf" aria-hidden="true">' +
+            afCourseHtml(course.icon) +
+            "</div>" +
+            '<div class="course-card-textaf">' +
+            "<h3>" +
+            afCourseHtml(course.title) +
+            "</h3>" +
+            "<p>" +
+            afCourseHtml(course.intro) +
+            "</p>" +
+            "</div>" +
+            "</div>" +
             metaHtml +
             '<div class="course-card-footeraf">' +
-              '<span>' + afCourseEscapeHtml(String(chapterCount)) + ' Chapters</span>' +
-              '<strong>Open ›</strong>' +
-            '</div>' +
-          '</button>'
-        );
-      }).join("");
+            "<span>" +
+            afCourseHtml(String(chapterCount)) +
+            " Chapters</span>" +
+            "<strong>Open ›</strong>" +
+            "</div>" +
+            "</button>"
+          );
+        })
+        .join("");
 
       afCourseShowPanel("courseSelectBox");
     } catch (error) {
@@ -28046,16 +28581,17 @@ function loadStudentCoursesSafeAF() {
     }
   }
 
+  window.renderStudentCoursesAF = renderStudentCoursesAF;
+
   /* =========================
      LOAD COURSES
   ========================= */
 
   async function loadStudentCoursesInternalAF(options) {
     var opts = options && typeof options === "object" ? options : {};
+    var force = opts.force === true || opts.force === "force";
 
-    if (afCourseState.loading) {
-      return;
-    }
+    if (afCourseState.loading) return;
 
     var isLoggedIn = syncStudentCourseAuthStateAF();
 
@@ -28065,7 +28601,7 @@ function loadStudentCoursesSafeAF() {
 
     var session = afCourseGetSession();
 
-    if (!session.studentUuid && !session.studentId && !session.studentMobile) {
+    if (!session.studentUuid && !session.studentId && !session.studentMobile && !session.sessionToken) {
       afCourseShowInlineMessage(
         "courseSelectBox",
         "⚠️",
@@ -28075,16 +28611,12 @@ function loadStudentCoursesSafeAF() {
       return;
     }
 
-    var now = Date.now();
-    var shouldUseCache =
-      !opts.force &&
-      afCourseState.courses.length > 0 &&
-      afCourseState.lastLoadedAt > 0 &&
-      now - afCourseState.lastLoadedAt < 15000;
+    if (!force) {
+      var cachedCourses = afCourseReadCache("courses", "enrolled");
 
-    if (shouldUseCache) {
-      renderStudentCoursesAF(afCourseState.courses);
-      return;
+      if (Array.isArray(cachedCourses) && cachedCourses.length > 0) {
+        renderStudentCoursesAF(cachedCourses);
+      }
     }
 
     afCourseState.loading = true;
@@ -28101,6 +28633,13 @@ function loadStudentCoursesSafeAF() {
       });
 
       if (!result || !result.ok) {
+        var cachedFallback = afCourseReadCache("courses", "enrolled");
+
+        if (Array.isArray(cachedFallback) && cachedFallback.length > 0) {
+          renderStudentCoursesAF(cachedFallback);
+          return;
+        }
+
         afCourseState.courses = [];
 
         afCourseShowInlineMessage(
@@ -28119,13 +28658,21 @@ function loadStudentCoursesSafeAF() {
 
       if (!courses.length) {
         afCourseState.courses = [];
+        afCourseWriteCache("courses", "enrolled", []);
         afCourseShowPanel("noCourseBoxaf");
         return;
       }
 
       renderStudentCoursesAF(courses);
     } catch (error) {
-      console.error("loadStudentCoursesInternalAF catch:", error);
+      console.error("loadStudentCoursesInternalAF failed:", error);
+
+      var cache = afCourseReadCache("courses", "enrolled");
+
+      if (Array.isArray(cache) && cache.length > 0) {
+        renderStudentCoursesAF(cache);
+        return;
+      }
 
       afCourseState.courses = [];
 
@@ -28146,30 +28693,69 @@ function loadStudentCoursesSafeAF() {
     });
   }
 
+  window.loadStudentCoursesSafeAF = loadStudentCoursesSafeAF;
+
   /* =========================
      COURSE DETAILS
   ========================= */
 
   function afCourseFindCourse(courseIdOrIndex) {
-    try {
-      var idText = String(courseIdOrIndex || "");
+    var idText = String(courseIdOrIndex || "");
 
-      var byId = afCourseState.courses.find(function (course) {
-        return String(course.id) === idText;
+    var byId = afCourseState.courses.find(function (course) {
+      return String(course.id) === idText || String(course.course_id) === idText || String(course.batch_id) === idText;
+    });
+
+    if (byId) return byId;
+
+    var index = Number(courseIdOrIndex);
+
+    if (!Number.isNaN(index) && afCourseState.courses[index]) {
+      return afCourseState.courses[index];
+    }
+
+    return null;
+  }
+
+  function afCourseSaveSelectedCourse(course) {
+    if (!course) return;
+
+    afCourseState.selectedCourse = course;
+    window.afCourseState = afCourseState;
+
+    localStorage.setItem("af_selected_course_id", afCoursePrimaryId(course));
+    localStorage.setItem("af_selected_course_title", course.title || "Course");
+    localStorage.setItem("af_selected_course_full", JSON.stringify(course));
+  }
+
+  function afCourseGetSelectedCourse() {
+    if (afCourseState.selectedCourse) return afCourseState.selectedCourse;
+
+    var cached = afCourseSafeJsonParse(localStorage.getItem("af_selected_course_full"), null);
+
+    if (cached && typeof cached === "object") {
+      var normalized = afCourseNormalizeCourse(cached.raw || cached);
+      afCourseState.selectedCourse = normalized;
+      return normalized;
+    }
+
+    var selectedId = localStorage.getItem("af_selected_course_id") || "";
+    var selectedTitle = localStorage.getItem("af_selected_course_title") || "";
+
+    if (selectedId || selectedTitle) {
+      var fallback = afCourseNormalizeCourse({
+        id: selectedId,
+        course_id: selectedId,
+        title: selectedTitle || "Course",
+        course_name: selectedTitle || "Course",
+        chapters: []
       });
 
-      if (byId) return byId;
-
-      var index = Number(courseIdOrIndex);
-
-      if (!Number.isNaN(index) && afCourseState.courses[index]) {
-        return afCourseState.courses[index];
-      }
-
-      return null;
-    } catch (error) {
-      return null;
+      afCourseState.selectedCourse = fallback;
+      return fallback;
     }
+
+    return null;
   }
 
   function openCourseDetailsaf(courseIdOrIndex) {
@@ -28181,12 +28767,10 @@ function loadStudentCoursesSafeAF() {
         return;
       }
 
-      afCourseState.selectedCourse = course;
-      afCourseState.selectedMode = "";
-      afCourseState.selectedChapter = null;
+      afCourseSaveSelectedCourse(course);
 
-      localStorage.setItem("af_selected_course_id", course.id || "");
-      localStorage.setItem("af_selected_course_title", course.title || "");
+      afCourseState.selectedMode = "lectures";
+      afCourseState.selectedChapter = null;
 
       afCourseSetText("courseDetailIconaf", course.icon || "📘");
       afCourseSetText("courseTitleaf", course.title || "Course");
@@ -28205,18 +28789,22 @@ function loadStudentCoursesSafeAF() {
       afCourseSetHtml(
         "courseSyllabusaf",
         syllabusItems.length
-          ? syllabusItems.map(function (item) {
-              return "<li>" + afCourseEscapeHtml(item) + "</li>";
-            }).join("")
+          ? syllabusItems
+              .map(function (item) {
+                return "<li>" + afCourseHtml(item) + "</li>";
+              })
+              .join("")
           : "<li>Syllabus will be available soon.</li>"
       );
 
       afCourseSetHtml(
         "courseFacilitiesaf",
         facilitiesItems.length
-          ? facilitiesItems.map(function (item) {
-              return "<li>" + afCourseEscapeHtml(item) + "</li>";
-            }).join("")
+          ? facilitiesItems
+              .map(function (item) {
+                return "<li>" + afCourseHtml(item) + "</li>";
+              })
+              .join("")
           : "<li>Facilities will be available soon.</li>"
       );
 
@@ -28228,30 +28816,30 @@ function loadStudentCoursesSafeAF() {
   }
 
   function backToCoursesaf() {
-    try {
-      afCourseState.selectedCourse = null;
-      afCourseState.selectedMode = "";
-      afCourseState.selectedChapter = null;
-      afCourseShowPanel("courseSelectBox");
-    } catch (error) {
-      console.error("backToCoursesaf failed:", error);
-    }
+    afCourseState.selectedCourse = null;
+    afCourseState.selectedMode = "lectures";
+    afCourseState.selectedChapter = null;
+    afCourseShowPanel("courseSelectBox");
   }
 
+  window.openCourseDetailsaf = openCourseDetailsaf;
+  window.backToCoursesaf = backToCoursesaf;
+
   /* =========================
-     LEARNING
+     LEARNING FLOW
   ========================= */
 
   function startLearningaf() {
     try {
-      var course = afCourseState.selectedCourse;
+      var course = afCourseGetSelectedCourse();
 
       if (!course) {
         alert("Please open a course first.");
         return;
       }
 
-      afCourseSetText("learningTitleaf", course.title || "Start Learning");
+      afCourseSaveSelectedCourse(course);
+      afCourseSetText("learningTitleaf", course.title || course.course_name || course.name || "Start Learning");
       afCourseShowPanel("learningBoxaf");
     } catch (error) {
       console.error("startLearningaf failed:", error);
@@ -28260,92 +28848,110 @@ function loadStudentCoursesSafeAF() {
   }
 
   function backToCourseDetailsaf() {
-    try {
-      afCourseShowPanel("courseDetailsBoxaf");
-    } catch (error) {
-      console.error("backToCourseDetailsaf failed:", error);
-    }
+    afCourseShowPanel("courseDetailsBoxaf");
   }
 
-  function openLearningModeaf(mode) {
+  async function openLearningModeaf(mode, forceRefresh) {
     try {
-      var course = afCourseState.selectedCourse;
+      var safeMode = mode === "notes" ? "notes" : "lectures";
+      var course = afCourseGetSelectedCourse();
 
       if (!course) {
         alert("Please open a course first.");
         return;
       }
 
-      var safeMode = mode === "notes" ? "notes" : "lectures";
+      afCourseState.selectedCourse = course;
       afCourseState.selectedMode = safeMode;
       afCourseState.selectedChapter = null;
+      window.afCourseState = afCourseState;
 
       afCourseSetText("chapterModeTitleaf", safeMode === "notes" ? "Notes" : "Lectures");
 
-      var chapters = Array.isArray(course.chapters) ? course.chapters : [];
-      var chapterList = afCourseEl("chapterListaf");
-
-      if (!chapterList) {
-        alert("Chapter list container missing.");
-        return;
-      }
-
-      if (!chapters.length) {
-        chapterList.innerHTML =
-          '<div class="af-course-inline-message">' +
-            '<div class="af-course-inline-icon" aria-hidden="true">📭</div>' +
-            '<h3>No chapters available</h3>' +
-            '<p>Content for this course will be available soon.</p>' +
-          '</div>';
-
-        afCourseShowPanel("chapterBoxaf");
-        return;
-      }
-
-      chapterList.innerHTML = chapters.map(function (chapter, index) {
-        var items = safeMode === "notes" ? chapter.notes : chapter.lectures;
-        var count = Array.isArray(items) ? items.length : 0;
-
-        return (
-          '<button type="button" class="chapter-itemaf" onclick="openChapterContentaf(' + String(index) + ')">' +
-            '<div class="chapter-item-leftaf">' +
-              '<strong>' + afCourseEscapeHtml(chapter.title) + '</strong>' +
-              (
-                chapter.description
-                  ? '<small>' + afCourseEscapeHtml(chapter.description) + '</small>'
-                  : '<small>' + String(count) + ' item' + (count === 1 ? '' : 's') + '</small>'
-              ) +
-            '</div>' +
-            '<span class="chapter-item-arrowaf">›</span>' +
-          '</button>'
-        );
-      }).join("");
+      afCourseSetHtml(
+        "chapterListaf",
+        '<div class="af-course-loading-card">' +
+          "<span>⏳</span>" +
+          "<strong>Loading chapters...</strong>" +
+          "</div>"
+      );
 
       afCourseShowPanel("chapterBoxaf");
+
+      var chapters = await afEnsureCourseChapters(course, forceRefresh);
+
+      course.chapters = Array.isArray(chapters) ? chapters : [];
+      afCourseSaveSelectedCourse(course);
+
+      renderChapterListaf(course.chapters, safeMode);
     } catch (error) {
       console.error("openLearningModeaf failed:", error);
-      alert("Unable to open learning mode.");
+      renderNoChaptersaf();
     }
   }
 
   function backToLearningaf() {
-    try {
-      afCourseShowPanel("learningBoxaf");
-    } catch (error) {
-      console.error("backToLearningaf failed:", error);
-    }
+    afCourseShowPanel("learningBoxaf");
   }
 
-  function openChapterContentaf(chapterIndex) {
+  function renderNoChaptersaf() {
+    afCourseSetHtml(
+      "chapterListaf",
+      '<div class="af-course-empty-card">' +
+        "<strong>No chapters uploaded yet.</strong>" +
+        "<p>Chapters will appear here after upload.</p>" +
+        "</div>"
+    );
+
+    afCourseShowPanel("chapterBoxaf");
+  }
+
+  function renderChapterListaf(chapters, mode) {
+    var list = afCourseEl("chapterListaf");
+
+    if (!list) {
+      alert("chapterListaf container missing.");
+      return;
+    }
+
+    if (!Array.isArray(chapters) || !chapters.length) {
+      renderNoChaptersaf();
+      return;
+    }
+
+    list.innerHTML = chapters
+      .map(function (chapter, index) {
+        return (
+          '<button type="button" class="chapter-itemaf af-real-chapter-card" onclick="openChapterContentaf(' +
+          String(index) +
+          ')">' +
+          '<div class="chapter-item-leftaf">' +
+          "<strong>" +
+          afCourseHtml(chapter.title) +
+          "</strong>" +
+          "<small>" +
+          afCourseHtml(chapter.description || "Select this chapter to continue.") +
+          "</small>" +
+          "</div>" +
+          '<span class="chapter-item-arrowaf">Open ›</span>' +
+          "</button>"
+        );
+      })
+      .join("");
+
+    afCourseShowPanel("chapterBoxaf");
+  }
+
+  async function openChapterContentaf(chapterIndex, forceRefresh) {
     try {
-      var course = afCourseState.selectedCourse;
-      var mode = afCourseState.selectedMode || "lectures";
+      var course = afCourseGetSelectedCourse();
 
       if (!course) {
         alert("Please open a course first.");
         return;
       }
 
+      var safeMode = afCourseState.selectedMode === "notes" ? "notes" : "lectures";
       var chapters = Array.isArray(course.chapters) ? course.chapters : [];
       var chapter = chapters[Number(chapterIndex)];
 
@@ -28355,80 +28961,120 @@ function loadStudentCoursesSafeAF() {
       }
 
       afCourseState.selectedChapter = chapter;
+      window.afCourseState = afCourseState;
 
-      var items = mode === "notes" ? chapter.notes : chapter.lectures;
-
-      afCourseSetText("contentTitleaf", chapter.title || "Chapter Content");
+      afCourseSetText("contentTitleaf", chapter.title || chapter.name || "Chapter Content");
       afCourseSetText(
         "contentSubtitleaf",
-        mode === "notes"
-          ? "Select a note to study."
-          : "Select a lecture to continue."
+        safeMode === "notes" ? "Select a note to study." : "Select a lecture to continue."
       );
 
-      var contentList = afCourseEl("contentListaf");
-
-      if (!contentList) {
-        alert("Content list container missing.");
-        return;
-      }
-
-      if (!Array.isArray(items) || !items.length) {
-        contentList.innerHTML =
-          '<div class="af-course-inline-message">' +
-            '<div class="af-course-inline-icon" aria-hidden="true">📭</div>' +
-            '<h3>No ' + afCourseEscapeHtml(mode === "notes" ? "notes" : "lectures") + ' available</h3>' +
-            '<p>This chapter content will be available soon.</p>' +
-          '</div>';
-
-        afCourseShowPanel("contentBoxaf");
-        return;
-      }
-
-      contentList.innerHTML = items.map(function (item, index) {
-        var hasUrl = Boolean(item.url);
-
-        return (
-          '<button type="button" class="content-itemaf" onclick="openCourseContentItemaf(' + String(index) + ')">' +
-            '<div class="content-item-leftaf">' +
-              '<strong>' + afCourseEscapeHtml(item.title) + '</strong>' +
-              (
-                item.description
-                  ? '<small>' + afCourseEscapeHtml(item.description) + '</small>'
-                  : '<small>' + afCourseEscapeHtml(mode === "notes" ? "Study note" : "Video lecture") + '</small>'
-              ) +
-            '</div>' +
-            '<span class="content-item-actionaf">' + (hasUrl ? "Open ›" : "Soon") + '</span>' +
-          '</button>'
-        );
-      }).join("");
+      afCourseSetHtml(
+        "contentListaf",
+        '<div class="af-course-loading-card">' +
+          "<span>⏳</span>" +
+          "<strong>Loading " +
+          (safeMode === "notes" ? "notes" : "lectures") +
+          "...</strong>" +
+          "</div>"
+      );
 
       afCourseShowPanel("contentBoxaf");
+
+      var items = await afEnsureChapterContent(chapter, safeMode, forceRefresh);
+
+      if (safeMode === "notes") {
+        chapter.notes = items;
+      } else {
+        chapter.lectures = items;
+      }
+
+      course.chapters[Number(chapterIndex)] = chapter;
+      afCourseState.selectedCourse = course;
+      afCourseState.selectedChapter = chapter;
+      window.afCourseState = afCourseState;
+
+      afCourseSaveSelectedCourse(course);
+      renderContentListaf(items, safeMode);
     } catch (error) {
       console.error("openChapterContentaf failed:", error);
-      alert("Unable to open chapter content.");
+      renderNoContentaf(afCourseState.selectedMode || "lectures");
     }
   }
 
   function backToChaptersaf() {
-    try {
-      afCourseShowPanel("chapterBoxaf");
-    } catch (error) {
-      console.error("backToChaptersaf failed:", error);
+    afCourseShowPanel("chapterBoxaf");
+  }
+
+  function renderNoContentaf(mode) {
+    var safeMode = mode === "notes" ? "notes" : "lectures";
+
+    afCourseSetHtml(
+      "contentListaf",
+      '<div class="af-course-empty-card">' +
+        "<strong>No " +
+        (safeMode === "notes" ? "notes" : "lectures") +
+        " uploaded yet.</strong>" +
+        "<p>" +
+        (safeMode === "notes" ? "Notes" : "Lectures") +
+        " will appear here after upload.</p>" +
+        "</div>"
+    );
+
+    afCourseShowPanel("contentBoxaf");
+  }
+
+  function renderContentListaf(items, mode) {
+    var list = afCourseEl("contentListaf");
+    var safeMode = mode === "notes" ? "notes" : "lectures";
+
+    if (!list) {
+      alert("contentListaf container missing.");
+      return;
     }
+
+    if (!Array.isArray(items) || !items.length) {
+      renderNoContentaf(safeMode);
+      return;
+    }
+
+    list.innerHTML = items
+      .map(function (item, index) {
+        return (
+          '<button type="button" class="content-itemaf af-real-content-card" onclick="openCourseContentItemaf(' +
+          String(index) +
+          ')">' +
+          '<div class="content-item-leftaf">' +
+          "<strong>" +
+          (safeMode === "notes" ? "📝 " : "🎥 ") +
+          afCourseHtml(item.title) +
+          "</strong>" +
+          "<small>" +
+          afCourseHtml(item.description || (safeMode === "notes" ? "Study note" : "Video lecture")) +
+          "</small>" +
+          "</div>" +
+          '<span class="content-item-actionaf">' +
+          (item.url ? "Open ›" : "Soon") +
+          "</span>" +
+          "</button>"
+        );
+      })
+      .join("");
+
+    afCourseShowPanel("contentBoxaf");
   }
 
   function openCourseContentItemaf(itemIndex) {
     try {
       var chapter = afCourseState.selectedChapter;
-      var mode = afCourseState.selectedMode || "lectures";
+      var safeMode = afCourseState.selectedMode === "notes" ? "notes" : "lectures";
 
       if (!chapter) {
         alert("Please open a chapter first.");
         return;
       }
 
-      var items = mode === "notes" ? chapter.notes : chapter.lectures;
+      var items = safeMode === "notes" ? chapter.notes : chapter.lectures;
       var item = Array.isArray(items) ? items[Number(itemIndex)] : null;
 
       if (!item) {
@@ -28437,7 +29083,7 @@ function loadStudentCoursesSafeAF() {
       }
 
       if (!item.url) {
-        alert("This content will be available soon.");
+        alert("Content link is not available yet.");
         return;
       }
 
@@ -28448,8 +29094,16 @@ function loadStudentCoursesSafeAF() {
     }
   }
 
+  window.startLearningaf = startLearningaf;
+  window.backToCourseDetailsaf = backToCourseDetailsaf;
+  window.openLearningModeaf = openLearningModeaf;
+  window.backToLearningaf = backToLearningaf;
+  window.openChapterContentaf = openChapterContentaf;
+  window.backToChaptersaf = backToChaptersaf;
+  window.openCourseContentItemaf = openCourseContentItemaf;
+
   /* =========================
-     LOGIN OPEN FALLBACK
+     LOGIN FALLBACK
   ========================= */
 
   function openStudentLoginSectionFallbackAF() {
@@ -28480,18 +29134,59 @@ function loadStudentCoursesSafeAF() {
     }
   }
 
+  if (typeof window.openStudentLoginSection !== "function") {
+    window.openStudentLoginSection = openStudentLoginSectionFallbackAF;
+  }
+
   /* =========================
-     PATCH showSection
+     LOGOUT COMPATIBILITY
+  ========================= */
+
+  function logoutStudentaf() {
+    try {
+      if (typeof window.logoutStudent === "function") {
+        window.logoutStudent();
+        return;
+      }
+
+      localStorage.removeItem("af_student_logged_in");
+      localStorage.removeItem("student_logged_in");
+      localStorage.removeItem("af_session_token");
+      localStorage.removeItem("af_student_uuid");
+      localStorage.removeItem("af_student_id");
+      localStorage.removeItem("af_student_mobile");
+      localStorage.removeItem("af_student_name");
+      localStorage.removeItem("af_student_email");
+
+      afCourseState.courses = [];
+      afCourseState.selectedCourse = null;
+      afCourseState.selectedMode = "lectures";
+      afCourseState.selectedChapter = null;
+
+      syncStudentCourseAuthStateAF();
+
+      if (typeof window.showSection === "function") {
+        window.showSection("studentaf");
+      }
+    } catch (error) {
+      console.error("logoutStudentaf failed:", error);
+    }
+  }
+
+  window.logoutStudentaf = logoutStudentaf;
+
+  /* =========================
+     showSection PATCH
   ========================= */
 
   function patchShowSectionForCourseAF() {
     try {
       if (typeof window.showSection !== "function") return;
-      if (window.__AF_COURSE_SHOW_SECTION_PATCHED_FINAL__ === true) return;
+      if (window.__AF_COURSE_SHOW_SECTION_PATCHED_V2__ === true) return;
 
       var originalShowSection = window.showSection;
 
-      window.showSection = function (targetId) {
+      window.showSection = function patchedShowSectionAF(targetId) {
         try {
           var finalTarget = targetId === "batchaf" ? "courseaf" : targetId;
 
@@ -28519,46 +29214,65 @@ function loadStudentCoursesSafeAF() {
         }
       };
 
-      window.__AF_COURSE_SHOW_SECTION_PATCHED_FINAL__ = true;
+      window.__AF_COURSE_SHOW_SECTION_PATCHED_V2__ = true;
     } catch (error) {
       console.error("patchShowSectionForCourseAF failed:", error);
     }
   }
 
   /* =========================
-     LOGOUT COMPATIBILITY
+     COMPATIBILITY EXPORTS
   ========================= */
 
-  function logoutStudentaf() {
-    try {
-      if (typeof window.logoutStudent === "function") {
-        window.logoutStudent();
-        return;
-      }
+  window.syncStudentCourseAuthStateAF = syncStudentCourseAuthStateAF;
 
-      localStorage.removeItem("af_student_logged_in");
-      localStorage.removeItem("student_logged_in");
-      localStorage.removeItem("af_session_token");
-      localStorage.removeItem("af_student_uuid");
-      localStorage.removeItem("af_student_id");
-      localStorage.removeItem("af_student_mobile");
-      localStorage.removeItem("af_student_name");
-      localStorage.removeItem("af_student_email");
+  window.loadStudentCoursesaf = function loadStudentCoursesaf(forceRefresh) {
+    return loadStudentCoursesInternalAF({
+      force: forceRefresh === true || forceRefresh === "force"
+    });
+  };
 
-      afCourseState.courses = [];
-      afCourseState.selectedCourse = null;
-      afCourseState.selectedMode = "";
-      afCourseState.selectedChapter = null;
+  window.fetchStudentCoursesaf = window.loadStudentCoursesaf;
+  window.loadCourseSectionaf = window.loadStudentCoursesaf;
 
-      syncStudentCourseAuthStateAF();
+  window.loadStudentCoursesSafeAF = function loadStudentCoursesSafeAFExport() {
+    return loadStudentCoursesInternalAF({
+      force: true
+    });
+  };
 
-      if (typeof window.showSection === "function") {
-        window.showSection("studentaf");
-      }
-    } catch (error) {
-      console.error("logoutStudentaf failed:", error);
+  window.refreshAfCoursesFromBackend = function refreshAfCoursesFromBackend() {
+    return loadStudentCoursesInternalAF({
+      force: true
+    });
+  };
+
+  window.refreshAfChaptersFromBackend = function refreshAfChaptersFromBackend() {
+    return openLearningModeaf(afCourseState.selectedMode || "lectures", true);
+  };
+
+  window.refreshAfContentFromBackend = function refreshAfContentFromBackend() {
+    var course = afCourseGetSelectedCourse();
+    var chapter = afCourseState.selectedChapter;
+
+    if (!course || !chapter) {
+      alert("Open a chapter first.");
+      return Promise.resolve(null);
     }
-  }
+
+    var index = Array.isArray(course.chapters)
+      ? course.chapters.findIndex(function (item) {
+          return afChapterPrimaryId(item) === afChapterPrimaryId(chapter);
+        })
+      : -1;
+
+    if (index < 0) {
+      alert("Chapter not found.");
+      return Promise.resolve(null);
+    }
+
+    return openChapterContentaf(index, true);
+  };
 
   /* =========================
      INIT
@@ -28570,14 +29284,11 @@ function loadStudentCoursesSafeAF() {
       patchShowSectionForCourseAF();
 
       var session = afCourseGetSession();
-
       var courseSection = afCourseEl("courseaf");
+
       var isCourseActive =
         courseSection &&
-        (
-          courseSection.classList.contains("active") ||
-          courseSection.style.display === "block"
-        );
+        (courseSection.classList.contains("active") || courseSection.style.display === "block");
 
       if (session.isLoggedIn && isCourseActive) {
         loadStudentCoursesInternalAF({
@@ -28589,58 +29300,26 @@ function loadStudentCoursesSafeAF() {
     }
   }
 
-  /* =========================
-     EXPORT GLOBAL FUNCTIONS
-  ========================= */
-
-  window.syncStudentCourseAuthStateAF = syncStudentCourseAuthStateAF;
-  window.loadStudentCoursesSafeAF = loadStudentCoursesSafeAF;
-  window.renderStudentCoursesAF = renderStudentCoursesAF;
-
-  window.openCourseDetailsaf = openCourseDetailsaf;
-  window.backToCoursesaf = backToCoursesaf;
-
-  window.startLearningaf = startLearningaf;
-  window.backToCourseDetailsaf = backToCourseDetailsaf;
-
-  window.openLearningModeaf = openLearningModeaf;
-  window.backToLearningaf = backToLearningaf;
-
-  window.openChapterContentaf = openChapterContentaf;
-  window.backToChaptersaf = backToChaptersaf;
-
-  window.openCourseContentItemaf = openCourseContentItemaf;
-
-  window.logoutStudentaf = logoutStudentaf;
-
-  if (typeof window.openStudentLoginSection !== "function") {
-    window.openStudentLoginSection = openStudentLoginSectionFallbackAF;
-  }
-
   document.addEventListener("DOMContentLoaded", function () {
     initStudentCourseSectionAF();
-
     window.setTimeout(initStudentCourseSectionAF, 250);
     window.setTimeout(initStudentCourseSectionAF, 900);
   });
 
   document.addEventListener("visibilitychange", function () {
-    if (document.visibilityState === "visible") {
-      syncStudentCourseAuthStateAF();
+    if (document.visibilityState !== "visible") return;
 
-      var courseSection = afCourseEl("courseaf");
-      var isCourseActive =
-        courseSection &&
-        (
-          courseSection.classList.contains("active") ||
-          courseSection.style.display === "block"
-        );
+    syncStudentCourseAuthStateAF();
 
-      if (isCourseActive) {
-        loadStudentCoursesInternalAF({
-          force: false
-        });
-      }
+    var courseSection = afCourseEl("courseaf");
+    var isCourseActive =
+      courseSection &&
+      (courseSection.classList.contains("active") || courseSection.style.display === "block");
+
+    if (isCourseActive) {
+      loadStudentCoursesInternalAF({
+        force: false
+      });
     }
   });
 
@@ -28655,1170 +29334,20 @@ function loadStudentCoursesSafeAF() {
       af_session_token: true
     };
 
-    if (keys[event.key]) {
-      syncStudentCourseAuthStateAF();
+    if (!keys[event.key]) return;
 
-      var session = afCourseGetSession();
+    syncStudentCourseAuthStateAF();
 
-      if (session.isLoggedIn) {
-        loadStudentCoursesInternalAF({
-          force: true
-        });
-      }
+    var session = afCourseGetSession();
+
+    if (session.isLoggedIn) {
+      loadStudentCoursesInternalAF({
+        force: true
+      });
     }
   });
 })();
 
-
-/* =========================================================
-   IMPORTANT: COURSE CHAPTER / LECTURE / NOTES FETCH PATCH
-   FRONTEND LOCK REMOVED
-   Paste this AFTER your current Course JS.
-
-   This does:
-   - Continue Learning opens Lectures/Notes
-   - Chapters fetch from Supabase
-   - Lectures fetch from Supabase
-   - Notes fetch from Supabase
-   - No frontend lock blocking
-   - Backend/RLS/content availability controls access
-========================================================= */
-
-(function () {
-  "use strict";
-
-  const AF_TABLES = {
-    chapters: "chapters",
-    lectures: "lectures",
-    notes: "notes"
-  };
-
-  const AF_CACHE = {
-    chaptersByCourse: new Map(),
-    lecturesByChapter: new Map(),
-    notesByChapter: new Map()
-  };
-
-  function afDb() {
-    try {
-      if (typeof studentDb !== "undefined" && studentDb) return studentDb;
-
-      if (
-        typeof supabase !== "undefined" &&
-        typeof SUPABASE_PROJECT_URL !== "undefined" &&
-        typeof SUPABASE_ANON_KEY !== "undefined"
-      ) {
-        return supabase.createClient(SUPABASE_PROJECT_URL, SUPABASE_ANON_KEY);
-      }
-
-      return null;
-    } catch (error) {
-      console.error("afDb failed:", error);
-      return null;
-    }
-  }
-
-  function afEl(id) {
-    return document.getElementById(id);
-  }
-
-  function afText(value, fallback = "") {
-    if (value === null || value === undefined) return fallback;
-    const text = String(value).trim();
-    return text || fallback;
-  }
-
-  function afHtml(value) {
-    return afText(value, "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  }
-
-  function afHideCoursePanels() {
-    const ids = [
-      "courseSelectBox",
-      "noCourseBoxaf",
-      "courseDetailsBoxaf",
-      "learningBoxaf",
-      "chapterBoxaf",
-      "contentBoxaf"
-    ];
-
-    ids.forEach(function (id) {
-      const el = afEl(id);
-      if (!el) return;
-      el.classList.add("hidden-box");
-      el.style.display = "none";
-    });
-  }
-
-  function afShowCoursePanel(id) {
-    afHideCoursePanels();
-
-    const el = afEl(id);
-    if (!el) return;
-
-    el.classList.remove("hidden-box");
-    el.style.display = "block";
-  }
-
-  function afSetText(id, text) {
-    const el = afEl(id);
-    if (el) el.textContent = text || "";
-  }
-
-  function afSetHtml(id, html) {
-    const el = afEl(id);
-    if (el) el.innerHTML = html || "";
-  }
-
-  function afGetSelectedCourse() {
-    try {
-      if (window.afCourseState && window.afCourseState.selectedCourse) {
-        return window.afCourseState.selectedCourse;
-      }
-
-      if (typeof afCourseState !== "undefined" && afCourseState.selectedCourse) {
-        return afCourseState.selectedCourse;
-      }
-
-      const selectedId = localStorage.getItem("af_selected_course_id") || "";
-      const selectedTitle = localStorage.getItem("af_selected_course_title") || "";
-
-      if (selectedId || selectedTitle) {
-        return {
-          id: selectedId,
-          course_id: selectedId,
-          title: selectedTitle || "Course",
-          course_name: selectedTitle || "Course",
-          chapters: []
-        };
-      }
-
-      return null;
-    } catch (error) {
-      console.error("afGetSelectedCourse failed:", error);
-      return null;
-    }
-  }
-
-  function afSetSelectedCourse(course) {
-    try {
-      if (!course) return;
-
-      if (!window.afCourseState) {
-        window.afCourseState = {};
-      }
-
-      window.afCourseState.selectedCourse = course;
-
-      if (typeof afCourseState !== "undefined") {
-        afCourseState.selectedCourse = course;
-      }
-
-      localStorage.setItem(
-        "af_selected_course_id",
-        afText(course.id || course.course_id || course.batch_id || "")
-      );
-
-      localStorage.setItem(
-        "af_selected_course_title",
-        afText(course.title || course.course_name || course.name || "Course")
-      );
-    } catch (error) {
-      console.error("afSetSelectedCourse failed:", error);
-    }
-  }
-
-  function afGetCourseId(course) {
-    return afText(
-      course?.id ||
-        course?.course_id ||
-        course?.batch_id ||
-        course?.access_course_id ||
-        course?.raw?.id ||
-        course?.raw?.course_id ||
-        course?.raw?.batch_id ||
-        "",
-      ""
-    );
-  }
-
-  function afGetChapterId(chapter) {
-    return afText(
-      chapter?.id ||
-        chapter?.chapter_id ||
-        chapter?.uuid ||
-        chapter?.raw?.id ||
-        chapter?.raw?.chapter_id ||
-        "",
-      ""
-    );
-  }
-
-  function afNormalizeChapter(row, index) {
-    const chapterId = afText(row.id || row.chapter_id || row.uuid || "");
-
-    const title = afText(
-      row.title ||
-        row.name ||
-        row.chapter_title ||
-        row.chapter_name ||
-        row.topic ||
-        `Chapter ${index + 1}`,
-      `Chapter ${index + 1}`
-    );
-
-    const description = afText(
-      row.description ||
-        row.details ||
-        row.chapter_description ||
-        row.short_description ||
-        row.intro ||
-        "",
-      ""
-    );
-
-    return {
-      id: chapterId,
-      chapter_id: chapterId,
-      title: title,
-      name: title,
-      description: description,
-      order_no: Number(row.order_no || row.sort_order || row.chapter_no || row.position || index + 1),
-      raw: row,
-      lectures: Array.isArray(row.lectures) ? row.lectures : [],
-      notes: Array.isArray(row.notes) ? row.notes : []
-    };
-  }
-
-  function afNormalizeContent(row, index, mode) {
-    const title = afText(
-      row.title ||
-        row.name ||
-        row.lecture_title ||
-        row.note_title ||
-        row.content_title ||
-        row.topic ||
-        (mode === "notes" ? `Note ${index + 1}` : `Lecture ${index + 1}`),
-      mode === "notes" ? `Note ${index + 1}` : `Lecture ${index + 1}`
-    );
-
-    const url = afText(
-      row.url ||
-        row.link ||
-        row.video_url ||
-        row.note_url ||
-        row.file_url ||
-        row.pdf_url ||
-        row.content_url ||
-        row.drive_url ||
-        row.youtube_url ||
-        row.vimeo_url ||
-        "",
-      ""
-    );
-
-    const description = afText(
-      row.description ||
-        row.details ||
-        row.short_description ||
-        row.subtitle ||
-        row.content_description ||
-        "",
-      ""
-    );
-
-    return {
-      id: afText(row.id || row.lecture_id || row.note_id || row.content_id || index),
-      title: title,
-      description: description,
-      url: url,
-      type: mode,
-      order_no: Number(row.order_no || row.sort_order || row.position || index + 1),
-      raw: row
-    };
-  }
-
-  async function afRunFirstSuccessfulQuery(queries) {
-    let lastError = null;
-
-    for (const query of queries) {
-      try {
-        const { data, error } = await query;
-
-        if (error) {
-          lastError = error;
-          continue;
-        }
-
-        if (Array.isArray(data)) {
-          return data;
-        }
-      } catch (error) {
-        lastError = error;
-      }
-    }
-
-    if (lastError) {
-      console.warn("Supabase fetch warning:", lastError);
-    }
-
-    return [];
-  }
-
-  async function afFetchChaptersForCourse(course) {
-    const db = afDb();
-
-    if (!db) {
-      throw new Error("Supabase client not found.");
-    }
-
-    const courseId = afGetCourseId(course);
-
-    if (!courseId) {
-      return [];
-    }
-
-    const cacheKey = String(courseId);
-
-    if (AF_CACHE.chaptersByCourse.has(cacheKey)) {
-      return AF_CACHE.chaptersByCourse.get(cacheKey);
-    }
-
-    const queries = [
-      db.from(AF_TABLES.chapters).select("*").eq("course_id", courseId).order("order_no", { ascending: true }),
-      db.from(AF_TABLES.chapters).select("*").eq("batch_id", courseId).order("order_no", { ascending: true }),
-      db.from(AF_TABLES.chapters).select("*").eq("course_id", courseId).order("created_at", { ascending: true }),
-      db.from(AF_TABLES.chapters).select("*").eq("batch_id", courseId).order("created_at", { ascending: true })
-    ];
-
-    const rows = await afRunFirstSuccessfulQuery(queries);
-
-    const chapters = rows
-      .map(function (row, index) {
-        return afNormalizeChapter(row, index);
-      })
-      .sort(function (a, b) {
-        return Number(a.order_no || 0) - Number(b.order_no || 0);
-      });
-
-    AF_CACHE.chaptersByCourse.set(cacheKey, chapters);
-
-    return chapters;
-  }
-
-  async function afFetchContentForChapter(chapter, mode) {
-    const db = afDb();
-
-    if (!db) {
-      throw new Error("Supabase client not found.");
-    }
-
-    const chapterId = afGetChapterId(chapter);
-    const table = mode === "notes" ? AF_TABLES.notes : AF_TABLES.lectures;
-    const cache = mode === "notes" ? AF_CACHE.notesByChapter : AF_CACHE.lecturesByChapter;
-    const cacheKey = `${mode}:${chapterId}`;
-
-    if (!chapterId) {
-      return [];
-    }
-
-    if (cache.has(cacheKey)) {
-      return cache.get(cacheKey);
-    }
-
-    const queries = [
-      db.from(table).select("*").eq("chapter_id", chapterId).order("order_no", { ascending: true }),
-      db.from(table).select("*").eq("chapter_id", chapterId).order("created_at", { ascending: true }),
-      db.from(table).select("*").eq("chapter", chapterId).order("order_no", { ascending: true }),
-      db.from(table).select("*").eq("chapter", chapterId).order("created_at", { ascending: true })
-    ];
-
-    const rows = await afRunFirstSuccessfulQuery(queries);
-
-    const items = rows
-      .map(function (row, index) {
-        return afNormalizeContent(row, index, mode);
-      })
-      .sort(function (a, b) {
-        return Number(a.order_no || 0) - Number(b.order_no || 0);
-      });
-
-    cache.set(cacheKey, items);
-
-    return items;
-  }
-
-  function afRenderNoChapters() {
-    afSetHtml(
-      "chapterListaf",
-      `
-        <div class="af-course-empty-card">
-          <strong>No chapters uploaded yet.</strong>
-          <p>Chapters will appear here after upload.</p>
-        </div>
-      `
-    );
-
-    afShowCoursePanel("chapterBoxaf");
-  }
-
-  function afRenderNoContent(mode) {
-    afSetHtml(
-      "contentListaf",
-      `
-        <div class="af-course-empty-card">
-          <strong>No ${mode === "notes" ? "notes" : "lectures"} uploaded yet.</strong>
-          <p>${mode === "notes" ? "Notes" : "Lectures"} will appear here after upload.</p>
-        </div>
-      `
-    );
-
-    afShowCoursePanel("contentBoxaf");
-  }
-
-  function afRenderChapterList(chapters, mode) {
-    const list = afEl("chapterListaf");
-
-    if (!list) {
-      alert("chapterListaf container missing.");
-      return;
-    }
-
-    if (!Array.isArray(chapters) || chapters.length === 0) {
-      afRenderNoChapters();
-      return;
-    }
-
-    list.innerHTML = chapters
-      .map(function (chapter, index) {
-        return `
-          <button
-            type="button"
-            class="chapter-itemaf af-real-chapter-card"
-            onclick="openChapterContentaf(${index})"
-          >
-            <div class="chapter-item-leftaf">
-              <strong>${afHtml(chapter.title)}</strong>
-              <small>${afHtml(chapter.description || "Select this chapter to continue.")}</small>
-            </div>
-
-            <span class="chapter-item-arrowaf">Open ›</span>
-          </button>
-        `;
-      })
-      .join("");
-
-    afShowCoursePanel("chapterBoxaf");
-  }
-
-  function afRenderContentList(items, mode) {
-    const list = afEl("contentListaf");
-
-    if (!list) {
-      alert("contentListaf container missing.");
-      return;
-    }
-
-    if (!Array.isArray(items) || items.length === 0) {
-      afRenderNoContent(mode);
-      return;
-    }
-
-    list.innerHTML = items
-      .map(function (item, index) {
-        return `
-          <button
-            type="button"
-            class="content-itemaf af-real-content-card"
-            onclick="openCourseContentItemaf(${index})"
-          >
-            <div class="content-item-leftaf">
-              <strong>${mode === "notes" ? "📝" : "🎥"} ${afHtml(item.title)}</strong>
-              <small>${afHtml(item.description || (mode === "notes" ? "Study note" : "Video lecture"))}</small>
-            </div>
-
-            <span class="content-item-actionaf">Open ›</span>
-          </button>
-        `;
-      })
-      .join("");
-
-    afShowCoursePanel("contentBoxaf");
-  }
-
-  window.startLearningaf = function startLearningaf() {
-    try {
-      const course = afGetSelectedCourse();
-
-      if (!course) {
-        alert("Please open a course first.");
-        return;
-      }
-
-      afSetSelectedCourse(course);
-      afSetText("learningTitleaf", afText(course.title || course.course_name || course.name, "Start Learning"));
-      afShowCoursePanel("learningBoxaf");
-    } catch (error) {
-      console.error("startLearningaf failed:", error);
-      alert("Unable to start learning.");
-    }
-  };
-
-  window.openLearningModeaf = async function openLearningModeaf(mode) {
-    try {
-      const safeMode = mode === "notes" ? "notes" : "lectures";
-      const course = afGetSelectedCourse();
-
-      if (!course) {
-        alert("Please open a course first.");
-        return;
-      }
-
-      afSetSelectedCourse(course);
-
-      if (!window.afCourseState) {
-        window.afCourseState = {};
-      }
-
-      window.afCourseState.selectedMode = safeMode;
-
-      if (typeof afCourseState !== "undefined") {
-        afCourseState.selectedMode = safeMode;
-      }
-
-      afSetText("chapterModeTitleaf", safeMode === "notes" ? "Notes" : "Lectures");
-
-      afSetHtml(
-        "chapterListaf",
-        `
-          <div class="af-course-loading-card">
-            <span>⏳</span>
-            <strong>Loading chapters...</strong>
-          </div>
-        `
-      );
-
-      afShowCoursePanel("chapterBoxaf");
-
-      let chapters = [];
-
-      if (Array.isArray(course.chapters) && course.chapters.length > 0) {
-        chapters = course.chapters.map(function (chapter, index) {
-          return afNormalizeChapter(chapter.raw || chapter, index);
-        });
-      }
-
-      if (!chapters.length) {
-        chapters = await afFetchChaptersForCourse(course);
-      }
-
-      course.chapters = chapters;
-      afSetSelectedCourse(course);
-
-      afRenderChapterList(chapters, safeMode);
-    } catch (error) {
-      console.error("openLearningModeaf failed:", error);
-      afRenderNoChapters();
-    }
-  };
-
-  window.openChapterContentaf = async function openChapterContentaf(chapterIndex) {
-    try {
-      const course = afGetSelectedCourse();
-
-      if (!course) {
-        alert("Please open a course first.");
-        return;
-      }
-
-      const mode =
-        (window.afCourseState && window.afCourseState.selectedMode) ||
-        (typeof afCourseState !== "undefined" && afCourseState.selectedMode) ||
-        "lectures";
-
-      const safeMode = mode === "notes" ? "notes" : "lectures";
-      const chapters = Array.isArray(course.chapters) ? course.chapters : [];
-      const chapter = chapters[Number(chapterIndex)];
-
-      if (!chapter) {
-        alert("Chapter not found.");
-        return;
-      }
-
-      if (!window.afCourseState) {
-        window.afCourseState = {};
-      }
-
-      window.afCourseState.selectedChapter = chapter;
-
-      if (typeof afCourseState !== "undefined") {
-        afCourseState.selectedChapter = chapter;
-      }
-
-      afSetText("contentTitleaf", afText(chapter.title || chapter.name, "Chapter Content"));
-      afSetText(
-        "contentSubtitleaf",
-        safeMode === "notes" ? "Select a note to study." : "Select a lecture to continue."
-      );
-
-      afSetHtml(
-        "contentListaf",
-        `
-          <div class="af-course-loading-card">
-            <span>⏳</span>
-            <strong>Loading ${safeMode === "notes" ? "notes" : "lectures"}...</strong>
-          </div>
-        `
-      );
-
-      afShowCoursePanel("contentBoxaf");
-
-      let items = [];
-
-      if (safeMode === "notes" && Array.isArray(chapter.notes) && chapter.notes.length > 0) {
-        items = chapter.notes.map(function (item, index) {
-          return afNormalizeContent(item.raw || item, index, "notes");
-        });
-      }
-
-      if (safeMode === "lectures" && Array.isArray(chapter.lectures) && chapter.lectures.length > 0) {
-        items = chapter.lectures.map(function (item, index) {
-          return afNormalizeContent(item.raw || item, index, "lectures");
-        });
-      }
-
-      if (!items.length) {
-        items = await afFetchContentForChapter(chapter, safeMode);
-      }
-
-      if (safeMode === "notes") {
-        chapter.notes = items;
-      } else {
-        chapter.lectures = items;
-      }
-
-      course.chapters[Number(chapterIndex)] = chapter;
-      afSetSelectedCourse(course);
-
-      window.afCourseState.selectedChapter = chapter;
-
-      if (typeof afCourseState !== "undefined") {
-        afCourseState.selectedChapter = chapter;
-      }
-
-      afRenderContentList(items, safeMode);
-    } catch (error) {
-      console.error("openChapterContentaf failed:", error);
-      afRenderNoContent("lectures");
-    }
-  };
-
-  window.backToLearningaf = function backToLearningaf() {
-    afShowCoursePanel("learningBoxaf");
-  };
-
-  window.backToChaptersaf = function backToChaptersaf() {
-    afShowCoursePanel("chapterBoxaf");
-  };
-
-  window.openCourseContentItemaf = function openCourseContentItemaf(itemIndex) {
-    try {
-      const chapter =
-        (window.afCourseState && window.afCourseState.selectedChapter) ||
-        (typeof afCourseState !== "undefined" && afCourseState.selectedChapter) ||
-        null;
-
-      const mode =
-        (window.afCourseState && window.afCourseState.selectedMode) ||
-        (typeof afCourseState !== "undefined" && afCourseState.selectedMode) ||
-        "lectures";
-
-      const safeMode = mode === "notes" ? "notes" : "lectures";
-
-      if (!chapter) {
-        alert("Please open a chapter first.");
-        return;
-      }
-
-      const items = safeMode === "notes" ? chapter.notes : chapter.lectures;
-      const item = Array.isArray(items) ? items[Number(itemIndex)] : null;
-
-      if (!item) {
-        alert("Content not found.");
-        return;
-      }
-
-      if (item.url) {
-        window.open(item.url, "_blank", "noopener,noreferrer");
-        return;
-      }
-
-      alert("Content link is not available yet.");
-    } catch (error) {
-      console.error("openCourseContentItemaf failed:", error);
-      alert("Unable to open content.");
-    }
-  };
-})();
-
-  
-/* =========================================================
-   IMPORTANT: COURSE DEVICE CACHE PATCH
-   Paste this AFTER your current Course JS / chapter patch.
-   It saves:
-   - enrolled courses
-   - chapters
-   - lectures
-   - notes
-   in device localStorage cache.
-========================================================= */
-
-(function () {
-  "use strict";
-
-  const AF_COURSE_CACHE_VERSION = "v1";
-  const AF_COURSE_CACHE_TTL_MS = 6 * 60 * 60 * 1000; // 6 hours
-
-  function afSafeJsonParse(value, fallback) {
-    try {
-      if (!value) return fallback;
-      return JSON.parse(value);
-    } catch (error) {
-      return fallback;
-    }
-  }
-
-  function afNow() {
-    return Date.now();
-  }
-
-  function afText(value, fallback = "") {
-    if (value === null || value === undefined) return fallback;
-    const text = String(value).trim();
-    return text || fallback;
-  }
-
-  function afGetLoggedStudentIdForCache() {
-    try {
-      const keys = [
-        "af_logged_student_id",
-        "student_id_af",
-        "studentIdaf",
-        "student_id",
-        "af_student_id",
-        "loggedStudentIdaf",
-        "logged_student_id"
-      ];
-
-      for (const key of keys) {
-        const value = localStorage.getItem(key);
-        if (value && String(value).trim()) return String(value).trim();
-      }
-
-      if (window.currentStudentaf && window.currentStudentaf.id) {
-        return String(window.currentStudentaf.id).trim();
-      }
-
-      if (window.loggedStudentaf && window.loggedStudentaf.id) {
-        return String(window.loggedStudentaf.id).trim();
-      }
-
-      if (window.afStudentState && window.afStudentState.studentId) {
-        return String(window.afStudentState.studentId).trim();
-      }
-
-      return "guest";
-    } catch (error) {
-      console.error("afGetLoggedStudentIdForCache failed:", error);
-      return "guest";
-    }
-  }
-
-  function afCourseCacheBaseKey() {
-    const studentId = afGetLoggedStudentIdForCache();
-    return `af_course_cache_${AF_COURSE_CACHE_VERSION}_${studentId}`;
-  }
-
-  function afCourseCacheKey(type, id) {
-    return `${afCourseCacheBaseKey()}_${type}_${afText(id, "root")}`;
-  }
-
-  function afReadCache(type, id) {
-    try {
-      const key = afCourseCacheKey(type, id);
-      const payload = afSafeJsonParse(localStorage.getItem(key), null);
-
-      if (!payload || typeof payload !== "object") return null;
-      if (payload.version !== AF_COURSE_CACHE_VERSION) return null;
-      if (!payload.saved_at || afNow() - Number(payload.saved_at) > AF_COURSE_CACHE_TTL_MS) {
-        localStorage.removeItem(key);
-        return null;
-      }
-
-      return payload.data || null;
-    } catch (error) {
-      console.error("afReadCache failed:", error);
-      return null;
-    }
-  }
-
-  function afWriteCache(type, id, data) {
-    try {
-      const key = afCourseCacheKey(type, id);
-
-      const payload = {
-        version: AF_COURSE_CACHE_VERSION,
-        saved_at: afNow(),
-        student_id: afGetLoggedStudentIdForCache(),
-        type: type,
-        id: afText(id, "root"),
-        data: data
-      };
-
-      localStorage.setItem(key, JSON.stringify(payload));
-      return true;
-    } catch (error) {
-      console.error("afWriteCache failed:", error);
-      return false;
-    }
-  }
-
-  function afRemoveCacheByPrefix(prefix) {
-    try {
-      const keys = [];
-
-      for (let index = 0; index < localStorage.length; index += 1) {
-        const key = localStorage.key(index);
-        if (key && key.startsWith(prefix)) keys.push(key);
-      }
-
-      keys.forEach(function (key) {
-        localStorage.removeItem(key);
-      });
-    } catch (error) {
-      console.error("afRemoveCacheByPrefix failed:", error);
-    }
-  }
-
-  window.clearAfCourseDeviceCache = function clearAfCourseDeviceCache() {
-    try {
-      afRemoveCacheByPrefix(afCourseCacheBaseKey());
-      console.log("AF course device cache cleared.");
-    } catch (error) {
-      console.error("clearAfCourseDeviceCache failed:", error);
-    }
-  };
-
-  window.clearAllAfCourseDeviceCache = function clearAllAfCourseDeviceCache() {
-    try {
-      afRemoveCacheByPrefix(`af_course_cache_${AF_COURSE_CACHE_VERSION}_`);
-      console.log("All AF course cache cleared.");
-    } catch (error) {
-      console.error("clearAllAfCourseDeviceCache failed:", error);
-    }
-  };
-
-  function afGetCourseIdForCache(course) {
-    return afText(
-      course?.id ||
-      course?.course_id ||
-      course?.batch_id ||
-      course?.access_course_id ||
-      course?.raw?.id ||
-      course?.raw?.course_id ||
-      course?.raw?.batch_id ||
-      "",
-      "unknown_course"
-    );
-  }
-
-  function afGetChapterIdForCache(chapter) {
-    return afText(
-      chapter?.id ||
-      chapter?.chapter_id ||
-      chapter?.raw?.id ||
-      chapter?.raw?.chapter_id ||
-      "",
-      "unknown_chapter"
-    );
-  }
-
-  /* =====================================================
-     WRAP: fetch enrolled courses if your function exists
-     Supported names:
-     - loadStudentCoursesaf
-     - fetchStudentCoursesaf
-     - loadCourseSectionaf
-  ===================================================== */
-
-  function afWrapCourseLoader(functionName) {
-    try {
-      const original = window[functionName];
-
-      if (typeof original !== "function") return;
-
-      window[functionName] = async function wrappedCourseLoader(forceRefresh) {
-        const force = forceRefresh === true || forceRefresh === "force";
-
-        if (!force) {
-          const cachedCourses = afReadCache("courses", "enrolled");
-
-          if (Array.isArray(cachedCourses) && cachedCourses.length > 0) {
-            try {
-              if (typeof window.renderCourseCardsaf === "function") {
-                window.renderCourseCardsaf(cachedCourses);
-                return cachedCourses;
-              }
-
-              if (window.afCourseState) {
-                window.afCourseState.courses = cachedCourses;
-              }
-            } catch (renderError) {
-              console.warn("Cached course render failed, fetching fresh:", renderError);
-            }
-          }
-        }
-
-        const result = await original.apply(this, arguments);
-
-        try {
-          let coursesToCache = [];
-
-          if (Array.isArray(result)) {
-            coursesToCache = result;
-          } else if (window.afCourseState && Array.isArray(window.afCourseState.courses)) {
-            coursesToCache = window.afCourseState.courses;
-          } else if (typeof afCourseState !== "undefined" && Array.isArray(afCourseState.courses)) {
-            coursesToCache = afCourseState.courses;
-          }
-
-          if (coursesToCache.length > 0) {
-            afWriteCache("courses", "enrolled", coursesToCache);
-          }
-        } catch (cacheError) {
-          console.warn("Course cache write skipped:", cacheError);
-        }
-
-        return result;
-      };
-    } catch (error) {
-      console.error("afWrapCourseLoader failed:", error);
-    }
-  }
-
-  afWrapCourseLoader("loadStudentCoursesaf");
-  afWrapCourseLoader("fetchStudentCoursesaf");
-  afWrapCourseLoader("loadCourseSectionaf");
-
-  /* =====================================================
-     WRAP: openLearningModeaf
-     Cache chapters per course
-  ===================================================== */
-
-  const originalOpenLearningModeaf = window.openLearningModeaf;
-
-  if (typeof originalOpenLearningModeaf === "function") {
-    window.openLearningModeaf = async function cachedOpenLearningModeaf(mode, forceRefresh) {
-      try {
-        const safeMode = mode === "notes" ? "notes" : "lectures";
-        const force = forceRefresh === true || forceRefresh === "force";
-
-        const course =
-          (window.afCourseState && window.afCourseState.selectedCourse) ||
-          (typeof afCourseState !== "undefined" && afCourseState.selectedCourse) ||
-          null;
-
-        const courseId = afGetCourseIdForCache(course);
-
-        if (!force && course) {
-          const cachedChapters = afReadCache("chapters", courseId);
-
-          if (Array.isArray(cachedChapters) && cachedChapters.length > 0) {
-            course.chapters = cachedChapters;
-
-            if (window.afCourseState) {
-              window.afCourseState.selectedCourse = course;
-              window.afCourseState.selectedMode = safeMode;
-            }
-
-            if (typeof afCourseState !== "undefined") {
-              afCourseState.selectedCourse = course;
-              afCourseState.selectedMode = safeMode;
-            }
-          }
-        }
-
-        const result = await originalOpenLearningModeaf.apply(this, arguments);
-
-        try {
-          const latestCourse =
-            (window.afCourseState && window.afCourseState.selectedCourse) ||
-            (typeof afCourseState !== "undefined" && afCourseState.selectedCourse) ||
-            course;
-
-          const latestCourseId = afGetCourseIdForCache(latestCourse);
-
-          if (latestCourse && Array.isArray(latestCourse.chapters) && latestCourse.chapters.length > 0) {
-            afWriteCache("chapters", latestCourseId, latestCourse.chapters);
-          }
-        } catch (error) {
-          console.warn("Chapter cache write skipped:", error);
-        }
-
-        return result;
-      } catch (error) {
-        console.error("cachedOpenLearningModeaf failed:", error);
-        return originalOpenLearningModeaf.apply(this, arguments);
-      }
-    };
-  }
-
-  /* =====================================================
-     WRAP: openChapterContentaf
-     Cache lectures/notes per chapter
-  ===================================================== */
-
-  const originalOpenChapterContentaf = window.openChapterContentaf;
-
-  if (typeof originalOpenChapterContentaf === "function") {
-    window.openChapterContentaf = async function cachedOpenChapterContentaf(chapterIndex, forceRefresh) {
-      try {
-        const force = forceRefresh === true || forceRefresh === "force";
-
-        const course =
-          (window.afCourseState && window.afCourseState.selectedCourse) ||
-          (typeof afCourseState !== "undefined" && afCourseState.selectedCourse) ||
-          null;
-
-        const mode =
-          (window.afCourseState && window.afCourseState.selectedMode) ||
-          (typeof afCourseState !== "undefined" && afCourseState.selectedMode) ||
-          "lectures";
-
-        const safeMode = mode === "notes" ? "notes" : "lectures";
-        const chapters = course && Array.isArray(course.chapters) ? course.chapters : [];
-        const chapter = chapters[Number(chapterIndex)];
-
-        if (!force && chapter) {
-          const chapterId = afGetChapterIdForCache(chapter);
-          const cachedItems = afReadCache(safeMode, chapterId);
-
-          if (Array.isArray(cachedItems) && cachedItems.length > 0) {
-            if (safeMode === "notes") {
-              chapter.notes = cachedItems;
-            } else {
-              chapter.lectures = cachedItems;
-            }
-
-            chapters[Number(chapterIndex)] = chapter;
-            course.chapters = chapters;
-
-            if (window.afCourseState) {
-              window.afCourseState.selectedCourse = course;
-              window.afCourseState.selectedChapter = chapter;
-            }
-
-            if (typeof afCourseState !== "undefined") {
-              afCourseState.selectedCourse = course;
-              afCourseState.selectedChapter = chapter;
-            }
-          }
-        }
-
-        const result = await originalOpenChapterContentaf.apply(this, arguments);
-
-        try {
-          const latestChapter =
-            (window.afCourseState && window.afCourseState.selectedChapter) ||
-            (typeof afCourseState !== "undefined" && afCourseState.selectedChapter) ||
-            chapter;
-
-          const latestMode =
-            (window.afCourseState && window.afCourseState.selectedMode) ||
-            (typeof afCourseState !== "undefined" && afCourseState.selectedMode) ||
-            safeMode;
-
-          const latestSafeMode = latestMode === "notes" ? "notes" : "lectures";
-          const chapterId = afGetChapterIdForCache(latestChapter);
-
-          if (latestChapter) {
-            const items = latestSafeMode === "notes" ? latestChapter.notes : latestChapter.lectures;
-
-            if (Array.isArray(items) && items.length > 0) {
-              afWriteCache(latestSafeMode, chapterId, items);
-            }
-          }
-        } catch (error) {
-          console.warn("Content cache write skipped:", error);
-        }
-
-        return result;
-      } catch (error) {
-        console.error("cachedOpenChapterContentaf failed:", error);
-        return originalOpenChapterContentaf.apply(this, arguments);
-      }
-    };
-  }
-
-  /* =====================================================
-     Optional manual refresh helpers
-     Use these if needed:
-     onclick="refreshAfCoursesFromBackend()"
-     onclick="refreshAfChaptersFromBackend()"
-  ===================================================== */
-
-  window.refreshAfCoursesFromBackend = async function refreshAfCoursesFromBackend() {
-    try {
-      afWriteCache("courses", "enrolled", []);
-      if (typeof window.loadStudentCoursesaf === "function") {
-        return await window.loadStudentCoursesaf(true);
-      }
-      if (typeof window.fetchStudentCoursesaf === "function") {
-        return await window.fetchStudentCoursesaf(true);
-      }
-      if (typeof window.loadCourseSectionaf === "function") {
-        return await window.loadCourseSectionaf(true);
-      }
-      return null;
-    } catch (error) {
-      console.error("refreshAfCoursesFromBackend failed:", error);
-      return null;
-    }
-  };
-
-  window.refreshAfChaptersFromBackend = async function refreshAfChaptersFromBackend() {
-    try {
-      const course =
-        (window.afCourseState && window.afCourseState.selectedCourse) ||
-        (typeof afCourseState !== "undefined" && afCourseState.selectedCourse) ||
-        null;
-
-      if (course) {
-        afWriteCache("chapters", afGetCourseIdForCache(course), []);
-      }
-
-      const mode =
-        (window.afCourseState && window.afCourseState.selectedMode) ||
-        (typeof afCourseState !== "undefined" && afCourseState.selectedMode) ||
-        "lectures";
-
-      if (typeof window.openLearningModeaf === "function") {
-        return await window.openLearningModeaf(mode, true);
-      }
-
-      return null;
-    } catch (error) {
-      console.error("refreshAfChaptersFromBackend failed:", error);
-      return null;
-    }
-  };
-})();
-  
  /* ==============================
   BATCH PURCHASE AF - BACKEND FIXED
   Direct table read/write removed.
