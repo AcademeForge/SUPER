@@ -18439,7 +18439,721 @@ section#learningHeatmap.learning-heatmap-section.active {
     width: min(100% - 18px, 430px) !important;
   }
 }
-  </style>
+    
+/* =========================================================
+   STUDENT AUTH TEXT COLOR FIX
+   Force dark readable text in light mode + dark mode
+   Paste this AFTER all existing student section CSS.
+========================================================= */
+
+#studentaf,
+#studentaf .student-wrapaf,
+#studentaf .student-cardaf,
+#studentaf .student-boxaf {
+  color: #111827 !important;
+  text-shadow: none !important;
+}
+
+/* Main headings / paragraph text */
+#studentaf .student-titleaf,
+#studentaf .student-subtitleaf,
+#studentaf .student-labelaf,
+#studentaf .student-helpaf,
+#studentaf .student-noteaf,
+#studentaf .student-messageaf,
+#studentaf .student-noteaf b {
+  color: #111827 !important;
+  text-shadow: none !important;
+}
+
+/* Tabs text */
+#studentaf .student-tabsaf,
+#studentaf .student-tabaf,
+#studentaf .student-tabaf.active {
+  color: #111827 !important;
+  text-shadow: none !important;
+}
+
+/* Active login/create tab text should stay dark */
+#studentaf .student-tabaf.active {
+  color: #ffffff !important;
+  text-shadow: none !important;
+}
+
+/* Input text + placeholder */
+#studentaf .student-inputaf {
+  color: #111827 !important;
+  background: #ffffff !important;
+  text-shadow: none !important;
+  caret-color: #111827 !important;
+}
+
+#studentaf .student-inputaf::placeholder {
+  color: #374151 !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+/* Buttons */
+#studentaf .student-main-btnaf,
+#studentaf .student-main-btnaf.secondary,
+#studentaf .student-link-btnaf {
+  text-shadow: none !important;
+}
+
+#studentaf .student-main-btnaf,
+#studentaf .student-main-btnaf.secondary {
+  color: #ffffff !important;
+}
+
+#studentaf .student-link-btnaf {
+  color: #ffffff !important;
+}
+
+/* Browser autofill fix */
+#studentaf .student-inputaf:-webkit-autofill,
+#studentaf .student-inputaf:-webkit-autofill:hover,
+#studentaf .student-inputaf:-webkit-autofill:focus,
+#studentaf .student-inputaf:-webkit-autofill:active {
+  -webkit-text-fill-color: #111827 !important;
+  box-shadow: 0 0 0 1000px #ffffff inset !important;
+  transition: background-color 9999s ease-in-out 0s !important;
+}
+
+/* Dark mode override: keep text dark, not white */
+@media (prefers-color-scheme: dark) {
+  #studentaf,
+  #studentaf .student-wrapaf,
+  #studentaf .student-cardaf,
+  #studentaf .student-boxaf {
+    color: #111827 !important;
+    text-shadow: none !important;
+  }
+
+  #studentaf .student-titleaf,
+  #studentaf .student-subtitleaf,
+  #studentaf .student-labelaf,
+  #studentaf .student-helpaf,
+  #studentaf .student-noteaf,
+  #studentaf .student-messageaf,
+  #studentaf .student-noteaf b {
+    color: #111827 !important;
+    text-shadow: none !important;
+  }
+
+  #studentaf .student-tabaf {
+    color: #111827 !important;
+    text-shadow: none !important;
+  }
+
+  #studentaf .student-tabaf.active {
+    color: #ffffff !important;
+    text-shadow: none !important;
+  }
+
+  #studentaf .student-inputaf {
+    color: #111827 !important;
+    background: #ffffff !important;
+    text-shadow: none !important;
+    caret-color: #111827 !important;
+  }
+
+  #studentaf .student-inputaf::placeholder {
+    color: #374151 !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+  }
+
+  #studentaf .student-main-btnaf,
+  #studentaf .student-main-btnaf.secondary,
+  #studentaf .student-link-btnaf {
+    color: #ffffff !important;
+    text-shadow: none !important;
+  }
+}
+
+/* If your app uses manual dark class on body/html */
+html.dark #studentaf,
+body.dark #studentaf,
+html.dark #studentaf .student-cardaf,
+body.dark #studentaf .student-cardaf,
+html.dark #studentaf .student-boxaf,
+body.dark #studentaf .student-boxaf {
+  color: #111827 !important;
+  text-shadow: none !important;
+}
+
+html.dark #studentaf .student-titleaf,
+body.dark #studentaf .student-titleaf,
+html.dark #studentaf .student-subtitleaf,
+body.dark #studentaf .student-subtitleaf,
+html.dark #studentaf .student-labelaf,
+body.dark #studentaf .student-labelaf,
+html.dark #studentaf .student-helpaf,
+body.dark #studentaf .student-helpaf,
+html.dark #studentaf .student-noteaf,
+body.dark #studentaf .student-noteaf,
+html.dark #studentaf .student-messageaf,
+body.dark #studentaf .student-messageaf,
+html.dark #studentaf .student-noteaf b,
+body.dark #studentaf .student-noteaf b {
+  color: #111827 !important;
+  text-shadow: none !important;
+}
+
+html.dark #studentaf .student-inputaf,
+body.dark #studentaf .student-inputaf {
+  color: #111827 !important;
+  background: #ffffff !important;
+  text-shadow: none !important;
+  caret-color: #111827 !important;
+}
+
+html.dark #studentaf .student-inputaf::placeholder,
+body.dark #studentaf .student-inputaf::placeholder {
+  color: #374151 !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+   
+
+/* =========================================================
+   STUDENT AUTH REAL MOBILE / APK WEBVIEW HARD FIX ONLY
+   Desktop browser par apply nahi hoga.
+   Paste at VERY END of CSS.
+========================================================= */
+
+@media (max-width: 900px) and (hover: none) and (pointer: coarse) {
+  html,
+  body,
+  #studentaf,
+  #studentaf * {
+    -webkit-text-size-adjust: 100% !important;
+  }
+
+  #studentaf,
+  #studentaf .student-wrapaf,
+  #studentaf .student-cardaf,
+  #studentaf .student-boxaf {
+    color-scheme: light !important;
+    -webkit-font-smoothing: antialiased !important;
+    filter: none !important;
+    mix-blend-mode: normal !important;
+    isolation: isolate !important;
+  }
+
+  #studentaf .student-titleaf,
+  #studentaf .student-subtitleaf,
+  #studentaf .student-labelaf,
+  #studentaf .student-helpaf,
+  #studentaf .student-noteaf,
+  #studentaf .student-noteaf b,
+  #studentaf .student-messageaf,
+  #studentaf .student-tabsaf,
+  #studentaf .student-tabaf {
+    color: #111827 !important;
+    -webkit-text-fill-color: #111827 !important;
+    text-shadow: none !important;
+    filter: none !important;
+    mix-blend-mode: normal !important;
+    opacity: 1 !important;
+  }
+
+  #studentaf .student-inputaf {
+    color: #111827 !important;
+    -webkit-text-fill-color: #111827 !important;
+    background-color: #ffffff !important;
+    background-image: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+    mix-blend-mode: normal !important;
+    opacity: 1 !important;
+    caret-color: #111827 !important;
+    color-scheme: light !important;
+  }
+
+  #studentaf .student-inputaf::placeholder {
+    color: #374151 !important;
+    -webkit-text-fill-color: #374151 !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+    filter: none !important;
+  }
+
+  #studentaf .student-main-btnaf,
+  #studentaf .student-main-btnaf.secondary,
+  #studentaf .student-link-btnaf,
+  #studentaf .student-tabaf.active {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    text-shadow: none !important;
+    filter: none !important;
+    mix-blend-mode: normal !important;
+    opacity: 1 !important;
+  }
+
+  #studentaf .student-inputaf:-webkit-autofill,
+  #studentaf .student-inputaf:-webkit-autofill:hover,
+  #studentaf .student-inputaf:-webkit-autofill:focus,
+  #studentaf .student-inputaf:-webkit-autofill:active {
+    color: #111827 !important;
+    -webkit-text-fill-color: #111827 !important;
+    box-shadow: 0 0 0 1000px #ffffff inset !important;
+    -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+    caret-color: #111827 !important;
+    color-scheme: light !important;
+  }
+
+  html.dark-mode #studentaf .student-titleaf,
+  body.dark-mode #studentaf .student-titleaf,
+  html.dark-mode #studentaf .student-subtitleaf,
+  body.dark-mode #studentaf .student-subtitleaf,
+  html.dark-mode #studentaf .student-labelaf,
+  body.dark-mode #studentaf .student-labelaf,
+  html.dark-mode #studentaf .student-helpaf,
+  body.dark-mode #studentaf .student-helpaf,
+  html.dark-mode #studentaf .student-noteaf,
+  body.dark-mode #studentaf .student-noteaf,
+  html.dark-mode #studentaf .student-noteaf b,
+  body.dark-mode #studentaf .student-noteaf b,
+  html.dark-mode #studentaf .student-messageaf,
+  body.dark-mode #studentaf .student-messageaf {
+    color: #111827 !important;
+    -webkit-text-fill-color: #111827 !important;
+    text-shadow: none !important;
+    filter: none !important;
+    mix-blend-mode: normal !important;
+    opacity: 1 !important;
+  }
+
+  html.dark-mode #studentaf .student-inputaf,
+  body.dark-mode #studentaf .student-inputaf {
+    color: #111827 !important;
+    -webkit-text-fill-color: #111827 !important;
+    background-color: #ffffff !important;
+    background-image: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+    mix-blend-mode: normal !important;
+    caret-color: #111827 !important;
+    color-scheme: light !important;
+  }
+
+  html.dark-mode #studentaf .student-inputaf::placeholder,
+  body.dark-mode #studentaf .student-inputaf::placeholder {
+    color: #374151 !important;
+    -webkit-text-fill-color: #374151 !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+  }
+}
+
+   
+/* =========================================================
+   SETTINGS SUPPORT / LOGOUT / VERSION UI
+========================================================= */
+
+.settings-support-list {
+  width: 100% !important;
+  margin: 22px 0 0 !important;
+  padding: 0 14px !important;
+  box-sizing: border-box !important;
+}
+
+.settings-support-row {
+  width: 100% !important;
+  min-height: 74px !important;
+  border: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0 !important;
+  cursor: pointer !important;
+  color: #2f343b !important;
+  font-family: inherit !important;
+  text-align: left !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+.settings-support-left {
+  display: flex !important;
+  align-items: center !important;
+  gap: 22px !important;
+  min-width: 0 !important;
+}
+
+.settings-support-icon {
+  width: 44px !important;
+  min-width: 44px !important;
+  height: 44px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 34px !important;
+  line-height: 1 !important;
+  color: #3f3f46 !important;
+  font-weight: 500 !important;
+}
+
+.settings-support-left span:last-child {
+  font-size: 28px !important;
+  line-height: 1.15 !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.2px !important;
+  color: #2f343b !important;
+}
+
+.settings-support-divider {
+  width: 100% !important;
+  height: 2px !important;
+  margin: 12px 0 18px !important;
+  background: rgba(17, 24, 39, 0.12) !important;
+  border-radius: 999px !important;
+}
+
+.settings-logout-row {
+  min-height: 64px !important;
+}
+
+.settings-logout-row .settings-support-left span:last-child,
+.settings-logout-icon {
+  color: #b4233c !important;
+}
+
+.settings-logout-icon {
+  font-size: 36px !important;
+}
+
+.settings-app-version-box {
+  width: 100% !important;
+  padding: 18px 14px 28px !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+  color: #111827 !important;
+}
+
+.settings-app-version-box strong {
+  font-size: 28px !important;
+  line-height: 1.15 !important;
+  font-weight: 700 !important;
+  color: #111827 !important;
+  text-shadow: none !important;
+}
+
+.settings-app-version-box span {
+  font-size: 28px !important;
+  line-height: 1.15 !important;
+  font-weight: 400 !important;
+  color: #6b7280 !important;
+  text-shadow: none !important;
+}
+
+/* Dark mode: keep this settings footer readable */
+html.dark-mode .settings-support-left span:last-child,
+body.dark-mode .settings-support-left span:last-child,
+html.dark-mode .settings-support-icon,
+body.dark-mode .settings-support-icon {
+  color: #e5e7eb !important;
+}
+
+html.dark-mode .settings-logout-row .settings-support-left span:last-child,
+body.dark-mode .settings-logout-row .settings-support-left span:last-child,
+html.dark-mode .settings-logout-icon,
+body.dark-mode .settings-logout-icon {
+  color: #fb7185 !important;
+}
+
+html.dark-mode .settings-app-version-box strong,
+body.dark-mode .settings-app-version-box strong {
+  color: #f9fafb !important;
+}
+
+html.dark-mode .settings-app-version-box span,
+body.dark-mode .settings-app-version-box span {
+  color: #cbd5e1 !important;
+}
+
+/* Mobile exact sizing */
+@media (max-width: 768px) {
+  .settings-support-list {
+    padding: 0 20px !important;
+    margin-top: 20px !important;
+  }
+
+  .settings-support-row {
+    min-height: 72px !important;
+  }
+
+  .settings-support-left {
+    gap: 20px !important;
+  }
+
+  .settings-support-icon {
+    width: 42px !important;
+    min-width: 42px !important;
+    height: 42px !important;
+    font-size: 32px !important;
+  }
+
+  .settings-support-left span:last-child {
+    font-size: 27px !important;
+  }
+
+  .settings-app-version-box {
+    padding: 18px 20px 30px !important;
+  }
+
+  .settings-app-version-box strong,
+  .settings-app-version-box span {
+    font-size: 27px !important;
+  }
+}
+
+/* =========================================================
+   CONTACT US PAGE - AF
+========================================================= */
+
+.contact-us-af-section {
+  min-height: 100vh !important;
+  padding: 18px 14px 110px !important;
+  box-sizing: border-box !important;
+  background:
+    radial-gradient(circle at top right, rgba(34, 197, 94, 0.16), transparent 34%),
+    linear-gradient(180deg, #f8fafc 0%, #eef4ff 100%) !important;
+}
+
+.contact-us-af-page {
+  width: 100% !important;
+  max-width: 720px !important;
+  margin: 0 auto !important;
+}
+
+.contact-back-btn-af {
+  border: 0 !important;
+  outline: 0 !important;
+  min-height: 48px !important;
+  padding: 0 18px !important;
+  border-radius: 999px !important;
+  background: #ffffff !important;
+  color: #334155 !important;
+  font-size: 14px !important;
+  font-weight: 900 !important;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08) !important;
+  cursor: pointer !important;
+  margin: 0 0 14px !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+.contact-us-af-card {
+  width: 100% !important;
+  border-radius: 28px !important;
+  padding: 22px !important;
+  box-sizing: border-box !important;
+  background: rgba(255, 255, 255, 0.94) !important;
+  border: 1px solid rgba(148, 163, 184, 0.35) !important;
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.12) !important;
+  overflow: hidden !important;
+}
+
+.contact-us-af-head {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 14px !important;
+  margin-bottom: 22px !important;
+}
+
+.contact-us-af-icon {
+  width: 54px !important;
+  min-width: 54px !important;
+  height: 54px !important;
+  border-radius: 18px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: linear-gradient(135deg, #dcfce7, #eff6ff) !important;
+  border: 1px solid rgba(34, 197, 94, 0.22) !important;
+  color: #111827 !important;
+  font-size: 28px !important;
+}
+
+.contact-us-af-kicker {
+  margin: 0 0 5px !important;
+  color: #16a34a !important;
+  font-size: 12px !important;
+  font-weight: 1000 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+}
+
+.contact-us-af-head h2 {
+  margin: 0 !important;
+  color: #111827 !important;
+  font-size: 25px !important;
+  line-height: 1.08 !important;
+  font-weight: 1000 !important;
+  text-shadow: none !important;
+}
+
+.contact-us-af-head p:last-child {
+  margin: 8px 0 0 !important;
+  color: #475569 !important;
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+  font-weight: 700 !important;
+  text-shadow: none !important;
+}
+
+.contact-us-af-form {
+  display: grid !important;
+  gap: 14px !important;
+}
+
+.contact-field-af {
+  display: grid !important;
+  gap: 7px !important;
+}
+
+.contact-field-af label {
+  color: #334155 !important;
+  font-size: 13px !important;
+  font-weight: 1000 !important;
+  letter-spacing: 0.01em !important;
+  text-shadow: none !important;
+}
+
+.contact-field-af input,
+.contact-field-af select,
+.contact-field-af textarea {
+  width: 100% !important;
+  border: 1px solid rgba(100, 116, 139, 0.42) !important;
+  outline: 0 !important;
+  border-radius: 16px !important;
+  background: #ffffff !important;
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+  font-size: 15px !important;
+  font-weight: 800 !important;
+  padding: 14px 15px !important;
+  box-sizing: border-box !important;
+  font-family: inherit !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+  color-scheme: light !important;
+}
+
+.contact-field-af input,
+.contact-field-af select {
+  min-height: 52px !important;
+}
+
+.contact-field-af textarea {
+  min-height: 132px !important;
+  resize: vertical !important;
+  line-height: 1.5 !important;
+}
+
+.contact-field-af input::placeholder,
+.contact-field-af textarea::placeholder {
+  color: #64748b !important;
+  -webkit-text-fill-color: #64748b !important;
+  opacity: 1 !important;
+}
+
+.contact-field-af input:focus,
+.contact-field-af select:focus,
+.contact-field-af textarea:focus {
+  border-color: #22c55e !important;
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.14) !important;
+}
+
+.contact-message-af {
+  display: none !important;
+  border-radius: 14px !important;
+  padding: 12px 14px !important;
+  font-size: 13px !important;
+  line-height: 1.45 !important;
+  font-weight: 900 !important;
+}
+
+.contact-message-af.is-success {
+  display: block !important;
+  color: #166534 !important;
+  background: #dcfce7 !important;
+  border: 1px solid rgba(22, 101, 52, 0.18) !important;
+}
+
+.contact-message-af.is-error {
+  display: block !important;
+  color: #b91c1c !important;
+  background: #fee2e2 !important;
+  border: 1px solid rgba(185, 28, 28, 0.18) !important;
+}
+
+.contact-submit-btn-af {
+  width: 100% !important;
+  min-height: 56px !important;
+  border: 0 !important;
+  outline: 0 !important;
+  border-radius: 18px !important;
+  background: linear-gradient(135deg, #16a34a, #22c55e) !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  font-size: 16px !important;
+  font-weight: 1000 !important;
+  cursor: pointer !important;
+  box-shadow: 0 18px 40px rgba(34, 197, 94, 0.25) !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+.contact-submit-btn-af:disabled {
+  opacity: 0.68 !important;
+  cursor: not-allowed !important;
+}
+
+/* Dark app mode: contact form stays readable */
+html.dark-mode .contact-us-af-section,
+body.dark-mode .contact-us-af-section {
+  background:
+    radial-gradient(circle at top right, rgba(34, 197, 94, 0.16), transparent 34%),
+    linear-gradient(180deg, #0f172a 0%, #06130f 100%) !important;
+}
+
+html.dark-mode .contact-us-af-card,
+body.dark-mode .contact-us-af-card {
+  background: rgba(15, 23, 42, 0.96) !important;
+  border-color: rgba(148, 163, 184, 0.25) !important;
+}
+
+html.dark-mode .contact-us-af-head h2,
+body.dark-mode .contact-us-af-head h2 {
+  color: #ffffff !important;
+}
+
+html.dark-mode .contact-us-af-head p:last-child,
+body.dark-mode .contact-us-af-head p:last-child,
+html.dark-mode .contact-field-af label,
+body.dark-mode .contact-field-af label {
+  color: #cbd5e1 !important;
+}
+
+html.dark-mode .contact-field-af input,
+body.dark-mode .contact-field-af input,
+html.dark-mode .contact-field-af select,
+body.dark-mode .contact-field-af select,
+html.dark-mode .contact-field-af textarea,
+body.dark-mode .contact-field-af textarea {
+  background: #ffffff !important;
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+}
+
+</style>
 </head>
 
 <body>
@@ -19680,9 +20394,6 @@ section#learningHeatmap.learning-heatmap-section.active {
         <span>Founder</span>
         <span>App Development</span>
         <span>Product Direction</span>
-        <span>Student Experience</span>
-         <span>CEO</span>
-         <span>CFO</span>
       </div>
 
     </div>
@@ -19747,16 +20458,15 @@ section#learningHeatmap.learning-heatmap-section.active {
       </div>
     </div>
 
+    <a
+      href="https://academeforge.github.io/SUPER/official/"
+      class="settings-beta-card"
+      aria-label="Open AcademeForge official website"
+    >
+      <span>Official Website ✨</span>
+      <span class="settings-arrow" aria-hidden="true">›</span>
+    </a>
 
-<a
-  href="https://academeforge.github.io/SUPER/official/"
-  class="settings-beta-card"
-  aria-label="Open AcademeForge official website"
->
-  <span>Official Website ✨</span>
-  <span class="settings-arrow" aria-hidden="true">›</span>
-</a>
-  
     <div class="settings-list">
       <div class="settings-row settings-row-static">
         <div class="settings-row-left">
@@ -19774,94 +20484,227 @@ section#learningHeatmap.learning-heatmap-section.active {
         </label>
       </div>
 
-
-  <button
-  type="button"
-  class="settings-row settings-row-btn"
-  onclick="showSection('explore')"
-  aria-label="Open Explore"
->
-  <div class="settings-row-left">
-    <span class="settings-row-icon" aria-hidden="true">🎓</span>
-    <span>AF Test Arena</span>
-  </div>
-
-  <span class="settings-arrow" aria-hidden="true">›</span>
-</button>
-
-     <button
-  type="button"
-  class="settings-row settings-row-btn"
-  onclick="showSection('studentaf')"
-  aria-label="Open Student ID Access"
->
-  <div class="settings-row-left">
-    <span class="settings-row-icon" aria-hidden="true">📋</span>
-    <span>Login/Create ID</span>
-  </div>
-
-  <span class="settings-arrow" aria-hidden="true">›</span>
-</button>
+      <button
+        type="button"
+        class="settings-row settings-row-btn"
+        onclick="showSection('explore')"
+        aria-label="Open Explore"
+      >
+        <div class="settings-row-left">
+          <span class="settings-row-icon" aria-hidden="true">🎓</span>
+          <span>AF Test Arena</span>
+        </div>
+        <span class="settings-arrow" aria-hidden="true">›</span>
+      </button>
 
       <button
-  type="button"
-  class="settings-row settings-row-btn"
-  onclick="openBugReportModal()"
-  aria-label="Report a Bug"
->
-  <div class="settings-row-left">
-    <span class="settings-row-icon" aria-hidden="true">🐞</span>
-    <span>Report a Bug</span>
-  </div>
+        type="button"
+        class="settings-row settings-row-btn"
+        onclick="showSection('studentaf')"
+        aria-label="Open Student ID Access"
+      >
+        <div class="settings-row-left">
+          <span class="settings-row-icon" aria-hidden="true">📋</span>
+          <span>Login/Create ID</span>
+        </div>
+        <span class="settings-arrow" aria-hidden="true">›</span>
+      </button>
 
-  <span class="settings-arrow" aria-hidden="true">›</span>
-</button>
-      
- <button
-  type="button"
-  class="settings-row settings-row-btn"
-  onclick="showSection('learningHeatmap')"
-  aria-label="Open Learning Heatmap"
->
-  <div class="settings-row-left">
-    <span class="settings-row-icon" aria-hidden="true">🔥</span>
-    <span>Learning Heatmap</span>
-  </div>
+      <button
+        type="button"
+        class="settings-row settings-row-btn"
+        onclick="openBugReportModal()"
+        aria-label="Report a Bug"
+      >
+        <div class="settings-row-left">
+          <span class="settings-row-icon" aria-hidden="true">🐞</span>
+          <span>Report a Bug</span>
+        </div>
+        <span class="settings-arrow" aria-hidden="true">›</span>
+      </button>
 
-  <span class="settings-arrow" aria-hidden="true">›</span>
-</button>
-      
-    <button
-  type="button"
-  class="settings-row settings-row-btn"
-  onclick="showSection('notifications')"
-  aria-label="Open Notifications"
->
-  <div class="settings-row-left">
-    <span class="settings-row-icon" aria-hidden="true">📚</span>
-    <span>Notifications</span>
-  </div>
+      <button
+        type="button"
+        class="settings-row settings-row-btn"
+        onclick="showSection('learningHeatmap')"
+        aria-label="Open Learning Heatmap"
+      >
+        <div class="settings-row-left">
+          <span class="settings-row-icon" aria-hidden="true">🔥</span>
+          <span>Learning Heatmap</span>
+        </div>
+        <span class="settings-arrow" aria-hidden="true">›</span>
+      </button>
 
-  <span class="settings-new-badge">New</span>
-</button>
+      <button
+        type="button"
+        class="settings-row settings-row-btn"
+        onclick="showSection('notifications')"
+        aria-label="Open Notifications"
+      >
+        <div class="settings-row-left">
+          <span class="settings-row-icon" aria-hidden="true">📚</span>
+          <span>Notifications</span>
+        </div>
+        <span class="settings-new-badge">New</span>
+      </button>
+    </div>
 
-    <button
-  type="button"
-  class="settings-row settings-row-btn"
-  onclick="showSection('management')"
-  aria-label="Open Management"
->
-  <div class="settings-row-left">
-    <span class="settings-row-icon" aria-hidden="true">🔥</span>
-    <span>About Us</span>
-  </div>
+    <!-- ==============================
+         SETTINGS SUPPORT / LOGOUT AREA
+    ================================= -->
 
-  <span class="settings-arrow" aria-hidden="true">›</span>
-</button>
-       </div>
+    <div class="settings-support-list">
+      <button
+        type="button"
+        class="settings-support-row"
+        onclick="showSection('management')"
+        aria-label="Open About Us"
+      >
+        <div class="settings-support-left">
+          <span class="settings-support-icon" aria-hidden="true">ⓘ</span>
+          <span>About Us</span>
+        </div>
+      </button>
+
+      <button
+        type="button"
+        class="settings-support-row"
+        onclick="openContactUsPage()"
+        aria-label="Open Contact Us"
+      >
+        <div class="settings-support-left">
+          <span class="settings-support-icon" aria-hidden="true">☎</span>
+          <span>Contact Us</span>
+        </div>
+      </button>
+
+      <div class="settings-support-divider"></div>
+
+      <button
+        type="button"
+        class="settings-support-row settings-logout-row"
+        onclick="logoutStudentaf()"
+        aria-label="Logout"
+      >
+        <div class="settings-support-left">
+          <span class="settings-support-icon settings-logout-icon" aria-hidden="true">↩</span>
+          <span>Logout</span>
+        </div>
+      </button>
+    </div>
+
+    <div class="settings-app-version-box">
+      <strong>App Version: 09.01.2024</strong>
+      <span>Made with ❤️ in India</span>
+    </div>
   </div>
 </section>
 
+<!-- ==============================
+     CONTACT US SECTION - AF
+================================ -->
+
+<section id="contactUsAf" class="section app-section contact-us-af-section" aria-label="Contact Us">
+  <div class="contact-us-af-page">
+    <button
+      type="button"
+      class="contact-back-btn-af"
+      onclick="backToSettingsFromContact()"
+      aria-label="Back to Settings"
+    >
+      ← Back to Settings
+    </button>
+
+    <div class="contact-us-af-card">
+      <div class="contact-us-af-head">
+        <div class="contact-us-af-icon" aria-hidden="true">☎</div>
+
+        <div>
+          <p class="contact-us-af-kicker">Support Request</p>
+          <h2>Request a Call or Email Reply</h2>
+          <p>
+            Share your details and our team will contact you regarding your query.
+          </p>
+        </div>
+      </div>
+
+      <form id="contactUsFormAf" class="contact-us-af-form" onsubmit="submitContactRequestAf(event)">
+        <div class="contact-field-af">
+          <label for="contactNameAf">Full Name</label>
+          <input
+            id="contactNameAf"
+            name="name"
+            type="text"
+            inputmode="text"
+            autocomplete="name"
+            placeholder="Enter your full name"
+            maxlength="80"
+            required
+          />
+        </div>
+
+        <div class="contact-field-af">
+          <label for="contactMobileAf">Mobile Number</label>
+          <input
+            id="contactMobileAf"
+            name="mobile"
+            type="tel"
+            inputmode="tel"
+            autocomplete="tel"
+            placeholder="Enter your mobile number"
+            maxlength="15"
+            required
+          />
+        </div>
+
+        <div class="contact-field-af">
+          <label for="contactEmailAf">Email Address</label>
+          <input
+            id="contactEmailAf"
+            name="email"
+            type="email"
+            inputmode="email"
+            autocomplete="email"
+            placeholder="Enter your email address"
+            maxlength="120"
+            required
+          />
+        </div>
+
+        <div class="contact-field-af">
+          <label for="contactReasonAf">Reason for Contact</label>
+          <select id="contactReasonAf" name="reason" required>
+            <option value="">Select a reason</option>
+            <option value="Course Access Issue">Course Access Issue</option>
+            <option value="Login or Student ID Issue">Login or Student ID Issue</option>
+            <option value="Payment or Enrollment Query">Payment or Enrollment Query</option>
+            <option value="Technical Problem">Technical Problem</option>
+            <option value="General Support">General Support</option>
+          </select>
+        </div>
+
+        <div class="contact-field-af">
+          <label for="contactProblemAf">Describe Your Problem</label>
+          <textarea
+            id="contactProblemAf"
+            name="problem"
+            rows="5"
+            placeholder="Write your issue clearly so our team can help you faster."
+            maxlength="1200"
+            required
+          ></textarea>
+        </div>
+
+        <div id="contactUsMessageAf" class="contact-message-af" aria-live="polite"></div>
+
+        <button id="contactSubmitBtnAf" type="submit" class="contact-submit-btn-af">
+          Submit Request
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
     <!-- Learning Heatmap -->
     
   <section id="learningHeatmap" class="section learning-heatmap-section" aria-label="Learning Heatmap">
@@ -20099,15 +20942,6 @@ section#learningHeatmap.learning-heatmap-section.active {
         ></textarea>
       </label>
 
-      <label class="bug-report-field">
-        <span>Steps to Reproduce</span>
-        <textarea
-          id="bugSteps"
-          maxlength="1200"
-          rows="4"
-          placeholder="1. Open app&#10;2. Go to settings&#10;3. Click..."
-        ></textarea>
-      </label>
 
       <input id="bugPageUrl" type="hidden" />
       <input id="bugUserAgent" type="hidden" />
