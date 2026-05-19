@@ -17994,6 +17994,126 @@ body.settings-dark-mode .learning-day-box.active span {
   -webkit-text-fill-color: #ffffff !important;
   opacity: 1 !important;
 }
+
+    /* =========================================================
+   IMPORTANT: Override old notification button style
+   Makes notification button match streak pill design
+========================================================= */
+
+.topbar .notification-time-box,
+.notification-time-box.time-box,
+button.notification-time-box,
+.time-box.glass.notification-time-box {
+  width: 54px !important;
+  min-width: 54px !important;
+  height: 42px !important;
+  min-height: 42px !important;
+  padding: 0 !important;
+
+  border: 1px solid rgba(245, 158, 11, 0.36) !important;
+  outline: 0 !important;
+  border-radius: 16px !important;
+
+  background:
+    radial-gradient(circle at 30% 20%, rgba(251, 191, 36, 0.32), transparent 42%),
+    linear-gradient(135deg, rgba(255, 247, 237, 0.96), rgba(255, 255, 255, 0.92)) !important;
+
+  color: #92400e !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  box-shadow:
+    0 10px 24px rgba(245, 158, 11, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.88) !important;
+
+  cursor: pointer !important;
+  transform: none !important;
+  animation: none !important;
+  overflow: hidden !important;
+
+  -webkit-tap-highlight-color: transparent !important;
+  touch-action: manipulation !important;
+}
+
+.topbar .notification-time-box .notification-icon,
+.notification-time-box .notification-icon,
+.time-box.glass.notification-time-box .notification-icon {
+  margin: 0 !important;
+  padding: 0 !important;
+
+  color: #f59e0b !important;
+  -webkit-text-fill-color: #f59e0b !important;
+
+  font-size: 20px !important;
+  line-height: 1 !important;
+  font-weight: 900 !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  filter: drop-shadow(0 2px 4px rgba(146, 64, 14, 0.22)) !important;
+
+  transform: none !important;
+  animation: none !important;
+}
+
+.topbar .notification-time-box:hover,
+.notification-time-box.time-box:hover,
+button.notification-time-box:hover,
+.time-box.glass.notification-time-box:hover {
+  transform: none !important;
+  animation: none !important;
+}
+
+.topbar .notification-time-box:active,
+.notification-time-box.time-box:active,
+button.notification-time-box:active,
+.time-box.glass.notification-time-box:active {
+  transform: scale(0.97) !important;
+}
+
+/* Dark mode support */
+body.dark-mode .topbar .notification-time-box,
+body.dark-mode .notification-time-box.time-box,
+body.dark-mode button.notification-time-box,
+body.dark-mode .time-box.glass.notification-time-box,
+html.dark-mode body .topbar .notification-time-box,
+html.dark-mode body .notification-time-box.time-box,
+html.dark-mode body button.notification-time-box,
+html.dark-mode body .time-box.glass.notification-time-box,
+body.settings-dark-mode .topbar .notification-time-box,
+body.settings-dark-mode .notification-time-box.time-box,
+body.settings-dark-mode button.notification-time-box,
+body.settings-dark-mode .time-box.glass.notification-time-box {
+  border-color: rgba(250, 204, 21, 0.42) !important;
+
+  background:
+    radial-gradient(circle at 30% 20%, rgba(250, 204, 21, 0.24), transparent 42%),
+    linear-gradient(135deg, #422006, #111827) !important;
+
+  color: #fef3c7 !important;
+
+  box-shadow:
+    0 10px 24px rgba(250, 204, 21, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+body.dark-mode .topbar .notification-time-box .notification-icon,
+body.dark-mode .notification-time-box .notification-icon,
+body.dark-mode .time-box.glass.notification-time-box .notification-icon,
+html.dark-mode body .topbar .notification-time-box .notification-icon,
+html.dark-mode body .notification-time-box .notification-icon,
+html.dark-mode body .time-box.glass.notification-time-box .notification-icon,
+body.settings-dark-mode .topbar .notification-time-box .notification-icon,
+body.settings-dark-mode .notification-time-box .notification-icon,
+body.settings-dark-mode .time-box.glass.notification-time-box .notification-icon {
+  color: #facc15 !important;
+  -webkit-text-fill-color: #facc15 !important;
+  filter: drop-shadow(0 2px 5px rgba(250, 204, 21, 0.28)) !important;
+}
   </style>
 </head>
 
