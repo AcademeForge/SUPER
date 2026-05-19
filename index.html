@@ -15893,40 +15893,134 @@ body.dark-mode .notification-time-box:hover {
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-    /* ---------- SETTINGS PAGE ---------- */
+/* ================================
+   GLOBAL MOBILE APP SHELL
+================================ */
 
-.settings-section {
+:root {
+  --app-bg: #ffffff;
+  --app-card: #ffffff;
+  --app-soft-card: #f7f7f7;
+  --app-soft-blue: #f4faff;
+  --app-text: #222222;
+  --app-muted: #777777;
+  --app-border: #eeeeee;
+  --app-icon: #444444;
+  --app-badge-bg: #fff4cc;
+  --app-badge-text: #d49300;
+  --app-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --app-overlay: rgba(0, 0, 0, 0.38);
+}
+
+html,
+body {
   width: 100%;
   min-height: 100%;
-  background: #ffffff;
-  color: #1f2937;
+  margin: 0;
+  padding: 0;
+  background: #e9e9e9;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--app-text);
+  overflow-x: hidden;
+}
+
+/* Laptop/Desktop par bhi app mobile screen jaisa dikhega */
+body {
+  display: flex;
+  justify-content: center;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: #e9e9e9;
+  z-index: -2;
+}
+
+.app-shell,
+.app,
+#app,
+main {
+  width: 100%;
+  max-width: 390px;
+  min-height: 100vh;
+  background: var(--app-bg);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Agar wrapper nahi hai to direct sections bhi mobile width follow kare */
+.app-section {
+  width: 100%;
+  max-width: 390px;
+  min-height: 100vh;
+  margin: 0 auto;
+  background: var(--app-bg);
+  color: var(--app-text);
+}
+
+/* ================================
+   SECTION VISIBILITY CONTROL
+================================ */
+
+/* Default: sab sections hidden */
+.app-section {
+  display: none !important;
+}
+
+/* Sirf active section visible */
+.app-section.active-section {
+  display: block !important;
+}
+
+/* Settings extra safety */
+#settings {
+  display: none !important;
+}
+
+#settings.active-section {
+  display: block !important;
+}
+
+/* ================================
+   SETTINGS PAGE
+================================ */
+
+.settings-section {
+  min-height: 100vh;
+  background: var(--app-bg);
 }
 
 .settings-page {
   width: 100%;
-  min-height: calc(100vh - 72px);
-  padding: 24px 20px 96px;
+  min-height: 100vh;
   box-sizing: border-box;
-  background: #ffffff;
+  padding: 68px 20px 28px;
+  background: var(--app-bg);
+  color: var(--app-text);
 }
 
+/* Profile */
 .settings-profile-card {
   display: flex;
   align-items: center;
   gap: 14px;
   width: 100%;
-  margin-bottom: 22px;
+  box-sizing: border-box;
+  margin-bottom: 18px;
 }
 
 .settings-avatar {
-  width: 58px;
-  height: 58px;
-  min-width: 58px;
-  border-radius: 999px;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(145deg, #bbf7d0, #86efac);
-  font-size: 31px;
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #95e7ad, #79dca0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
   line-height: 1;
   overflow: hidden;
 }
@@ -15938,79 +16032,101 @@ body.dark-mode .notification-time-box:hover {
 
 .settings-profile-info h2 {
   margin: 0;
-  color: #1f2937;
-  font-size: 23px;
+  color: var(--app-text);
+  font-size: 24px;
+  font-weight: 800;
   line-height: 1.15;
-  font-weight: 900;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.4px;
 }
 
 .settings-profile-link {
   display: inline-flex;
   align-items: center;
-  justify-content: flex-start;
   margin-top: 4px;
   padding: 0;
   border: 0;
+  outline: 0;
   background: transparent;
-  color: #737373;
+  color: var(--app-muted);
   font-size: 17px;
+  font-weight: 400;
   line-height: 1.2;
-  font-weight: 500;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
+.settings-profile-link:active {
+  opacity: 0.7;
+}
+
+/* Purchase button */
 .settings-purchase-btn {
   width: 100%;
-  min-height: 48px;
+  height: 48px;
   border: 0;
-  border-radius: 14px;
-  padding: 0 16px;
+  outline: 0;
+  border-radius: 13px;
+  background: var(--app-soft-card);
+  color: var(--app-text);
   display: flex;
   align-items: center;
-  gap: 14px;
-  background: #f8f8f8;
-  color: #3f3f46;
-  font-size: 16px;
+  gap: 13px;
+  padding: 0 16px;
+  box-sizing: border-box;
+  font-size: 17px;
   font-weight: 500;
   cursor: pointer;
-  text-align: left;
+  -webkit-tap-highlight-color: transparent;
 }
 
+.settings-purchase-btn:active {
+  transform: scale(0.99);
+}
+
+/* Divider */
 .settings-divider {
   width: 100%;
   height: 1px;
-  margin: 26px 0 20px;
-  background: #e5e7eb;
+  background: var(--app-border);
+  margin: 22px 0;
 }
 
+/* Beta card */
 .settings-beta-card {
   width: 100%;
-  min-height: 52px;
+  height: 53px;
   border: 0;
-  border-radius: 10px;
-  padding: 0 16px 0 20px;
-  margin-bottom: 20px;
+  outline: 0;
+  border-radius: 8px;
+  background: var(--app-soft-blue);
+  color: var(--app-text);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #f5fbff;
-  color: #3f3f46;
-  font-size: 15px;
-  font-weight: 700;
+  padding: 0 17px 0 20px;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
-  text-align: left;
+  -webkit-tap-highlight-color: transparent;
+  margin-bottom: 22px;
+}
+
+.settings-beta-card:active {
+  transform: scale(0.99);
 }
 
 .settings-arrow {
-  color: #525252;
-  font-size: 42px;
+  font-size: 44px;
   line-height: 1;
   font-weight: 300;
-  transform: translateY(-2px);
+  color: var(--app-icon);
+  margin-top: -3px;
 }
 
+/* List */
 .settings-list {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -16018,91 +16134,90 @@ body.dark-mode .notification-time-box:hover {
 
 .settings-row {
   width: 100%;
-  min-height: 62px;
-  padding: 0 2px;
+  min-height: 61px;
   border: 0;
+  outline: 0;
   background: transparent;
-  color: #4b5563;
+  color: var(--app-text);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  text-align: left;
+  padding: 0 20px 0 0;
   box-sizing: border-box;
+  font-size: 18px;
+  font-weight: 400;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.settings-row-btn {
-  cursor: pointer;
+.settings-row-btn:active {
+  opacity: 0.65;
 }
 
 .settings-row-left {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
   min-width: 0;
 }
 
-.settings-row-left span:last-child {
-  font-size: 18px;
-  line-height: 1.2;
-  font-weight: 500;
-  color: #4b5563;
-}
-
 .settings-row-icon {
-  width: 24px;
-  min-width: 24px;
-  height: 24px;
-  display: grid;
-  place-items: center;
-  color: #525252;
-  font-size: 22px;
+  width: 26px;
+  min-width: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--app-icon);
+  font-size: 23px;
   line-height: 1;
   filter: grayscale(1);
 }
 
-.settings-new-badge {
-  min-width: 52px;
-  height: 28px;
-  padding: 0 12px;
-  border-radius: 6px;
-  display: inline-grid;
-  place-items: center;
-  background: #fff7d6;
-  color: #d99a16;
-  font-size: 16px;
-  line-height: 1;
-  font-weight: 800;
+.settings-row-left span:last-child {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* ---------- SETTINGS SWITCH ---------- */
+/* New badge */
+.settings-new-badge {
+  min-width: 52px;
+  height: 27px;
+  padding: 0 10px;
+  border-radius: 7px;
+  background: var(--app-badge-bg);
+  color: var(--app-badge-text);
+  font-size: 16px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
 
+/* Switch */
 .settings-switch {
   position: relative;
-  display: inline-flex;
-  width: 48px;
+  width: 49px;
   height: 28px;
-  flex-shrink: 0;
+  flex: 0 0 49px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .settings-switch input {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
   opacity: 0;
-  cursor: pointer;
-  margin: 0;
-  z-index: 2;
+  pointer-events: none;
 }
 
 .settings-slider {
   position: absolute;
   inset: 0;
   border-radius: 999px;
-  background: #e5e7eb;
-  transition:
-    background-color 0.18s ease,
-    box-shadow 0.18s ease;
+  background: #dedede;
+  transition: background 180ms ease;
 }
 
 .settings-slider::before {
@@ -16112,122 +16227,186 @@ body.dark-mode .notification-time-box:hover {
   height: 24px;
   left: 2px;
   top: 2px;
-  border-radius: 999px;
+  border-radius: 50%;
   background: #ffffff;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.18);
-  transition: transform 0.18s ease;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.18);
+  transition: transform 180ms ease;
 }
 
 .settings-switch input:checked + .settings-slider {
-  background: #111827;
+  background: #111111;
 }
 
 .settings-switch input:checked + .settings-slider::before {
-  transform: translateX(20px);
+  transform: translateX(21px);
 }
 
-/* ---------- DARK MODE SETTINGS PAGE ---------- */
+/* ================================
+   COMING SOON POPUP
+================================ */
 
-html.dark .settings-section,
-body.dark .settings-section,
-[data-theme="dark"] .settings-section,
-html.dark-mode .settings-section,
-body.dark-mode .settings-section {
-  background: #020617;
-  color: #f8fafc;
+.coming-soon-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: var(--app-overlay);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  box-sizing: border-box;
 }
 
-html.dark .settings-page,
-body.dark .settings-page,
-[data-theme="dark"] .settings-page,
-html.dark-mode .settings-page,
+.coming-soon-overlay.show {
+  display: flex;
+}
+
+.coming-soon-modal {
+  width: min(100%, 340px);
+  max-width: 340px;
+  border-radius: 22px;
+  background: var(--app-card);
+  color: var(--app-text);
+  box-shadow: var(--app-shadow);
+  padding: 24px 20px 18px;
+  box-sizing: border-box;
+  text-align: center;
+  transform: translateY(8px) scale(0.98);
+  animation: comingSoonIn 180ms ease forwards;
+}
+
+@keyframes comingSoonIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.coming-soon-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
+  margin: 0 auto 14px;
+  background: var(--app-soft-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+
+.coming-soon-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  color: var(--app-text);
+}
+
+.coming-soon-message {
+  margin: 8px 0 18px;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--app-muted);
+}
+
+.coming-soon-close {
+  width: 100%;
+  height: 45px;
+  border: 0;
+  outline: 0;
+  border-radius: 13px;
+  background: #111111;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.coming-soon-close:active {
+  transform: scale(0.98);
+}
+
+/* ================================
+   DARK MODE
+================================ */
+
+body.dark-mode {
+  --app-bg: #0f0f10;
+  --app-card: #19191b;
+  --app-soft-card: #1b1b1d;
+  --app-soft-blue: #17202a;
+  --app-text: #f4f4f5;
+  --app-muted: #a4a4a8;
+  --app-border: #27272a;
+  --app-icon: #e7e7e9;
+  --app-badge-bg: #3a2d0d;
+  --app-badge-text: #ffd166;
+  --app-shadow: 0 18px 45px rgba(0, 0, 0, 0.5);
+  --app-overlay: rgba(0, 0, 0, 0.68);
+}
+
+body.dark-mode,
+body.dark-mode::before {
+  background: #000000;
+}
+
+body.dark-mode .app-shell,
+body.dark-mode .app,
+body.dark-mode #app,
+body.dark-mode main,
+body.dark-mode .app-section,
+body.dark-mode .settings-section,
 body.dark-mode .settings-page {
-  background: #020617;
-  color: #f8fafc;
+  background: var(--app-bg);
+  color: var(--app-text);
 }
 
-html.dark .settings-profile-info h2,
-body.dark .settings-profile-info h2,
-[data-theme="dark"] .settings-profile-info h2,
-html.dark-mode .settings-profile-info h2,
-body.dark-mode .settings-profile-info h2 {
-  color: #f8fafc;
-}
-
-html.dark .settings-profile-link,
-body.dark .settings-profile-link,
-[data-theme="dark"] .settings-profile-link,
-html.dark-mode .settings-profile-link,
-body.dark-mode .settings-profile-link {
-  color: #94a3b8;
-}
-
-html.dark .settings-purchase-btn,
-body.dark .settings-purchase-btn,
-[data-theme="dark"] .settings-purchase-btn,
-html.dark-mode .settings-purchase-btn,
-body.dark-mode .settings-purchase-btn {
-  background: rgba(15, 23, 42, 0.95);
-  color: #e5e7eb;
-}
-
-html.dark .settings-divider,
-body.dark .settings-divider,
-[data-theme="dark"] .settings-divider,
-html.dark-mode .settings-divider,
-body.dark-mode .settings-divider {
-  background: rgba(148, 163, 184, 0.22);
-}
-
-html.dark .settings-beta-card,
-body.dark .settings-beta-card,
-[data-theme="dark"] .settings-beta-card,
-html.dark-mode .settings-beta-card,
-body.dark-mode .settings-beta-card {
-  background: rgba(15, 23, 42, 0.92);
-  color: #e5e7eb;
-}
-
-html.dark .settings-arrow,
-body.dark .settings-arrow,
-[data-theme="dark"] .settings-arrow,
-html.dark-mode .settings-arrow,
-body.dark-mode .settings-arrow {
-  color: #cbd5e1;
-}
-
-html.dark .settings-row,
-body.dark .settings-row,
-[data-theme="dark"] .settings-row,
-html.dark-mode .settings-row,
-body.dark-mode .settings-row {
-  color: #cbd5e1;
-}
-
-html.dark .settings-row-left span:last-child,
-body.dark .settings-row-left span:last-child,
-[data-theme="dark"] .settings-row-left span:last-child,
-html.dark-mode .settings-row-left span:last-child,
-body.dark-mode .settings-row-left span:last-child {
-  color: #cbd5e1;
-}
-
-html.dark .settings-row-icon,
-body.dark .settings-row-icon,
-[data-theme="dark"] .settings-row-icon,
-html.dark-mode .settings-row-icon,
 body.dark-mode .settings-row-icon {
-  color: #cbd5e1;
-  filter: none;
+  filter: grayscale(1) brightness(1.6);
 }
 
-html.dark .settings-new-badge,
-body.dark .settings-new-badge,
-[data-theme="dark"] .settings-new-badge,
-html.dark-mode .settings-new-badge,
-body.dark-mode .settings-new-badge {
-  background: rgba(251, 191, 36, 0.16);
-  color: #fbbf24;
+body.dark-mode .coming-soon-close {
+  background: #ffffff;
+  color: #111111;
+}
+
+/* ================================
+   RESPONSIVE SAFETY
+================================ */
+
+@media (min-width: 391px) {
+  .coming-soon-overlay {
+    width: 390px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 360px) {
+  .settings-page {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .settings-profile-info h2 {
+    font-size: 22px;
+  }
+
+  .settings-row {
+    font-size: 17px;
+  }
+
+  .settings-new-badge {
+    min-width: 48px;
+    font-size: 15px;
+  }
 }
 
     
@@ -28465,44 +28644,298 @@ document.addEventListener("DOMContentLoaded", function () {
 /* =========================
 COMING SOON
 ========================= */
-  let afToastTimer = null;
+  
+     
+(function () {
+  "use strict";
 
-  function showComingSoon(featureName) {
+  var STORAGE_KEYS = {
+    ACTIVE_SECTION: "activeAppSection",
+    DARK_MODE: "settingsDarkMode"
+  };
+
+  var SECTION_SELECTOR = ".app-section";
+  var ACTIVE_CLASS = "active-section";
+
+  function safeQuery(selector) {
     try {
-      const safeFeatureName =
-        typeof featureName === "string" && featureName.trim().length > 0
-          ? featureName.trim()
-          : "This feature";
-
-      let toast = document.getElementById("afComingSoonToast");
-
-      if (!toast) {
-        toast = document.createElement("div");
-        toast.id = "afComingSoonToast";
-        toast.className = "af-toast";
-        toast.setAttribute("role", "status");
-        toast.setAttribute("aria-live", "polite");
-        document.body.appendChild(toast);
-      }
-
-      toast.textContent = safeFeatureName + " is coming soon.";
-
-      window.clearTimeout(afToastTimer);
-
-      toast.classList.remove("show");
-
-      window.requestAnimationFrame(function () {
-        toast.classList.add("show");
-      });
-
-      afToastTimer = window.setTimeout(function () {
-        toast.classList.remove("show");
-      }, 2200);
+      return document.querySelector(selector);
     } catch (error) {
-      console.error("Coming soon toast failed:", error);
-      alert("This feature is coming soon.");
+      console.error("Invalid selector:", selector, error);
+      return null;
     }
   }
+
+  function safeQueryAll(selector) {
+    try {
+      return Array.prototype.slice.call(document.querySelectorAll(selector));
+    } catch (error) {
+      console.error("Invalid selector:", selector, error);
+      return [];
+    }
+  }
+
+  function normalizeSectionId(sectionId) {
+    if (typeof sectionId !== "string") return "";
+    return sectionId.replace(/^#/, "").trim();
+  }
+
+  function getAllSections() {
+    return safeQueryAll(SECTION_SELECTOR);
+  }
+
+  function hideComingSoon() {
+    var overlay = safeQuery("#comingSoonOverlay");
+    if (!overlay) return;
+
+    overlay.classList.remove("show");
+    overlay.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+  function ensureComingSoonModal() {
+    var existing = safeQuery("#comingSoonOverlay");
+    if (existing) return existing;
+
+    var overlay = document.createElement("div");
+    overlay.id = "comingSoonOverlay";
+    overlay.className = "coming-soon-overlay";
+    overlay.setAttribute("role", "dialog");
+    overlay.setAttribute("aria-modal", "true");
+    overlay.setAttribute("aria-hidden", "true");
+
+    overlay.innerHTML =
+      '<div class="coming-soon-modal" role="document">' +
+        '<div class="coming-soon-icon" aria-hidden="true">🚧</div>' +
+        '<h3 class="coming-soon-title" id="comingSoonTitle">Coming Soon</h3>' +
+        '<p class="coming-soon-message" id="comingSoonMessage">This feature is coming soon.</p>' +
+        '<button type="button" class="coming-soon-close" id="comingSoonCloseBtn">OK</button>' +
+      '</div>';
+
+    document.body.appendChild(overlay);
+
+    overlay.addEventListener("click", function (event) {
+      if (event.target === overlay) {
+        hideComingSoon();
+      }
+    });
+
+    var closeBtn = safeQuery("#comingSoonCloseBtn");
+    if (closeBtn) {
+      closeBtn.addEventListener("click", hideComingSoon);
+    }
+
+    return overlay;
+  }
+
+  function showComingSoon(featureName) {
+    var overlay = ensureComingSoonModal();
+    var title = safeQuery("#comingSoonTitle");
+    var message = safeQuery("#comingSoonMessage");
+
+    var cleanFeatureName =
+      typeof featureName === "string" && featureName.trim().length > 0
+        ? featureName.trim()
+        : "This feature";
+
+    if (title) {
+      title.textContent = "Coming Soon";
+    }
+
+    if (message) {
+      message.textContent = cleanFeatureName + " will be available soon.";
+    }
+
+    overlay.classList.add("show");
+    overlay.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+
+    var closeBtn = safeQuery("#comingSoonCloseBtn");
+    if (closeBtn) {
+      setTimeout(function () {
+        closeBtn.focus();
+      }, 30);
+    }
+  }
+
+  function showSection(sectionId, options) {
+    var normalizedId = normalizeSectionId(sectionId);
+    var target = normalizedId ? document.getElementById(normalizedId) : null;
+    var sections = getAllSections();
+
+    if (!target || !target.classList.contains("app-section")) {
+      console.warn("Section not found or missing .app-section:", sectionId);
+      return false;
+    }
+
+    hideComingSoon();
+
+    sections.forEach(function (section) {
+      section.classList.remove(ACTIVE_CLASS);
+      section.setAttribute("aria-hidden", "true");
+    });
+
+    target.classList.add(ACTIVE_CLASS);
+    target.setAttribute("aria-hidden", "false");
+
+    if (!options || options.persist !== false) {
+      try {
+        localStorage.setItem(STORAGE_KEYS.ACTIVE_SECTION, normalizedId);
+      } catch (error) {
+        console.warn("Unable to persist active section:", error);
+      }
+    }
+
+    syncActiveNav(normalizedId);
+    return true;
+  }
+
+  function syncActiveNav(activeSectionId) {
+    var navItems = safeQueryAll("[data-section], [data-target], [data-nav-target]");
+
+    navItems.forEach(function (item) {
+      var target =
+        item.getAttribute("data-section") ||
+        item.getAttribute("data-target") ||
+        item.getAttribute("data-nav-target") ||
+        "";
+
+      var normalizedTarget = normalizeSectionId(target);
+      var isActive = normalizedTarget === activeSectionId;
+
+      item.classList.toggle("active", isActive);
+      item.classList.toggle("active-nav", isActive);
+
+      if (item.tagName === "BUTTON" || item.tagName === "A") {
+        item.setAttribute("aria-current", isActive ? "page" : "false");
+      }
+    });
+  }
+
+  function applyDarkMode(isEnabled) {
+    document.body.classList.toggle("dark-mode", Boolean(isEnabled));
+    document.documentElement.classList.toggle("dark-mode", Boolean(isEnabled));
+
+    var toggle = safeQuery("#settingsDarkToggle");
+    if (toggle) {
+      toggle.checked = Boolean(isEnabled);
+    }
+
+    try {
+      localStorage.setItem(STORAGE_KEYS.DARK_MODE, Boolean(isEnabled) ? "1" : "0");
+    } catch (error) {
+      console.warn("Unable to persist dark mode:", error);
+    }
+  }
+
+  function toggleSettingsDarkMode(isEnabled) {
+    applyDarkMode(Boolean(isEnabled));
+  }
+
+  function restoreDarkMode() {
+    var storedValue = null;
+
+    try {
+      storedValue = localStorage.getItem(STORAGE_KEYS.DARK_MODE);
+    } catch (error) {
+      storedValue = null;
+    }
+
+    var shouldEnable = storedValue === "1";
+    applyDarkMode(shouldEnable);
+  }
+
+  function bindNavClicks() {
+    document.addEventListener("click", function (event) {
+      var navTrigger = event.target.closest("[data-section], [data-target], [data-nav-target]");
+
+      if (!navTrigger) return;
+
+      var target =
+        navTrigger.getAttribute("data-section") ||
+        navTrigger.getAttribute("data-target") ||
+        navTrigger.getAttribute("data-nav-target") ||
+        "";
+
+      var normalizedTarget = normalizeSectionId(target);
+
+      if (!normalizedTarget) return;
+
+      var targetSection = document.getElementById(normalizedTarget);
+
+      if (!targetSection || !targetSection.classList.contains("app-section")) {
+        return;
+      }
+
+      event.preventDefault();
+      showSection(normalizedTarget);
+    });
+  }
+
+  function bindEscapeClose() {
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        hideComingSoon();
+      }
+    });
+  }
+
+  function bootInitialSection() {
+    var storedSection = "";
+
+    try {
+      storedSection = localStorage.getItem(STORAGE_KEYS.ACTIVE_SECTION) || "";
+    } catch (error) {
+      storedSection = "";
+    }
+
+    var validStoredSection =
+      storedSection &&
+      document.getElementById(storedSection) &&
+      document.getElementById(storedSection).classList.contains("app-section");
+
+    if (validStoredSection) {
+      showSection(storedSection, { persist: false });
+      return;
+    }
+
+    var firstSection = safeQuery(".app-section:not(#settings)") || safeQuery(".app-section");
+
+    if (firstSection && firstSection.id) {
+      showSection(firstSection.id, { persist: false });
+      return;
+    }
+
+    var settings = safeQuery("#settings");
+    if (settings) {
+      settings.classList.remove(ACTIVE_CLASS);
+      settings.setAttribute("aria-hidden", "true");
+    }
+  }
+
+  function exposeGlobals() {
+    window.showSection = showSection;
+    window.showComingSoon = showComingSoon;
+    window.hideComingSoon = hideComingSoon;
+    window.toggleSettingsDarkMode = toggleSettingsDarkMode;
+  }
+
+  function initSettingsSystem() {
+    exposeGlobals();
+    ensureComingSoonModal();
+    restoreDarkMode();
+    bindNavClicks();
+    bindEscapeClose();
+    bootInitialSection();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initSettingsSystem);
+  } else {
+    initSettingsSystem();
+  }
+})();
+
   </script>
 </body>
 </html>
