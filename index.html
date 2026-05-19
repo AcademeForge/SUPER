@@ -19182,7 +19182,522 @@ body.settings-dark-mode #courseaf .student-course-locked-af p {
     padding: 16px !important;
   }
 }
-    
+    /* =========================================================
+   IMPORTANT: COURSE SECTION OLD DASHBOARD COMPATIBILITY CSS
+   Paste at END of CSS
+========================================================= */
+
+#courseaf.student-course-section-af {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: auto !important;
+  padding: 10px 10px 118px !important;
+  margin: 0 !important;
+  overflow-x: hidden !important;
+  box-sizing: border-box !important;
+
+  background:
+    radial-gradient(circle at top left, rgba(59, 130, 246, 0.10), transparent 34%),
+    linear-gradient(180deg, #f8fbff 0%, #eef4ff 100%) !important;
+}
+
+#courseaf .student-course-page-af {
+  width: min(100% - 2px, 540px) !important;
+  max-width: 540px !important;
+  margin: 0 auto !important;
+  box-sizing: border-box !important;
+}
+
+#courseaf .student-course-head-af {
+  width: 100% !important;
+  padding: 16px !important;
+  margin-bottom: 14px !important;
+  border-radius: 24px !important;
+
+  background:
+    radial-gradient(circle at top right, rgba(34, 197, 94, 0.16), transparent 34%),
+    linear-gradient(135deg, #0f172a, #1e293b) !important;
+
+  box-shadow: 0 18px 44px rgba(15, 23, 42, 0.18) !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 14px !important;
+
+  box-sizing: border-box !important;
+}
+
+#courseaf .student-course-head-af p {
+  margin: 0 0 6px !important;
+  color: rgba(255, 255, 255, 0.78) !important;
+  font-size: 11px !important;
+  font-weight: 950 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+}
+
+#courseaf .student-course-head-af h2 {
+  margin: 0 !important;
+  color: #ffffff !important;
+  font-size: 24px !important;
+  line-height: 1.1 !important;
+  font-weight: 950 !important;
+  letter-spacing: -0.05em !important;
+}
+
+#courseaf .student-course-refresh-af {
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+
+  border: 0 !important;
+  border-radius: 16px !important;
+
+  background: rgba(255, 255, 255, 0.14) !important;
+  color: #ffffff !important;
+
+  font-size: 22px !important;
+  font-weight: 950 !important;
+
+  cursor: pointer !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+#courseaf .student-course-locked-af {
+  width: 100% !important;
+  padding: 22px !important;
+  border-radius: 28px !important;
+
+  background:
+    radial-gradient(circle at top right, rgba(239, 68, 68, 0.14), transparent 34%),
+    linear-gradient(135deg, #fff1f2, #ffffff) !important;
+
+  border: 1px solid rgba(239, 68, 68, 0.24) !important;
+  box-shadow: 0 18px 44px rgba(239, 68, 68, 0.12) !important;
+
+  text-align: center !important;
+  box-sizing: border-box !important;
+}
+
+#courseaf .student-course-lock-icon-af {
+  width: 58px !important;
+  height: 58px !important;
+  margin: 0 auto 14px !important;
+  border-radius: 21px !important;
+
+  background: linear-gradient(135deg, #f97316, #ef4444) !important;
+  color: #ffffff !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  font-size: 26px !important;
+  box-shadow: 0 14px 32px rgba(239, 68, 68, 0.20) !important;
+}
+
+#courseaf .student-course-locked-af h3 {
+  margin: 0 0 8px !important;
+  color: #991b1b !important;
+  font-size: 21px !important;
+  font-weight: 950 !important;
+  letter-spacing: -0.04em !important;
+}
+
+#courseaf .student-course-locked-af p {
+  margin: 0 !important;
+  color: #7f1d1d !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  font-weight: 850 !important;
+}
+
+#courseaf .student-course-login-btn-af {
+  width: 100% !important;
+  min-height: 48px !important;
+  margin-top: 16px !important;
+
+  border: 0 !important;
+  border-radius: 17px !important;
+
+  background: linear-gradient(135deg, #0f172a, #334155) !important;
+  color: #ffffff !important;
+
+  font-size: 14px !important;
+  font-weight: 950 !important;
+
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.20) !important;
+  cursor: pointer !important;
+}
+
+#courseaf .student-course-unlocked-af {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+#courseaf .student-dashboardaf {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto 14px !important;
+  box-sizing: border-box !important;
+}
+
+#courseaf .student-dashboardaf.hidden-box {
+  display: none !important;
+}
+
+#courseaf .student-dashboardaf:not(.hidden-box) {
+  display: block !important;
+}
+
+#courseaf #courseCardsaf,
+#courseaf #chapterListaf,
+#courseaf #contentListaf {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+#courseaf .course-select-gridaf,
+#courseaf .chapter-listaf,
+#courseaf .content-listaf,
+#courseaf .learning-choiceaf {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+#courseaf .student-main-btnaf,
+#courseaf .student-logoutaf,
+#courseaf .back-miniaf,
+#courseaf .learning-btnaf {
+  -webkit-tap-highlight-color: transparent !important;
+  touch-action: manipulation !important;
+}
+
+#courseaf .student-course-refresh-af:active,
+#courseaf .student-course-login-btn-af:active,
+#courseaf .student-main-btnaf:active,
+#courseaf .student-logoutaf:active,
+#courseaf .back-miniaf:active,
+#courseaf .learning-btnaf:active {
+  transform: scale(0.98) !important;
+}
+
+#courseaf .student-course-unlocked-af[hidden],
+#courseaf .student-course-locked-af[hidden] {
+  display: none !important;
+}
+
+/* Dark Mode */
+body.dark-mode #courseaf.student-course-section-af,
+html.dark-mode body #courseaf.student-course-section-af,
+body.settings-dark-mode #courseaf.student-course-section-af {
+  background:
+    radial-gradient(circle at top left, rgba(59, 130, 246, 0.12), transparent 34%),
+    linear-gradient(180deg, #0b1120 0%, #111827 100%) !important;
+}
+
+body.dark-mode #courseaf .student-course-locked-af,
+html.dark-mode body #courseaf .student-course-locked-af,
+body.settings-dark-mode #courseaf .student-course-locked-af {
+  background:
+    radial-gradient(circle at top right, rgba(239, 68, 68, 0.18), transparent 34%),
+    linear-gradient(135deg, rgba(69, 10, 10, 0.92), rgba(15, 23, 42, 0.92)) !important;
+
+  border-color: rgba(248, 113, 113, 0.24) !important;
+}
+
+body.dark-mode #courseaf .student-course-locked-af h3,
+html.dark-mode body #courseaf .student-course-locked-af h3,
+body.settings-dark-mode #courseaf .student-course-locked-af h3 {
+  color: #fecaca !important;
+}
+
+body.dark-mode #courseaf .student-course-locked-af p,
+html.dark-mode body #courseaf .student-course-locked-af p,
+body.settings-dark-mode #courseaf .student-course-locked-af p {
+  color: #fee2e2 !important;
+}
+
+@media (max-width: 480px) {
+  #courseaf.student-course-section-af {
+    padding: 10px 10px 118px !important;
+  }
+
+  #courseaf .student-course-page-af {
+    width: min(100% - 2px, 430px) !important;
+  }
+
+  #courseaf .student-course-head-af {
+    border-radius: 24px !important;
+    padding: 16px !important;
+  }
+
+  #courseaf .student-course-locked-af {
+    border-radius: 24px !important;
+    padding: 18px !important;
+  }
+}
+    /* =========================================================
+   IMPORTANT: COURSE OLD FLOW SUPPORT CSS
+   Paste at END of CSS
+========================================================= */
+
+#courseaf #courseCardsaf,
+#courseaf #chapterListaf,
+#courseaf #contentListaf {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+#courseaf .course-select-gridaf {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 14px !important;
+  width: 100% !important;
+}
+
+#courseaf .course-cardaf {
+  width: 100% !important;
+  padding: 16px !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  border-radius: 22px !important;
+  background: rgba(255, 255, 255, 0.96) !important;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08) !important;
+  text-align: left !important;
+  cursor: pointer !important;
+  box-sizing: border-box !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+#courseaf .course-card-topaf {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+}
+
+#courseaf .course-card-iconaf {
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+  border-radius: 18px !important;
+  background: linear-gradient(135deg, #4f46e5, #06b6d4) !important;
+  color: #ffffff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 23px !important;
+  box-shadow: 0 12px 26px rgba(79, 70, 229, 0.18) !important;
+}
+
+#courseaf .course-card-textaf {
+  min-width: 0 !important;
+  flex: 1 !important;
+}
+
+#courseaf .course-card-textaf h3 {
+  margin: 0 0 6px !important;
+  color: #0f172a !important;
+  font-size: 17px !important;
+  line-height: 1.2 !important;
+  font-weight: 950 !important;
+  letter-spacing: -0.03em !important;
+}
+
+#courseaf .course-card-textaf p {
+  margin: 0 !important;
+  color: #64748b !important;
+  font-size: 13px !important;
+  line-height: 1.45 !important;
+  font-weight: 750 !important;
+}
+
+#courseaf .course-card-metaaf {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 7px !important;
+  margin-top: 12px !important;
+}
+
+#courseaf .course-card-metaaf span {
+  padding: 6px 9px !important;
+  border-radius: 999px !important;
+  background: rgba(59, 130, 246, 0.10) !important;
+  color: #1d4ed8 !important;
+  font-size: 11px !important;
+  font-weight: 900 !important;
+}
+
+#courseaf .course-card-footeraf {
+  margin-top: 14px !important;
+  padding-top: 12px !important;
+  border-top: 1px solid rgba(15, 23, 42, 0.08) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+}
+
+#courseaf .course-card-footeraf span {
+  color: #64748b !important;
+  font-size: 12px !important;
+  font-weight: 850 !important;
+}
+
+#courseaf .course-card-footeraf strong {
+  color: #2563eb !important;
+  font-size: 13px !important;
+  font-weight: 950 !important;
+}
+
+#courseaf .chapter-listaf,
+#courseaf .content-listaf {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 12px !important;
+  width: 100% !important;
+}
+
+#courseaf .chapter-itemaf,
+#courseaf .content-itemaf {
+  width: 100% !important;
+  padding: 15px !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  border-radius: 20px !important;
+  background: rgba(255, 255, 255, 0.96) !important;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.07) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  text-align: left !important;
+  cursor: pointer !important;
+  box-sizing: border-box !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+#courseaf .chapter-item-leftaf,
+#courseaf .content-item-leftaf {
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+}
+
+#courseaf .chapter-item-leftaf strong,
+#courseaf .content-item-leftaf strong {
+  color: #0f172a !important;
+  font-size: 14px !important;
+  font-weight: 950 !important;
+  line-height: 1.25 !important;
+}
+
+#courseaf .chapter-item-leftaf small,
+#courseaf .content-item-leftaf small {
+  color: #64748b !important;
+  font-size: 12px !important;
+  font-weight: 750 !important;
+  line-height: 1.35 !important;
+}
+
+#courseaf .chapter-item-arrowaf,
+#courseaf .content-item-actionaf {
+  color: #2563eb !important;
+  font-size: 18px !important;
+  font-weight: 950 !important;
+  white-space: nowrap !important;
+}
+
+#courseaf .content-item-actionaf {
+  font-size: 12px !important;
+}
+
+#courseaf .af-course-inline-message {
+  width: 100% !important;
+  padding: 20px !important;
+  border-radius: 24px !important;
+  background: rgba(255, 255, 255, 0.96) !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08) !important;
+  text-align: center !important;
+  box-sizing: border-box !important;
+}
+
+#courseaf .af-course-inline-icon {
+  width: 56px !important;
+  height: 56px !important;
+  margin: 0 auto 12px !important;
+  border-radius: 20px !important;
+  background: linear-gradient(135deg, #4f46e5, #06b6d4) !important;
+  color: #ffffff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 25px !important;
+}
+
+#courseaf .af-course-inline-message h3 {
+  margin: 0 0 8px !important;
+  color: #0f172a !important;
+  font-size: 18px !important;
+  font-weight: 950 !important;
+}
+
+#courseaf .af-course-inline-message p {
+  margin: 0 !important;
+  color: #64748b !important;
+  font-size: 13px !important;
+  font-weight: 750 !important;
+  line-height: 1.45 !important;
+}
+
+/* Dark mode */
+body.dark-mode #courseaf .course-cardaf,
+html.dark-mode body #courseaf .course-cardaf,
+body.settings-dark-mode #courseaf .course-cardaf,
+body.dark-mode #courseaf .chapter-itemaf,
+html.dark-mode body #courseaf .chapter-itemaf,
+body.settings-dark-mode #courseaf .chapter-itemaf,
+body.dark-mode #courseaf .content-itemaf,
+html.dark-mode body #courseaf .content-itemaf,
+body.settings-dark-mode #courseaf .content-itemaf,
+body.dark-mode #courseaf .af-course-inline-message,
+html.dark-mode body #courseaf .af-course-inline-message,
+body.settings-dark-mode #courseaf .af-course-inline-message {
+  background: rgba(15, 23, 42, 0.88) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22) !important;
+}
+
+body.dark-mode #courseaf .course-card-textaf h3,
+html.dark-mode body #courseaf .course-card-textaf h3,
+body.settings-dark-mode #courseaf .course-card-textaf h3,
+body.dark-mode #courseaf .chapter-item-leftaf strong,
+html.dark-mode body #courseaf .chapter-item-leftaf strong,
+body.settings-dark-mode #courseaf .chapter-item-leftaf strong,
+body.dark-mode #courseaf .content-item-leftaf strong,
+html.dark-mode body #courseaf .content-item-leftaf strong,
+body.settings-dark-mode #courseaf .content-item-leftaf strong,
+body.dark-mode #courseaf .af-course-inline-message h3,
+html.dark-mode body #courseaf .af-course-inline-message h3,
+body.settings-dark-mode #courseaf .af-course-inline-message h3 {
+  color: #f8fafc !important;
+}
+
+body.dark-mode #courseaf .course-card-textaf p,
+html.dark-mode body #courseaf .course-card-textaf p,
+body.settings-dark-mode #courseaf .course-card-textaf p,
+body.dark-mode #courseaf .chapter-item-leftaf small,
+html.dark-mode body #courseaf .chapter-item-leftaf small,
+body.settings-dark-mode #courseaf .chapter-item-leftaf small,
+body.dark-mode #courseaf .content-item-leftaf small,
+html.dark-mode body #courseaf .content-item-leftaf small,
+body.settings-dark-mode #courseaf .content-item-leftaf small,
+body.dark-mode #courseaf .af-course-inline-message p,
+html.dark-mode body #courseaf .af-course-inline-message p,
+body.settings-dark-mode #courseaf .af-course-inline-message p {
+  color: #cbd5e1 !important;
+}
   </style>
 </head>
 
@@ -20849,14 +21364,9 @@ body.settings-dark-mode #courseaf .student-course-locked-af p {
     Home
   </button>
 
-<button class="nav-btn" data-section="studentaf" type="button" onclick="showSection('studentaf')">
-  <b>🎓</b>
-  <span>Student</span>
-</button>
-
 <button class="nav-btn" data-section="courseaf" type="button" onclick="showSection('courseaf')">
   <b>📚</b>
-  <span>Course</span>
+  <span>MY Courses</span>
 </button>
   
 <button class="nav-btn" data-section="batchaf" type="button" onclick="showSection('batchaf')">
@@ -26379,23 +26889,28 @@ function loadStudentCoursesSafeAF() {
   }
 }
 
+
 /* =========================================================
    COURSE SECTION JS - AF
-   For section: #courseaf
+   FIXED FOR NEW #courseaf + OLD COURSE FLOW IDS
 
-   Backend used:
-   - studentDb.functions.invoke("student-courses-af", {
-       body: { student_id: af_student_uuid }
-     })
+   This replacement keeps:
+   - Same backend: student-courses-af
+   - Same session keys
+   - Same old HTML IDs:
+     courseSelectBox
+     courseCardsaf
+     noCourseBoxaf
+     courseDetailsBoxaf
+     learningBoxaf
+     chapterBoxaf
+     contentBoxaf
+     chapterListaf
+     contentListaf
 
-   Required localStorage session keys:
-   - af_student_logged_in
-   - af_student_uuid
-   - af_student_name
-   - af_student_id
-   - af_student_mobile
-   - af_student_email
-   - af_session_token
+   Delete old course JS and paste this after:
+   1. Supabase/studentDb setup
+   2. Student login/create JS
 ========================================================= */
 
 (function () {
@@ -26406,14 +26921,30 @@ function loadStudentCoursesSafeAF() {
   var afCourseState = {
     loading: false,
     courses: [],
+    selectedCourse: null,
+    selectedMode: "",
+    selectedChapter: null,
     lastLoadedAt: 0
   };
+
+  /* =========================
+     BASIC HELPERS
+  ========================= */
 
   function afCourseBackend() {
     try {
       if (typeof studentDb !== "undefined" && studentDb) {
         return studentDb;
       }
+
+      if (
+        typeof supabase !== "undefined" &&
+        typeof SUPABASE_PROJECT_URL !== "undefined" &&
+        typeof SUPABASE_ANON_KEY !== "undefined"
+      ) {
+        return supabase.createClient(SUPABASE_PROJECT_URL, SUPABASE_ANON_KEY);
+      }
+
       return null;
     } catch (error) {
       console.error("afCourseBackend failed:", error);
@@ -26428,7 +26959,7 @@ function loadStudentCoursesSafeAF() {
   function afCourseSafeText(value, fallback) {
     if (value === null || value === undefined) return fallback || "";
     var text = String(value).trim();
-    return text ? text : (fallback || "");
+    return text ? text : fallback || "";
   }
 
   function afCourseEscapeHtml(value) {
@@ -26454,6 +26985,73 @@ function loadStudentCoursesSafeAF() {
     }
   }
 
+  function afCourseParseMaybeJson(value, fallback) {
+    try {
+      if (Array.isArray(value)) return value;
+      if (value && typeof value === "object") return value;
+      if (typeof value !== "string") return fallback;
+
+      var trimmed = value.trim();
+      if (!trimmed) return fallback;
+
+      if (
+        (trimmed.charAt(0) === "[" && trimmed.charAt(trimmed.length - 1) === "]") ||
+        (trimmed.charAt(0) === "{" && trimmed.charAt(trimmed.length - 1) === "}")
+      ) {
+        return JSON.parse(trimmed);
+      }
+
+      return fallback;
+    } catch (error) {
+      return fallback;
+    }
+  }
+
+  function afCourseArrayFromAny(value) {
+    try {
+      if (Array.isArray(value)) return value.filter(Boolean);
+
+      var parsed = afCourseParseMaybeJson(value, null);
+      if (Array.isArray(parsed)) return parsed.filter(Boolean);
+
+      if (typeof value === "string") {
+        return value
+          .split(/\n|,/)
+          .map(function (item) {
+            return item.trim();
+          })
+          .filter(Boolean);
+      }
+
+      return [];
+    } catch (error) {
+      return [];
+    }
+  }
+
+  function afCourseFormatDate(value) {
+    try {
+      if (!value) return "";
+
+      var date = new Date(value);
+      if (Number.isNaN(date.getTime())) {
+        return afCourseSafeText(value, "");
+      }
+
+      return date.toLocaleDateString("en-IN", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric"
+      });
+    } catch (error) {
+      return afCourseSafeText(value, "");
+    }
+  }
+
+  /* =========================
+     SESSION
+  ========================= */
+
   function afCourseGetSession() {
     try {
       var loggedIn = localStorage.getItem("af_student_logged_in");
@@ -26469,6 +27067,7 @@ function loadStudentCoursesSafeAF() {
         loggedIn === "1" ||
         afCourseIsUuid(studentUuid) ||
         (studentId && String(studentId).trim().length >= 4) ||
+        (studentMobile && String(studentMobile).trim().length >= 8) ||
         (sessionToken && String(sessionToken).trim().length >= 8);
 
       return {
@@ -26482,6 +27081,7 @@ function loadStudentCoursesSafeAF() {
       };
     } catch (error) {
       console.error("afCourseGetSession failed:", error);
+
       return {
         isLoggedIn: false,
         studentUuid: "",
@@ -26499,27 +27099,17 @@ function loadStudentCoursesSafeAF() {
     el.hidden = Boolean(hidden);
   }
 
-  function afCourseSetDisplay(el, display) {
-    if (!el) return;
-    el.style.display = display;
-  }
-
   function syncStudentCourseAuthStateAF() {
     try {
       var session = afCourseGetSession();
 
       var loggedOutState = afCourseEl("studentCourseLoggedOutStateaf");
       var unlockedArea = afCourseEl("studentCourseUnlockedAreaaf");
-      var list = afCourseEl("studentCoursesListaf");
 
       if (!session.isLoggedIn) {
         afCourseSetHidden(loggedOutState, false);
         afCourseSetHidden(unlockedArea, true);
-
-        if (list) {
-          list.innerHTML = "";
-        }
-
+        afCourseHideAllPanels();
         afCourseState.courses = [];
         afCourseState.loading = false;
         return false;
@@ -26535,56 +27125,90 @@ function loadStudentCoursesSafeAF() {
     }
   }
 
-  function afCourseShowMessage(type, title, message) {
+  /* =========================
+     PANEL HELPERS
+  ========================= */
+
+  function afCourseHideAllPanels() {
     try {
-      var list = afCourseEl("studentCoursesListaf");
-      if (!list) return;
+      var ids = [
+        "courseSelectBox",
+        "noCourseBoxaf",
+        "courseDetailsBoxaf",
+        "learningBoxaf",
+        "chapterBoxaf",
+        "contentBoxaf"
+      ];
 
-      var icon = "📚";
+      ids.forEach(function (id) {
+        var el = afCourseEl(id);
 
-      if (type === "loading") icon = "⏳";
-      if (type === "error") icon = "⚠️";
-      if (type === "empty") icon = "📭";
-      if (type === "locked") icon = "🔐";
-
-      list.innerHTML =
-        '<div class="student-course-empty-card-af af-course-message-card" data-type="' + afCourseEscapeAttr(type) + '">' +
-          '<div class="student-course-empty-icon-af" aria-hidden="true">' + icon + '</div>' +
-          '<h3>' + afCourseEscapeHtml(title || "Courses") + '</h3>' +
-          '<p>' + afCourseEscapeHtml(message || "") + '</p>' +
-        '</div>';
+        if (el) {
+          el.classList.add("hidden-box");
+          el.style.display = "none";
+        }
+      });
     } catch (error) {
-      console.error("afCourseShowMessage failed:", error);
+      console.error("afCourseHideAllPanels failed:", error);
     }
   }
 
-  function afCourseHideDefaultEmptyCard() {
+  function afCourseShowPanel(panelId) {
     try {
-      var unlockedArea = afCourseEl("studentCourseUnlockedAreaaf");
-      if (!unlockedArea) return;
+      afCourseHideAllPanels();
 
-      var emptyCard = unlockedArea.querySelector(".student-course-empty-card-af");
-      if (emptyCard) {
-        emptyCard.style.display = "none";
+      var panel = afCourseEl(panelId);
+
+      if (panel) {
+        panel.classList.remove("hidden-box");
+        panel.style.display = "block";
       }
     } catch (error) {
-      console.error("afCourseHideDefaultEmptyCard failed:", error);
+      console.error("afCourseShowPanel failed:", error);
     }
   }
 
-  function afCourseShowDefaultEmptyCard() {
+  function afCourseSetHtml(id, html) {
+    var el = afCourseEl(id);
+    if (el) el.innerHTML = html || "";
+  }
+
+  function afCourseSetText(id, text) {
+    var el = afCourseEl(id);
+    if (el) el.textContent = text || "";
+  }
+
+  function afCourseShowInlineMessage(panelId, icon, title, message) {
     try {
-      var unlockedArea = afCourseEl("studentCourseUnlockedAreaaf");
-      if (!unlockedArea) return;
+      if (panelId === "courseSelectBox") {
+        afCourseShowPanel("courseSelectBox");
 
-      var emptyCard = unlockedArea.querySelector(".student-course-empty-card-af");
-      if (emptyCard) {
-        emptyCard.style.display = "block";
+        afCourseSetHtml(
+          "courseCardsaf",
+          '<div class="af-course-inline-message">' +
+            '<div class="af-course-inline-icon" aria-hidden="true">' + afCourseEscapeHtml(icon || "📚") + '</div>' +
+            '<h3>' + afCourseEscapeHtml(title || "Courses") + '</h3>' +
+            '<p>' + afCourseEscapeHtml(message || "") + '</p>' +
+          '</div>'
+        );
+
+        return;
       }
+
+      if (panelId === "noCourseBoxaf") {
+        afCourseShowPanel("noCourseBoxaf");
+        return;
+      }
+
+      afCourseShowPanel(panelId);
     } catch (error) {
-      console.error("afCourseShowDefaultEmptyCard failed:", error);
+      console.error("afCourseShowInlineMessage failed:", error);
     }
   }
+
+  /* =========================
+     BACKEND
+  ========================= */
 
   async function afCourseEdgeCall(functionName, payload) {
     var backend = afCourseBackend();
@@ -26617,6 +27241,7 @@ function loadStudentCoursesSafeAF() {
 
       if (response.error) {
         console.error("AF course edge error:", response.error);
+
         return {
           ok: false,
           message: response.error.message || "Server request failed."
@@ -26633,10 +27258,198 @@ function loadStudentCoursesSafeAF() {
       return response.data;
     } catch (error) {
       console.error("afCourseEdgeCall catch:", error);
+
       return {
         ok: false,
         message: error && error.message ? error.message : "Server request failed."
       };
+    }
+  }
+
+  /* =========================
+     NORMALIZATION
+  ========================= */
+
+  function afCourseNormalizeContentItem(rawItem, index, mode) {
+    var item = rawItem && typeof rawItem === "object" ? rawItem : {};
+
+    if (typeof rawItem === "string") {
+      item = {
+        title: rawItem,
+        url: ""
+      };
+    }
+
+    var title = afCourseSafeText(
+      item.title ||
+      item.name ||
+      item.lecture_title ||
+      item.note_title ||
+      item.content_title ||
+      item.topic ||
+      (mode === "notes" ? "Note " + (index + 1) : "Lecture " + (index + 1)),
+      mode === "notes" ? "Note " + (index + 1) : "Lecture " + (index + 1)
+    );
+
+    var description = afCourseSafeText(
+      item.description ||
+      item.details ||
+      item.subtitle ||
+      item.short_description,
+      ""
+    );
+
+    var url = afCourseSafeText(
+      item.url ||
+      item.link ||
+      item.video_url ||
+      item.note_url ||
+      item.file_url ||
+      item.pdf_url ||
+      item.content_url ||
+      "",
+      ""
+    );
+
+    var type = afCourseSafeText(item.type || mode || "", mode || "");
+
+    return {
+      id: afCourseSafeText(item.id || item.content_id || index, String(index)),
+      title: title,
+      description: description,
+      url: url,
+      type: type,
+      raw: item
+    };
+  }
+
+  function afCourseNormalizeChapter(rawChapter, index, course) {
+    var chapter = rawChapter && typeof rawChapter === "object" ? rawChapter : {};
+
+    if (typeof rawChapter === "string") {
+      chapter = {
+        title: rawChapter,
+        lectures: [],
+        notes: []
+      };
+    }
+
+    var title = afCourseSafeText(
+      chapter.title ||
+      chapter.name ||
+      chapter.chapter_title ||
+      chapter.chapter_name ||
+      chapter.topic ||
+      "Chapter " + (index + 1),
+      "Chapter " + (index + 1)
+    );
+
+    var description = afCourseSafeText(
+      chapter.description ||
+      chapter.details ||
+      chapter.subtitle ||
+      "",
+      ""
+    );
+
+    var lecturesRaw =
+      chapter.lectures ||
+      chapter.videos ||
+      chapter.video_lectures ||
+      chapter.lecture_list ||
+      chapter.classes ||
+      [];
+
+    var notesRaw =
+      chapter.notes ||
+      chapter.pdfs ||
+      chapter.study_notes ||
+      chapter.note_list ||
+      chapter.materials ||
+      [];
+
+    var lectures = afCourseArrayFromAny(lecturesRaw).map(function (item, itemIndex) {
+      return afCourseNormalizeContentItem(item, itemIndex, "lectures");
+    });
+
+    var notes = afCourseArrayFromAny(notesRaw).map(function (item, itemIndex) {
+      return afCourseNormalizeContentItem(item, itemIndex, "notes");
+    });
+
+    return {
+      id: afCourseSafeText(chapter.id || chapter.chapter_id || index, String(index)),
+      title: title,
+      description: description,
+      lectures: lectures,
+      notes: notes,
+      raw: chapter,
+      course: course || null
+    };
+  }
+
+  function afCourseExtractChapters(courseRaw, normalizedCourse) {
+    try {
+      var raw = courseRaw || {};
+
+      var chaptersRaw =
+        raw.chapters ||
+        raw.chapter_list ||
+        raw.course_chapters ||
+        raw.syllabus_chapters ||
+        raw.modules ||
+        raw.units ||
+        [];
+
+      var parsedChapters = afCourseArrayFromAny(chaptersRaw);
+
+      if (parsedChapters.length) {
+        return parsedChapters.map(function (chapter, index) {
+          return afCourseNormalizeChapter(chapter, index, normalizedCourse);
+        });
+      }
+
+      /*
+        Fallback:
+        If backend sends flat lectures/notes directly on course,
+        create one virtual chapter so Continue Learning still works.
+      */
+      var flatLectures = afCourseArrayFromAny(
+        raw.lectures ||
+        raw.videos ||
+        raw.video_lectures ||
+        raw.lecture_list ||
+        []
+      );
+
+      var flatNotes = afCourseArrayFromAny(
+        raw.notes ||
+        raw.pdfs ||
+        raw.study_notes ||
+        raw.note_list ||
+        raw.materials ||
+        []
+      );
+
+      if (flatLectures.length || flatNotes.length) {
+        return [
+          afCourseNormalizeChapter(
+            {
+              id: "chapter-1",
+              title: "Course Content",
+              description: "All available course content.",
+              lectures: flatLectures,
+              notes: flatNotes
+            },
+            0,
+            normalizedCourse
+          )
+        ];
+      }
+
+      return [];
+    } catch (error) {
+      console.error("afCourseExtractChapters failed:", error);
+      return [];
     }
   }
 
@@ -26647,7 +27460,8 @@ function loadStudentCoursesSafeAF() {
       course.id ||
       course.course_id ||
       course.batch_id ||
-      course.enrollment_id,
+      course.enrollment_id ||
+      course.access_id,
       ""
     );
 
@@ -26660,11 +27474,11 @@ function loadStudentCoursesSafeAF() {
       "Course"
     );
 
-    var shortDescription = afCourseSafeText(
+    var intro = afCourseSafeText(
+      course.intro ||
       course.short_description ||
       course.description ||
       course.course_description ||
-      course.intro ||
       course.subtitle,
       "Course details will be available soon."
     );
@@ -26673,11 +27487,12 @@ function loadStudentCoursesSafeAF() {
       course.details ||
       course.course_details ||
       course.full_description ||
-      course.long_description,
-      ""
+      course.long_description ||
+      course.description,
+      intro
     );
 
-    var icon = afCourseSafeText(course.icon || course.emoji, "📘");
+    var icon = afCourseSafeText(course.icon || course.emoji || course.course_icon, "📘");
 
     var status = afCourseSafeText(
       course.status ||
@@ -26707,60 +27522,61 @@ function loadStudentCoursesSafeAF() {
       ""
     );
 
-    var facilities = [];
+    var syllabus = afCourseArrayFromAny(
+      course.syllabus ||
+      course.course_syllabus ||
+      course.syllabus_points ||
+      course.topics ||
+      []
+    );
 
-    if (Array.isArray(course.facilities)) {
-      facilities = course.facilities;
-    } else if (typeof course.facilities === "string") {
-      try {
-        var parsedFacilities = JSON.parse(course.facilities);
-        if (Array.isArray(parsedFacilities)) {
-          facilities = parsedFacilities;
-        } else {
-          facilities = course.facilities.split(",").map(function (item) {
-            return item.trim();
-          }).filter(Boolean);
-        }
-      } catch (error) {
-        facilities = course.facilities.split(",").map(function (item) {
-          return item.trim();
-        }).filter(Boolean);
-      }
-    }
+    var facilities = afCourseArrayFromAny(
+      course.facilities ||
+      course.course_facilities ||
+      course.features ||
+      []
+    );
 
-    return {
+    var normalized = {
       id: id,
       title: title,
-      shortDescription: shortDescription,
+      intro: intro,
       details: details,
       icon: icon,
       status: status,
       batchName: batchName,
       startDate: startDate,
       endDate: endDate,
+      syllabus: syllabus,
       facilities: facilities,
+      chapters: [],
       raw: course
     };
+
+    normalized.chapters = afCourseExtractChapters(course, normalized);
+
+    return normalized;
   }
 
-  function afCourseFormatDate(value) {
+  function afCourseGetCoursesFromResult(result) {
     try {
-      if (!value) return "";
+      if (!result || typeof result !== "object") return [];
 
-      var date = new Date(value);
-      if (Number.isNaN(date.getTime())) {
-        return afCourseSafeText(value, "");
-      }
+      if (Array.isArray(result.courses)) return result.courses;
+      if (Array.isArray(result.data)) return result.data;
+      if (Array.isArray(result.enrolled_courses)) return result.enrolled_courses;
+      if (Array.isArray(result.batches)) return result.batches;
+      if (Array.isArray(result.items)) return result.items;
 
-      return date.toLocaleDateString("en-IN", {
-        day: "2-digit",
-        month: "short",
-        year: "numeric"
-      });
+      return [];
     } catch (error) {
-      return afCourseSafeText(value, "");
+      return [];
     }
   }
+
+  /* =========================
+     RENDER COURSES
+  ========================= */
 
   function afCourseBuildMeta(course) {
     var meta = [];
@@ -26786,80 +27602,81 @@ function loadStudentCoursesSafeAF() {
 
   function renderStudentCoursesAF(courses) {
     try {
-      var list = afCourseEl("studentCoursesListaf");
-      if (!list) return;
+      var cards = afCourseEl("courseCardsaf");
+      var welcome = afCourseEl("studentWelcomeTextaf");
+      var session = afCourseGetSession();
 
-      afCourseHideDefaultEmptyCard();
+      if (welcome) {
+        welcome.textContent = "Welcome " + (session.studentName || "Student");
+      }
 
-      if (!Array.isArray(courses) || courses.length === 0) {
-        afCourseState.courses = [];
-        afCourseShowDefaultEmptyCard();
-        list.innerHTML = "";
+      if (!cards) {
+        console.error("courseCardsaf not found.");
         return;
       }
 
-      var normalizedCourses = courses.map(afCourseNormalizeCourse).filter(function (course) {
-        return course && (course.id || course.title);
-      });
+      if (!Array.isArray(courses) || courses.length === 0) {
+        afCourseState.courses = [];
+        afCourseShowPanel("noCourseBoxaf");
+        return;
+      }
+
+      var normalizedCourses = courses
+        .map(afCourseNormalizeCourse)
+        .filter(function (course) {
+          return course && (course.id || course.title);
+        });
 
       afCourseState.courses = normalizedCourses;
 
       if (!normalizedCourses.length) {
-        afCourseShowDefaultEmptyCard();
-        list.innerHTML = "";
+        afCourseShowPanel("noCourseBoxaf");
         return;
       }
 
-      list.innerHTML = normalizedCourses.map(function (course, index) {
+      cards.innerHTML = normalizedCourses.map(function (course, index) {
         var meta = afCourseBuildMeta(course);
-        var facilitiesHtml = "";
-
-        if (course.facilities && course.facilities.length) {
-          facilitiesHtml =
-            '<ul class="student-course-facilities-af">' +
-              course.facilities.slice(0, 4).map(function (item) {
-                return '<li>' + afCourseEscapeHtml(item) + '</li>';
-              }).join("") +
-            '</ul>';
-        }
 
         var metaHtml = meta.length
-          ? '<div class="student-course-meta-af">' +
+          ? '<div class="course-card-metaaf">' +
               meta.map(function (item) {
                 return '<span>' + afCourseEscapeHtml(item) + '</span>';
               }).join("") +
             '</div>'
           : "";
 
+        var chapterCount = Array.isArray(course.chapters) ? course.chapters.length : 0;
+
         return (
-          '<article class="student-course-card-af" data-course-index="' + String(index) + '" data-course-id="' + afCourseEscapeAttr(course.id) + '">' +
-            '<div class="student-course-card-top-af">' +
-              '<div class="student-course-card-icon-af" aria-hidden="true">' + afCourseEscapeHtml(course.icon) + '</div>' +
-              '<div class="student-course-card-main-af">' +
+          '<button type="button" class="course-cardaf" data-course-index="' + String(index) + '" onclick="openCourseDetailsaf(\'' + afCourseEscapeAttr(course.id || index) + '\')">' +
+            '<div class="course-card-topaf">' +
+              '<div class="course-card-iconaf" aria-hidden="true">' + afCourseEscapeHtml(course.icon) + '</div>' +
+              '<div class="course-card-textaf">' +
                 '<h3>' + afCourseEscapeHtml(course.title) + '</h3>' +
-                '<p>' + afCourseEscapeHtml(course.shortDescription) + '</p>' +
+                '<p>' + afCourseEscapeHtml(course.intro) + '</p>' +
               '</div>' +
             '</div>' +
             metaHtml +
-            (
-              course.details
-                ? '<div class="student-course-details-af">' + afCourseEscapeHtml(course.details) + '</div>'
-                : ''
-            ) +
-            facilitiesHtml +
-            '<div class="student-course-actions-af">' +
-              '<button type="button" class="student-course-open-btn-af" onclick="openStudentCourseFromCourseSectionAF(\'' + afCourseEscapeAttr(course.id) + '\')">Open Course</button>' +
+            '<div class="course-card-footeraf">' +
+              '<span>' + afCourseEscapeHtml(String(chapterCount)) + ' Chapters</span>' +
+              '<strong>Open ›</strong>' +
             '</div>' +
-          '</article>'
+          '</button>'
         );
       }).join("");
+
+      afCourseShowPanel("courseSelectBox");
     } catch (error) {
       console.error("renderStudentCoursesAF failed:", error);
-      afCourseShowMessage("error", "Render failed", "Unable to show courses right now.");
+      afCourseShowInlineMessage("courseSelectBox", "⚠️", "Render failed", "Unable to show courses right now.");
     }
   }
 
-  async function loadStudentCoursesSafeAF(options) {
+  /* =========================
+     LOAD COURSES
+  ========================= */
+
+  async function loadStudentCoursesInternalAF(options) {
     var opts = options && typeof options === "object" ? options : {};
 
     if (afCourseState.loading) {
@@ -26874,10 +27691,10 @@ function loadStudentCoursesSafeAF() {
 
     var session = afCourseGetSession();
 
-    if (!session.studentUuid) {
-      afCourseHideDefaultEmptyCard();
-      afCourseShowMessage(
-        "error",
+    if (!session.studentUuid && !session.studentId && !session.studentMobile) {
+      afCourseShowInlineMessage(
+        "courseSelectBox",
+        "⚠️",
         "Session missing",
         "Student session not found. Please login again."
       );
@@ -26897,12 +27714,11 @@ function loadStudentCoursesSafeAF() {
     }
 
     afCourseState.loading = true;
-    afCourseHideDefaultEmptyCard();
-    afCourseShowMessage("loading", "Loading courses", "Fetching your enrolled courses...");
+    afCourseShowInlineMessage("courseSelectBox", "⏳", "Loading courses", "Fetching your enrolled courses...");
 
     try {
       var result = await afCourseEdgeCall(AF_COURSE_EDGE_FUNCTION, {
-        student_id: session.studentUuid,
+        student_id: session.studentUuid || session.studentId || session.studentMobile,
         student_uuid: session.studentUuid,
         student_mobile: session.studentMobile,
         student_phone: session.studentMobile,
@@ -26912,44 +27728,36 @@ function loadStudentCoursesSafeAF() {
 
       if (!result || !result.ok) {
         afCourseState.courses = [];
-        afCourseShowMessage(
-          "error",
+
+        afCourseShowInlineMessage(
+          "courseSelectBox",
+          "⚠️",
           "Could not load courses",
           result && result.message ? result.message : "Could not load your enrolled courses."
         );
+
         return;
       }
 
-      var courses = [];
-
-      if (Array.isArray(result.courses)) {
-        courses = result.courses;
-      } else if (Array.isArray(result.data)) {
-        courses = result.data;
-      } else if (Array.isArray(result.enrolled_courses)) {
-        courses = result.enrolled_courses;
-      }
+      var courses = afCourseGetCoursesFromResult(result);
 
       afCourseState.lastLoadedAt = Date.now();
 
       if (!courses.length) {
         afCourseState.courses = [];
-        afCourseShowDefaultEmptyCard();
-
-        var list = afCourseEl("studentCoursesListaf");
-        if (list) {
-          list.innerHTML = "";
-        }
-
+        afCourseShowPanel("noCourseBoxaf");
         return;
       }
 
       renderStudentCoursesAF(courses);
     } catch (error) {
-      console.error("loadStudentCoursesSafeAF catch:", error);
+      console.error("loadStudentCoursesInternalAF catch:", error);
+
       afCourseState.courses = [];
-      afCourseShowMessage(
-        "error",
+
+      afCourseShowInlineMessage(
+        "courseSelectBox",
+        "⚠️",
         "Unable to load courses",
         error && error.message ? error.message : "Unable to load courses right now."
       );
@@ -26958,42 +27766,317 @@ function loadStudentCoursesSafeAF() {
     }
   }
 
-  function openStudentCourseFromCourseSectionAF(courseId) {
+  function loadStudentCoursesSafeAF() {
+    return loadStudentCoursesInternalAF({
+      force: true
+    });
+  }
+
+  /* =========================
+     COURSE DETAILS
+  ========================= */
+
+  function afCourseFindCourse(courseIdOrIndex) {
     try {
-      var course = afCourseState.courses.find(function (item) {
-        return String(item.id) === String(courseId);
+      var idText = String(courseIdOrIndex || "");
+
+      var byId = afCourseState.courses.find(function (course) {
+        return String(course.id) === idText;
       });
+
+      if (byId) return byId;
+
+      var index = Number(courseIdOrIndex);
+
+      if (!Number.isNaN(index) && afCourseState.courses[index]) {
+        return afCourseState.courses[index];
+      }
+
+      return null;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function openCourseDetailsaf(courseIdOrIndex) {
+    try {
+      var course = afCourseFindCourse(courseIdOrIndex);
 
       if (!course) {
         alert("Course not found. Please refresh and try again.");
         return;
       }
 
+      afCourseState.selectedCourse = course;
+      afCourseState.selectedMode = "";
+      afCourseState.selectedChapter = null;
+
       localStorage.setItem("af_selected_course_id", course.id || "");
       localStorage.setItem("af_selected_course_title", course.title || "");
 
-      if (typeof window.openCourseDetailsaf === "function") {
-        if (Array.isArray(window.afEnrolledCourses)) {
-          window.afEnrolledCourses = afCourseState.courses.map(function (item) {
-            return item.raw || item;
-          });
-        }
+      afCourseSetText("courseDetailIconaf", course.icon || "📘");
+      afCourseSetText("courseTitleaf", course.title || "Course");
+      afCourseSetText("courseIntroaf", course.intro || "Course intro will appear here.");
+      afCourseSetText("courseDetailsaf", course.details || course.intro || "");
 
-        window.openCourseDetailsaf(course.id);
-        return;
+      var syllabusItems = Array.isArray(course.syllabus) ? course.syllabus : [];
+      var facilitiesItems = Array.isArray(course.facilities) ? course.facilities : [];
+
+      if (!syllabusItems.length && Array.isArray(course.chapters) && course.chapters.length) {
+        syllabusItems = course.chapters.map(function (chapter) {
+          return chapter.title;
+        });
       }
 
-      if (typeof window.showSection === "function") {
-        window.showSection("student");
-        return;
-      }
+      afCourseSetHtml(
+        "courseSyllabusaf",
+        syllabusItems.length
+          ? syllabusItems.map(function (item) {
+              return "<li>" + afCourseEscapeHtml(item) + "</li>";
+            }).join("")
+          : "<li>Syllabus will be available soon.</li>"
+      );
 
-      alert(course.title + "\n\n" + course.shortDescription);
+      afCourseSetHtml(
+        "courseFacilitiesaf",
+        facilitiesItems.length
+          ? facilitiesItems.map(function (item) {
+              return "<li>" + afCourseEscapeHtml(item) + "</li>";
+            }).join("")
+          : "<li>Facilities will be available soon.</li>"
+      );
+
+      afCourseShowPanel("courseDetailsBoxaf");
     } catch (error) {
-      console.error("openStudentCourseFromCourseSectionAF failed:", error);
-      alert("Unable to open course right now.");
+      console.error("openCourseDetailsaf failed:", error);
+      alert("Unable to open course details.");
     }
   }
+
+  function backToCoursesaf() {
+    try {
+      afCourseState.selectedCourse = null;
+      afCourseState.selectedMode = "";
+      afCourseState.selectedChapter = null;
+      afCourseShowPanel("courseSelectBox");
+    } catch (error) {
+      console.error("backToCoursesaf failed:", error);
+    }
+  }
+
+  /* =========================
+     LEARNING
+  ========================= */
+
+  function startLearningaf() {
+    try {
+      var course = afCourseState.selectedCourse;
+
+      if (!course) {
+        alert("Please open a course first.");
+        return;
+      }
+
+      afCourseSetText("learningTitleaf", course.title || "Start Learning");
+      afCourseShowPanel("learningBoxaf");
+    } catch (error) {
+      console.error("startLearningaf failed:", error);
+      alert("Unable to start learning.");
+    }
+  }
+
+  function backToCourseDetailsaf() {
+    try {
+      afCourseShowPanel("courseDetailsBoxaf");
+    } catch (error) {
+      console.error("backToCourseDetailsaf failed:", error);
+    }
+  }
+
+  function openLearningModeaf(mode) {
+    try {
+      var course = afCourseState.selectedCourse;
+
+      if (!course) {
+        alert("Please open a course first.");
+        return;
+      }
+
+      var safeMode = mode === "notes" ? "notes" : "lectures";
+      afCourseState.selectedMode = safeMode;
+      afCourseState.selectedChapter = null;
+
+      afCourseSetText("chapterModeTitleaf", safeMode === "notes" ? "Notes" : "Lectures");
+
+      var chapters = Array.isArray(course.chapters) ? course.chapters : [];
+      var chapterList = afCourseEl("chapterListaf");
+
+      if (!chapterList) {
+        alert("Chapter list container missing.");
+        return;
+      }
+
+      if (!chapters.length) {
+        chapterList.innerHTML =
+          '<div class="af-course-inline-message">' +
+            '<div class="af-course-inline-icon" aria-hidden="true">📭</div>' +
+            '<h3>No chapters available</h3>' +
+            '<p>Content for this course will be available soon.</p>' +
+          '</div>';
+
+        afCourseShowPanel("chapterBoxaf");
+        return;
+      }
+
+      chapterList.innerHTML = chapters.map(function (chapter, index) {
+        var items = safeMode === "notes" ? chapter.notes : chapter.lectures;
+        var count = Array.isArray(items) ? items.length : 0;
+
+        return (
+          '<button type="button" class="chapter-itemaf" onclick="openChapterContentaf(' + String(index) + ')">' +
+            '<div class="chapter-item-leftaf">' +
+              '<strong>' + afCourseEscapeHtml(chapter.title) + '</strong>' +
+              (
+                chapter.description
+                  ? '<small>' + afCourseEscapeHtml(chapter.description) + '</small>'
+                  : '<small>' + String(count) + ' item' + (count === 1 ? '' : 's') + '</small>'
+              ) +
+            '</div>' +
+            '<span class="chapter-item-arrowaf">›</span>' +
+          '</button>'
+        );
+      }).join("");
+
+      afCourseShowPanel("chapterBoxaf");
+    } catch (error) {
+      console.error("openLearningModeaf failed:", error);
+      alert("Unable to open learning mode.");
+    }
+  }
+
+  function backToLearningaf() {
+    try {
+      afCourseShowPanel("learningBoxaf");
+    } catch (error) {
+      console.error("backToLearningaf failed:", error);
+    }
+  }
+
+  function openChapterContentaf(chapterIndex) {
+    try {
+      var course = afCourseState.selectedCourse;
+      var mode = afCourseState.selectedMode || "lectures";
+
+      if (!course) {
+        alert("Please open a course first.");
+        return;
+      }
+
+      var chapters = Array.isArray(course.chapters) ? course.chapters : [];
+      var chapter = chapters[Number(chapterIndex)];
+
+      if (!chapter) {
+        alert("Chapter not found.");
+        return;
+      }
+
+      afCourseState.selectedChapter = chapter;
+
+      var items = mode === "notes" ? chapter.notes : chapter.lectures;
+
+      afCourseSetText("contentTitleaf", chapter.title || "Chapter Content");
+      afCourseSetText(
+        "contentSubtitleaf",
+        mode === "notes"
+          ? "Select a note to study."
+          : "Select a lecture to continue."
+      );
+
+      var contentList = afCourseEl("contentListaf");
+
+      if (!contentList) {
+        alert("Content list container missing.");
+        return;
+      }
+
+      if (!Array.isArray(items) || !items.length) {
+        contentList.innerHTML =
+          '<div class="af-course-inline-message">' +
+            '<div class="af-course-inline-icon" aria-hidden="true">📭</div>' +
+            '<h3>No ' + afCourseEscapeHtml(mode === "notes" ? "notes" : "lectures") + ' available</h3>' +
+            '<p>This chapter content will be available soon.</p>' +
+          '</div>';
+
+        afCourseShowPanel("contentBoxaf");
+        return;
+      }
+
+      contentList.innerHTML = items.map(function (item, index) {
+        var hasUrl = Boolean(item.url);
+
+        return (
+          '<button type="button" class="content-itemaf" onclick="openCourseContentItemaf(' + String(index) + ')">' +
+            '<div class="content-item-leftaf">' +
+              '<strong>' + afCourseEscapeHtml(item.title) + '</strong>' +
+              (
+                item.description
+                  ? '<small>' + afCourseEscapeHtml(item.description) + '</small>'
+                  : '<small>' + afCourseEscapeHtml(mode === "notes" ? "Study note" : "Video lecture") + '</small>'
+              ) +
+            '</div>' +
+            '<span class="content-item-actionaf">' + (hasUrl ? "Open ›" : "Soon") + '</span>' +
+          '</button>'
+        );
+      }).join("");
+
+      afCourseShowPanel("contentBoxaf");
+    } catch (error) {
+      console.error("openChapterContentaf failed:", error);
+      alert("Unable to open chapter content.");
+    }
+  }
+
+  function backToChaptersaf() {
+    try {
+      afCourseShowPanel("chapterBoxaf");
+    } catch (error) {
+      console.error("backToChaptersaf failed:", error);
+    }
+  }
+
+  function openCourseContentItemaf(itemIndex) {
+    try {
+      var chapter = afCourseState.selectedChapter;
+      var mode = afCourseState.selectedMode || "lectures";
+
+      if (!chapter) {
+        alert("Please open a chapter first.");
+        return;
+      }
+
+      var items = mode === "notes" ? chapter.notes : chapter.lectures;
+      var item = Array.isArray(items) ? items[Number(itemIndex)] : null;
+
+      if (!item) {
+        alert("Content not found.");
+        return;
+      }
+
+      if (!item.url) {
+        alert("This content will be available soon.");
+        return;
+      }
+
+      window.open(item.url, "_blank", "noopener,noreferrer");
+    } catch (error) {
+      console.error("openCourseContentItemaf failed:", error);
+      alert("Unable to open content.");
+    }
+  }
+
+  /* =========================
+     LOGIN OPEN FALLBACK
+  ========================= */
 
   function openStudentLoginSectionFallbackAF() {
     try {
@@ -27012,7 +28095,8 @@ function loadStudentCoursesSafeAF() {
         section.style.display = "none";
       });
 
-      var loginSection = document.getElementById("studentaf");
+      var loginSection = afCourseEl("studentaf");
+
       if (loginSection) {
         loginSection.classList.add("active");
         loginSection.style.display = "block";
@@ -27022,26 +28106,138 @@ function loadStudentCoursesSafeAF() {
     }
   }
 
+  /* =========================
+     PATCH showSection
+  ========================= */
+
+  function patchShowSectionForCourseAF() {
+    try {
+      if (typeof window.showSection !== "function") return;
+      if (window.__AF_COURSE_SHOW_SECTION_PATCHED_FINAL__ === true) return;
+
+      var originalShowSection = window.showSection;
+
+      window.showSection = function (targetId) {
+        try {
+          var finalTarget = targetId === "batchaf" ? "courseaf" : targetId;
+
+          originalShowSection(finalTarget);
+
+          window.setTimeout(function () {
+            if (typeof window.syncStudentAuthAndCourseStateAF === "function") {
+              window.syncStudentAuthAndCourseStateAF();
+            }
+
+            syncStudentCourseAuthStateAF();
+
+            if (finalTarget === "courseaf") {
+              loadStudentCoursesInternalAF({
+                force: false
+              });
+            }
+
+            if (finalTarget === "studentaf" && typeof window.syncStudentAuthAndCourseStateAF === "function") {
+              window.syncStudentAuthAndCourseStateAF();
+            }
+          }, 120);
+        } catch (error) {
+          console.error("patched showSection course failed:", error);
+        }
+      };
+
+      window.__AF_COURSE_SHOW_SECTION_PATCHED_FINAL__ = true;
+    } catch (error) {
+      console.error("patchShowSectionForCourseAF failed:", error);
+    }
+  }
+
+  /* =========================
+     LOGOUT COMPATIBILITY
+  ========================= */
+
+  function logoutStudentaf() {
+    try {
+      if (typeof window.logoutStudent === "function") {
+        window.logoutStudent();
+        return;
+      }
+
+      localStorage.removeItem("af_student_logged_in");
+      localStorage.removeItem("student_logged_in");
+      localStorage.removeItem("af_session_token");
+      localStorage.removeItem("af_student_uuid");
+      localStorage.removeItem("af_student_id");
+      localStorage.removeItem("af_student_mobile");
+      localStorage.removeItem("af_student_name");
+      localStorage.removeItem("af_student_email");
+
+      afCourseState.courses = [];
+      afCourseState.selectedCourse = null;
+      afCourseState.selectedMode = "";
+      afCourseState.selectedChapter = null;
+
+      syncStudentCourseAuthStateAF();
+
+      if (typeof window.showSection === "function") {
+        window.showSection("studentaf");
+      }
+    } catch (error) {
+      console.error("logoutStudentaf failed:", error);
+    }
+  }
+
+  /* =========================
+     INIT
+  ========================= */
+
   function initStudentCourseSectionAF() {
     try {
       syncStudentCourseAuthStateAF();
+      patchShowSectionForCourseAF();
 
       var session = afCourseGetSession();
 
-      if (session.isLoggedIn) {
-        loadStudentCoursesSafeAF({ force: false });
+      var courseSection = afCourseEl("courseaf");
+      var isCourseActive =
+        courseSection &&
+        (
+          courseSection.classList.contains("active") ||
+          courseSection.style.display === "block"
+        );
+
+      if (session.isLoggedIn && isCourseActive) {
+        loadStudentCoursesInternalAF({
+          force: false
+        });
       }
     } catch (error) {
       console.error("initStudentCourseSectionAF failed:", error);
     }
   }
 
+  /* =========================
+     EXPORT GLOBAL FUNCTIONS
+  ========================= */
+
   window.syncStudentCourseAuthStateAF = syncStudentCourseAuthStateAF;
-  window.loadStudentCoursesSafeAF = function () {
-    return loadStudentCoursesSafeAF({ force: true });
-  };
+  window.loadStudentCoursesSafeAF = loadStudentCoursesSafeAF;
   window.renderStudentCoursesAF = renderStudentCoursesAF;
-  window.openStudentCourseFromCourseSectionAF = openStudentCourseFromCourseSectionAF;
+
+  window.openCourseDetailsaf = openCourseDetailsaf;
+  window.backToCoursesaf = backToCoursesaf;
+
+  window.startLearningaf = startLearningaf;
+  window.backToCourseDetailsaf = backToCourseDetailsaf;
+
+  window.openLearningModeaf = openLearningModeaf;
+  window.backToLearningaf = backToLearningaf;
+
+  window.openChapterContentaf = openChapterContentaf;
+  window.backToChaptersaf = backToChaptersaf;
+
+  window.openCourseContentItemaf = openCourseContentItemaf;
+
+  window.logoutStudentaf = logoutStudentaf;
 
   if (typeof window.openStudentLoginSection !== "function") {
     window.openStudentLoginSection = openStudentLoginSectionFallbackAF;
@@ -27058,9 +28254,18 @@ function loadStudentCoursesSafeAF() {
     if (document.visibilityState === "visible") {
       syncStudentCourseAuthStateAF();
 
-      var session = afCourseGetSession();
-      if (session.isLoggedIn) {
-        loadStudentCoursesSafeAF({ force: false });
+      var courseSection = afCourseEl("courseaf");
+      var isCourseActive =
+        courseSection &&
+        (
+          courseSection.classList.contains("active") ||
+          courseSection.style.display === "block"
+        );
+
+      if (isCourseActive) {
+        loadStudentCoursesInternalAF({
+          force: false
+        });
       }
     }
   });
@@ -27080,76 +28285,15 @@ function loadStudentCoursesSafeAF() {
       syncStudentCourseAuthStateAF();
 
       var session = afCourseGetSession();
+
       if (session.isLoggedIn) {
-        loadStudentCoursesSafeAF({ force: true });
+        loadStudentCoursesInternalAF({
+          force: true
+        });
       }
     }
   });
 })();
-
-/* =========================
-   PATCH showSection 
-========================= */
-
-function patchShowSectionForStudentCourseAF() {
-  try {
-    if (typeof showSection !== "function") return;
-    if (window.__afStudentCourseShowSectionPatched === true) return;
-
-    const originalShowSection = showSection;
-
-    window.showSection = function (targetId) {
-      try {
-        originalShowSection(targetId);
-
-        window.setTimeout(function () {
-          syncStudentAuthAndCourseStateAF();
-
-          if (targetId === "courseaf") {
-            loadStudentCoursesSafeAF();
-          }
-
-          if (targetId === "studentaf") {
-            syncStudentAuthAndCourseStateAF();
-          }
-        }, 80);
-      } catch (error) {
-        console.error("patched showSection failed:", error);
-      }
-    };
-
-    window.__afStudentCourseShowSectionPatched = true;
-  } catch (error) {
-    console.error("patchShowSectionForStudentCourseAF failed:", error);
-  }
-}
-
-/* =========================
-   INIT
-========================= */
-
-function initStudentLoginCourseSeparationAF() {
-  try {
-    syncStudentAuthAndCourseStateAF();
-    patchShowSectionForStudentCourseAF();
-
-    window.setTimeout(syncStudentAuthAndCourseStateAF, 250);
-    window.setTimeout(syncStudentAuthAndCourseStateAF, 900);
-    window.setTimeout(syncStudentAuthAndCourseStateAF, 1500);
-  } catch (error) {
-    console.error("initStudentLoginCourseSeparationAF failed:", error);
-  }
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-  initStudentLoginCourseSeparationAF();
-});
-
-document.addEventListener("visibilitychange", function () {
-  if (document.visibilityState === "visible") {
-    syncStudentAuthAndCourseStateAF();
-  }
-});
 
  /* ==============================
   BATCH PURCHASE AF - BACKEND FIXED
