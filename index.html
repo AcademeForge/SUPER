@@ -18989,50 +18989,50 @@ body.settings-dark-mode .student-auth-locked-af p {
   </div>
 </section>
     
-<!-- NEW STUDENT SECTION -->
-<!-- STUDENT LOGIN / CREATE ID SECTION -->
-<section id="studentaf" class="section student-auth-section-af" aria-label="Student Login">
+<!-- =========================================================
+     STUDENT LOGIN / CREATE ID SECTION
+     Bottom nav Student button opens this section: studentaf
+========================================================= -->
+<section id="studentaf" class="section student-auth-section-af" aria-label="Student Login / Create ID">
   <div class="student-wrapaf">
     <div class="student-cardaf" id="studentAuthCardaf">
-      <div class="student-iconaf">🎓</div>
+      <div class="student-iconaf" aria-hidden="true">🎓</div>
 
       <h2 class="student-titleaf">Student ID Access</h2>
 
       <p class="student-subtitleaf">
-        Login or create your Student ID to access your courses.
+        Login or create your Student ID to access your enrolled courses.
       </p>
 
-      <!-- LOCKED STATE AFTER LOGIN -->
+      <!-- LOCKED STATE: SHOW AFTER LOGIN -->
       <div id="studentAuthLockedStateaf" class="student-auth-locked-af" hidden>
         <div class="student-auth-lock-icon-af" aria-hidden="true">🔒</div>
 
         <h3>Access Locked</h3>
 
         <p>
-          Looks like you have already logged in. Check your course now.
+          You have already logged in. Go to Course section to check your courses.
         </p>
 
         <button
           type="button"
           class="student-auth-course-btn-af"
           onclick="openStudentCourseSection()"
+          aria-label="Go to Course section"
         >
-          Check Your Course
+          Go to Course Section
         </button>
       </div>
 
-      <!-- UNLOCKED LOGIN / CREATE AREA -->
+      <!-- UNLOCKED STATE: LOGIN / CREATE ID / FORGOT PASSWORD -->
       <div id="studentAuthUnlockedAreaaf" class="student-auth-unlocked-af">
-        <p class="student-subtitleaf">
-          Login with your verified Student ID to access courses, batches, and community features.
-        </p>
-
         <div class="student-tabsaf">
           <button
             type="button"
             id="loginTabBtnaf"
             class="student-tabaf active"
             onclick="switchStudentModeaf('login')"
+            aria-label="Open login form"
           >
             Login
           </button>
@@ -19042,6 +19042,7 @@ body.settings-dark-mode .student-auth-locked-af p {
             id="createTabBtnaf"
             class="student-tabaf"
             onclick="switchStudentModeaf('create')"
+            aria-label="Open create ID form"
           >
             Create ID
           </button>
@@ -19068,11 +19069,21 @@ body.settings-dark-mode .student-auth-locked-af p {
             placeholder="Enter password"
           >
 
-          <button class="student-main-btnaf" type="button" onclick="loginStudentaf()">
+          <button
+            class="student-main-btnaf"
+            type="button"
+            onclick="loginStudentaf()"
+            aria-label="Login with Student ID"
+          >
             Login
           </button>
 
-          <button class="student-link-btnaf" type="button" onclick="switchStudentModeaf('forgot')">
+          <button
+            class="student-link-btnaf"
+            type="button"
+            onclick="switchStudentModeaf('forgot')"
+            aria-label="Open forgot password"
+          >
             Forgot Password?
           </button>
         </div>
@@ -19117,7 +19128,12 @@ body.settings-dark-mode .student-auth-locked-af p {
             placeholder="Create password"
           >
 
-          <button class="student-main-btnaf" type="button" onclick="sendCreateOtpaf()">
+          <button
+            class="student-main-btnaf"
+            type="button"
+            onclick="sendCreateOtpaf()"
+            aria-label="Send email OTP"
+          >
             Send Email OTP
           </button>
 
@@ -19132,7 +19148,12 @@ body.settings-dark-mode .student-auth-locked-af p {
               placeholder="Enter OTP sent to your email"
             >
 
-            <button class="student-main-btnaf secondary" type="button" onclick="verifyCreateOtpAndCreateIdaf()">
+            <button
+              class="student-main-btnaf secondary"
+              type="button"
+              onclick="verifyCreateOtpAndCreateIdaf()"
+              aria-label="Verify OTP and create Student ID"
+            >
               Verify OTP & Create ID
             </button>
           </div>
@@ -19153,7 +19174,12 @@ body.settings-dark-mode .student-auth-locked-af p {
             placeholder="Enter your Student ID, phone, or email"
           >
 
-          <button class="student-main-btnaf" type="button" onclick="findStudentForResetaf()">
+          <button
+            class="student-main-btnaf"
+            type="button"
+            onclick="findStudentForResetaf()"
+            aria-label="Send password reset OTP"
+          >
             Send Email OTP
           </button>
 
@@ -19168,7 +19194,12 @@ body.settings-dark-mode .student-auth-locked-af p {
               placeholder="Enter OTP sent to your email"
             >
 
-            <button class="student-main-btnaf secondary" type="button" onclick="verifyForgotOtpaf()">
+            <button
+              class="student-main-btnaf secondary"
+              type="button"
+              onclick="verifyForgotOtpaf()"
+              aria-label="Verify password reset OTP"
+            >
               Verify OTP
             </button>
           </div>
@@ -19183,12 +19214,22 @@ body.settings-dark-mode .student-auth-locked-af p {
               placeholder="Create new password"
             >
 
-            <button class="student-main-btnaf secondary" type="button" onclick="resetStudentPasswordaf()">
+            <button
+              class="student-main-btnaf secondary"
+              type="button"
+              onclick="resetStudentPasswordaf()"
+              aria-label="Reset student password"
+            >
               Reset Password
             </button>
           </div>
 
-          <button class="student-link-btnaf" type="button" onclick="switchStudentModeaf('login')">
+          <button
+            class="student-link-btnaf"
+            type="button"
+            onclick="switchStudentModeaf('login')"
+            aria-label="Back to login"
+          >
             Back to Login
           </button>
 
@@ -19207,149 +19248,68 @@ body.settings-dark-mode .student-auth-locked-af p {
     </div>
   </div>
 </section>
-    
-   <!-- ==============================
-     STUDENT COURSE DASHBOARD - AF
-     Show after login
-================================ -->
 
-<div class="student-dashboardaf hidden-box" id="courseSelectBox">
-  <div class="student-dash-headaf">
-    <div>
-      <h2>📚 My Courses</h2>
-      <p id="studentWelcomeTextaf">Welcome Student</p>
+
+<!-- =========================================================
+     COURSE SECTION
+     Bottom nav Course button opens this section: courseaf
+========================================================= -->
+<section id="courseaf" class="section student-course-section-af" aria-label="Student Courses">
+  <div class="student-course-page-af">
+
+    <div class="student-course-head-af">
+      <div>
+        <p>Student Dashboard</p>
+        <h2>Your Courses</h2>
+      </div>
+
+      <button
+        type="button"
+        class="student-course-refresh-af"
+        onclick="loadStudentCoursesSafeAF()"
+        aria-label="Refresh courses"
+      >
+        ↻
+      </button>
     </div>
 
-    <button class="student-logoutaf" type="button" onclick="logoutStudentaf()">
-      Logout
-    </button>
-  </div>
+    <!-- LOGGED OUT STATE -->
+    <div id="studentCourseLoggedOutStateaf" class="student-course-locked-af" hidden>
+      <div class="student-course-lock-icon-af" aria-hidden="true">🔐</div>
 
-  <p class="student-dash-subaf">
-    Your enrolled programs are ready to explore.
-  </p>
+      <h3>Login Required</h3>
 
-  <div class="course-select-gridaf" id="courseCardsaf"></div>
-</div>
+      <p>
+        Login first to see your enrolled courses.
+      </p>
 
-
-<!-- ==============================
-     NO COURSE / MESSAGE AREA - AF
-================================ -->
-
-<div class="student-dashboardaf hidden-box" id="noCourseBoxaf">
-  <div class="no-course-cardaf">
-    <div class="no-course-iconaf">😬</div>
-    <h2>Oops!</h2>
-    <p>You are not enrolled in any batch.</p>
-    <p>Please enroll from the Batch section.</p>
-
-    <button class="student-logoutaf" type="button" onclick="logoutStudentaf()">
-      Logout
-    </button>
-  </div>
-</div>
-
-
-<!-- ==============================
-     COURSE DETAILS - AF
-================================ -->
-
-<div class="student-dashboardaf hidden-box" id="courseDetailsBoxaf">
-  <button class="back-miniaf" type="button" onclick="backToCoursesaf()">
-    ← Back to Courses
-  </button>
-
-  <div class="course-detail-headaf">
-    <div class="course-detail-iconaf" id="courseDetailIconaf">📘</div>
-
-    <div>
-      <h2 id="courseTitleaf">Course Name</h2>
-      <p id="courseIntroaf">Course intro will appear here.</p>
+      <button
+        type="button"
+        class="student-course-login-btn-af"
+        onclick="openStudentLoginSection()"
+        aria-label="Open Student Login section"
+      >
+        Login / Create ID
+      </button>
     </div>
+
+    <!-- LOGGED IN COURSE AREA -->
+    <div id="studentCourseUnlockedAreaaf" class="student-course-unlocked-af">
+      <div class="student-course-empty-card-af">
+        <div class="student-course-empty-icon-af" aria-hidden="true">📚</div>
+
+        <h3>Your enrolled courses will appear here</h3>
+
+        <p>
+          After login, your active courses, batches, and access details will be loaded here.
+        </p>
+      </div>
+
+      <div id="studentCoursesListaf" class="student-courses-list-af"></div>
+    </div>
+
   </div>
-
-  <div class="course-info-boxaf">
-    <h3>📌 Course Details</h3>
-    <p id="courseDetailsaf"></p>
-  </div>
-
-  <div class="course-info-boxaf">
-    <h3>🧾 Course Syllabus</h3>
-    <ul id="courseSyllabusaf"></ul>
-  </div>
-
-  <div class="course-info-boxaf">
-    <h3>🏫 Facilities</h3>
-    <ul id="courseFacilitiesaf"></ul>
-  </div>
-
-  <button class="student-main-btnaf" type="button" onclick="startLearningaf()">
-    Continue Learning
-  </button>
-</div>
-
-
-<!-- ==============================
-     LEARNING CHOICE - AF
-================================ -->
-
-<div class="student-dashboardaf hidden-box" id="learningBoxaf">
-  <button class="back-miniaf" type="button" onclick="backToCourseDetailsaf()">
-    ← Back to Course
-  </button>
-
-  <h2 id="learningTitleaf">Start Learning</h2>
-  <p class="student-dash-subaf">Select what you want to access.</p>
-
-  <div class="learning-choiceaf">
-    <button class="learning-btnaf" type="button" onclick="openLearningModeaf('lectures')">
-      <span>🎥</span>
-      <strong>Lectures</strong>
-      <small>Chapter-wise video lecture list</small>
-    </button>
-
-    <button class="learning-btnaf" type="button" onclick="openLearningModeaf('notes')">
-      <span>📝</span>
-      <strong>Notes</strong>
-      <small>Chapter-wise study notes list</small>
-    </button>
-  </div>
-</div>
-
-
-<!-- ==============================
-     CHAPTER LIST - AF
-================================ -->
-
-<div class="student-dashboardaf hidden-box" id="chapterBoxaf">
-  <button class="back-miniaf" type="button" onclick="backToLearningaf()">
-    ← Back
-  </button>
-
-  <h2 id="chapterModeTitleaf">Lectures</h2>
-  <p class="student-dash-subaf">Select a chapter to continue.</p>
-
-  <div class="chapter-listaf" id="chapterListaf"></div>
-</div>
-
-
-<!-- ==============================
-     CONTENT LIST - AF
-================================ -->
-
-<div class="student-dashboardaf hidden-box" id="contentBoxaf">
-  <button class="back-miniaf" type="button" onclick="backToChaptersaf()">
-    ← Back to Chapters
-  </button>
-
-  <h2 id="contentTitleaf">Chapter Content</h2>
-  <p class="student-dash-subaf" id="contentSubtitleaf">
-    Select and study one by one.
-  </p>
-
-  <div class="content-listaf" id="contentListaf"></div>
-</div>
+</section>
 
 
     <!-- ==============================
@@ -20300,9 +20260,14 @@ body.settings-dark-mode .student-auth-locked-af p {
     Home
   </button>
 
- <button class="nav-btn" data-section="student" type="button" onclick="showSection('student')">
-  <b class="nav-icon-wrap">🎓</b>
+<button class="nav-btn" data-section="studentaf" type="button" onclick="showSection('studentaf')">
+  <b>🎓</b>
   <span>Student</span>
+</button>
+
+<button class="nav-btn" data-section="courseaf" type="button" onclick="showSection('courseaf')">
+  <b>📚</b>
+  <span>Course</span>
 </button>
   
 <button class="nav-btn" data-section="batchaf" type="button" onclick="showSection('batchaf')">
@@ -24967,19 +24932,11 @@ async function logoutAcademeForge() {
   }
 }
 
+
 /* ==============================
    NEW STUDENT SECTION JS - AF
-
-   Secure Flow:
-   Create ID:
-   form fill -> Edge Function send OTP -> Edge Function verify OTP + insert student
-
-   Login:
-   frontend -> Edge Function -> students_af read with service role
-
-   Forgot Password:
-   find account -> Edge Function read -> Edge Function send OTP
-   -> Edge Function verify OTP -> Edge Function update password
+   Student login/create section: studentaf
+   Course section: courseaf
 ================================ */
 
 let afPendingCreateStudent = null;
@@ -24994,7 +24951,7 @@ function showStudentMessageaf(type, text) {
   const box = document.getElementById("studentMessageaf");
   if (!box) return;
 
-  box.className = "student-messageaf " + type;
+  box.className = "student-messageaf " + String(type || "").trim();
   box.textContent = text || "";
 }
 
@@ -25030,7 +24987,7 @@ function afStudentSafeToast(title, message) {
 }
 
 /* =========================
-   LOGIN / LOCK STATE HELPERS
+   LOGIN STATE
 ========================= */
 
 function afStudentIsUuidAF(value) {
@@ -25062,22 +25019,23 @@ function afStudentIsLoggedInSeparated() {
   }
 }
 
-function syncStudentAuthLockedStateAF() {
+function syncStudentAuthAndCourseStateAF() {
   try {
     const isLoggedIn = afStudentIsLoggedInSeparated();
 
     const authLocked = document.getElementById("studentAuthLockedStateaf");
     const authUnlocked = document.getElementById("studentAuthUnlockedAreaaf");
 
-    if (authLocked) {
-      authLocked.hidden = !isLoggedIn;
-    }
+    const courseLocked = document.getElementById("studentCourseLoggedOutStateaf");
+    const courseUnlocked = document.getElementById("studentCourseUnlockedAreaaf");
 
-    if (authUnlocked) {
-      authUnlocked.hidden = isLoggedIn;
-    }
+    if (authLocked) authLocked.hidden = !isLoggedIn;
+    if (authUnlocked) authUnlocked.hidden = isLoggedIn;
+
+    if (courseLocked) courseLocked.hidden = isLoggedIn;
+    if (courseUnlocked) courseUnlocked.hidden = !isLoggedIn;
   } catch (error) {
-    console.error("syncStudentAuthLockedStateAF failed:", error);
+    console.error("syncStudentAuthAndCourseStateAF failed:", error);
   }
 }
 
@@ -25087,7 +25045,7 @@ function markStudentLoggedInSeparatedAF(messageType) {
     localStorage.setItem("student_logged_in", "true");
     localStorage.setItem("af_last_login_at", new Date().toISOString());
 
-    syncStudentAuthLockedStateAF();
+    syncStudentAuthAndCourseStateAF();
 
     if (messageType === "created") {
       showStudentMessageaf("ok", "Student ID created successfully.");
@@ -25106,13 +25064,14 @@ function markStudentLoggedOutSeparatedAF() {
     localStorage.removeItem("af_student_logged_in");
     localStorage.removeItem("student_logged_in");
     localStorage.removeItem("af_session_token");
+    localStorage.removeItem("af_device_id");
     localStorage.removeItem("af_student_uuid");
     localStorage.removeItem("af_student_id");
     localStorage.removeItem("af_student_mobile");
     localStorage.removeItem("af_student_name");
     localStorage.removeItem("af_student_email");
 
-    syncStudentAuthLockedStateAF();
+    syncStudentAuthAndCourseStateAF();
 
     showStudentMessageaf("ok", "Logged out successfully.");
     afStudentSafeToast("Logged Out", "You have been logged out.");
@@ -25121,53 +25080,64 @@ function markStudentLoggedOutSeparatedAF() {
   }
 }
 
-function openStudentCourseSection() {
+/* =========================
+   SECTION OPENERS
+========================= */
+
+function afShowSectionFallbackAF(targetId) {
   try {
-    syncStudentAuthLockedStateAF();
-
-    if (typeof showSection === "function") {
-      showSection("student");
-      return;
-    }
-
     document.querySelectorAll(".section, .app-section").forEach(function (section) {
       section.classList.remove("active");
       section.style.display = "none";
     });
 
-    const target = document.getElementById("student");
+    const target = document.getElementById(targetId);
 
     if (target) {
       target.classList.add("active");
       target.style.display = "block";
     }
+
+    document.querySelectorAll(".nav-btn").forEach(function (button) {
+      button.classList.toggle("active", button.dataset.section === targetId);
+    });
   } catch (error) {
-    console.error("openStudentCourseSection failed:", error);
+    console.error("afShowSectionFallbackAF failed:", error);
   }
 }
 
 function openStudentLoginSection() {
   try {
-    syncStudentAuthLockedStateAF();
+    syncStudentAuthAndCourseStateAF();
 
     if (typeof showSection === "function") {
       showSection("studentaf");
-      return;
+    } else {
+      afShowSectionFallbackAF("studentaf");
     }
 
-    document.querySelectorAll(".section, .app-section").forEach(function (section) {
-      section.classList.remove("active");
-      section.style.display = "none";
-    });
-
-    const target = document.getElementById("studentaf");
-
-    if (target) {
-      target.classList.add("active");
-      target.style.display = "block";
-    }
+    window.setTimeout(syncStudentAuthAndCourseStateAF, 80);
   } catch (error) {
     console.error("openStudentLoginSection failed:", error);
+  }
+}
+
+function openStudentCourseSection() {
+  try {
+    syncStudentAuthAndCourseStateAF();
+
+    if (typeof showSection === "function") {
+      showSection("courseaf");
+    } else {
+      afShowSectionFallbackAF("courseaf");
+    }
+
+    window.setTimeout(function () {
+      syncStudentAuthAndCourseStateAF();
+      loadStudentCoursesSafeAF();
+    }, 120);
+  } catch (error) {
+    console.error("openStudentCourseSection failed:", error);
   }
 }
 
@@ -25176,12 +25146,49 @@ function openStudentLoginSection() {
 ========================= */
 
 function getStudentBackendaf() {
-  if (typeof studentDb !== "undefined") return studentDb;
+  if (typeof studentDb !== "undefined" && studentDb) return studentDb;
+  if (typeof supabase !== "undefined" && typeof SUPABASE_PROJECT_URL !== "undefined" && typeof SUPABASE_ANON_KEY !== "undefined") {
+    return supabase.createClient(SUPABASE_PROJECT_URL, SUPABASE_ANON_KEY);
+  }
   return null;
 }
 
 function cleanPhoneaf(value) {
   return String(value || "").trim().replace(/\D/g, "");
+}
+
+function getAFDeviceIdSafeAF() {
+  try {
+    if (typeof getAFDeviceId === "function") return getAFDeviceId();
+
+    let deviceId = localStorage.getItem("af_device_id");
+
+    if (!deviceId) {
+      deviceId = "af_device_" + Date.now() + "_" + Math.random().toString(36).slice(2);
+      localStorage.setItem("af_device_id", deviceId);
+    }
+
+    return deviceId;
+  } catch (error) {
+    return "af_device_fallback_" + Date.now();
+  }
+}
+
+function getAFDeviceNameSafeAF() {
+  try {
+    if (typeof getAFDeviceName === "function") return getAFDeviceName();
+
+    const ua = navigator.userAgent || "Unknown Device";
+
+    if (/android/i.test(ua)) return "Android Device";
+    if (/iphone|ipad|ipod/i.test(ua)) return "iOS Device";
+    if (/windows/i.test(ua)) return "Windows Device";
+    if (/mac/i.test(ua)) return "Mac Device";
+
+    return "Web Device";
+  } catch (error) {
+    return "Web Device";
+  }
 }
 
 async function afStudentEdgeCall(functionName, payload) {
@@ -25194,7 +25201,7 @@ async function afStudentEdgeCall(functionName, payload) {
     };
   }
 
-  if (!backend) {
+  if (!backend || !backend.functions || typeof backend.functions.invoke !== "function") {
     return {
       ok: false,
       message: "Server connection failed. Please try again."
@@ -25208,34 +25215,32 @@ async function afStudentEdgeCall(functionName, payload) {
 
     if (error) {
       console.error("AF Edge function error:", error);
-
       return {
         ok: false,
-        message: "No internet connection."
+        message: error.message || "Server request failed."
       };
     }
 
     if (!data) {
       return {
         ok: false,
-        message: "No internet connection."
+        message: "Empty server response."
       };
     }
 
     return data;
-
   } catch (err) {
     console.error("AF Edge function catch:", err);
 
     return {
       ok: false,
-      message: "No internet connection."
+      message: err.message || "Server request failed."
     };
   }
 }
 
 /* =========================
-   CUSTOM EMAIL OTP - EDGE FUNCTION
+   CUSTOM EMAIL OTP
 ========================= */
 
 async function sendCustomEmailOtpaf(email, mobile, purpose) {
@@ -25271,6 +25276,7 @@ function switchStudentModeaf(mode) {
   const resetArea = document.getElementById("resetPasswordAreaaf");
 
   const msg = document.getElementById("studentMessageaf");
+
   if (msg) {
     msg.className = "student-messageaf";
     msg.textContent = "";
@@ -25285,7 +25291,7 @@ function switchStudentModeaf(mode) {
   if (resetArea) resetArea.style.display = "none";
 
   if (!loginBox || !createBox || !forgotBox) {
-    console.log("Student AF boxes missing");
+    console.warn("Student AF boxes missing");
     return;
   }
 
@@ -25299,11 +25305,13 @@ function switchStudentModeaf(mode) {
   if (mode === "login") {
     loginBox.style.display = "block";
     if (loginTabBtn) loginTabBtn.classList.add("active");
+    return;
   }
 
   if (mode === "create") {
     createBox.style.display = "block";
     if (createTabBtn) createTabBtn.classList.add("active");
+    return;
   }
 
   if (mode === "forgot") {
@@ -25312,7 +25320,7 @@ function switchStudentModeaf(mode) {
 }
 
 /* =========================
-   LOGIN - EDGE FUNCTION
+   LOGIN
 ========================= */
 
 async function loginStudentaf() {
@@ -25340,8 +25348,8 @@ async function loginStudentaf() {
       login_id: loginId,
       clean_login_id: cleanLoginId,
       password: password,
-      device_id: getAFDeviceId(),
-      device_name: getAFDeviceName()
+      device_id: getAFDeviceIdSafeAF(),
+      device_name: getAFDeviceNameSafeAF()
     });
 
     if (!result || !result.ok) {
@@ -25354,8 +25362,8 @@ async function loginStudentaf() {
       return;
     }
 
-    var finalSessionToken = result.session_token || result.login_token || "";
-    var finalDeviceId = result.device_id || getAFDeviceId();
+    const finalSessionToken = result.session_token || result.login_token || "";
+    const finalDeviceId = result.device_id || getAFDeviceIdSafeAF();
 
     if (!finalSessionToken) {
       showStudentMessageaf("err", "Login failed. Session token not received.");
@@ -25363,28 +25371,12 @@ async function loginStudentaf() {
     }
 
     saveStudentSessionaf(result.student, finalSessionToken, finalDeviceId);
-
-    localStorage.setItem("af_last_login_at", new Date().toISOString());
-
-    console.log("LOGIN SAVED:", {
-      token: finalSessionToken,
-      device: finalDeviceId,
-      student: result.student.student_id || "",
-      mobile: result.student.mobile || result.student.phone || ""
-    });
-
     markStudentLoggedInSeparatedAF("login");
 
     window.setTimeout(function () {
-      syncStudentAuthLockedStateAF();
-
-      if (typeof openCourseSectionAfterLoginaf === "function") {
-        openCourseSectionAfterLoginaf(result.student);
-      } else {
-        openStudentCourseSection();
-      }
+      syncStudentAuthAndCourseStateAF();
+      openStudentCourseSection();
     }, 650);
-
   } catch (err) {
     console.error("Login catch:", err);
     showStudentMessageaf("err", "Login failed: " + err.message);
@@ -25472,7 +25464,6 @@ async function sendCreateOtpaf() {
     if (otpArea) otpArea.style.display = "block";
 
     showStudentMessageaf("ok", "OTP sent to your email. Please verify to create your Student ID.");
-
   } catch (err) {
     console.error("Send create OTP catch:", err);
     showStudentMessageaf("err", "OTP send failed: " + err.message);
@@ -25480,7 +25471,7 @@ async function sendCreateOtpaf() {
 }
 
 /* =========================
-   CREATE ID - VERIFY OTP + EDGE INSERT
+   CREATE ID - VERIFY OTP + INSERT
 ========================= */
 
 async function verifyCreateOtpAndCreateIdaf() {
@@ -25509,8 +25500,8 @@ async function verifyCreateOtpAndCreateIdaf() {
       ...afPendingCreateStudent,
       otp: otp,
       purpose: "create",
-      device_id: typeof getAFDeviceId === "function" ? getAFDeviceId() : "",
-      device_name: typeof getAFDeviceName === "function" ? getAFDeviceName() : ""
+      device_id: getAFDeviceIdSafeAF(),
+      device_name: getAFDeviceNameSafeAF()
     };
 
     const result = await afStudentEdgeCall("student-create-af", payload);
@@ -25534,22 +25525,15 @@ async function verifyCreateOtpAndCreateIdaf() {
     if (otpInput2) otpInput2.value = "";
 
     const createSessionToken = result.session_token || result.login_token || "";
-    const createDeviceId = result.device_id || (typeof getAFDeviceId === "function" ? getAFDeviceId() : "");
+    const createDeviceId = result.device_id || getAFDeviceIdSafeAF();
 
     saveStudentSessionaf(result.student, createSessionToken, createDeviceId);
-
     markStudentLoggedInSeparatedAF("created");
 
     window.setTimeout(function () {
-      syncStudentAuthLockedStateAF();
-
-      if (typeof openCourseSectionAfterLoginaf === "function") {
-        openCourseSectionAfterLoginaf(result.student);
-      } else {
-        openStudentCourseSection();
-      }
+      syncStudentAuthAndCourseStateAF();
+      openStudentCourseSection();
     }, 650);
-
   } catch (err) {
     console.error("Create Student ID catch:", err);
     showStudentMessageaf("err", "Create ID failed: " + err.message);
@@ -25557,7 +25541,7 @@ async function verifyCreateOtpAndCreateIdaf() {
 }
 
 /* =========================
-   FORGOT PASSWORD - FIND ACCOUNT BY EDGE
+   FORGOT PASSWORD - FIND ACCOUNT
 ========================= */
 
 async function findStudentForResetaf() {
@@ -25612,7 +25596,6 @@ async function findStudentForResetaf() {
     if (resetArea) resetArea.style.display = "none";
 
     showStudentMessageaf("ok", "OTP sent to your registered email. Please verify.");
-
   } catch (err) {
     console.error("Find reset catch:", err);
     showStudentMessageaf("err", "Account search failed: " + err.message);
@@ -25662,7 +25645,6 @@ async function verifyForgotOtpaf() {
     if (resetArea) resetArea.style.display = "block";
 
     showStudentMessageaf("ok", "Email verified. Create your new password.");
-
   } catch (err) {
     console.error("Forgot OTP verify catch:", err);
     showStudentMessageaf("err", "OTP verification failed: " + err.message);
@@ -25670,7 +25652,7 @@ async function verifyForgotOtpaf() {
 }
 
 /* =========================
-   FORGOT PASSWORD - EDGE UPDATE
+   FORGOT PASSWORD - RESET
 ========================= */
 
 async function resetStudentPasswordaf() {
@@ -25721,10 +25703,9 @@ async function resetStudentPasswordaf() {
 
     showStudentMessageaf("ok", "Password reset successful. Please login now.");
 
-    setTimeout(function () {
+    window.setTimeout(function () {
       switchStudentModeaf("login");
     }, 900);
-
   } catch (err) {
     console.error("Reset password catch:", err);
     showStudentMessageaf("err", "Password reset failed: " + err.message);
@@ -25742,7 +25723,7 @@ function saveStudentSessionaf(student, sessionToken, deviceId) {
       return;
     }
 
-    const safeDeviceId = deviceId || (typeof getAFDeviceId === "function" ? getAFDeviceId() : "");
+    const safeDeviceId = deviceId || getAFDeviceIdSafeAF();
     const safeSessionToken = sessionToken || localStorage.getItem("af_session_token") || "";
 
     localStorage.setItem("af_student_logged_in", "true");
@@ -25759,9 +25740,90 @@ function saveStudentSessionaf(student, sessionToken, deviceId) {
 
     localStorage.setItem("af_last_login_at", new Date().toISOString());
 
-    syncStudentAuthLockedStateAF();
+    syncStudentAuthAndCourseStateAF();
   } catch (error) {
     console.error("saveStudentSessionaf failed:", error);
+  }
+}
+
+/* =========================
+   COURSE SAFE LOADER
+========================= */
+
+function loadStudentCoursesSafeAF() {
+  try {
+    syncStudentAuthAndCourseStateAF();
+
+    if (!afStudentIsLoggedInSeparated()) {
+      return;
+    }
+
+    if (typeof loadStudentCourses === "function") {
+      loadStudentCourses();
+    }
+
+    if (typeof loadMyCourses === "function") {
+      loadMyCourses();
+    }
+
+    if (typeof loadStudentDashboard === "function") {
+      loadStudentDashboard();
+    }
+
+    if (typeof afLoadStudentDashboard === "function") {
+      afLoadStudentDashboard();
+    }
+
+    if (typeof openCourseSectionAfterLoginaf === "function") {
+      const student = {
+        id: localStorage.getItem("af_student_uuid") || "",
+        student_id: localStorage.getItem("af_student_id") || "",
+        mobile: localStorage.getItem("af_student_mobile") || "",
+        name: localStorage.getItem("af_student_name") || "Student",
+        email: localStorage.getItem("af_student_email") || ""
+      };
+
+      openCourseSectionAfterLoginaf(student);
+    }
+  } catch (error) {
+    console.error("loadStudentCoursesSafeAF failed:", error);
+  }
+}
+
+/* =========================
+   PATCH showSection
+========================= */
+
+function patchShowSectionForStudentCourseAF() {
+  try {
+    if (typeof showSection !== "function") return;
+    if (window.__afStudentCourseShowSectionPatched === true) return;
+
+    const originalShowSection = showSection;
+
+    window.showSection = function (targetId) {
+      try {
+        originalShowSection(targetId);
+
+        window.setTimeout(function () {
+          syncStudentAuthAndCourseStateAF();
+
+          if (targetId === "courseaf") {
+            loadStudentCoursesSafeAF();
+          }
+
+          if (targetId === "studentaf") {
+            syncStudentAuthAndCourseStateAF();
+          }
+        }, 80);
+      } catch (error) {
+        console.error("patched showSection failed:", error);
+      }
+    };
+
+    window.__afStudentCourseShowSectionPatched = true;
+  } catch (error) {
+    console.error("patchShowSectionForStudentCourseAF failed:", error);
   }
 }
 
@@ -25769,716 +25831,29 @@ function saveStudentSessionaf(student, sessionToken, deviceId) {
    INIT
 ========================= */
 
-document.addEventListener("DOMContentLoaded", function () {
-  syncStudentAuthLockedStateAF();
+function initStudentLoginCourseSeparationAF() {
+  try {
+    syncStudentAuthAndCourseStateAF();
+    patchShowSectionForStudentCourseAF();
 
-  window.setTimeout(syncStudentAuthLockedStateAF, 250);
-  window.setTimeout(syncStudentAuthLockedStateAF, 900);
+    window.setTimeout(syncStudentAuthAndCourseStateAF, 250);
+    window.setTimeout(syncStudentAuthAndCourseStateAF, 900);
+    window.setTimeout(syncStudentAuthAndCourseStateAF, 1500);
+  } catch (error) {
+    console.error("initStudentLoginCourseSeparationAF failed:", error);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  initStudentLoginCourseSeparationAF();
 });
 
 document.addEventListener("visibilitychange", function () {
   if (document.visibilityState === "visible") {
-    syncStudentAuthLockedStateAF();
+    syncStudentAuthAndCourseStateAF();
   }
 });
 
-/* =========================
-   OPEN COURSE SECTION AFTER LOGIN
-========================= */
-
-function openCourseSectionAfterLoginaf(studentData) {
-  const authCard = document.getElementById("studentAuthCardaf");
-  const courseSelectBox = document.getElementById("courseSelectBox");
-  const courseDetailsBox = document.getElementById("courseDetailsBox");
-  const welcomeText = document.getElementById("studentWelcomeText");
-
-  if (authCard) {
-    authCard.style.display = "none";
-  }
-
-  if (courseDetailsBox) {
-    courseDetailsBox.classList.add("hidden-box");
-    courseDetailsBox.style.display = "none";
-  }
-
-  if (courseSelectBox) {
-    courseSelectBox.classList.remove("hidden-box");
-    courseSelectBox.style.display = "block";
-  } else {
-    console.log("courseSelectBox not found");
-    showStudentMessageaf("err", "Course section not found.");
-    return;
-  }
-
-  if (welcomeText) {
-    welcomeText.textContent = "Welcome " + ((studentData && studentData.name) || "Student");
-  }
-
-  if (typeof renderCourses === "function") {
-    renderCourses();
-  }
-
-  if (typeof loadCourses === "function") {
-    loadCourses();
-  }
-
-  if (typeof loadStudentCourses === "function") {
-    loadStudentCourses(studentData);
-  }
-}
-
-/* =========================
-   LOGOUT
-========================= */
-
-function logoutStudent() {
-  localStorage.removeItem("af_student_logged_in");
-  localStorage.removeItem("af_student_uuid");
-  localStorage.removeItem("af_student_id");
-  localStorage.removeItem("af_student_mobile");
-  localStorage.removeItem("af_student_name");
-  localStorage.removeItem("af_student_email");
-
-  const authCard = document.getElementById("studentAuthCardaf");
-  const courseSelectBox = document.getElementById("courseSelectBox");
-  const courseDetailsBox = document.getElementById("courseDetailsBox");
-
-  if (courseSelectBox) {
-    courseSelectBox.classList.add("hidden-box");
-    courseSelectBox.style.display = "none";
-  }
-
-  if (courseDetailsBox) {
-    courseDetailsBox.classList.add("hidden-box");
-    courseDetailsBox.style.display = "none";
-  }
-
-  if (authCard) {
-    authCard.style.display = "block";
-  }
-
-  switchStudentModeaf("login");
-}
-
-/* =========================
-   AUTO LOGIN FROM LOCAL SESSION
-========================= */
-
-document.addEventListener("DOMContentLoaded", function () {
-  const loggedIn = localStorage.getItem("af_student_logged_in");
-
-  if (loggedIn === "true") {
-    const studentData = {
-      id: localStorage.getItem("af_student_uuid"),
-      student_id: localStorage.getItem("af_student_id"),
-      mobile: localStorage.getItem("af_student_mobile"),
-      name: localStorage.getItem("af_student_name"),
-      email: localStorage.getItem("af_student_email")
-    };
-
-    openCourseSectionAfterLoginaf(studentData);
-  } else {
-    switchStudentModeaf("login");
-  }
-});
-  
-/* ==============================
-   STUDENT COURSE DASHBOARD JS - AF
-   Secure Backend Fetch via Edge Functions
-
-   Edge Functions:
-   student-courses-af
-   student-chapters-af
-   student-lectures-af
-   student-notes-af
-================================ */
-
-let afEnrolledCourses = [];
-let afSelectedCourse = null;
-let afSelectedChapterId = null;
-let afLearningMode = "lectures";
-
-function afBackend() {
-  if (typeof studentDb !== "undefined") return studentDb;
-  return null;
-}
-
-function afEl(id) {
-  return document.getElementById(id);
-}
-
-function afSafe(value, fallback) {
-  if (value === null || value === undefined || value === "") return fallback || "";
-  return value;
-}
-
-async function afCourseEdgeCall(functionName, payload) {
-  const backend = afBackend();
-
-  if (!backend) {
-    return {
-      ok: false,
-      message: "Student backend is not connected."
-    };
-  }
-
-  try {
-    const { data, error } = await backend.functions.invoke(functionName, {
-      body: payload || {}
-    });
-
-    if (error) {
-      return {
-        ok: false,
-        message: error.message || "Server request failed."
-      };
-    }
-
-    if (!data) {
-      return {
-        ok: false,
-        message: "Empty server response."
-      };
-    }
-
-    return data;
-
-  } catch (err) {
-    return {
-      ok: false,
-      message: err.message || "Server request failed."
-    };
-  }
-}
-
-function hideStudentPanelsaf() {
-  const panels = [
-    "studentAuthCardaf",
-    "courseSelectBox",
-    "noCourseBoxaf",
-    "courseDetailsBoxaf",
-    "learningBoxaf",
-    "chapterBoxaf",
-    "contentBoxaf"
-  ];
-
-  panels.forEach(function (id) {
-    const el = afEl(id);
-    if (!el) return;
-
-    if (id === "studentAuthCardaf") {
-      el.style.display = "none";
-    } else {
-      el.classList.add("hidden-box");
-      el.style.display = "none";
-    }
-  });
-}
-
-function showStudentPanelaf(id) {
-  hideStudentPanelsaf();
-
-  const el = afEl(id);
-  if (!el) return;
-
-  if (id === "studentAuthCardaf") {
-    el.style.display = "block";
-  } else {
-    el.classList.remove("hidden-box");
-    el.style.display = "block";
-  }
-}
-
-/* ==============================
-   LOGIN SUCCESS OPEN COURSE AREA
-================================ */
-
-function openCourseSectionAfterLoginaf(studentData) {
-  if (typeof saveStudentSessionaf === "function") {
-    saveStudentSessionaf(studentData);
-  }
-
-  const welcomeText = afEl("studentWelcomeTextaf");
-  if (welcomeText) {
-    welcomeText.textContent = "Welcome " + afSafe(studentData && studentData.name, "Student");
-  }
-
-  showStudentPanelaf("courseSelectBox");
-  loadStudentCoursesaf();
-}
-
-/* ==============================
-   LOAD ENROLLED COURSES - EDGE
-================================ */
-
-async function loadStudentCoursesaf() {
-  const studentUuid = localStorage.getItem("af_student_uuid");
-  const studentName = localStorage.getItem("af_student_name") || "Student";
-
-  const welcomeText = afEl("studentWelcomeTextaf");
-  if (welcomeText) {
-    welcomeText.textContent = "Welcome " + studentName;
-  }
-
-  if (!studentUuid) {
-    showNoCourseMessageaf("Student session not found. Please login again.");
-    return;
-  }
-
-  const courseBox = afEl("courseCardsaf");
-  if (courseBox) {
-    courseBox.innerHTML = '<p class="loading-textaf">Loading your courses...</p>';
-  }
-
-  try {
-    const result = await afCourseEdgeCall("student-courses-af", {
-      student_id: studentUuid
-    });
-
-    if (!result || !result.ok) {
-      console.log("Courses edge error:", result);
-      showNoCourseMessageaf(result?.message || "Could not load your courses.");
-      return;
-    }
-
-    afEnrolledCourses = Array.isArray(result.courses) ? result.courses : [];
-
-    if (!afEnrolledCourses.length) {
-      showNoCourseMessageaf("You are not enrolled in any batch.");
-      return;
-    }
-
-    renderCourseCardsaf();
-    showStudentPanelaf("courseSelectBox");
-
-  } catch (err) {
-    console.error("loadStudentCoursesaf catch:", err);
-    showNoCourseMessageaf("Unable to load courses right now.");
-  }
-}
-
-function renderCourseCardsaf() {
-  const box = afEl("courseCardsaf");
-  if (!box) return;
-
-  box.innerHTML = afEnrolledCourses.map(function (course) {
-    const icon = afSafe(course.icon, "📘");
-    const title = afSafe(course.title, "Course");
-    const desc = afSafe(course.short_description, "Course details will be available soon.");
-
-    return `
-      <button class="course-cardaf" type="button" onclick="openCourseDetailsaf('${course.id}')">
-        <div class="course-card-iconaf">${icon}</div>
-        <div class="course-card-bodyaf">
-          <h3>${title}</h3>
-          <p>${desc}</p>
-        </div>
-      </button>
-    `;
-  }).join("");
-}
-
-function showNoCourseMessageaf(message) {
-  const msgBox = afEl("noCourseBoxaf");
-
-  if (msgBox) {
-    const pList = msgBox.querySelectorAll("p");
-    if (pList && pList[0]) {
-      pList[0].textContent = message || "You are not enrolled in any batch.";
-    }
-  }
-
-  showStudentPanelaf("noCourseBoxaf");
-}
-
-/* ==============================
-   COURSE DETAILS
-================================ */
-
-function openCourseDetailsaf(courseId) {
-  afSelectedCourse = afEnrolledCourses.find(function (course) {
-    return String(course.id) === String(courseId);
-  });
-
-  if (!afSelectedCourse) {
-    alert("Course not found.");
-    return;
-  }
-
-  const icon = afSafe(afSelectedCourse.icon, "📘");
-
-  const iconBox = afEl("courseDetailIconaf");
-  const titleBox = afEl("courseTitleaf");
-  const introBox = afEl("courseIntroaf");
-  const detailsBox = afEl("courseDetailsaf");
-  const syllabusBox = afEl("courseSyllabusaf");
-  const facilitiesBox = afEl("courseFacilitiesaf");
-
-  if (iconBox) iconBox.textContent = icon;
-  if (titleBox) titleBox.textContent = afSafe(afSelectedCourse.title, "Course Name");
-  if (introBox) introBox.textContent = afSafe(afSelectedCourse.short_description, "Course intro will appear here.");
-  if (detailsBox) detailsBox.textContent = afSafe(afSelectedCourse.details, "Course details will be available soon.");
-
-  if (syllabusBox) {
-    syllabusBox.innerHTML = `
-      <li>Chapter-wise structured learning</li>
-      <li>Video lectures and study notes</li>
-      <li>Locked content will unlock after upload</li>
-      <li>Practice-based learning flow</li>
-    `;
-  }
-
-  if (facilitiesBox) {
-    let facilities = [];
-
-    if (Array.isArray(afSelectedCourse.facilities)) {
-      facilities = afSelectedCourse.facilities;
-    } else if (typeof afSelectedCourse.facilities === "string") {
-      try {
-        const parsed = JSON.parse(afSelectedCourse.facilities);
-        facilities = Array.isArray(parsed) ? parsed : [];
-      } catch (_err) {
-        facilities = afSelectedCourse.facilities
-          .split(",")
-          .map(function (x) { return x.trim(); })
-          .filter(Boolean);
-      }
-    }
-
-    facilitiesBox.innerHTML = facilities.length
-      ? facilities.map(function (item) {
-          return `<li>${item}</li>`;
-        }).join("")
-      : "<li>Facilities will be updated soon.</li>";
-  }
-
-  showStudentPanelaf("courseDetailsBoxaf");
-}
-
-function backToCoursesaf() {
-  showStudentPanelaf("courseSelectBox");
-}
-
-/* ==============================
-   LEARNING MODE
-================================ */
-
-function startLearningaf() {
-  if (!afSelectedCourse) {
-    alert("Please select a course first.");
-    return;
-  }
-
-  const title = afEl("learningTitleaf");
-  if (title) {
-    title.textContent = afSafe(afSelectedCourse.icon, "📘") + " " + afSafe(afSelectedCourse.title, "Course");
-  }
-
-  showStudentPanelaf("learningBoxaf");
-}
-
-function backToCourseDetailsaf() {
-  showStudentPanelaf("courseDetailsBoxaf");
-}
-
-async function openLearningModeaf(mode) {
-  afLearningMode = mode === "notes" ? "notes" : "lectures";
-
-  const title = afEl("chapterModeTitleaf");
-  if (title) {
-    title.textContent = afLearningMode === "lectures" ? "🎥 Lectures" : "📝 Notes";
-  }
-
-  await loadChaptersaf();
-  showStudentPanelaf("chapterBoxaf");
-}
-
-function backToLearningaf() {
-  showStudentPanelaf("learningBoxaf");
-}
-
-/* ==============================
-   CHAPTERS - EDGE
-================================ */
-
-async function loadChaptersaf() {
-  const list = afEl("chapterListaf");
-
-  if (!list) return;
-
-  if (!afSelectedCourse) {
-    list.innerHTML = '<p class="error-textaf">Course not selected.</p>';
-    return;
-  }
-
-  list.innerHTML = '<p class="loading-textaf">Loading chapters...</p>';
-
-  try {
-    const result = await afCourseEdgeCall("student-chapters-af", {
-      course_id: afSelectedCourse.id
-    });
-
-    if (!result || !result.ok) {
-      console.log("Chapters edge error:", result);
-      list.innerHTML = '<p class="error-textaf">' + afSafe(result?.message, "Unable to load chapters.") + '</p>';
-      return;
-    }
-
-    const chapters = Array.isArray(result.chapters) ? result.chapters : [];
-
-    if (!chapters.length) {
-      list.innerHTML = '<p class="empty-textaf">No chapters available yet.</p>';
-      return;
-    }
-
-    list.innerHTML = chapters.map(function (chapter) {
-      const locked = chapter.is_locked === true;
-      const icon = locked ? "🔒" : "🔓";
-      const status = locked ? "Locked" : "Unlocked";
-
-      return `
-        <button class="chapter-itemaf ${locked ? "lockedaf" : "unlockedaf"}"
-          type="button"
-          onclick="openChapterContentaf('${chapter.id}', ${locked})">
-          <div class="chapter-mainaf">
-            <strong>${icon} Chapter ${chapter.chapter_number}: ${chapter.title}</strong>
-            <small>${afSafe(chapter.description, "Chapter details will be available soon.")}</small>
-          </div>
-          <span class="chapter-statusaf">${status}</span>
-        </button>
-      `;
-    }).join("");
-
-  } catch (err) {
-    console.error("loadChaptersaf catch:", err);
-    list.innerHTML = '<p class="error-textaf">Unable to load chapters right now.</p>';
-  }
-}
-
-async function openChapterContentaf(chapterId, isLocked) {
-  afSelectedChapterId = chapterId;
-
-  if (isLocked === true) {
-    const list = afEl("contentListaf");
-    const title = afEl("contentTitleaf");
-    const sub = afEl("contentSubtitleaf");
-
-    if (title) title.textContent = "🔒 Chapter Locked";
-    if (sub) sub.textContent = "This chapter will unlock after content upload.";
-    if (list) {
-      list.innerHTML = '<p class="error-textaf">This chapter is currently locked.</p>';
-    }
-
-    showStudentPanelaf("contentBoxaf");
-    return;
-  }
-
-  if (afLearningMode === "notes") {
-    await loadNotesaf(chapterId);
-  } else {
-    await loadLecturesaf(chapterId);
-  }
-
-  showStudentPanelaf("contentBoxaf");
-}
-
-function backToChaptersaf() {
-  showStudentPanelaf("chapterBoxaf");
-}
-
-/* ==============================
-   LECTURES - EDGE
-================================ */
-
-async function loadLecturesaf(chapterId) {
-  const list = afEl("contentListaf");
-
-  if (!list) return;
-
-  const title = afEl("contentTitleaf");
-  const sub = afEl("contentSubtitleaf");
-
-  if (title) title.textContent = "🎥 Lectures";
-  if (sub) sub.textContent = "Watch lectures when they are unlocked.";
-
-  list.innerHTML = '<p class="loading-textaf">Loading lectures...</p>';
-
-  try {
-    const result = await afCourseEdgeCall("student-lectures-af", {
-      chapter_id: chapterId
-    });
-
-    if (!result || !result.ok) {
-      console.log("Lectures edge error:", result);
-      list.innerHTML = '<p class="error-textaf">' + afSafe(result?.message, "Unable to load lectures.") + '</p>';
-      return;
-    }
-
-    const lectures = Array.isArray(result.lectures) ? result.lectures : [];
-
-    if (!lectures.length) {
-      list.innerHTML = '<p class="empty-textaf">No lectures available yet.</p>';
-      return;
-    }
-
-    list.innerHTML = lectures.map(function (lecture) {
-      const locked = lecture.is_locked === true || !lecture.video_url;
-      const icon = locked ? "🔒" : "▶️";
-
-      return `
-        <div class="content-itemaf ${locked ? "lockedaf" : "unlockedaf"}">
-          <div class="content-mainaf">
-            <strong>${icon} Lecture ${lecture.lecture_number}: ${lecture.title}</strong>
-            <small>${afSafe(lecture.description, "Lecture details will be available soon.")}</small>
-            <span class="durationaf">⏱ ${afSafe(lecture.duration, "10-15 min")}</span>
-          </div>
-
-          ${
-            locked
-              ? '<button class="content-actionaf locked-btnaf" type="button" disabled>Locked</button>'
-              : `<button class="content-actionaf" type="button" onclick="openVideoaf('${lecture.video_url}')">Watch</button>`
-          }
-        </div>
-      `;
-    }).join("");
-
-  } catch (err) {
-    console.error("loadLecturesaf catch:", err);
-    list.innerHTML = '<p class="error-textaf">Unable to load lectures right now.</p>';
-  }
-}
-
-/* ==============================
-   NOTES - EDGE
-================================ */
-
-async function loadNotesaf(chapterId) {
-  const list = afEl("contentListaf");
-
-  if (!list) return;
-
-  const title = afEl("contentTitleaf");
-  const sub = afEl("contentSubtitleaf");
-
-  if (title) title.textContent = "📝 Notes";
-  if (sub) sub.textContent = "Open notes when they are unlocked.";
-
-  list.innerHTML = '<p class="loading-textaf">Loading notes...</p>';
-
-  try {
-    const result = await afCourseEdgeCall("student-notes-af", {
-      chapter_id: chapterId
-    });
-
-    if (!result || !result.ok) {
-      console.log("Notes edge error:", result);
-      list.innerHTML = '<p class="error-textaf">' + afSafe(result?.message, "Unable to load notes.") + '</p>';
-      return;
-    }
-
-    const notes = Array.isArray(result.notes) ? result.notes : [];
-
-    if (!notes.length) {
-      list.innerHTML = '<p class="empty-textaf">No notes available yet.</p>';
-      return;
-    }
-
-    list.innerHTML = notes.map(function (note) {
-      const locked = note.is_locked === true || !note.pdf_url;
-      const icon = locked ? "🔒" : "📄";
-
-      return `
-        <div class="content-itemaf ${locked ? "lockedaf" : "unlockedaf"}">
-          <div class="content-mainaf">
-            <strong>${icon} Lecture ${note.note_number} Notes</strong>
-            <small>${afSafe(note.title, "Notes will be available soon.")}</small>
-          </div>
-
-          ${
-            locked
-              ? '<button class="content-actionaf locked-btnaf" type="button" disabled>Locked</button>'
-              : `<button class="content-actionaf" type="button" onclick="openPdfaf('${note.pdf_url}')">Open PDF</button>`
-          }
-        </div>
-      `;
-    }).join("");
-
-  } catch (err) {
-    console.error("loadNotesaf catch:", err);
-    list.innerHTML = '<p class="error-textaf">Unable to load notes right now.</p>';
-  }
-}
-
-/* ==============================
-   OPEN FILES
-================================ */
-
-function openVideoaf(url) {
-  if (!url) {
-    alert("Video is not available yet.");
-    return;
-  }
-
-  window.open(url, "_blank");
-}
-
-function openPdfaf(url) {
-  if (!url) {
-    alert("PDF is not available yet.");
-    return;
-  }
-
-  window.open(url, "_blank");
-}
-
-/* ==============================
-   LOGOUT - AF
-================================ */
-
-function logoutStudentaf() {
-  localStorage.removeItem("af_student_logged_in");
-  localStorage.removeItem("af_student_uuid");
-  localStorage.removeItem("af_student_id");
-  localStorage.removeItem("af_student_mobile");
-  localStorage.removeItem("af_student_name");
-  localStorage.removeItem("af_student_email");
-
-  afEnrolledCourses = [];
-  afSelectedCourse = null;
-  afSelectedChapterId = null;
-  afLearningMode = "lectures";
-
-  showStudentPanelaf("studentAuthCardaf");
-
-  if (typeof switchStudentModeaf === "function") {
-    switchStudentModeaf("login");
-  }
-}
-
-/* Old onclick support */
-function logoutStudent() {
-  logoutStudentaf();
-}
-
-/* ==============================
-   AUTO LOGIN CHECK
-================================ */
-
-document.addEventListener("DOMContentLoaded", function () {
-  const loggedIn = localStorage.getItem("af_student_logged_in");
-
-  if (loggedIn === "true") {
-    const studentData = {
-      id: localStorage.getItem("af_student_uuid"),
-      student_id: localStorage.getItem("af_student_id"),
-      mobile: localStorage.getItem("af_student_mobile"),
-      name: localStorage.getItem("af_student_name"),
-      email: localStorage.getItem("af_student_email")
-    };
-
-    openCourseSectionAfterLoginaf(studentData);
-  }
-});
  /* ==============================
   BATCH PURCHASE AF - BACKEND FIXED
   Direct table read/write removed.
