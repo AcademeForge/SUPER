@@ -19979,6 +19979,551 @@ body.dark-mode .af-delete-confirm-v2 span {
     font-size: 14px !important;
     border-radius: 15px !important;
   }
+} 
+    
+/* =========================================================
+   ADDITIONAL SETTINGS + DELETE ACCOUNT MODAL V2 - AF
+   Paste at VERY END of CSS
+========================================================= */
+
+.af-extra-hidden-v2 {
+  display: none !important;
+}
+
+.af-additional-settings-panel-v2 {
+  width: 100% !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+}
+
+.af-extra-settings-toggle-v2 {
+  width: 100% !important;
+  border: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  padding: 0 !important;
+  cursor: pointer !important;
+  font-family: inherit !important;
+  text-align: left !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+.af-extra-settings-icon-v2 {
+  width: 44px !important;
+  min-width: 44px !important;
+  height: 44px !important;
+  border-radius: 16px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: rgba(59, 130, 246, 0.12) !important;
+  font-size: 21px !important;
+  line-height: 1 !important;
+}
+
+.af-extra-settings-text-v2 {
+  min-width: 0 !important;
+  flex: 1 1 auto !important;
+  display: grid !important;
+  gap: 4px !important;
+}
+
+.af-extra-settings-text-v2 strong {
+  color: #0f172a !important;
+  font-size: 15px !important;
+  line-height: 1.2 !important;
+  font-weight: 1000 !important;
+  text-shadow: none !important;
+}
+
+.af-extra-settings-text-v2 small {
+  color: #64748b !important;
+  font-size: 12px !important;
+  line-height: 1.25 !important;
+  font-weight: 750 !important;
+  text-shadow: none !important;
+}
+
+.af-extra-settings-arrow-v2 {
+  color: #334155 !important;
+  font-size: 20px !important;
+  line-height: 1 !important;
+  font-weight: 1000 !important;
+  transition: transform 180ms ease !important;
+}
+
+.af-extra-settings-toggle-v2.is-open .af-extra-settings-arrow-v2 {
+  transform: rotate(180deg) !important;
+}
+
+.af-extra-settings-body-v2 {
+  width: 100% !important;
+  margin-top: 16px !important;
+  box-sizing: border-box !important;
+}
+
+.af-delete-open-btn-v2 {
+  width: 100% !important;
+  border: 1px solid rgba(239, 68, 68, 0.18) !important;
+  outline: 0 !important;
+  border-radius: 18px !important;
+  background: linear-gradient(135deg, rgba(254, 242, 242, 0.98), rgba(255, 247, 237, 0.98)) !important;
+  padding: 14px 15px !important;
+  display: grid !important;
+  gap: 4px !important;
+  cursor: pointer !important;
+  text-align: left !important;
+  font-family: inherit !important;
+  box-sizing: border-box !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+.af-delete-open-btn-v2 span {
+  color: #b91c1c !important;
+  font-size: 14px !important;
+  line-height: 1.2 !important;
+  font-weight: 1000 !important;
+}
+
+.af-delete-open-btn-v2 small {
+  color: #7f1d1d !important;
+  font-size: 12px !important;
+  line-height: 1.3 !important;
+  font-weight: 750 !important;
+}
+
+/* Modal overlay */
+.af-delete-modal-overlay-v2 {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 999999 !important;
+  width: 100vw !important;
+  height: 100dvh !important;
+  background: rgba(2, 6, 23, 0.62) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 18px !important;
+  box-sizing: border-box !important;
+}
+
+.af-delete-modal-overlay-v2.af-extra-hidden-v2 {
+  display: none !important;
+}
+
+.af-delete-modal-card-v2 {
+  width: min(100%, 560px) !important;
+  max-height: calc(100dvh - 36px) !important;
+  border-radius: 28px !important;
+  background: rgba(255, 255, 255, 0.96) !important;
+  border: 1px solid rgba(255, 255, 255, 0.56) !important;
+  box-shadow: 0 30px 90px rgba(15, 23, 42, 0.34) !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  box-sizing: border-box !important;
+  animation: afDeleteModalInV2 180ms ease-out both !important;
+}
+
+@keyframes afDeleteModalInV2 {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.af-delete-modal-top-v2 {
+  flex: 0 0 auto !important;
+  width: 100% !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  padding: 18px 18px 12px !important;
+  box-sizing: border-box !important;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.18) !important;
+}
+
+.af-delete-request-head-v2 {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  margin: 0 !important;
+  min-width: 0 !important;
+  flex: 1 1 auto !important;
+}
+
+.af-delete-request-alert-v2 {
+  width: 42px !important;
+  min-width: 42px !important;
+  height: 42px !important;
+  border-radius: 50% !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #fee2e2 !important;
+  color: #b91c1c !important;
+  font-size: 22px !important;
+  font-weight: 1000 !important;
+}
+
+.af-delete-request-head-v2 h4 {
+  margin: 0 !important;
+  color: #111827 !important;
+  font-size: 16px !important;
+  line-height: 1.2 !important;
+  font-weight: 1000 !important;
+}
+
+.af-delete-request-head-v2 p {
+  margin: 4px 0 0 !important;
+  color: #64748b !important;
+  font-size: 12px !important;
+  line-height: 1.25 !important;
+  font-weight: 750 !important;
+}
+
+.af-delete-modal-close-v2 {
+  width: 38px !important;
+  min-width: 38px !important;
+  height: 38px !important;
+  border: 0 !important;
+  outline: 0 !important;
+  border-radius: 50% !important;
+  background: rgba(15, 23, 42, 0.08) !important;
+  color: #0f172a !important;
+  -webkit-text-fill-color: #0f172a !important;
+  font-size: 28px !important;
+  line-height: 1 !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+.af-delete-modal-scroll-v2 {
+  flex: 1 1 auto !important;
+  overflow-y: auto !important;
+  overscroll-behavior: contain !important;
+  -webkit-overflow-scrolling: touch !important;
+  padding: 16px 18px 20px !important;
+  box-sizing: border-box !important;
+}
+
+body.af-delete-modal-open-v2 {
+  overflow: hidden !important;
+  touch-action: none !important;
+}
+
+.af-delete-policy-card-v2 {
+  width: 100% !important;
+  padding: 14px !important;
+  margin: 0 0 16px !important;
+  border-radius: 18px !important;
+  background: linear-gradient(135deg, rgba(254, 226, 226, 0.95), rgba(255, 247, 237, 0.95)) !important;
+  border: 1px solid rgba(220, 38, 38, 0.18) !important;
+  box-sizing: border-box !important;
+}
+
+.af-delete-policy-card-v2 strong {
+  display: block !important;
+  margin-bottom: 8px !important;
+  color: #991b1b !important;
+  font-size: 14px !important;
+  font-weight: 1000 !important;
+  line-height: 1.25 !important;
+}
+
+.af-delete-policy-card-v2 p {
+  margin: 0 0 8px !important;
+  color: #7f1d1d !important;
+  font-size: 13px !important;
+  line-height: 1.55 !important;
+  font-weight: 750 !important;
+}
+
+.af-delete-policy-card-v2 p:last-child {
+  margin-bottom: 0 !important;
+}
+
+.af-delete-form-v2 {
+  width: 100% !important;
+  display: grid !important;
+  gap: 14px !important;
+}
+
+.af-delete-field-v2 {
+  width: 100% !important;
+  display: grid !important;
+  gap: 7px !important;
+}
+
+.af-delete-field-v2 label {
+  color: #334155 !important;
+  font-size: 13px !important;
+  line-height: 1.2 !important;
+  font-weight: 1000 !important;
+  letter-spacing: 0.01em !important;
+  text-shadow: none !important;
+}
+
+.af-delete-field-v2 input,
+.af-delete-field-v2 select,
+.af-delete-field-v2 textarea {
+  width: 100% !important;
+  border: 1px solid rgba(100, 116, 139, 0.42) !important;
+  outline: 0 !important;
+  border-radius: 16px !important;
+  background: #ffffff !important;
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+  font-size: 15px !important;
+  font-weight: 800 !important;
+  padding: 14px 15px !important;
+  box-sizing: border-box !important;
+  font-family: inherit !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+  color-scheme: light !important;
+}
+
+.af-delete-field-v2 input,
+.af-delete-field-v2 select {
+  min-height: 52px !important;
+}
+
+.af-delete-field-v2 textarea {
+  min-height: 132px !important;
+  resize: vertical !important;
+  line-height: 1.5 !important;
+}
+
+.af-delete-field-v2 input::placeholder,
+.af-delete-field-v2 textarea::placeholder {
+  color: #64748b !important;
+  -webkit-text-fill-color: #64748b !important;
+  opacity: 1 !important;
+}
+
+.af-delete-field-v2 input:focus,
+.af-delete-field-v2 select:focus,
+.af-delete-field-v2 textarea:focus {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.14) !important;
+}
+
+.af-delete-confirm-v2 {
+  width: 100% !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 10px !important;
+  padding: 12px !important;
+  border-radius: 16px !important;
+  background: rgba(248, 250, 252, 0.96) !important;
+  border: 1px solid rgba(148, 163, 184, 0.3) !important;
+  box-sizing: border-box !important;
+  cursor: pointer !important;
+}
+
+.af-delete-confirm-v2 input {
+  width: 18px !important;
+  min-width: 18px !important;
+  height: 18px !important;
+  margin-top: 2px !important;
+  accent-color: #dc2626 !important;
+}
+
+.af-delete-confirm-v2 span {
+  color: #334155 !important;
+  font-size: 12.5px !important;
+  line-height: 1.5 !important;
+  font-weight: 850 !important;
+}
+
+.af-delete-message-v2 {
+  display: none !important;
+  border-radius: 14px !important;
+  padding: 12px 14px !important;
+  font-size: 13px !important;
+  line-height: 1.45 !important;
+  font-weight: 900 !important;
+}
+
+.af-delete-message-v2.is-success {
+  display: block !important;
+  color: #166534 !important;
+  background: #dcfce7 !important;
+  border: 1px solid rgba(22, 101, 52, 0.18) !important;
+}
+
+.af-delete-message-v2.is-error {
+  display: block !important;
+  color: #b91c1c !important;
+  background: #fee2e2 !important;
+  border: 1px solid rgba(185, 28, 28, 0.18) !important;
+}
+
+.af-delete-submit-v2 {
+  width: 100% !important;
+  min-height: 56px !important;
+  border: 0 !important;
+  outline: 0 !important;
+  border-radius: 18px !important;
+  background: linear-gradient(135deg, #b91c1c, #ef4444) !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  font-size: 15px !important;
+  font-weight: 1000 !important;
+  cursor: pointer !important;
+  box-shadow: 0 18px 40px rgba(239, 68, 68, 0.22) !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+.af-delete-submit-v2:disabled {
+  opacity: 0.68 !important;
+  cursor: not-allowed !important;
+}
+
+.af-delete-home-btn-v2 {
+  width: 100% !important;
+  min-height: 52px !important;
+  border: 1px solid rgba(148, 163, 184, 0.36) !important;
+  outline: 0 !important;
+  border-radius: 18px !important;
+  background: #ffffff !important;
+  color: #334155 !important;
+  -webkit-text-fill-color: #334155 !important;
+  font-size: 14px !important;
+  font-weight: 1000 !important;
+  cursor: pointer !important;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08) !important;
+}
+
+/* Dark mode */
+html.dark-mode .af-extra-settings-text-v2 strong,
+body.dark-mode .af-extra-settings-text-v2 strong {
+  color: #f8fafc !important;
+}
+
+html.dark-mode .af-extra-settings-text-v2 small,
+body.dark-mode .af-extra-settings-text-v2 small,
+html.dark-mode .af-extra-settings-arrow-v2,
+body.dark-mode .af-extra-settings-arrow-v2 {
+  color: #cbd5e1 !important;
+}
+
+html.dark-mode .af-delete-modal-card-v2,
+body.dark-mode .af-delete-modal-card-v2 {
+  background: rgba(15, 23, 42, 0.96) !important;
+  border-color: rgba(148, 163, 184, 0.24) !important;
+}
+
+html.dark-mode .af-delete-modal-top-v2,
+body.dark-mode .af-delete-modal-top-v2 {
+  border-bottom-color: rgba(148, 163, 184, 0.18) !important;
+}
+
+html.dark-mode .af-delete-modal-close-v2,
+body.dark-mode .af-delete-modal-close-v2 {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: #f8fafc !important;
+  -webkit-text-fill-color: #f8fafc !important;
+}
+
+html.dark-mode .af-delete-request-head-v2 h4,
+body.dark-mode .af-delete-request-head-v2 h4 {
+  color: #f8fafc !important;
+}
+
+html.dark-mode .af-delete-request-head-v2 p,
+body.dark-mode .af-delete-request-head-v2 p {
+  color: #cbd5e1 !important;
+}
+
+html.dark-mode .af-delete-field-v2 label,
+body.dark-mode .af-delete-field-v2 label {
+  color: #f8fafc !important;
+}
+
+html.dark-mode .af-delete-field-v2 input,
+body.dark-mode .af-delete-field-v2 input,
+html.dark-mode .af-delete-field-v2 select,
+body.dark-mode .af-delete-field-v2 select,
+html.dark-mode .af-delete-field-v2 textarea,
+body.dark-mode .af-delete-field-v2 textarea {
+  background: #ffffff !important;
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+}
+
+html.dark-mode .af-delete-confirm-v2,
+body.dark-mode .af-delete-confirm-v2 {
+  background: rgba(15, 23, 42, 0.72) !important;
+  border-color: rgba(148, 163, 184, 0.28) !important;
+}
+
+html.dark-mode .af-delete-confirm-v2 span,
+body.dark-mode .af-delete-confirm-v2 span {
+  color: #e5e7eb !important;
+}
+
+/* Mobile bottom-sheet */
+@media (max-width: 640px) {
+  .af-delete-modal-overlay-v2 {
+    align-items: flex-end !important;
+    padding: 0 !important;
+  }
+
+  .af-delete-modal-card-v2 {
+    width: 100% !important;
+    max-height: 92dvh !important;
+    border-radius: 28px 28px 0 0 !important;
+    animation: afDeleteSheetInV2 180ms ease-out both !important;
+  }
+
+  @keyframes afDeleteSheetInV2 {
+    from {
+      opacity: 0;
+      transform: translateY(34px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .af-delete-modal-top-v2 {
+    padding: 16px 15px 12px !important;
+  }
+
+  .af-delete-modal-scroll-v2 {
+    padding: 14px 15px 20px !important;
+  }
+
+  .af-delete-modal-close-v2 {
+    width: 36px !important;
+    min-width: 36px !important;
+    height: 36px !important;
+    font-size: 26px !important;
+  }
+
+  .af-delete-field-v2 input,
+  .af-delete-field-v2 select,
+  .af-delete-field-v2 textarea {
+    font-size: 14px !important;
+    border-radius: 15px !important;
+  }
 }
 
 </style>
@@ -20621,6 +21166,7 @@ body.dark-mode .af-delete-confirm-v2 span {
         <p class="af-empty">No enrolled batch found.</p>
       </div>
     </div>
+    
 <!-- ==============================
      ADDITIONAL SETTINGS PANEL V2 - AF
 ================================ -->
@@ -20651,21 +21197,48 @@ body.dark-mode .af-delete-confirm-v2 span {
       type="button"
       onclick="openAfDeleteAccountRequestV2()"
       aria-expanded="false"
-      aria-controls="afDeleteAccountRequestBoxV2"
+      aria-controls="afDeleteAccountModalV2"
     >
       <span>Delete Account</span>
       <small>Permanent account removal request</small>
     </button>
+  </div>
+</div>
 
-    <div id="afDeleteAccountRequestBoxV2" class="af-delete-request-box-v2 af-extra-hidden-v2">
+
+<!-- ==============================
+     DELETE ACCOUNT REQUEST MODAL V2 - AF
+     Paste near end of body
+================================ -->
+
+<div
+  id="afDeleteAccountModalV2"
+  class="af-delete-modal-overlay-v2 af-extra-hidden-v2"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="afDeleteModalTitleV2"
+>
+  <div class="af-delete-modal-card-v2">
+    <div class="af-delete-modal-top-v2">
       <div class="af-delete-request-head-v2">
         <div class="af-delete-request-alert-v2" aria-hidden="true">!</div>
         <div>
-          <h4>Account Deletion Request</h4>
+          <h4 id="afDeleteModalTitleV2">Account Deletion Request</h4>
           <p>Secure verification required</p>
         </div>
       </div>
 
+      <button
+        type="button"
+        class="af-delete-modal-close-v2"
+        onclick="closeAfDeleteAccountRequestV2()"
+        aria-label="Close delete account request"
+      >
+        ×
+      </button>
+    </div>
+
+    <div class="af-delete-modal-scroll-v2">
       <div class="af-delete-policy-card-v2">
         <strong>Important account deletion policy</strong>
         <p>
@@ -20761,8 +21334,8 @@ body.dark-mode .af-delete-confirm-v2 span {
           Submit Deletion Request
         </button>
 
-        <button class="af-delete-home-btn-v2" type="button" onclick="showSection('home')">
-          Return To HomePage
+        <button class="af-delete-home-btn-v2" type="button" onclick="closeAfDeleteAccountRequestV2()">
+          Cancel
         </button>
       </form>
     </div>
@@ -34197,10 +34770,11 @@ function logoutStudentafWithMessage() {
   }
 }
 
+
 /* =========================================================
-   ACCOUNT DELETE REQUEST V2 - AF
-   New IDs/classes. Safe to paste at END.
-   Only submits request data to Supabase Edge Function.
+   ACCOUNT DELETE REQUEST MODAL V2 - AF
+   Paste at VERY END before </body>
+   Requires global SUPABASE_ANON_KEY already present.
 ========================================================= */
 
 const AF_ACCOUNT_DELETE_REQUEST_EDGE_URL_V2 =
@@ -34238,28 +34812,49 @@ function toggleAfExtraSettingsV2() {
 function openAfDeleteAccountRequestV2() {
   try {
     const btn = afByIdV2("afDeleteAccountOpenBtnV2");
-    const box = afByIdV2("afDeleteAccountRequestBoxV2");
+    const modal = afByIdV2("afDeleteAccountModalV2");
 
-    if (!box) return;
+    if (!modal) {
+      console.error("afDeleteAccountModalV2 not found.");
+      return;
+    }
 
-    const willOpen = box.classList.contains("af-extra-hidden-v2");
-
-    box.classList.toggle("af-extra-hidden-v2", !willOpen);
+    modal.classList.remove("af-extra-hidden-v2");
+    document.body.classList.add("af-delete-modal-open-v2");
 
     if (btn) {
-      btn.setAttribute("aria-expanded", willOpen ? "true" : "false");
+      btn.setAttribute("aria-expanded", "true");
     }
 
-    if (willOpen) {
-      window.setTimeout(prefillAfDeleteAccountFormV2, 80);
-      window.setTimeout(function () {
-        try {
-          box.scrollIntoView({ behavior: "smooth", block: "nearest" });
-        } catch (error) {}
-      }, 120);
-    }
+    window.setTimeout(function () {
+      prefillAfDeleteAccountFormV2();
+
+      const firstInput = afByIdV2("afDeleteFullNameV2");
+      if (firstInput && window.innerWidth > 768) {
+        firstInput.focus();
+      }
+    }, 80);
   } catch (error) {
     console.error("openAfDeleteAccountRequestV2 failed:", error);
+  }
+}
+
+function closeAfDeleteAccountRequestV2() {
+  try {
+    const btn = afByIdV2("afDeleteAccountOpenBtnV2");
+    const modal = afByIdV2("afDeleteAccountModalV2");
+
+    if (modal) {
+      modal.classList.add("af-extra-hidden-v2");
+    }
+
+    document.body.classList.remove("af-delete-modal-open-v2");
+
+    if (btn) {
+      btn.setAttribute("aria-expanded", "false");
+    }
+  } catch (error) {
+    console.error("closeAfDeleteAccountRequestV2 failed:", error);
   }
 }
 
@@ -34527,6 +35122,10 @@ async function submitAfDeleteAccountRequestV2(event) {
       "success",
       "Your account deletion request has been submitted successfully."
     );
+
+    window.setTimeout(function () {
+      closeAfDeleteAccountRequestV2();
+    }, 1400);
   } catch (error) {
     console.error("submitAfDeleteAccountRequestV2 failed:", error);
     setAfDeleteMessageV2(
@@ -34543,8 +35142,27 @@ async function submitAfDeleteAccountRequestV2(event) {
   }
 }
 
+document.addEventListener("keydown", function (event) {
+  try {
+    if (event.key !== "Escape") return;
 
+    const modal = afByIdV2("afDeleteAccountModalV2");
+    if (modal && !modal.classList.contains("af-extra-hidden-v2")) {
+      closeAfDeleteAccountRequestV2();
+    }
+  } catch (error) {}
+});
+
+document.addEventListener("click", function (event) {
+  try {
+    const modal = afByIdV2("afDeleteAccountModalV2");
+    if (!modal || modal.classList.contains("af-extra-hidden-v2")) return;
+
+    if (event.target === modal) {
+      closeAfDeleteAccountRequestV2();
+    }
+  } catch (error) {}
+});
 </script>
- 
 </body>
 </html>
