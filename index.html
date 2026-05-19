@@ -20863,13 +20863,13 @@ body.dark-mode .af-toast-message.is-error {
       <div class="settings-profile-info">
         <h2 id="settingsStudentName">Hi, Devraj</h2>
         <button
-          type="button"
-          class="settings-profile-link"
-          onclick="openSettingsProfile()"
-          aria-label="View profile"
-        >
-          View profile
-        </button>
+  type="button"
+  class="settings-profile-link"
+  onclick="openStudentDashboardFromSettingsAf()"
+  aria-label="View profile"
+>
+  View profile
+</button>
       </div>
     </div>
 
@@ -29278,6 +29278,131 @@ function afClearStudentLoginStorage() {
 document.addEventListener("DOMContentLoaded", function() {
   afRenderCard();
 });
+
+  
+/* =========================================================
+   SETTINGS VIEW PROFILE -> WORKING STUDENT DASHBOARD - AF
+   Opens #studentDashboardAf and triggers existing fetch/render logic
+========================================================= */
+
+function openStudentDashboardFromSettingsAf() {
+  try {
+    const dashboardSection = document.getElementById("studentDashboardAf");
+
+    if (!dashboardSection) {
+      console.error("studentDashboardAf section not found.");
+      return;
+    }
+
+    if (typeof showSection === "function") {
+      showSection("studentDashboardAf");
+    } else {
+      document.querySelectorAll(".section, .app-section").forEach(function (section) {
+        section.classList.remove("active");
+        section.style.display = "none";
+      });
+
+      dashboardSection.classList.add("active");
+      dashboardSection.style.display = "block";
+    }
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    window.setTimeout(function () {
+      if (typeof loadStudentDashboardAf === "function") {
+        loadStudentDashboardAf();
+        return;
+      }
+
+      if (typeof loadAfStudentDashboard === "function") {
+        loadAfStudentDashboard();
+        return;
+      }
+
+      if (typeof fetchStudentDashboardAf === "function") {
+        fetchStudentDashboardAf();
+        return;
+      }
+
+      if (typeof renderStudentDashboardAf === "function") {
+        renderStudentDashboardAf();
+        return;
+      }
+
+      if (typeof openSettingsProfile === "function") {
+        openSettingsProfile();
+        return;
+      }
+
+      console.warn("No dashboard fetch function found. Section opened only.");
+    }, 80);
+  } catch (error) {
+    console.error("openStudentDashboardFromSettingsAf failed:", error);
+  }
+}
+
+/* =========================================================
+   SETTINGS NAME SYNC FROM WORKING PROFILE PAGE - AF
+========================================================= */
+
+function syncSettingsNameFromStudentDashboardAf() {
+  try {
+    const settingsNameEl = document.getElementById("settingsStudentName");
+    if (!settingsNameEl) return;
+
+    const profileNameEl = document.getElementById("afProfileHeroName");
+    const detailNameEl = document.getElementById("afInfoName");
+
+    const profileName = profileNameEl ? String(profileNameEl.textContent || "").trim() : "";
+    const detailName = detailNameEl ? String(detailNameEl.textContent || "").trim() : "";
+
+    const finalName =
+      profileName && profileName !== "Student" && profileName !== "-"
+        ? profileName
+        : detailName && detailName !== "-"
+          ? detailName
+          : "";
+
+    settingsNameEl.textContent = finalName ? "Hi, " + finalName.replace(/^Hi,\s*/i, "") : "Hi, Student";
+  } catch (error) {
+    console.error("syncSettingsNameFromStudentDashboardAf failed:", error);
+  }
+}
+
+(function () {
+  const previousShowSection = window.showSection;
+
+  window.showSection = function (sectionId) {
+    if (typeof previousShowSection === "function") {
+      previousShowSection.apply(this, arguments);
+    } else {
+      document.querySelectorAll(".section, .app-section").forEach(function (section) {
+        section.classList.remove("active");
+        section.style.display = "none";
+      });
+
+      const target = document.getElementById(sectionId);
+      if (target) {
+        target.classList.add("active");
+        target.style.display = "block";
+      }
+    }
+
+    if (sectionId === "settings") {
+      window.setTimeout(syncSettingsNameFromStudentDashboardAf, 150);
+      window.setTimeout(syncSettingsNameFromStudentDashboardAf, 700);
+    }
+
+    if (sectionId === "studentDashboardAf") {
+      window.setTimeout(syncSettingsNameFromStudentDashboardAf, 700);
+    }
+  };
+
+  document.addEventListener("DOMContentLoaded", function () {
+    window.setTimeout(syncSettingsNameFromStudentDashboardAf, 700);
+  });
+})();
+
   /* =========================================================
    AF HOME BANNER SWIPE + TOUCH PAUSE + MARQUEE FIX
    Paste at END of JS
