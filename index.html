@@ -20526,6 +20526,428 @@ body.dark-mode .af-delete-confirm-v2 span {
   }
 }
 
+/* =========================================================
+   REQUEST STATUS PAGE - AF
+   Paste at VERY END
+========================================================= */
+
+.request-status-section-af {
+  min-height: 100dvh !important;
+  padding: 18px 14px 96px !important;
+  box-sizing: border-box !important;
+}
+
+.request-status-page-af {
+  width: min(100%, 860px) !important;
+  margin: 0 auto !important;
+  display: grid !important;
+  gap: 16px !important;
+}
+
+.request-status-hero-af {
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: 28px !important;
+  padding: 18px !important;
+  min-height: 150px !important;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(255, 255, 255, 0.35), transparent 34%),
+    linear-gradient(135deg, #2563eb, #7c3aed 54%, #db2777) !important;
+  box-shadow: 0 24px 60px rgba(37, 99, 235, 0.24) !important;
+  color: #ffffff !important;
+  display: grid !important;
+  align-items: end !important;
+  box-sizing: border-box !important;
+}
+
+.request-status-hero-af::after {
+  content: "" !important;
+  position: absolute !important;
+  width: 180px !important;
+  height: 180px !important;
+  right: -70px !important;
+  top: -60px !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.16) !important;
+  pointer-events: none !important;
+}
+
+.request-status-back-af,
+.request-status-refresh-af {
+  position: absolute !important;
+  top: 14px !important;
+  z-index: 2 !important;
+  border: 1px solid rgba(255, 255, 255, 0.32) !important;
+  outline: 0 !important;
+  height: 38px !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.18) !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  font-size: 13px !important;
+  font-weight: 1000 !important;
+  cursor: pointer !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.16) !important;
+}
+
+.request-status-back-af {
+  left: 14px !important;
+  padding: 0 14px !important;
+}
+
+.request-status-refresh-af {
+  right: 14px !important;
+  width: 38px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 18px !important;
+}
+
+.request-status-hero-text-af {
+  position: relative !important;
+  z-index: 2 !important;
+  padding-top: 42px !important;
+}
+
+.request-status-hero-text-af p,
+.request-status-hero-text-af h2,
+.request-status-hero-text-af span {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  text-shadow: none !important;
+}
+
+.request-status-hero-text-af p {
+  margin: 0 0 6px !important;
+  font-size: 12px !important;
+  font-weight: 1000 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  opacity: 0.92 !important;
+}
+
+.request-status-hero-text-af h2 {
+  margin: 0 !important;
+  font-size: clamp(24px, 5vw, 34px) !important;
+  line-height: 1.05 !important;
+  font-weight: 1000 !important;
+}
+
+.request-status-hero-text-af span {
+  display: block !important;
+  margin-top: 8px !important;
+  font-size: 13px !important;
+  line-height: 1.45 !important;
+  font-weight: 750 !important;
+  opacity: 0.92 !important;
+}
+
+.request-status-message-af {
+  border-radius: 20px !important;
+  padding: 14px 15px !important;
+  background: rgba(255, 255, 255, 0.86) !important;
+  border: 1px solid rgba(148, 163, 184, 0.24) !important;
+  color: #334155 !important;
+  -webkit-text-fill-color: #334155 !important;
+  font-size: 13px !important;
+  font-weight: 900 !important;
+  line-height: 1.45 !important;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08) !important;
+}
+
+.request-status-message-af.is-error {
+  background: #fee2e2 !important;
+  border-color: rgba(185, 28, 28, 0.2) !important;
+  color: #b91c1c !important;
+  -webkit-text-fill-color: #b91c1c !important;
+}
+
+.request-status-message-af.is-empty {
+  background: #fef3c7 !important;
+  border-color: rgba(180, 83, 9, 0.22) !important;
+  color: #92400e !important;
+  -webkit-text-fill-color: #92400e !important;
+}
+
+.request-status-list-af {
+  display: grid !important;
+  gap: 14px !important;
+}
+
+.request-card-af {
+  width: 100% !important;
+  border-radius: 24px !important;
+  padding: 16px !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(148, 163, 184, 0.24) !important;
+  box-shadow: 0 18px 48px rgba(15, 23, 42, 0.08) !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  animation: requestCardInAf 420ms ease both !important;
+}
+
+@keyframes requestCardInAf {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.request-card-top-af {
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  margin-bottom: 14px !important;
+}
+
+.request-card-title-af {
+  min-width: 0 !important;
+}
+
+.request-card-title-af h3 {
+  margin: 0 !important;
+  color: #0f172a !important;
+  -webkit-text-fill-color: #0f172a !important;
+  font-size: 16px !important;
+  line-height: 1.25 !important;
+  font-weight: 1000 !important;
+}
+
+.request-card-title-af p {
+  margin: 5px 0 0 !important;
+  color: #64748b !important;
+  -webkit-text-fill-color: #64748b !important;
+  font-size: 12px !important;
+  line-height: 1.35 !important;
+  font-weight: 800 !important;
+}
+
+.request-status-pill-af {
+  flex: 0 0 auto !important;
+  border-radius: 999px !important;
+  padding: 7px 10px !important;
+  font-size: 11px !important;
+  line-height: 1 !important;
+  font-weight: 1000 !important;
+  white-space: nowrap !important;
+}
+
+.request-status-pill-af.pending {
+  background: #fef3c7 !important;
+  color: #92400e !important;
+  -webkit-text-fill-color: #92400e !important;
+}
+
+.request-status-pill-af.read {
+  background: #dbeafe !important;
+  color: #1d4ed8 !important;
+  -webkit-text-fill-color: #1d4ed8 !important;
+}
+
+.request-status-pill-af.solved {
+  background: #dcfce7 !important;
+  color: #166534 !important;
+  -webkit-text-fill-color: #166534 !important;
+}
+
+.request-progress-af {
+  position: relative !important;
+  display: grid !important;
+  gap: 0 !important;
+  padding: 4px 0 !important;
+}
+
+.request-step-af {
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: 38px 1fr !important;
+  gap: 12px !important;
+  min-height: 62px !important;
+}
+
+.request-step-af:not(:last-child)::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 18px !important;
+  top: 38px !important;
+  width: 3px !important;
+  height: calc(100% - 20px) !important;
+  border-radius: 999px !important;
+  background: rgba(148, 163, 184, 0.34) !important;
+}
+
+.request-step-af.is-done:not(:last-child)::after {
+  background: linear-gradient(180deg, #22c55e, #16a34a) !important;
+  animation: requestLineFillAf 520ms ease both !important;
+}
+
+@keyframes requestLineFillAf {
+  from {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  to {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+}
+
+.request-step-dot-af {
+  position: relative !important;
+  z-index: 2 !important;
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 999px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #e2e8f0 !important;
+  color: #64748b !important;
+  -webkit-text-fill-color: #64748b !important;
+  font-size: 16px !important;
+  font-weight: 1000 !important;
+  box-shadow: inset 0 0 0 1px rgba(100, 116, 139, 0.16) !important;
+}
+
+.request-step-af.is-done .request-step-dot-af {
+  background: linear-gradient(135deg, #22c55e, #16a34a) !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  animation: requestTickPopAf 420ms cubic-bezier(.2, .9, .2, 1.2) both !important;
+}
+
+.request-step-af.is-pending .request-step-dot-af {
+  background: #fef3c7 !important;
+  color: #92400e !important;
+  -webkit-text-fill-color: #92400e !important;
+}
+
+@keyframes requestTickPopAf {
+  0% {
+    transform: scale(0.72);
+    opacity: 0.3;
+  }
+  70% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.request-step-content-af {
+  min-width: 0 !important;
+  padding-top: 1px !important;
+}
+
+.request-step-content-af strong {
+  display: block !important;
+  color: #0f172a !important;
+  -webkit-text-fill-color: #0f172a !important;
+  font-size: 14px !important;
+  line-height: 1.25 !important;
+  font-weight: 1000 !important;
+}
+
+.request-step-content-af span {
+  display: block !important;
+  margin-top: 5px !important;
+  color: #64748b !important;
+  -webkit-text-fill-color: #64748b !important;
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+  font-weight: 750 !important;
+}
+
+.request-step-af.is-pending .request-step-content-af span {
+  color: #b45309 !important;
+  -webkit-text-fill-color: #b45309 !important;
+}
+
+.request-note-af {
+  margin-top: 12px !important;
+  border-radius: 16px !important;
+  padding: 12px !important;
+  background: rgba(248, 250, 252, 0.92) !important;
+  border: 1px solid rgba(148, 163, 184, 0.2) !important;
+  color: #475569 !important;
+  -webkit-text-fill-color: #475569 !important;
+  font-size: 12px !important;
+  line-height: 1.45 !important;
+  font-weight: 800 !important;
+}
+
+/* Dark mode */
+html.dark-mode .request-status-message-af,
+body.dark-mode .request-status-message-af,
+html.dark-mode .request-card-af,
+body.dark-mode .request-card-af {
+  background: rgba(15, 23, 42, 0.86) !important;
+  border-color: rgba(148, 163, 184, 0.22) !important;
+}
+
+html.dark-mode .request-card-title-af h3,
+body.dark-mode .request-card-title-af h3,
+html.dark-mode .request-step-content-af strong,
+body.dark-mode .request-step-content-af strong {
+  color: #f8fafc !important;
+  -webkit-text-fill-color: #f8fafc !important;
+}
+
+html.dark-mode .request-card-title-af p,
+body.dark-mode .request-card-title-af p,
+html.dark-mode .request-step-content-af span,
+body.dark-mode .request-step-content-af span,
+html.dark-mode .request-status-message-af,
+body.dark-mode .request-status-message-af {
+  color: #cbd5e1 !important;
+  -webkit-text-fill-color: #cbd5e1 !important;
+}
+
+html.dark-mode .request-note-af,
+body.dark-mode .request-note-af {
+  background: rgba(2, 6, 23, 0.46) !important;
+  border-color: rgba(148, 163, 184, 0.18) !important;
+  color: #cbd5e1 !important;
+  -webkit-text-fill-color: #cbd5e1 !important;
+}
+
+@media (max-width: 640px) {
+  .request-status-section-af {
+    padding: 14px 12px 92px !important;
+  }
+
+  .request-status-hero-af {
+    border-radius: 24px !important;
+    min-height: 142px !important;
+    padding: 16px !important;
+  }
+
+  .request-card-af {
+    border-radius: 22px !important;
+    padding: 14px !important;
+  }
+
+  .request-card-top-af {
+    display: grid !important;
+    gap: 10px !important;
+  }
+
+  .request-status-pill-af {
+    width: max-content !important;
+  }
+}
+
 </style>
 </head>
 
@@ -35214,6 +35636,332 @@ document.addEventListener("click", function (event) {
     }
   } catch (error) {}
 });
+
+  
+/* =========================================================
+   REQUEST STATUS PAGE - AF
+   Paste at VERY END before </body>
+========================================================= */
+
+const AF_REQUEST_STATUS_EDGE_URL =
+  "https://afooyyydhlwngzssgqih.supabase.co/functions/v1/request-status-af";
+
+function afRequestStatusById(id) {
+  return document.getElementById(id);
+}
+
+function openRequestStatusPageAf() {
+  try {
+    if (typeof showSection === "function") {
+      showSection("requestStatusAf");
+    } else {
+      document.querySelectorAll(".section").forEach(function (section) {
+        section.classList.remove("active");
+        section.style.display = "none";
+      });
+
+      const page = afRequestStatusById("requestStatusAf");
+      if (page) {
+        page.classList.add("active");
+        page.style.display = "block";
+      }
+    }
+
+    window.setTimeout(function () {
+      loadRequestStatusAf(false);
+    }, 80);
+  } catch (error) {
+    console.error("openRequestStatusPageAf failed:", error);
+  }
+}
+
+function setRequestStatusMessageAf(type, message) {
+  try {
+    const box = afRequestStatusById("requestStatusMessageAf");
+    if (!box) return;
+
+    box.classList.remove("is-error", "is-empty");
+    box.style.display = message ? "block" : "none";
+    box.textContent = message || "";
+
+    if (type === "error") box.classList.add("is-error");
+    if (type === "empty") box.classList.add("is-empty");
+  } catch (error) {
+    console.error("setRequestStatusMessageAf failed:", error);
+  }
+}
+
+function getAfCurrentStudentForRequestStatus() {
+  const keys = [
+    "af_current_student",
+    "af_logged_student",
+    "af_student_session",
+    "af_student_data",
+    "studentaf_session",
+    "student_session_af",
+    "currentStudentaf",
+    "current_student_af"
+  ];
+
+  for (let i = 0; i < keys.length; i += 1) {
+    try {
+      const raw = localStorage.getItem(keys[i]);
+      if (!raw) continue;
+
+      const parsed = JSON.parse(raw);
+      if (parsed && typeof parsed === "object") {
+        const student = parsed.student || parsed.data || parsed.user || parsed;
+        if (student && typeof student === "object") return student;
+      }
+    } catch (error) {}
+  }
+
+  return {
+    email:
+      localStorage.getItem("af_student_email") ||
+      localStorage.getItem("student_email_af") ||
+      localStorage.getItem("studentEmailaf") ||
+      ""
+  };
+}
+
+function normalizeRequestFlagAf(value) {
+  return String(value || "F").trim().toUpperCase() === "T";
+}
+
+function formatRequestDateAf(value) {
+  try {
+    if (!value) return "Recently submitted";
+
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return "Recently submitted";
+
+    return date.toLocaleString("en-IN", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit"
+    });
+  } catch (error) {
+    return "Recently submitted";
+  }
+}
+
+function escapeRequestHtmlAf(value) {
+  return String(value || "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function getRequestTitleAf(report) {
+  return report.category || "Bug Report";
+}
+
+function getRequestDescriptionAf(report) {
+  return "Your report has been submitted to our team.";
+}
+
+function getRequestOverallStatusAf(report) {
+  const isRead = normalizeRequestFlagAf(report.team_read);
+  const isSolved = normalizeRequestFlagAf(report.request_solved);
+
+  if (isSolved) {
+    return {
+      label: "Solved",
+      className: "solved"
+    };
+  }
+
+  if (isRead) {
+    return {
+      label: "In Review",
+      className: "read"
+    };
+  }
+
+  return {
+    label: "Pending",
+    className: "pending"
+  };
+}
+
+function renderRequestStatusCardAf(report, index) {
+  const isRead = normalizeRequestFlagAf(report.team_read);
+  const isSolved = normalizeRequestFlagAf(report.request_solved);
+  const status = getRequestOverallStatusAf(report);
+
+  const title = escapeRequestHtmlAf(getRequestTitleAf(report));
+  const description = escapeRequestHtmlAf(getRequestDescriptionAf(report));
+  const createdAt = escapeRequestHtmlAf(formatRequestDateAf(report.created_at));
+  const note = escapeRequestHtmlAf(report.status_note || "");
+
+  const readStepClass = isRead ? "is-done" : "is-pending";
+  const solvedStepClass = isSolved ? "is-done" : "is-pending";
+
+  const readStepIcon = isRead ? "✓" : "!";
+  const solvedStepIcon = isSolved ? "✓" : "!";
+
+  const readStepText = isRead
+    ? "Team has read your report."
+    : "Pending — team has not read it yet.";
+
+  const solvedStepText = isSolved
+    ? "Your request has been solved."
+    : "Pending — solution is not marked yet.";
+
+  return `
+    <article class="request-card-af" style="animation-delay:${index * 70}ms">
+      <div class="request-card-top-af">
+        <div class="request-card-title-af">
+          <h3>${title}</h3>
+          <p>${description}</p>
+          <p>Submitted: ${createdAt}</p>
+        </div>
+
+        <span class="request-status-pill-af ${status.className}">
+          ${status.label}
+        </span>
+      </div>
+
+      <div class="request-progress-af">
+        <div class="request-step-af is-done">
+          <div class="request-step-dot-af">✓</div>
+          <div class="request-step-content-af">
+            <strong>Report Sent</strong>
+            <span>Your report has been submitted successfully.</span>
+          </div>
+        </div>
+
+        <div class="request-step-af ${readStepClass}">
+          <div class="request-step-dot-af">${readStepIcon}</div>
+          <div class="request-step-content-af">
+            <strong>Team Read Your Report</strong>
+            <span>${readStepText}</span>
+          </div>
+        </div>
+
+        <div class="request-step-af ${solvedStepClass}">
+          <div class="request-step-dot-af">${solvedStepIcon}</div>
+          <div class="request-step-content-af">
+            <strong>Solved Your Request</strong>
+            <span>${solvedStepText}</span>
+          </div>
+        </div>
+      </div>
+
+      ${
+        note
+          ? `<div class="request-note-af">${note}</div>`
+          : ""
+      }
+    </article>
+  `;
+}
+
+async function loadRequestStatusAf(forceRefresh) {
+  const list = afRequestStatusById("requestStatusListAf");
+
+  try {
+    if (list) list.innerHTML = "";
+
+    setRequestStatusMessageAf(
+      "",
+      forceRefresh ? "Refreshing request status..." : "Loading your requests..."
+    );
+
+    const student = getAfCurrentStudentForRequestStatus();
+
+    const payload = {
+      registered_email:
+        student.email ||
+        student.registered_email ||
+        student.student_email ||
+        ""
+    };
+
+    if (!payload.registered_email) {
+      setRequestStatusMessageAf("error", "Login first to view your request status.");
+      return;
+    }
+
+    const response = await fetch(AF_REQUEST_STATUS_EDGE_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": typeof SUPABASE_ANON_KEY !== "undefined" ? SUPABASE_ANON_KEY : "",
+        "Authorization":
+          typeof SUPABASE_ANON_KEY !== "undefined"
+            ? "Bearer " + SUPABASE_ANON_KEY
+            : ""
+      },
+      body: JSON.stringify(payload)
+    });
+
+    let result = null;
+
+    try {
+      result = await response.json();
+    } catch (error) {
+      result = null;
+    }
+
+    if (!response.ok || !result || result.success !== true) {
+      throw new Error(
+        result && result.message
+          ? result.message
+          : "Unable to load request status right now."
+      );
+    }
+
+    const reports = Array.isArray(result.reports) ? result.reports : [];
+
+    if (!reports.length) {
+      setRequestStatusMessageAf(
+        "empty",
+        "No request found. Your bug reports will appear here after submission."
+      );
+      return;
+    }
+
+    setRequestStatusMessageAf("", "");
+
+    if (list) {
+      list.innerHTML = reports
+        .map(function (report, index) {
+          return renderRequestStatusCardAf(report, index);
+        })
+        .join("");
+    }
+
+    window.setTimeout(function () {
+      try {
+        const firstPending = document.querySelector(
+          "#requestStatusAf .request-step-af.is-pending"
+        );
+
+        if (firstPending) {
+          firstPending.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+          });
+        }
+      } catch (error) {}
+    }, 450);
+  } catch (error) {
+    console.error("loadRequestStatusAf failed:", error);
+    setRequestStatusMessageAf(
+      "error",
+      error && error.message
+        ? error.message
+        : "Something went wrong. Please try again."
+    );
+  }
+}
+
 </script>
 </body>
 </html>
