@@ -16542,6 +16542,47 @@ body.settings-dark-mode .coming-soon-close {
 .web-return-back-btn:active {
   transform: scale(0.96) !important;
 }
+
+    body.reading-mode #settings.settings-section,
+body.reading-mode .settings-section {
+  background:
+    radial-gradient(circle at top left, rgba(251, 191, 36, 0.18), transparent 34%),
+    linear-gradient(180deg, #fff7ed 0%, #fffbeb 100%) !important;
+}
+
+body.reading-mode #settings .settings-profile-card,
+body.reading-mode #settings .settings-row,
+body.reading-mode #settings .settings-beta-card,
+body.reading-mode #settings .settings-purchase-btn {
+  background: rgba(255, 251, 235, 0.96) !important;
+  border-color: rgba(217, 119, 6, 0.22) !important;
+  box-shadow: 0 14px 32px rgba(120, 53, 15, 0.10) !important;
+}
+
+body.reading-mode #settings .settings-profile-info h2,
+body.reading-mode #settings .settings-row-left span,
+body.reading-mode #settings .settings-beta-card span,
+body.reading-mode #settings .settings-purchase-btn {
+  color: #3f2f1d !important;
+}
+
+body.reading-mode #settings .settings-profile-link,
+body.reading-mode #settings .settings-row-subtitle,
+body.reading-mode #settings .settings-muted,
+body.reading-mode #settings .settings-row-description {
+  color: #7c5f42 !important;
+}
+
+body.reading-mode #settings .settings-avatar,
+body.reading-mode #settings .settings-row-icon {
+  background: rgba(251, 191, 36, 0.20) !important;
+  color: #92400e !important;
+}
+
+body.reading-mode #settings .settings-switch input:checked + .settings-slider {
+  background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+}
+    
   </style>
 </head>
 
@@ -17839,16 +17880,7 @@ body.settings-dark-mode .coming-soon-close {
         </button>
       </div>
     </div>
-
-    <button
-      type="button"
-      class="settings-purchase-btn"
-      onclick="showComingSoon('My Purchases')"
-      aria-label="Open My Purchases"
-    >
-      <span class="settings-row-icon" aria-hidden="true">💼</span>
-      <span>OTHER FEATURES</span>
-    </button>
+    
 
 <a
   href="https://academeforge.github.io/SUPER/official/"
@@ -17859,22 +17891,21 @@ body.settings-dark-mode .coming-soon-close {
   <span class="settings-arrow" aria-hidden="true">›</span>
 </a>
   
-    <div class="settings-list">
-      <div class="settings-row settings-row-static">
-        <div class="settings-row-left">
-          <span class="settings-row-icon" aria-hidden="true">🌙</span>
-          <span>Night Mode</span>
-        </div>
+    <div class="settings-row settings-row-static">
+  <div class="settings-row-left">
+    <span class="settings-row-icon" aria-hidden="true">📖</span>
+    <span>Reading Mode</span>
+  </div>
 
-        <label class="settings-switch" for="settingsDarkToggle" aria-label="Toggle dark mode">
-          <input
-            id="settingsDarkToggle"
-            type="checkbox"
-            onchange="toggleSettingsDarkMode(this.checked)"
-          />
-          <span class="settings-slider" aria-hidden="true"></span>
-        </label>
-      </div>
+  <label class="settings-switch" for="settingsReadingToggle" aria-label="Toggle reading mode">
+    <input
+      id="settingsReadingToggle"
+      type="checkbox"
+      onchange="toggleSettingsReadingMode(this.checked)"
+    />
+    <span class="settings-slider" aria-hidden="true"></span>
+  </label>
+</div>
 
       <button
         type="button"
@@ -28952,31 +28983,55 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  function toggleSettingsDarkMode(isEnabled) {
-    try {
-      const shouldBeDark = Boolean(isEnabled);
-      const isCurrentlyDark = getAfAppDarkModeState();
 
-      if (shouldBeDark !== isCurrentlyDark) {
-        if (typeof toggleThemeMode === "function") {
-          toggleThemeMode();
-        } else {
-          document.body.classList.toggle("dark-mode", shouldBeDark);
-          document.documentElement.classList.toggle("dark-mode", shouldBeDark);
-          localStorage.setItem("af_theme_mode", shouldBeDark ? "dark" : "light");
-        }
-      }
 
-      document.body.classList.toggle("settings-dark-mode", shouldBeDark);
-      localStorage.setItem("af_settings_dark_mode", shouldBeDark ? "1" : "0");
 
-      window.setTimeout(function () {
-        syncSettingsDarkToggleSafe();
-      }, 0);
-    } catch (error) {
-      console.error("toggleSettingsDarkMode failed:", error);
+
+
+  
+function toggleSettingsReadingMode(isEnabled) {
+  try {
+    const shouldEnableReadingMode = Boolean(isEnabled);
+
+    document.body.classList.toggle("reading-mode", shouldEnableReadingMode);
+    localStorage.setItem("af_reading_mode", shouldEnableReadingMode ? "1" : "0");
+
+    const readingToggle = document.getElementById("settingsReadingToggle");
+
+    if (readingToggle) {
+      readingToggle.checked = shouldEnableReadingMode;
     }
+  } catch (error) {
+    console.error("toggleSettingsReadingMode failed:", error);
   }
+}
+
+function restoreSettingsReadingMode() {
+  try {
+    const shouldEnableReadingMode = localStorage.getItem("af_reading_mode") === "1";
+
+    document.body.classList.toggle("reading-mode", shouldEnableReadingMode);
+
+    const readingToggle = document.getElementById("settingsReadingToggle");
+
+    if (readingToggle) {
+      readingToggle.checked = shouldEnableReadingMode;
+    }
+  } catch (error) {
+    console.error("restoreSettingsReadingMode failed:", error);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  restoreSettingsReadingMode();
+});
+
+
+
+
+
+
+  
 
   function openSettingsProfile() {
     try {
