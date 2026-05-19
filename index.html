@@ -16542,6 +16542,249 @@ body.settings-dark-mode .coming-soon-close {
 .web-return-back-btn:active {
   transform: scale(0.96) !important;
 }
+    /* =========================================================
+   TOPBAR NOTIFICATION BUTTON - RIGHT SIDE + HIGH CONTRAST BLINK
+   Paste at END of CSS
+========================================================= */
+
+.topbar,
+.top-row {
+  position: relative !important;
+}
+
+.notification-time-box {
+  position: absolute !important;
+  top: 50% !important;
+  right: 12px !important;
+  transform: translateY(-50%) !important;
+
+  width: 54px !important;
+  height: 46px !important;
+  min-width: 54px !important;
+  min-height: 46px !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  border: 1.5px solid rgba(245, 158, 11, 0.95) !important;
+  border-radius: 16px !important;
+
+  background:
+    radial-gradient(circle at 50% 38%, rgba(251, 191, 36, 0.42), transparent 42%),
+    linear-gradient(135deg, #fff7ed 0%, #ffffff 100%) !important;
+
+  color: #92400e !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  box-shadow:
+    0 0 0 0 rgba(245, 158, 11, 0.75),
+    0 12px 28px rgba(245, 158, 11, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
+
+  cursor: pointer !important;
+  z-index: 30 !important;
+
+  animation:
+    afNotificationPulse 1.25s ease-in-out infinite,
+    afNotificationGlowLight 1.25s ease-in-out infinite !important;
+
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+.notification-time-box .notification-icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: 30px !important;
+  height: 30px !important;
+
+  font-size: 22px !important;
+  line-height: 1 !important;
+  font-weight: 900 !important;
+
+  filter:
+    drop-shadow(0 2px 4px rgba(146, 64, 14, 0.35))
+    saturate(1.35) !important;
+
+  animation: afNotificationBellShake 1.25s ease-in-out infinite !important;
+}
+
+.notification-time-box:hover {
+  transform: translateY(-50%) scale(1.035) !important;
+}
+
+.notification-time-box:active {
+  transform: translateY(-50%) scale(0.96) !important;
+}
+
+@keyframes afNotificationPulse {
+  0% {
+    box-shadow:
+      0 0 0 0 rgba(245, 158, 11, 0.75),
+      0 12px 28px rgba(245, 158, 11, 0.24),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  }
+
+  58% {
+    box-shadow:
+      0 0 0 12px rgba(245, 158, 11, 0),
+      0 16px 34px rgba(245, 158, 11, 0.34),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  }
+
+  100% {
+    box-shadow:
+      0 0 0 0 rgba(245, 158, 11, 0),
+      0 12px 28px rgba(245, 158, 11, 0.24),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  }
+}
+
+@keyframes afNotificationGlowLight {
+  0%,
+  100% {
+    border-color: rgba(245, 158, 11, 0.95);
+    background:
+      radial-gradient(circle at 50% 38%, rgba(251, 191, 36, 0.42), transparent 42%),
+      linear-gradient(135deg, #fff7ed 0%, #ffffff 100%);
+  }
+
+  50% {
+    border-color: rgba(220, 38, 38, 0.95);
+    background:
+      radial-gradient(circle at 50% 38%, rgba(248, 113, 113, 0.48), transparent 44%),
+      linear-gradient(135deg, #fef2f2 0%, #ffffff 100%);
+  }
+}
+
+@keyframes afNotificationBellShake {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  12% {
+    transform: rotate(-13deg) scale(1.06);
+  }
+
+  24% {
+    transform: rotate(13deg) scale(1.06);
+  }
+
+  36% {
+    transform: rotate(-9deg) scale(1.04);
+  }
+
+  48% {
+    transform: rotate(9deg) scale(1.04);
+  }
+
+  60% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+/* Dark / premium dark mode support */
+body.dark-mode .notification-time-box,
+body.dark .notification-time-box,
+html.dark-mode body .notification-time-box,
+html.dark body .notification-time-box {
+  border-color: rgba(250, 204, 21, 1) !important;
+  background:
+    radial-gradient(circle at 50% 38%, rgba(250, 204, 21, 0.38), transparent 44%),
+    linear-gradient(135deg, #422006 0%, #111827 100%) !important;
+
+  color: #fef3c7 !important;
+
+  box-shadow:
+    0 0 0 0 rgba(250, 204, 21, 0.86),
+    0 14px 32px rgba(250, 204, 21, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.10) !important;
+
+  animation:
+    afNotificationPulseDark 1.25s ease-in-out infinite,
+    afNotificationGlowDark 1.25s ease-in-out infinite !important;
+}
+
+body.dark-mode .notification-time-box .notification-icon,
+body.dark .notification-time-box .notification-icon,
+html.dark-mode body .notification-time-box .notification-icon,
+html.dark body .notification-time-box .notification-icon {
+  filter:
+    drop-shadow(0 0 8px rgba(250, 204, 21, 0.75))
+    saturate(1.45) !important;
+}
+
+@keyframes afNotificationPulseDark {
+  0% {
+    box-shadow:
+      0 0 0 0 rgba(250, 204, 21, 0.86),
+      0 14px 32px rgba(250, 204, 21, 0.22),
+      inset 0 1px 0 rgba(255, 255, 255, 0.10);
+  }
+
+  58% {
+    box-shadow:
+      0 0 0 13px rgba(250, 204, 21, 0),
+      0 18px 40px rgba(250, 204, 21, 0.34),
+      inset 0 1px 0 rgba(255, 255, 255, 0.10);
+  }
+
+  100% {
+    box-shadow:
+      0 0 0 0 rgba(250, 204, 21, 0),
+      0 14px 32px rgba(250, 204, 21, 0.22),
+      inset 0 1px 0 rgba(255, 255, 255, 0.10);
+  }
+}
+
+@keyframes afNotificationGlowDark {
+  0%,
+  100% {
+    border-color: rgba(250, 204, 21, 1);
+    background:
+      radial-gradient(circle at 50% 38%, rgba(250, 204, 21, 0.38), transparent 44%),
+      linear-gradient(135deg, #422006 0%, #111827 100%);
+  }
+
+  50% {
+    border-color: rgba(248, 113, 113, 1);
+    background:
+      radial-gradient(circle at 50% 38%, rgba(248, 113, 113, 0.38), transparent 44%),
+      linear-gradient(135deg, #450a0a 0%, #111827 100%);
+  }
+}
+
+/* Mobile precise placement */
+@media (max-width: 480px) {
+  .notification-time-box {
+    right: 10px !important;
+    width: 56px !important;
+    height: 46px !important;
+    min-width: 56px !important;
+  }
+
+  .notification-time-box .notification-icon {
+    font-size: 23px !important;
+  }
+}
+
+/* Small screen: prevent overlap with brand text */
+@media (max-width: 360px) {
+  .brand {
+    max-width: calc(100% - 74px) !important;
+  }
+
+  .notification-time-box {
+    right: 8px !important;
+    width: 52px !important;
+    min-width: 52px !important;
+  }
+}
   </style>
 </head>
 
