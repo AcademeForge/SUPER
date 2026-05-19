@@ -27345,12 +27345,26 @@ function saveStudentSessionaf(student, sessionToken, deviceId) {
 }
 
 
+
 /* =========================================================
-   ACADEMEFORGE COURSE SECTION - COMPLETE FIXED JS
+   ACADEMEFORGE COURSE SECTION - COMPLETE FINAL JS
    Replace old course JS + all old course patches with this single script.
 
+   Fetch priority:
+   1. Edge Function: student-courses-af
+   2. Direct fallback: student_full_access_af
+   3. Direct fallback: batch_access
+   4. Direct fallback: students_af -> course ids
+
+   Supports student fetch by:
+   - uuid
+   - student id / login id
+   - mobile / phone
+   - email
+   - session token
+
    Requires existing:
-   - Supabase client as studentDb OR supabase + SUPABASE_PROJECT_URL + SUPABASE_ANON_KEY
+   - studentDb OR supabase + SUPABASE_PROJECT_URL + SUPABASE_ANON_KEY
    - HTML IDs:
      courseaf
      studentCourseLoggedOutStateaf
@@ -27375,11 +27389,6 @@ function saveStudentSessionaf(student, sessionToken, deviceId) {
      contentTitleaf
      contentSubtitleaf
      contentListaf
-
-   Backend:
-   - Edge Function: student-courses-af
-   - Tables fallback:
-     chapters, lectures, notes
 ========================================================= */
 
 (function () {
@@ -27388,12 +27397,16 @@ function saveStudentSessionaf(student, sessionToken, deviceId) {
   var AF_COURSE_EDGE_FUNCTION = "student-courses-af";
 
   var AF_TABLES = {
+    students: "students_af",
+    studentAccess: "student_full_access_af",
+    batchAccess: "batch_access",
+    courses: "courses",
     chapters: "chapters",
     lectures: "lectures",
     notes: "notes"
   };
 
-  var AF_CACHE_VERSION = "v2";
+  var AF_CACHE_VERSION = "v4";
   var AF_CACHE_TTL_MS = 6 * 60 * 60 * 1000;
 
   var afCourseState = {
@@ -27441,6 +27454,14 @@ function saveStudentSessionaf(student, sessionToken, deviceId) {
     if (value === null || value === undefined) return fallback || "";
     var text = String(value).trim();
     return text ? text : fallback || "";
+  }
+
+  function afCourseLower(value) {
+    return afCourseText(value, "").toLowerCase();
+  }
+
+  function afCourseDigits(value) {
+    return afCourseText(value, "").replace(/\D+/g, "");
   }
 
   function afCourseHtml(value) {
@@ -27575,21 +27596,43 @@ function saveStudentSessionaf(student, sessionToken, deviceId) {
     });
   }
 
+  function afCourseGetNestedValue(row, keys) {
+    try {
+      if (!row || typeof row !== "object") return "";
+
+      for (var i = 0; i < keys.length; i += 1) {
+        var key = keys[i];
+
+        if (row[key] !== undefined && row[key] !== null && String(row[key]).trim() !== "") {
+          return row[key];
+        }
+      }
+
+      return "";
+    } catch (error) {
+      return "";
+    }
+  }
+
   /* =========================
      SESSION
   ========================= */
 
   function afCourseGetSession() {
     try {
-      var loggedIn = localStorage.getItem("af_student_logged_in");
-      var studentUuid = localStorage.getItem("af_student_uuid");
-      var studentId = localStorage.getItem("af_student_id");
-      var studentName = localStorage.getItem("af_student_name");
-      var studentMobile = localStorage.getItem("af_student_mobile");
-      var studentEmail = localStorage.getItem("af_student_email");
-      var sessionToken = localStorage.getItem("af_session_token");
+      var loggedIn =
+        localStorage.getItem("af_student_logged_in") ||
+        localStorage.getItem("student_logged_in") ||
+        "";
 
-      var legacyStudentId =
+      var studentUuid =
+        localStorage.getItem("af_student_uuid") ||
+        localStorage.getItem("student_uuid_af") ||
+        localStorage.getItem("student_uuid") ||
+        "";
+
+      var studentId =
+        localStorage.getItem("af_student_id") ||
         localStorage.getItem("af_logged_student_id") ||
         localStorage.getItem("student_id_af") ||
         localStorage.getItem("studentIdaf") ||
@@ -27598,16 +27641,47 @@ function saveStudentSessionaf(student, sessionToken, deviceId) {
         localStorage.getItem("logged_student_id") ||
         "";
 
-      if (!studentId && legacyStudentId) {
-        studentId = legacyStudentId;
-      }
+      var studentName =
+        localStorage.getItem("af_student_name") ||
+        localStorage.getItem("student_name_af") ||
+        localStorage.getItem("student_name") ||
+        localStorage.getItem("loggedStudentNameaf") ||
+        "Student";
+
+      var studentMobile =
+        localStorage.getItem("af_student_mobile") ||
+        localStorage.getItem("af_student_phone") ||
+        localStorage.getItem("student_mobile_af") ||
+        localStorage.getItem("student_phone_af") ||
+        localStorage.getItem("student_mobile") ||
+        localStorage.getItem("student_phone") ||
+        localStorage.getItem("loggedStudentMobileaf") ||
+        localStorage.getItem("logged_student_mobile") ||
+        "";
+
+      var studentEmail =
+        localStorage.getItem("af_student_email") ||
+        localStorage.getItem("student_email_af") ||
+        localStorage.getItem("student_email") ||
+        localStorage.getItem("loggedStudentEmailaf") ||
+        localStorage.getItem("logged_student_email") ||
+        "";
+
+      var sessionToken =
+        localStorage.getItem("af_session_token") ||
+        localStorage.getItem("student_session_token") ||
+        localStorage.getItem("session_token_af") ||
+        "";
+
+      var mobileDigits = afCourseDigits(studentMobile);
 
       var isLoggedIn =
         loggedIn === "true" ||
         loggedIn === "1" ||
         afCourseIsUuid(studentUuid) ||
         afCourseText(studentId, "").length >= 1 ||
-        afCourseText(studentMobile, "").length >= 8 ||
+        mobileDigits.length >= 8 ||
+        afCourseText(studentEmail, "").indexOf("@") > -1 ||
         afCourseText(sessionToken, "").length >= 8;
 
       return {
@@ -27616,7 +27690,8 @@ function saveStudentSessionaf(student, sessionToken, deviceId) {
         studentId: afCourseText(studentId, ""),
         studentName: afCourseText(studentName, "Student"),
         studentMobile: afCourseText(studentMobile, ""),
-        studentEmail: afCourseText(studentEmail, ""),
+        studentMobileDigits: mobileDigits,
+        studentEmail: afCourseLower(studentEmail),
         sessionToken: afCourseText(sessionToken, "")
       };
     } catch (error) {
@@ -27628,6 +27703,7 @@ function saveStudentSessionaf(student, sessionToken, deviceId) {
         studentId: "",
         studentName: "Student",
         studentMobile: "",
+        studentMobileDigits: "",
         studentEmail: "",
         sessionToken: ""
       };
@@ -27640,7 +27716,8 @@ function saveStudentSessionaf(student, sessionToken, deviceId) {
     return (
       session.studentUuid ||
       session.studentId ||
-      session.studentMobile ||
+      session.studentMobileDigits ||
+      session.studentEmail ||
       session.sessionToken ||
       "guest"
     );
@@ -27879,6 +27956,28 @@ function saveStudentSessionaf(student, sessionToken, deviceId) {
     }
   }
 
+  function afCourseBuildStudentPayload() {
+    var session = afCourseGetSession();
+
+    return {
+      student_id: session.studentUuid || session.studentId || session.studentMobileDigits || session.studentEmail,
+      student_uuid: session.studentUuid,
+      uuid: session.studentUuid,
+      id: session.studentUuid || session.studentId,
+      login_id: session.studentId,
+      student_login_id: session.studentId,
+      student_code: session.studentId,
+      student_mobile: session.studentMobile,
+      student_phone: session.studentMobile,
+      mobile: session.studentMobile,
+      phone: session.studentMobile,
+      mobile_digits: session.studentMobileDigits,
+      student_email: session.studentEmail,
+      email: session.studentEmail,
+      session_token: session.sessionToken
+    };
+  }
+
   /* =========================
      NORMALIZATION
   ========================= */
@@ -28014,6 +28113,7 @@ function saveStudentSessionaf(student, sessionToken, deviceId) {
     return {
       id: afCourseText(chapter.id || chapter.chapter_id || chapter.uuid || index, String(index)),
       chapter_id: afCourseText(chapter.chapter_id || chapter.id || chapter.uuid || index, String(index)),
+      course_id: afCourseText(chapter.course_id || chapter.batch_id || "", ""),
       title: title,
       name: title,
       description: description,
@@ -28095,10 +28195,29 @@ function saveStudentSessionaf(student, sessionToken, deviceId) {
   function afCourseNormalizeCourse(rawCourse) {
     var course = rawCourse && typeof rawCourse === "object" ? rawCourse : {};
 
+    var actualCourseId = afCourseText(
+      course.course_id ||
+        course.course_uuid ||
+        course.actual_course_id ||
+        course.raw_course_id ||
+        course.courseId ||
+        "",
+      ""
+    );
+
+    var batchId = afCourseText(
+      course.batch_id ||
+        course.batch_uuid ||
+        course.raw_batch_id ||
+        course.batchId ||
+        "",
+      ""
+    );
+
     var id = afCourseText(
-      course.id ||
-        course.course_id ||
-        course.batch_id ||
+      actualCourseId ||
+        course.id ||
+        batchId ||
         course.enrollment_id ||
         course.access_id ||
         course.uuid,
@@ -28179,8 +28298,8 @@ function saveStudentSessionaf(student, sessionToken, deviceId) {
 
     var normalized = {
       id: id,
-      course_id: afCourseText(course.course_id || id, id),
-      batch_id: afCourseText(course.batch_id || "", ""),
+      course_id: actualCourseId || id,
+      batch_id: batchId,
       title: title,
       course_name: title,
       name: title,
@@ -28225,16 +28344,15 @@ function saveStudentSessionaf(student, sessionToken, deviceId) {
 
   function afCourseCandidateIds(course) {
     return afCourseUniqueArray([
-      course && course.id,
       course && course.course_id,
-      course && course.batch_id,
-      course && course.access_course_id,
-      course && course.student_course_id,
-      course && course.enrollment_id,
-      course && course.uuid,
-      course && course.raw && course.raw.id,
       course && course.raw && course.raw.course_id,
+      course && course.raw && course.raw.course_uuid,
+      course && course.raw && course.raw.actual_course_id,
+      course && course.id,
+      course && course.raw && course.raw.id,
+      course && course.batch_id,
       course && course.raw && course.raw.batch_id,
+      course && course.raw && course.raw.batch_uuid,
       course && course.raw && course.raw.access_course_id,
       course && course.raw && course.raw.student_course_id,
       course && course.raw && course.raw.enrollment_id,
@@ -28264,7 +28382,7 @@ function saveStudentSessionaf(student, sessionToken, deviceId) {
   }
 
   /* =========================
-     SUPABASE FETCH FALLBACKS
+     SAFE SUPABASE QUERY HELPERS
   ========================= */
 
   async function afCourseTrySelect(label, query) {
@@ -28290,6 +28408,318 @@ function saveStudentSessionaf(student, sessionToken, deviceId) {
     }
   }
 
+  function afCoursePushUniqueRows(target, rows, seen) {
+    rows.forEach(function (row) {
+      var key = afCourseText(
+        row.id ||
+          row.course_id ||
+          row.batch_id ||
+          row.student_id ||
+          row.student_uuid ||
+          row.email ||
+          row.mobile ||
+          JSON.stringify(row),
+        ""
+      );
+
+      if (!key || seen[key]) return;
+
+      seen[key] = true;
+      target.push(row);
+    });
+  }
+
+  /* =========================
+     DIRECT STUDENT ACCESS FALLBACK
+  ========================= */
+
+  async function afFetchAccessRowsFromTable(tableName) {
+    var db = afCourseDb();
+    var session = afCourseGetSession();
+
+    if (!db) return [];
+
+    var allRows = [];
+    var seen = {};
+    var queries = [];
+
+    if (session.studentUuid) {
+      queries.push({
+        label: tableName + ".student_uuid=" + session.studentUuid,
+        query: db.from(tableName).select("*").eq("student_uuid", session.studentUuid)
+      });
+
+      queries.push({
+        label: tableName + ".student_id=" + session.studentUuid,
+        query: db.from(tableName).select("*").eq("student_id", session.studentUuid)
+      });
+
+      queries.push({
+        label: tableName + ".id=" + session.studentUuid,
+        query: db.from(tableName).select("*").eq("id", session.studentUuid)
+      });
+    }
+
+    if (session.studentId) {
+      queries.push({
+        label: tableName + ".student_id=" + session.studentId,
+        query: db.from(tableName).select("*").eq("student_id", session.studentId)
+      });
+
+      queries.push({
+        label: tableName + ".login_id=" + session.studentId,
+        query: db.from(tableName).select("*").eq("login_id", session.studentId)
+      });
+
+      queries.push({
+        label: tableName + ".student_login_id=" + session.studentId,
+        query: db.from(tableName).select("*").eq("student_login_id", session.studentId)
+      });
+
+      queries.push({
+        label: tableName + ".phone=" + session.studentId,
+        query: db.from(tableName).select("*").eq("phone", session.studentId)
+      });
+
+      queries.push({
+        label: tableName + ".mobile=" + session.studentId,
+        query: db.from(tableName).select("*").eq("mobile", session.studentId)
+      });
+    }
+
+    if (session.studentMobile) {
+      queries.push({
+        label: tableName + ".mobile=" + session.studentMobile,
+        query: db.from(tableName).select("*").eq("mobile", session.studentMobile)
+      });
+
+      queries.push({
+        label: tableName + ".phone=" + session.studentMobile,
+        query: db.from(tableName).select("*").eq("phone", session.studentMobile)
+      });
+
+      queries.push({
+        label: tableName + ".student_mobile=" + session.studentMobile,
+        query: db.from(tableName).select("*").eq("student_mobile", session.studentMobile)
+      });
+
+      queries.push({
+        label: tableName + ".student_phone=" + session.studentMobile,
+        query: db.from(tableName).select("*").eq("student_phone", session.studentMobile)
+      });
+    }
+
+    if (session.studentMobileDigits && session.studentMobileDigits !== session.studentMobile) {
+      queries.push({
+        label: tableName + ".mobile=" + session.studentMobileDigits,
+        query: db.from(tableName).select("*").eq("mobile", session.studentMobileDigits)
+      });
+
+      queries.push({
+        label: tableName + ".phone=" + session.studentMobileDigits,
+        query: db.from(tableName).select("*").eq("phone", session.studentMobileDigits)
+      });
+
+      queries.push({
+        label: tableName + ".student_mobile=" + session.studentMobileDigits,
+        query: db.from(tableName).select("*").eq("student_mobile", session.studentMobileDigits)
+      });
+
+      queries.push({
+        label: tableName + ".student_phone=" + session.studentMobileDigits,
+        query: db.from(tableName).select("*").eq("student_phone", session.studentMobileDigits)
+      });
+    }
+
+    if (session.studentEmail) {
+      queries.push({
+        label: tableName + ".email=" + session.studentEmail,
+        query: db.from(tableName).select("*").eq("email", session.studentEmail)
+      });
+
+      queries.push({
+        label: tableName + ".student_email=" + session.studentEmail,
+        query: db.from(tableName).select("*").eq("student_email", session.studentEmail)
+      });
+
+      queries.push({
+        label: tableName + ".contact_email=" + session.studentEmail,
+        query: db.from(tableName).select("*").eq("contact_email", session.studentEmail)
+      });
+    }
+
+    for (var i = 0; i < queries.length; i += 1) {
+      var rows = await afCourseTrySelect(queries[i].label, queries[i].query);
+      afCoursePushUniqueRows(allRows, rows, seen);
+    }
+
+    return allRows;
+  }
+
+  async function afFetchCoursesByIds(courseIds) {
+    var db = afCourseDb();
+    if (!db) return [];
+
+    var ids = afCourseUniqueArray(courseIds);
+
+    if (!ids.length) return [];
+
+    var allRows = [];
+    var seen = {};
+
+    var directRows = await afCourseTrySelect(
+      "courses.id in " + ids.join(","),
+      db.from(AF_TABLES.courses).select("*").in("id", ids)
+    );
+
+    afCoursePushUniqueRows(allRows, directRows, seen);
+
+    var courseIdRows = await afCourseTrySelect(
+      "courses.course_id in " + ids.join(","),
+      db.from(AF_TABLES.courses).select("*").in("course_id", ids)
+    );
+
+    afCoursePushUniqueRows(allRows, courseIdRows, seen);
+
+    return allRows;
+  }
+
+  async function afFetchCoursesDirectFallback() {
+    var rows = [];
+    var seen = {};
+
+    var accessRows = await afFetchAccessRowsFromTable(AF_TABLES.studentAccess);
+    afCoursePushUniqueRows(rows, accessRows, seen);
+
+    var batchRows = await afFetchAccessRowsFromTable(AF_TABLES.batchAccess);
+    afCoursePushUniqueRows(rows, batchRows, seen);
+
+    var studentRows = await afFetchAccessRowsFromTable(AF_TABLES.students);
+    afCoursePushUniqueRows(rows, studentRows, seen);
+
+    if (!rows.length) return [];
+
+    var courseIds = [];
+
+    rows.forEach(function (row) {
+      courseIds.push(row.course_id);
+      courseIds.push(row.course_uuid);
+      courseIds.push(row.batch_id);
+      courseIds.push(row.batch_uuid);
+      courseIds.push(row.access_course_id);
+      courseIds.push(row.enrolled_course_id);
+      courseIds.push(row.selected_course_id);
+
+      afCourseArrayFromAny(row.course_ids).forEach(function (id) {
+        courseIds.push(id);
+      });
+
+      afCourseArrayFromAny(row.courses).forEach(function (item) {
+        if (typeof item === "string") {
+          courseIds.push(item);
+        } else if (item && typeof item === "object") {
+          courseIds.push(item.id || item.course_id || item.batch_id);
+        }
+      });
+
+      afCourseArrayFromAny(row.enrolled_courses).forEach(function (item) {
+        if (typeof item === "string") {
+          courseIds.push(item);
+        } else if (item && typeof item === "object") {
+          courseIds.push(item.id || item.course_id || item.batch_id);
+        }
+      });
+    });
+
+    courseIds = afCourseUniqueArray(courseIds);
+
+    var courseRows = await afFetchCoursesByIds(courseIds);
+
+    if (courseRows.length) {
+      var courseMap = {};
+      courseRows.forEach(function (course) {
+        var ids = afCourseUniqueArray([course.id, course.course_id, course.batch_id, course.uuid]);
+        ids.forEach(function (id) {
+          courseMap[id] = course;
+        });
+      });
+
+      return rows.map(function (accessRow) {
+        var accessCourseId =
+          afCourseText(accessRow.course_id, "") ||
+          afCourseText(accessRow.course_uuid, "") ||
+          afCourseText(accessRow.batch_id, "") ||
+          afCourseText(accessRow.batch_uuid, "") ||
+          afCourseText(accessRow.access_course_id, "") ||
+          afCourseText(accessRow.enrolled_course_id, "");
+
+        var matchedCourse = courseMap[accessCourseId] || {};
+
+        return Object.assign({}, matchedCourse, accessRow, {
+          id: matchedCourse.id || matchedCourse.course_id || accessRow.course_id || accessRow.batch_id || accessRow.id,
+          course_id: matchedCourse.id || matchedCourse.course_id || accessRow.course_id || accessRow.batch_id,
+          batch_id: accessRow.batch_id || matchedCourse.batch_id || "",
+          title:
+            matchedCourse.title ||
+            matchedCourse.course_title ||
+            matchedCourse.course_name ||
+            accessRow.course_title ||
+            accessRow.course_name ||
+            accessRow.batch_name ||
+            accessRow.title ||
+            "Course",
+          course_name:
+            matchedCourse.course_name ||
+            matchedCourse.title ||
+            accessRow.course_name ||
+            accessRow.batch_name ||
+            accessRow.title ||
+            "Course",
+          description:
+            matchedCourse.description ||
+            matchedCourse.course_description ||
+            accessRow.description ||
+            accessRow.course_description ||
+            accessRow.batch_description ||
+            "",
+          icon: matchedCourse.icon || accessRow.icon || accessRow.course_icon || "📘"
+        });
+      });
+    }
+
+    return rows.map(function (accessRow) {
+      return {
+        id: accessRow.course_id || accessRow.batch_id || accessRow.id,
+        course_id: accessRow.course_id || accessRow.batch_id || accessRow.id,
+        batch_id: accessRow.batch_id || "",
+        title:
+          accessRow.course_title ||
+          accessRow.course_name ||
+          accessRow.batch_name ||
+          accessRow.title ||
+          "Course",
+        course_name:
+          accessRow.course_name ||
+          accessRow.course_title ||
+          accessRow.batch_name ||
+          accessRow.title ||
+          "Course",
+        description:
+          accessRow.description ||
+          accessRow.course_description ||
+          accessRow.batch_description ||
+          "",
+        icon: accessRow.icon || accessRow.course_icon || "📘",
+        status: accessRow.status || accessRow.access_status || "active",
+        raw: accessRow
+      };
+    });
+  }
+
+  /* =========================
+     CHAPTER / CONTENT FETCH
+  ========================= */
+
   async function afFetchChaptersFromTables(course) {
     var db = afCourseDb();
     if (!db) return [];
@@ -28303,39 +28733,17 @@ function saveStudentSessionaf(student, sessionToken, deviceId) {
     for (var i = 0; i < ids.length; i += 1) {
       var courseId = ids[i];
 
-      var queryList = [
-        {
-          label: "chapters.course_id=" + courseId,
-          query: db.from(AF_TABLES.chapters).select("*").eq("course_id", courseId)
-        },
-        {
-          label: "chapters.batch_id=" + courseId,
-          query: db.from(AF_TABLES.chapters).select("*").eq("batch_id", courseId)
-        },
-        {
-          label: "chapters.course=" + courseId,
-          query: db.from(AF_TABLES.chapters).select("*").eq("course", courseId)
-        },
-        {
-          label: "chapters.batch=" + courseId,
-          query: db.from(AF_TABLES.chapters).select("*").eq("batch", courseId)
-        },
-        {
-          label: "chapters.course_uuid=" + courseId,
-          query: db.from(AF_TABLES.chapters).select("*").eq("course_uuid", courseId)
-        }
-      ];
+      var rows = await afCourseTrySelect(
+        "chapters.course_id=" + courseId,
+        db.from(AF_TABLES.chapters).select("*").eq("course_id", courseId)
+      );
 
-      for (var q = 0; q < queryList.length; q += 1) {
-        var rows = await afCourseTrySelect(queryList[q].label, queryList[q].query);
-
-        rows.forEach(function (row) {
-          var key = afCourseText(row.id || row.chapter_id || row.uuid || JSON.stringify(row), "");
-          if (!key || seen[key]) return;
-          seen[key] = true;
-          allRows.push(row);
-        });
-      }
+      rows.forEach(function (row) {
+        var key = afCourseText(row.id || row.chapter_id || row.uuid || JSON.stringify(row), "");
+        if (!key || seen[key]) return;
+        seen[key] = true;
+        allRows.push(row);
+      });
     }
 
     allRows = afCourseSortRows(allRows);
@@ -28361,35 +28769,21 @@ function saveStudentSessionaf(student, sessionToken, deviceId) {
     for (var i = 0; i < ids.length; i += 1) {
       var chapterId = ids[i];
 
-      var queryList = [
-        {
-          label: table + ".chapter_id=" + chapterId,
-          query: db.from(table).select("*").eq("chapter_id", chapterId)
-        },
-        {
-          label: table + ".chapter=" + chapterId,
-          query: db.from(table).select("*").eq("chapter", chapterId)
-        },
-        {
-          label: table + ".chapter_uuid=" + chapterId,
-          query: db.from(table).select("*").eq("chapter_uuid", chapterId)
-        }
-      ];
+      var rows = await afCourseTrySelect(
+        table + ".chapter_id=" + chapterId,
+        db.from(table).select("*").eq("chapter_id", chapterId)
+      );
 
-      for (var q = 0; q < queryList.length; q += 1) {
-        var rows = await afCourseTrySelect(queryList[q].label, queryList[q].query);
+      rows.forEach(function (row) {
+        var key = afCourseText(
+          row.id || row.lecture_id || row.note_id || row.content_id || row.uuid || JSON.stringify(row),
+          ""
+        );
 
-        rows.forEach(function (row) {
-          var key = afCourseText(
-            row.id || row.lecture_id || row.note_id || row.content_id || row.uuid || JSON.stringify(row),
-            ""
-          );
-
-          if (!key || seen[key]) return;
-          seen[key] = true;
-          allRows.push(row);
-        });
-      }
+        if (!key || seen[key]) return;
+        seen[key] = true;
+        allRows.push(row);
+      });
     }
 
     allRows = afCourseSortRows(allRows);
@@ -28601,7 +28995,14 @@ function saveStudentSessionaf(student, sessionToken, deviceId) {
 
     var session = afCourseGetSession();
 
-    if (!session.studentUuid && !session.studentId && !session.studentMobile && !session.sessionToken) {
+    if (
+      !session.studentUuid &&
+      !session.studentId &&
+      !session.studentMobile &&
+      !session.studentMobileDigits &&
+      !session.studentEmail &&
+      !session.sessionToken
+    ) {
       afCourseShowInlineMessage(
         "courseSelectBox",
         "⚠️",
@@ -28623,47 +29024,42 @@ function saveStudentSessionaf(student, sessionToken, deviceId) {
     afCourseShowInlineMessage("courseSelectBox", "⏳", "Loading courses", "Fetching your enrolled courses...");
 
     try {
-      var result = await afCourseEdgeCall(AF_COURSE_EDGE_FUNCTION, {
-        student_id: session.studentUuid || session.studentId || session.studentMobile,
-        student_uuid: session.studentUuid,
-        student_mobile: session.studentMobile,
-        student_phone: session.studentMobile,
-        student_login_id: session.studentId,
-        session_token: session.sessionToken
-      });
+      var payload = afCourseBuildStudentPayload();
 
-      if (!result || !result.ok) {
-        var cachedFallback = afCourseReadCache("courses", "enrolled");
+      console.log("AF Course fetch payload:", payload);
 
-        if (Array.isArray(cachedFallback) && cachedFallback.length > 0) {
-          renderStudentCoursesAF(cachedFallback);
+      var result = await afCourseEdgeCall(AF_COURSE_EDGE_FUNCTION, payload);
+
+      if (result && result.ok) {
+        var courses = afCourseGetCoursesFromResult(result);
+
+        if (courses.length) {
+          afCourseState.lastLoadedAt = Date.now();
+          renderStudentCoursesAF(courses);
           return;
         }
+      }
 
-        afCourseState.courses = [];
+      console.warn("AF Course edge empty/failed, trying direct fallback:", result);
 
-        afCourseShowInlineMessage(
-          "courseSelectBox",
-          "⚠️",
-          "Could not load courses",
-          result && result.message ? result.message : "Could not load your enrolled courses."
-        );
+      var fallbackCourses = await afFetchCoursesDirectFallback();
 
+      if (fallbackCourses.length) {
+        afCourseState.lastLoadedAt = Date.now();
+        renderStudentCoursesAF(fallbackCourses);
         return;
       }
 
-      var courses = afCourseGetCoursesFromResult(result);
+      var cachedFallback = afCourseReadCache("courses", "enrolled");
 
-      afCourseState.lastLoadedAt = Date.now();
-
-      if (!courses.length) {
-        afCourseState.courses = [];
-        afCourseWriteCache("courses", "enrolled", []);
-        afCourseShowPanel("noCourseBoxaf");
+      if (Array.isArray(cachedFallback) && cachedFallback.length > 0) {
+        renderStudentCoursesAF(cachedFallback);
         return;
       }
 
-      renderStudentCoursesAF(courses);
+      afCourseState.courses = [];
+      afCourseWriteCache("courses", "enrolled", []);
+      afCourseShowPanel("noCourseBoxaf");
     } catch (error) {
       console.error("loadStudentCoursesInternalAF failed:", error);
 
@@ -28703,7 +29099,7 @@ function saveStudentSessionaf(student, sessionToken, deviceId) {
     var idText = String(courseIdOrIndex || "");
 
     var byId = afCourseState.courses.find(function (course) {
-      return String(course.id) === idText || String(course.course_id) === idText || String(course.batch_id) === idText;
+      return afCourseCandidateIds(course).indexOf(idText) > -1;
     });
 
     if (byId) return byId;
@@ -29152,9 +29548,11 @@ function saveStudentSessionaf(student, sessionToken, deviceId) {
       localStorage.removeItem("af_student_logged_in");
       localStorage.removeItem("student_logged_in");
       localStorage.removeItem("af_session_token");
+      localStorage.removeItem("student_session_token");
       localStorage.removeItem("af_student_uuid");
       localStorage.removeItem("af_student_id");
       localStorage.removeItem("af_student_mobile");
+      localStorage.removeItem("af_student_phone");
       localStorage.removeItem("af_student_name");
       localStorage.removeItem("af_student_email");
 
@@ -29182,7 +29580,7 @@ function saveStudentSessionaf(student, sessionToken, deviceId) {
   function patchShowSectionForCourseAF() {
     try {
       if (typeof window.showSection !== "function") return;
-      if (window.__AF_COURSE_SHOW_SECTION_PATCHED_V2__ === true) return;
+      if (window.__AF_COURSE_SHOW_SECTION_PATCHED_V4__ === true) return;
 
       var originalShowSection = window.showSection;
 
@@ -29214,7 +29612,7 @@ function saveStudentSessionaf(student, sessionToken, deviceId) {
         }
       };
 
-      window.__AF_COURSE_SHOW_SECTION_PATCHED_V2__ = true;
+      window.__AF_COURSE_SHOW_SECTION_PATCHED_V4__ = true;
     } catch (error) {
       console.error("patchShowSectionForCourseAF failed:", error);
     }
@@ -29328,10 +29726,14 @@ function saveStudentSessionaf(student, sessionToken, deviceId) {
 
     var keys = {
       af_student_logged_in: true,
+      student_logged_in: true,
       af_student_uuid: true,
       af_student_id: true,
       af_student_mobile: true,
-      af_session_token: true
+      af_student_phone: true,
+      af_student_email: true,
+      af_session_token: true,
+      student_session_token: true
     };
 
     if (!keys[event.key]) return;
@@ -29347,6 +29749,7 @@ function saveStudentSessionaf(student, sessionToken, deviceId) {
     }
   });
 })();
+
 
  /* ==============================
   BATCH PURCHASE AF - BACKEND FIXED
