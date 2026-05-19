@@ -19698,6 +19698,170 @@ html.dark-mode body #courseaf .af-course-inline-message p,
 body.settings-dark-mode #courseaf .af-course-inline-message p {
   color: #cbd5e1 !important;
 }
+
+    /* =========================================================
+   IMPORTANT: COURSE CARD CSS FIX
+   Paste this at the VERY END of your CSS.
+   This overrides the bad second-image layout only.
+========================================================= */
+
+/* Stop course list from becoming side-by-side / compressed */
+#courseaf #courseCardsaf,
+#courseaf .course-select-gridaf {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 14px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Course card like first image */
+#courseaf .course-cardaf {
+  width: 100% !important;
+  min-height: auto !important;
+  padding: 16px 16px 15px !important;
+  border-radius: 22px !important;
+  border: 1px solid rgba(148, 163, 184, 0.18) !important;
+  background: rgba(8, 15, 31, 0.74) !important;
+  box-shadow: none !important;
+  display: block !important;
+  text-align: left !important;
+  cursor: pointer !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Important: remove the broken horizontal layout from second image */
+#courseaf .course-card-topaf {
+  display: grid !important;
+  grid-template-columns: 48px 1fr !important;
+  align-items: start !important;
+  gap: 14px !important;
+  width: 100% !important;
+}
+
+/* Icon same compact style */
+#courseaf .course-card-iconaf {
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+  border-radius: 14px !important;
+  background: linear-gradient(135deg, #2563eb, #0f766e) !important;
+  color: #ffffff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 22px !important;
+  line-height: 1 !important;
+  box-shadow: none !important;
+}
+
+/* Text must use full remaining width */
+#courseaf .course-card-textaf {
+  min-width: 0 !important;
+  width: 100% !important;
+  display: block !important;
+}
+
+/* Title like first image */
+#courseaf .course-card-textaf h3 {
+  margin: 0 0 8px !important;
+  color: #ffffff !important;
+  font-size: 17px !important;
+  line-height: 1.22 !important;
+  font-weight: 950 !important;
+  letter-spacing: -0.02em !important;
+  max-width: 100% !important;
+  word-break: normal !important;
+  overflow-wrap: anywhere !important;
+}
+
+/* Description like first image */
+#courseaf .course-card-textaf p {
+  margin: 0 !important;
+  color: rgba(255, 255, 255, 0.82) !important;
+  font-size: 13px !important;
+  line-height: 1.45 !important;
+  font-weight: 800 !important;
+  max-width: 100% !important;
+  word-break: normal !important;
+  overflow-wrap: anywhere !important;
+}
+
+/* Hide ugly meta/status/chapter row from second image */
+#courseaf .course-card-metaaf,
+#courseaf .course-card-footeraf {
+  display: none !important;
+}
+
+/* Keep cards clean */
+#courseaf .course-cardaf * {
+  box-sizing: border-box !important;
+}
+
+/* Touch feedback without jumping */
+#courseaf .course-cardaf:active {
+  transform: scale(0.99) !important;
+}
+
+/* Light mode also keep same premium dark card */
+body:not(.dark-mode) #courseaf .course-cardaf {
+  background: rgba(8, 15, 31, 0.78) !important;
+  border-color: rgba(148, 163, 184, 0.20) !important;
+}
+
+body:not(.dark-mode) #courseaf .course-card-textaf h3 {
+  color: #ffffff !important;
+}
+
+body:not(.dark-mode) #courseaf .course-card-textaf p {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+
+/* Dark mode */
+body.dark-mode #courseaf .course-cardaf,
+html.dark-mode body #courseaf .course-cardaf,
+body.settings-dark-mode #courseaf .course-cardaf {
+  background: rgba(8, 15, 31, 0.78) !important;
+  border-color: rgba(148, 163, 184, 0.18) !important;
+}
+
+body.dark-mode #courseaf .course-card-textaf h3,
+html.dark-mode body #courseaf .course-card-textaf h3,
+body.settings-dark-mode #courseaf .course-card-textaf h3 {
+  color: #ffffff !important;
+}
+
+body.dark-mode #courseaf .course-card-textaf p,
+html.dark-mode body #courseaf .course-card-textaf p,
+body.settings-dark-mode #courseaf .course-card-textaf p {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+
+/* Mobile safety */
+@media (max-width: 480px) {
+  #courseaf .course-cardaf {
+    padding: 16px !important;
+    border-radius: 22px !important;
+  }
+
+  #courseaf .course-card-topaf {
+    grid-template-columns: 48px 1fr !important;
+    gap: 14px !important;
+  }
+
+  #courseaf .course-card-textaf h3 {
+    font-size: 17px !important;
+    line-height: 1.22 !important;
+  }
+
+  #courseaf .course-card-textaf p {
+    font-size: 13px !important;
+    line-height: 1.45 !important;
+  }
+}
   </style>
 </head>
 
