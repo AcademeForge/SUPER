@@ -28459,6 +28459,795 @@ function loadStudentCoursesSafeAF() {
   });
 })();
 
+ 
+/* =========================================================
+   IMPORTANT: COURSE CHAPTER / LECTURE / NOTES FETCH PATCH
+   Paste this AFTER your current Course JS.
+   This fixes:
+   - Course cards load
+   - Continue Learning opens Lectures/Notes
+   - Chapters fetch from backend tables
+   - Locked chapters show in chapter list
+   - Inside chapter, locked message appears if no uploaded content
+========================================================= */
+
+(function () {
+  "use strict";
+
+  const AF_TABLES = {
+    chapters: "chapters",
+    lectures: "lectures",
+    notes: "notes"
+  };
+
+  const AF_CACHE = {
+    chaptersByCourse: new Map(),
+    lecturesByChapter: new Map(),
+    notesByChapter: new Map()
+  };
+
+  function afDb() {
+    try {
+      if (typeof studentDb !== "undefined" && studentDb) return studentDb;
+
+      if (
+        typeof supabase !== "undefined" &&
+        typeof SUPABASE_PROJECT_URL !== "undefined" &&
+        typeof SUPABASE_ANON_KEY !== "undefined"
+      ) {
+        return supabase.createClient(SUPABASE_PROJECT_URL, SUPABASE_ANON_KEY);
+      }
+
+      return null;
+    } catch (error) {
+      console.error("afDb failed:", error);
+      return null;
+    }
+  }
+
+  function afEl(id) {
+    return document.getElementById(id);
+  }
+
+  function afText(value, fallback = "") {
+    if (value === null || value === undefined) return fallback;
+    const text = String(value).trim();
+    return text || fallback;
+  }
+
+  function afHtml(value) {
+    return afText(value, "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  function afIsUuid(value) {
+    return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{12}$/i.test(
+      String(value || "").trim()
+    );
+  }
+
+  function afHideCoursePanels() {
+    const ids = [
+      "courseSelectBox",
+      "noCourseBoxaf",
+      "courseDetailsBoxaf",
+      "learningBoxaf",
+      "chapterBoxaf",
+      "contentBoxaf"
+    ];
+
+    ids.forEach(function (id) {
+      const el = afEl(id);
+      if (!el) return;
+      el.classList.add("hidden-box");
+      el.style.display = "none";
+    });
+  }
+
+  function afShowCoursePanel(id) {
+    afHideCoursePanels();
+
+    const el = afEl(id);
+    if (!el) return;
+
+    el.classList.remove("hidden-box");
+    el.style.display = "block";
+  }
+
+  function afSetText(id, text) {
+    const el = afEl(id);
+    if (el) el.textContent = text || "";
+  }
+
+  function afSetHtml(id, html) {
+    const el = afEl(id);
+    if (el) el.innerHTML = html || "";
+  }
+
+  function afGetSelectedCourse() {
+    try {
+      if (window.afCourseState && window.afCourseState.selectedCourse) {
+        return window.afCourseState.selectedCourse;
+      }
+
+      if (typeof afCourseState !== "undefined" && afCourseState.selectedCourse) {
+        return afCourseState.selectedCourse;
+      }
+
+      const selectedId = localStorage.getItem("af_selected_course_id") || "";
+      const selectedTitle = localStorage.getItem("af_selected_course_title") || "";
+
+      if (selectedId || selectedTitle) {
+        return {
+          id: selectedId,
+          course_id: selectedId,
+          title: selectedTitle || "Course",
+          course_name: selectedTitle || "Course",
+          chapters: []
+        };
+      }
+
+      return null;
+    } catch (error) {
+      console.error("afGetSelectedCourse failed:", error);
+      return null;
+    }
+  }
+
+  function afSetSelectedCourse(course) {
+    try {
+      if (!course) return;
+
+      if (window.afCourseState) {
+        window.afCourseState.selectedCourse = course;
+      }
+
+      if (typeof afCourseState !== "undefined") {
+        afCourseState.selectedCourse = course;
+      }
+
+      localStorage.setItem("af_selected_course_id", afText(course.id || course.course_id || ""));
+      localStorage.setItem("af_selected_course_title", afText(course.title || course.course_name || course.name || "Course"));
+    } catch (error) {
+      console.error("afSetSelectedCourse failed:", error);
+    }
+  }
+
+  function afGetCourseId(course) {
+    return afText(
+      course?.id ||
+      course?.course_id ||
+      course?.batch_id ||
+      course?.access_course_id ||
+      course?.raw?.id ||
+      course?.raw?.course_id ||
+      course?.raw?.batch_id ||
+      "",
+      ""
+    );
+  }
+
+  function afNormalizeChapter(row, index) {
+    const chapterId = afText(row.id || row.chapter_id || row.uuid || "");
+    const title = afText(
+      row.title ||
+      row.name ||
+      row.chapter_title ||
+      row.chapter_name ||
+      row.topic ||
+      `Chapter ${index + 1}`,
+      `Chapter ${index + 1}`
+    );
+
+    const description = afText(
+      row.description ||
+      row.details ||
+      row.chapter_description ||
+      row.short_description ||
+      "",
+      ""
+    );
+
+    const isLocked =
+      row.is_locked === true ||
+      row.locked === true ||
+      row.status === "locked" ||
+      row.access_status === "locked" ||
+      row.is_active === false;
+
+    return {
+      id: chapterId,
+      chapter_id: chapterId,
+      title: title,
+      name: title,
+      description: description,
+      order_no: Number(row.order_no || row.sort_order || row.chapter_no || row.position || index + 1),
+      is_locked: isLocked,
+      locked: isLocked,
+      raw: row,
+      lectures: [],
+      notes: []
+    };
+  }
+
+  function afNormalizeContent(row, index, mode) {
+    const title = afText(
+      row.title ||
+      row.name ||
+      row.lecture_title ||
+      row.note_title ||
+      row.content_title ||
+      row.topic ||
+      (mode === "notes" ? `Note ${index + 1}` : `Lecture ${index + 1}`),
+      mode === "notes" ? `Note ${index + 1}` : `Lecture ${index + 1}`
+    );
+
+    const url = afText(
+      row.url ||
+      row.link ||
+      row.video_url ||
+      row.note_url ||
+      row.file_url ||
+      row.pdf_url ||
+      row.content_url ||
+      row.drive_url ||
+      "",
+      ""
+    );
+
+    const description = afText(
+      row.description ||
+      row.details ||
+      row.short_description ||
+      row.subtitle ||
+      "",
+      ""
+    );
+
+    const isLocked =
+      row.is_locked === true ||
+      row.locked === true ||
+      row.status === "locked" ||
+      row.access_status === "locked" ||
+      row.is_active === false;
+
+    return {
+      id: afText(row.id || row.lecture_id || row.note_id || row.content_id || index),
+      title: title,
+      description: description,
+      url: url,
+      type: mode,
+      is_locked: isLocked,
+      locked: isLocked,
+      raw: row
+    };
+  }
+
+  async function afFetchChaptersForCourse(course) {
+    const db = afDb();
+
+    if (!db) {
+      throw new Error("Supabase client not found.");
+    }
+
+    const courseId = afGetCourseId(course);
+
+    if (!courseId) {
+      return [];
+    }
+
+    const cacheKey = String(courseId);
+
+    if (AF_CACHE.chaptersByCourse.has(cacheKey)) {
+      return AF_CACHE.chaptersByCourse.get(cacheKey);
+    }
+
+    const queries = [];
+
+    queries.push(
+      db
+        .from(AF_TABLES.chapters)
+        .select("*")
+        .eq("course_id", courseId)
+        .order("order_no", { ascending: true })
+    );
+
+    queries.push(
+      db
+        .from(AF_TABLES.chapters)
+        .select("*")
+        .eq("batch_id", courseId)
+        .order("order_no", { ascending: true })
+    );
+
+    queries.push(
+      db
+        .from(AF_TABLES.chapters)
+        .select("*")
+        .eq("course_id", courseId)
+        .order("created_at", { ascending: true })
+    );
+
+    let rows = [];
+    let lastError = null;
+
+    for (const query of queries) {
+      try {
+        const { data, error } = await query;
+
+        if (error) {
+          lastError = error;
+          continue;
+        }
+
+        if (Array.isArray(data) && data.length > 0) {
+          rows = data;
+          break;
+        }
+      } catch (error) {
+        lastError = error;
+      }
+    }
+
+    if (!rows.length && lastError) {
+      console.warn("Chapter fetch warning:", lastError);
+    }
+
+    const chapters = rows
+      .map(afNormalizeChapter)
+      .sort(function (a, b) {
+        return Number(a.order_no || 0) - Number(b.order_no || 0);
+      });
+
+    AF_CACHE.chaptersByCourse.set(cacheKey, chapters);
+
+    return chapters;
+  }
+
+  async function afFetchContentForChapter(chapter, mode) {
+    const db = afDb();
+
+    if (!db) {
+      throw new Error("Supabase client not found.");
+    }
+
+    const chapterId = afText(chapter.id || chapter.chapter_id || "");
+    const table = mode === "notes" ? AF_TABLES.notes : AF_TABLES.lectures;
+    const cache = mode === "notes" ? AF_CACHE.notesByChapter : AF_CACHE.lecturesByChapter;
+    const cacheKey = `${mode}:${chapterId}`;
+
+    if (!chapterId) {
+      return [];
+    }
+
+    if (cache.has(cacheKey)) {
+      return cache.get(cacheKey);
+    }
+
+    const queries = [];
+
+    queries.push(
+      db
+        .from(table)
+        .select("*")
+        .eq("chapter_id", chapterId)
+        .order("order_no", { ascending: true })
+    );
+
+    queries.push(
+      db
+        .from(table)
+        .select("*")
+        .eq("chapter_id", chapterId)
+        .order("created_at", { ascending: true })
+    );
+
+    queries.push(
+      db
+        .from(table)
+        .select("*")
+        .eq("chapter", chapterId)
+        .order("created_at", { ascending: true })
+    );
+
+    let rows = [];
+    let lastError = null;
+
+    for (const query of queries) {
+      try {
+        const { data, error } = await query;
+
+        if (error) {
+          lastError = error;
+          continue;
+        }
+
+        if (Array.isArray(data) && data.length > 0) {
+          rows = data;
+          break;
+        }
+      } catch (error) {
+        lastError = error;
+      }
+    }
+
+    if (!rows.length && lastError) {
+      console.warn(`${mode} fetch warning:`, lastError);
+    }
+
+    const items = rows
+      .map(function (row, index) {
+        return afNormalizeContent(row, index, mode);
+      })
+      .sort(function (a, b) {
+        const ao = Number(a.raw?.order_no || a.raw?.sort_order || a.raw?.position || 0);
+        const bo = Number(b.raw?.order_no || b.raw?.sort_order || b.raw?.position || 0);
+        return ao - bo;
+      });
+
+    cache.set(cacheKey, items);
+
+    return items;
+  }
+
+  function afRenderLockedChapterPage() {
+    afSetHtml(
+      "contentListaf",
+      `
+        <div class="af-chapter-locked-card">
+          <div class="af-chapter-locked-title">
+            <span aria-hidden="true">🔒</span>
+            <strong>Chapter Locked</strong>
+          </div>
+          <p>This chapter will unlock after content upload.</p>
+          <div class="af-chapter-locked-alert">This chapter is currently locked.</div>
+        </div>
+      `
+    );
+
+    afShowCoursePanel("contentBoxaf");
+  }
+
+  function afRenderNoContent(mode) {
+    afSetHtml(
+      "contentListaf",
+      `
+        <div class="af-chapter-locked-card">
+          <div class="af-chapter-locked-title">
+            <span aria-hidden="true">🔒</span>
+            <strong>Chapter Locked</strong>
+          </div>
+          <p>This chapter will unlock after content upload.</p>
+          <div class="af-chapter-locked-alert">This chapter is currently locked.</div>
+        </div>
+      `
+    );
+
+    afShowCoursePanel("contentBoxaf");
+  }
+
+  function afRenderChapterList(chapters, mode) {
+    const list = afEl("chapterListaf");
+
+    if (!list) {
+      alert("chapterListaf container missing.");
+      return;
+    }
+
+    if (!Array.isArray(chapters) || chapters.length === 0) {
+      list.innerHTML = `
+        <div class="af-chapter-locked-card">
+          <div class="af-chapter-locked-title">
+            <span aria-hidden="true">🔒</span>
+            <strong>Chapter Locked</strong>
+          </div>
+          <p>This chapter will unlock after content upload.</p>
+          <div class="af-chapter-locked-alert">This chapter is currently locked.</div>
+        </div>
+      `;
+
+      afShowCoursePanel("chapterBoxaf");
+      return;
+    }
+
+    list.innerHTML = chapters
+      .map(function (chapter, index) {
+        const locked = chapter.is_locked || chapter.locked;
+
+        return `
+          <button
+            type="button"
+            class="chapter-itemaf af-real-chapter-card ${locked ? "af-chapter-is-locked" : ""}"
+            onclick="openChapterContentaf(${index})"
+          >
+            <div class="chapter-item-leftaf">
+              <strong>
+                ${locked ? "🔒 " : ""}
+                ${afHtml(chapter.title)}
+              </strong>
+              <small>${afHtml(chapter.description || "Select this chapter to continue.")}</small>
+            </div>
+
+            <span class="chapter-item-arrowaf">
+              ${locked ? "Locked" : "Open ›"}
+            </span>
+          </button>
+        `;
+      })
+      .join("");
+
+    afShowCoursePanel("chapterBoxaf");
+  }
+
+  function afRenderContentList(items, mode) {
+    const list = afEl("contentListaf");
+
+    if (!list) {
+      alert("contentListaf container missing.");
+      return;
+    }
+
+    if (!Array.isArray(items) || items.length === 0) {
+      afRenderNoContent(mode);
+      return;
+    }
+
+    list.innerHTML = items
+      .map(function (item, index) {
+        const locked = item.is_locked || item.locked || !item.url;
+
+        return `
+          <button
+            type="button"
+            class="content-itemaf af-real-content-card ${locked ? "af-content-is-locked" : ""}"
+            onclick="openCourseContentItemaf(${index})"
+          >
+            <div class="content-item-leftaf">
+              <strong>
+                ${locked ? "🔒 " : mode === "notes" ? "📝 " : "🎥 "}
+                ${afHtml(item.title)}
+              </strong>
+              <small>${afHtml(item.description || (mode === "notes" ? "Study note" : "Video lecture"))}</small>
+            </div>
+
+            <span class="content-item-actionaf">
+              ${locked ? "Locked" : "Open ›"}
+            </span>
+          </button>
+        `;
+      })
+      .join("");
+
+    afShowCoursePanel("contentBoxaf");
+  }
+
+  window.startLearningaf = function startLearningaf() {
+    try {
+      const course = afGetSelectedCourse();
+
+      if (!course) {
+        alert("Please open a course first.");
+        return;
+      }
+
+      afSetSelectedCourse(course);
+      afSetText("learningTitleaf", afText(course.title || course.course_name || course.name, "Start Learning"));
+      afShowCoursePanel("learningBoxaf");
+    } catch (error) {
+      console.error("startLearningaf failed:", error);
+      alert("Unable to start learning.");
+    }
+  };
+
+  window.openLearningModeaf = async function openLearningModeaf(mode) {
+    try {
+      const safeMode = mode === "notes" ? "notes" : "lectures";
+      const course = afGetSelectedCourse();
+
+      if (!course) {
+        alert("Please open a course first.");
+        return;
+      }
+
+      afSetSelectedCourse(course);
+
+      if (window.afCourseState) {
+        window.afCourseState.selectedMode = safeMode;
+      }
+
+      if (typeof afCourseState !== "undefined") {
+        afCourseState.selectedMode = safeMode;
+      }
+
+      afSetText("chapterModeTitleaf", safeMode === "notes" ? "Notes" : "Lectures");
+
+      afSetHtml(
+        "chapterListaf",
+        `
+          <div class="af-course-loading-card">
+            <span>⏳</span>
+            <strong>Loading chapters...</strong>
+          </div>
+        `
+      );
+
+      afShowCoursePanel("chapterBoxaf");
+
+      let chapters = [];
+
+      if (Array.isArray(course.chapters) && course.chapters.length > 0) {
+        chapters = course.chapters.map(function (chapter, index) {
+          return afNormalizeChapter(chapter.raw || chapter, index);
+        });
+      }
+
+      if (!chapters.length) {
+        chapters = await afFetchChaptersForCourse(course);
+      }
+
+      course.chapters = chapters;
+      afSetSelectedCourse(course);
+
+      afRenderChapterList(chapters, safeMode);
+    } catch (error) {
+      console.error("openLearningModeaf failed:", error);
+
+      afSetHtml(
+        "chapterListaf",
+        `
+          <div class="af-chapter-locked-card">
+            <div class="af-chapter-locked-title">
+              <span aria-hidden="true">🔒</span>
+              <strong>Chapter Locked</strong>
+            </div>
+            <p>This chapter will unlock after content upload.</p>
+            <div class="af-chapter-locked-alert">This chapter is currently locked.</div>
+          </div>
+        `
+      );
+
+      afShowCoursePanel("chapterBoxaf");
+    }
+  };
+
+  window.openChapterContentaf = async function openChapterContentaf(chapterIndex) {
+    try {
+      const course = afGetSelectedCourse();
+
+      if (!course) {
+        alert("Please open a course first.");
+        return;
+      }
+
+      const mode =
+        (window.afCourseState && window.afCourseState.selectedMode) ||
+        (typeof afCourseState !== "undefined" && afCourseState.selectedMode) ||
+        "lectures";
+
+      const safeMode = mode === "notes" ? "notes" : "lectures";
+      const chapters = Array.isArray(course.chapters) ? course.chapters : [];
+      const chapter = chapters[Number(chapterIndex)];
+
+      if (!chapter) {
+        alert("Chapter not found.");
+        return;
+      }
+
+      if (window.afCourseState) {
+        window.afCourseState.selectedChapter = chapter;
+      }
+
+      if (typeof afCourseState !== "undefined") {
+        afCourseState.selectedChapter = chapter;
+      }
+
+      afSetText("contentTitleaf", afText(chapter.title || chapter.name, "Chapter Content"));
+      afSetText(
+        "contentSubtitleaf",
+        safeMode === "notes" ? "Select a note to study." : "Select a lecture to continue."
+      );
+
+      if (chapter.is_locked || chapter.locked) {
+        afRenderLockedChapterPage();
+        return;
+      }
+
+      afSetHtml(
+        "contentListaf",
+        `
+          <div class="af-course-loading-card">
+            <span>⏳</span>
+            <strong>Loading ${safeMode === "notes" ? "notes" : "lectures"}...</strong>
+          </div>
+        `
+      );
+
+      afShowCoursePanel("contentBoxaf");
+
+      let items = [];
+
+      if (safeMode === "notes" && Array.isArray(chapter.notes) && chapter.notes.length > 0) {
+        items = chapter.notes.map(function (item, index) {
+          return afNormalizeContent(item.raw || item, index, "notes");
+        });
+      }
+
+      if (safeMode === "lectures" && Array.isArray(chapter.lectures) && chapter.lectures.length > 0) {
+        items = chapter.lectures.map(function (item, index) {
+          return afNormalizeContent(item.raw || item, index, "lectures");
+        });
+      }
+
+      if (!items.length) {
+        items = await afFetchContentForChapter(chapter, safeMode);
+      }
+
+      if (safeMode === "notes") {
+        chapter.notes = items;
+      } else {
+        chapter.lectures = items;
+      }
+
+      course.chapters[Number(chapterIndex)] = chapter;
+      afSetSelectedCourse(course);
+
+      afRenderContentList(items, safeMode);
+    } catch (error) {
+      console.error("openChapterContentaf failed:", error);
+      afRenderNoContent("lectures");
+    }
+  };
+
+  window.backToLearningaf = function backToLearningaf() {
+    afShowCoursePanel("learningBoxaf");
+  };
+
+  window.backToChaptersaf = function backToChaptersaf() {
+    afShowCoursePanel("chapterBoxaf");
+  };
+
+  window.openCourseContentItemaf = function openCourseContentItemaf(itemIndex) {
+    try {
+      const chapter =
+        (window.afCourseState && window.afCourseState.selectedChapter) ||
+        (typeof afCourseState !== "undefined" && afCourseState.selectedChapter) ||
+        null;
+
+      const mode =
+        (window.afCourseState && window.afCourseState.selectedMode) ||
+        (typeof afCourseState !== "undefined" && afCourseState.selectedMode) ||
+        "lectures";
+
+      if (!chapter) {
+        alert("Please open a chapter first.");
+        return;
+      }
+
+      const items = mode === "notes" ? chapter.notes : chapter.lectures;
+      const item = Array.isArray(items) ? items[Number(itemIndex)] : null;
+
+      if (!item) {
+        alert("Content not found.");
+        return;
+      }
+
+      if (item.is_locked || item.locked || !item.url) {
+        alert("This content is currently locked.");
+        return;
+      }
+
+      window.open(item.url, "_blank", "noopener,noreferrer");
+    } catch (error) {
+      console.error("openCourseContentItemaf failed:", error);
+      alert("Unable to open content.");
+    }
+  };
+})();
+
  /* ==============================
   BATCH PURCHASE AF - BACKEND FIXED
   Direct table read/write removed.
