@@ -18285,6 +18285,452 @@ body.settings-dark-mode .topbar .notification-time-box .notification-icon {
     padding: 0 10px !important;
   }
 }
+    /* =========================================================
+   IMPORTANT FIX: Center Learning Heatmap page
+   Paste at END of CSS
+========================================================= */
+
+#learningHeatmap.learning-heatmap-section,
+section#learningHeatmap.learning-heatmap-section {
+  width: 100% !important;
+  max-width: 100% !important;
+
+  min-height: calc(100dvh - 72px) !important;
+
+  padding-top: 78px !important;
+  padding-right: 0 !important;
+  padding-bottom: 124px !important;
+  padding-left: 0 !important;
+
+  margin: 0 !important;
+  box-sizing: border-box !important;
+
+  display: none;
+  justify-content: center !important;
+  align-items: flex-start !important;
+
+  overflow-x: hidden !important;
+}
+
+#learningHeatmap.learning-heatmap-section.active,
+section#learningHeatmap.learning-heatmap-section.active {
+  display: flex !important;
+}
+
+#learningHeatmap .learning-heatmap-page {
+  width: min(100% - 28px, 600px) !important;
+  max-width: 600px !important;
+
+  margin-left: auto !important;
+  margin-right: auto !important;
+
+  padding: 0 !important;
+  box-sizing: border-box !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+}
+
+#learningHeatmap .learning-back-btn {
+  align-self: flex-start !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+#learningHeatmap .learning-heatmap-hero,
+#learningHeatmap .learning-week-card,
+#learningHeatmap .learning-info-card {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Mobile tighter center */
+@media (max-width: 480px) {
+  #learningHeatmap .learning-heatmap-page {
+    width: min(100% - 24px, 430px) !important;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+  #learningHeatmap .learning-heatmap-page {
+    width: min(100% - 18px, 430px) !important;
+  }
+}
+
+    /* =========================================================
+   IMPORTANT FIX: Keep Learning Heatmap centered but remove extra top gap
+   Paste at END of CSS
+========================================================= */
+
+#learningHeatmap.learning-heatmap-section,
+section#learningHeatmap.learning-heatmap-section {
+  padding-top: 12px !important;
+  padding-right: 0 !important;
+  padding-bottom: 124px !important;
+  padding-left: 0 !important;
+
+  min-height: auto !important;
+
+  display: none;
+  justify-content: center !important;
+  align-items: flex-start !important;
+
+  overflow-x: hidden !important;
+}
+
+#learningHeatmap.learning-heatmap-section.active,
+section#learningHeatmap.learning-heatmap-section.active {
+  display: flex !important;
+}
+
+#learningHeatmap .learning-heatmap-page {
+  width: min(100% - 24px, 600px) !important;
+  max-width: 600px !important;
+
+  margin: 0 auto !important;
+  padding: 0 !important;
+
+  box-sizing: border-box !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+}
+
+#learningHeatmap .learning-back-btn {
+  margin-top: 0 !important;
+  margin-bottom: 14px !important;
+  align-self: flex-start !important;
+}
+
+#learningHeatmap .learning-heatmap-hero,
+#learningHeatmap .learning-week-card,
+#learningHeatmap .learning-info-card {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 480px) {
+  #learningHeatmap.learning-heatmap-section,
+  section#learningHeatmap.learning-heatmap-section {
+    padding-top: 10px !important;
+  }
+
+  #learningHeatmap .learning-heatmap-page {
+    width: min(100% - 22px, 430px) !important;
+  }
+}
+
+@media (max-width: 360px) {
+  #learningHeatmap.learning-heatmap-section,
+  section#learningHeatmap.learning-heatmap-section {
+    padding-top: 8px !important;
+  }
+
+  #learningHeatmap .learning-heatmap-page {
+    width: min(100% - 18px, 430px) !important;
+  }
+}
+
+    /* =========================================================
+   IMPORTANT: Student Login/Course Separation UI
+   Paste at END of CSS
+========================================================= */
+
+.student-auth-section-af,
+.student-course-section-af {
+  width: 100% !important;
+  min-height: auto !important;
+  padding: 12px 12px 116px !important;
+  background:
+    radial-gradient(circle at top left, rgba(59, 130, 246, 0.1), transparent 34%),
+    linear-gradient(180deg, #f8fbff 0%, #eef4ff 100%) !important;
+  overflow-x: hidden !important;
+  box-sizing: border-box !important;
+}
+
+.student-wrapaf,
+.student-course-page-af {
+  width: min(100% - 4px, 520px) !important;
+  max-width: 520px !important;
+  margin: 0 auto !important;
+  box-sizing: border-box !important;
+}
+
+.student-cardaf {
+  width: 100% !important;
+  border-radius: 28px !important;
+  background: rgba(255, 255, 255, 0.94) !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 18px 48px rgba(15, 23, 42, 0.1) !important;
+  padding: 22px !important;
+  box-sizing: border-box !important;
+}
+
+.student-iconaf {
+  width: 52px !important;
+  height: 52px !important;
+  border-radius: 18px !important;
+  background: linear-gradient(135deg, #4f46e5, #38bdf8) !important;
+  color: #ffffff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 24px !important;
+  box-shadow: 0 14px 30px rgba(79, 70, 229, 0.2) !important;
+}
+
+.student-titleaf {
+  margin: 16px 0 6px !important;
+  color: #0f172a !important;
+  font-size: 24px !important;
+  line-height: 1.1 !important;
+  font-weight: 950 !important;
+  letter-spacing: -0.05em !important;
+}
+
+.student-subtitleaf {
+  margin: 0 0 18px !important;
+  color: #64748b !important;
+  font-size: 13px !important;
+  line-height: 1.45 !important;
+  font-weight: 750 !important;
+}
+
+.student-auth-locked-af {
+  width: 100% !important;
+  padding: 18px !important;
+  border-radius: 24px !important;
+  background:
+    radial-gradient(circle at top right, rgba(239, 68, 68, 0.16), transparent 34%),
+    linear-gradient(135deg, #fff1f2, #ffffff) !important;
+  border: 1px solid rgba(239, 68, 68, 0.24) !important;
+  box-shadow: 0 14px 34px rgba(239, 68, 68, 0.12) !important;
+  box-sizing: border-box !important;
+  text-align: left !important;
+}
+
+.student-auth-lock-icon-af {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 17px !important;
+  background: linear-gradient(135deg, #ef4444, #b91c1c) !important;
+  color: #ffffff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 22px !important;
+  box-shadow: 0 12px 26px rgba(239, 68, 68, 0.22) !important;
+}
+
+.student-auth-locked-af h3 {
+  margin: 14px 0 8px !important;
+  color: #991b1b !important;
+  font-size: 20px !important;
+  font-weight: 950 !important;
+  letter-spacing: -0.04em !important;
+}
+
+.student-auth-locked-af p {
+  margin: 0 !important;
+  color: #7f1d1d !important;
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+  font-weight: 850 !important;
+}
+
+.student-auth-course-btn-af,
+.student-course-login-btn-af {
+  width: 100% !important;
+  min-height: 48px !important;
+  margin-top: 16px !important;
+  border: 0 !important;
+  border-radius: 17px !important;
+  background: linear-gradient(135deg, #0f172a, #334155) !important;
+  color: #ffffff !important;
+  font-size: 14px !important;
+  font-weight: 950 !important;
+  letter-spacing: -0.01em !important;
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.2) !important;
+  cursor: pointer !important;
+  -webkit-tap-highlight-color: transparent !important;
+  touch-action: manipulation !important;
+}
+
+.student-auth-course-btn-af:active,
+.student-course-login-btn-af:active {
+  transform: scale(0.98) !important;
+}
+
+.student-auth-unlocked-af[hidden],
+.student-auth-locked-af[hidden],
+.student-course-unlocked-af[hidden],
+.student-course-locked-af[hidden] {
+  display: none !important;
+}
+
+.student-course-head-af {
+  width: 100% !important;
+  padding: 18px !important;
+  border-radius: 26px !important;
+  background:
+    radial-gradient(circle at top right, rgba(34, 197, 94, 0.16), transparent 34%),
+    linear-gradient(135deg, #0f172a, #1e293b) !important;
+  box-shadow: 0 18px 44px rgba(15, 23, 42, 0.18) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 14px !important;
+  box-sizing: border-box !important;
+  margin-bottom: 14px !important;
+}
+
+.student-course-head-af p {
+  margin: 0 0 6px !important;
+  color: rgba(255, 255, 255, 0.78) !important;
+  font-size: 11px !important;
+  font-weight: 950 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+}
+
+.student-course-head-af h2 {
+  margin: 0 !important;
+  color: #ffffff !important;
+  font-size: 25px !important;
+  line-height: 1.1 !important;
+  font-weight: 950 !important;
+  letter-spacing: -0.05em !important;
+}
+
+.student-course-refresh-af {
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  border: 0 !important;
+  border-radius: 16px !important;
+  background: rgba(255, 255, 255, 0.14) !important;
+  color: #ffffff !important;
+  font-size: 22px !important;
+  font-weight: 950 !important;
+  cursor: pointer !important;
+}
+
+.student-course-locked-af {
+  width: 100% !important;
+  padding: 22px !important;
+  border-radius: 28px !important;
+  background: rgba(255, 255, 255, 0.94) !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 18px 44px rgba(15, 23, 42, 0.08) !important;
+  text-align: center !important;
+  box-sizing: border-box !important;
+}
+
+.student-course-lock-icon-af {
+  width: 58px !important;
+  height: 58px !important;
+  margin: 0 auto 14px !important;
+  border-radius: 21px !important;
+  background: linear-gradient(135deg, #f97316, #ef4444) !important;
+  color: #ffffff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 26px !important;
+  box-shadow: 0 14px 32px rgba(239, 68, 68, 0.2) !important;
+}
+
+.student-course-locked-af h3 {
+  margin: 0 0 8px !important;
+  color: #0f172a !important;
+  font-size: 21px !important;
+  font-weight: 950 !important;
+  letter-spacing: -0.04em !important;
+}
+
+.student-course-locked-af p {
+  margin: 0 !important;
+  color: #64748b !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  font-weight: 750 !important;
+}
+
+.student-course-unlocked-af {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+body.dark-mode .student-auth-section-af,
+html.dark-mode .student-auth-section-af,
+body.dark-mode .student-course-section-af,
+html.dark-mode .student-course-section-af,
+body.settings-dark-mode .student-auth-section-af,
+body.settings-dark-mode .student-course-section-af {
+  background:
+    radial-gradient(circle at top left, rgba(59, 130, 246, 0.12), transparent 34%),
+    linear-gradient(180deg, #0b1120 0%, #111827 100%) !important;
+}
+
+body.dark-mode .student-cardaf,
+html.dark-mode .student-cardaf,
+body.settings-dark-mode .student-cardaf,
+body.dark-mode .student-course-locked-af,
+html.dark-mode .student-course-locked-af,
+body.settings-dark-mode .student-course-locked-af {
+  background: rgba(15, 23, 42, 0.88) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.26) !important;
+}
+
+body.dark-mode .student-titleaf,
+html.dark-mode .student-titleaf,
+body.settings-dark-mode .student-titleaf,
+body.dark-mode .student-course-locked-af h3,
+html.dark-mode .student-course-locked-af h3,
+body.settings-dark-mode .student-course-locked-af h3 {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .student-subtitleaf,
+html.dark-mode .student-subtitleaf,
+body.settings-dark-mode .student-subtitleaf,
+body.dark-mode .student-course-locked-af p,
+html.dark-mode .student-course-locked-af p,
+body.settings-dark-mode .student-course-locked-af p {
+  color: #cbd5e1 !important;
+}
+
+body.dark-mode .student-auth-locked-af,
+html.dark-mode .student-auth-locked-af,
+body.settings-dark-mode .student-auth-locked-af {
+  background:
+    radial-gradient(circle at top right, rgba(239, 68, 68, 0.18), transparent 34%),
+    linear-gradient(135deg, rgba(69, 10, 10, 0.92), rgba(15, 23, 42, 0.92)) !important;
+  border-color: rgba(248, 113, 113, 0.24) !important;
+}
+
+body.dark-mode .student-auth-locked-af h3,
+html.dark-mode .student-auth-locked-af h3,
+body.settings-dark-mode .student-auth-locked-af h3 {
+  color: #fecaca !important;
+}
+
+body.dark-mode .student-auth-locked-af p,
+html.dark-mode .student-auth-locked-af p,
+body.settings-dark-mode .student-auth-locked-af p {
+  color: #fee2e2 !important;
+}
+    
   </style>
 </head>
 
@@ -18544,183 +18990,224 @@ body.settings-dark-mode .topbar .notification-time-box .notification-icon {
 </section>
     
 <!-- NEW STUDENT SECTION -->
-
-<section id="studentaf" class="section">
+<!-- STUDENT LOGIN / CREATE ID SECTION -->
+<section id="studentaf" class="section student-auth-section-af" aria-label="Student Login">
   <div class="student-wrapaf">
-
     <div class="student-cardaf" id="studentAuthCardaf">
       <div class="student-iconaf">🎓</div>
 
       <h2 class="student-titleaf">Student ID Access</h2>
 
       <p class="student-subtitleaf">
-        Login with your verified Student ID to access courses, batches, and community features.
+        Login or create your Student ID to access your courses.
       </p>
 
-      <div class="student-tabsaf">
-        <button
-          type="button"
-          id="loginTabBtnaf"
-          class="student-tabaf active"
-          onclick="switchStudentModeaf('login')"
-        >
-          Login
-        </button>
+      <!-- LOCKED STATE AFTER LOGIN -->
+      <div id="studentAuthLockedStateaf" class="student-auth-locked-af" hidden>
+        <div class="student-auth-lock-icon-af" aria-hidden="true">🔒</div>
 
-        <button
-          type="button"
-          id="createTabBtnaf"
-          class="student-tabaf"
-          onclick="switchStudentModeaf('create')"
-        >
-          Create ID
-        </button>
-      </div>
+        <h3>Access Locked</h3>
 
-      <!-- LOGIN BOX -->
-      <div id="studentLoginBoxaf" class="student-boxaf">
-        <label class="student-labelaf">Student ID / Phone Number</label>
-        <input
-          id="loginPhoneaf"
-          class="student-inputaf"
-          type="tel"
-          placeholder="Enter your phone number"
-        >
-
-        <label class="student-labelaf">Password</label>
-        <input
-          id="loginPasswordaf"
-          class="student-inputaf"
-          type="password"
-          placeholder="Enter password"
-        >
-
-        <button class="student-main-btnaf" type="button" onclick="loginStudentaf()">
-          Login
-        </button>
-
-        <button class="student-link-btnaf" type="button" onclick="switchStudentModeaf('forgot')">
-          Forgot Password?
-        </button>
-      </div>
-
-      <!-- CREATE ID BOX -->
-      <div id="studentCreateBoxaf" class="student-boxaf" style="display:none;">
-        <label class="student-labelaf">Full Name</label>
-        <input
-          id="createNameaf"
-          class="student-inputaf"
-          type="text"
-          placeholder="Enter your full name"
-        >
-
-        <label class="student-labelaf">Phone Number</label>
-        <input
-          id="createPhoneaf"
-          class="student-inputaf"
-          type="tel"
-          placeholder="Enter phone number"
-        >
-
-        <label class="student-labelaf">Email Address</label>
-        <input
-          id="createEmailaf"
-          class="student-inputaf"
-          type="email"
-          placeholder="Enter email address"
-        >
-
-        <label class="student-labelaf">Create Password</label>
-        <input
-          id="createPasswordaf"
-          class="student-inputaf"
-          type="password"
-          placeholder="Create password"
-        >
-
-    <button class="student-main-btnaf" type="button" onclick="sendCreateOtpaf()">
-  Send Email OTP
-</button>
-
-<div id="createOtpAreaaf" style="display:none; margin-top:14px;">
-  <label class="student-labelaf">Email OTP</label>
-  <input
-    id="createOtpaf"
-    class="student-inputaf"
-    type="text"
-    maxlength="6"
-    placeholder="Enter OTP sent to your email"
-  >
-
-  <button class="student-main-btnaf secondary" type="button" onclick="verifyCreateOtpAndCreateIdaf()">
-    Verify OTP & Create ID
-  </button>
-</div>
-
-        <p class="student-helpaf">
-          Your phone number will be used as your Student ID.
+        <p>
+          Looks like you have already logged in. Check your course now.
         </p>
+
+        <button
+          type="button"
+          class="student-auth-course-btn-af"
+          onclick="openStudentCourseSection()"
+        >
+          Check Your Course
+        </button>
       </div>
 
-<!-- FORGOT PASSWORD BOX -->
-<div id="studentForgotBoxaf" class="student-boxaf" style="display:none;">
-  <label class="student-labelaf">Student ID / Phone / Email</label>
-  <input
-    id="forgotLoginaf"
-    class="student-inputaf"
-    type="text"
-    placeholder="Enter your Student ID, phone, or email"
-  >
+      <!-- UNLOCKED LOGIN / CREATE AREA -->
+      <div id="studentAuthUnlockedAreaaf" class="student-auth-unlocked-af">
+        <p class="student-subtitleaf">
+          Login with your verified Student ID to access courses, batches, and community features.
+        </p>
 
-  <button class="student-main-btnaf" type="button" onclick="findStudentForResetaf()">
-    Send Email OTP
-  </button>
+        <div class="student-tabsaf">
+          <button
+            type="button"
+            id="loginTabBtnaf"
+            class="student-tabaf active"
+            onclick="switchStudentModeaf('login')"
+          >
+            Login
+          </button>
 
-  <div id="forgotOtpAreaaf" style="display:none; margin-top:14px;">
-    <label class="student-labelaf">Email OTP</label>
-    <input
-      id="forgotOtpaf"
-      class="student-inputaf"
-      type="text"
-      maxlength="6"
-      placeholder="Enter OTP sent to your email"
-    >
+          <button
+            type="button"
+            id="createTabBtnaf"
+            class="student-tabaf"
+            onclick="switchStudentModeaf('create')"
+          >
+            Create ID
+          </button>
+        </div>
 
-    <button class="student-main-btnaf secondary" type="button" onclick="verifyForgotOtpaf()">
-      Verify OTP
-    </button>
-  </div>
+        <!-- LOGIN BOX -->
+        <div id="studentLoginBoxaf" class="student-boxaf">
+          <label class="student-labelaf" for="loginPhoneaf">Student ID / Phone Number</label>
+          <input
+            id="loginPhoneaf"
+            class="student-inputaf"
+            type="tel"
+            inputmode="tel"
+            autocomplete="tel"
+            placeholder="Enter your phone number"
+          >
 
-  <div id="resetPasswordAreaaf" style="display:none; margin-top:14px;">
-    <label class="student-labelaf">New Password</label>
-    <input
-      id="newPasswordaf"
-      class="student-inputaf"
-      type="password"
-      placeholder="Create new password"
-    >
+          <label class="student-labelaf" for="loginPasswordaf">Password</label>
+          <input
+            id="loginPasswordaf"
+            class="student-inputaf"
+            type="password"
+            autocomplete="current-password"
+            placeholder="Enter password"
+          >
 
-    <button class="student-main-btnaf secondary" type="button" onclick="resetStudentPasswordaf()">
-      Reset Password
-    </button>
-  </div>
+          <button class="student-main-btnaf" type="button" onclick="loginStudentaf()">
+            Login
+          </button>
 
-  <button class="student-link-btnaf" type="button" onclick="switchStudentModeaf('login')">
-    Back to Login
-  </button>
+          <button class="student-link-btnaf" type="button" onclick="switchStudentModeaf('forgot')">
+            Forgot Password?
+          </button>
+        </div>
 
-  <p class="student-helpaf">
-    We’ll verify your registered email before allowing password reset.
-  </p>
-</div>
-      <div id="studentMessageaf" class="student-messageaf"></div>
+        <!-- CREATE ID BOX -->
+        <div id="studentCreateBoxaf" class="student-boxaf" style="display:none;">
+          <label class="student-labelaf" for="createNameaf">Full Name</label>
+          <input
+            id="createNameaf"
+            class="student-inputaf"
+            type="text"
+            autocomplete="name"
+            placeholder="Enter your full name"
+          >
 
-      <div class="student-noteaf">
-        If you face any issue while creating your Student ID, email us at
-        <b>academeforge@gmail.com</b> with your name and WhatsApp number.
+          <label class="student-labelaf" for="createPhoneaf">Phone Number</label>
+          <input
+            id="createPhoneaf"
+            class="student-inputaf"
+            type="tel"
+            inputmode="tel"
+            autocomplete="tel"
+            placeholder="Enter phone number"
+          >
+
+          <label class="student-labelaf" for="createEmailaf">Email Address</label>
+          <input
+            id="createEmailaf"
+            class="student-inputaf"
+            type="email"
+            inputmode="email"
+            autocomplete="email"
+            placeholder="Enter email address"
+          >
+
+          <label class="student-labelaf" for="createPasswordaf">Create Password</label>
+          <input
+            id="createPasswordaf"
+            class="student-inputaf"
+            type="password"
+            autocomplete="new-password"
+            placeholder="Create password"
+          >
+
+          <button class="student-main-btnaf" type="button" onclick="sendCreateOtpaf()">
+            Send Email OTP
+          </button>
+
+          <div id="createOtpAreaaf" style="display:none; margin-top:14px;">
+            <label class="student-labelaf" for="createOtpaf">Email OTP</label>
+            <input
+              id="createOtpaf"
+              class="student-inputaf"
+              type="text"
+              inputmode="numeric"
+              maxlength="6"
+              placeholder="Enter OTP sent to your email"
+            >
+
+            <button class="student-main-btnaf secondary" type="button" onclick="verifyCreateOtpAndCreateIdaf()">
+              Verify OTP & Create ID
+            </button>
+          </div>
+
+          <p class="student-helpaf">
+            Your phone number will be used as your Student ID.
+          </p>
+        </div>
+
+        <!-- FORGOT PASSWORD BOX -->
+        <div id="studentForgotBoxaf" class="student-boxaf" style="display:none;">
+          <label class="student-labelaf" for="forgotLoginaf">Student ID / Phone / Email</label>
+          <input
+            id="forgotLoginaf"
+            class="student-inputaf"
+            type="text"
+            autocomplete="username"
+            placeholder="Enter your Student ID, phone, or email"
+          >
+
+          <button class="student-main-btnaf" type="button" onclick="findStudentForResetaf()">
+            Send Email OTP
+          </button>
+
+          <div id="forgotOtpAreaaf" style="display:none; margin-top:14px;">
+            <label class="student-labelaf" for="forgotOtpaf">Email OTP</label>
+            <input
+              id="forgotOtpaf"
+              class="student-inputaf"
+              type="text"
+              inputmode="numeric"
+              maxlength="6"
+              placeholder="Enter OTP sent to your email"
+            >
+
+            <button class="student-main-btnaf secondary" type="button" onclick="verifyForgotOtpaf()">
+              Verify OTP
+            </button>
+          </div>
+
+          <div id="resetPasswordAreaaf" style="display:none; margin-top:14px;">
+            <label class="student-labelaf" for="newPasswordaf">New Password</label>
+            <input
+              id="newPasswordaf"
+              class="student-inputaf"
+              type="password"
+              autocomplete="new-password"
+              placeholder="Create new password"
+            >
+
+            <button class="student-main-btnaf secondary" type="button" onclick="resetStudentPasswordaf()">
+              Reset Password
+            </button>
+          </div>
+
+          <button class="student-link-btnaf" type="button" onclick="switchStudentModeaf('login')">
+            Back to Login
+          </button>
+
+          <p class="student-helpaf">
+            We’ll verify your registered email before allowing password reset.
+          </p>
+        </div>
+
+        <div id="studentMessageaf" class="student-messageaf"></div>
+
+        <div class="student-noteaf">
+          If you face any issue while creating your Student ID, email us at
+          <b>academeforge@gmail.com</b> with your name and WhatsApp number.
+        </div>
       </div>
     </div>
-
+  </div>
+</section>
+    
    <!-- ==============================
      STUDENT COURSE DASHBOARD - AF
      Show after login
@@ -18982,7 +19469,7 @@ body.settings-dark-mode .topbar .notification-time-box .notification-icon {
         class="af-mail-delete-btn-new"
         href=""
       >
-        Mail Deletion Request
+       Return To HomePage
       </a>
     </div>
   </div>
@@ -19635,18 +20122,16 @@ body.settings-dark-mode .topbar .notification-time-box .notification-icon {
   <span class="settings-arrow" aria-hidden="true">›</span>
 </button>
 
-     <button
+  <button
   type="button"
   class="settings-row settings-row-btn"
-  onclick="showSection('studentaf')"
-  aria-label="Open Student ID Access"
+  onclick="openStudentLoginSection()"
+  aria-label="Open Student Login"
 >
   <div class="settings-row-left">
-    <span class="settings-row-icon" aria-hidden="true">📋</span>
-    <span>Login/Create ID</span>
+    <span class="settings-row-icon" aria-hidden="true">🎓</span>
+    <span>Student Login / Create ID</span>
   </div>
-
-  <span class="settings-arrow" aria-hidden="true">›</span>
 </button>
 
       <button
@@ -19815,10 +20300,10 @@ body.settings-dark-mode .topbar .notification-time-box .notification-icon {
     Home
   </button>
 
-  <button class="nav-btn" data-section="studentaf" onclick="showSection('studentaf')">
-    <b>🎓</b>
-    Student
-  </button>
+ <button class="nav-btn" data-section="student" type="button" onclick="showSection('student')">
+  <b class="nav-icon-wrap">🎓</b>
+  <span>Student</span>
+</button>
   
 <button class="nav-btn" data-section="batchaf" type="button" onclick="showSection('batchaf')">
   <b>📚</b>
@@ -24481,6 +24966,7 @@ async function logoutAcademeForge() {
     authGate.style.display = "flex";
   }
 }
+
 /* ==============================
    NEW STUDENT SECTION JS - AF
 
@@ -24510,6 +24996,179 @@ function showStudentMessageaf(type, text) {
 
   box.className = "student-messageaf " + type;
   box.textContent = text || "";
+}
+
+function afStudentSafeToast(title, message) {
+  try {
+    if (typeof showToast === "function") {
+      showToast(title || "Success", message || "");
+      return;
+    }
+
+    const toast = document.getElementById("toast");
+
+    if (toast) {
+      const strong = toast.querySelector("strong");
+      const paragraph = toast.querySelector("p");
+
+      if (strong) strong.textContent = title || "Success";
+      if (paragraph) paragraph.textContent = message || "";
+
+      toast.classList.add("show");
+
+      window.setTimeout(function () {
+        toast.classList.remove("show");
+      }, 2600);
+
+      return;
+    }
+
+    console.log((title || "Success") + ": " + (message || ""));
+  } catch (error) {
+    console.error("afStudentSafeToast failed:", error);
+  }
+}
+
+/* =========================
+   LOGIN / LOCK STATE HELPERS
+========================= */
+
+function afStudentIsUuidAF(value) {
+  try {
+    return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{12}$/i.test(
+      String(value || "").trim()
+    );
+  } catch (error) {
+    return false;
+  }
+}
+
+function afStudentIsLoggedInSeparated() {
+  try {
+    const loggedIn = localStorage.getItem("af_student_logged_in");
+    const studentUuid = localStorage.getItem("af_student_uuid");
+    const studentId = localStorage.getItem("af_student_id");
+    const sessionToken = localStorage.getItem("af_session_token");
+
+    if (loggedIn === "true" || loggedIn === "1") return true;
+    if (afStudentIsUuidAF(studentUuid)) return true;
+    if (studentId && String(studentId).trim().length >= 4) return true;
+    if (sessionToken && String(sessionToken).trim().length >= 8) return true;
+
+    return false;
+  } catch (error) {
+    console.error("afStudentIsLoggedInSeparated failed:", error);
+    return false;
+  }
+}
+
+function syncStudentAuthLockedStateAF() {
+  try {
+    const isLoggedIn = afStudentIsLoggedInSeparated();
+
+    const authLocked = document.getElementById("studentAuthLockedStateaf");
+    const authUnlocked = document.getElementById("studentAuthUnlockedAreaaf");
+
+    if (authLocked) {
+      authLocked.hidden = !isLoggedIn;
+    }
+
+    if (authUnlocked) {
+      authUnlocked.hidden = isLoggedIn;
+    }
+  } catch (error) {
+    console.error("syncStudentAuthLockedStateAF failed:", error);
+  }
+}
+
+function markStudentLoggedInSeparatedAF(messageType) {
+  try {
+    localStorage.setItem("af_student_logged_in", "true");
+    localStorage.setItem("student_logged_in", "true");
+    localStorage.setItem("af_last_login_at", new Date().toISOString());
+
+    syncStudentAuthLockedStateAF();
+
+    if (messageType === "created") {
+      showStudentMessageaf("ok", "Student ID created successfully.");
+      afStudentSafeToast("Student ID Created", "Student ID created successfully.");
+    } else {
+      showStudentMessageaf("ok", "Logged in successfully.");
+      afStudentSafeToast("Logged In", "Logged in successfully.");
+    }
+  } catch (error) {
+    console.error("markStudentLoggedInSeparatedAF failed:", error);
+  }
+}
+
+function markStudentLoggedOutSeparatedAF() {
+  try {
+    localStorage.removeItem("af_student_logged_in");
+    localStorage.removeItem("student_logged_in");
+    localStorage.removeItem("af_session_token");
+    localStorage.removeItem("af_student_uuid");
+    localStorage.removeItem("af_student_id");
+    localStorage.removeItem("af_student_mobile");
+    localStorage.removeItem("af_student_name");
+    localStorage.removeItem("af_student_email");
+
+    syncStudentAuthLockedStateAF();
+
+    showStudentMessageaf("ok", "Logged out successfully.");
+    afStudentSafeToast("Logged Out", "You have been logged out.");
+  } catch (error) {
+    console.error("markStudentLoggedOutSeparatedAF failed:", error);
+  }
+}
+
+function openStudentCourseSection() {
+  try {
+    syncStudentAuthLockedStateAF();
+
+    if (typeof showSection === "function") {
+      showSection("student");
+      return;
+    }
+
+    document.querySelectorAll(".section, .app-section").forEach(function (section) {
+      section.classList.remove("active");
+      section.style.display = "none";
+    });
+
+    const target = document.getElementById("student");
+
+    if (target) {
+      target.classList.add("active");
+      target.style.display = "block";
+    }
+  } catch (error) {
+    console.error("openStudentCourseSection failed:", error);
+  }
+}
+
+function openStudentLoginSection() {
+  try {
+    syncStudentAuthLockedStateAF();
+
+    if (typeof showSection === "function") {
+      showSection("studentaf");
+      return;
+    }
+
+    document.querySelectorAll(".section, .app-section").forEach(function (section) {
+      section.classList.remove("active");
+      section.style.display = "none";
+    });
+
+    const target = document.getElementById("studentaf");
+
+    if (target) {
+      target.classList.add("active");
+      target.style.display = "block";
+    }
+  } catch (error) {
+    console.error("openStudentLoginSection failed:", error);
+  }
 }
 
 /* =========================
@@ -24691,35 +25350,47 @@ async function loginStudentaf() {
     }
 
     if (!result.student) {
-  showStudentMessageaf("err", "Login failed. Student data not received.");
-  return;
-}
+      showStudentMessageaf("err", "Login failed. Student data not received.");
+      return;
+    }
 
-var finalSessionToken = result.session_token || result.login_token || "";
-var finalDeviceId = result.device_id || getAFDeviceId();
+    var finalSessionToken = result.session_token || result.login_token || "";
+    var finalDeviceId = result.device_id || getAFDeviceId();
 
-if (!finalSessionToken) {
-  showStudentMessageaf("err", "Login failed. Session token not received.");
-  return;
-}
+    if (!finalSessionToken) {
+      showStudentMessageaf("err", "Login failed. Session token not received.");
+      return;
+    }
 
-saveStudentSessionaf(result.student, finalSessionToken, finalDeviceId);
+    saveStudentSessionaf(result.student, finalSessionToken, finalDeviceId);
 
-localStorage.setItem("af_last_login_at", new Date().toISOString());
+    localStorage.setItem("af_last_login_at", new Date().toISOString());
 
-console.log("LOGIN SAVED:", {
-  token: finalSessionToken,
-  device: finalDeviceId,
-  student: result.student.student_id || "",
-  mobile: result.student.mobile || result.student.phone || ""
-});
+    console.log("LOGIN SAVED:", {
+      token: finalSessionToken,
+      device: finalDeviceId,
+      student: result.student.student_id || "",
+      mobile: result.student.mobile || result.student.phone || ""
+    });
 
-openCourseSectionAfterLoginaf(result.student);
+    markStudentLoggedInSeparatedAF("login");
+
+    window.setTimeout(function () {
+      syncStudentAuthLockedStateAF();
+
+      if (typeof openCourseSectionAfterLoginaf === "function") {
+        openCourseSectionAfterLoginaf(result.student);
+      } else {
+        openStudentCourseSection();
+      }
+    }, 650);
+
   } catch (err) {
     console.error("Login catch:", err);
     showStudentMessageaf("err", "Login failed: " + err.message);
   }
 }
+
 /* =========================
    CREATE ID - SEND OTP
 ========================= */
@@ -24837,7 +25508,9 @@ async function verifyCreateOtpAndCreateIdaf() {
     const payload = {
       ...afPendingCreateStudent,
       otp: otp,
-      purpose: "create"
+      purpose: "create",
+      device_id: typeof getAFDeviceId === "function" ? getAFDeviceId() : "",
+      device_name: typeof getAFDeviceName === "function" ? getAFDeviceName() : ""
     };
 
     const result = await afStudentEdgeCall("student-create-af", payload);
@@ -24860,9 +25533,22 @@ async function verifyCreateOtpAndCreateIdaf() {
     if (otpArea) otpArea.style.display = "none";
     if (otpInput2) otpInput2.value = "";
 
-    saveStudentSessionaf(result.student);
-    showStudentMessageaf("ok", "Student ID created successfully.");
-    openCourseSectionAfterLoginaf(result.student);
+    const createSessionToken = result.session_token || result.login_token || "";
+    const createDeviceId = result.device_id || (typeof getAFDeviceId === "function" ? getAFDeviceId() : "");
+
+    saveStudentSessionaf(result.student, createSessionToken, createDeviceId);
+
+    markStudentLoggedInSeparatedAF("created");
+
+    window.setTimeout(function () {
+      syncStudentAuthLockedStateAF();
+
+      if (typeof openCourseSectionAfterLoginaf === "function") {
+        openCourseSectionAfterLoginaf(result.student);
+      } else {
+        openStudentCourseSection();
+      }
+    }, 650);
 
   } catch (err) {
     console.error("Create Student ID catch:", err);
@@ -25050,17 +25736,52 @@ async function resetStudentPasswordaf() {
 ========================= */
 
 function saveStudentSessionaf(student, sessionToken, deviceId) {
-  localStorage.setItem("af_student_logged_in", "true");
+  try {
+    if (!student || typeof student !== "object") {
+      console.error("saveStudentSessionaf failed: invalid student");
+      return;
+    }
 
-  localStorage.setItem("af_session_token", sessionToken || "");
-  localStorage.setItem("af_device_id", deviceId || getAFDeviceId());
+    const safeDeviceId = deviceId || (typeof getAFDeviceId === "function" ? getAFDeviceId() : "");
+    const safeSessionToken = sessionToken || localStorage.getItem("af_session_token") || "";
 
-  localStorage.setItem("af_student_uuid", student.id || "");
-  localStorage.setItem("af_student_id", student.student_id || student.mobile || student.phone || "");
-  localStorage.setItem("af_student_mobile", student.mobile || student.phone || "");
-  localStorage.setItem("af_student_name", student.name || "Student");
-  localStorage.setItem("af_student_email", student.email || "");
+    localStorage.setItem("af_student_logged_in", "true");
+    localStorage.setItem("student_logged_in", "true");
+
+    localStorage.setItem("af_session_token", safeSessionToken);
+    localStorage.setItem("af_device_id", safeDeviceId);
+
+    localStorage.setItem("af_student_uuid", student.id || "");
+    localStorage.setItem("af_student_id", student.student_id || student.mobile || student.phone || "");
+    localStorage.setItem("af_student_mobile", student.mobile || student.phone || "");
+    localStorage.setItem("af_student_name", student.name || "Student");
+    localStorage.setItem("af_student_email", student.email || "");
+
+    localStorage.setItem("af_last_login_at", new Date().toISOString());
+
+    syncStudentAuthLockedStateAF();
+  } catch (error) {
+    console.error("saveStudentSessionaf failed:", error);
+  }
 }
+
+/* =========================
+   INIT
+========================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+  syncStudentAuthLockedStateAF();
+
+  window.setTimeout(syncStudentAuthLockedStateAF, 250);
+  window.setTimeout(syncStudentAuthLockedStateAF, 900);
+});
+
+document.addEventListener("visibilitychange", function () {
+  if (document.visibilityState === "visible") {
+    syncStudentAuthLockedStateAF();
+  }
+});
+
 /* =========================
    OPEN COURSE SECTION AFTER LOGIN
 ========================= */
