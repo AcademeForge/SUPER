@@ -17786,6 +17786,7 @@ body.settings-dark-mode .coming-soon-close {
 
     
 <!-- SETTINGS -->
+
 <section id="settings" class="section settings-section" aria-label="Settings page">
   <div class="settings-page">
     <div class="settings-profile-card">
@@ -17930,7 +17931,7 @@ body.settings-dark-mode .coming-soon-close {
 
         <span class="settings-new-badge">New</span>
       </button>
-    </div>
+       </div>
   </div>
 </section>
 <!-----------------------  NAV BUTTONS --------------------------------------->
@@ -17963,6 +17964,24 @@ body.settings-dark-mode .coming-soon-close {
 </nav>
 
   </main>
+
+  <!-- COMING SOON POPUP: paste here, after </main> -->
+<div id="comingSoonOverlay" class="coming-soon-overlay" onclick="closeComingSoonPopup()">
+  <div class="coming-soon-modal" onclick="event.stopPropagation()">
+    <div class="coming-soon-icon" aria-hidden="true">🚧</div>
+
+    <h3 id="comingSoonTitle" class="coming-soon-title">Coming Soon</h3>
+
+    <p id="comingSoonMessage" class="coming-soon-message">
+      This feature will be available soon.
+    </p>
+
+    <button type="button" class="coming-soon-close" onclick="closeComingSoonPopup()">
+      Okay
+    </button>
+  </div>
+</div>
+
 
   <div class="toast" id="toast">
   <strong>Notification</strong>
@@ -28884,6 +28903,78 @@ document.addEventListener("DOMContentLoaded", function () {
       showSection(initialSection);
     } catch (error) {
       console.error("DOMContentLoaded section init failed:", error);
+    }
+  });
+<script>
+  function showComingSoon(featureName) {
+    try {
+      const overlay = document.getElementById("comingSoonOverlay");
+      const title = document.getElementById("comingSoonTitle");
+      const message = document.getElementById("comingSoonMessage");
+
+      const safeFeatureName =
+        typeof featureName === "string" && featureName.trim()
+          ? featureName.trim()
+          : "This feature";
+
+      if (title) {
+        title.textContent = "Coming Soon";
+      }
+
+      if (message) {
+        message.textContent = safeFeatureName + " will be available soon.";
+      }
+
+      if (overlay) {
+        overlay.classList.add("show");
+        document.body.style.overflow = "hidden";
+        return;
+      }
+
+      const toast = document.getElementById("toast");
+
+      if (toast) {
+        const toastTitle = toast.querySelector("strong");
+        const toastMessage = toast.querySelector("p");
+
+        if (toastTitle) {
+          toastTitle.textContent = "Coming Soon";
+        }
+
+        if (toastMessage) {
+          toastMessage.textContent = safeFeatureName + " will be available soon.";
+        }
+
+        toast.classList.add("show");
+
+        window.clearTimeout(window.__afComingSoonToastTimer);
+        window.__afComingSoonToastTimer = window.setTimeout(function () {
+          toast.classList.remove("show");
+        }, 2200);
+      }
+    } catch (error) {
+      console.error("showComingSoon failed:", error);
+    }
+  }
+
+  
+  function closeComingSoonPopup() {
+    try {
+      const overlay = document.getElementById("comingSoonOverlay");
+
+      if (overlay) {
+        overlay.classList.remove("show");
+      }
+
+      document.body.style.overflow = "";
+    } catch (error) {
+      console.error("closeComingSoonPopup failed:", error);
+    }
+  }
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      closeComingSoonPopup();
     }
   });
 
