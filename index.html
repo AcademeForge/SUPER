@@ -16877,6 +16877,279 @@ html.dark body .notification-time-box {
     border-color: rgba(248, 113, 113, 0.82);
   }
 }
+
+
+    /* =========================================================
+   REPORT A BUG MODAL
+========================================================= */
+
+body.bug-report-open {
+  overflow: hidden !important;
+}
+
+.bug-report-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 9999999 !important;
+  width: 100vw !important;
+  height: 100dvh !important;
+  padding: 16px !important;
+  box-sizing: border-box !important;
+  background: rgba(15, 23, 42, 0.52) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  display: none !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.bug-report-overlay.show {
+  display: flex !important;
+}
+
+.bug-report-modal {
+  width: min(100%, 390px) !important;
+  max-height: min(88dvh, 720px) !important;
+  overflow-y: auto !important;
+  border-radius: 26px !important;
+  border: 1px solid rgba(226, 232, 240, 0.92) !important;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(239, 68, 68, 0.10), transparent 32%),
+    linear-gradient(180deg, #ffffff 0%, #f8fafc 100%) !important;
+  color: #0f172a !important;
+  box-shadow:
+    0 26px 80px rgba(15, 23, 42, 0.30),
+    inset 0 1px 0 rgba(255, 255, 255, 0.92) !important;
+  padding: 18px !important;
+  box-sizing: border-box !important;
+  animation: bugReportIn 180ms ease forwards !important;
+}
+
+@keyframes bugReportIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.bug-report-header {
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: space-between !important;
+  gap: 14px !important;
+  margin-bottom: 16px !important;
+}
+
+.bug-report-kicker {
+  margin: 0 0 4px !important;
+  color: #dc2626 !important;
+  font-size: 11px !important;
+  line-height: 1.35 !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+}
+
+.bug-report-title {
+  margin: 0 !important;
+  color: #0f172a !important;
+  font-size: 24px !important;
+  line-height: 1.15 !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.045em !important;
+}
+
+.bug-report-x {
+  width: 38px !important;
+  height: 38px !important;
+  min-width: 38px !important;
+  border: 0 !important;
+  outline: 0 !important;
+  border-radius: 14px !important;
+  background: #111827 !important;
+  color: #ffffff !important;
+  font-size: 25px !important;
+  line-height: 1 !important;
+  font-weight: 800 !important;
+  cursor: pointer !important;
+}
+
+.bug-report-form {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 12px !important;
+}
+
+.bug-report-field {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 7px !important;
+}
+
+.bug-report-field span {
+  color: #334155 !important;
+  font-size: 13px !important;
+  line-height: 1.35 !important;
+  font-weight: 850 !important;
+}
+
+.bug-report-field input,
+.bug-report-field select,
+.bug-report-field textarea {
+  width: 100% !important;
+  border: 1px solid rgba(203, 213, 225, 0.95) !important;
+  outline: 0 !important;
+  border-radius: 15px !important;
+  background: rgba(255, 255, 255, 0.94) !important;
+  color: #0f172a !important;
+  font-size: 14px !important;
+  font-weight: 650 !important;
+  box-sizing: border-box !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.90) !important;
+}
+
+.bug-report-field input,
+.bug-report-field select {
+  height: 46px !important;
+  padding: 0 13px !important;
+}
+
+.bug-report-field textarea {
+  resize: vertical !important;
+  min-height: 98px !important;
+  max-height: 220px !important;
+  padding: 12px 13px !important;
+  line-height: 1.55 !important;
+}
+
+.bug-report-field input:focus,
+.bug-report-field select:focus,
+.bug-report-field textarea:focus {
+  border-color: rgba(220, 38, 38, 0.85) !important;
+  box-shadow:
+    0 0 0 4px rgba(220, 38, 38, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.90) !important;
+}
+
+.bug-report-status {
+  min-height: 20px !important;
+  color: #64748b !important;
+  font-size: 13px !important;
+  line-height: 1.45 !important;
+  font-weight: 750 !important;
+}
+
+.bug-report-status.success {
+  color: #15803d !important;
+}
+
+.bug-report-status.error {
+  color: #dc2626 !important;
+}
+
+.bug-report-submit {
+  width: 100% !important;
+  height: 48px !important;
+  border: 0 !important;
+  outline: 0 !important;
+  border-radius: 16px !important;
+  background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%) !important;
+  color: #ffffff !important;
+  font-size: 15px !important;
+  line-height: 1 !important;
+  font-weight: 900 !important;
+  cursor: pointer !important;
+  box-shadow: 0 14px 30px rgba(220, 38, 38, 0.26) !important;
+}
+
+.bug-report-submit:disabled {
+  opacity: 0.62 !important;
+  cursor: not-allowed !important;
+}
+
+.bug-report-submit:active,
+.bug-report-x:active {
+  transform: scale(0.97) !important;
+}
+
+/* Dark / premium dark compatibility */
+body.dark-mode .bug-report-modal,
+body.dark .bug-report-modal,
+body.settings-dark-mode .bug-report-modal,
+html.dark-mode body .bug-report-modal,
+html.dark body .bug-report-modal {
+  border-color: rgba(51, 65, 85, 0.92) !important;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(248, 113, 113, 0.12), transparent 32%),
+    linear-gradient(180deg, #1e293b 0%, #111827 100%) !important;
+  color: #f8fafc !important;
+}
+
+body.dark-mode .bug-report-title,
+body.dark .bug-report-title,
+body.settings-dark-mode .bug-report-title,
+html.dark-mode body .bug-report-title,
+html.dark body .bug-report-title {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .bug-report-field span,
+body.dark .bug-report-field span,
+body.settings-dark-mode .bug-report-field span,
+html.dark-mode body .bug-report-field span,
+html.dark body .bug-report-field span {
+  color: #cbd5e1 !important;
+}
+
+body.dark-mode .bug-report-field input,
+body.dark-mode .bug-report-field select,
+body.dark-mode .bug-report-field textarea,
+body.dark .bug-report-field input,
+body.dark .bug-report-field select,
+body.dark .bug-report-field textarea,
+body.settings-dark-mode .bug-report-field input,
+body.settings-dark-mode .bug-report-field select,
+body.settings-dark-mode .bug-report-field textarea,
+html.dark-mode body .bug-report-field input,
+html.dark-mode body .bug-report-field select,
+html.dark-mode body .bug-report-field textarea,
+html.dark body .bug-report-field input,
+html.dark body .bug-report-field select,
+html.dark body .bug-report-field textarea {
+  border-color: rgba(71, 85, 105, 0.95) !important;
+  background: rgba(15, 23, 42, 0.72) !important;
+  color: #f8fafc !important;
+}
+
+body.dark-mode .bug-report-status,
+body.dark .bug-report-status,
+body.settings-dark-mode .bug-report-status,
+html.dark-mode body .bug-report-status,
+html.dark body .bug-report-status {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .bug-report-status.success,
+body.dark .bug-report-status.success,
+body.settings-dark-mode .bug-report-status.success,
+html.dark-mode body .bug-report-status.success,
+html.dark body .bug-report-status.success {
+  color: #86efac !important;
+}
+
+body.dark-mode .bug-report-status.error,
+body.dark .bug-report-status.error,
+body.settings-dark-mode .bug-report-status.error,
+html.dark-mode body .bug-report-status.error,
+html.dark body .bug-report-status.error {
+  color: #fca5a5 !important;
+}
+    
   </style>
 </head>
 
@@ -18219,29 +18492,35 @@ html.dark body .notification-time-box {
   <span class="settings-arrow" aria-hidden="true">›</span>
 </button>
 
-      <button
-        type="button"
-        class="settings-row settings-row-btn"
-        onclick="showComingSoon('Test Series')"
-        aria-label="Open Test Series"
-      >
-        <div class="settings-row-left">
-          <span class="settings-row-icon" aria-hidden="true">📋</span>
-          <span>Test Series</span>
-        </div>
-      </button>
+     <button
+  type="button"
+  class="settings-row settings-row-btn"
+  onclick="showSection('studentaf')"
+  aria-label="Open Student ID Access"
+>
+  <div class="settings-row-left">
+    <span class="settings-row-icon" aria-hidden="true">📋</span>
+    <span>Login/Create ID</span>
+  </div>
+
+  <span class="settings-arrow" aria-hidden="true">›</span>
+</button>
 
       <button
-        type="button"
-        class="settings-row settings-row-btn"
-        onclick="showComingSoon('PW Store')"
-        aria-label="Open PW Store"
-      >
-        <div class="settings-row-left">
-          <span class="settings-row-icon" aria-hidden="true">🛒</span>
-          <span>AF Store</span>
-        </div>
-      </button>
+  type="button"
+  class="settings-row settings-row-btn"
+  onclick="openBugReportModal()"
+  aria-label="Report a Bug"
+>
+  <div class="settings-row-left">
+    <span class="settings-row-icon" aria-hidden="true">🐞</span>
+    <span>Report a Bug</span>
+  </div>
+
+  <span class="settings-arrow" aria-hidden="true">›</span>
+</button>
+      
+  <!-----------------------   
 
       <button
         type="button"
@@ -18253,35 +18532,35 @@ html.dark body .notification-time-box {
           <span class="settings-row-icon" aria-hidden="true">⚡</span>
           <span>Power Batch</span>
         </div>
-      </button>
+      </button> --------------------------------------->
 
-      <button
-        type="button"
-        class="settings-row settings-row-btn"
-        onclick="showComingSoon('PW Books')"
-        aria-label="Open PW Books"
-      >
-        <div class="settings-row-left">
-          <span class="settings-row-icon" aria-hidden="true">📚</span>
-          <span>AF Books</span>
-        </div>
+    <button
+  type="button"
+  class="settings-row settings-row-btn"
+  onclick="showSection('notifications')"
+  aria-label="Open Notifications"
+>
+  <div class="settings-row-left">
+    <span class="settings-row-icon" aria-hidden="true">📚</span>
+    <span>Notifications</span>
+  </div>
 
-        <span class="settings-new-badge">New</span>
-      </button>
+  <span class="settings-new-badge">New</span>
+</button>
 
-      <button
-        type="button"
-        class="settings-row settings-row-btn"
-        onclick="showComingSoon('Pi Lens')"
-        aria-label="Open Pi Lens"
-      >
-        <div class="settings-row-left">
-          <span class="settings-row-icon" aria-hidden="true">⭕</span>
-          <span>AF Lens</span>
-        </div>
+    <button
+  type="button"
+  class="settings-row settings-row-btn"
+  onclick="showSection('management')"
+  aria-label="Open Management"
+>
+  <div class="settings-row-left">
+    <span class="settings-row-icon" aria-hidden="true">🔥</span>
+    <span>About Us</span>
+  </div>
 
-        <span class="settings-new-badge">New</span>
-      </button>
+  <span class="settings-arrow" aria-hidden="true">›</span>
+</button>
        </div>
   </div>
 </section>
@@ -18333,6 +18612,118 @@ html.dark body .notification-time-box {
   </div>
 </div>
 
+  <div
+  id="bugReportOverlay"
+  class="bug-report-overlay"
+  aria-hidden="true"
+  onclick="closeBugReportModal()"
+>
+  <div
+    class="bug-report-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="bugReportTitle"
+    onclick="event.stopPropagation()"
+  >
+    <div class="bug-report-header">
+      <div>
+        <p class="bug-report-kicker">AcademeForge Support</p>
+        <h3 id="bugReportTitle" class="bug-report-title">Report a Bug</h3>
+      </div>
+
+      <button
+        type="button"
+        class="bug-report-x"
+        onclick="closeBugReportModal()"
+        aria-label="Close bug report"
+      >
+        ×
+      </button>
+    </div>
+
+    <form id="bugReportForm" class="bug-report-form" onsubmit="submitBugReport(event)">
+      <label class="bug-report-field">
+        <span>Your Name</span>
+        <input
+          id="bugReporterName"
+          type="text"
+          maxlength="80"
+          autocomplete="name"
+          placeholder="Enter your name"
+          required
+        />
+      </label>
+
+      <label class="bug-report-field">
+        <span>Contact Email</span>
+        <input
+          id="bugReporterEmail"
+          type="email"
+          maxlength="120"
+          autocomplete="email"
+          placeholder="example@email.com"
+          required
+        />
+      </label>
+
+      <label class="bug-report-field">
+        <span>Bug Category</span>
+        <select id="bugCategory" required>
+          <option value="">Select issue type</option>
+          <option value="login">Login / Student ID</option>
+          <option value="navigation">Navigation</option>
+          <option value="dark_mode">Dark / Reading Mode</option>
+          <option value="notification">Notifications</option>
+          <option value="payment">Payment / Purchase</option>
+          <option value="ui">UI / Design</option>
+          <option value="performance">Slow / Lagging</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="bug-report-field">
+        <span>Priority</span>
+        <select id="bugPriority" required>
+          <option value="low">Low</option>
+          <option value="medium" selected>Medium</option>
+          <option value="high">High</option>
+          <option value="critical">Critical</option>
+        </select>
+      </label>
+
+      <label class="bug-report-field">
+        <span>What happened?</span>
+        <textarea
+          id="bugDescription"
+          maxlength="1200"
+          rows="5"
+          placeholder="Explain the issue clearly. Example: Settings page opens blank after clicking..."
+          required
+        ></textarea>
+      </label>
+
+      <label class="bug-report-field">
+        <span>Steps to Reproduce</span>
+        <textarea
+          id="bugSteps"
+          maxlength="1200"
+          rows="4"
+          placeholder="1. Open app&#10;2. Go to settings&#10;3. Click..."
+        ></textarea>
+      </label>
+
+      <input id="bugPageUrl" type="hidden" />
+      <input id="bugUserAgent" type="hidden" />
+
+      <div id="bugReportStatus" class="bug-report-status" aria-live="polite"></div>
+
+      <button id="bugReportSubmitBtn" type="submit" class="bug-report-submit">
+        Submit Report
+      </button>
+    </form>
+  </div>
+</div>
+  
   <div class="toast" id="toast">
   <strong>Notification</strong>
   <p>Message</p>
@@ -29426,8 +29817,268 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.addEventListener("DOMContentLoaded", restoreSectionFromHash);
   window.addEventListener("hashchange", restoreSectionFromHash);
-</script>
 
+
+
+
+
+
+  
+  const BUG_REPORT_EDGE_FUNCTION_URL = SUPABASE_PROJECT_URL + "/functions/v1/report-bug";
+
+  function openBugReportModal() {
+    try {
+      const overlay = document.getElementById("bugReportOverlay");
+      const form = document.getElementById("bugReportForm");
+      const status = document.getElementById("bugReportStatus");
+      const pageUrl = document.getElementById("bugPageUrl");
+      const userAgent = document.getElementById("bugUserAgent");
+
+      if (!overlay) {
+        console.error("bugReportOverlay not found");
+        return;
+      }
+
+      if (form) {
+        form.reset();
+      }
+
+      if (status) {
+        status.textContent = "";
+        status.className = "bug-report-status";
+      }
+
+      if (pageUrl) {
+        pageUrl.value = window.location.href;
+      }
+
+      if (userAgent) {
+        userAgent.value = navigator.userAgent || "";
+      }
+
+      overlay.classList.add("show");
+      overlay.setAttribute("aria-hidden", "false");
+      document.body.classList.add("bug-report-open");
+
+      window.setTimeout(function () {
+        const firstInput = document.getElementById("bugReporterName");
+        if (firstInput) {
+          firstInput.focus();
+        }
+      }, 120);
+    } catch (error) {
+      console.error("openBugReportModal failed:", error);
+    }
+  }
+
+  function closeBugReportModal() {
+    try {
+      const overlay = document.getElementById("bugReportOverlay");
+
+      if (overlay) {
+        overlay.classList.remove("show");
+        overlay.setAttribute("aria-hidden", "true");
+      }
+
+      document.body.classList.remove("bug-report-open");
+    } catch (error) {
+      console.error("closeBugReportModal failed:", error);
+    }
+  }
+
+  function setBugReportStatus(message, type) {
+    try {
+      const status = document.getElementById("bugReportStatus");
+
+      if (!status) {
+        return;
+      }
+
+      status.textContent = String(message || "");
+      status.className = "bug-report-status";
+
+      if (type === "success") {
+        status.classList.add("success");
+      }
+
+      if (type === "error") {
+        status.classList.add("error");
+      }
+    } catch (error) {
+      console.error("setBugReportStatus failed:", error);
+    }
+  }
+
+  function getTrimmedInputValue(id) {
+    const node = document.getElementById(id);
+
+    if (!node) {
+      return "";
+    }
+
+    return String(node.value || "").trim();
+  }
+
+  function isValidBugEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+  }
+
+  function getActiveSectionForBugReport() {
+    try {
+      const activeSection = document.querySelector(".section.active, .app-section.active");
+
+      if (activeSection && activeSection.id) {
+        return activeSection.id;
+      }
+
+      return "";
+    } catch (error) {
+      console.error("getActiveSectionForBugReport failed:", error);
+      return "";
+    }
+  }
+
+  function getBugReportDeviceInfo() {
+    try {
+      return {
+        userAgent: navigator.userAgent || "",
+        language: navigator.language || "",
+        platform: navigator.platform || "",
+        viewportWidth: window.innerWidth || 0,
+        viewportHeight: window.innerHeight || 0,
+        devicePixelRatio: window.devicePixelRatio || 1,
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "",
+        online: navigator.onLine === true
+      };
+    } catch (error) {
+      console.error("getBugReportDeviceInfo failed:", error);
+      return {};
+    }
+  }
+
+  async function submitBugReport(event) {
+    event.preventDefault();
+
+    const submitBtn = document.getElementById("bugReportSubmitBtn");
+
+    try {
+      const reporterName = getTrimmedInputValue("bugReporterName");
+      const reporterEmail = getTrimmedInputValue("bugReporterEmail");
+      const category = getTrimmedInputValue("bugCategory");
+      const priority = getTrimmedInputValue("bugPriority");
+      const description = getTrimmedInputValue("bugDescription");
+      const stepsToReproduce = getTrimmedInputValue("bugSteps");
+      const pageUrl = getTrimmedInputValue("bugPageUrl") || window.location.href;
+
+      if (!reporterName || reporterName.length < 2) {
+        setBugReportStatus("Please enter a valid name.", "error");
+        return;
+      }
+
+      if (!isValidBugEmail(reporterEmail)) {
+        setBugReportStatus("Please enter a valid email address.", "error");
+        return;
+      }
+
+      if (!category) {
+        setBugReportStatus("Please select a bug category.", "error");
+        return;
+      }
+
+      if (!["low", "medium", "high", "critical"].includes(priority)) {
+        setBugReportStatus("Please select a valid priority.", "error");
+        return;
+      }
+
+      if (!description || description.length < 10) {
+        setBugReportStatus("Please describe the bug in at least 10 characters.", "error");
+        return;
+      }
+
+      if (reporterName.length > 80) {
+        setBugReportStatus("Name is too long.", "error");
+        return;
+      }
+
+      if (reporterEmail.length > 120) {
+        setBugReportStatus("Email is too long.", "error");
+        return;
+      }
+
+      if (description.length > 1200 || stepsToReproduce.length > 1200) {
+        setBugReportStatus("Bug report text is too long.", "error");
+        return;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Submitting...";
+      }
+
+      setBugReportStatus("Submitting your report...", "");
+
+      const payload = {
+        reporterName: reporterName,
+        reporterEmail: reporterEmail,
+        category: category,
+        priority: priority,
+        description: description,
+        stepsToReproduce: stepsToReproduce,
+        pageUrl: pageUrl,
+        activeSection: getActiveSectionForBugReport(),
+        deviceInfo: getBugReportDeviceInfo()
+      };
+
+      const response = await fetch(BUG_REPORT_EDGE_FUNCTION_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + SUPABASE_ANON_KEY,
+          "apikey": SUPABASE_ANON_KEY
+        },
+        body: JSON.stringify(payload)
+      });
+
+      let result = null;
+
+      try {
+        result = await response.json();
+      } catch (jsonError) {
+        result = null;
+      }
+
+      if (!response.ok) {
+        const message =
+          result && result.error
+            ? result.error
+            : "Bug report failed. Please try again.";
+        throw new Error(message);
+      }
+
+      setBugReportStatus("Bug report submitted successfully.", "success");
+
+      window.setTimeout(function () {
+        closeBugReportModal();
+      }, 900);
+    } catch (error) {
+      console.error("submitBugReport failed:", error);
+      setBugReportStatus(error.message || "Something went wrong.", "error");
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Submit Report";
+      }
+    }
+  }
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      closeBugReportModal();
+    }
+  });
+
+  
+</script>
  
 </body>
 </html>
