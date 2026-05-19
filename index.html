@@ -16785,6 +16785,98 @@ html.dark body .notification-time-box .notification-icon {
     min-width: 52px !important;
   }
 }
+    /* =========================================================
+   NOTIFICATION BUTTON - SOFT BLINK + NO HOVER JUMP FIX
+   Paste AFTER previous notification CSS
+========================================================= */
+
+.notification-time-box {
+  transform: translateY(-50%) !important;
+  animation:
+    afNotificationSoftPulse 2.4s ease-in-out infinite !important;
+  transition:
+    box-shadow 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease !important;
+}
+
+.notification-time-box:hover {
+  transform: translateY(-50%) !important;
+}
+
+.notification-time-box:active {
+  transform: translateY(-50%) !important;
+}
+
+.notification-time-box .notification-icon {
+  animation: afNotificationSoftBell 2.4s ease-in-out infinite !important;
+}
+
+@keyframes afNotificationSoftPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 0 rgba(245, 158, 11, 0.34),
+      0 10px 24px rgba(245, 158, 11, 0.16),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    border-color: rgba(245, 158, 11, 0.78);
+  }
+
+  50% {
+    box-shadow:
+      0 0 0 6px rgba(245, 158, 11, 0),
+      0 12px 28px rgba(245, 158, 11, 0.22),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    border-color: rgba(220, 38, 38, 0.78);
+  }
+}
+
+@keyframes afNotificationSoftBell {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  8% {
+    transform: rotate(-5deg);
+  }
+
+  16% {
+    transform: rotate(5deg);
+  }
+
+  24% {
+    transform: rotate(0deg);
+  }
+}
+
+/* Dark mode soft pulse */
+body.dark-mode .notification-time-box,
+body.dark .notification-time-box,
+html.dark-mode body .notification-time-box,
+html.dark body .notification-time-box {
+  animation:
+    afNotificationSoftPulseDark 2.4s ease-in-out infinite !important;
+}
+
+@keyframes afNotificationSoftPulseDark {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 0 rgba(250, 204, 21, 0.38),
+      0 10px 24px rgba(250, 204, 21, 0.16),
+      inset 0 1px 0 rgba(255, 255, 255, 0.10);
+    border-color: rgba(250, 204, 21, 0.82);
+  }
+
+  50% {
+    box-shadow:
+      0 0 0 6px rgba(250, 204, 21, 0),
+      0 12px 28px rgba(250, 204, 21, 0.24),
+      inset 0 1px 0 rgba(255, 255, 255, 0.10);
+    border-color: rgba(248, 113, 113, 0.82);
+  }
+}
   </style>
 </head>
 
