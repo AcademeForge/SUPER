@@ -30234,6 +30234,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+  /* =========================
+  LEARNING HEAT MAP
+========================= */
 
 
   function restoreSectionFromHash() {
@@ -30551,19 +30554,73 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-localStorage.af_student_id
-localStorage.student_id
-localStorage.studentId
 
+
+
+
+  
   const LEARNING_ACTIVITY_EDGE_URL =
     "https://afooyyydhlwngzssgqih.supabase.co/functions/v1/learning-activity";
 
   let afLearningActivityTimer = null;
   let afLearningActivityMarkedForSession = false;
+  let afLearningResolvedStudentId = "";
 
-  function getCurrentAFStudentId() {
+  function afLearningIsUuid(value) {
+    try {
+      return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
+        String(value || "").trim()
+      );
+    } catch (error) {
+      console.error("afLearningIsUuid failed:", error);
+      return false;
+    }
+  }
+
+  function afLearningSafeJsonParse(value) {
+    try {
+      if (!value || typeof value !== "string") {
+        return null;
+      }
+
+      return JSON.parse(value);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function afLearningGetStorageStudentObject() {
     try {
       const keys = [
+        "af_logged_student",
+        "afStudent",
+        "af_student",
+        "loggedStudent",
+        "studentData",
+        "currentStudent",
+        "student"
+      ];
+
+      for (let index = 0; index < keys.length; index += 1) {
+        const raw = localStorage.getItem(keys[index]);
+        const parsed = afLearningSafeJsonParse(raw);
+
+        if (parsed && typeof parsed === "object") {
+          return parsed;
+        }
+      }
+
+      return null;
+    } catch (error) {
+      console.error("afLearningGetStorageStudentObject failed:", error);
+      return null;
+    }
+  }
+
+  function afLearningGetDirectStoredUuid() {
+    try {
+      const keys = [
+        "af_student_uuid",
         "af_student_id",
         "student_id",
         "studentId",
@@ -30574,19 +30631,193 @@ localStorage.studentId
       for (let index = 0; index < keys.length; index += 1) {
         const value = localStorage.getItem(keys[index]);
 
-        if (value && /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value)) {
-          return value;
+        if (afLearningIsUuid(value)) {
+          return String(value).trim();
         }
-      }
-
-      if (window.AF_CURRENT_STUDENT_ID && /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(window.AF_CURRENT_STUDENT_ID)) {
-        return window.AF_CURRENT_STUDENT_ID;
       }
 
       return "";
     } catch (error) {
-      console.error("getCurrentAFStudentId failed:", error);
+      console.error("afLearningGetDirectStoredUuid failed:", error);
       return "";
+    }
+  }
+
+  function afLearningGetStudentIdentitySnapshot(student) {
+    try {
+      const storageStudent = afLearningGetStorageStudentObject();
+
+      const name =
+        (student && student.name) ||
+        (storageStudent && storageStudent.name) ||
+        localStorage.getItem("af_student_name") ||
+        "";
+
+      const email =
+        (student && student.email) ||
+        (storageStudent && storageStudent.email) ||
+        localStorage.getItem("af_student_email") ||
+        "";
+
+      const mobile =
+        (student && student.mobile) ||
+        (student && student.phone) ||
+        (storageStudent && storageStudent.mobile) ||
+        (storageStudent && storageStudent.phone) ||
+        localStorage.getItem("af_student_mobile") ||
+        "";
+
+      return {
+        name: String(name || "").trim(),
+        email: String(email || "").trim().toLowerCase(),
+        mobile: String(mobile || "").trim()
+      };
+    } catch (error) {
+      console.error("afLearningGetStudentIdentitySnapshot failed:", error);
+
+      return {
+        name: "",
+        email: "",
+        mobile: ""
+      };
+    }
+  }
+
+  async function afLearningFetchStudentUsingExistingSystem() {
+    try {
+      if (window.afCurrentStudent && typeof window.afCurrentStudent === "object") {
+        return window.afCurrentStudent;
+      }
+
+      if (typeof afCurrentStudent !== "undefined" && afCurrentStudent && typeof afCurrentStudent === "object") {
+        return afCurrentStudent;
+      }
+
+      if (typeof afIsLoggedIn === "function" && !afIsLoggedIn()) {
+        return null;
+      }
+
+      if (typeof afFetchStudent === "function") {
+        const student = await afFetchStudent();
+
+        if (student && typeof student === "object") {
+          try {
+            afCurrentStudent = student;
+          } catch (assignError) {
+            window.afCurrentStudent = student;
+          }
+
+          return student;
+        }
+      }
+
+      return null;
+    } catch (error) {
+      console.error("afLearningFetchStudentUsingExistingSystem failed:", error);
+      return null;
+    }
+  }
+
+  async function afLearningResolveStudentIdFromSupabase(student) {
+    try {
+      const backend =
+        typeof afBackend === "function"
+          ? afBackend()
+          : null;
+
+      if (!backend) {
+        throw new Error("Backend not connected.");
+      }
+
+      const identity = afLearningGetStudentIdentitySnapshot(student);
+
+      let query = backend
+        .from("students_af")
+        .select("id, name, email, mobile, status")
+        .limit(1);
+
+      if (identity.email) {
+        query = query.eq("email", identity.email);
+      } else if (identity.mobile) {
+        query = query.eq("mobile", identity.mobile);
+      } else if (identity.name) {
+        query = query.eq("name", identity.name);
+      } else {
+        throw new Error("Student identity not found. Login again.");
+      }
+
+      const { data, error } = await query.maybeSingle();
+
+      if (error) {
+        throw new Error(error.message || "Student lookup failed.");
+      }
+
+      if (!data || !data.id || !afLearningIsUuid(data.id)) {
+        throw new Error("Student record not found. Login again.");
+      }
+
+      afLearningResolvedStudentId = data.id;
+
+      localStorage.setItem("af_student_id", data.id);
+      localStorage.setItem("af_student_uuid", data.id);
+      localStorage.setItem("student_id", data.id);
+
+      try {
+        if (typeof afCurrentStudent !== "undefined" && afCurrentStudent) {
+          afCurrentStudent.id = data.id;
+        }
+      } catch (assignError) {
+        window.afCurrentStudent = Object.assign({}, student || {}, data);
+      }
+
+      return data.id;
+    } catch (error) {
+      console.error("afLearningResolveStudentIdFromSupabase failed:", error);
+      throw error;
+    }
+  }
+
+  async function getCurrentAFStudentIdForLearning() {
+    try {
+      if (afLearningIsUuid(afLearningResolvedStudentId)) {
+        return afLearningResolvedStudentId;
+      }
+
+      const directStoredUuid = afLearningGetDirectStoredUuid();
+
+      if (afLearningIsUuid(directStoredUuid)) {
+        afLearningResolvedStudentId = directStoredUuid;
+        return directStoredUuid;
+      }
+
+      const storageStudent = afLearningGetStorageStudentObject();
+
+      if (storageStudent && afLearningIsUuid(storageStudent.id)) {
+        afLearningResolvedStudentId = storageStudent.id;
+
+        localStorage.setItem("af_student_id", storageStudent.id);
+        localStorage.setItem("af_student_uuid", storageStudent.id);
+        localStorage.setItem("student_id", storageStudent.id);
+
+        return storageStudent.id;
+      }
+
+      const existingStudent = await afLearningFetchStudentUsingExistingSystem();
+
+      if (existingStudent && afLearningIsUuid(existingStudent.id)) {
+        afLearningResolvedStudentId = existingStudent.id;
+
+        localStorage.setItem("af_student_id", existingStudent.id);
+        localStorage.setItem("af_student_uuid", existingStudent.id);
+        localStorage.setItem("student_id", existingStudent.id);
+
+        return existingStudent.id;
+      }
+
+      return await afLearningResolveStudentIdFromSupabase(existingStudent);
+    } catch (error) {
+      console.error("getCurrentAFStudentIdForLearning failed:", error);
+      throw error;
     }
   }
 
@@ -30607,7 +30838,9 @@ localStorage.studentId
 
   function updateHeaderStreakCount(streak) {
     try {
-      const safeStreak = Number.isFinite(Number(streak)) ? Math.max(0, Number(streak)) : 0;
+      const safeStreak = Number.isFinite(Number(streak))
+        ? Math.max(0, Number(streak))
+        : 0;
 
       const headerNode = document.getElementById("afHeaderStreakCount");
       const pageNode = document.getElementById("learningHeatmapStreakCount");
@@ -30671,43 +30904,48 @@ localStorage.studentId
   }
 
   async function callLearningActivity(action) {
-    const studentId = getCurrentAFStudentId();
-
-    if (!studentId) {
-      throw new Error("Student ID not found. Login first.");
-    }
-
-    const response = await fetch(LEARNING_ACTIVITY_EDGE_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + SUPABASE_ANON_KEY,
-        "apikey": SUPABASE_ANON_KEY
-      },
-      body: JSON.stringify({
-        action: action,
-        studentId: studentId
-      })
-    });
-
-    let result = null;
-
     try {
-      result = await response.json();
+      const studentId = await getCurrentAFStudentIdForLearning();
+
+      if (!afLearningIsUuid(studentId)) {
+        throw new Error("Student ID not found. Login first.");
+      }
+
+      const response = await fetch(LEARNING_ACTIVITY_EDGE_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + SUPABASE_ANON_KEY,
+          "apikey": SUPABASE_ANON_KEY
+        },
+        body: JSON.stringify({
+          action: action,
+          studentId: studentId
+        })
+      });
+
+      let result = null;
+
+      try {
+        result = await response.json();
+      } catch (jsonError) {
+        result = null;
+      }
+
+      if (!response.ok) {
+        const message =
+          result && result.error
+            ? result.error
+            : "Learning activity request failed.";
+
+        throw new Error(message);
+      }
+
+      return result;
     } catch (error) {
-      result = null;
+      console.error("callLearningActivity failed:", error);
+      throw error;
     }
-
-    if (!response.ok) {
-      const message =
-        result && result.error
-          ? result.error
-          : "Learning activity request failed.";
-
-      throw new Error(message);
-    }
-
-    return result;
   }
 
   async function markLearningActivityAfterTenSeconds() {
@@ -30753,10 +30991,16 @@ localStorage.studentId
       updateHeaderStreakCount(result.streak);
       renderLearningWeek(result.week);
 
-      if (result.streak > 0) {
-        setLearningHeatmapStatus("Current streak: " + result.streak + " day(s).", "success");
+      if (Number(result.streak) > 0) {
+        setLearningHeatmapStatus(
+          "Current streak: " + result.streak + " day(s).",
+          "success"
+        );
       } else {
-        setLearningHeatmapStatus("No active streak yet. Use the app for 10 seconds today.", "");
+        setLearningHeatmapStatus(
+          "No active streak yet. Use the app for 10 seconds today.",
+          ""
+        );
       }
     } catch (error) {
       console.error("loadLearningHeatmap failed:", error);
@@ -30765,14 +31009,27 @@ localStorage.studentId
     }
   }
 
+  function initLearningHeatmapAf() {
+    try {
+      startLearningActivityTimer();
+
+      if (typeof afIsLoggedIn === "function" && afIsLoggedIn()) {
+        loadLearningHeatmap();
+      }
+    } catch (error) {
+      console.error("initLearningHeatmapAf failed:", error);
+    }
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
-    startLearningActivityTimer();
-    loadLearningHeatmap();
+    initLearningHeatmapAf();
   });
 
   document.addEventListener("visibilitychange", function () {
     if (document.visibilityState === "visible") {
-      loadLearningHeatmap();
+      if (typeof afIsLoggedIn === "function" && afIsLoggedIn()) {
+        loadLearningHeatmap();
+      }
 
       if (!afLearningActivityMarkedForSession) {
         startLearningActivityTimer();
