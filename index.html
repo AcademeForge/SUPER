@@ -16408,7 +16408,303 @@ body.dark-mode .coming-soon-close {
     font-size: 15px;
   }
 }
+/* ==============================
+   SETTINGS PAGE - AF
+================================ */
 
+.settings-section {
+  width: 100%;
+  min-height: 100dvh;
+  background: #ffffff;
+  padding: 72px 20px 96px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.settings-page {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.settings-profile-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.settings-avatar {
+  width: 58px;
+  height: 58px;
+  flex: 0 0 58px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #a7f3d0, #86efac);
+  font-size: 30px;
+  box-shadow: 0 10px 24px rgba(22, 163, 74, 0.14);
+}
+
+.settings-profile-info {
+  min-width: 0;
+}
+
+.settings-profile-info h2 {
+  margin: 0;
+  color: #202124;
+  font-size: 24px;
+  line-height: 1.12;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.settings-profile-link {
+  margin-top: 4px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #7b7f86;
+  font-size: 17px;
+  line-height: 1.2;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+}
+
+.settings-purchase-btn,
+.settings-beta-card,
+.settings-row {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.settings-purchase-btn {
+  min-height: 52px;
+  padding: 0 16px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  background: #f7f7f7;
+  color: #3f4247;
+  font-size: 17px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.settings-divider {
+  width: 100%;
+  height: 1px;
+  margin: 22px 0;
+  background: #e7e7e7;
+}
+
+.settings-beta-card {
+  min-height: 52px;
+  margin-bottom: 20px;
+  padding: 0 16px 0 20px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #f5fbff, #eef8ff);
+  color: #33363a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16.5px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.settings-arrow {
+  color: #4c4f55;
+  font-size: 44px;
+  line-height: 1;
+  font-weight: 300;
+  transform: translateY(-1px);
+}
+
+.settings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.settings-row {
+  min-height: 61px;
+  padding: 0 4px;
+  background: transparent;
+  color: #4a4d52;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.settings-row-btn {
+  cursor: pointer;
+}
+
+.settings-row-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  min-width: 0;
+}
+
+.settings-row-icon {
+  width: 25px;
+  min-width: 25px;
+  display: inline-grid;
+  place-items: center;
+  color: #222;
+  font-size: 22px;
+  line-height: 1;
+  filter: grayscale(1);
+}
+
+.settings-new-badge {
+  min-width: 50px;
+  padding: 6px 11px;
+  border-radius: 7px;
+  background: #fff6d8;
+  color: #d79b18;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 800;
+  text-align: center;
+}
+
+.settings-switch {
+  position: relative;
+  width: 48px;
+  height: 28px;
+  flex: 0 0 auto;
+  display: inline-block;
+}
+
+.settings-switch input {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.settings-slider {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: #d8d8d8;
+  cursor: pointer;
+  transition: background 180ms ease, box-shadow 180ms ease;
+}
+
+.settings-slider::before {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  left: 2px;
+  top: 2px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  transition: transform 180ms ease;
+}
+
+.settings-switch input:checked + .settings-slider {
+  background: #111827;
+}
+
+.settings-switch input:checked + .settings-slider::before {
+  transform: translateX(20px);
+}
+
+.settings-row-btn:active,
+.settings-purchase-btn:active,
+.settings-beta-card:active,
+.settings-profile-link:active {
+  transform: scale(0.985);
+}
+
+/* Settings dark mode */
+body.settings-dark-mode,
+body.settings-dark-mode .settings-section {
+  background: #0b0f17;
+}
+
+body.settings-dark-mode .settings-profile-info h2 {
+  color: #f8fafc;
+}
+
+body.settings-dark-mode .settings-profile-link {
+  color: #9ca3af;
+}
+
+body.settings-dark-mode .settings-purchase-btn {
+  background: #151b26;
+  color: #e5e7eb;
+}
+
+body.settings-dark-mode .settings-divider {
+  background: #202938;
+}
+
+body.settings-dark-mode .settings-beta-card {
+  background: linear-gradient(135deg, #111827, #172033);
+  color: #f8fafc;
+}
+
+body.settings-dark-mode .settings-arrow {
+  color: #d1d5db;
+}
+
+body.settings-dark-mode .settings-row {
+  color: #e5e7eb;
+}
+
+body.settings-dark-mode .settings-row-icon {
+  color: #f8fafc;
+  filter: none;
+}
+
+body.settings-dark-mode .settings-new-badge {
+  background: rgba(245, 158, 11, 0.16);
+  color: #fbbf24;
+}
+
+/* Strong section visibility guard */
+.section {
+  display: none;
+}
+
+.section.active {
+  display: block;
+}
+
+/* Prevent bottom nav overlap */
+body {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+@media (max-width: 430px) {
+  .settings-section {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .settings-profile-info h2 {
+    font-size: 23px;
+  }
+
+  .settings-row {
+    font-size: 17.5px;
+  }
+}
     
   </style>
 </head>
@@ -17686,19 +17982,18 @@ body.dark-mode .coming-soon-close {
       </div>
 </div>
 </section>
-
-    <!-- SETTINGS -->
-<section id="settings" class="app-section settings-section">
+<!-- SETTINGS -->
+<section id="settings" class="section settings-section" aria-label="Settings page">
   <div class="settings-page">
     <div class="settings-profile-card">
       <div class="settings-avatar" aria-hidden="true">👨‍🎓</div>
 
       <div class="settings-profile-info">
-        <h2>Hi, Student</h2>
+        <h2 id="settingsStudentName">Hi, Devraj</h2>
         <button
           type="button"
           class="settings-profile-link"
-          onclick="showComingSoon('Profile')"
+          onclick="openSettingsProfile()"
           aria-label="View profile"
         >
           View profile
@@ -17784,12 +18079,12 @@ body.dark-mode .coming-soon-close {
       <button
         type="button"
         class="settings-row settings-row-btn"
-        onclick="showComingSoon('AF Store')"
-        aria-label="Open AF Store"
+        onclick="showComingSoon('PW Store')"
+        aria-label="Open PW Store"
       >
         <div class="settings-row-left">
           <span class="settings-row-icon" aria-hidden="true">🛒</span>
-          <span>AF Store</span>
+          <span>PW Store</span>
         </div>
       </button>
 
@@ -17808,12 +18103,12 @@ body.dark-mode .coming-soon-close {
       <button
         type="button"
         class="settings-row settings-row-btn"
-        onclick="showComingSoon('AF Books')"
-        aria-label="Open AF Books"
+        onclick="showComingSoon('PW Books')"
+        aria-label="Open PW Books"
       >
         <div class="settings-row-left">
           <span class="settings-row-icon" aria-hidden="true">📚</span>
-          <span>AF Books</span>
+          <span>PW Books</span>
         </div>
 
         <span class="settings-new-badge">New</span>
@@ -17822,12 +18117,12 @@ body.dark-mode .coming-soon-close {
       <button
         type="button"
         class="settings-row settings-row-btn"
-        onclick="showComingSoon('AF Lens')"
-        aria-label="Open AF Lens"
+        onclick="showComingSoon('Pi Lens')"
+        aria-label="Open Pi Lens"
       >
         <div class="settings-row-left">
           <span class="settings-row-icon" aria-hidden="true">⭕</span>
-          <span>AF Lens</span>
+          <span>Pi Lens</span>
         </div>
 
         <span class="settings-new-badge">New</span>
@@ -17858,7 +18153,13 @@ body.dark-mode .coming-soon-close {
     Community
   </button>
 
-  <button class="nav-btn" data-section="settings" onclick="showSection('settings')">
+  <button
+  class="nav-btn"
+  data-section="settings"
+  type="button"
+  onclick="showSection('settings')"
+  aria-label="Open settings"
+>
   <b class="nav-icon-wrap">⚙️</b>
   <span>Settings</span>
 </button>
@@ -28641,300 +28942,266 @@ document.addEventListener("DOMContentLoaded", function () {
   }, 500);
 });
 
-/* =========================
-COMING SOON
+  /* =========================
+   SEETINGS
 ========================= */
-  
-     
-(function () {
-  "use strict";
 
-  var STORAGE_KEYS = {
-    ACTIVE_SECTION: "activeAppSection",
-    DARK_MODE: "settingsDarkMode"
-  };
 
-  var SECTION_SELECTOR = ".app-section";
-  var ACTIVE_CLASS = "active-section";
-
-  function safeQuery(selector) {
+  function showSection(sectionId) {
     try {
-      return document.querySelector(selector);
+      if (typeof sectionId !== "string" || sectionId.trim() === "") {
+        console.error("Invalid section id:", sectionId);
+        return;
+      }
+
+      const targetId = sectionId.trim();
+      const sections = document.querySelectorAll(".section");
+      const navButtons = document.querySelectorAll(".bottom-nav .nav-btn");
+
+      if (!sections.length) {
+        console.error("No .section elements found.");
+        return;
+      }
+
+      const targetSection = document.getElementById(targetId);
+
+      if (!targetSection) {
+        console.error("Target section not found:", targetId);
+        return;
+      }
+
+      sections.forEach((section) => {
+        section.classList.remove("active");
+        section.setAttribute("aria-hidden", "true");
+      });
+
+      targetSection.classList.add("active");
+      targetSection.setAttribute("aria-hidden", "false");
+
+      navButtons.forEach((button) => {
+        const buttonSection = button.getAttribute("data-section");
+        const isActive = buttonSection === targetId;
+
+        button.classList.toggle("active", isActive);
+
+        if (isActive) {
+          button.setAttribute("aria-current", "page");
+        } else {
+          button.removeAttribute("aria-current");
+        }
+      });
+
+      closeSettingsWhenLeaving(targetId);
+      runSectionSideEffects(targetId);
+
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "instant"
+      });
     } catch (error) {
-      console.error("Invalid selector:", selector, error);
-      return null;
+      console.error("showSection failed:", error);
     }
   }
 
-  function safeQueryAll(selector) {
+  function closeSettingsWhenLeaving(activeSectionId) {
     try {
-      return Array.prototype.slice.call(document.querySelectorAll(selector));
+      const settingsSection = document.getElementById("settings");
+
+      if (!settingsSection) {
+        return;
+      }
+
+      if (activeSectionId !== "settings") {
+        settingsSection.classList.remove("active");
+        settingsSection.setAttribute("aria-hidden", "true");
+      }
     } catch (error) {
-      console.error("Invalid selector:", selector, error);
-      return [];
+      console.error("closeSettingsWhenLeaving failed:", error);
     }
   }
 
-  function normalizeSectionId(sectionId) {
-    if (typeof sectionId !== "string") return "";
-    return sectionId.replace(/^#/, "").trim();
-  }
-
-  function getAllSections() {
-    return safeQueryAll(SECTION_SELECTOR);
-  }
-
-  function hideComingSoon() {
-    var overlay = safeQuery("#comingSoonOverlay");
-    if (!overlay) return;
-
-    overlay.classList.remove("show");
-    overlay.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
-  }
-
-  function ensureComingSoonModal() {
-    var existing = safeQuery("#comingSoonOverlay");
-    if (existing) return existing;
-
-    var overlay = document.createElement("div");
-    overlay.id = "comingSoonOverlay";
-    overlay.className = "coming-soon-overlay";
-    overlay.setAttribute("role", "dialog");
-    overlay.setAttribute("aria-modal", "true");
-    overlay.setAttribute("aria-hidden", "true");
-
-    overlay.innerHTML =
-      '<div class="coming-soon-modal" role="document">' +
-        '<div class="coming-soon-icon" aria-hidden="true">🚧</div>' +
-        '<h3 class="coming-soon-title" id="comingSoonTitle">Coming Soon</h3>' +
-        '<p class="coming-soon-message" id="comingSoonMessage">This feature is coming soon.</p>' +
-        '<button type="button" class="coming-soon-close" id="comingSoonCloseBtn">OK</button>' +
-      '</div>';
-
-    document.body.appendChild(overlay);
-
-    overlay.addEventListener("click", function (event) {
-      if (event.target === overlay) {
-        hideComingSoon();
-      }
-    });
-
-    var closeBtn = safeQuery("#comingSoonCloseBtn");
-    if (closeBtn) {
-      closeBtn.addEventListener("click", hideComingSoon);
-    }
-
-    return overlay;
-  }
-
-  function showComingSoon(featureName) {
-    var overlay = ensureComingSoonModal();
-    var title = safeQuery("#comingSoonTitle");
-    var message = safeQuery("#comingSoonMessage");
-
-    var cleanFeatureName =
-      typeof featureName === "string" && featureName.trim().length > 0
-        ? featureName.trim()
-        : "This feature";
-
-    if (title) {
-      title.textContent = "Coming Soon";
-    }
-
-    if (message) {
-      message.textContent = cleanFeatureName + " will be available soon.";
-    }
-
-    overlay.classList.add("show");
-    overlay.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-
-    var closeBtn = safeQuery("#comingSoonCloseBtn");
-    if (closeBtn) {
-      setTimeout(function () {
-        closeBtn.focus();
-      }, 30);
-    }
-  }
-
-  function showSection(sectionId, options) {
-    var normalizedId = normalizeSectionId(sectionId);
-    var target = normalizedId ? document.getElementById(normalizedId) : null;
-    var sections = getAllSections();
-
-    if (!target || !target.classList.contains("app-section")) {
-      console.warn("Section not found or missing .app-section:", sectionId);
-      return false;
-    }
-
-    hideComingSoon();
-
-    sections.forEach(function (section) {
-      section.classList.remove(ACTIVE_CLASS);
-      section.setAttribute("aria-hidden", "true");
-    });
-
-    target.classList.add(ACTIVE_CLASS);
-    target.setAttribute("aria-hidden", "false");
-
-    if (!options || options.persist !== false) {
-      try {
-        localStorage.setItem(STORAGE_KEYS.ACTIVE_SECTION, normalizedId);
-      } catch (error) {
-        console.warn("Unable to persist active section:", error);
-      }
-    }
-
-    syncActiveNav(normalizedId);
-    return true;
-  }
-
-  function syncActiveNav(activeSectionId) {
-    var navItems = safeQueryAll("[data-section], [data-target], [data-nav-target]");
-
-    navItems.forEach(function (item) {
-      var target =
-        item.getAttribute("data-section") ||
-        item.getAttribute("data-target") ||
-        item.getAttribute("data-nav-target") ||
-        "";
-
-      var normalizedTarget = normalizeSectionId(target);
-      var isActive = normalizedTarget === activeSectionId;
-
-      item.classList.toggle("active", isActive);
-      item.classList.toggle("active-nav", isActive);
-
-      if (item.tagName === "BUTTON" || item.tagName === "A") {
-        item.setAttribute("aria-current", isActive ? "page" : "false");
-      }
-    });
-  }
-
-  function applyDarkMode(isEnabled) {
-    document.body.classList.toggle("dark-mode", Boolean(isEnabled));
-    document.documentElement.classList.toggle("dark-mode", Boolean(isEnabled));
-
-    var toggle = safeQuery("#settingsDarkToggle");
-    if (toggle) {
-      toggle.checked = Boolean(isEnabled);
-    }
-
+  function runSectionSideEffects(sectionId) {
     try {
-      localStorage.setItem(STORAGE_KEYS.DARK_MODE, Boolean(isEnabled) ? "1" : "0");
+      if (sectionId === "batchaf" && typeof openBatchSectionaf === "function") {
+        openBatchSectionaf();
+      }
+
+      if (sectionId === "explore" && typeof loadAFTestPageV1 === "function") {
+        loadAFTestPageV1();
+      }
+
+      if (sectionId === "settings") {
+        hydrateSettingsStudentName();
+        syncSettingsDarkToggle();
+      }
     } catch (error) {
-      console.warn("Unable to persist dark mode:", error);
+      console.error("runSectionSideEffects failed:", error);
+    }
+  }
+
+  function hydrateSettingsStudentName() {
+    try {
+      const nameNode = document.getElementById("settingsStudentName");
+
+      if (!nameNode) {
+        return;
+      }
+
+      const possibleNameSources = [
+        document.getElementById("afProfileHeroName"),
+        document.getElementById("studentDashboardCardNameAf"),
+        document.getElementById("afNexusStudentNameV2")
+      ];
+
+      let studentName = "Student";
+
+      for (const source of possibleNameSources) {
+        if (!source) {
+          continue;
+        }
+
+        const text = String(source.textContent || "").trim();
+
+        if (!text) {
+          continue;
+        }
+
+        const cleaned = text
+          .replace(/^hi,\s*/i, "")
+          .replace(/^welcome\s*/i, "")
+          .trim();
+
+        if (cleaned && cleaned !== "-" && cleaned.toLowerCase() !== "student") {
+          studentName = cleaned;
+          break;
+        }
+      }
+
+      nameNode.textContent = "Hi, " + studentName;
+    } catch (error) {
+      console.error("hydrateSettingsStudentName failed:", error);
+    }
+  }
+
+  function openSettingsProfile() {
+    try {
+      const dashboard = document.getElementById("studentDashboardAf");
+
+      if (dashboard) {
+        showSection("studentDashboardAf");
+        return;
+      }
+
+      if (typeof showComingSoon === "function") {
+        showComingSoon("Profile");
+        return;
+      }
+
+      alert("Profile coming soon.");
+    } catch (error) {
+      console.error("openSettingsProfile failed:", error);
     }
   }
 
   function toggleSettingsDarkMode(isEnabled) {
-    applyDarkMode(Boolean(isEnabled));
-  }
-
-  function restoreDarkMode() {
-    var storedValue = null;
-
     try {
-      storedValue = localStorage.getItem(STORAGE_KEYS.DARK_MODE);
-    } catch (error) {
-      storedValue = null;
-    }
+      const enabled = Boolean(isEnabled);
 
-    var shouldEnable = storedValue === "1";
-    applyDarkMode(shouldEnable);
+      document.body.classList.toggle("settings-dark-mode", enabled);
+      localStorage.setItem("af_settings_dark_mode", enabled ? "1" : "0");
+
+      if (typeof toggleThemeMode === "function") {
+        const appAlreadyDark =
+          document.body.classList.contains("dark") ||
+          document.body.classList.contains("dark-mode") ||
+          document.documentElement.classList.contains("dark");
+
+        if (enabled !== appAlreadyDark) {
+          toggleThemeMode();
+        }
+      }
+    } catch (error) {
+      console.error("toggleSettingsDarkMode failed:", error);
+    }
   }
 
-  function bindNavClicks() {
-    document.addEventListener("click", function (event) {
-      var navTrigger = event.target.closest("[data-section], [data-target], [data-nav-target]");
+  function syncSettingsDarkToggle() {
+    try {
+      const toggle = document.getElementById("settingsDarkToggle");
 
-      if (!navTrigger) return;
-
-      var target =
-        navTrigger.getAttribute("data-section") ||
-        navTrigger.getAttribute("data-target") ||
-        navTrigger.getAttribute("data-nav-target") ||
-        "";
-
-      var normalizedTarget = normalizeSectionId(target);
-
-      if (!normalizedTarget) return;
-
-      var targetSection = document.getElementById(normalizedTarget);
-
-      if (!targetSection || !targetSection.classList.contains("app-section")) {
+      if (!toggle) {
         return;
       }
 
-      event.preventDefault();
-      showSection(normalizedTarget);
-    });
-  }
+      const stored = localStorage.getItem("af_settings_dark_mode");
+      const isDark =
+        stored === "1" ||
+        document.body.classList.contains("settings-dark-mode") ||
+        document.body.classList.contains("dark") ||
+        document.body.classList.contains("dark-mode") ||
+        document.documentElement.classList.contains("dark");
 
-  function bindEscapeClose() {
-    document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape") {
-        hideComingSoon();
-      }
-    });
-  }
-
-  function bootInitialSection() {
-    var storedSection = "";
-
-    try {
-      storedSection = localStorage.getItem(STORAGE_KEYS.ACTIVE_SECTION) || "";
+      toggle.checked = Boolean(isDark);
+      document.body.classList.toggle("settings-dark-mode", Boolean(isDark));
     } catch (error) {
-      storedSection = "";
-    }
-
-    var validStoredSection =
-      storedSection &&
-      document.getElementById(storedSection) &&
-      document.getElementById(storedSection).classList.contains("app-section");
-
-    if (validStoredSection) {
-      showSection(storedSection, { persist: false });
-      return;
-    }
-
-    var firstSection = safeQuery(".app-section:not(#settings)") || safeQuery(".app-section");
-
-    if (firstSection && firstSection.id) {
-      showSection(firstSection.id, { persist: false });
-      return;
-    }
-
-    var settings = safeQuery("#settings");
-    if (settings) {
-      settings.classList.remove(ACTIVE_CLASS);
-      settings.setAttribute("aria-hidden", "true");
+      console.error("syncSettingsDarkToggle failed:", error);
     }
   }
 
-  function exposeGlobals() {
-    window.showSection = showSection;
-    window.showComingSoon = showComingSoon;
-    window.hideComingSoon = hideComingSoon;
-    window.toggleSettingsDarkMode = toggleSettingsDarkMode;
+  function showComingSoon(featureName) {
+    try {
+      const safeFeatureName =
+        typeof featureName === "string" && featureName.trim()
+          ? featureName.trim()
+          : "This feature";
+
+      if (typeof showToast === "function") {
+        showToast("Coming Soon", safeFeatureName + " will be available soon.");
+        return;
+      }
+
+      const toast = document.getElementById("toast");
+
+      if (toast) {
+        const title = toast.querySelector("strong");
+        const message = toast.querySelector("p");
+
+        if (title) {
+          title.textContent = "Coming Soon";
+        }
+
+        if (message) {
+          message.textContent = safeFeatureName + " will be available soon.";
+        }
+
+        toast.classList.add("show");
+
+        window.clearTimeout(window.__afToastTimer);
+        window.__afToastTimer = window.setTimeout(() => {
+          toast.classList.remove("show");
+        }, 2200);
+
+        return;
+      }
+
+      alert(safeFeatureName + " will be available soon.");
+    } catch (error) {
+      console.error("showComingSoon failed:", error);
+    }
   }
 
-  function initSettingsSystem() {
-    exposeGlobals();
-    ensureComingSoonModal();
-    restoreDarkMode();
-    bindNavClicks();
-    bindEscapeClose();
-    bootInitialSection();
-  }
+  document.addEventListener("DOMContentLoaded", function () {
+    try {
+      const activeSection = document.querySelector(".section.active");
+      const initialSectionId = activeSection ? activeSection.id : "home";
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initSettingsSystem);
-  } else {
-    initSettingsSystem();
-  }
-})();
+      syncSettingsDarkToggle();
+      showSection(initialSectionId || "home");
+    } catch (error) {
+      console.error("Initial section setup failed:", error);
+    }
+  });
 
   </script>
 </body>
