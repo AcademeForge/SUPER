@@ -28764,6 +28764,100 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+  function getAfAppDarkModeState() {
+    try {
+      return (
+        document.body.classList.contains("dark-mode") ||
+        document.body.classList.contains("dark") ||
+        document.body.classList.contains("settings-dark-mode") ||
+        document.documentElement.classList.contains("dark-mode") ||
+        document.documentElement.classList.contains("dark") ||
+        localStorage.getItem("af_theme_mode") === "dark" ||
+        localStorage.getItem("theme") === "dark" ||
+        localStorage.getItem("darkMode") === "1" ||
+        localStorage.getItem("af_settings_dark_mode") === "1"
+      );
+    } catch (error) {
+      console.error("getAfAppDarkModeState failed:", error);
+      return false;
+    }
+  }
+
+  function syncSettingsDarkToggleSafe() {
+    try {
+      const toggle = document.getElementById("settingsDarkToggle");
+
+      if (!toggle) {
+        return;
+      }
+
+      const isDark = getAfAppDarkModeState();
+      toggle.checked = Boolean(isDark);
+      document.body.classList.toggle("settings-dark-mode", Boolean(isDark));
+    } catch (error) {
+      console.error("syncSettingsDarkToggleSafe failed:", error);
+    }
+  }
+
+  function syncSettingsDarkToggleWithApp() {
+    try {
+      syncSettingsDarkToggleSafe();
+    } catch (error) {
+      console.error("syncSettingsDarkToggleWithApp failed:", error);
+    }
+  }
+
+  function hydrateSettingsNameSafe() {
+    try {
+      const nameNode = document.getElementById("settingsStudentName");
+
+      if (!nameNode) {
+        return;
+      }
+
+      const possibleNameNodes = [
+        document.getElementById("afProfileHeroName"),
+        document.getElementById("studentDashboardCardNameAf"),
+        document.getElementById("afNexusStudentNameV2"),
+        document.getElementById("studentName"),
+        document.querySelector("[data-student-name]")
+      ];
+
+      let name = "Student";
+
+      for (const node of possibleNameNodes) {
+        if (!node) {
+          continue;
+        }
+
+        const rawText = String(node.textContent || "").trim();
+
+        if (!rawText) {
+          continue;
+        }
+
+        const cleanedName = rawText
+          .replace(/^hi,\s*/i, "")
+          .replace(/^hello,\s*/i, "")
+          .replace(/^welcome,?\s*/i, "")
+          .trim();
+
+        if (
+          cleanedName &&
+          cleanedName !== "-" &&
+          cleanedName.toLowerCase() !== "student"
+        ) {
+          name = cleanedName;
+          break;
+        }
+      }
+
+      nameNode.textContent = "Hi, " + name;
+    } catch (error) {
+      console.error("hydrateSettingsNameSafe failed:", error);
+    }
+  }
+
   function showSection(sectionId) {
     try {
       if (typeof sectionId !== "string" || sectionId.trim() === "") {
@@ -28784,6 +28878,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       allSections.forEach(function (section) {
         section.classList.remove("active");
+        section.classList.remove("active-section");
         section.setAttribute("aria-hidden", "true");
       });
 
@@ -28812,69 +28907,41 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       if (targetId === "settings") {
-        syncSettingsDarkToggleSafe();
         hydrateSettingsNameSafe();
+        syncSettingsDarkToggleSafe();
       }
 
-      window.scrollTo(0, 0);
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "auto"
+      });
     } catch (error) {
       console.error("showSection failed:", error);
     }
   }
 
-  function syncSettingsDarkToggleSafe() {
-    try {
-      const toggle = document.getElementById("settingsDarkToggle");
-
-      if (!toggle) {
-        return;
-      }
-
-      const stored = localStorage.getItem("af_settings_dark_mode");
-      const isDark = stored === "1";
-
-      toggle.checked = isDark;
-      document.body.classList.toggle("settings-dark-mode", isDark);
-    } catch (error) {
-      console.error("syncSettingsDarkToggleSafe failed:", error);
-    }
-  }
-
-  function hydrateSettingsNameSafe() {
-    try {
-      const nameNode = document.getElementById("settingsStudentName");
-
-      if (!nameNode) {
-        return;
-      }
-
-      const profileNameNode = document.getElementById("afProfileHeroName");
-      const dashboardNameNode = document.getElementById("studentDashboardCardNameAf");
-
-      let name = "student";
-
-      if (profileNameNode && profileNameNode.textContent.trim()) {
-        name = profileNameNode.textContent.trim();
-      } else if (dashboardNameNode && dashboardNameNode.textContent.trim()) {
-        name = dashboardNameNode.textContent.trim().replace(/^Hi,\s*/i, "").trim();
-      }
-
-      if (!name || name === "-" || name.toLowerCase() === "student") {
-        name = "student";
-      }
-
-      nameNode.textContent = "Hi, " + name;
-    } catch (error) {
-      console.error("hydrateSettingsNameSafe failed:", error);
-    }
-  }
-
   function toggleSettingsDarkMode(isEnabled) {
     try {
-      const enabled = Boolean(isEnabled);
+      const shouldBeDark = Boolean(isEnabled);
+      const isCurrentlyDark = getAfAppDarkModeState();
 
-      document.body.classList.toggle("settings-dark-mode", enabled);
-      localStorage.setItem("af_settings_dark_mode", enabled ? "1" : "0");
+      if (shouldBeDark !== isCurrentlyDark) {
+        if (typeof toggleThemeMode === "function") {
+          toggleThemeMode();
+        } else {
+          document.body.classList.toggle("dark-mode", shouldBeDark);
+          document.documentElement.classList.toggle("dark-mode", shouldBeDark);
+          localStorage.setItem("af_theme_mode", shouldBeDark ? "dark" : "light");
+        }
+      }
+
+      document.body.classList.toggle("settings-dark-mode", shouldBeDark);
+      localStorage.setItem("af_settings_dark_mode", shouldBeDark ? "1" : "0");
+
+      window.setTimeout(function () {
+        syncSettingsDarkToggleSafe();
+      }, 0);
     } catch (error) {
       console.error("toggleSettingsDarkMode failed:", error);
     }
@@ -28882,10 +28949,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function openSettingsProfile() {
     try {
-      const profileSection = document.getElementById("studentDashboardAf");
+      const profileSection =
+        document.getElementById("studentDashboardAf") ||
+        document.getElementById("studentaf") ||
+        document.getElementById("profile");
 
       if (profileSection) {
-        showSection("studentDashboardAf");
+        showSection(profileSection.id);
         return;
       }
 
@@ -28895,17 +28965,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  document.addEventListener("DOMContentLoaded", function () {
-    try {
-      const activeSection = document.querySelector(".section.active, .app-section.active");
-      const initialSection = activeSection ? activeSection.id : "home";
-
-      showSection(initialSection);
-    } catch (error) {
-      console.error("DOMContentLoaded section init failed:", error);
-    }
-  });
-<script>
   function showComingSoon(featureName) {
     try {
       const overlay = document.getElementById("comingSoonOverlay");
@@ -28927,7 +28986,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (overlay) {
         overlay.classList.add("show");
-        document.body.style.overflow = "hidden";
+        overlay.setAttribute("aria-hidden", "false");
+        document.body.classList.add("coming-soon-open");
         return;
       }
 
@@ -28957,26 +29017,43 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  
   function closeComingSoonPopup() {
     try {
       const overlay = document.getElementById("comingSoonOverlay");
 
       if (overlay) {
         overlay.classList.remove("show");
+        overlay.setAttribute("aria-hidden", "true");
       }
 
-      document.body.style.overflow = "";
+      document.body.classList.remove("coming-soon-open");
     } catch (error) {
       console.error("closeComingSoonPopup failed:", error);
     }
   }
+
+  function initializeAfAppNavigation() {
+    try {
+      const activeSection = document.querySelector(".section.active, .app-section.active");
+      const initialSection = activeSection ? activeSection.id : "home";
+
+      syncSettingsDarkToggleSafe();
+      showSection(initialSection);
+    } catch (error) {
+      console.error("initializeAfAppNavigation failed:", error);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    initializeAfAppNavigation();
+  });
 
   document.addEventListener("keydown", function (event) {
     if (event.key === "Escape") {
       closeComingSoonPopup();
     }
   });
+
 
   </script>
 </body>
