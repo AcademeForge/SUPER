@@ -19701,14 +19701,18 @@ body.settings-dark-mode #courseaf .student-course-locked-af p {
   </div>
 </section>
 
-
 <!-- =========================================================
-     COURSE SECTION
-     Bottom nav Course button opens this section: courseaf
+     COURSE SECTION - AF
+     New nav Course button opens this section: courseaf
+     Old course dashboard IDs are preserved for old JS compatibility
 ========================================================= -->
+
 <section id="courseaf" class="section student-course-section-af" aria-label="Student Courses">
   <div class="student-course-page-af">
 
+    <!-- ==============================
+         COURSE TOP HEADER
+    ================================= -->
     <div class="student-course-head-af">
       <div>
         <p>Student Dashboard</p>
@@ -19725,7 +19729,9 @@ body.settings-dark-mode #courseaf .student-course-locked-af p {
       </button>
     </div>
 
-    <!-- LOGGED OUT STATE -->
+    <!-- ==============================
+         LOGGED OUT STATE
+    ================================= -->
     <div id="studentCourseLoggedOutStateaf" class="student-course-locked-af" hidden>
       <div class="student-course-lock-icon-af" aria-hidden="true">🔐</div>
 
@@ -19745,26 +19751,157 @@ body.settings-dark-mode #courseaf .student-course-locked-af p {
       </button>
     </div>
 
-    <!-- LOGGED IN COURSE AREA -->
+    <!-- ==============================
+         LOGGED IN COURSE AREA
+         IMPORTANT:
+         Old course HTML is inside this area.
+         Old IDs are preserved:
+         courseSelectBox
+         noCourseBoxaf
+         courseDetailsBoxaf
+         learningBoxaf
+         chapterBoxaf
+         contentBoxaf
+    ================================= -->
     <div id="studentCourseUnlockedAreaaf" class="student-course-unlocked-af">
-      <div class="student-course-empty-card-af">
-        <div class="student-course-empty-icon-af" aria-hidden="true">📚</div>
 
-        <h3>Your enrolled courses will appear here</h3>
+      <!-- ==============================
+           STUDENT COURSE DASHBOARD - AF
+           Show after login
+      ================================= -->
+      <div class="student-dashboardaf hidden-box" id="courseSelectBox">
+        <div class="student-dash-headaf">
+          <div>
+            <h2>📚 My Courses</h2>
+            <p id="studentWelcomeTextaf">Welcome Student</p>
+          </div>
 
-        <p>
-          After login, your active courses, batches, and access details will be loaded here.
+          <button class="student-logoutaf" type="button" onclick="logoutStudentaf()">
+            Logout
+          </button>
+        </div>
+
+        <p class="student-dash-subaf">
+          Your enrolled programs are ready to explore.
         </p>
+
+        <div class="course-select-gridaf" id="courseCardsaf"></div>
       </div>
 
-      <div id="studentCoursesListaf" class="student-courses-list-af"></div>
-    </div>
+      <!-- ==============================
+           NO COURSE / MESSAGE AREA - AF
+      ================================= -->
+      <div class="student-dashboardaf hidden-box" id="noCourseBoxaf">
+        <div class="no-course-cardaf">
+          <div class="no-course-iconaf">😬</div>
+          <h2>Oops!</h2>
+          <p>You are not enrolled in any batch.</p>
+          <p>Please enroll from the Course section.</p>
 
+          <button class="student-logoutaf" type="button" onclick="logoutStudentaf()">
+            Logout
+          </button>
+        </div>
+      </div>
+
+      <!-- ==============================
+           COURSE DETAILS - AF
+      ================================= -->
+      <div class="student-dashboardaf hidden-box" id="courseDetailsBoxaf">
+        <button class="back-miniaf" type="button" onclick="backToCoursesaf()">
+          ← Back to Courses
+        </button>
+
+        <div class="course-detail-headaf">
+          <div class="course-detail-iconaf" id="courseDetailIconaf">📘</div>
+
+          <div>
+            <h2 id="courseTitleaf">Course Name</h2>
+            <p id="courseIntroaf">Course intro will appear here.</p>
+          </div>
+        </div>
+
+        <div class="course-info-boxaf">
+          <h3>📌 Course Details</h3>
+          <p id="courseDetailsaf"></p>
+        </div>
+
+        <div class="course-info-boxaf">
+          <h3>🧾 Course Syllabus</h3>
+          <ul id="courseSyllabusaf"></ul>
+        </div>
+
+        <div class="course-info-boxaf">
+          <h3>🏫 Facilities</h3>
+          <ul id="courseFacilitiesaf"></ul>
+        </div>
+
+        <button class="student-main-btnaf" type="button" onclick="startLearningaf()">
+          Continue Learning
+        </button>
+      </div>
+
+      <!-- ==============================
+           LEARNING CHOICE - AF
+      ================================= -->
+      <div class="student-dashboardaf hidden-box" id="learningBoxaf">
+        <button class="back-miniaf" type="button" onclick="backToCourseDetailsaf()">
+          ← Back to Course
+        </button>
+
+        <h2 id="learningTitleaf">Start Learning</h2>
+        <p class="student-dash-subaf">Select what you want to access.</p>
+
+        <div class="learning-choiceaf">
+          <button class="learning-btnaf" type="button" onclick="openLearningModeaf('lectures')">
+            <span>🎥</span>
+            <strong>Lectures</strong>
+            <small>Chapter-wise video lecture list</small>
+          </button>
+
+          <button class="learning-btnaf" type="button" onclick="openLearningModeaf('notes')">
+            <span>📝</span>
+            <strong>Notes</strong>
+            <small>Chapter-wise study notes list</small>
+          </button>
+        </div>
+      </div>
+
+      <!-- ==============================
+           CHAPTER LIST - AF
+      ================================= -->
+      <div class="student-dashboardaf hidden-box" id="chapterBoxaf">
+        <button class="back-miniaf" type="button" onclick="backToLearningaf()">
+          ← Back
+        </button>
+
+        <h2 id="chapterModeTitleaf">Lectures</h2>
+        <p class="student-dash-subaf">Select a chapter to continue.</p>
+
+        <div class="chapter-listaf" id="chapterListaf"></div>
+      </div>
+
+      <!-- ==============================
+           CONTENT LIST - AF
+      ================================= -->
+      <div class="student-dashboardaf hidden-box" id="contentBoxaf">
+        <button class="back-miniaf" type="button" onclick="backToChaptersaf()">
+          ← Back to Chapters
+        </button>
+
+        <h2 id="contentTitleaf">Chapter Content</h2>
+        <p class="student-dash-subaf" id="contentSubtitleaf">
+          Select and study one by one.
+        </p>
+
+        <div class="content-listaf" id="contentListaf"></div>
+      </div>
+
+    </div>
   </div>
 </section>
-
-
     <!-- ==============================
+
      Student dashboard- AF
 ================================ -->
    </section> 
