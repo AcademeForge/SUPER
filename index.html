@@ -15711,6 +15711,61 @@ body.dark-mode #studentaf .student-tab-btn.active {
   color: #7c3aed !important;
   font-weight: 900 !important;
 }
+
+    .notification-time-box {
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  text-decoration: none;
+  font: inherit;
+  color: inherit;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 54px;
+  height: 54px;
+  padding: 0;
+
+  border-radius: 14px;
+  transition:
+    transform 0.18s ease,
+    background 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.notification-time-box.glass {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.notification-time-box:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.notification-time-box:active {
+  transform: translateY(0) scale(0.96);
+}
+
+.notification-time-box:focus-visible {
+  box-shadow:
+    0 0 0 3px rgba(59, 130, 246, 0.45),
+    0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.notification-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 22px;
+  line-height: 1;
+}
   </style>
 </head>
 
@@ -15736,12 +15791,15 @@ body.dark-mode #studentaf .student-tab-btn.active {
 <button class="theme-toggle-btn" onclick="toggleThemeMode()" id="themeToggleBtn">
   🌙
 </button>
-        
-       <a href="https://academeforge.in/" class="time-box glass">
-  <strong id="time">Website</strong>
-  <span id="date">academeforge.in</span>
-</a>
-        
+     <button
+  type="button"
+  class="time-box glass notification-time-box"
+  data-section="notifications"
+  onclick="showSection('notifications')"
+  aria-label="Open notifications"
+>
+  <strong class="notification-icon">🔔</strong>
+</button>
       </div>
 
     </header>
@@ -15953,14 +16011,6 @@ body.dark-mode #studentaf .student-tab-btn.active {
           <div class="af-test-history-empty-v1">Top 10 will show after students attempt test.</div>
         </div>
       </div>
-
-    </div>
-
-    <div class="developer-credit-line af-test-credit-v1">
-      <span>© 2026 AcademeForge by Devraj Kumar.</span>
-      <small>Made with ❤️ in India.</small>
-    </div>
-
   </div>
 </section>
     
@@ -16804,11 +16854,6 @@ body.dark-mode #studentaf .student-tab-btn.active {
     <div id="notificationsList" class="notifications-list">
       <div class="notification-empty">No notifications yet.</div>
     </div>
-
-    <div class="developer-credit-line notification-credit">
-      <span>© 2026 AcademeForge by Devraj Kumar.</span>
-      <small>Made with ❤️ in India.</small>
-    </div>
   </div>
 </section>
 
@@ -16995,14 +17040,7 @@ body.dark-mode #studentaf .student-tab-btn.active {
           Devraj Kumar.
         </p>
       </div>
-    </div>
-
-    <div class="developer-credit-line about-af-footer">
-      <span>© 2026 AcademeForge by Devraj Kumar.</span>
-      <small>Made with ❤️ in India.</small>
-    </div>
-
-  </div>
+</div>
 </section>
 <!-----------------------  NAV BUTTONS --------------------------------------->
 
