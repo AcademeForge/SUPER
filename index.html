@@ -30362,45 +30362,374 @@ if ("serviceWorker" in navigator) {
 }
 
 
+
 /* =========================
-   DEVICE HELPERS
+   DEVICE HELPERS - FIXED
+   1 ID = 1 active device
+   Current device logout only when same ID logs in on another device
 ========================= */
 
 function getAFDeviceId() {
-  let deviceId = localStorage.getItem("af_device_id");
+  try {
+    var storageKey = "af_device_id";
+    var deviceId = localStorage.getItem(storageKey);
 
-  if (!deviceId) {
-    deviceId = "device_" + Date.now() + "_" + Math.random().toString(36).slice(2);
-    localStorage.setItem("af_device_id", deviceId);
+    if (!deviceId || String(deviceId).trim().length < 16) {
+      var randomPart = "";
+
+      if (window.crypto && window.crypto.getRandomValues) {
+        var arr = new Uint32Array(4);
+        window.crypto.getRandomValues(arr);
+
+        randomPart = Array.from(arr)
+          .map(function (num) {
+            return num.toString(16);
+          })
+          .join("");
+      } else {
+        randomPart =
+          Math.random().toString(36).slice(2) +
+          "_" +
+          Math.random().toString(36).slice(2);
+      }
+
+      deviceId = "af_web_" + randomPart + "_" + Date.now().toString(36);
+      localStorage.setItem(storageKey, deviceId);
+    }
+
+    return deviceId;
+  } catch (error) {
+    console.error("getAFDeviceId failed:", error);
+
+    var fallbackId = localStorage.getItem("af_device_id");
+
+    if (!fallbackId) {
+      fallbackId = "af_web_fallback_" + Date.now().toString(36);
+      localStorage.setItem("af_device_id", fallbackId);
+    }
+
+    return fallbackId;
   }
-
-  return deviceId;
 }
 
 function getAFDeviceName() {
-  const ua = navigator.userAgent || "";
+  try {
+    var ua = navigator.userAgent || "";
 
-  if (/android/i.test(ua)) return "Android Phone";
-  if (/iphone/i.test(ua)) return "iPhone";
-  if (/ipad/i.test(ua)) return "iPad";
-  if (/windows/i.test(ua)) return "Windows Device";
-  if (/mac/i.test(ua)) return "Mac Device";
+    if (/android/i.test(ua)) return "Android Phone";
+    if (/iphone/i.test(ua)) return "iPhone";
+    if (/ipad/i.test(ua)) return "iPad";
+    if (/windows/i.test(ua)) return "Windows Device";
+    if (/mac/i.test(ua)) return "Mac Device";
 
-  return "Unknown Device";
+    return "Web Device";
+  } catch (error) {
+    console.error("getAFDeviceName failed:", error);
+    return "Web Device";
+  }
 }
 
-  /* =========================
-   ONE DEVICE SESSION WATCHER
+/* =========================
+   SESSION UI HELPERS
+========================= */
+
+function showStudentSessionMessageAF(type, message) {
+  try {
+    if (typeof showStudentMessageaf === "function") {
+      showStudentMessageaf(type || "err", message || "");
+      return;
+    }
+
+    var box = document.getElementById("studentMessageaf");
+
+    if (box) {
+      box.className = "student-messageaf " + String(type || "err");
+      box.textContent = message || "";
+    }
+  } catch (error) {
+    console.error("showStudentSessionMessageAF failed:", error);
+  }
+}
+
+function openStudentLoginAfterSessionKickAF(message) {
+  try {
+    if (typeof syncStudentAuthAndCourseStateAF === "function") {
+      syncStudentAuthAndCourseStateAF();
+    }
+
+    if (typeof switchStudentModeaf === "function") {
+      switchStudentModeaf("login");
+    }
+
+    if (typeof showSection === "function") {
+      showSection("studentaf");
+    } else {
+      document.querySelectorAll(".section, .app-section").forEach(function (section) {
+        section.classList.remove("active");
+        section.style.display = "none";
+      });
+
+      var studentSection = document.getElementById("studentaf");
+
+      if (studentSection) {
+        studentSection.classList.add("active");
+        studentSection.style.display = "block";
+      }
+    }
+
+    window.setTimeout(function () {
+      showStudentSessionMessageAF(
+        "err",
+        message || "This Student ID is now active on another device. Login again to continue on this device."
+      );
+    }, 120);
+  } catch (error) {
+    console.error("openStudentLoginAfterSessionKickAF failed:", error);
+  }
+}
+
+/* =========================
+   SESSION STORAGE CLEAR
+   IMPORTANT:
+   Device ID is NOT removed.
+   Device ID must stay stable across refresh.
+========================= */
+
+function clearStudentSessionaf() {
+  try {
+    localStorage.removeItem("af_student_logged_in");
+    localStorage.removeItem("student_logged_in");
+
+    localStorage.removeItem("af_session_token");
+
+    localStorage.removeItem("af_student_uuid");
+    localStorage.removeItem("af_student_id");
+    localStorage.removeItem("af_student_mobile");
+    localStorage.removeItem("af_student_name");
+    localStorage.removeItem("af_student_email");
+    localStorage.removeItem("af_login_mobile");
+    localStorage.removeItem("af_last_login_at");
+
+    localStorage.removeItem("af_student_current_course_id");
+    localStorage.removeItem("af_student_current_batch_id");
+
+    if (typeof syncStudentAuthAndCourseStateAF === "function") {
+      syncStudentAuthAndCourseStateAF();
+    }
+  } catch (error) {
+    console.error("clearStudentSessionaf failed:", error);
+  }
+}
+
+/* =========================
+   FORCE LOGOUT ONLY WHEN ANOTHER DEVICE TAKES SESSION
+========================= */
+
+function forceLogoutStudentaf(message) {
+  try {
+    clearStudentSessionaf();
+
+    var authCard = document.getElementById("studentAuthCardaf");
+    var courseSelectBox = document.getElementById("courseSelectBox");
+    var courseDetailsBox = document.getElementById("courseDetailsBox");
+    var courseLoggedOut = document.getElementById("studentCourseLoggedOutStateaf");
+    var courseUnlocked = document.getElementById("studentCourseUnlockedAreaaf");
+
+    if (courseSelectBox) {
+      courseSelectBox.classList.add("hidden-box");
+      courseSelectBox.style.display = "none";
+    }
+
+    if (courseDetailsBox) {
+      courseDetailsBox.classList.add("hidden-box");
+      courseDetailsBox.style.display = "none";
+    }
+
+    if (courseLoggedOut) {
+      courseLoggedOut.hidden = false;
+    }
+
+    if (courseUnlocked) {
+      courseUnlocked.hidden = true;
+    }
+
+    if (authCard) {
+      authCard.style.display = "block";
+    }
+
+    openStudentLoginAfterSessionKickAF(
+      message || "This Student ID is now active on another device. Login again to continue on this device."
+    );
+  } catch (error) {
+    console.error("forceLogoutStudentaf failed:", error);
+  }
+}
+
+/* =========================
+   SESSION CHECK GUARD
+========================= */
+
+var AF_SESSION_CHECK_RUNNING = false;
+var AF_LAST_SESSION_CHECK_AT = 0;
+var AF_SESSION_CHECK_MIN_GAP_MS = 12000;
+
+function normalizeAFSessionCheckResult(data) {
+  try {
+    if (!data || typeof data !== "object") {
+      return {
+        shouldKick: false,
+        message: ""
+      };
+    }
+
+    var currentDeviceId = localStorage.getItem("af_device_id") || "";
+    var currentToken = localStorage.getItem("af_session_token") || "";
+
+    var serverDeviceId =
+      data.active_device_id ||
+      data.device_id ||
+      data.server_device_id ||
+      data.current_device_id ||
+      "";
+
+    var serverToken =
+      data.active_session_token ||
+      data.session_token ||
+      data.server_session_token ||
+      "";
+
+    var explicitOtherDevice =
+      data.reason === "another_device" ||
+      data.code === "ANOTHER_DEVICE" ||
+      data.error_code === "ANOTHER_DEVICE" ||
+      data.another_device === true ||
+      data.used_on_another_device === true;
+
+    var explicitLogout = data.logout === true;
+    var explicitInvalid = data.valid === false || data.ok === false;
+
+    var hasLocalDevice = String(currentDeviceId).trim().length > 0;
+    var hasLocalToken = String(currentToken).trim().length > 0;
+    var hasServerDevice = String(serverDeviceId).trim().length > 0;
+    var hasServerToken = String(serverToken).trim().length > 0;
+
+    var deviceMismatch =
+      hasLocalDevice &&
+      hasServerDevice &&
+      String(serverDeviceId) !== String(currentDeviceId);
+
+    var tokenMismatch =
+      hasLocalToken &&
+      hasServerToken &&
+      String(serverToken) !== String(currentToken);
+
+    /*
+      Kick only when:
+      - backend clearly says another device, OR
+      - token + device both mismatch, OR
+      - logout/invalid true AND device mismatch.
+      This prevents random logout on network/server false invalid response.
+    */
+    var shouldKick =
+      explicitOtherDevice ||
+      (tokenMismatch && deviceMismatch) ||
+      ((explicitLogout || explicitInvalid) && deviceMismatch);
+
+    return {
+      shouldKick: shouldKick,
+      message:
+        data.message ||
+        "This Student ID is now active on another device. Login again to continue on this device."
+    };
+  } catch (error) {
+    console.error("normalizeAFSessionCheckResult failed:", error);
+
+    return {
+      shouldKick: false,
+      message: ""
+    };
+  }
+}
+
+/* =========================
+   SESSION CHECK - EDGE CALL VERSION
+========================= */
+
+async function checkStudentSessionaf() {
+  var now = Date.now();
+
+  if (AF_SESSION_CHECK_RUNNING) return;
+
+  if (now - AF_LAST_SESSION_CHECK_AT < AF_SESSION_CHECK_MIN_GAP_MS) {
+    return;
+  }
+
+  AF_LAST_SESSION_CHECK_AT = now;
+  AF_SESSION_CHECK_RUNNING = true;
+
+  try {
+    var loggedIn = localStorage.getItem("af_student_logged_in");
+    var sessionToken = localStorage.getItem("af_session_token");
+    var deviceId = getAFDeviceId();
+    var studentId = localStorage.getItem("af_student_id");
+    var mobile = localStorage.getItem("af_student_mobile");
+
+    if (loggedIn !== "true" && loggedIn !== "1") return;
+    if (!sessionToken || !deviceId) return;
+    if (!studentId && !mobile) return;
+
+    if (typeof afStudentEdgeCall !== "function") {
+      console.warn("afStudentEdgeCall missing. Session check skipped.");
+      return;
+    }
+
+    var result = await afStudentEdgeCall("student-check-session-af", {
+      session_token: sessionToken,
+      device_id: deviceId,
+      student_id: studentId,
+      mobile: mobile
+    });
+
+    console.log("AF SESSION CHECK:", result);
+
+    var normalized = normalizeAFSessionCheckResult(result);
+
+    if (normalized.shouldKick === true) {
+      forceLogoutStudentaf(normalized.message);
+      return;
+    }
+  } catch (error) {
+    console.log("Session check failed:", error);
+  } finally {
+    AF_SESSION_CHECK_RUNNING = false;
+  }
+}
+
+/* =========================
+   SESSION CHECK - FETCH VERSION
+   Kept for old code compatibility.
+   Does NOT auto logout unless another device confirmed.
 ========================= */
 
 async function checkStudentActiveSessionAF() {
-  var studentId = localStorage.getItem("af_student_id");
-  var sessionToken = localStorage.getItem("af_session_token");
-  var deviceId = localStorage.getItem("af_device_id");
+  var now = Date.now();
 
-  if (!studentId || !sessionToken || !deviceId) return;
+  if (AF_SESSION_CHECK_RUNNING) return;
+
+  if (now - AF_LAST_SESSION_CHECK_AT < AF_SESSION_CHECK_MIN_GAP_MS) {
+    return;
+  }
+
+  AF_LAST_SESSION_CHECK_AT = now;
+  AF_SESSION_CHECK_RUNNING = true;
 
   try {
+    var studentId = localStorage.getItem("af_student_id");
+    var sessionToken = localStorage.getItem("af_session_token");
+    var deviceId = getAFDeviceId();
+
+    if (!studentId || !sessionToken || !deviceId) return;
+
     var res = await fetch("https://afooyyydhlwngzssgqih.supabase.co/functions/v1/student-session-check-af", {
       method: "POST",
       headers: {
@@ -30417,127 +30746,100 @@ async function checkStudentActiveSessionAF() {
       return {};
     });
 
-    console.log("SESSION CHECK:", data);
+    console.log("AF ACTIVE SESSION CHECK:", data);
 
-    if (data.logout === true || data.valid === false) {
-      forceStudentLogoutAF(data.message || "Your account was logged in on another device.");
+    var normalized = normalizeAFSessionCheckResult(data);
+
+    if (normalized.shouldKick === true) {
+      forceLogoutStudentaf(normalized.message);
       return;
     }
-
-  } catch (e) {
-    console.log("Session check failed:", e);
+  } catch (error) {
+    console.log("Active session check failed:", error);
+  } finally {
+    AF_SESSION_CHECK_RUNNING = false;
   }
 }
 
- /* =========================
-   SINGLE DEVICE SESSION CHECK
+/* =========================
+   MANUAL LOGOUT
+   Only logout when user clicks logout.
 ========================= */
 
-async function checkStudentSessionaf() {
-  const loggedIn = localStorage.getItem("af_student_logged_in");
-  const sessionToken = localStorage.getItem("af_session_token");
-  const deviceId = localStorage.getItem("af_device_id");
-  const studentId = localStorage.getItem("af_student_id");
-  const mobile = localStorage.getItem("af_student_mobile");
-
-  if (loggedIn !== "true") return;
-  if (!sessionToken || !deviceId) return;
+async function logoutStudent() {
+  var sessionToken = localStorage.getItem("af_session_token");
+  var deviceId = getAFDeviceId();
+  var studentId = localStorage.getItem("af_student_id");
+  var mobile = localStorage.getItem("af_student_mobile");
 
   try {
-    const result = await afStudentEdgeCall("student-check-session-af", {
-      session_token: sessionToken,
-      device_id: deviceId,
-      student_id: studentId,
-      mobile: mobile
-    });
-
-    if (!result || !result.ok || result.valid === false) {
-      forceLogoutStudentaf("You were logged out because this Student ID was used on another device.");
-      return;
+    if (typeof afStudentEdgeCall === "function") {
+      await afStudentEdgeCall("student-logout-af", {
+        session_token: sessionToken,
+        device_id: deviceId,
+        student_id: studentId,
+        mobile: mobile
+      });
     }
-
-  } catch (err) {
-    console.log("Session check failed:", err);
+  } catch (error) {
+    console.log("Logout edge failed:", error);
   }
-}
 
-function clearStudentSessionaf() {
-  localStorage.removeItem("af_student_logged_in");
-  localStorage.removeItem("af_session_token");
-
-  localStorage.removeItem("af_student_uuid");
-  localStorage.removeItem("af_student_id");
-  localStorage.removeItem("af_student_mobile");
-  localStorage.removeItem("af_student_name");
-  localStorage.removeItem("af_student_email");
-  localStorage.removeItem("af_login_mobile");
-  localStorage.removeItem("af_last_login_at");
-}
-
-function forceLogoutStudentaf(message) {
   clearStudentSessionaf();
-
-  const authCard = document.getElementById("studentAuthCardaf");
-  const courseSelectBox = document.getElementById("courseSelectBox");
-  const courseDetailsBox = document.getElementById("courseDetailsBox");
-
-  if (courseSelectBox) {
-    courseSelectBox.classList.add("hidden-box");
-    courseSelectBox.style.display = "none";
-  }
-
-  if (courseDetailsBox) {
-    courseDetailsBox.classList.add("hidden-box");
-    courseDetailsBox.style.display = "none";
-  }
-
-  if (authCard) {
-    authCard.style.display = "block";
-  }
 
   if (typeof switchStudentModeaf === "function") {
     switchStudentModeaf("login");
   }
 
-  showStudentMessageaf("err", message || "Session expired. Please login again.");
-}
-
-async function logoutStudent() {
-  const sessionToken = localStorage.getItem("af_session_token");
-  const deviceId = localStorage.getItem("af_device_id");
-  const studentId = localStorage.getItem("af_student_id");
-  const mobile = localStorage.getItem("af_student_mobile");
-
-  try {
-    await afStudentEdgeCall("student-logout-af", {
-      session_token: sessionToken,
-      device_id: deviceId,
-      student_id: studentId,
-      mobile: mobile
-    });
-  } catch (err) {
-    console.log("Logout edge failed:", err);
+  if (typeof syncStudentAuthAndCourseStateAF === "function") {
+    syncStudentAuthAndCourseStateAF();
   }
 
-  forceLogoutStudentaf("Logged out successfully.");
+  showStudentSessionMessageAF("ok", "Logged out successfully.");
 }
 
-/* Auto session check */
-setInterval(checkStudentSessionaf, 10000);
+/* =========================
+   AUTO SESSION CHECK INIT
+   IMPORTANT:
+   Old intervals are not cleared if already created,
+   so paste this block after old code OR replace old code fully.
+========================= */
 
-/* Check when app/tab active */
+if (window.AF_STUDENT_SESSION_INTERVAL_ID) {
+  clearInterval(window.AF_STUDENT_SESSION_INTERVAL_ID);
+}
+
+window.AF_STUDENT_SESSION_INTERVAL_ID = setInterval(function () {
+  checkStudentSessionaf();
+}, 15000);
+
 document.addEventListener("visibilitychange", function () {
   if (!document.hidden) {
-    checkStudentSessionaf();
+    window.setTimeout(function () {
+      checkStudentSessionaf();
+    }, 500);
   }
 });
 
-/* Check on load */
-document.addEventListener("DOMContentLoaded", function () {
-  checkStudentSessionaf();
+window.addEventListener("focus", function () {
+  window.setTimeout(function () {
+    checkStudentSessionaf();
+  }, 500);
 });
 
-  if ("serviceWorker" in navigator) {
+document.addEventListener("DOMContentLoaded", function () {
+  getAFDeviceId();
+
+  window.setTimeout(function () {
+    checkStudentSessionaf();
+  }, 1200);
+});
+
+/* =========================
+   SERVICE WORKER
+========================= */
+
+if ("serviceWorker" in navigator) {
   window.addEventListener("load", function () {
     navigator.serviceWorker.register("./sw.js")
       .then(function () {
