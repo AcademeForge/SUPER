@@ -17149,7 +17149,357 @@ html.dark-mode body .bug-report-status.error,
 html.dark body .bug-report-status.error {
   color: #fca5a5 !important;
 }
-    
+    /* =========================================================
+   LEARNING HEATMAP + HEADER STREAK
+========================================================= */
+
+.af-streak-pill {
+  height: 42px !important;
+  min-width: 74px !important;
+  padding: 0 13px !important;
+  border: 1px solid rgba(245, 158, 11, 0.36) !important;
+  outline: 0 !important;
+  border-radius: 16px !important;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(251, 191, 36, 0.32), transparent 42%),
+    linear-gradient(135deg, rgba(255, 247, 237, 0.96), rgba(255, 255, 255, 0.92)) !important;
+  color: #92400e !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  font-size: 16px !important;
+  font-weight: 900 !important;
+  cursor: pointer !important;
+  box-shadow:
+    0 10px 24px rgba(245, 158, 11, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.88) !important;
+}
+
+.af-streak-fire {
+  font-size: 22px !important;
+  line-height: 1 !important;
+  filter: drop-shadow(0 2px 4px rgba(146, 64, 14, 0.22)) !important;
+}
+
+.af-streak-pill:active {
+  transform: scale(0.97) !important;
+}
+
+.learning-heatmap-section {
+  min-height: calc(100dvh - 78px) !important;
+  padding: 0 !important;
+  background:
+    radial-gradient(circle at top left, rgba(245, 158, 11, 0.12), transparent 32%),
+    linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%) !important;
+}
+
+.learning-heatmap-page {
+  width: 100% !important;
+  max-width: 430px !important;
+  margin: 0 auto !important;
+  padding: 18px 14px 104px !important;
+  box-sizing: border-box !important;
+}
+
+.learning-heatmap-hero {
+  width: 100% !important;
+  border-radius: 28px !important;
+  padding: 18px !important;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(251, 191, 36, 0.26), transparent 34%),
+    linear-gradient(135deg, #111827 0%, #1e293b 58%, #7f1d1d 100%) !important;
+  color: #ffffff !important;
+  display: grid !important;
+  grid-template-columns: 1fr auto !important;
+  gap: 14px !important;
+  align-items: center !important;
+  box-shadow: 0 18px 48px rgba(15, 23, 42, 0.22) !important;
+}
+
+.learning-heatmap-kicker {
+  margin: 0 0 6px !important;
+  color: #fbbf24 !important;
+  font-size: 11px !important;
+  line-height: 1.35 !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.11em !important;
+  text-transform: uppercase !important;
+}
+
+.learning-heatmap-hero h2 {
+  margin: 0 !important;
+  color: #ffffff !important;
+  font-size: 27px !important;
+  line-height: 1.08 !important;
+  font-weight: 950 !important;
+  letter-spacing: -0.055em !important;
+}
+
+.learning-heatmap-hero p {
+  margin: 9px 0 0 !important;
+  color: rgba(255, 255, 255, 0.76) !important;
+  font-size: 13px !important;
+  line-height: 1.55 !important;
+  font-weight: 600 !important;
+}
+
+.learning-streak-card {
+  width: 92px !important;
+  min-height: 108px !important;
+  border-radius: 24px !important;
+  background: rgba(255, 255, 255, 0.10) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 10px !important;
+  text-align: center !important;
+}
+
+.learning-streak-fire {
+  font-size: 34px !important;
+  line-height: 1 !important;
+}
+
+.learning-streak-card strong {
+  color: #ffffff !important;
+  font-size: 28px !important;
+  line-height: 1 !important;
+  font-weight: 950 !important;
+}
+
+.learning-streak-card small {
+  color: rgba(255, 255, 255, 0.68) !important;
+  font-size: 10.5px !important;
+  line-height: 1.25 !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+}
+
+.learning-week-card {
+  margin-top: 16px !important;
+  padding: 18px !important;
+  border-radius: 28px !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(226, 232, 240, 0.96) !important;
+  box-shadow: 0 14px 38px rgba(15, 23, 42, 0.08) !important;
+}
+
+.learning-week-card-top {
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  margin-bottom: 18px !important;
+}
+
+.learning-week-card h3 {
+  margin: 0 !important;
+  color: #0f172a !important;
+  font-size: 19px !important;
+  line-height: 1.2 !important;
+  font-weight: 950 !important;
+  letter-spacing: -0.035em !important;
+}
+
+.learning-week-card p {
+  margin: 5px 0 0 !important;
+  color: #64748b !important;
+  font-size: 12.5px !important;
+  line-height: 1.45 !important;
+  font-weight: 700 !important;
+}
+
+.learning-refresh-btn {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  border: 0 !important;
+  outline: 0 !important;
+  border-radius: 14px !important;
+  background: #111827 !important;
+  color: #ffffff !important;
+  font-size: 20px !important;
+  line-height: 1 !important;
+  font-weight: 900 !important;
+  cursor: pointer !important;
+}
+
+.learning-week-grid {
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr) !important;
+  gap: 8px !important;
+}
+
+.learning-day-box {
+  min-height: 74px !important;
+  border-radius: 18px !important;
+  background: #f8fafc !important;
+  border: 1px solid rgba(226, 232, 240, 0.95) !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 8px 4px !important;
+  text-align: center !important;
+}
+
+.learning-day-box span {
+  color: #475569 !important;
+  font-size: 11.5px !important;
+  line-height: 1 !important;
+  font-weight: 900 !important;
+}
+
+.learning-day-box strong {
+  color: #94a3b8 !important;
+  font-size: 24px !important;
+  line-height: 1 !important;
+  font-weight: 950 !important;
+}
+
+.learning-day-box.active {
+  background:
+    radial-gradient(circle at 50% 28%, rgba(34, 197, 94, 0.18), transparent 42%),
+    linear-gradient(180deg, #ecfdf5 0%, #ffffff 100%) !important;
+  border-color: rgba(34, 197, 94, 0.42) !important;
+}
+
+.learning-day-box.active strong {
+  color: #16a34a !important;
+}
+
+.learning-day-box.today {
+  border-color: rgba(245, 158, 11, 0.62) !important;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.10) !important;
+}
+
+.learning-info-card {
+  margin-top: 16px !important;
+  padding: 18px !important;
+  border-radius: 24px !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  border: 1px solid rgba(226, 232, 240, 0.95) !important;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06) !important;
+}
+
+.learning-info-card h3 {
+  margin: 0 0 10px !important;
+  color: #0f172a !important;
+  font-size: 17px !important;
+  line-height: 1.2 !important;
+  font-weight: 950 !important;
+}
+
+.learning-info-card ul {
+  margin: 0 !important;
+  padding-left: 18px !important;
+  color: #64748b !important;
+  font-size: 13px !important;
+  line-height: 1.75 !important;
+  font-weight: 650 !important;
+}
+
+/* Dark mode support */
+body.dark-mode .af-streak-pill,
+body.dark .af-streak-pill,
+html.dark-mode body .af-streak-pill,
+html.dark body .af-streak-pill {
+  border-color: rgba(250, 204, 21, 0.42) !important;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(250, 204, 21, 0.24), transparent 42%),
+    linear-gradient(135deg, #422006, #111827) !important;
+  color: #fef3c7 !important;
+}
+
+body.dark-mode .learning-heatmap-section,
+body.dark .learning-heatmap-section,
+html.dark-mode body .learning-heatmap-section,
+html.dark body .learning-heatmap-section {
+  background:
+    radial-gradient(circle at top left, rgba(250, 204, 21, 0.08), transparent 32%),
+    linear-gradient(180deg, #020617 0%, #111827 100%) !important;
+}
+
+body.dark-mode .learning-week-card,
+body.dark-mode .learning-info-card,
+body.dark .learning-week-card,
+body.dark .learning-info-card,
+html.dark-mode body .learning-week-card,
+html.dark-mode body .learning-info-card,
+html.dark body .learning-week-card,
+html.dark body .learning-info-card {
+  background: #111827 !important;
+  border-color: rgba(51, 65, 85, 0.95) !important;
+}
+
+body.dark-mode .learning-week-card h3,
+body.dark-mode .learning-info-card h3,
+body.dark .learning-week-card h3,
+body.dark .learning-info-card h3,
+html.dark-mode body .learning-week-card h3,
+html.dark-mode body .learning-info-card h3,
+html.dark body .learning-week-card h3,
+html.dark body .learning-info-card h3 {
+  color: #f8fafc !important;
+}
+
+body.dark-mode .learning-week-card p,
+body.dark-mode .learning-info-card ul,
+body.dark .learning-week-card p,
+body.dark .learning-info-card ul,
+html.dark-mode body .learning-week-card p,
+html.dark-mode body .learning-info-card ul,
+html.dark body .learning-week-card p,
+html.dark body .learning-info-card ul {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .learning-day-box,
+body.dark .learning-day-box,
+html.dark-mode body .learning-day-box,
+html.dark body .learning-day-box {
+  background: #1e293b !important;
+  border-color: rgba(51, 65, 85, 0.95) !important;
+}
+
+body.dark-mode .learning-day-box span,
+body.dark .learning-day-box span,
+html.dark-mode body .learning-day-box span,
+html.dark body .learning-day-box span {
+  color: #cbd5e1 !important;
+}
+
+body.dark-mode .learning-day-box.active,
+body.dark .learning-day-box.active,
+html.dark-mode body .learning-day-box.active,
+html.dark body .learning-day-box.active {
+  background:
+    radial-gradient(circle at 50% 28%, rgba(34, 197, 94, 0.18), transparent 42%),
+    linear-gradient(180deg, #052e16 0%, #111827 100%) !important;
+  border-color: rgba(34, 197, 94, 0.48) !important;
+}
+
+@media (max-width: 380px) {
+  .learning-heatmap-hero {
+    grid-template-columns: 1fr !important;
+  }
+
+  .learning-streak-card {
+    width: 100% !important;
+    min-height: 92px !important;
+    grid-template-columns: auto auto 1fr !important;
+    justify-content: start !important;
+    gap: 10px !important;
+  }
+
+  .learning-week-grid {
+    gap: 6px !important;
+  }
+
+  .learning-day-box {
+    min-height: 66px !important;
+    border-radius: 15px !important;
+  }
+}
   </style>
 </head>
 
@@ -17175,7 +17525,15 @@ html.dark body .bug-report-status.error {
  <!--<button class="theme-toggle-btn" onclick="toggleThemeMode()" id="themeToggleBtn">
   🌙
 </button>-->
-
+<button
+  type="button"
+  class="af-streak-pill"
+  onclick="showSection('learningHeatmap')"
+  aria-label="Open learning streak"
+>
+  <span class="af-streak-fire" aria-hidden="true">🔥</span>
+  <span id="afHeaderStreakCount">0</span>
+</button>
         
      <button
   type="button"
@@ -18520,20 +18878,20 @@ html.dark body .bug-report-status.error {
   <span class="settings-arrow" aria-hidden="true">›</span>
 </button>
       
-  <!-----------------------   
+ <button
+  type="button"
+  class="settings-row settings-row-btn"
+  onclick="showSection('learningHeatmap')"
+  aria-label="Open Learning Heatmap"
+>
+  <div class="settings-row-left">
+    <span class="settings-row-icon" aria-hidden="true">🔥</span>
+    <span>Learning Heatmap</span>
+  </div>
 
-      <button
-        type="button"
-        class="settings-row settings-row-btn"
-        onclick="showComingSoon('Power Batch')"
-        aria-label="Open Power Batch"
-      >
-        <div class="settings-row-left">
-          <span class="settings-row-icon" aria-hidden="true">⚡</span>
-          <span>Power Batch</span>
-        </div>
-      </button> --------------------------------------->
-
+  <span class="settings-arrow" aria-hidden="true">›</span>
+</button>
+      
     <button
   type="button"
   class="settings-row settings-row-btn"
@@ -18562,6 +18920,85 @@ html.dark body .bug-report-status.error {
   <span class="settings-arrow" aria-hidden="true">›</span>
 </button>
        </div>
+  </div>
+</section>
+
+    <section id="learningHeatmap" class="section learning-heatmap-section" aria-label="Learning Heatmap">
+  <div class="learning-heatmap-page">
+    <div class="learning-heatmap-hero">
+      <div>
+        <p class="learning-heatmap-kicker">Weekly Online Activity</p>
+        <h2>Learning Heatmap</h2>
+        <p>
+          Use the app for at least 10 seconds daily to keep your streak active.
+        </p>
+      </div>
+
+      <div class="learning-streak-card">
+        <span class="learning-streak-fire" aria-hidden="true">🔥</span>
+        <strong id="learningHeatmapStreakCount">0</strong>
+        <small>Day Streak</small>
+      </div>
+    </div>
+
+    <div class="learning-week-card">
+      <div class="learning-week-card-top">
+        <div>
+          <h3>This Week</h3>
+          <p id="learningHeatmapStatus">Checking activity...</p>
+        </div>
+
+        <button
+          type="button"
+          class="learning-refresh-btn"
+          onclick="loadLearningHeatmap()"
+          aria-label="Refresh learning heatmap"
+        >
+          ↻
+        </button>
+      </div>
+
+      <div class="learning-week-grid" id="learningWeekGrid">
+        <div class="learning-day-box">
+          <span>Mon</span>
+          <strong>-</strong>
+        </div>
+        <div class="learning-day-box">
+          <span>Tue</span>
+          <strong>-</strong>
+        </div>
+        <div class="learning-day-box">
+          <span>Wed</span>
+          <strong>-</strong>
+        </div>
+        <div class="learning-day-box">
+          <span>Thu</span>
+          <strong>-</strong>
+        </div>
+        <div class="learning-day-box">
+          <span>Fri</span>
+          <strong>-</strong>
+        </div>
+        <div class="learning-day-box">
+          <span>Sat</span>
+          <strong>-</strong>
+        </div>
+        <div class="learning-day-box">
+          <span>Sun</span>
+          <strong>-</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="learning-info-card">
+      <h3>How streak works</h3>
+      <ul>
+        <li>Open the app and use it for 10 seconds.</li>
+        <li>Today becomes active automatically.</li>
+        <li>Daily continuous activity increases streak.</li>
+        <li>If one day is missed, streak resets.</li>
+      </ul>
+    </div>
   </div>
 </section>
 <!-----------------------  NAV BUTTONS --------------------------------------->
@@ -30114,7 +30551,235 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  
+localStorage.af_student_id
+localStorage.student_id
+localStorage.studentId
+
+  const LEARNING_ACTIVITY_EDGE_URL =
+    "https://afooyyydhlwngzssgqih.supabase.co/functions/v1/learning-activity";
+
+  let afLearningActivityTimer = null;
+  let afLearningActivityMarkedForSession = false;
+
+  function getCurrentAFStudentId() {
+    try {
+      const keys = [
+        "af_student_id",
+        "student_id",
+        "studentId",
+        "current_student_id",
+        "af_current_student_id"
+      ];
+
+      for (let index = 0; index < keys.length; index += 1) {
+        const value = localStorage.getItem(keys[index]);
+
+        if (value && /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value)) {
+          return value;
+        }
+      }
+
+      if (window.AF_CURRENT_STUDENT_ID && /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(window.AF_CURRENT_STUDENT_ID)) {
+        return window.AF_CURRENT_STUDENT_ID;
+      }
+
+      return "";
+    } catch (error) {
+      console.error("getCurrentAFStudentId failed:", error);
+      return "";
+    }
+  }
+
+  function setLearningHeatmapStatus(message, type) {
+    try {
+      const node = document.getElementById("learningHeatmapStatus");
+
+      if (!node) {
+        return;
+      }
+
+      node.textContent = String(message || "");
+      node.dataset.type = type || "";
+    } catch (error) {
+      console.error("setLearningHeatmapStatus failed:", error);
+    }
+  }
+
+  function updateHeaderStreakCount(streak) {
+    try {
+      const safeStreak = Number.isFinite(Number(streak)) ? Math.max(0, Number(streak)) : 0;
+
+      const headerNode = document.getElementById("afHeaderStreakCount");
+      const pageNode = document.getElementById("learningHeatmapStreakCount");
+
+      if (headerNode) {
+        headerNode.textContent = String(safeStreak);
+      }
+
+      if (pageNode) {
+        pageNode.textContent = String(safeStreak);
+      }
+    } catch (error) {
+      console.error("updateHeaderStreakCount failed:", error);
+    }
+  }
+
+  function renderLearningWeek(week) {
+    try {
+      const grid = document.getElementById("learningWeekGrid");
+
+      if (!grid) {
+        return;
+      }
+
+      const labels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+      const safeWeek = Array.isArray(week) ? week : [];
+
+      grid.innerHTML = "";
+
+      for (let index = 0; index < 7; index += 1) {
+        const item = safeWeek[index] || {
+          date: "",
+          active: false,
+          today: false
+        };
+
+        const box = document.createElement("div");
+        box.className = "learning-day-box";
+
+        if (item.active) {
+          box.classList.add("active");
+        }
+
+        if (item.today) {
+          box.classList.add("today");
+        }
+
+        const label = document.createElement("span");
+        label.textContent = labels[index];
+
+        const mark = document.createElement("strong");
+        mark.textContent = item.active ? "✓" : "-";
+
+        box.appendChild(label);
+        box.appendChild(mark);
+        grid.appendChild(box);
+      }
+    } catch (error) {
+      console.error("renderLearningWeek failed:", error);
+    }
+  }
+
+  async function callLearningActivity(action) {
+    const studentId = getCurrentAFStudentId();
+
+    if (!studentId) {
+      throw new Error("Student ID not found. Login first.");
+    }
+
+    const response = await fetch(LEARNING_ACTIVITY_EDGE_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + SUPABASE_ANON_KEY,
+        "apikey": SUPABASE_ANON_KEY
+      },
+      body: JSON.stringify({
+        action: action,
+        studentId: studentId
+      })
+    });
+
+    let result = null;
+
+    try {
+      result = await response.json();
+    } catch (error) {
+      result = null;
+    }
+
+    if (!response.ok) {
+      const message =
+        result && result.error
+          ? result.error
+          : "Learning activity request failed.";
+
+      throw new Error(message);
+    }
+
+    return result;
+  }
+
+  async function markLearningActivityAfterTenSeconds() {
+    try {
+      if (afLearningActivityMarkedForSession) {
+        return;
+      }
+
+      afLearningActivityMarkedForSession = true;
+
+      const result = await callLearningActivity("mark");
+
+      updateHeaderStreakCount(result.streak);
+      renderLearningWeek(result.week);
+      setLearningHeatmapStatus("Today marked active.", "success");
+    } catch (error) {
+      afLearningActivityMarkedForSession = false;
+      console.error("markLearningActivityAfterTenSeconds failed:", error);
+      setLearningHeatmapStatus(error.message || "Could not mark activity.", "error");
+    }
+  }
+
+  function startLearningActivityTimer() {
+    try {
+      if (afLearningActivityTimer) {
+        window.clearTimeout(afLearningActivityTimer);
+      }
+
+      afLearningActivityTimer = window.setTimeout(function () {
+        markLearningActivityAfterTenSeconds();
+      }, 10000);
+    } catch (error) {
+      console.error("startLearningActivityTimer failed:", error);
+    }
+  }
+
+  async function loadLearningHeatmap() {
+    try {
+      setLearningHeatmapStatus("Loading activity...", "");
+
+      const result = await callLearningActivity("summary");
+
+      updateHeaderStreakCount(result.streak);
+      renderLearningWeek(result.week);
+
+      if (result.streak > 0) {
+        setLearningHeatmapStatus("Current streak: " + result.streak + " day(s).", "success");
+      } else {
+        setLearningHeatmapStatus("No active streak yet. Use the app for 10 seconds today.", "");
+      }
+    } catch (error) {
+      console.error("loadLearningHeatmap failed:", error);
+      updateHeaderStreakCount(0);
+      setLearningHeatmapStatus(error.message || "Could not load activity.", "error");
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    startLearningActivityTimer();
+    loadLearningHeatmap();
+  });
+
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "visible") {
+      loadLearningHeatmap();
+
+      if (!afLearningActivityMarkedForSession) {
+        startLearningActivityTimer();
+      }
+    }
+  });
+
 </script>
  
 </body>
