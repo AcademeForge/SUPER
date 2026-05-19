@@ -19153,6 +19153,176 @@ body.dark-mode .contact-field-af textarea {
   -webkit-text-fill-color: #111827 !important;
 }
 
+/* =========================================================
+   SETTINGS SUPPORT ROWS SIZE FIX
+   Paste at VERY END of CSS
+========================================================= */
+
+.settings-support-list {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.settings-support-row {
+  width: 100% !important;
+  min-height: 56px !important;
+  height: 56px !important;
+  border: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0 0 !important;
+  cursor: pointer !important;
+  color: #334155 !important;
+  font-family: inherit !important;
+  text-align: left !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+.settings-support-left {
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  min-width: 0 !important;
+}
+
+.settings-support-icon {
+  width: 28px !important;
+  min-width: 28px !important;
+  height: 28px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 22px !important;
+  line-height: 1 !important;
+  color: #64748b !important;
+  font-weight: 700 !important;
+}
+
+.settings-support-left span:last-child {
+  font-size: 15px !important;
+  line-height: 1.2 !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.01em !important;
+  color: #334155 !important;
+}
+
+.settings-support-divider {
+  width: 100% !important;
+  height: 1px !important;
+  margin: 10px 0 !important;
+  background: rgba(15, 23, 42, 0.12) !important;
+  border-radius: 999px !important;
+}
+
+.settings-logout-row {
+  min-height: 56px !important;
+  height: 56px !important;
+}
+
+.settings-logout-row .settings-support-left span:last-child,
+.settings-logout-icon {
+  color: #b4233c !important;
+}
+
+.settings-logout-icon {
+  font-size: 24px !important;
+}
+
+.settings-app-version-box {
+  width: 100% !important;
+  padding: 10px 0 22px !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 6px !important;
+  color: #111827 !important;
+}
+
+.settings-app-version-box strong {
+  font-size: 18px !important;
+  line-height: 1.2 !important;
+  font-weight: 900 !important;
+  color: #111827 !important;
+  text-shadow: none !important;
+}
+
+.settings-app-version-box span {
+  font-size: 17px !important;
+  line-height: 1.2 !important;
+  font-weight: 500 !important;
+  color: #475569 !important;
+  text-shadow: none !important;
+}
+
+/* Dark mode */
+html.dark-mode .settings-support-left span:last-child,
+body.dark-mode .settings-support-left span:last-child {
+  color: #e5e7eb !important;
+}
+
+html.dark-mode .settings-support-icon,
+body.dark-mode .settings-support-icon {
+  color: #94a3b8 !important;
+}
+
+html.dark-mode .settings-logout-row .settings-support-left span:last-child,
+body.dark-mode .settings-logout-row .settings-support-left span:last-child,
+html.dark-mode .settings-logout-icon,
+body.dark-mode .settings-logout-icon {
+  color: #fb7185 !important;
+}
+
+html.dark-mode .settings-app-version-box strong,
+body.dark-mode .settings-app-version-box strong {
+  color: #f9fafb !important;
+}
+
+html.dark-mode .settings-app-version-box span,
+body.dark-mode .settings-app-version-box span {
+  color: #cbd5e1 !important;
+}
+
+/* Mobile exact fix */
+@media (max-width: 768px) {
+  .settings-support-row {
+    min-height: 56px !important;
+    height: 56px !important;
+  }
+
+  .settings-support-left {
+    gap: 14px !important;
+  }
+
+  .settings-support-icon {
+    width: 28px !important;
+    min-width: 28px !important;
+    height: 28px !important;
+    font-size: 22px !important;
+  }
+
+  .settings-support-left span:last-child {
+    font-size: 15px !important;
+  }
+
+  .settings-app-version-box {
+    padding: 10px 0 22px !important;
+  }
+
+  .settings-app-version-box strong {
+    font-size: 18px !important;
+  }
+
+  .settings-app-version-box span {
+    font-size: 17px !important;
+  }
+}
+
 </style>
 </head>
 
@@ -20550,54 +20720,50 @@ body.dark-mode .contact-field-af textarea {
       </button>
     </div>
 
-    <!-- ==============================
-         SETTINGS SUPPORT / LOGOUT AREA
-    ================================= -->
+   <button
+  type="button"
+  class="settings-row settings-row-btn"
+  onclick="showSection('management')"
+  aria-label="Open About Us"
+>
+  <div class="settings-row-left">
+    <span class="settings-row-icon" aria-hidden="true">ⓘ</span>
+    <span>About Us</span>
+  </div>
+  <span class="settings-arrow" aria-hidden="true">›</span>
+</button>
 
-    <div class="settings-support-list">
-      <button
-        type="button"
-        class="settings-support-row"
-        onclick="showSection('management')"
-        aria-label="Open About Us"
-      >
-        <div class="settings-support-left">
-          <span class="settings-support-icon" aria-hidden="true">ⓘ</span>
-          <span>About Us</span>
-        </div>
-      </button>
+<button
+  type="button"
+  class="settings-row settings-row-btn"
+  onclick="openContactUsPage()"
+  aria-label="Open Contact Us"
+>
+  <div class="settings-row-left">
+    <span class="settings-row-icon" aria-hidden="true">☎</span>
+    <span>Contact Us</span>
+  </div>
+  <span class="settings-arrow" aria-hidden="true">›</span>
+</button>
 
-      <button
-        type="button"
-        class="settings-support-row"
-        onclick="openContactUsPage()"
-        aria-label="Open Contact Us"
-      >
-        <div class="settings-support-left">
-          <span class="settings-support-icon" aria-hidden="true">☎</span>
-          <span>Contact Us</span>
-        </div>
-      </button>
+<div class="settings-support-divider"></div>
 
-      <div class="settings-support-divider"></div>
+<button
+  type="button"
+  class="settings-row settings-row-btn settings-logout-row"
+  onclick="logoutStudentaf()"
+  aria-label="Logout"
+>
+  <div class="settings-row-left">
+    <span class="settings-row-icon settings-logout-icon" aria-hidden="true">↩</span>
+    <span>Logout</span>
+  </div>
+</button>
 
-      <button
-        type="button"
-        class="settings-support-row settings-logout-row"
-        onclick="logoutStudentaf()"
-        aria-label="Logout"
-      >
-        <div class="settings-support-left">
-          <span class="settings-support-icon settings-logout-icon" aria-hidden="true">↩</span>
-          <span>Logout</span>
-        </div>
-      </button>
-    </div>
-
-    <div class="settings-app-version-box">
-      <strong>App Version: 09.01.2024</strong>
-      <span>Made with ❤️ in India</span>
-    </div>
+<div class="settings-app-version-box">
+  <strong>App Version: 09.01.2024</strong>
+  <span>Made with ❤️ in India</span>
+</div>
   </div>
 </section>
 
