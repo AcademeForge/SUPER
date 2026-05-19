@@ -22010,6 +22010,19 @@ body.dark-mode .af-delete-confirm-v2 span {
       </button>
 
       <button
+  type="button"
+  class="settings-row settings-row-btn"
+  onclick="openRequestStatusPageAf()"
+  aria-label="Open Request Status"
+>
+  <div class="settings-row-left">
+    <span class="settings-row-icon" aria-hidden="true">📌</span>
+    <span>Request Status</span>
+  </div>
+  <span class="settings-new-badge">Track</span>
+</button>
+      
+      <button
         type="button"
         class="settings-row settings-row-btn"
         onclick="showSection('learningHeatmap')"
@@ -22083,7 +22096,45 @@ body.dark-mode .af-delete-confirm-v2 span {
   <span>Made with ❤️ in India</span>
 </div>
 </section>
+<!-- ==============================
+     REQUEST STATUS PAGE - AF
+================================ -->
 
+<section id="requestStatusAf" class="section request-status-section-af" aria-label="Request Status">
+  <div class="request-status-page-af">
+    <div class="request-status-hero-af">
+      <button
+        type="button"
+        class="request-status-back-af"
+        onclick="showSection('settings')"
+        aria-label="Back to settings"
+      >
+        ← Back
+      </button>
+
+      <div class="request-status-hero-text-af">
+        <p>Support Center</p>
+        <h2>Request Status</h2>
+        <span>Track your bug reports and support requests.</span>
+      </div>
+
+      <button
+        type="button"
+        class="request-status-refresh-af"
+        onclick="loadRequestStatusAf(true)"
+        aria-label="Refresh request status"
+      >
+        ↻
+      </button>
+    </div>
+
+    <div id="requestStatusMessageAf" class="request-status-message-af">
+      Loading your requests...
+    </div>
+
+    <div id="requestStatusListAf" class="request-status-list-af"></div>
+  </div>
+</section>
 <!-- ==============================
      CONTACT US SECTION - AF
 ================================ -->
