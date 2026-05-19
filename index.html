@@ -18730,6 +18730,458 @@ html.dark-mode .student-auth-locked-af p,
 body.settings-dark-mode .student-auth-locked-af p {
   color: #fee2e2 !important;
 }
+
+    /* =========================================================
+   IMPORTANT: Student Login + Course Section Separation CSS
+   Paste at END of CSS to override old student/batch styles
+========================================================= */
+
+/* ---------- Shared Section Layout ---------- */
+
+#studentaf.student-auth-section-af,
+#courseaf.student-course-section-af {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: auto !important;
+
+  padding: 12px 12px 118px !important;
+  margin: 0 !important;
+
+  background:
+    radial-gradient(circle at top left, rgba(59, 130, 246, 0.10), transparent 34%),
+    linear-gradient(180deg, #f8fbff 0%, #eef4ff 100%) !important;
+
+  overflow-x: hidden !important;
+  box-sizing: border-box !important;
+}
+
+#studentaf .student-wrapaf,
+#courseaf .student-course-page-af {
+  width: min(100% - 4px, 540px) !important;
+  max-width: 540px !important;
+  margin: 0 auto !important;
+  box-sizing: border-box !important;
+}
+
+/* ---------- Login/Create Card ---------- */
+
+#studentaf .student-cardaf {
+  width: 100% !important;
+  border-radius: 28px !important;
+  padding: 22px !important;
+
+  background: rgba(255, 255, 255, 0.94) !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+
+  box-shadow:
+    0 18px 48px rgba(15, 23, 42, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.88) !important;
+
+  box-sizing: border-box !important;
+}
+
+#studentaf .student-iconaf {
+  width: 52px !important;
+  height: 52px !important;
+  border-radius: 18px !important;
+
+  background: linear-gradient(135deg, #4f46e5, #38bdf8) !important;
+  color: #ffffff !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  font-size: 24px !important;
+  box-shadow: 0 14px 30px rgba(79, 70, 229, 0.20) !important;
+}
+
+#studentaf .student-titleaf {
+  margin: 16px 0 6px !important;
+
+  color: #0f172a !important;
+  font-size: 24px !important;
+  line-height: 1.1 !important;
+  font-weight: 950 !important;
+  letter-spacing: -0.05em !important;
+}
+
+#studentaf .student-subtitleaf {
+  margin: 0 0 18px !important;
+
+  color: #64748b !important;
+  font-size: 13px !important;
+  line-height: 1.45 !important;
+  font-weight: 750 !important;
+}
+
+/* ---------- Locked Login State ---------- */
+
+#studentaf .student-auth-locked-af {
+  width: 100% !important;
+  padding: 18px !important;
+  border-radius: 24px !important;
+
+  background:
+    radial-gradient(circle at top right, rgba(239, 68, 68, 0.16), transparent 34%),
+    linear-gradient(135deg, #fff1f2, #ffffff) !important;
+
+  border: 1px solid rgba(239, 68, 68, 0.24) !important;
+  box-shadow: 0 14px 34px rgba(239, 68, 68, 0.12) !important;
+
+  box-sizing: border-box !important;
+  text-align: left !important;
+}
+
+#studentaf .student-auth-lock-icon-af {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 17px !important;
+
+  background: linear-gradient(135deg, #ef4444, #b91c1c) !important;
+  color: #ffffff !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  font-size: 22px !important;
+  box-shadow: 0 12px 26px rgba(239, 68, 68, 0.22) !important;
+}
+
+#studentaf .student-auth-locked-af h3 {
+  margin: 14px 0 8px !important;
+
+  color: #991b1b !important;
+  font-size: 20px !important;
+  font-weight: 950 !important;
+  letter-spacing: -0.04em !important;
+}
+
+#studentaf .student-auth-locked-af p {
+  margin: 0 !important;
+
+  color: #7f1d1d !important;
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+  font-weight: 850 !important;
+}
+
+/* ---------- Course Section ---------- */
+
+#courseaf .student-course-head-af {
+  width: 100% !important;
+  padding: 18px !important;
+  margin-bottom: 14px !important;
+
+  border-radius: 26px !important;
+
+  background:
+    radial-gradient(circle at top right, rgba(34, 197, 94, 0.16), transparent 34%),
+    linear-gradient(135deg, #0f172a, #1e293b) !important;
+
+  box-shadow: 0 18px 44px rgba(15, 23, 42, 0.18) !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 14px !important;
+
+  box-sizing: border-box !important;
+}
+
+#courseaf .student-course-head-af p {
+  margin: 0 0 6px !important;
+
+  color: rgba(255, 255, 255, 0.78) !important;
+  font-size: 11px !important;
+  font-weight: 950 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+}
+
+#courseaf .student-course-head-af h2 {
+  margin: 0 !important;
+
+  color: #ffffff !important;
+  font-size: 25px !important;
+  line-height: 1.1 !important;
+  font-weight: 950 !important;
+  letter-spacing: -0.05em !important;
+}
+
+#courseaf .student-course-refresh-af {
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+
+  border: 0 !important;
+  border-radius: 16px !important;
+
+  background: rgba(255, 255, 255, 0.14) !important;
+  color: #ffffff !important;
+
+  font-size: 22px !important;
+  font-weight: 950 !important;
+
+  cursor: pointer !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* ---------- Course Logged Out Alert ---------- */
+
+#courseaf .student-course-locked-af {
+  width: 100% !important;
+  padding: 22px !important;
+  border-radius: 28px !important;
+
+  background:
+    radial-gradient(circle at top right, rgba(239, 68, 68, 0.14), transparent 34%),
+    linear-gradient(135deg, #fff1f2, #ffffff) !important;
+
+  border: 1px solid rgba(239, 68, 68, 0.24) !important;
+  box-shadow: 0 18px 44px rgba(239, 68, 68, 0.12) !important;
+
+  text-align: center !important;
+  box-sizing: border-box !important;
+}
+
+#courseaf .student-course-lock-icon-af {
+  width: 58px !important;
+  height: 58px !important;
+  margin: 0 auto 14px !important;
+
+  border-radius: 21px !important;
+
+  background: linear-gradient(135deg, #f97316, #ef4444) !important;
+  color: #ffffff !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  font-size: 26px !important;
+  box-shadow: 0 14px 32px rgba(239, 68, 68, 0.20) !important;
+}
+
+#courseaf .student-course-locked-af h3 {
+  margin: 0 0 8px !important;
+
+  color: #991b1b !important;
+  font-size: 21px !important;
+  font-weight: 950 !important;
+  letter-spacing: -0.04em !important;
+}
+
+#courseaf .student-course-locked-af p {
+  margin: 0 !important;
+
+  color: #7f1d1d !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  font-weight: 850 !important;
+}
+
+/* ---------- Course Empty / Content Area ---------- */
+
+#courseaf .student-course-unlocked-af {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+#courseaf .student-course-empty-card-af {
+  width: 100% !important;
+  padding: 22px !important;
+  border-radius: 28px !important;
+
+  background: rgba(255, 255, 255, 0.94) !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 18px 44px rgba(15, 23, 42, 0.08) !important;
+
+  text-align: center !important;
+  box-sizing: border-box !important;
+}
+
+#courseaf .student-course-empty-icon-af {
+  width: 58px !important;
+  height: 58px !important;
+  margin: 0 auto 14px !important;
+
+  border-radius: 21px !important;
+
+  background: linear-gradient(135deg, #4f46e5, #06b6d4) !important;
+  color: #ffffff !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  font-size: 26px !important;
+  box-shadow: 0 14px 32px rgba(79, 70, 229, 0.20) !important;
+}
+
+#courseaf .student-course-empty-card-af h3 {
+  margin: 0 0 8px !important;
+
+  color: #0f172a !important;
+  font-size: 21px !important;
+  font-weight: 950 !important;
+  letter-spacing: -0.04em !important;
+}
+
+#courseaf .student-course-empty-card-af p {
+  margin: 0 !important;
+
+  color: #64748b !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  font-weight: 750 !important;
+}
+
+#courseaf .student-courses-list-af {
+  width: 100% !important;
+  margin-top: 14px !important;
+  box-sizing: border-box !important;
+}
+
+/* ---------- Buttons ---------- */
+
+#studentaf .student-auth-course-btn-af,
+#courseaf .student-course-login-btn-af {
+  width: 100% !important;
+  min-height: 48px !important;
+  margin-top: 16px !important;
+
+  border: 0 !important;
+  border-radius: 17px !important;
+
+  background: linear-gradient(135deg, #0f172a, #334155) !important;
+  color: #ffffff !important;
+
+  font-size: 14px !important;
+  font-weight: 950 !important;
+  letter-spacing: -0.01em !important;
+
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.20) !important;
+
+  cursor: pointer !important;
+  -webkit-tap-highlight-color: transparent !important;
+  touch-action: manipulation !important;
+}
+
+#studentaf .student-auth-course-btn-af:active,
+#courseaf .student-course-login-btn-af:active,
+#courseaf .student-course-refresh-af:active {
+  transform: scale(0.98) !important;
+}
+
+/* ---------- Hidden State ---------- */
+
+#studentaf .student-auth-unlocked-af[hidden],
+#studentaf .student-auth-locked-af[hidden],
+#courseaf .student-course-unlocked-af[hidden],
+#courseaf .student-course-locked-af[hidden] {
+  display: none !important;
+}
+
+/* ---------- Dark Mode ---------- */
+
+body.dark-mode #studentaf.student-auth-section-af,
+html.dark-mode body #studentaf.student-auth-section-af,
+body.settings-dark-mode #studentaf.student-auth-section-af,
+body.dark-mode #courseaf.student-course-section-af,
+html.dark-mode body #courseaf.student-course-section-af,
+body.settings-dark-mode #courseaf.student-course-section-af {
+  background:
+    radial-gradient(circle at top left, rgba(59, 130, 246, 0.12), transparent 34%),
+    linear-gradient(180deg, #0b1120 0%, #111827 100%) !important;
+}
+
+body.dark-mode #studentaf .student-cardaf,
+html.dark-mode body #studentaf .student-cardaf,
+body.settings-dark-mode #studentaf .student-cardaf,
+body.dark-mode #courseaf .student-course-empty-card-af,
+html.dark-mode body #courseaf .student-course-empty-card-af,
+body.settings-dark-mode #courseaf .student-course-empty-card-af {
+  background: rgba(15, 23, 42, 0.88) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.26) !important;
+}
+
+body.dark-mode #studentaf .student-titleaf,
+html.dark-mode body #studentaf .student-titleaf,
+body.settings-dark-mode #studentaf .student-titleaf,
+body.dark-mode #courseaf .student-course-empty-card-af h3,
+html.dark-mode body #courseaf .student-course-empty-card-af h3,
+body.settings-dark-mode #courseaf .student-course-empty-card-af h3 {
+  color: #f8fafc !important;
+}
+
+body.dark-mode #studentaf .student-subtitleaf,
+html.dark-mode body #studentaf .student-subtitleaf,
+body.settings-dark-mode #studentaf .student-subtitleaf,
+body.dark-mode #courseaf .student-course-empty-card-af p,
+html.dark-mode body #courseaf .student-course-empty-card-af p,
+body.settings-dark-mode #courseaf .student-course-empty-card-af p {
+  color: #cbd5e1 !important;
+}
+
+body.dark-mode #studentaf .student-auth-locked-af,
+html.dark-mode body #studentaf .student-auth-locked-af,
+body.settings-dark-mode #studentaf .student-auth-locked-af,
+body.dark-mode #courseaf .student-course-locked-af,
+html.dark-mode body #courseaf .student-course-locked-af,
+body.settings-dark-mode #courseaf .student-course-locked-af {
+  background:
+    radial-gradient(circle at top right, rgba(239, 68, 68, 0.18), transparent 34%),
+    linear-gradient(135deg, rgba(69, 10, 10, 0.92), rgba(15, 23, 42, 0.92)) !important;
+
+  border-color: rgba(248, 113, 113, 0.24) !important;
+}
+
+body.dark-mode #studentaf .student-auth-locked-af h3,
+html.dark-mode body #studentaf .student-auth-locked-af h3,
+body.settings-dark-mode #studentaf .student-auth-locked-af h3,
+body.dark-mode #courseaf .student-course-locked-af h3,
+html.dark-mode body #courseaf .student-course-locked-af h3,
+body.settings-dark-mode #courseaf .student-course-locked-af h3 {
+  color: #fecaca !important;
+}
+
+body.dark-mode #studentaf .student-auth-locked-af p,
+html.dark-mode body #studentaf .student-auth-locked-af p,
+body.settings-dark-mode #studentaf .student-auth-locked-af p,
+body.dark-mode #courseaf .student-course-locked-af p,
+html.dark-mode body #courseaf .student-course-locked-af p,
+body.settings-dark-mode #courseaf .student-course-locked-af p {
+  color: #fee2e2 !important;
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 480px) {
+  #studentaf.student-auth-section-af,
+  #courseaf.student-course-section-af {
+    padding: 10px 10px 118px !important;
+  }
+
+  #studentaf .student-wrapaf,
+  #courseaf .student-course-page-af {
+    width: min(100% - 2px, 430px) !important;
+  }
+
+  #studentaf .student-cardaf,
+  #courseaf .student-course-locked-af,
+  #courseaf .student-course-empty-card-af {
+    border-radius: 24px !important;
+    padding: 18px !important;
+  }
+
+  #courseaf .student-course-head-af {
+    border-radius: 24px !important;
+    padding: 16px !important;
+  }
+}
     
   </style>
 </head>
