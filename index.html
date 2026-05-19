@@ -17508,9 +17508,8 @@ body.dark-mode .settings-new-badge {
 </div>
 </section>
 
-      <!-- SETTINGS -->
-    
- <section id="settings" class="app-section settings-section">
+    <!-- SETTINGS -->
+<section id="settings" class="app-section settings-section">
   <div class="settings-page">
     <div class="settings-profile-card">
       <div class="settings-avatar" aria-hidden="true">👨‍🎓</div>
@@ -17521,6 +17520,7 @@ body.dark-mode .settings-new-badge {
           type="button"
           class="settings-profile-link"
           onclick="showComingSoon('Profile')"
+          aria-label="View profile"
         >
           View profile
         </button>
@@ -17531,8 +17531,9 @@ body.dark-mode .settings-new-badge {
       type="button"
       class="settings-purchase-btn"
       onclick="showComingSoon('My Purchases')"
+      aria-label="Open My Purchases"
     >
-      <span class="settings-row-icon">💼</span>
+      <span class="settings-row-icon" aria-hidden="true">💼</span>
       <span>My Purchases</span>
     </button>
 
@@ -17542,25 +17543,26 @@ body.dark-mode .settings-new-badge {
       type="button"
       class="settings-beta-card"
       onclick="showComingSoon('Beta Program')"
+      aria-label="Join Beta Program"
     >
       <span>Join Beta Program ✨</span>
-      <span class="settings-arrow">›</span>
+      <span class="settings-arrow" aria-hidden="true">›</span>
     </button>
 
     <div class="settings-list">
-      <div class="settings-row">
+      <div class="settings-row settings-row-static">
         <div class="settings-row-left">
-          <span class="settings-row-icon">🌙</span>
+          <span class="settings-row-icon" aria-hidden="true">🌙</span>
           <span>Dark Mode</span>
         </div>
 
-        <label class="settings-switch" aria-label="Toggle dark mode">
+        <label class="settings-switch" for="settingsDarkToggle" aria-label="Toggle dark mode">
           <input
             id="settingsDarkToggle"
             type="checkbox"
             onchange="toggleSettingsDarkMode(this.checked)"
           />
-          <span class="settings-slider"></span>
+          <span class="settings-slider" aria-hidden="true"></span>
         </label>
       </div>
 
@@ -17568,9 +17570,10 @@ body.dark-mode .settings-new-badge {
         type="button"
         class="settings-row settings-row-btn"
         onclick="showComingSoon('Offline')"
+        aria-label="Open Offline"
       >
         <div class="settings-row-left">
-          <span class="settings-row-icon">🏢</span>
+          <span class="settings-row-icon" aria-hidden="true">🏢</span>
           <span>Offline</span>
         </div>
       </button>
@@ -17579,9 +17582,10 @@ body.dark-mode .settings-new-badge {
         type="button"
         class="settings-row settings-row-btn"
         onclick="showComingSoon('Scholarship')"
+        aria-label="Open Scholarship"
       >
         <div class="settings-row-left">
-          <span class="settings-row-icon">🎓</span>
+          <span class="settings-row-icon" aria-hidden="true">🎓</span>
           <span>Scholarship</span>
         </div>
       </button>
@@ -17590,9 +17594,10 @@ body.dark-mode .settings-new-badge {
         type="button"
         class="settings-row settings-row-btn"
         onclick="showComingSoon('Test Series')"
+        aria-label="Open Test Series"
       >
         <div class="settings-row-left">
-          <span class="settings-row-icon">📋</span>
+          <span class="settings-row-icon" aria-hidden="true">📋</span>
           <span>Test Series</span>
         </div>
       </button>
@@ -17600,10 +17605,11 @@ body.dark-mode .settings-new-badge {
       <button
         type="button"
         class="settings-row settings-row-btn"
-        onclick="showComingSoon('PW Store')"
+        onclick="showComingSoon('AF Store')"
+        aria-label="Open AF Store"
       >
         <div class="settings-row-left">
-          <span class="settings-row-icon">🛒</span>
+          <span class="settings-row-icon" aria-hidden="true">🛒</span>
           <span>AF Store</span>
         </div>
       </button>
@@ -17612,9 +17618,10 @@ body.dark-mode .settings-new-badge {
         type="button"
         class="settings-row settings-row-btn"
         onclick="showComingSoon('Power Batch')"
+        aria-label="Open Power Batch"
       >
         <div class="settings-row-left">
-          <span class="settings-row-icon">⚡</span>
+          <span class="settings-row-icon" aria-hidden="true">⚡</span>
           <span>Power Batch</span>
         </div>
       </button>
@@ -17622,10 +17629,11 @@ body.dark-mode .settings-new-badge {
       <button
         type="button"
         class="settings-row settings-row-btn"
-        onclick="showComingSoon('PW Books')"
+        onclick="showComingSoon('AF Books')"
+        aria-label="Open AF Books"
       >
         <div class="settings-row-left">
-          <span class="settings-row-icon">📚</span>
+          <span class="settings-row-icon" aria-hidden="true">📚</span>
           <span>AF Books</span>
         </div>
 
@@ -17635,10 +17643,11 @@ body.dark-mode .settings-new-badge {
       <button
         type="button"
         class="settings-row settings-row-btn"
-        onclick="showComingSoon('Pi Lens')"
+        onclick="showComingSoon('AF Lens')"
+        aria-label="Open AF Lens"
       >
         <div class="settings-row-left">
-          <span class="settings-row-icon">⭕</span>
+          <span class="settings-row-icon" aria-hidden="true">⭕</span>
           <span>AF Lens</span>
         </div>
 
