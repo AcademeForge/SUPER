@@ -29824,8 +29824,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   
-  const BUG_REPORT_EDGE_FUNCTION_URL = SUPABASE_PROJECT_URL + "/functions/v1/report-bug";
-
+ 
   function openBugReportModal() {
     try {
       const overlay = document.getElementById("bugReportOverlay");
@@ -29862,6 +29861,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       window.setTimeout(function () {
         const firstInput = document.getElementById("bugReporterName");
+
         if (firstInput) {
           firstInput.focus();
         }
@@ -29910,17 +29910,27 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function getTrimmedInputValue(id) {
-    const node = document.getElementById(id);
+    try {
+      const node = document.getElementById(id);
 
-    if (!node) {
+      if (!node) {
+        return "";
+      }
+
+      return String(node.value || "").trim();
+    } catch (error) {
+      console.error("getTrimmedInputValue failed:", error);
       return "";
     }
-
-    return String(node.value || "").trim();
   }
 
   function isValidBugEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+    try {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(email || ""));
+    } catch (error) {
+      console.error("isValidBugEmail failed:", error);
+      return false;
+    }
   }
 
   function getActiveSectionForBugReport() {
@@ -29975,13 +29985,39 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
+      if (reporterName.length > 80) {
+        setBugReportStatus("Name is too long.", "error");
+        return;
+      }
+
       if (!isValidBugEmail(reporterEmail)) {
         setBugReportStatus("Please enter a valid email address.", "error");
         return;
       }
 
+      if (reporterEmail.length > 120) {
+        setBugReportStatus("Email is too long.", "error");
+        return;
+      }
+
       if (!category) {
         setBugReportStatus("Please select a bug category.", "error");
+        return;
+      }
+
+      if (
+        ![
+          "login",
+          "navigation",
+          "dark_mode",
+          "notification",
+          "payment",
+          "ui",
+          "performance",
+          "other"
+        ].includes(category)
+      ) {
+        setBugReportStatus("Please select a valid bug category.", "error");
         return;
       }
 
@@ -29995,18 +30031,13 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      if (reporterName.length > 80) {
-        setBugReportStatus("Name is too long.", "error");
+      if (description.length > 1200) {
+        setBugReportStatus("Bug description is too long.", "error");
         return;
       }
 
-      if (reporterEmail.length > 120) {
-        setBugReportStatus("Email is too long.", "error");
-        return;
-      }
-
-      if (description.length > 1200 || stepsToReproduce.length > 1200) {
-        setBugReportStatus("Bug report text is too long.", "error");
+      if (stepsToReproduce.length > 1200) {
+        setBugReportStatus("Steps to reproduce is too long.", "error");
         return;
       }
 
@@ -30029,7 +30060,7 @@ document.addEventListener("DOMContentLoaded", function () {
         deviceInfo: getBugReportDeviceInfo()
       };
 
-      const response = await fetch(BUG_REPORT_EDGE_FUNCTION_URL, {
+      const response = await fetch("https://afooyyydhlwngzssgqih.supabase.co/functions/v1/report-bug", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -30057,12 +30088,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
       setBugReportStatus("Bug report submitted successfully.", "success");
 
+      const form = document.getElementById("bugReportForm");
+
+      if (form) {
+        form.reset();
+      }
+
       window.setTimeout(function () {
         closeBugReportModal();
       }, 900);
     } catch (error) {
       console.error("submitBugReport failed:", error);
-      setBugReportStatus(error.message || "Something went wrong.", "error");
+      setBugReportStatus(error.message || "Something went wrong. Please try again.", "error");
     } finally {
       if (submitBtn) {
         submitBtn.disabled = false;
