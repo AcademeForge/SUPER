@@ -17500,6 +17500,484 @@ html.dark body .learning-day-box.active {
     border-radius: 15px !important;
   }
 }
+
+    .learning-heatmap-section {
+  width: 100%;
+  min-height: 100vh;
+  padding: 76px 14px 104px;
+  background:
+    radial-gradient(circle at top left, rgba(255, 122, 24, 0.14), transparent 32%),
+    radial-gradient(circle at top right, rgba(255, 193, 7, 0.14), transparent 34%),
+    linear-gradient(180deg, #fff8ef 0%, #f7f9fc 42%, #eef4ff 100%);
+  overflow-x: hidden;
+}
+
+.learning-heatmap-page {
+  width: 100%;
+  max-width: 460px;
+  margin: 0 auto;
+}
+
+.learning-back-btn {
+  width: fit-content;
+  min-height: 42px;
+  margin: 0 0 14px;
+  padding: 0 14px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.86);
+  color: #243247;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.learning-back-btn span:first-child {
+  font-size: 18px;
+  line-height: 1;
+  transform: translateY(-1px);
+}
+
+.learning-back-btn:active {
+  transform: scale(0.98);
+}
+
+.learning-heatmap-hero {
+  width: 100%;
+  min-height: 168px;
+  padding: 20px;
+  border-radius: 30px;
+  background:
+    linear-gradient(135deg, rgba(255, 107, 0, 0.98), rgba(255, 168, 0, 0.96)),
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.32), transparent 34%);
+  box-shadow:
+    0 24px 52px rgba(255, 122, 24, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 14px;
+  position: relative;
+  overflow: hidden;
+}
+
+.learning-heatmap-hero::before {
+  content: "";
+  position: absolute;
+  width: 190px;
+  height: 190px;
+  right: -80px;
+  top: -92px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  pointer-events: none;
+}
+
+.learning-heatmap-hero::after {
+  content: "";
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  left: -70px;
+  bottom: -78px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.13);
+  pointer-events: none;
+}
+
+.learning-heatmap-hero > div {
+  position: relative;
+  z-index: 1;
+}
+
+.learning-heatmap-kicker {
+  margin: 0 0 8px;
+  color: #ffffff !important;
+  font-size: 11px;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  opacity: 0.92;
+}
+
+.learning-heatmap-hero h2 {
+  margin: 0 0 8px;
+  color: #ffffff !important;
+  font-size: 27px;
+  line-height: 1.04;
+  font-weight: 950;
+  letter-spacing: -0.06em;
+}
+
+.learning-heatmap-hero p {
+  max-width: 230px;
+  margin: 0;
+  color: #ffffff !important;
+  font-size: 13px;
+  line-height: 1.48;
+  font-weight: 750;
+  opacity: 0.96;
+}
+
+.learning-streak-card {
+  min-width: 98px;
+  padding: 14px 12px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.26);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.learning-streak-fire {
+  font-size: 34px;
+  line-height: 1;
+  filter: drop-shadow(0 8px 16px rgba(107, 33, 0, 0.24));
+}
+
+.learning-streak-card strong {
+  margin-top: 8px;
+  color: #ffffff !important;
+  font-size: 34px;
+  line-height: 0.92;
+  font-weight: 950;
+  letter-spacing: -0.06em;
+}
+
+.learning-streak-card small {
+  margin-top: 7px;
+  color: #ffffff !important;
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.92;
+}
+
+.learning-week-card {
+  margin-top: 16px;
+  padding: 18px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(15, 23, 42, 0.07);
+  box-shadow: 0 18px 44px rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.learning-week-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.learning-week-card-top h3 {
+  margin: 0 0 4px;
+  color: #172033;
+  font-size: 18px;
+  font-weight: 950;
+  letter-spacing: -0.04em;
+}
+
+.learning-week-card-top p {
+  margin: 0;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.45;
+  font-weight: 750;
+}
+
+#learningHeatmapStatus[data-type="success"] {
+  color: #15803d;
+}
+
+#learningHeatmapStatus[data-type="error"] {
+  color: #dc2626;
+}
+
+.learning-refresh-btn {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  border: 0;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #fff2dd, #ffe4b5);
+  color: #b45309;
+  box-shadow: 0 10px 22px rgba(180, 83, 9, 0.13);
+  font-size: 22px;
+  font-weight: 950;
+  line-height: 1;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.learning-refresh-btn:active {
+  transform: scale(0.96);
+}
+
+.learning-week-grid {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.learning-day-box {
+  min-height: 72px;
+  padding: 9px 5px;
+  border-radius: 18px;
+  background: #f4f7fb;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+}
+
+.learning-day-box span {
+  color: #64748b;
+  font-size: 10px;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.learning-day-box strong {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: #e2e8f0;
+  color: #64748b;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 950;
+}
+
+.learning-day-box.active {
+  background: linear-gradient(180deg, #fff7ed, #ffedd5);
+  border-color: rgba(249, 115, 22, 0.24);
+  box-shadow: 0 12px 24px rgba(249, 115, 22, 0.12);
+}
+
+.learning-day-box.active span {
+  color: #9a3412;
+}
+
+.learning-day-box.active strong {
+  background: linear-gradient(135deg, #f97316, #f59e0b);
+  color: #ffffff;
+  box-shadow: 0 8px 18px rgba(249, 115, 22, 0.25);
+}
+
+.learning-day-box.today {
+  transform: translateY(-2px);
+  border-color: rgba(245, 158, 11, 0.5);
+}
+
+.learning-info-card {
+  margin-top: 16px;
+  padding: 18px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(15, 23, 42, 0.07);
+  box-shadow: 0 18px 44px rgba(15, 23, 42, 0.07);
+}
+
+.learning-info-card h3 {
+  margin: 0 0 12px;
+  color: #172033;
+  font-size: 17px;
+  font-weight: 950;
+  letter-spacing: -0.04em;
+}
+
+.learning-info-card ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+.learning-info-card li {
+  position: relative;
+  padding-left: 24px;
+  color: #475569;
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 750;
+}
+
+.learning-info-card li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 17px;
+  height: 17px;
+  border-radius: 999px;
+  background: #dcfce7;
+  color: #15803d;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 950;
+}
+
+body.dark-mode .learning-heatmap-section,
+html.dark-mode .learning-heatmap-section,
+body.settings-dark-mode .learning-heatmap-section {
+  background:
+    radial-gradient(circle at top left, rgba(255, 122, 24, 0.18), transparent 34%),
+    radial-gradient(circle at top right, rgba(255, 193, 7, 0.12), transparent 34%),
+    linear-gradient(180deg, #0b1120 0%, #111827 52%, #0f172a 100%);
+}
+
+body.dark-mode .learning-back-btn,
+html.dark-mode .learning-back-btn,
+body.settings-dark-mode .learning-back-btn {
+  background: rgba(15, 23, 42, 0.82);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #e5e7eb;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+}
+
+body.dark-mode .learning-week-card,
+html.dark-mode .learning-week-card,
+body.settings-dark-mode .learning-week-card,
+body.dark-mode .learning-info-card,
+html.dark-mode .learning-info-card,
+body.settings-dark-mode .learning-info-card {
+  background: rgba(15, 23, 42, 0.84);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.26);
+}
+
+body.dark-mode .learning-week-card-top h3,
+html.dark-mode .learning-week-card-top h3,
+body.settings-dark-mode .learning-week-card-top h3,
+body.dark-mode .learning-info-card h3,
+html.dark-mode .learning-info-card h3,
+body.settings-dark-mode .learning-info-card h3 {
+  color: #f8fafc;
+}
+
+body.dark-mode .learning-week-card-top p,
+html.dark-mode .learning-week-card-top p,
+body.settings-dark-mode .learning-week-card-top p,
+body.dark-mode .learning-info-card li,
+html.dark-mode .learning-info-card li,
+body.settings-dark-mode .learning-info-card li {
+  color: #cbd5e1;
+}
+
+body.dark-mode .learning-day-box,
+html.dark-mode .learning-day-box,
+body.settings-dark-mode .learning-day-box {
+  background: rgba(30, 41, 59, 0.86);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+body.dark-mode .learning-day-box span,
+html.dark-mode .learning-day-box span,
+body.settings-dark-mode .learning-day-box span {
+  color: #cbd5e1;
+}
+
+body.dark-mode .learning-day-box strong,
+html.dark-mode .learning-day-box strong,
+body.settings-dark-mode .learning-day-box strong {
+  background: rgba(51, 65, 85, 0.92);
+  color: #e5e7eb;
+}
+
+body.dark-mode .learning-day-box.active,
+html.dark-mode .learning-day-box.active,
+body.settings-dark-mode .learning-day-box.active {
+  background: linear-gradient(180deg, rgba(124, 45, 18, 0.92), rgba(67, 20, 7, 0.88));
+  border-color: rgba(251, 146, 60, 0.34);
+}
+
+body.dark-mode .learning-day-box.active span,
+html.dark-mode .learning-day-box.active span,
+body.settings-dark-mode .learning-day-box.active span {
+  color: #fed7aa;
+}
+
+@media (max-width: 380px) {
+  .learning-heatmap-section {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .learning-heatmap-hero {
+    padding: 18px;
+    border-radius: 26px;
+  }
+
+  .learning-heatmap-hero h2 {
+    font-size: 24px;
+  }
+
+  .learning-heatmap-hero p {
+    max-width: 190px;
+    font-size: 12px;
+  }
+
+  .learning-streak-card {
+    min-width: 88px;
+    padding: 12px 10px;
+  }
+
+  .learning-streak-fire {
+    font-size: 30px;
+  }
+
+  .learning-streak-card strong {
+    font-size: 30px;
+  }
+
+  .learning-week-grid {
+    gap: 5px;
+  }
+
+  .learning-day-box {
+    min-height: 66px;
+    border-radius: 15px;
+  }
+
+  .learning-day-box strong {
+    width: 25px;
+    height: 25px;
+    font-size: 13px;
+  }
+}
   </style>
 </head>
 
@@ -18923,14 +19401,27 @@ html.dark body .learning-day-box.active {
   </div>
 </section>
 
-    <section id="learningHeatmap" class="section learning-heatmap-section" aria-label="Learning Heatmap">
+    <!-- Learning Heatmap -->
+    
+  <section id="learningHeatmap" class="section learning-heatmap-section" aria-label="Learning Heatmap">
   <div class="learning-heatmap-page">
+
+    <button
+      type="button"
+      class="learning-back-btn"
+      onclick="showSection('settings')"
+      aria-label="Back to settings"
+    >
+      <span aria-hidden="true">←</span>
+      <span>Back to Settings</span>
+    </button>
+
     <div class="learning-heatmap-hero">
       <div>
         <p class="learning-heatmap-kicker">Weekly Online Activity</p>
         <h2>Learning Heatmap</h2>
         <p>
-          Use the app for at least 10 seconds daily to keep your streak active.
+          Login daily and stay active to maintain your learning streak.
         </p>
       </div>
 
@@ -18963,26 +19454,32 @@ html.dark body .learning-day-box.active {
           <span>Mon</span>
           <strong>-</strong>
         </div>
+
         <div class="learning-day-box">
           <span>Tue</span>
           <strong>-</strong>
         </div>
+
         <div class="learning-day-box">
           <span>Wed</span>
           <strong>-</strong>
         </div>
+
         <div class="learning-day-box">
           <span>Thu</span>
           <strong>-</strong>
         </div>
+
         <div class="learning-day-box">
           <span>Fri</span>
           <strong>-</strong>
         </div>
+
         <div class="learning-day-box">
           <span>Sat</span>
           <strong>-</strong>
         </div>
+
         <div class="learning-day-box">
           <span>Sun</span>
           <strong>-</strong>
@@ -18992,13 +19489,15 @@ html.dark body .learning-day-box.active {
 
     <div class="learning-info-card">
       <h3>How streak works</h3>
+
       <ul>
-        <li>Open the app and use it for 10 seconds.</li>
-        <li>Today becomes active automatically.</li>
-        <li>Daily continuous activity increases streak.</li>
-        <li>If one day is missed, streak resets.</li>
+        <li>Login daily to keep your learning streak active.</li>
+        <li>Daily activity automatically marks your day as active.</li>
+        <li>Continuous daily learning increases your streak count.</li>
+        <li>If a day is missed, the streak starts again from zero.</li>
       </ul>
     </div>
+
   </div>
 </section>
 <!-----------------------  NAV BUTTONS --------------------------------------->
