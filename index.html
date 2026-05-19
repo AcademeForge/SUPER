@@ -16506,7 +16506,42 @@ body.settings-dark-mode .coming-soon-close {
     font-size: 14px !important;
   }
 }
-    
+    /* =========================================================
+   WEBVIEW / APK EXTERNAL WEBSITE BACK BUTTON
+========================================================= */
+
+.web-return-back-btn {
+  position: fixed !important;
+  top: max(14px, env(safe-area-inset-top)) !important;
+  left: 14px !important;
+  z-index: 9999999 !important;
+  height: 42px !important;
+  min-width: 86px !important;
+  padding: 0 14px !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: rgba(15, 23, 42, 0.92) !important;
+  color: #ffffff !important;
+  font-size: 15px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  box-shadow: 0 12px 34px rgba(15, 23, 42, 0.28) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  display: none !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+.web-return-back-btn.show {
+  display: inline-flex !important;
+}
+
+.web-return-back-btn:active {
+  transform: scale(0.96) !important;
+}
   </style>
 </head>
 
@@ -17815,23 +17850,21 @@ body.settings-dark-mode .coming-soon-close {
       <span>OTHER FEATURES</span>
     </button>
 
-    <div class="settings-divider"></div>
-
-    <button
-      type="button"
-      class="settings-beta-card"
-      onclick="showComingSoon('Beta Program')"
-      aria-label="Join Beta Program"
-    >
-      <span>Official Website ✨</span>
-      <span class="settings-arrow" aria-hidden="true">›</span>
-    </button>
-
+   <a
+  href="https://academeforge.in"
+  class="settings-beta-card external-web-link"
+  data-return-section="settings"
+  aria-label="Open AcademeForge official website"
+>
+  <span>Official Website ✨</span>
+  <span class="settings-arrow" aria-hidden="true">›</span>
+</a>
+  
     <div class="settings-list">
       <div class="settings-row settings-row-static">
         <div class="settings-row-left">
           <span class="settings-row-icon" aria-hidden="true">🌙</span>
-          <span>Dark Mode</span>
+          <span>Night Mode</span>
         </div>
 
         <label class="settings-switch" for="settingsDarkToggle" aria-label="Toggle dark mode">
@@ -17982,7 +18015,16 @@ body.settings-dark-mode .coming-soon-close {
   </div>
 </div>
 
-
+<button
+  id="webReturnBackBtn"
+  class="web-return-back-btn"
+  type="button"
+  onclick="returnFromExternalWebsite()"
+  aria-label="Back to app"
+>
+  ← Back
+</button>
+  
   <div class="toast" id="toast">
   <strong>Notification</strong>
   <p>Message</p>
@@ -29054,6 +29096,159 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+
+
+
+
+
+
+
+
+  
+  function persistCurrentAppSectionForReturn(sectionId) {
+    try {
+      const safeSectionId =
+        typeof sectionId === "string" && sectionId.trim()
+          ? sectionId.trim()
+          : "settings";
+
+      sessionStorage.setItem("af_return_section", safeSectionId);
+      sessionStorage.setItem("af_external_navigation", "1");
+    } catch (error) {
+      console.error("persistCurrentAppSectionForReturn failed:", error);
+    }
+  }
+
+  function getCurrentActiveSectionId() {
+    try {
+      const activeSection = document.querySelector(".section.active, .app-section.active");
+
+      if (activeSection && activeSection.id) {
+        return activeSection.id;
+      }
+
+      return "settings";
+    } catch (error) {
+      console.error("getCurrentActiveSectionId failed:", error);
+      return "settings";
+    }
+  }
+
+  function openAppReturnSection() {
+    try {
+      const returnSection =
+        sessionStorage.getItem("af_return_section") ||
+        "settings";
+
+      sessionStorage.removeItem("af_external_navigation");
+
+      if (typeof showSection === "function" && document.getElementById(returnSection)) {
+        showSection(returnSection);
+        return;
+      }
+
+      if (returnSection) {
+        window.location.href = window.location.origin + window.location.pathname + "#" + returnSection;
+        return;
+      }
+
+      window.location.reload();
+    } catch (error) {
+      console.error("openAppReturnSection failed:", error);
+      window.location.reload();
+    }
+  }
+
+  function returnFromExternalWebsite() {
+    try {
+      const returnSection =
+        sessionStorage.getItem("af_return_section") ||
+        "settings";
+
+      if (window.history.length > 1) {
+        window.history.back();
+
+        window.setTimeout(function () {
+          if (location.hostname.indexOf("academeforge.in") !== -1) {
+            window.location.href =
+              window.location.origin + window.location.pathname + "#" + returnSection;
+          }
+        }, 450);
+
+        return;
+      }
+
+      openAppReturnSection();
+    } catch (error) {
+      console.error("returnFromExternalWebsite failed:", error);
+      openAppReturnSection();
+    }
+  }
+
+  function showWebReturnButtonIfNeeded() {
+    try {
+      const button = document.getElementById("webReturnBackBtn");
+
+      if (!button) {
+        return;
+      }
+
+      const isExternalNavigation =
+        sessionStorage.getItem("af_external_navigation") === "1";
+
+      const isOfficialWebsite =
+        location.hostname === "academeforge.in" ||
+        location.hostname === "www.academeforge.in";
+
+      if (isExternalNavigation || isOfficialWebsite) {
+        button.classList.add("show");
+      } else {
+        button.classList.remove("show");
+      }
+    } catch (error) {
+      console.error("showWebReturnButtonIfNeeded failed:", error);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    try {
+      document.querySelectorAll(".external-web-link").forEach(function (link) {
+        link.addEventListener("click", function () {
+          const returnSection =
+            link.getAttribute("data-return-section") ||
+            getCurrentActiveSectionId();
+
+          persistCurrentAppSectionForReturn(returnSection);
+        });
+      });
+
+      const hashSection = String(window.location.hash || "").replace("#", "").trim();
+
+      if (hashSection && document.getElementById(hashSection) && typeof showSection === "function") {
+        showSection(hashSection);
+      }
+
+      showWebReturnButtonIfNeeded();
+    } catch (error) {
+      console.error("External website return init failed:", error);
+    }
+  });
+
+  window.addEventListener("pageshow", function () {
+    showWebReturnButtonIfNeeded();
+  });
+
+  window.addEventListener("hashchange", function () {
+    try {
+      const hashSection = String(window.location.hash || "").replace("#", "").trim();
+
+      if (hashSection && document.getElementById(hashSection) && typeof showSection === "function") {
+        showSection(hashSection);
+      }
+    } catch (error) {
+      console.error("hashchange section restore failed:", error);
+    }
+  });
 
   </script>
 </body>
