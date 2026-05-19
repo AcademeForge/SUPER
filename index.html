@@ -16705,7 +16705,78 @@ body {
     font-size: 17.5px;
   }
 }
-    
+    /* =========================================================
+   CRITICAL SECTION VISIBILITY FIX
+   Put this at the VERY END of your CSS file
+========================================================= */
+
+.section,
+.app-section {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.section.active,
+.app-section.active {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* Settings page must render normally when active */
+#settings.active {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  min-height: 100dvh !important;
+  width: 100% !important;
+  background: #ffffff !important;
+  color: #202124 !important;
+  padding: 72px 20px 100px !important;
+  overflow-y: auto !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* If any old glass/card CSS is hiding inner content */
+#settings.active .settings-page,
+#settings.active .settings-profile-card,
+#settings.active .settings-purchase-btn,
+#settings.active .settings-divider,
+#settings.active .settings-beta-card,
+#settings.active .settings-list,
+#settings.active .settings-row {
+  display: flex;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+#settings.active .settings-page {
+  display: block !important;
+  width: 100% !important;
+  max-width: 520px !important;
+  margin: 0 auto !important;
+}
+
+/* Prevent text from becoming white-on-white due to global theme */
+#settings.active h1,
+#settings.active h2,
+#settings.active h3,
+#settings.active p,
+#settings.active span,
+#settings.active button,
+#settings.active small,
+#settings.active strong {
+  color: inherit;
+}
+
+/* Bottom nav must stay above page */
+.bottom-nav {
+  z-index: 9999 !important;
+}
   </style>
 </head>
 
@@ -17982,6 +18053,8 @@ body {
       </div>
 </div>
 </section>
+
+    
 <!-- SETTINGS -->
 <section id="settings" class="section settings-section" aria-label="Settings page">
   <div class="settings-page">
@@ -28941,6 +29014,7 @@ document.addEventListener("DOMContentLoaded", function () {
 ========================= */
 
 
+
   function showSection(sectionId) {
     try {
       if (typeof sectionId !== "string" || sectionId.trim() === "") {
@@ -28949,22 +29023,17 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       const targetId = sectionId.trim();
-      const sections = document.querySelectorAll(".section");
-      const navButtons = document.querySelectorAll(".bottom-nav .nav-btn");
-
-      if (!sections.length) {
-        console.error("No .section elements found.");
-        return;
-      }
-
       const targetSection = document.getElementById(targetId);
 
       if (!targetSection) {
-        console.error("Target section not found:", targetId);
+        console.error("Section not found:", targetId);
         return;
       }
 
-      sections.forEach((section) => {
+      const allSections = document.querySelectorAll(".section, .app-section");
+      const navButtons = document.querySelectorAll(".bottom-nav .nav-btn");
+
+      allSections.forEach(function (section) {
         section.classList.remove("active");
         section.setAttribute("aria-hidden", "true");
       });
@@ -28972,9 +29041,9 @@ document.addEventListener("DOMContentLoaded", function () {
       targetSection.classList.add("active");
       targetSection.setAttribute("aria-hidden", "false");
 
-      navButtons.forEach((button) => {
-        const buttonSection = button.getAttribute("data-section");
-        const isActive = buttonSection === targetId;
+      navButtons.forEach(function (button) {
+        const navTarget = button.getAttribute("data-section");
+        const isActive = navTarget === targetId;
 
         button.classList.toggle("active", isActive);
 
@@ -28985,56 +29054,44 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
 
-      closeSettingsWhenLeaving(targetId);
-      runSectionSideEffects(targetId);
+      if (targetId === "batchaf" && typeof openBatchSectionaf === "function") {
+        openBatchSectionaf();
+      }
 
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: "instant"
-      });
+      if (targetId === "explore" && typeof loadAFTestPageV1 === "function") {
+        loadAFTestPageV1();
+      }
+
+      if (targetId === "settings") {
+        syncSettingsDarkToggleSafe();
+        hydrateSettingsNameSafe();
+      }
+
+      window.scrollTo(0, 0);
     } catch (error) {
       console.error("showSection failed:", error);
     }
   }
 
-  function closeSettingsWhenLeaving(activeSectionId) {
+  function syncSettingsDarkToggleSafe() {
     try {
-      const settingsSection = document.getElementById("settings");
+      const toggle = document.getElementById("settingsDarkToggle");
 
-      if (!settingsSection) {
+      if (!toggle) {
         return;
       }
 
-      if (activeSectionId !== "settings") {
-        settingsSection.classList.remove("active");
-        settingsSection.setAttribute("aria-hidden", "true");
-      }
+      const stored = localStorage.getItem("af_settings_dark_mode");
+      const isDark = stored === "1";
+
+      toggle.checked = isDark;
+      document.body.classList.toggle("settings-dark-mode", isDark);
     } catch (error) {
-      console.error("closeSettingsWhenLeaving failed:", error);
+      console.error("syncSettingsDarkToggleSafe failed:", error);
     }
   }
 
-  function runSectionSideEffects(sectionId) {
-    try {
-      if (sectionId === "batchaf" && typeof openBatchSectionaf === "function") {
-        openBatchSectionaf();
-      }
-
-      if (sectionId === "explore" && typeof loadAFTestPageV1 === "function") {
-        loadAFTestPageV1();
-      }
-
-      if (sectionId === "settings") {
-        hydrateSettingsStudentName();
-        syncSettingsDarkToggle();
-      }
-    } catch (error) {
-      console.error("runSectionSideEffects failed:", error);
-    }
-  }
-
-  function hydrateSettingsStudentName() {
+  function hydrateSettingsNameSafe() {
     try {
       const nameNode = document.getElementById("settingsStudentName");
 
@@ -29042,59 +29099,24 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      const possibleNameSources = [
-        document.getElementById("afProfileHeroName"),
-        document.getElementById("studentDashboardCardNameAf"),
-        document.getElementById("afNexusStudentNameV2")
-      ];
+      const profileNameNode = document.getElementById("afProfileHeroName");
+      const dashboardNameNode = document.getElementById("studentDashboardCardNameAf");
 
-      let studentName = "Student";
+      let name = "student";
 
-      for (const source of possibleNameSources) {
-        if (!source) {
-          continue;
-        }
-
-        const text = String(source.textContent || "").trim();
-
-        if (!text) {
-          continue;
-        }
-
-        const cleaned = text
-          .replace(/^hi,\s*/i, "")
-          .replace(/^welcome\s*/i, "")
-          .trim();
-
-        if (cleaned && cleaned !== "-" && cleaned.toLowerCase() !== "student") {
-          studentName = cleaned;
-          break;
-        }
+      if (profileNameNode && profileNameNode.textContent.trim()) {
+        name = profileNameNode.textContent.trim();
+      } else if (dashboardNameNode && dashboardNameNode.textContent.trim()) {
+        name = dashboardNameNode.textContent.trim().replace(/^Hi,\s*/i, "").trim();
       }
 
-      nameNode.textContent = "Hi, " + studentName;
+      if (!name || name === "-" || name.toLowerCase() === "student") {
+        name = "student";
+      }
+
+      nameNode.textContent = "Hi, " + name;
     } catch (error) {
-      console.error("hydrateSettingsStudentName failed:", error);
-    }
-  }
-
-  function openSettingsProfile() {
-    try {
-      const dashboard = document.getElementById("studentDashboardAf");
-
-      if (dashboard) {
-        showSection("studentDashboardAf");
-        return;
-      }
-
-      if (typeof showComingSoon === "function") {
-        showComingSoon("Profile");
-        return;
-      }
-
-      alert("Profile coming soon.");
-    } catch (error) {
-      console.error("openSettingsProfile failed:", error);
+      console.error("hydrateSettingsNameSafe failed:", error);
     }
   }
 
@@ -29104,96 +29126,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
       document.body.classList.toggle("settings-dark-mode", enabled);
       localStorage.setItem("af_settings_dark_mode", enabled ? "1" : "0");
-
-      if (typeof toggleThemeMode === "function") {
-        const appAlreadyDark =
-          document.body.classList.contains("dark") ||
-          document.body.classList.contains("dark-mode") ||
-          document.documentElement.classList.contains("dark");
-
-        if (enabled !== appAlreadyDark) {
-          toggleThemeMode();
-        }
-      }
     } catch (error) {
       console.error("toggleSettingsDarkMode failed:", error);
     }
   }
 
-  function syncSettingsDarkToggle() {
+  function openSettingsProfile() {
     try {
-      const toggle = document.getElementById("settingsDarkToggle");
+      const profileSection = document.getElementById("studentDashboardAf");
 
-      if (!toggle) {
+      if (profileSection) {
+        showSection("studentDashboardAf");
         return;
       }
 
-      const stored = localStorage.getItem("af_settings_dark_mode");
-      const isDark =
-        stored === "1" ||
-        document.body.classList.contains("settings-dark-mode") ||
-        document.body.classList.contains("dark") ||
-        document.body.classList.contains("dark-mode") ||
-        document.documentElement.classList.contains("dark");
-
-      toggle.checked = Boolean(isDark);
-      document.body.classList.toggle("settings-dark-mode", Boolean(isDark));
+      showComingSoon("Profile");
     } catch (error) {
-      console.error("syncSettingsDarkToggle failed:", error);
-    }
-  }
-
-  function showComingSoon(featureName) {
-    try {
-      const safeFeatureName =
-        typeof featureName === "string" && featureName.trim()
-          ? featureName.trim()
-          : "This feature";
-
-      if (typeof showToast === "function") {
-        showToast("Coming Soon", safeFeatureName + " will be available soon.");
-        return;
-      }
-
-      const toast = document.getElementById("toast");
-
-      if (toast) {
-        const title = toast.querySelector("strong");
-        const message = toast.querySelector("p");
-
-        if (title) {
-          title.textContent = "Coming Soon";
-        }
-
-        if (message) {
-          message.textContent = safeFeatureName + " will be available soon.";
-        }
-
-        toast.classList.add("show");
-
-        window.clearTimeout(window.__afToastTimer);
-        window.__afToastTimer = window.setTimeout(() => {
-          toast.classList.remove("show");
-        }, 2200);
-
-        return;
-      }
-
-      alert(safeFeatureName + " will be available soon.");
-    } catch (error) {
-      console.error("showComingSoon failed:", error);
+      console.error("openSettingsProfile failed:", error);
     }
   }
 
   document.addEventListener("DOMContentLoaded", function () {
     try {
-      const activeSection = document.querySelector(".section.active");
-      const initialSectionId = activeSection ? activeSection.id : "home";
+      const activeSection = document.querySelector(".section.active, .app-section.active");
+      const initialSection = activeSection ? activeSection.id : "home";
 
-      syncSettingsDarkToggle();
-      showSection(initialSectionId || "home");
+      showSection(initialSection);
     } catch (error) {
-      console.error("Initial section setup failed:", error);
+      console.error("DOMContentLoaded section init failed:", error);
     }
   });
 
