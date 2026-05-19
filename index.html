@@ -15892,6 +15892,345 @@ body.dark-mode .notification-time-box:hover {
     0 10px 28px rgba(0, 0, 0, 0.36),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
+
+    /* ---------- SETTINGS PAGE ---------- */
+
+.settings-section {
+  width: 100%;
+  min-height: 100%;
+  background: #ffffff;
+  color: #1f2937;
+}
+
+.settings-page {
+  width: 100%;
+  min-height: calc(100vh - 72px);
+  padding: 24px 20px 96px;
+  box-sizing: border-box;
+  background: #ffffff;
+}
+
+.settings-profile-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  margin-bottom: 22px;
+}
+
+.settings-avatar {
+  width: 58px;
+  height: 58px;
+  min-width: 58px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(145deg, #bbf7d0, #86efac);
+  font-size: 31px;
+  line-height: 1;
+  overflow: hidden;
+}
+
+.settings-profile-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.settings-profile-info h2 {
+  margin: 0;
+  color: #1f2937;
+  font-size: 23px;
+  line-height: 1.15;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+}
+
+.settings-profile-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 4px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #737373;
+  font-size: 17px;
+  line-height: 1.2;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.settings-purchase-btn {
+  width: 100%;
+  min-height: 48px;
+  border: 0;
+  border-radius: 14px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #f8f8f8;
+  color: #3f3f46;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+}
+
+.settings-divider {
+  width: 100%;
+  height: 1px;
+  margin: 26px 0 20px;
+  background: #e5e7eb;
+}
+
+.settings-beta-card {
+  width: 100%;
+  min-height: 52px;
+  border: 0;
+  border-radius: 10px;
+  padding: 0 16px 0 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f5fbff;
+  color: #3f3f46;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: left;
+}
+
+.settings-arrow {
+  color: #525252;
+  font-size: 42px;
+  line-height: 1;
+  font-weight: 300;
+  transform: translateY(-2px);
+}
+
+.settings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.settings-row {
+  width: 100%;
+  min-height: 62px;
+  padding: 0 2px;
+  border: 0;
+  background: transparent;
+  color: #4b5563;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.settings-row-btn {
+  cursor: pointer;
+}
+
+.settings-row-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.settings-row-left span:last-child {
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 500;
+  color: #4b5563;
+}
+
+.settings-row-icon {
+  width: 24px;
+  min-width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  color: #525252;
+  font-size: 22px;
+  line-height: 1;
+  filter: grayscale(1);
+}
+
+.settings-new-badge {
+  min-width: 52px;
+  height: 28px;
+  padding: 0 12px;
+  border-radius: 6px;
+  display: inline-grid;
+  place-items: center;
+  background: #fff7d6;
+  color: #d99a16;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 800;
+}
+
+/* ---------- SETTINGS SWITCH ---------- */
+
+.settings-switch {
+  position: relative;
+  display: inline-flex;
+  width: 48px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.settings-switch input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  margin: 0;
+  z-index: 2;
+}
+
+.settings-slider {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: #e5e7eb;
+  transition:
+    background-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.settings-slider::before {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  left: 2px;
+  top: 2px;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.18);
+  transition: transform 0.18s ease;
+}
+
+.settings-switch input:checked + .settings-slider {
+  background: #111827;
+}
+
+.settings-switch input:checked + .settings-slider::before {
+  transform: translateX(20px);
+}
+
+/* ---------- DARK MODE SETTINGS PAGE ---------- */
+
+html.dark .settings-section,
+body.dark .settings-section,
+[data-theme="dark"] .settings-section,
+html.dark-mode .settings-section,
+body.dark-mode .settings-section {
+  background: #020617;
+  color: #f8fafc;
+}
+
+html.dark .settings-page,
+body.dark .settings-page,
+[data-theme="dark"] .settings-page,
+html.dark-mode .settings-page,
+body.dark-mode .settings-page {
+  background: #020617;
+  color: #f8fafc;
+}
+
+html.dark .settings-profile-info h2,
+body.dark .settings-profile-info h2,
+[data-theme="dark"] .settings-profile-info h2,
+html.dark-mode .settings-profile-info h2,
+body.dark-mode .settings-profile-info h2 {
+  color: #f8fafc;
+}
+
+html.dark .settings-profile-link,
+body.dark .settings-profile-link,
+[data-theme="dark"] .settings-profile-link,
+html.dark-mode .settings-profile-link,
+body.dark-mode .settings-profile-link {
+  color: #94a3b8;
+}
+
+html.dark .settings-purchase-btn,
+body.dark .settings-purchase-btn,
+[data-theme="dark"] .settings-purchase-btn,
+html.dark-mode .settings-purchase-btn,
+body.dark-mode .settings-purchase-btn {
+  background: rgba(15, 23, 42, 0.95);
+  color: #e5e7eb;
+}
+
+html.dark .settings-divider,
+body.dark .settings-divider,
+[data-theme="dark"] .settings-divider,
+html.dark-mode .settings-divider,
+body.dark-mode .settings-divider {
+  background: rgba(148, 163, 184, 0.22);
+}
+
+html.dark .settings-beta-card,
+body.dark .settings-beta-card,
+[data-theme="dark"] .settings-beta-card,
+html.dark-mode .settings-beta-card,
+body.dark-mode .settings-beta-card {
+  background: rgba(15, 23, 42, 0.92);
+  color: #e5e7eb;
+}
+
+html.dark .settings-arrow,
+body.dark .settings-arrow,
+[data-theme="dark"] .settings-arrow,
+html.dark-mode .settings-arrow,
+body.dark-mode .settings-arrow {
+  color: #cbd5e1;
+}
+
+html.dark .settings-row,
+body.dark .settings-row,
+[data-theme="dark"] .settings-row,
+html.dark-mode .settings-row,
+body.dark-mode .settings-row {
+  color: #cbd5e1;
+}
+
+html.dark .settings-row-left span:last-child,
+body.dark .settings-row-left span:last-child,
+[data-theme="dark"] .settings-row-left span:last-child,
+html.dark-mode .settings-row-left span:last-child,
+body.dark-mode .settings-row-left span:last-child {
+  color: #cbd5e1;
+}
+
+html.dark .settings-row-icon,
+body.dark .settings-row-icon,
+[data-theme="dark"] .settings-row-icon,
+html.dark-mode .settings-row-icon,
+body.dark-mode .settings-row-icon {
+  color: #cbd5e1;
+  filter: none;
+}
+
+html.dark .settings-new-badge,
+body.dark .settings-new-badge,
+[data-theme="dark"] .settings-new-badge,
+html.dark-mode .settings-new-badge,
+body.dark-mode .settings-new-badge {
+  background: rgba(251, 191, 36, 0.16);
+  color: #fbbf24;
+}
+
+    
   </style>
 </head>
 
@@ -17168,6 +17507,146 @@ body.dark-mode .notification-time-box:hover {
       </div>
 </div>
 </section>
+
+      <!-- SETTINGS -->
+    
+ <section id="settings" class="app-section settings-section">
+  <div class="settings-page">
+    <div class="settings-profile-card">
+      <div class="settings-avatar" aria-hidden="true">👨‍🎓</div>
+
+      <div class="settings-profile-info">
+        <h2>Hi, Student</h2>
+        <button
+          type="button"
+          class="settings-profile-link"
+          onclick="showComingSoon('Profile')"
+        >
+          View profile
+        </button>
+      </div>
+    </div>
+
+    <button
+      type="button"
+      class="settings-purchase-btn"
+      onclick="showComingSoon('My Purchases')"
+    >
+      <span class="settings-row-icon">💼</span>
+      <span>My Purchases</span>
+    </button>
+
+    <div class="settings-divider"></div>
+
+    <button
+      type="button"
+      class="settings-beta-card"
+      onclick="showComingSoon('Beta Program')"
+    >
+      <span>Join Beta Program ✨</span>
+      <span class="settings-arrow">›</span>
+    </button>
+
+    <div class="settings-list">
+      <div class="settings-row">
+        <div class="settings-row-left">
+          <span class="settings-row-icon">🌙</span>
+          <span>Dark Mode</span>
+        </div>
+
+        <label class="settings-switch" aria-label="Toggle dark mode">
+          <input
+            id="settingsDarkToggle"
+            type="checkbox"
+            onchange="toggleSettingsDarkMode(this.checked)"
+          />
+          <span class="settings-slider"></span>
+        </label>
+      </div>
+
+      <button
+        type="button"
+        class="settings-row settings-row-btn"
+        onclick="showComingSoon('Offline')"
+      >
+        <div class="settings-row-left">
+          <span class="settings-row-icon">🏢</span>
+          <span>Offline</span>
+        </div>
+      </button>
+
+      <button
+        type="button"
+        class="settings-row settings-row-btn"
+        onclick="showComingSoon('Scholarship')"
+      >
+        <div class="settings-row-left">
+          <span class="settings-row-icon">🎓</span>
+          <span>Scholarship</span>
+        </div>
+      </button>
+
+      <button
+        type="button"
+        class="settings-row settings-row-btn"
+        onclick="showComingSoon('Test Series')"
+      >
+        <div class="settings-row-left">
+          <span class="settings-row-icon">📋</span>
+          <span>Test Series</span>
+        </div>
+      </button>
+
+      <button
+        type="button"
+        class="settings-row settings-row-btn"
+        onclick="showComingSoon('PW Store')"
+      >
+        <div class="settings-row-left">
+          <span class="settings-row-icon">🛒</span>
+          <span>AF Store</span>
+        </div>
+      </button>
+
+      <button
+        type="button"
+        class="settings-row settings-row-btn"
+        onclick="showComingSoon('Power Batch')"
+      >
+        <div class="settings-row-left">
+          <span class="settings-row-icon">⚡</span>
+          <span>Power Batch</span>
+        </div>
+      </button>
+
+      <button
+        type="button"
+        class="settings-row settings-row-btn"
+        onclick="showComingSoon('PW Books')"
+      >
+        <div class="settings-row-left">
+          <span class="settings-row-icon">📚</span>
+          <span>AF Books</span>
+        </div>
+
+        <span class="settings-new-badge">New</span>
+      </button>
+
+      <button
+        type="button"
+        class="settings-row settings-row-btn"
+        onclick="showComingSoon('Pi Lens')"
+      >
+        <div class="settings-row-left">
+          <span class="settings-row-icon">⭕</span>
+          <span>AF Lens</span>
+        </div>
+
+        <span class="settings-new-badge">New</span>
+      </button>
+    </div>
+  </div>
+</section>
 <!-----------------------  NAV BUTTONS --------------------------------------->
 
 <nav class="bottom-nav glass">
@@ -17191,10 +17670,10 @@ body.dark-mode .notification-time-box:hover {
     Community
   </button>
 
-  <button class="nav-btn" data-section="notifications" onclick="showSection('notifications')">
-    <b class="nav-notify-wrap">🔔</b>
-    <span>Notify</span>
-  </button>
+  <button class="nav-btn" data-section="settings" onclick="showSection('settings')">
+  <b class="nav-icon-wrap">⚙️</b>
+  <span>Settings</span>
+</button>
 </nav>
 
   </main>
@@ -27974,6 +28453,47 @@ document.addEventListener("DOMContentLoaded", function () {
   }, 500);
 });
 
+/* =========================
+COMING SOON
+========================= */
+  let afToastTimer = null;
+
+  function showComingSoon(featureName) {
+    try {
+      const safeFeatureName =
+        typeof featureName === "string" && featureName.trim().length > 0
+          ? featureName.trim()
+          : "This feature";
+
+      let toast = document.getElementById("afComingSoonToast");
+
+      if (!toast) {
+        toast = document.createElement("div");
+        toast.id = "afComingSoonToast";
+        toast.className = "af-toast";
+        toast.setAttribute("role", "status");
+        toast.setAttribute("aria-live", "polite");
+        document.body.appendChild(toast);
+      }
+
+      toast.textContent = safeFeatureName + " is coming soon.";
+
+      window.clearTimeout(afToastTimer);
+
+      toast.classList.remove("show");
+
+      window.requestAnimationFrame(function () {
+        toast.classList.add("show");
+      });
+
+      afToastTimer = window.setTimeout(function () {
+        toast.classList.remove("show");
+      }, 2200);
+    } catch (error) {
+      console.error("Coming soon toast failed:", error);
+      alert("This feature is coming soon.");
+    }
+  }
   </script>
 </body>
 </html>
