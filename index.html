@@ -15893,389 +15893,427 @@ body.dark-mode .notification-time-box:hover {
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-/* ================================
-   GLOBAL MOBILE APP SHELL
-================================ */
+/* =========================================================
+   AF SETTINGS PAGE - FINAL CLEAN FIX
+   Paste at VERY END of CSS
+   Does NOT redesign bottom nav. It only prevents old overrides.
+========================================================= */
 
-:root {
-  --app-bg: #ffffff;
-  --app-card: #ffffff;
-  --app-soft-card: #f7f7f7;
-  --app-soft-blue: #f4faff;
-  --app-text: #222222;
-  --app-muted: #777777;
-  --app-border: #eeeeee;
-  --app-icon: #444444;
-  --app-badge-bg: #fff4cc;
-  --app-badge-text: #d49300;
-  --app-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  --app-overlay: rgba(0, 0, 0, 0.38);
-}
+/* ---------- App shell safety ---------- */
 
 html,
 body {
-  width: 100%;
-  min-height: 100%;
-  margin: 0;
-  padding: 0;
-  background: #e9e9e9;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-  color: var(--app-text);
-  overflow-x: hidden;
+  overflow-x: hidden !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
 }
 
-/* Laptop/Desktop par bhi app mobile screen jaisa dikhega */
-body {
-  display: flex;
-  justify-content: center;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: #e9e9e9;
-  z-index: -2;
-}
-
-.app-shell,
-.app,
-#app,
-main {
-  width: 100%;
-  max-width: 390px;
-  min-height: 100vh;
-  background: var(--app-bg);
-  overflow-x: hidden;
-  position: relative;
-}
-
-/* Agar wrapper nahi hai to direct sections bhi mobile width follow kare */
-.app-section {
-  width: 100%;
-  max-width: 390px;
-  min-height: 100vh;
-  margin: 0 auto;
-  background: var(--app-bg);
-  color: var(--app-text);
-}
-
-/* ================================
-   SECTION VISIBILITY CONTROL
-================================ */
-
-/* Default: sab sections hidden */
-.app-section {
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+#settings::-webkit-scrollbar,
+.settings-page::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
   display: none !important;
 }
 
-/* Sirf active section visible */
-.app-section.active-section {
-  display: block !important;
+/* Keep app inside mobile width */
+.app,
+.app-shell,
+#app,
+main.app {
+  width: 100% !important;
+  max-width: 430px !important;
+  margin: 0 auto !important;
+  overflow-x: hidden !important;
+  position: relative !important;
+  background: #f6f8fc !important;
 }
 
-/* Settings extra safety */
+/* Do NOT force old nav outside screen */
+.bottom-nav {
+  left: auto !important;
+  right: auto !important;
+  width: calc(100% - 12px) !important;
+  max-width: 418px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  transform: none !important;
+  z-index: 5000 !important;
+}
+
+/* ---------- Section visibility compatibility ---------- */
+
 #settings {
   display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
+#settings.active,
 #settings.active-section {
   display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
 }
 
-/* ================================
-   SETTINGS PAGE
-================================ */
+/* ---------- Settings page layout ---------- */
 
-.settings-section {
-  min-height: 100vh;
-  background: var(--app-bg);
+#settings.settings-section,
+#settings.section.settings-section,
+#settings.app-section.settings-section {
+  width: 100% !important;
+  max-width: 430px !important;
+  min-height: auto !important;
+  height: auto !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  background: linear-gradient(180deg, #f8fbff 0%, #ffffff 42%, #ffffff 100%) !important;
+  color: #172033 !important;
+  overflow: visible !important;
+  position: relative !important;
+  box-sizing: border-box !important;
 }
 
-.settings-page {
-  width: 100%;
-  min-height: 100vh;
-  box-sizing: border-box;
-  padding: 68px 20px 28px;
-  background: var(--app-bg);
-  color: var(--app-text);
+/* Main content starts close to header */
+#settings .settings-page {
+  width: 100% !important;
+  max-width: 430px !important;
+  min-height: 0 !important;
+  height: auto !important;
+  margin: 0 auto !important;
+  padding: 18px 20px 92px !important;
+  box-sizing: border-box !important;
+  background:
+    radial-gradient(circle at 16% 0%, rgba(95, 165, 255, 0.11), transparent 28%),
+    radial-gradient(circle at 92% 12%, rgba(145, 239, 196, 0.13), transparent 24%),
+    transparent !important;
+  overflow: visible !important;
 }
 
-/* Profile */
-.settings-profile-card {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  width: 100%;
-  box-sizing: border-box;
-  margin-bottom: 18px;
+/* ---------- Profile card ---------- */
+
+#settings .settings-profile-card {
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  margin: 0 0 18px !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
 }
 
-.settings-avatar {
-  width: 56px;
-  height: 56px;
-  flex: 0 0 56px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #95e7ad, #79dca0);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 30px;
-  line-height: 1;
-  overflow: hidden;
+#settings .settings-avatar {
+  width: 56px !important;
+  height: 56px !important;
+  min-width: 56px !important;
+  flex: 0 0 56px !important;
+  border-radius: 50% !important;
+  display: grid !important;
+  place-items: center !important;
+  background:
+    linear-gradient(135deg, #b9f8d0 0%, #72e2a2 100%) !important;
+  box-shadow:
+    0 14px 28px rgba(34, 197, 94, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.65) !important;
+  font-size: 29px !important;
+  line-height: 1 !important;
 }
 
-.settings-profile-info {
-  min-width: 0;
-  flex: 1;
+#settings .settings-profile-info {
+  min-width: 0 !important;
+  flex: 1 !important;
 }
 
-.settings-profile-info h2 {
-  margin: 0;
-  color: var(--app-text);
-  font-size: 24px;
-  font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: -0.4px;
+#settings .settings-profile-info h2 {
+  margin: 0 !important;
+  color: #0f172a !important;
+  font-size: 23px !important;
+  line-height: 1.12 !important;
+  font-weight: 850 !important;
+  letter-spacing: -0.04em !important;
 }
 
-.settings-profile-link {
-  display: inline-flex;
-  align-items: center;
-  margin-top: 4px;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  background: transparent;
-  color: var(--app-muted);
-  font-size: 17px;
-  font-weight: 400;
-  line-height: 1.2;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
+#settings .settings-profile-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  margin: 5px 0 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  color: #64748b !important;
+  font-size: 16px !important;
+  line-height: 1.2 !important;
+  font-weight: 650 !important;
+  cursor: pointer !important;
 }
 
-.settings-profile-link:active {
-  opacity: 0.7;
+/* ---------- Purchase button ---------- */
+
+#settings .settings-purchase-btn {
+  width: 100% !important;
+  min-height: 52px !important;
+  height: 52px !important;
+  margin: 0 !important;
+  padding: 0 16px !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  outline: 0 !important;
+  border-radius: 15px !important;
+  background:
+    linear-gradient(180deg, #ffffff 0%, #f8fafc 100%) !important;
+  color: #263244 !important;
+  box-shadow:
+    0 10px 24px rgba(15, 23, 42, 0.045),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 13px !important;
+  box-sizing: border-box !important;
+  font-size: 16.5px !important;
+  font-weight: 750 !important;
+  cursor: pointer !important;
+  -webkit-tap-highlight-color: transparent !important;
 }
 
-/* Purchase button */
-.settings-purchase-btn {
-  width: 100%;
-  height: 48px;
-  border: 0;
-  outline: 0;
-  border-radius: 13px;
-  background: var(--app-soft-card);
-  color: var(--app-text);
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  padding: 0 16px;
-  box-sizing: border-box;
-  font-size: 17px;
-  font-weight: 500;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
+#settings .settings-purchase-btn:active {
+  transform: scale(0.99) !important;
 }
 
-.settings-purchase-btn:active {
-  transform: scale(0.99);
+/* ---------- Divider ---------- */
+
+#settings .settings-divider {
+  width: 100% !important;
+  height: 1px !important;
+  margin: 20px 0 !important;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(203, 213, 225, 0.85) 12%,
+    rgba(203, 213, 225, 0.85) 88%,
+    transparent 100%
+  ) !important;
 }
 
-/* Divider */
-.settings-divider {
-  width: 100%;
-  height: 1px;
-  background: var(--app-border);
-  margin: 22px 0;
+/* ---------- Beta card ---------- */
+
+#settings .settings-beta-card {
+  width: 100% !important;
+  min-height: 52px !important;
+  height: 52px !important;
+  margin: 0 0 18px !important;
+  padding: 0 15px 0 18px !important;
+  border: 1px solid rgba(219, 234, 254, 0.95) !important;
+  outline: 0 !important;
+  border-radius: 13px !important;
+  background:
+    linear-gradient(135deg, #eef8ff 0%, #f7fbff 55%, #f0fff7 100%) !important;
+  color: #263244 !important;
+  box-shadow:
+    0 10px 22px rgba(59, 130, 246, 0.055),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  box-sizing: border-box !important;
+  font-size: 15.5px !important;
+  font-weight: 850 !important;
+  cursor: pointer !important;
+  -webkit-tap-highlight-color: transparent !important;
 }
 
-/* Beta card */
-.settings-beta-card {
-  width: 100%;
-  height: 53px;
-  border: 0;
-  outline: 0;
-  border-radius: 8px;
-  background: var(--app-soft-blue);
-  color: var(--app-text);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 17px 0 20px;
-  box-sizing: border-box;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-  margin-bottom: 22px;
+#settings .settings-beta-card:active {
+  transform: scale(0.99) !important;
 }
 
-.settings-beta-card:active {
-  transform: scale(0.99);
+#settings .settings-arrow {
+  color: #334155 !important;
+  font-size: 34px !important;
+  line-height: 1 !important;
+  font-weight: 350 !important;
+  transform: translateY(-1px) !important;
 }
 
-.settings-arrow {
-  font-size: 44px;
-  line-height: 1;
-  font-weight: 300;
-  color: var(--app-icon);
-  margin-top: -3px;
+/* ---------- List rows ---------- */
+
+#settings .settings-list {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-/* List */
-.settings-list {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
+#settings .settings-row {
+  width: 100% !important;
+  min-height: 56px !important;
+  margin: 0 !important;
+  padding: 0 2px !important;
+  border: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  color: #334155 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  box-sizing: border-box !important;
+  text-align: left !important;
+  font-size: 16.5px !important;
+  line-height: 1.2 !important;
+  font-weight: 720 !important;
+  cursor: pointer !important;
+  -webkit-tap-highlight-color: transparent !important;
 }
 
-.settings-row {
-  width: 100%;
-  min-height: 61px;
-  border: 0;
-  outline: 0;
-  background: transparent;
-  color: var(--app-text);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20px 0 0;
-  box-sizing: border-box;
-  font-size: 18px;
-  font-weight: 400;
-  text-align: left;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
+#settings .settings-row-btn:active {
+  opacity: 0.68 !important;
 }
 
-.settings-row-btn:active {
-  opacity: 0.65;
+#settings .settings-row-left {
+  min-width: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
 }
 
-.settings-row-left {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  min-width: 0;
+#settings .settings-row-left span:last-child {
+  min-width: 0 !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
 }
 
-.settings-row-icon {
-  width: 26px;
-  min-width: 26px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--app-icon);
-  font-size: 23px;
-  line-height: 1;
-  filter: grayscale(1);
+#settings .settings-row-icon {
+  width: 27px !important;
+  min-width: 27px !important;
+  height: 27px !important;
+  display: inline-grid !important;
+  place-items: center !important;
+  color: #475569 !important;
+  font-size: 21px !important;
+  line-height: 1 !important;
+  filter: grayscale(1) saturate(0.75) opacity(0.82) !important;
 }
 
-.settings-row-left span:last-child {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+/* ---------- New badge ---------- */
+
+#settings .settings-new-badge {
+  min-width: 54px !important;
+  height: 28px !important;
+  padding: 0 10px !important;
+  border-radius: 9px !important;
+  background: linear-gradient(135deg, #fff7dc 0%, #ffefb0 100%) !important;
+  color: #b77900 !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65) !important;
+  font-size: 15px !important;
+  line-height: 1 !important;
+  font-weight: 900 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
 }
 
-/* New badge */
-.settings-new-badge {
-  min-width: 52px;
-  height: 27px;
-  padding: 0 10px;
-  border-radius: 7px;
-  background: var(--app-badge-bg);
-  color: var(--app-badge-text);
-  font-size: 16px;
-  font-weight: 700;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
+/* ---------- Switch ---------- */
+
+#settings .settings-switch {
+  position: relative !important;
+  width: 48px !important;
+  height: 28px !important;
+  flex: 0 0 48px !important;
+  display: inline-block !important;
+  cursor: pointer !important;
+  -webkit-tap-highlight-color: transparent !important;
 }
 
-/* Switch */
-.settings-switch {
-  position: relative;
-  width: 49px;
-  height: 28px;
-  flex: 0 0 49px;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
+#settings .settings-switch input {
+  position: absolute !important;
+  width: 0 !important;
+  height: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
-.settings-switch input {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
+#settings .settings-slider {
+  position: absolute !important;
+  inset: 0 !important;
+  border-radius: 999px !important;
+  background: #d9dde4 !important;
+  box-shadow:
+    inset 0 1px 2px rgba(15, 23, 42, 0.12),
+    0 2px 8px rgba(15, 23, 42, 0.08) !important;
+  transition:
+    background 180ms ease,
+    box-shadow 180ms ease !important;
 }
 
-.settings-slider {
-  position: absolute;
-  inset: 0;
-  border-radius: 999px;
-  background: #dedede;
-  transition: background 180ms ease;
+#settings .settings-slider::before {
+  content: "" !important;
+  position: absolute !important;
+  width: 24px !important;
+  height: 24px !important;
+  left: 2px !important;
+  top: 2px !important;
+  border-radius: 50% !important;
+  background: #ffffff !important;
+  box-shadow: 0 2px 7px rgba(15, 23, 42, 0.22) !important;
+  transition: transform 180ms ease !important;
 }
 
-.settings-slider::before {
-  content: "";
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  left: 2px;
-  top: 2px;
-  border-radius: 50%;
-  background: #ffffff;
-  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.18);
-  transition: transform 180ms ease;
+#settings .settings-switch input:checked + .settings-slider {
+  background: #111827 !important;
 }
 
-.settings-switch input:checked + .settings-slider {
-  background: #111111;
+#settings .settings-switch input:checked + .settings-slider::before {
+  transform: translateX(20px) !important;
 }
 
-.settings-switch input:checked + .settings-slider::before {
-  transform: translateX(21px);
-}
-
-/* ================================
-   COMING SOON POPUP
-================================ */
+/* ---------- Coming soon popup fix ---------- */
 
 .coming-soon-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-  background: var(--app-overlay);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 18px;
-  box-sizing: border-box;
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 999999 !important;
+  width: 100vw !important;
+  height: 100dvh !important;
+  max-width: none !important;
+  transform: none !important;
+  background: rgba(15, 23, 42, 0.42) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  display: none !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 18px !important;
+  box-sizing: border-box !important;
 }
 
 .coming-soon-overlay.show {
-  display: flex;
+  display: flex !important;
 }
 
 .coming-soon-modal {
-  width: min(100%, 340px);
-  max-width: 340px;
-  border-radius: 22px;
-  background: var(--app-card);
-  color: var(--app-text);
-  box-shadow: var(--app-shadow);
-  padding: 24px 20px 18px;
-  box-sizing: border-box;
-  text-align: center;
-  transform: translateY(8px) scale(0.98);
-  animation: comingSoonIn 180ms ease forwards;
+  width: min(100%, 338px) !important;
+  max-width: 338px !important;
+  margin: 0 auto !important;
+  border-radius: 24px !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  background:
+    linear-gradient(180deg, #ffffff 0%, #f8fbff 100%) !important;
+  color: #172033 !important;
+  box-shadow:
+    0 24px 70px rgba(15, 23, 42, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
+  padding: 24px 20px 18px !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
+  animation: afComingSoonIn 180ms ease forwards !important;
 }
 
-@keyframes comingSoonIn {
+@keyframes afComingSoonIn {
   from {
     opacity: 0;
     transform: translateY(12px) scale(0.96);
@@ -16288,614 +16326,186 @@ main {
 }
 
 .coming-soon-icon {
-  width: 58px;
-  height: 58px;
-  border-radius: 18px;
-  margin: 0 auto 14px;
-  background: var(--app-soft-blue);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 30px;
+  width: 58px !important;
+  height: 58px !important;
+  margin: 0 auto 14px !important;
+  border-radius: 18px !important;
+  background:
+    linear-gradient(135deg, #eef8ff 0%, #e8fff2 100%) !important;
+  display: grid !important;
+  place-items: center !important;
+  font-size: 30px !important;
 }
 
 .coming-soon-title {
-  margin: 0;
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: -0.3px;
-  color: var(--app-text);
+  margin: 0 !important;
+  color: #0f172a !important;
+  font-size: 22px !important;
+  line-height: 1.15 !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.03em !important;
 }
 
 .coming-soon-message {
-  margin: 8px 0 18px;
-  font-size: 15px;
-  line-height: 1.45;
-  color: var(--app-muted);
+  margin: 8px 0 18px !important;
+  color: #64748b !important;
+  font-size: 15px !important;
+  line-height: 1.45 !important;
+  font-weight: 550 !important;
 }
 
 .coming-soon-close {
-  width: 100%;
-  height: 45px;
-  border: 0;
-  outline: 0;
-  border-radius: 13px;
-  background: #111111;
-  color: #ffffff;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
+  width: 100% !important;
+  height: 45px !important;
+  border: 0 !important;
+  outline: 0 !important;
+  border-radius: 14px !important;
+  background: #111827 !important;
+  color: #ffffff !important;
+  font-size: 16px !important;
+  font-weight: 850 !important;
+  cursor: pointer !important;
 }
 
 .coming-soon-close:active {
-  transform: scale(0.98);
+  transform: scale(0.98) !important;
 }
 
-/* ================================
-   DARK MODE
-================================ */
+/* ---------- Toast fallback fix if your app uses #toast instead ---------- */
 
-body.dark-mode {
-  --app-bg: #0f0f10;
-  --app-card: #19191b;
-  --app-soft-card: #1b1b1d;
-  --app-soft-blue: #17202a;
-  --app-text: #f4f4f5;
-  --app-muted: #a4a4a8;
-  --app-border: #27272a;
-  --app-icon: #e7e7e9;
-  --app-badge-bg: #3a2d0d;
-  --app-badge-text: #ffd166;
-  --app-shadow: 0 18px 45px rgba(0, 0, 0, 0.5);
-  --app-overlay: rgba(0, 0, 0, 0.68);
-}
-
-body.dark-mode,
-body.dark-mode::before {
-  background: #000000;
-}
-
-body.dark-mode .app-shell,
-body.dark-mode .app,
-body.dark-mode #app,
-body.dark-mode main,
-body.dark-mode .app-section,
-body.dark-mode .settings-section,
-body.dark-mode .settings-page {
-  background: var(--app-bg);
-  color: var(--app-text);
-}
-
-body.dark-mode .settings-row-icon {
-  filter: grayscale(1) brightness(1.6);
-}
-
-body.dark-mode .coming-soon-close {
-  background: #ffffff;
-  color: #111111;
-}
-
-/* ================================
-   RESPONSIVE SAFETY
-================================ */
-
-@media (min-width: 391px) {
-  .coming-soon-overlay {
-    width: 390px;
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-  }
-}
-
-@media (max-width: 360px) {
-  .settings-page {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  .settings-profile-info h2 {
-    font-size: 22px;
-  }
-
-  .settings-row {
-    font-size: 17px;
-  }
-
-  .settings-new-badge {
-    min-width: 48px;
-    font-size: 15px;
-  }
-}
-/* ==============================
-   SETTINGS PAGE - AF
-================================ */
-
-.settings-section {
-  width: 100%;
-  min-height: 100dvh;
-  background: #ffffff;
-  padding: 72px 20px 96px;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.settings-page {
-  width: 100%;
-  max-width: 520px;
-  margin: 0 auto;
-}
-
-.settings-profile-card {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-.settings-avatar {
-  width: 58px;
-  height: 58px;
-  flex: 0 0 58px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(135deg, #a7f3d0, #86efac);
-  font-size: 30px;
-  box-shadow: 0 10px 24px rgba(22, 163, 74, 0.14);
-}
-
-.settings-profile-info {
-  min-width: 0;
-}
-
-.settings-profile-info h2 {
-  margin: 0;
-  color: #202124;
-  font-size: 24px;
-  line-height: 1.12;
-  font-weight: 800;
-  letter-spacing: -0.04em;
-}
-
-.settings-profile-link {
-  margin-top: 4px;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: #7b7f86;
-  font-size: 17px;
-  line-height: 1.2;
-  font-weight: 500;
-  cursor: pointer;
-  text-align: left;
-}
-
-.settings-purchase-btn,
-.settings-beta-card,
-.settings-row {
-  width: 100%;
-  border: 0;
-  outline: 0;
-  font-family: inherit;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.settings-purchase-btn {
-  min-height: 52px;
-  padding: 0 16px;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  background: #f7f7f7;
-  color: #3f4247;
-  font-size: 17px;
-  font-weight: 500;
-  cursor: pointer;
-}
-
-.settings-divider {
-  width: 100%;
-  height: 1px;
-  margin: 22px 0;
-  background: #e7e7e7;
-}
-
-.settings-beta-card {
-  min-height: 52px;
-  margin-bottom: 20px;
-  padding: 0 16px 0 20px;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #f5fbff, #eef8ff);
-  color: #33363a;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 16.5px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.settings-arrow {
-  color: #4c4f55;
-  font-size: 44px;
-  line-height: 1;
-  font-weight: 300;
-  transform: translateY(-1px);
-}
-
-.settings-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.settings-row {
-  min-height: 61px;
-  padding: 0 4px;
-  background: transparent;
-  color: #4a4d52;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  text-align: left;
-  font-size: 18px;
-  font-weight: 500;
-}
-
-.settings-row-btn {
-  cursor: pointer;
-}
-
-.settings-row-left {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  min-width: 0;
-}
-
-.settings-row-icon {
-  width: 25px;
-  min-width: 25px;
-  display: inline-grid;
-  place-items: center;
-  color: #222;
-  font-size: 22px;
-  line-height: 1;
-  filter: grayscale(1);
-}
-
-.settings-new-badge {
-  min-width: 50px;
-  padding: 6px 11px;
-  border-radius: 7px;
-  background: #fff6d8;
-  color: #d79b18;
-  font-size: 16px;
-  line-height: 1;
-  font-weight: 800;
-  text-align: center;
-}
-
-.settings-switch {
-  position: relative;
-  width: 48px;
-  height: 28px;
-  flex: 0 0 auto;
-  display: inline-block;
-}
-
-.settings-switch input {
-  width: 0;
-  height: 0;
-  opacity: 0;
-}
-
-.settings-slider {
-  position: absolute;
-  inset: 0;
-  border-radius: 999px;
-  background: #d8d8d8;
-  cursor: pointer;
-  transition: background 180ms ease, box-shadow 180ms ease;
-}
-
-.settings-slider::before {
-  content: "";
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  left: 2px;
-  top: 2px;
-  border-radius: 50%;
-  background: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
-  transition: transform 180ms ease;
-}
-
-.settings-switch input:checked + .settings-slider {
-  background: #111827;
-}
-
-.settings-switch input:checked + .settings-slider::before {
-  transform: translateX(20px);
-}
-
-.settings-row-btn:active,
-.settings-purchase-btn:active,
-.settings-beta-card:active,
-.settings-profile-link:active {
-  transform: scale(0.985);
-}
-
-/* Settings dark mode */
-body.settings-dark-mode,
-body.settings-dark-mode .settings-section {
-  background: #0b0f17;
-}
-
-body.settings-dark-mode .settings-profile-info h2 {
-  color: #f8fafc;
-}
-
-body.settings-dark-mode .settings-profile-link {
-  color: #9ca3af;
-}
-
-body.settings-dark-mode .settings-purchase-btn {
-  background: #151b26;
-  color: #e5e7eb;
-}
-
-body.settings-dark-mode .settings-divider {
-  background: #202938;
-}
-
-body.settings-dark-mode .settings-beta-card {
-  background: linear-gradient(135deg, #111827, #172033);
-  color: #f8fafc;
-}
-
-body.settings-dark-mode .settings-arrow {
-  color: #d1d5db;
-}
-
-body.settings-dark-mode .settings-row {
-  color: #e5e7eb;
-}
-
-body.settings-dark-mode .settings-row-icon {
-  color: #f8fafc;
-  filter: none;
-}
-
-body.settings-dark-mode .settings-new-badge {
-  background: rgba(245, 158, 11, 0.16);
-  color: #fbbf24;
-}
-
-/* Strong section visibility guard */
-.section {
-  display: none;
-}
-
-.section.active {
-  display: block;
-}
-
-/* Prevent bottom nav overlap */
-body {
-  padding-bottom: env(safe-area-inset-bottom);
-}
-
-@media (max-width: 430px) {
-  .settings-section {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  .settings-profile-info h2 {
-    font-size: 23px;
-  }
-
-  .settings-row {
-    font-size: 17.5px;
-  }
-}
-    /* =========================================================
-   CRITICAL SECTION VISIBILITY FIX
-   Put this at the VERY END of your CSS file
-========================================================= */
-
-.section,
-.app-section {
-  display: none !important;
-  visibility: hidden !important;
+#toast {
+  position: fixed !important;
+  left: 50% !important;
+  bottom: 92px !important;
+  transform: translateX(-50%) translateY(18px) !important;
+  width: min(340px, calc(100vw - 32px)) !important;
+  max-width: 340px !important;
+  z-index: 999999 !important;
   opacity: 0 !important;
   pointer-events: none !important;
+  border-radius: 18px !important;
+  background: rgba(15, 23, 42, 0.96) !important;
+  color: #ffffff !important;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.28) !important;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease !important;
 }
 
-.section.active,
-.app-section.active {
-  display: block !important;
-  visibility: visible !important;
+#toast.show {
   opacity: 1 !important;
+  transform: translateX(-50%) translateY(0) !important;
   pointer-events: auto !important;
 }
 
-/* Settings page must render normally when active */
-#settings.active {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  min-height: 100dvh !important;
-  width: 100% !important;
-  background: #ffffff !important;
-  color: #202124 !important;
-  padding: 72px 20px 100px !important;
-  overflow-y: auto !important;
-  position: relative !important;
-  z-index: 1 !important;
+#toast strong,
+#toast p {
+  color: #ffffff !important;
 }
 
-/* If any old glass/card CSS is hiding inner content */
-#settings.active .settings-page,
-#settings.active .settings-profile-card,
-#settings.active .settings-purchase-btn,
-#settings.active .settings-divider,
-#settings.active .settings-beta-card,
-#settings.active .settings-list,
-#settings.active .settings-row {
-  display: flex;
-  visibility: visible !important;
-  opacity: 1 !important;
+/* ---------- Dark mode compatibility ---------- */
+
+body.dark-mode #settings.settings-section,
+body.dark-mode #settings .settings-page,
+body.settings-dark-mode #settings.settings-section,
+body.settings-dark-mode #settings .settings-page {
+  background:
+    radial-gradient(circle at 12% 0%, rgba(59, 130, 246, 0.14), transparent 30%),
+    linear-gradient(180deg, #0f172a 0%, #111827 100%) !important;
+  color: #f8fafc !important;
 }
 
-#settings.active .settings-page {
-  display: block !important;
-  width: 100% !important;
-  max-width: 520px !important;
-  margin: 0 auto !important;
+body.dark-mode #settings .settings-profile-info h2,
+body.settings-dark-mode #settings .settings-profile-info h2 {
+  color: #f8fafc !important;
 }
 
-/* Prevent text from becoming white-on-white due to global theme */
-#settings.active h1,
-#settings.active h2,
-#settings.active h3,
-#settings.active p,
-#settings.active span,
-#settings.active button,
-#settings.active small,
-#settings.active strong {
-  color: inherit;
+body.dark-mode #settings .settings-profile-link,
+body.settings-dark-mode #settings .settings-profile-link {
+  color: #94a3b8 !important;
 }
 
-/* Bottom nav must stay above page */
-.bottom-nav {
-  z-index: 9999 !important;
+body.dark-mode #settings .settings-purchase-btn,
+body.settings-dark-mode #settings .settings-purchase-btn {
+  border-color: rgba(51, 65, 85, 0.85) !important;
+  background: linear-gradient(180deg, #1e293b 0%, #172033 100%) !important;
+  color: #e5e7eb !important;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18) !important;
 }
 
-    /* =========================================================
-   SETTINGS PAGE FINAL LAYOUT FIX
-   Paste at VERY END of CSS
-========================================================= */
-
-/* Hide ugly page scrollbar but keep scrolling functional */
-html,
-body {
-  scrollbar-width: none !important;
-  -ms-overflow-style: none !important;
+body.dark-mode #settings .settings-divider,
+body.settings-dark-mode #settings .settings-divider {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(51, 65, 85, 0.9) 12%,
+    rgba(51, 65, 85, 0.9) 88%,
+    transparent 100%
+  ) !important;
 }
 
-html::-webkit-scrollbar,
-body::-webkit-scrollbar,
-#settings::-webkit-scrollbar,
-.settings-section::-webkit-scrollbar,
-.settings-page::-webkit-scrollbar {
-  width: 0 !important;
-  height: 0 !important;
-  display: none !important;
+body.dark-mode #settings .settings-beta-card,
+body.settings-dark-mode #settings .settings-beta-card {
+  border-color: rgba(51, 65, 85, 0.85) !important;
+  background: linear-gradient(135deg, #172033 0%, #1e293b 100%) !important;
+  color: #f8fafc !important;
 }
 
-/* Main app should not create extra vertical blank area */
-main.app {
-  min-height: auto !important;
-  height: auto !important;
-  overflow-x: hidden !important;
+body.dark-mode #settings .settings-row,
+body.settings-dark-mode #settings .settings-row {
+  color: #e5e7eb !important;
 }
 
-/* Settings section: touch header, no huge top/bottom gap */
-#settings.settings-section,
-#settings.section.settings-section {
-  min-height: auto !important;
-  height: auto !important;
-  padding: 10px 20px 92px !important;
-  margin: 0 !important;
-  background: #ffffff !important;
-  overflow: visible !important;
-  position: relative !important;
+body.dark-mode #settings .settings-row-icon,
+body.settings-dark-mode #settings .settings-row-icon {
+  color: #cbd5e1 !important;
+  filter: grayscale(1) brightness(1.45) !important;
 }
 
-/* Only active settings should show */
-#settings:not(.active) {
-  display: none !important;
+body.dark-mode .coming-soon-modal,
+body.settings-dark-mode .coming-soon-modal {
+  border-color: rgba(51, 65, 85, 0.85) !important;
+  background: linear-gradient(180deg, #1e293b 0%, #111827 100%) !important;
+  color: #f8fafc !important;
 }
 
-#settings.active {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
+body.dark-mode .coming-soon-title,
+body.settings-dark-mode .coming-soon-title {
+  color: #f8fafc !important;
 }
 
-/* Settings inner page: content-height only */
-#settings .settings-page {
-  width: 100% !important;
-  max-width: 520px !important;
-  min-height: 0 !important;
-  height: auto !important;
-  margin: 0 auto !important;
-  padding: 0 !important;
-  overflow: visible !important;
+body.dark-mode .coming-soon-message,
+body.settings-dark-mode .coming-soon-message {
+  color: #cbd5e1 !important;
 }
 
-/* Remove large top spacing from first card */
-#settings .settings-profile-card {
-  margin-top: 0 !important;
-  margin-bottom: 18px !important;
+body.dark-mode .coming-soon-close,
+body.settings-dark-mode .coming-soon-close {
+  background: #f8fafc !important;
+  color: #111827 !important;
 }
 
-/* Keep purchase/beta/list compact */
-#settings .settings-purchase-btn {
-  margin: 0 !important;
-}
+/* ---------- Small screen tuning ---------- */
 
-#settings .settings-divider {
-  margin: 20px 0 !important;
-}
+@media (max-width: 360px) {
+  #settings .settings-page {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
 
-#settings .settings-beta-card {
-  margin: 0 0 18px !important;
-}
+  #settings .settings-profile-info h2 {
+    font-size: 21px !important;
+  }
 
-#settings .settings-list {
-  margin: 0 !important;
-  padding: 0 !important;
-}
+  #settings .settings-row {
+    font-size: 15.8px !important;
+  }
 
-/* Reduce each row height slightly */
-#settings .settings-row {
-  min-height: 58px !important;
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
+  #settings .settings-new-badge {
+    min-width: 48px !important;
+    font-size: 14px !important;
+  }
 }
-
-/* Remove unnecessary bottom space after last row */
-#settings .settings-list > *:last-child {
-  margin-bottom: 0 !important;
-}
-
-/* Bottom nav fixed, no content hidden behind it */
-.bottom-nav {
-  position: fixed !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  z-index: 9999 !important;
-}
-
-/* Desktop/mobile browser scrollbar gutter removal */
-body {
-  overflow-x: hidden !important;
-}
-
-/* If old CSS added section min-height, neutralize it for settings only */
-.section#settings {
-  min-height: auto !important;
-}
-
     
   </style>
 </head>
