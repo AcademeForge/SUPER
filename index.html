@@ -32831,6 +32831,297 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+ 
+/* =========================================================
+   CONTACT US - AF
+========================================================= */
+
+const AF_CONTACT_REQUEST_EDGE_URL =
+  "https://afooyyydhlwngzssgqih.supabase.co/functions/v1/contact-request";
+
+function openContactUsPage() {
+  try {
+    if (typeof showSection === "function") {
+      showSection("contactUsAf");
+      return;
+    }
+
+    document.querySelectorAll(".section").forEach(function (section) {
+      section.classList.remove("active");
+      section.style.display = "none";
+    });
+
+    const contactSection = document.getElementById("contactUsAf");
+    if (contactSection) {
+      contactSection.classList.add("active");
+      contactSection.style.display = "block";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  } catch (error) {
+    console.error("openContactUsPage failed:", error);
+  }
+}
+
+function backToSettingsFromContact() {
+  try {
+    if (typeof showSection === "function") {
+      showSection("settings");
+      return;
+    }
+
+    document.querySelectorAll(".section").forEach(function (section) {
+      section.classList.remove("active");
+      section.style.display = "none";
+    });
+
+    const settingsSection = document.getElementById("settings");
+    if (settingsSection) {
+      settingsSection.classList.add("active");
+      settingsSection.style.display = "block";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  } catch (error) {
+    console.error("backToSettingsFromContact failed:", error);
+  }
+}
+
+function setContactMessageAf(type, message) {
+  const messageBox = document.getElementById("contactUsMessageAf");
+  if (!messageBox) return;
+
+  messageBox.classList.remove("is-success", "is-error");
+  messageBox.textContent = "";
+
+  if (!message) {
+    messageBox.style.display = "none";
+    return;
+  }
+
+  messageBox.textContent = message;
+  messageBox.classList.add(type === "success" ? "is-success" : "is-error");
+  messageBox.style.display = "block";
+}
+
+function getAfContactValue(id) {
+  const element = document.getElementById(id);
+  if (!element) return "";
+  return String(element.value || "").trim();
+}
+
+function getCurrentStudentContextAf() {
+  const keys = [
+    "af_student_session",
+    "af_logged_student",
+    "af_student_data",
+    "studentaf_session",
+    "studentaf_logged_in",
+    "student_session_af",
+    "currentStudentaf",
+    "current_student_af"
+  ];
+
+  let parsedStudent = null;
+
+  for (let i = 0; i < keys.length; i += 1) {
+    try {
+      const raw = localStorage.getItem(keys[i]);
+      if (!raw) continue;
+
+      const parsed = JSON.parse(raw);
+      if (parsed && typeof parsed === "object") {
+        parsedStudent = parsed.student || parsed.data || parsed;
+        break;
+      }
+    } catch (error) {
+      continue;
+    }
+  }
+
+  const fallbackIdentifier =
+    localStorage.getItem("student_id_af") ||
+    localStorage.getItem("studentIdaf") ||
+    localStorage.getItem("studentPhoneaf") ||
+    localStorage.getItem("af_student_identifier") ||
+    "";
+
+  const fallbackName =
+    localStorage.getItem("student_name_af") ||
+    localStorage.getItem("studentNameaf") ||
+    localStorage.getItem("af_student_name") ||
+    "";
+
+  if (!parsedStudent) {
+    return {
+      student_id: null,
+      student_identifier: fallbackIdentifier || null,
+      student_name: fallbackName || null
+    };
+  }
+
+  return {
+    student_id:
+      parsedStudent.id ||
+      parsedStudent.student_id ||
+      parsedStudent.uuid ||
+      null,
+
+    student_identifier:
+      parsedStudent.student_id ||
+      parsedStudent.phone ||
+      parsedStudent.mobile ||
+      parsedStudent.mobile_number ||
+      parsedStudent.email ||
+      fallbackIdentifier ||
+      null,
+
+    student_name:
+      parsedStudent.name ||
+      parsedStudent.full_name ||
+      parsedStudent.student_name ||
+      fallbackName ||
+      null
+  };
+}
+
+function getAfDeviceIdSafe() {
+  try {
+    const storageKey = "af_device_id";
+    let deviceId = localStorage.getItem(storageKey);
+
+    if (!deviceId) {
+      const randomPart = Math.random().toString(36).slice(2);
+      const timePart = Date.now().toString(36);
+      deviceId = "web_" + timePart + "_" + randomPart;
+      localStorage.setItem(storageKey, deviceId);
+    }
+
+    return deviceId;
+  } catch (error) {
+    return "unknown_device";
+  }
+}
+
+function validateContactRequestAf(payload) {
+  const indianMobileRegex = /^(\+91)?[6-9]\d{9}$/;
+  const internationalMobileRegex = /^\+\d{8,15}$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+
+  if (payload.full_name.length < 2) {
+    return "Please enter your full name.";
+  }
+
+  if (
+    !indianMobileRegex.test(payload.mobile_number.replace(/\s+/g, "")) &&
+    !internationalMobileRegex.test(payload.mobile_number.replace(/\s+/g, ""))
+  ) {
+    return "Please enter a valid mobile number.";
+  }
+
+  if (!emailRegex.test(payload.email)) {
+    return "Please enter a valid email address.";
+  }
+
+  if (!payload.contact_reason) {
+    return "Please select why you want to contact our team.";
+  }
+
+  if (payload.problem_description.length < 10) {
+    return "Please describe your issue properly.";
+  }
+
+  return "";
+}
+
+async function submitContactRequestAf(event) {
+  event.preventDefault();
+
+  const submitBtn = document.getElementById("contactSubmitBtnAf");
+
+  try {
+    setContactMessageAf("", "");
+
+    const studentContext = getCurrentStudentContextAf();
+
+    const payload = {
+      student_id: studentContext.student_id,
+      student_identifier: studentContext.student_identifier,
+      student_name: studentContext.student_name,
+
+      full_name: getAfContactValue("contactNameAf"),
+      mobile_number: getAfContactValue("contactMobileAf"),
+      email: getAfContactValue("contactEmailAf").toLowerCase(),
+      contact_reason: getAfContactValue("contactReasonAf"),
+      problem_description: getAfContactValue("contactProblemAf"),
+
+      page_url: window.location.href,
+      user_agent: navigator.userAgent,
+      device_id: getAfDeviceIdSafe()
+    };
+
+    const validationError = validateContactRequestAf(payload);
+    if (validationError) {
+      setContactMessageAf("error", validationError);
+      return;
+    }
+
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Submitting...";
+    }
+
+    const response = await fetch(AF_CONTACT_REQUEST_EDGE_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": typeof SUPABASE_ANON_KEY !== "undefined" ? SUPABASE_ANON_KEY : "",
+        "Authorization":
+          typeof SUPABASE_ANON_KEY !== "undefined"
+            ? "Bearer " + SUPABASE_ANON_KEY
+            : ""
+      },
+      body: JSON.stringify(payload)
+    });
+
+    let result = null;
+
+    try {
+      result = await response.json();
+    } catch (jsonError) {
+      result = null;
+    }
+
+    if (!response.ok || !result || result.success !== true) {
+      throw new Error(
+        result && result.message
+          ? result.message
+          : "Unable to submit request right now."
+      );
+    }
+
+    const form = document.getElementById("contactUsFormAf");
+    if (form) form.reset();
+
+    setContactMessageAf(
+      "success",
+      "Your request has been submitted successfully. Our team will contact you soon."
+    );
+  } catch (error) {
+    console.error("submitContactRequestAf failed:", error);
+    setContactMessageAf(
+      "error",
+      error && error.message
+        ? error.message
+        : "Something went wrong. Please try again."
+    );
+  } finally {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Submit Request";
+    }
+  }
+}
+
+
 </script>
  
 </body>
