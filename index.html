@@ -23636,48 +23636,56 @@ body.dark-mode {
   ) !important;
 }
 
-/* SETTINGS BUTTON CARDS */
-
-.settings-list,
-.settings-support-list{
-  display:flex;
-  flex-direction:column;
-  gap:2px;
-}
+/* SETTINGS FULL WHITE BUTTON STYLE */
 
 .settings-row,
 .settings-support-row{
   background:#ffffff !important;
   color:#111827 !important;
+
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+
+  width:100% !important;
+  min-height:56px !important;
+
+  padding:0 16px !important;
+  margin:0 !important;
+
   border:none !important;
+  border-bottom:1px solid #e5e7eb !important;
+
   border-radius:0 !important;
-  min-height:54px !important;
-  padding:0 14px !important;
   box-shadow:none !important;
 }
 
-/* First button top radius */
+/* First Card (Night Mode) */
 .settings-list .settings-row:first-child{
-  border-radius:12px 12px 0 0 !important;
+  border-radius:14px 14px 0 0 !important;
 }
 
-/* Last button bottom radius */
+/* Last Card (Notifications) */
 .settings-list .settings-row:last-child{
-  border-radius:0 0 12px 12px !important;
+  border-radius:0 0 14px 14px !important;
+  border-bottom:none !important;
 }
 
-/* Support section */
+/* Support List */
 .settings-support-list .settings-support-row:first-child{
-  border-radius:12px 12px 0 0 !important;
+  border-radius:14px 14px 0 0 !important;
 }
 
-.settings-support-list .settings-support-row:last-child{
-  border-radius:0 0 12px 12px !important;
+.settings-support-list .settings-support-row:last-of-type{
+  border-radius:0 0 14px 14px !important;
+  border-bottom:none !important;
 }
 
 /* Text */
 .settings-row span,
-.settings-support-row span{
+.settings-support-row span,
+.settings-row p,
+.settings-support-row p{
   color:#111827 !important;
   font-weight:600 !important;
 }
@@ -23685,14 +23693,98 @@ body.dark-mode {
 /* Icons */
 .settings-row-icon,
 .settings-support-icon{
+  font-size:20px !important;
   margin-right:14px !important;
+}
+
+/* Left Side */
+.settings-row-left,
+.settings-support-left{
+  display:flex !important;
+  align-items:center !important;
+  gap:14px !important;
+}
+
+/* Arrows */
+.settings-arrow{
+  color:#6b7280 !important;
+  font-size:20px !important;
+}
+
+/* Track / New Badge */
+.settings-new-badge{
+  background:#fef3c7 !important;
+  color:#b45309 !important;
+  border:none !important;
+  border-radius:10px !important;
+  padding:4px 10px !important;
+  font-weight:700 !important;
 }
 
 /* Logout */
 .settings-logout-row{
   background:#ffffff !important;
+  border-radius:14px !important;
   margin-top:12px !important;
-  border-radius:12px !important;
+}
+
+.settings-logout-row span{
+  color:#dc2626 !important;
+}
+
+/* Divider */
+.settings-support-divider{
+  display:none !important;
+}
+    /* =========================
+   LIGHT MODE
+   ========================= */
+
+body:not(.dark-mode) .settings-row,
+body:not(.dark-mode) .settings-support-row{
+  background:#ffffff !important;
+  color:#111827 !important;
+  border-bottom:1px solid #e5e7eb !important;
+}
+
+body:not(.dark-mode) .settings-row span,
+body:not(.dark-mode) .settings-support-row span{
+  color:#111827 !important;
+}
+
+/* =========================
+   DARK MODE
+   ========================= */
+
+body.dark-mode .settings-row,
+body.dark-mode .settings-support-row{
+  background:#08152f !important;
+  color:#ffffff !important;
+  border-bottom:1px solid rgba(255,255,255,.08) !important;
+}
+
+body.dark-mode .settings-row span,
+body.dark-mode .settings-support-row span,
+body.dark-mode .settings-arrow,
+body.dark-mode .af-lang-current-pill{
+  color:#ffffff !important;
+}
+
+/* Logout */
+
+body:not(.dark-mode) .settings-logout-row{
+  background:#ffffff !important;
+}
+
+body.dark-mode .settings-logout-row{
+  background:#08152f !important;
+}
+
+/* Track / New badge */
+
+.settings-new-badge{
+  background:#fef3c7 !important;
+  color:#b45309 !important;
 }
 </style>
 </head>
