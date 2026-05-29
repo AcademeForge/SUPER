@@ -23766,6 +23766,180 @@ body.dark-mode ::-webkit-scrollbar-thumb {
   background: #343d4d !important;
   border-radius: 999px !important;
 }
+    /* =========================
+   THEME ENGINE
+   ========================= */
+
+:root{
+  --af-bg: #f4f6fb;
+  --af-surface: #ffffff;
+  --af-surface-2: #eef2f8;
+  --af-text: #111827;
+  --af-text-soft: #5f6b7a;
+  --af-border: rgba(0,0,0,.08);
+  --af-shadow: 0 8px 24px rgba(0,0,0,.08);
+}
+
+/* DARK MODE */
+body.dark-mode{
+  --af-bg: #060b17;
+  --af-surface: #101827;
+  --af-surface-2: #162134;
+  --af-text: #ffffff;
+  --af-text-soft: #b8c3d6;
+  --af-border: rgba(255,255,255,.08);
+  --af-shadow: 0 8px 24px rgba(0,0,0,.45);
+}
+
+/* =========================
+   GLOBAL
+   ========================= */
+
+body,
+.app,
+.section{
+  background: var(--af-bg) !important;
+  color: var(--af-text) !important;
+}
+
+/* =========================
+   ALL CARDS / PANELS
+   ========================= */
+
+.glass,
+.panel,
+.action-card,
+.student-cardaf,
+.student-dashboardaf,
+.af-panel,
+.batch-pageaf,
+.batch-detail-cardaf,
+.batch-info-boxaf,
+.course-info-boxaf,
+.learning-week-card,
+.learning-info-card,
+.about-af-feature-card,
+.about-af-founder-pro-card,
+.about-af-timeline-card,
+.settings-profile-card,
+.settings-beta-card,
+.contact-us-af-card,
+.request-status-page-af,
+.af-profile-hero{
+  background: var(--af-surface) !important;
+  color: var(--af-text) !important;
+  border: 1px solid var(--af-border) !important;
+  box-shadow: var(--af-shadow) !important;
+}
+
+/* =========================
+   SETTINGS PAGE
+   ========================= */
+
+.settings-row,
+.settings-support-row{
+  background: var(--af-surface) !important;
+  color: var(--af-text) !important;
+}
+
+.settings-row span,
+.settings-support-row span,
+.settings-row-left span,
+.settings-support-left span{
+  color: var(--af-text) !important;
+}
+
+/* =========================
+   TOPBAR + NAVBAR
+   ========================= */
+
+.topbar,
+.bottom-nav{
+  background: var(--af-surface) !important;
+  border-color: var(--af-border) !important;
+}
+
+.nav-btn,
+.nav-label{
+  color: var(--af-text-soft) !important;
+}
+
+.nav-btn.active,
+.nav-btn.active .nav-label{
+  color: var(--af-text) !important;
+}
+
+/* =========================
+   INPUTS
+   ========================= */
+
+input,
+textarea,
+select{
+  background: var(--af-surface-2) !important;
+  color: var(--af-text) !important;
+  border: 1px solid var(--af-border) !important;
+}
+
+input::placeholder,
+textarea::placeholder{
+  color: var(--af-text-soft) !important;
+}
+
+/* =========================
+   TEXT
+   ========================= */
+
+h1,h2,h3,h4,h5,h6,
+strong,b,label{
+  color: var(--af-text) !important;
+}
+
+p,
+span,
+small,
+li{
+  color: var(--af-text-soft) !important;
+}
+
+/* =========================
+   MODALS
+   ========================= */
+
+.bug-report-modal,
+.af-lang-modal,
+.coming-soon-modal,
+.af-delete-modal-card-v2,
+.af-nexus-composer-card-v2,
+.af-nexus-comments-card-v2,
+.af-nexus-reply-card-v2{
+  background: var(--af-surface) !important;
+  color: var(--af-text) !important;
+}
+
+/* =========================
+   TABLES / LISTS
+   ========================= */
+
+.notification-item,
+.af-test-mini-card-v1,
+.af-test-empty-card-v1,
+.af-nexus-post-card-v2,
+.af-nexus-comment-card-v2,
+.learning-day-box,
+.request-status-card-af{
+  background: var(--af-surface) !important;
+  color: var(--af-text) !important;
+  border-color: var(--af-border) !important;
+}
+
+/* =========================
+   LINKS
+   ========================= */
+
+a{
+  color: var(--af-text) !important;
+}
 </style>
 </head>
 
@@ -41217,6 +41391,19 @@ function openVerifyAF() {
     window.location.href =
         "/YA/verify/";
 }
+  function toggleSettingsDarkMode(enabled){
+  document.body.classList.toggle("dark-mode", enabled);
+  localStorage.setItem("af-dark-mode", enabled ? "1" : "0");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const enabled = localStorage.getItem("af-dark-mode") === "1";
+
+  document.body.classList.toggle("dark-mode", enabled);
+
+  const toggle = document.getElementById("settingsDarkToggle");
+  if(toggle) toggle.checked = enabled;
+});
 </script>
 </body>
 </html>
