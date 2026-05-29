@@ -23940,6 +23940,50 @@ li{
 a{
   color: var(--af-text) !important;
 }
+    /* =========================
+   SETTINGS PAGE BACKGROUND
+   ========================= */
+
+/* LIGHT MODE */
+#settings,
+.settings-section,
+.settings-page{
+  background: #f7f9fc !important;
+}
+
+/* DARK MODE */
+body.dark-mode #settings,
+body.dark-mode .settings-section,
+body.dark-mode .settings-page{
+  background: #050914 !important;
+}
+
+/* Full viewport behind settings */
+body:has(#settings.active){
+  background: #f7f9fc !important;
+}
+
+body.dark-mode:has(#settings.active){
+  background: #050914 !important;
+}
+    /* Entire app background */
+
+body{
+  background:#f7f9fc !important;
+}
+
+body.dark-mode{
+  background:#050914 !important;
+}
+
+.app{
+  background:transparent !important;
+}
+
+#settings{
+  background:inherit !important;
+  min-height:100vh !important;
+}
 </style>
 </head>
 
