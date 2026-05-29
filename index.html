@@ -23635,40 +23635,48 @@ body.dark-mode {
     #020814 100%
   ) !important;
 }
-  /* LIGHT MODE TEXT BOOST */
+  /* LIGHT MODE */
 
-body:not(.dark-mode) h1,
-body:not(.dark-mode) h2,
-body:not(.dark-mode) h3,
-body:not(.dark-mode) h4,
-body:not(.dark-mode) h5,
-body:not(.dark-mode) h6,
-body:not(.dark-mode) p,
-body:not(.dark-mode) span,
-body:not(.dark-mode) a,
-body:not(.dark-mode) label,
-body:not(.dark-mode) strong,
-body:not(.dark-mode) b,
-body:not(.dark-mode) small,
-body:not(.dark-mode) li,
-body:not(.dark-mode) .settings-row,
-body:not(.dark-mode) .settings-support-row,
-body:not(.dark-mode) .nav-label {
-  color: #ffffff !important;
-  text-shadow:
-    0 0 4px rgba(255,255,255,.35),
-    0 0 8px rgba(255,255,255,.15) !important;
+#settings,
+.settings-section,
+.settings-page{
+  background:#f5f7fb !important;
 }
 
-/* Right side arrows */
-body:not(.dark-mode) .settings-arrow {
-  color: #ffffff !important;
+#settings .settings-row,
+#settings .settings-support-row,
+#settings .settings-profile-card,
+#settings .settings-beta-card{
+  background:#ffffff !important;
 }
 
-/* Language text */
-body:not(.dark-mode) #afCurrentLanguagePill,
-body:not(.dark-mode) .af-lang-current-pill {
-  color: #ffffff !important;
+#settings span,
+#settings p,
+#settings strong,
+#settings h2{
+  color:#111827 !important;
+}
+
+/* DARK MODE */
+
+body.dark-mode #settings,
+body.dark-mode .settings-section,
+body.dark-mode .settings-page{
+  background:#020814 !important;
+}
+
+body.dark-mode #settings .settings-row,
+body.dark-mode #settings .settings-support-row,
+body.dark-mode #settings .settings-profile-card,
+body.dark-mode #settings .settings-beta-card{
+  background:#08152f !important;
+}
+
+body.dark-mode #settings span,
+body.dark-mode #settings p,
+body.dark-mode #settings strong,
+body.dark-mode #settings h2{
+  color:#ffffff !important;
 }
 </style>
 </head>
