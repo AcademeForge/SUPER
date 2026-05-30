@@ -25254,17 +25254,16 @@ body.dark-mode .af-test-result-card-v1 strong {
   <span class="settings-new-badge">Track</span>
 </button>
       
-      <button
+    <button
   type="button"
   class="settings-row settings-row-btn"
-  onclick="openAFReviewPageV1()"
-  aria-label="Latest Test Review"
+  onclick="showSection('afReviewPageV1'); openLastTestReviewV1();"
 >
   <div class="settings-row-left">
-    <span class="settings-row-icon" aria-hidden="true">📖</span>
+    <span class="settings-row-icon">📖</span>
     <span>Latest Test Review</span>
   </div>
-  <span class="settings-arrow" aria-hidden="true">›</span>
+  <span class="settings-arrow">›</span>
 </button>
       
       <button
@@ -25460,13 +25459,13 @@ onclick="openNotesAF()"
        <!-- ==============================
  REview page
 ================================ -->
-    <div id="afReviewPageV1" class="section">
+  <section id="afReviewPageV1" class="section">
 
   <div class="panel glass">
 
     <button
       class="back-mini"
-      onclick="closeAFReviewPageV1()"
+      onclick="showSection('settings')"
     >
       ← Back
     </button>
@@ -25485,7 +25484,7 @@ onclick="openNotesAF()"
 
   </div>
 
-</div>
+</section>
     
     <!-- ==============================
   LANGUAGE AF
@@ -36809,7 +36808,7 @@ async function openLastTestReviewV1() {
     return;
   }
 
-  const area = document.getElementById("afTestAreaV1");
+ const area = document.getElementById("afReviewContentV1");
   if (!area) return;
 
   area.innerHTML = `
