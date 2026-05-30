@@ -36663,6 +36663,130 @@ function renderAFTestResultV1(result) {
     "success"
   );
 }
+  /* =========================
+   REVIEW ANSWERS
+========================= */
+
+async function openLastTestReviewV1() {
+  const student = getAFTestStudentV1();
+
+  if (!student.student_id) {
+    showAFTestPopupV1(
+      "Login Required",
+      "<p>Please login first.</p>",
+      "error"
+    );
+    return;
+  }
+
+  const area = document.getElementById("afTestAreaV1");
+  if (!area) return;
+
+  area.innerHTML = `
+    <div class="af-test-empty-card-v1">
+      <div class="af-test-empty-icon-v1">📖</div>
+      <h3>Loading Review...</h3>
+      <p>Please wait.</p>
+    </div>
+  `;
+
+  const reviewData = await afTestEdgeCallV1(
+    "student-test-review-af",
+    {
+      student_id: student.student_id
+    }
+  );
+
+  if (!reviewData || !reviewData.ok) {
+    area.innerHTML = `
+      <div class="af-test-empty-card-v1">
+        <div class="af-test-empty-icon-v1">⚠️</div>
+        <h3>Review Not Available</h3>
+        <p>${reviewData?.message || "Could not load review."}</p>
+      </div>
+    `;
+    return;
+  }
+
+  const reviewHtml = (reviewData.review || [])
+    .map((r) => `
+      <div class="af-answer-review-card-v1 ${r.is_correct ? "correct" : "wrong"}">
+
+        <div class="af-answer-review-head-v1">
+          <b>Q${r.question_no}</b>
+          <span>${r.is_correct ? "✅ Correct" : "❌ Wrong"}</span>
+        </div>
+
+        <p>${r.question || ""}</p>
+
+        <div class="af-answer-review-row-v1">
+          <small>Your Answer</small>
+          <b>${r.selected_option || "Not Answered"}</b>
+        </div>
+
+        <div class="af-answer-review-row-v1">
+          <small>Correct Answer</small>
+          <b>${r.correct_option || "-"}</b>
+        </div>
+
+      </div>
+    `)
+    .join("");
+
+  area.innerHTML = `
+    <div class="af-test-result-card-v1">
+      <h3>Answer Review</h3>
+
+      <strong>
+        ${reviewData.score || 0}/${reviewData.total_questions || 0}
+      </strong>
+
+      <div class="af-test-result-grid-v1">
+        <span>Time <b>${reviewData.time_taken_seconds || 0}s</b></span>
+        <span>Avg/Q <b>${reviewData.avg_time_per_question || 0}s</b></span>
+        <span>Remark <b>${reviewData.remark || "-"}</b></span>
+      </div>
+    </div>
+
+    <div class="af-answer-review-wrapper-v1">
+      ${reviewHtml}
+    </div>
+  `;
+}
+
+/* =========================
+   ALREADY ATTEMPTED POPUP
+========================= */
+
+function showAFAlreadyAttemptedPopupV1() {
+  const data = afCurrentAttemptedDataV1 || {};
+  const attempt = data.attempt || {};
+
+  showAFTestPopupV1(
+    "Already Attempted",
+    `
+      <p>
+        Oops! Looks like you have already attempted this test.
+        Wait for a new one.
+      </p>
+
+      ${
+        attempt.score !== undefined
+          ? `
+            <div class="af-popup-result-v1">
+              <b>${attempt.score}/${attempt.total_questions}</b>
+              <span>${attempt.remark || ""}</span>
+              <small>
+                Time: ${attempt.time_taken_seconds || 0}s
+              </small>
+            </div>
+          `
+          : ""
+      }
+    `,
+    "error"
+  );
+}
 /* =========================
    POPUP
 ========================= */
