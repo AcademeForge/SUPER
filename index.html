@@ -36572,105 +36572,97 @@ function renderAFTestResultV1(result) {
   const area = document.getElementById("afTestAreaV1");
   if (!area) return;
 
+  const reviewHtml = (result.review || [])
+    .map((r, index) => {
+      return `
+        <div class="af-answer-review-card-v1 ${r.is_correct ? "correct" : "wrong"}">
+
+          <div class="af-answer-review-head-v1">
+            <b>Q${index + 1}</b>
+            <span>${r.is_correct ? "✅ Correct" : "❌ Wrong"}</span>
+          </div>
+
+          <p>${r.question || ""}</p>
+
+          <div class="af-answer-review-row-v1">
+            <small>Your Answer:</small>
+            <b>${r.selected_option || "Not Answered"}</b>
+          </div>
+
+          <div class="af-answer-review-row-v1">
+            <small>Correct Answer:</small>
+            <b>${r.correct_option || "-"}</b>
+          </div>
+
+        </div>
+      `;
+    })
+    .join("");
+
   area.innerHTML = `
     <div class="af-test-result-card-v1">
-      <div class="af-test-result-badge-v1">#${result.rank}</div>
-      <h3>${result.remark}</h3>
+
+      <div class="af-test-result-badge-v1">
+        #${result.rank || "--"}
+      </div>
+
+      <h3>${result.remark || ""}</h3>
+
       <p>Your score is</p>
-      <strong>${result.score}/${result.total_questions}</strong>
+
+      <strong>
+        ${result.score || 0}/${result.total_questions || 0}
+      </strong>
 
       <div class="af-test-result-grid-v1">
-        <span>Total Attempts <b>${result.total_attempts}</b></span>
-        <span>Time Taken <b>${result.time_taken_seconds}s</b></span>
-        <span>Avg Time / Q <b>${result.avg_time_per_question}s</b></span>
+        <span>
+          Total Attempts
+          <b>${result.total_attempts || 0}</b>
+        </span>
+
+        <span>
+          Time Taken
+          <b>${result.time_taken_seconds || 0}s</b>
+        </span>
+
+        <span>
+          Avg Time / Q
+          <b>${result.avg_time_per_question || 0}s</b>
+        </span>
       </div>
+
     </div>
+
+    ${
+      reviewHtml
+        ? `
+          <div class="af-answer-review-wrapper-v1">
+            <h4>Answer Review</h4>
+            ${reviewHtml}
+          </div>
+        `
+        : ""
+    }
   `;
 
   showAFTestPopupV1(
     "Test Submitted",
     `
       <p>Your test has been submitted successfully.</p>
+
       <div class="af-popup-result-v1">
         <b>${result.score}/${result.total_questions}</b>
         <span>${result.remark}</span>
-        <small>Rank: #${result.rank} • Time: ${result.time_taken_seconds}s</small>
+        <small>
+          Rank: #${result.rank}
+          •
+          Time: ${result.time_taken_seconds}s
+        </small>
       </div>
     `,
     "success"
   );
 }
-
-  const reviewHtml = (result.review || []).map((r, index) => `
-  <div class="af-answer-review-card-v1 ${r.is_correct ? "correct" : "wrong"}">
-
-    <div class="af-answer-review-head-v1">
-      <b>Q${index + 1}</b>
-      <span>${r.is_correct ? "✅ Correct" : "❌ Wrong"}</span>
-    </div>
-
-    <p>${r.question}</p>
-
-    <div class="af-answer-review-row-v1">
-      <small>Your Answer:</small>
-      <b>${r.selected_option || "Not Answered"}</b>
-    </div>
-
-    <div class="af-answer-review-row-v1">
-      <small>Correct Answer:</small>
-      <b>${r.correct_option}</b>
-    </div>
-
-    ${
-      r.explanation
-        ? `
-        <div class="af-answer-review-explanation-v1">
-          ${r.explanation}
-        </div>
-      `
-        : ""
-    }
-
-  </div>
-`).join("");
-  area.innerHTML = `
-<div class="af-test-result-card-v1">
-
-  ...
-
-</div>
-
-<div class="af-answer-review-wrapper-v1">
-  <h4>Answer Review</h4>
-  ${reviewHtml}
-</div>
-`;
-  /* =========================
-   ALREADY ATTEMPTED POPUP
-========================= */
-
-function showAFAlreadyAttemptedPopupV1() {
-  const data = afCurrentAttemptedDataV1 || {};
-  const attempt = data.attempt || {};
-
-  showAFTestPopupV1(
-    "Already Attempted",
-    `
-      <p>Oops! Looks like you have already attempted this test. Wait for new one.</p>
-      ${
-        attempt.score !== undefined
-          ? `<div class="af-popup-result-v1">
-              <b>${attempt.score}/${attempt.total_questions}</b>
-              <span>${attempt.remark || ""}</span>
-              <small>Time taken: ${attempt.time_taken_seconds || 0}s</small>
-            </div>`
-          : ""
-      }
-    `,
-    "error"
-  );
-}
-
 /* =========================
    POPUP
 ========================= */
