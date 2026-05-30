@@ -36663,7 +36663,7 @@ function renderAFTestResultV1(result) {
     "success"
   );
 }
-  /* =========================
+ /* =========================
    REVIEW ANSWERS
 ========================= */
 
@@ -36709,68 +36709,50 @@ async function openLastTestReviewV1() {
   }
 
   const reviewHtml = (reviewData.review || [])
-    .map((r) => `
-      <div class="af-answer-review-card-v1 ${r.is_correct ? "correct" : "wrong"}">
+    .map((r) => {
 
-        <div class="af-answer-review-head-v1">
-          <b>Q${r.question_no}</b>
-          <span>${r.is_correct ? "✅ Correct" : "❌ Wrong"}</span>
+      const selectedText =
+        r.selected_option === "A" ? r.option_a :
+        r.selected_option === "B" ? r.option_b :
+        r.selected_option === "C" ? r.option_c :
+        r.selected_option === "D" ? r.option_d :
+        "Not Answered";
+
+      const correctText =
+        r.correct_option === "A" ? r.option_a :
+        r.correct_option === "B" ? r.option_b :
+        r.correct_option === "C" ? r.option_c :
+        r.correct_option === "D" ? r.option_d :
+        "-";
+
+      return `
+        <div class="af-answer-review-card-v1 ${r.is_correct ? "correct" : "wrong"}">
+
+          <div class="af-answer-review-head-v1">
+            <b>Q${r.question_no}</b>
+            <span>${r.is_correct ? "✅ Correct" : "❌ Wrong"}</span>
+          </div>
+
+          <p>${r.question || ""}</p>
+
+          <div class="af-answer-review-row-v1">
+            <small>Your Answer</small>
+            <b>${r.selected_option || "-"} - ${selectedText}</b>
+          </div>
+
+          <div class="af-answer-review-row-v1">
+            <small>Correct Answer</small>
+            <b>${r.correct_option || "-"} - ${correctText}</b>
+          </div>
+
         </div>
-
-        <p>${r.question || ""}</p>
-
-       const reviewHtml = (reviewData.review || [])
-  .map((r) => {
-
-    const selectedText =
-      r.selected_option === "A" ? r.option_a :
-      r.selected_option === "B" ? r.option_b :
-      r.selected_option === "C" ? r.option_c :
-      r.selected_option === "D" ? r.option_d :
-      "Not Answered";
-
-    const correctText =
-      r.correct_option === "A" ? r.option_a :
-      r.correct_option === "B" ? r.option_b :
-      r.correct_option === "C" ? r.option_c :
-      r.correct_option === "D" ? r.option_d :
-      "-";
-
-    return `
-      <div class="af-answer-review-card-v1 ${r.is_correct ? "correct" : "wrong"}">
-
-        <div class="af-answer-review-head-v1">
-          <b>Q${r.question_no}</b>
-          <span>${r.is_correct ? "✅ Correct" : "❌ Wrong"}</span>
-        </div>
-
-        <p>${r.question || ""}</p>
-
-        <div class="af-answer-review-row-v1">
-          <small>Your Answer</small>
-          <b>
-            ${r.selected_option || "-"} - ${selectedText}
-          </b>
-        </div>
-
-        <div class="af-answer-review-row-v1">
-          <small>Correct Answer</small>
-          <b>
-            ${r.correct_option || "-"} - ${correctText}
-          </b>
-        </div>
-
-      </div>
-    `;
-  })
-  .join("");
-
-      </div>
-    `)
+      `;
+    })
     .join("");
 
   area.innerHTML = `
     <div class="af-test-result-card-v1">
+
       <h3>Answer Review</h3>
 
       <strong>
@@ -36778,10 +36760,22 @@ async function openLastTestReviewV1() {
       </strong>
 
       <div class="af-test-result-grid-v1">
-        <span>Time <b>${reviewData.time_taken_seconds || 0}s</b></span>
-        <span>Avg/Q <b>${reviewData.avg_time_per_question || 0}s</b></span>
-        <span>Remark <b>${reviewData.remark || "-"}</b></span>
+        <span>
+          Time
+          <b>${reviewData.time_taken_seconds || 0}s</b>
+        </span>
+
+        <span>
+          Avg / Q
+          <b>${reviewData.avg_time_per_question || 0}s</b>
+        </span>
+
+        <span>
+          Remark
+          <b>${reviewData.remark || "-"}</b>
+        </span>
       </div>
+
     </div>
 
     <div class="af-answer-review-wrapper-v1">
