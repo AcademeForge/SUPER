@@ -23742,7 +23742,14 @@ body.dark-mode .af-test-result-card-v1 h3,
 body.dark-mode .af-test-result-card-v1 strong {
   color: #ffffff !important;
 }
-    
+    #afTestDashboardPageV1 .af-test-dashboard-actions-v1{
+  display:block;
+}
+
+#afTestMainContentV1 .af-test-dashboard-actions-v1,
+#afTestRankingPageV1 .af-test-dashboard-actions-v1{
+  display:none !important;
+}
 </style>
 </head>
 
@@ -23977,13 +23984,13 @@ body.dark-mode .af-test-result-card-v1 strong {
             <p>Track your latest score, rank, speed and overall performance.</p>
           </div>
         </div>
+<div id="afTestHistoryV1" class="af-test-history-v1">
+  <div class="af-test-history-empty-v1">
+    No test ranking yet.
+  </div>
+</div>
 
-        <div id="afTestHistoryV1" class="af-test-history-v1">
-          <div class="af-test-history-empty-v1">No test ranking yet.</div>
-        </div>
-      </div>
-    <div class="af-test-dashboard-actions-v1">
-
+<div class="af-test-dashboard-actions-v1">
   <button
     type="button"
     class="af-test-review-btn-v1"
@@ -23991,7 +23998,7 @@ body.dark-mode .af-test-result-card-v1 strong {
   >
     📖 Review Latest Test
   </button>
-
+</div>
 </div>
       
       <!-- NATIONAL RANKING FULL PAGE -->
