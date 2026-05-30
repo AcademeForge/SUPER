@@ -23662,6 +23662,13 @@ html.dark .af-name-only-cancel,
   border-radius:10px;
   background:rgba(255,255,255,.05);
 }
+    .af-test-dashboard-actions-v1{
+  margin-top:16px;
+}
+
+.af-test-review-btn-v1{
+  width:100%;
+}
 </style>
 </head>
 
@@ -23848,10 +23855,6 @@ html.dark .af-name-only-cancel,
             <b>Your Dashboard</b>
           </button>
           
-<button onclick="openLastTestReviewV1()">
-  📖 Review Answers
-</button>
-          
           <button type="button" onclick="openAFTestRankingPageV1()">
             <span>🏆</span>
             <b>National Rankings</b>
@@ -23905,7 +23908,17 @@ html.dark .af-name-only-cancel,
           <div class="af-test-history-empty-v1">No test ranking yet.</div>
         </div>
       </div>
-    
+    <div class="af-test-dashboard-actions-v1">
+
+  <button
+    type="button"
+    class="af-test-review-btn-v1"
+    onclick="openLastTestReviewV1()"
+  >
+    📖 Review Latest Test
+  </button>
+
+</div>
       
       <!-- NATIONAL RANKING FULL PAGE -->
       <div id="afTestRankingPageV1" class="af-test-sub-page-v1 af-hidden">
