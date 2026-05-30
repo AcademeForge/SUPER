@@ -41457,44 +41457,9 @@ function openVerifyAF() {
   }
 
 })();
-  /* =========================
-   REVIEW TOGGLE
-========================= */
 
-document.addEventListener("click", (e) => {
-
-  const btn = e.target.closest("button");
-  if (!btn) return;
-
-  const isReviewButton =
-    btn.textContent.includes("Review");
-
-  const reviewWrapper = document.querySelector(
-    ".af-answer-review-wrapper-v1"
-  );
-
-  /* Review button dubara click */
-  if (isReviewButton && afReviewVisibleV1) {
-
-    if (reviewWrapper) {
-      reviewWrapper.remove();
-    }
-
-    afReviewVisibleV1 = false;
-    return;
-  }
-
-  /* Kisi bhi dusre button par click */
-  if (!isReviewButton && reviewWrapper) {
-
-    reviewWrapper.remove();
-    afReviewVisibleV1 = false;
-  }
-
-});
-
-  /* =========================
-   REVIEW AUTO CLOSE FIX
+ /* =========================
+   REVIEW AUTO CLOSE
 ========================= */
 
 document.addEventListener("click", async (e) => {
@@ -41510,20 +41475,22 @@ document.addEventListener("click", async (e) => {
 
   if (isReviewButton) {
 
-    afReviewVisibleV1 = false;
+    setTimeout(async () => {
 
-    if (typeof loadAFTestV1 === "function") {
-      await loadAFTestV1();
-    }
+      if (!afReviewVisibleV1) return;
+
+      afReviewVisibleV1 = false;
+
+      await loadAFTestPageV1();
+
+    }, 100);
 
     return;
   }
 
   afReviewVisibleV1 = false;
 
-  if (typeof loadAFTestV1 === "function") {
-    await loadAFTestV1();
-  }
+  await loadAFTestPageV1();
 
 });
 </script>
