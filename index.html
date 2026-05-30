@@ -36719,15 +36719,51 @@ async function openLastTestReviewV1() {
 
         <p>${r.question || ""}</p>
 
+       const reviewHtml = (reviewData.review || [])
+  .map((r) => {
+
+    const selectedText =
+      r.selected_option === "A" ? r.option_a :
+      r.selected_option === "B" ? r.option_b :
+      r.selected_option === "C" ? r.option_c :
+      r.selected_option === "D" ? r.option_d :
+      "Not Answered";
+
+    const correctText =
+      r.correct_option === "A" ? r.option_a :
+      r.correct_option === "B" ? r.option_b :
+      r.correct_option === "C" ? r.option_c :
+      r.correct_option === "D" ? r.option_d :
+      "-";
+
+    return `
+      <div class="af-answer-review-card-v1 ${r.is_correct ? "correct" : "wrong"}">
+
+        <div class="af-answer-review-head-v1">
+          <b>Q${r.question_no}</b>
+          <span>${r.is_correct ? "✅ Correct" : "❌ Wrong"}</span>
+        </div>
+
+        <p>${r.question || ""}</p>
+
         <div class="af-answer-review-row-v1">
           <small>Your Answer</small>
-          <b>${r.selected_option || "Not Answered"}</b>
+          <b>
+            ${r.selected_option || "-"} - ${selectedText}
+          </b>
         </div>
 
         <div class="af-answer-review-row-v1">
           <small>Correct Answer</small>
-          <b>${r.correct_option || "-"}</b>
+          <b>
+            ${r.correct_option || "-"} - ${correctText}
+          </b>
         </div>
+
+      </div>
+    `;
+  })
+  .join("");
 
       </div>
     `)
