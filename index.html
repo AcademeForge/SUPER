@@ -23990,15 +23990,6 @@ body.dark-mode .af-test-result-card-v1 strong {
   </div>
 </div>
 
-<div class="af-test-dashboard-actions-v1">
- <button
-  type="button"
-  class="af-test-review-btn-v1"
-  onclick="toggleAFReviewV1()"
->
-  📖 Review Latest Test
-</button>
-</div>
 </div>
       
       <!-- NATIONAL RANKING FULL PAGE -->
@@ -25266,6 +25257,19 @@ body.dark-mode .af-test-result-card-v1 strong {
       <button
   type="button"
   class="settings-row settings-row-btn"
+  onclick="openAFReviewPageV1()"
+  aria-label="Latest Test Review"
+>
+  <div class="settings-row-left">
+    <span class="settings-row-icon" aria-hidden="true">📖</span>
+    <span>Latest Test Review</span>
+  </div>
+  <span class="settings-arrow" aria-hidden="true">›</span>
+</button>
+      
+      <button
+  type="button"
+  class="settings-row settings-row-btn"
 onclick="openNotesAF()"
   aria-label="Open Notes"
 >
@@ -25452,6 +25456,37 @@ onclick="openNotesAF()"
     <div id="contactRequestStatusListAf" class="request-status-list-af"></div>
   </div>
 </section>
+
+       <!-- ==============================
+ REview page
+================================ -->
+    <div id="afReviewPageV1" class="section">
+
+  <div class="panel glass">
+
+    <button
+      class="back-mini"
+      onclick="closeAFReviewPageV1()"
+    >
+      ← Back
+    </button>
+
+    <h2>Latest Test Review</h2>
+
+    <div id="afReviewContentV1">
+
+      <div class="af-test-empty-card-v1">
+        <div class="af-test-empty-icon-v1">📖</div>
+        <h3>Loading Review...</h3>
+        <p>Please wait.</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+    
     <!-- ==============================
   LANGUAGE AF
 ================================ -->
@@ -41465,24 +41500,51 @@ function openVerifyAF() {
 
 })();
 
-/* =========================
-   REVIEW TOGGLE
-========================= */
+async function openAFReviewPageV1() {
 
-async function toggleAFReviewV1() {
+  showSection("afReviewPageV1");
 
-  if (afReviewVisibleV1) {
+  const container =
+    document.getElementById("afReviewContentV1");
 
-    afReviewVisibleV1 = false;
+  if (!container) return;
 
-    await loadAFTestPageV1();
+  container.innerHTML = `
+    <div class="af-test-empty-card-v1">
+      <div class="af-test-empty-icon-v1">📖</div>
+      <h3>Loading Review...</h3>
+      <p>Please wait.</p>
+    </div>
+  `;
+
+  const student = getAFTestStudentV1();
+
+  const reviewData = await afTestEdgeCallV1(
+    "student-test-review-af",
+    {
+      student_id: student.student_id
+    }
+  );
+
+  if (!reviewData?.ok) {
+
+    container.innerHTML = `
+      <div class="af-test-empty-card-v1">
+        <div class="af-test-empty-icon-v1">⚠️</div>
+        <h3>Review Not Available</h3>
+        <p>${reviewData?.message || "Could not load review."}</p>
+      </div>
+    `;
 
     return;
   }
 
-  await openLastTestReviewV1();
+  renderAFReviewPageV1(reviewData);
 }
 
+function closeAFReviewPageV1() {
+  showSection("settings");
+}
 </script>
 </body>
 </html>
