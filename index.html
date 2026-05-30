@@ -41465,31 +41465,7 @@ function openVerifyAF() {
 
 })();
 
-/* =========================
-   REVIEW AUTO CLOSE FIX
-========================= */
 
-document.addEventListener("click", async (e) => {
-
-  const btn = e.target.closest("button");
-  if (!btn) return;
-
-  const isReviewButton =
-    btn.classList.contains("af-test-review-btn-v1");
-
-  if (isReviewButton) {
-    return; // Review button ko ignore karo
-  }
-
-  if (!afReviewVisibleV1) {
-    return;
-  }
-
-  afReviewVisibleV1 = false;
-
-  await loadAFTestPageV1();
-
-});
 
 </script>
 </body>
