@@ -41465,8 +41465,8 @@ function openVerifyAF() {
 
 })();
 
- /* =========================
-   REVIEW AUTO CLOSE
+/* =========================
+   REVIEW AUTO CLOSE FIX
 ========================= */
 
 document.addEventListener("click", async (e) => {
@@ -41475,23 +41475,13 @@ document.addEventListener("click", async (e) => {
   if (!btn) return;
 
   const isReviewButton =
-    btn.textContent &&
-    btn.textContent.toLowerCase().includes("review");
-
-  if (!afReviewVisibleV1) return;
+    btn.classList.contains("af-test-review-btn-v1");
 
   if (isReviewButton) {
+    return; // Review button ko ignore karo
+  }
 
-    setTimeout(async () => {
-
-      if (!afReviewVisibleV1) return;
-
-      afReviewVisibleV1 = false;
-
-      await loadAFTestPageV1();
-
-    }, 100);
-
+  if (!afReviewVisibleV1) {
     return;
   }
 
@@ -41500,6 +41490,7 @@ document.addEventListener("click", async (e) => {
   await loadAFTestPageV1();
 
 });
+
 </script>
 </body>
 </html>
