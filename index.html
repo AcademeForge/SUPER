@@ -23625,6 +23625,43 @@ html.dark .af-name-only-cancel,
     grid-template-columns: 1fr !important;
   }
 }
+    .af-answer-review-wrapper-v1{
+  margin-top:20px;
+}
+
+.af-answer-review-card-v1{
+  padding:14px;
+  border-radius:14px;
+  margin-bottom:12px;
+  background:#fff;
+}
+
+.af-answer-review-card-v1.correct{
+  border-left:4px solid #22c55e;
+}
+
+.af-answer-review-card-v1.wrong{
+  border-left:4px solid #ef4444;
+}
+
+.af-answer-review-head-v1{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:8px;
+}
+
+.af-answer-review-row-v1{
+  display:flex;
+  justify-content:space-between;
+  margin-top:6px;
+}
+
+.af-answer-review-explanation-v1{
+  margin-top:10px;
+  padding:10px;
+  border-radius:10px;
+  background:rgba(255,255,255,.05);
+}
 </style>
 </head>
 
@@ -23810,7 +23847,11 @@ html.dark .af-name-only-cancel,
             <span>📊</span>
             <b>Your Dashboard</b>
           </button>
-
+          
+<button onclick="openLastTestReviewV1()">
+  📖 Review Answers
+</button>
+          
           <button type="button" onclick="openAFTestRankingPageV1()">
             <span>🏆</span>
             <b>National Rankings</b>
@@ -23864,7 +23905,8 @@ html.dark .af-name-only-cancel,
           <div class="af-test-history-empty-v1">No test ranking yet.</div>
         </div>
       </div>
-
+    
+      
       <!-- NATIONAL RANKING FULL PAGE -->
       <div id="afTestRankingPageV1" class="af-test-sub-page-v1 af-hidden">
         <div class="af-test-sub-head-v1">
@@ -36559,6 +36601,50 @@ function renderAFTestResultV1(result) {
   );
 }
 
+  const reviewHtml = (result.review || []).map((r, index) => `
+  <div class="af-answer-review-card-v1 ${r.is_correct ? "correct" : "wrong"}">
+
+    <div class="af-answer-review-head-v1">
+      <b>Q${index + 1}</b>
+      <span>${r.is_correct ? "✅ Correct" : "❌ Wrong"}</span>
+    </div>
+
+    <p>${r.question}</p>
+
+    <div class="af-answer-review-row-v1">
+      <small>Your Answer:</small>
+      <b>${r.selected_option || "Not Answered"}</b>
+    </div>
+
+    <div class="af-answer-review-row-v1">
+      <small>Correct Answer:</small>
+      <b>${r.correct_option}</b>
+    </div>
+
+    ${
+      r.explanation
+        ? `
+        <div class="af-answer-review-explanation-v1">
+          ${r.explanation}
+        </div>
+      `
+        : ""
+    }
+
+  </div>
+`).join("");
+  area.innerHTML = `
+<div class="af-test-result-card-v1">
+
+  ...
+
+</div>
+
+<div class="af-answer-review-wrapper-v1">
+  <h4>Answer Review</h4>
+  ${reviewHtml}
+</div>
+`;
   /* =========================
    ALREADY ATTEMPTED POPUP
 ========================= */
