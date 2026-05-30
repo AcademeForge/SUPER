@@ -23991,13 +23991,13 @@ body.dark-mode .af-test-result-card-v1 strong {
 </div>
 
 <div class="af-test-dashboard-actions-v1">
-  <button
-    type="button"
-    class="af-test-review-btn-v1"
-    onclick="openLastTestReviewV1()"
-  >
-    📖 Review Latest Test
-  </button>
+ <button
+  type="button"
+  class="af-test-review-btn-v1"
+  onclick="toggleAFReviewV1()"
+>
+  📖 Review Latest Test
+</button>
 </div>
 </div>
       
@@ -41465,7 +41465,23 @@ function openVerifyAF() {
 
 })();
 
+/* =========================
+   REVIEW TOGGLE
+========================= */
 
+async function toggleAFReviewV1() {
+
+  if (afReviewVisibleV1) {
+
+    afReviewVisibleV1 = false;
+
+    await loadAFTestPageV1();
+
+    return;
+  }
+
+  await openLastTestReviewV1();
+}
 
 </script>
 </body>
