@@ -23715,6 +23715,34 @@ body.dark-mode .af-test-result-card-v1 *,
 .dark-mode .af-test-result-card-v1 * {
   color: #ffffff !important;
 }
+    /* =========================
+   REVIEW RESULT DARK MODE
+========================= */
+
+.dark-mode .af-test-result-card-v1 .af-test-result-grid-v1 span,
+body.dark-mode .af-test-result-card-v1 .af-test-result-grid-v1 span {
+  background: #11182d !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+  color: #ffffff !important;
+}
+
+.dark-mode .af-test-result-card-v1 .af-test-result-grid-v1 span b,
+body.dark-mode .af-test-result-card-v1 .af-test-result-grid-v1 span b {
+  color: #ffffff !important;
+}
+
+.dark-mode .af-test-result-card-v1,
+body.dark-mode .af-test-result-card-v1 {
+  background: #18223f !important;
+}
+
+.dark-mode .af-test-result-card-v1 h3,
+.dark-mode .af-test-result-card-v1 strong,
+body.dark-mode .af-test-result-card-v1 h3,
+body.dark-mode .af-test-result-card-v1 strong {
+  color: #ffffff !important;
+}
+    
 </style>
 </head>
 
@@ -41461,6 +41489,40 @@ document.addEventListener("click", (e) => {
 
     reviewWrapper.remove();
     afReviewVisibleV1 = false;
+  }
+
+});
+
+  /* =========================
+   REVIEW AUTO CLOSE FIX
+========================= */
+
+document.addEventListener("click", async (e) => {
+
+  const btn = e.target.closest("button");
+  if (!btn) return;
+
+  const isReviewButton =
+    btn.textContent &&
+    btn.textContent.toLowerCase().includes("review");
+
+  if (!afReviewVisibleV1) return;
+
+  if (isReviewButton) {
+
+    afReviewVisibleV1 = false;
+
+    if (typeof loadAFTestV1 === "function") {
+      await loadAFTestV1();
+    }
+
+    return;
+  }
+
+  afReviewVisibleV1 = false;
+
+  if (typeof loadAFTestV1 === "function") {
+    await loadAFTestV1();
   }
 
 });
