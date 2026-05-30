@@ -41338,6 +41338,47 @@ function openVerifyAF() {
   function openSM() {
   window.location.href = "/YA/SM/";
 }
+  /* =========================
+   AUTO HIDE TEST REVIEW
+========================= */
+
+(function () {
+
+  const originalShowSection = window.showSection;
+
+  if (typeof originalShowSection === "function") {
+
+    window.showSection = function (...args) {
+
+      const reviewWrapper = document.querySelector(
+        ".af-answer-review-wrapper-v1"
+      );
+
+      if (reviewWrapper) {
+        reviewWrapper.remove();
+      }
+
+      const area = document.getElementById("afTestAreaV1");
+
+      if (
+        area &&
+        area.querySelector(".af-test-result-card-v1")
+      ) {
+        area.innerHTML = `
+          <div class="af-test-empty-card-v1">
+            <div class="af-test-empty-icon-v1">📅</div>
+            <h3>Select a test option</h3>
+            <p>Review closed.</p>
+          </div>
+        `;
+      }
+
+      return originalShowSection.apply(this, args);
+    };
+
+  }
+
+})();
 </script>
 </body>
 </html>
