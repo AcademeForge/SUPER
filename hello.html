@@ -1976,7 +1976,222 @@
 
   color:var(--text-secondary);
 }
-    
+    /* =========================================================
+   AF BATCHES LUXURY UPGRADE
+   PASTE AT END OF BATCH CSS
+========================================================= */
+
+/* Hero Heading */
+
+.batch-topbaraf h2{
+  background:
+    linear-gradient(
+      135deg,
+      var(--text-primary) 0%,
+      #c7d2fe 45%,
+      var(--af-primary-light) 100%
+    );
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* Cards */
+
+.batch-cardaf,
+.batch-detail-cardaf{
+  position:relative;
+  overflow:hidden;
+}
+
+.batch-cardaf::before,
+.batch-detail-cardaf::before{
+  content:"";
+
+  position:absolute;
+
+  top:-140px;
+  right:-140px;
+
+  width:260px;
+  height:260px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(129,140,248,.14),
+      transparent 70%
+    );
+
+  pointer-events:none;
+}
+
+.batch-cardaf:hover{
+  transform:translateY(-6px);
+
+  box-shadow:
+    0 18px 42px rgba(79,70,229,.18),
+    0 0 0 1px rgba(129,140,248,.12);
+}
+
+/* Study Batch Badge */
+
+.batch-categoryaf{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(245,158,11,.16),
+      rgba(245,158,11,.08)
+    );
+
+  border:1px solid rgba(245,158,11,.22);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.12);
+}
+
+/* Language Badge Fix */
+
+.batch-languageaf{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  width:auto;
+  min-width:auto;
+  height:auto;
+
+  padding:8px 14px;
+
+  border-radius:999px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(129,140,248,.14),
+      rgba(129,140,248,.06)
+    );
+
+  color:#c7d2fe;
+
+  white-space:nowrap;
+
+  flex-shrink:0;
+}
+
+/* Detail Page Badge */
+
+.batch-detail-headrowaf{
+  align-items:flex-start;
+}
+
+/* Batch Title */
+
+.batch-titleaf,
+.batch-detail-headrowaf h2{
+  background:
+    linear-gradient(
+      135deg,
+      var(--text-primary),
+      #bfc7ff
+    );
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* Price */
+
+.batch-price-lineaf strong,
+.batch-price-rowaf strong{
+  letter-spacing:-0.03em;
+}
+
+/* Enrolled Tag */
+
+.batch-enrolled-tagaf{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(34,197,94,.18),
+      rgba(34,197,94,.08)
+    );
+
+  box-shadow:
+    0 0 18px rgba(34,197,94,.12);
+}
+
+/* Buy Buttons */
+
+.batch-buy-btnaf,
+.batch-buy-mainaf{
+  position:relative;
+  overflow:hidden;
+}
+
+.batch-buy-btnaf::before,
+.batch-buy-mainaf::before{
+  content:"";
+
+  position:absolute;
+
+  top:0;
+  left:-120%;
+
+  width:80%;
+  height:100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.22),
+      transparent
+    );
+
+  transition:.7s;
+}
+
+.batch-buy-btnaf:hover::before,
+.batch-buy-mainaf:hover::before{
+  left:140%;
+}
+
+/* Info Boxes */
+
+.batch-info-boxaf{
+  position:relative;
+}
+
+.batch-info-boxaf::before{
+  content:"";
+
+  position:absolute;
+
+  top:0;
+  left:0;
+
+  width:4px;
+  height:100%;
+
+  border-radius:20px;
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--af-primary),
+      var(--af-accent)
+    );
+}
+
+/* Section Titles */
+
+.batch-info-boxaf h3{
+  font-size:18px;
+  letter-spacing:-0.02em;
+}
   </style>
 </head>
 
