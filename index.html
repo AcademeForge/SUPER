@@ -1,5 +1,11 @@
 <html lang="en">
 <head>
+  <script>
+if (sessionStorage.getItem("afSplashShown")) {
+  document.documentElement.classList.add("no-splash");
+}
+</script>
+  
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
   <title>AcademeForge App</title>
@@ -269,7 +275,8 @@ textarea {
   60% { transform: scale(1.06); opacity: 1; }
   100% { transform: scale(1); }
 }
-
+ animation: splashLoad 1.2s cubic-bezier(.22,.61,.36,1) forwards;
+}
 /* ---------- HOME HERO ---------- */
 
 .hero {
@@ -23750,6 +23757,88 @@ body.dark-mode .af-test-result-card-v1 strong {
 #afTestRankingPageV1 .af-test-dashboard-actions-v1{
   display:none !important;
 }
+    .no-splash #splashScreen {
+  display: none !important;
+}
+  /* =========================================
+   AF PREMIUM PULL TO REFRESH
+========================================= */
+
+#afPullLoader {
+  position: fixed;
+  top: -80px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: rgba(255,255,255,.82);
+
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+
+  border: 1px solid rgba(255,255,255,.5);
+
+  box-shadow:
+    0 10px 30px rgba(15,23,42,.12),
+    0 4px 12px rgba(15,23,42,.08);
+
+  z-index: 99999;
+
+  opacity: 0;
+
+  transition:
+    top .22s ease,
+    opacity .22s ease;
+}
+
+[data-theme="dark"] #afPullLoader {
+  background: rgba(15,23,42,.82);
+
+  border: 1px solid rgba(255,255,255,.08);
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.35),
+    0 0 20px rgba(99,102,241,.15);
+}
+
+#afPullLoader.show {
+  top: 14px;
+  opacity: 1;
+}
+
+.af-pull-spinner {
+  width: 24px;
+  height: 24px;
+
+  border-radius: 50%;
+
+  border: 3px solid rgba(99,102,241,.18);
+  border-top-color: var(--af-primary);
+
+  transition: transform .2s ease;
+}
+
+#afPullLoader.spin .af-pull-spinner {
+  animation: afPremiumSpin .8s linear infinite;
+}
+
+@keyframes afPremiumSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 </style>
 </head>
 
@@ -25177,7 +25266,7 @@ body.dark-mode .af-test-result-card-v1 strong {
     </div>
 
     <a
-      href="https://academeforge.github.io/SUPER/official/"
+      href="https://academeforge.in"
       class="settings-beta-card"
       aria-label="Open AcademeForge official website"
     >
@@ -25317,7 +25406,20 @@ onclick="openNotesAF()"
         </div>
         <span class="settings-arrow" aria-hidden="true">›</span>
       </button>
-
+      
+<button
+  type="button"
+  class="settings-row settings-row-btn"
+  onclick="openBetaVersion()"
+  aria-label="Open BETA 2.0"
+>
+  <div class="settings-row-left">
+    <span class="settings-row-icon" aria-hidden="true">🛠️</span>
+    <span>BETA 2.0 Version</span>
+  </div>
+  <span class="settings-arrow" aria-hidden="true">›</span>
+</button>
+      
       <button
         type="button"
         class="settings-row settings-row-btn"
@@ -25986,6 +26088,10 @@ onclick="openNotesAF()"
   <strong>Notification</strong>
   <p>Message</p>
 </div>
+
+ <div id="afPullLoader">
+  <div class="af-pull-spinner"></div>
+</div>
   
   <!-----------------------  JAVA SCRIPT STARTS --------------------------------------->
 
@@ -26195,16 +26301,32 @@ function updateTicker() {
 
 /* ---------------- SPLASH SCREEN ---------------- */
 
-setTimeout(function () {
-  var splash = document.getElementById("splashScreen");
-  if (splash) {
-    splash.classList.add("hide");
+if (sessionStorage.getItem("afSplashShown")) {
 
-    setTimeout(function () {
-      splash.style.display = "none";
-    }, 500);
+  const splash = document.getElementById("splashScreen");
+
+  if (splash) {
+    splash.style.display = "none";
   }
-}, 2000);
+
+} else {
+
+  sessionStorage.setItem("afSplashShown", "true");
+
+  setTimeout(function () {
+    var splash = document.getElementById("splashScreen");
+
+    if (splash) {
+      splash.classList.add("hide");
+
+      setTimeout(function () {
+        splash.style.display = "none";
+      }, 400);
+    }
+
+  }, 1200);
+
+}
 
 /* ---------------- ZOOM / RIGHT CLICK PROTECTION ---------------- */
 
@@ -40227,7 +40349,7 @@ async function loadRequestStatusAf(forceRefresh) {
       return;
     }
 
-    window.setTimeout(markAFAppReady, 1800);
+    window.setTimeout(markAFAppReady, 0);
   }
 
   if (document.readyState === "loading") {
@@ -41457,6 +41579,10 @@ function openVerifyAF() {
   function openSM() {
   window.location.href = "/YA/SM/";
 }
+
+  function openBetaVersion() {
+  window.location.href = "/YA/BETA%202.0/";
+}
   /* =========================
    AUTO HIDE TEST REVIEW
 ========================= */
@@ -41544,6 +41670,107 @@ async function openAFReviewPageV1() {
 function closeAFReviewPageV1() {
   showSection("settings");
 }
+
+  localStorage.setItem(
+  "af_last_tab",
+  afCurrentView
+);
+
+location.reload();
+  
+ /* =========================================
+   AF PULL TO REFRESH
+========================================= */
+
+let afPullStartY = 0;
+let afPullDistance = 0;
+
+const afPullLoader =
+  document.getElementById("afPullLoader");
+
+document.addEventListener(
+  "touchstart",
+  (e) => {
+    if (window.scrollY > 0) return;
+
+    afPullStartY = e.touches[0].clientY;
+  },
+  { passive: true }
+);
+
+document.addEventListener(
+  "touchmove",
+  (e) => {
+    if (window.scrollY > 0) return;
+
+    afPullDistance =
+      e.touches[0].clientY - afPullStartY;
+
+    const spinner =
+      afPullLoader.querySelector(".af-pull-spinner");
+
+    if (afPullDistance > 20) {
+
+      afPullLoader.classList.add("show");
+
+      const rotation =
+        Math.min(afPullDistance * 2, 270);
+
+      spinner.style.transform =
+        `rotate(${rotation}deg)`;
+
+    } else {
+
+      afPullLoader.classList.remove("show");
+
+      spinner.style.transform =
+        "rotate(0deg)";
+    }
+  },
+  { passive: true }
+);
+  
+document.addEventListener(
+  "touchend",
+  () => {
+
+    const spinner =
+      afPullLoader.querySelector(".af-pull-spinner");
+
+    if (
+      window.scrollY === 0 &&
+      afPullDistance > 120
+    ) {
+
+      afPullLoader.classList.add("show");
+      afPullLoader.classList.add("spin");
+
+     setTimeout(() => {
+
+  localStorage.setItem(
+    "af_last_tab",
+    afCurrentView
+  );
+
+  location.reload();
+
+}, 500);
+
+    } else {
+
+      afPullLoader.classList.remove("show");
+      afPullLoader.classList.remove("spin");
+
+      spinner.style.transform =
+        "rotate(0deg)";
+    }
+
+    afPullDistance = 0;
+  },
+  { passive: true }
+);
+
+  
 </script>
 </body>
 </html>
