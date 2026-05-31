@@ -1,0 +1,3188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<script>
+if (sessionStorage.getItem("afSplashShown")) {
+  document.documentElement.classList.add("no-splash");
+}
+</script>
+
+<meta charset="UTF-8" />
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
+/>
+
+<title>AcademeForge Chat</title>
+
+<style>
+
+/* ==========================================
+ROOT
+========================================== */
+
+:root {
+
+--bg:#07111f;
+--bg2:#101827;
+
+--surface:rgba(255,255,255,.075);
+--surface2:rgba(255,255,255,.11);
+
+--text:#ffffff;
+--muted:#9aa7bd;
+
+--primary:#4f8cff;
+--primary2:#6ea0ff;
+
+--border:rgba(255,255,255,.08);
+
+--success:#22c55e;
+
+--radius:20px;
+
+}
+
+/* ==========================================
+RESET
+========================================== */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
+}
+
+html,
+body{
+width:100%;
+height:100%;
+overflow:hidden;
+background:var(--bg);
+font-family:
+Inter,
+system-ui,
+sans-serif;
+color:var(--text);
+}
+
+button,
+input{
+font-family:inherit;
+}
+
+/* ==========================================
+CHAT APP
+========================================== */
+
+#afChatApp{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+display:flex;
+flex-direction:column;
+background:
+linear-gradient(
+180deg,
+var(--bg),
+var(--bg2)
+);
+}
+
+/* ==========================================
+LOGIN SCREEN
+========================================== */
+
+#afLoginScreen{
+width:100%;
+height:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:24px;
+}
+
+.af-login-card{
+
+width:100%;
+max-width:430px;
+
+background:
+var(--surface);
+
+backdrop-filter:
+blur(25px);
+
+border:
+1px solid
+var(--border);
+
+border-radius:
+30px;
+
+padding:
+28px;
+
+}
+
+.af-logo{
+
+width:80px;
+height:80px;
+
+margin:auto;
+margin-bottom:20px;
+
+border-radius:50%;
+
+background:
+linear-gradient(
+135deg,
+var(--primary),
+var(--primary2)
+);
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:28px;
+font-weight:700;
+
+}
+
+.af-title{
+
+font-size:28px;
+font-weight:700;
+
+text-align:center;
+
+margin-bottom:8px;
+
+}
+
+.af-subtitle{
+
+text-align:center;
+color:var(--muted);
+
+margin-bottom:24px;
+
+}
+
+.af-input{
+
+width:100%;
+height:56px;
+
+border:none;
+outline:none;
+
+padding:0 18px;
+
+background:
+rgba(255,255,255,.06);
+
+border:
+1px solid
+rgba(255,255,255,.05);
+
+border-radius:16px;
+
+color:white;
+
+margin-bottom:14px;
+
+}
+
+.af-btn{
+
+width:100%;
+height:56px;
+
+border:none;
+cursor:pointer;
+
+border-radius:16px;
+
+font-weight:700;
+
+background:
+linear-gradient(
+135deg,
+var(--primary),
+var(--primary2)
+);
+
+color:white;
+
+}
+
+/* ==========================================
+HOME
+========================================== */
+
+#afHomeScreen{
+
+display:none;
+
+width:100%;
+height:100%;
+
+flex-direction:column;
+
+}
+
+.af-header{
+
+height:70px;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+padding:0 18px;
+
+border-bottom:
+1px solid
+var(--border);
+
+}
+
+.af-header h2{
+font-size:22px;
+}
+
+#afChatSearch{
+
+height:48px;
+
+margin:14px;
+
+padding:0 16px;
+
+border:none;
+outline:none;
+
+background:
+var(--surface);
+
+border-radius:14px;
+
+color:white;
+
+}
+
+#afChatList{
+
+flex:1;
+overflow:auto;
+
+padding-bottom:20px;
+
+}
+
+.af-chat-item{
+
+display:flex;
+align-items:center;
+
+padding:14px;
+
+cursor:pointer;
+
+border-bottom:
+1px solid
+rgba(255,255,255,.03);
+
+}
+
+.af-avatar{
+
+width:54px;
+height:54px;
+
+border-radius:50%;
+
+background:
+linear-gradient(
+135deg,
+#3b82f6,
+#8b5cf6
+);
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-weight:700;
+
+flex-shrink:0;
+
+}
+
+.af-chat-content{
+
+flex:1;
+padding-left:12px;
+
+overflow:hidden;
+
+}
+
+.af-chat-name{
+
+font-size:15px;
+font-weight:600;
+
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+
+}
+
+.af-chat-last{
+
+font-size:13px;
+color:var(--muted);
+
+margin-top:4px;
+
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+
+}
+
+.af-online{
+
+width:10px;
+height:10px;
+
+border-radius:50%;
+
+background:
+var(--success);
+
+}
+
+/* ==========================================
+ROOM
+========================================== */
+
+#afRoomScreen{
+
+display:none;
+
+width:100%;
+height:100%;
+
+flex-direction:column;
+
+}
+
+.af-room-header{
+
+height:68px;
+
+display:flex;
+align-items:center;
+
+padding:0 14px;
+
+border-bottom:
+1px solid
+var(--border);
+
+}
+
+#afBackBtn{
+
+width:42px;
+height:42px;
+
+border:none;
+background:none;
+
+font-size:20px;
+color:white;
+
+}
+
+.af-room-user{
+
+padding-left:12px;
+}
+
+#afRoomName{
+
+font-weight:600;
+font-size:15px;
+
+}
+
+#afRoomStatus{
+
+font-size:12px;
+color:var(--muted);
+
+}
+
+#afMessages{
+
+flex:1;
+overflow:auto;
+
+padding:14px;
+
+display:flex;
+flex-direction:column;
+gap:10px;
+
+}
+
+.af-message{
+
+max-width:80%;
+
+padding:12px 14px;
+
+border-radius:18px;
+
+word-break:break-word;
+
+font-size:14px;
+
+}
+
+.af-message.me{
+
+align-self:flex-end;
+
+background:
+linear-gradient(
+135deg,
+var(--primary),
+var(--primary2)
+);
+
+}
+
+.af-message.other{
+
+align-self:flex-start;
+
+background:
+var(--surface);
+
+}
+
+.af-input-bar{
+
+height:74px;
+
+display:flex;
+align-items:center;
+
+gap:10px;
+
+padding:10px;
+
+border-top:
+1px solid
+var(--border);
+
+}
+
+#afMessageInput{
+
+flex:1;
+
+height:50px;
+
+border:none;
+outline:none;
+
+padding:0 16px;
+
+background:
+var(--surface);
+
+border-radius:999px;
+
+color:white;
+
+}
+
+#afSendBtn{
+
+width:60px;
+height:50px;
+
+border:none;
+
+border-radius:999px;
+
+background:
+var(--primary);
+
+color:white;
+font-weight:700;
+
+}
+
+/* ==========================================
+SCROLLBAR
+========================================== */
+
+::-webkit-scrollbar{
+width:4px;
+}
+
+::-webkit-scrollbar-thumb{
+background:rgba(255,255,255,.15);
+border-radius:999px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="afChatApp">
+
+<!-- LOGIN -->
+
+<div id="afLoginScreen">
+
+<div class="af-login-card">
+
+<div class="af-logo">
+AF
+</div>
+
+<div class="af-title">
+AcademeForge Chat
+</div>
+
+<div class="af-subtitle">
+Login To Continue
+</div>
+
+<input
+id="chatUsername"
+class="af-input"
+placeholder="Username"
+/>
+
+<input
+id="chatPassword"
+type="password"
+class="af-input"
+placeholder="Password"
+/>
+
+<button
+id="chatLoginBtn"
+class="af-btn">
+Login
+</button>
+
+</div>
+
+</div>
+
+<!-- HOME -->
+
+<div id="afHomeScreen">
+
+<div class="af-header">
+
+<h2>Chats</h2>
+
+<button
+id="createChatBtn"
+class="af-btn"
+style="
+width:50px;
+height:50px;
+padding:0;">
++
+</button>
+
+</div>
+
+<input
+id="afChatSearch"
+placeholder="Search Username"
+/>
+
+<div id="afChatList"></div>
+
+</div>
+
+<!-- ROOM -->
+
+<div id="afRoomScreen">
+
+<div class="af-room-header">
+
+<button id="afBackBtn">
+←
+</button>
+
+<div class="af-room-user">
+
+<div id="afRoomName">
+Username
+</div>
+
+<div id="afRoomStatus">
+Offline
+</div>
+
+</div>
+
+</div>
+
+<div id="afMessages"></div>
+
+<div class="af-input-bar">
+
+<input
+id="afMessageInput"
+placeholder="Message"
+/>
+
+<button id="afSendBtn">
+➤
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+/* ==========================================
+CONFIG
+========================================== */
+
+const EDGE_URL =
+"https://YOUR_PROJECT.supabase.co/functions/v1/af-chat";
+
+let CURRENT_USER = null;
+let CURRENT_CHAT = null;
+let CHAT_LIST = [];
+let MESSAGE_LIST = [];
+
+/* ==========================================
+ELEMENTS
+========================================== */
+
+const loginScreen =
+document.getElementById(
+"afLoginScreen"
+);
+
+const homeScreen =
+document.getElementById(
+"afHomeScreen"
+);
+
+const roomScreen =
+document.getElementById(
+"afRoomScreen"
+);
+
+const loginBtn =
+document.getElementById(
+"chatLoginBtn"
+);
+
+const usernameInput =
+document.getElementById(
+"chatUsername"
+);
+
+const passwordInput =
+document.getElementById(
+"chatPassword"
+);
+
+const chatListEl =
+document.getElementById(
+"afChatList"
+);
+
+const searchInput =
+document.getElementById(
+"afChatSearch"
+);
+
+/* ==========================================
+API
+========================================== */
+
+async function api(
+action,
+payload = {}
+){
+
+const response =
+await fetch(
+EDGE_URL,
+{
+method:"POST",
+headers:{
+"Content-Type":
+"application/json"
+},
+body:JSON.stringify({
+action,
+...payload
+})
+}
+);
+
+const result =
+await response.json();
+
+if(
+!response.ok ||
+!result.ok
+){
+throw new Error(
+result.message ||
+"Request Failed"
+);
+}
+
+return result;
+
+}
+
+/* ==========================================
+SESSION
+========================================== */
+
+function saveChatSession(
+user
+){
+
+localStorage.setItem(
+"af_chat_user_id",
+user.id
+);
+
+localStorage.setItem(
+"af_chat_username",
+user.username
+);
+
+localStorage.setItem(
+"af_chat_avatar",
+user.avatar_url || ""
+);
+
+}
+
+function clearChatSession(){
+
+localStorage.removeItem(
+"af_chat_user_id"
+);
+
+localStorage.removeItem(
+"af_chat_username"
+);
+
+localStorage.removeItem(
+"af_chat_avatar"
+);
+
+}
+
+function getChatUserId(){
+
+return localStorage.getItem(
+"af_chat_user_id"
+);
+
+}
+
+/* ==========================================
+LOGIN
+========================================== */
+
+async function login(){
+
+const username =
+usernameInput.value.trim();
+
+const password =
+passwordInput.value.trim();
+
+if(
+!username ||
+!password
+){
+alert(
+"Enter credentials"
+);
+return;
+}
+
+loginBtn.disabled = true;
+loginBtn.innerText =
+"Loading...";
+
+try{
+
+const result =
+await api(
+"login",
+{
+username,
+password
+}
+);
+
+CURRENT_USER =
+result.user;
+
+saveChatSession(
+CURRENT_USER
+);
+
+await loadProfile();
+
+await loadChats();
+
+showHome();
+
+}catch(error){
+
+alert(
+error.message
+);
+
+}finally{
+
+loginBtn.disabled =
+false;
+
+loginBtn.innerText =
+"Login";
+
+}
+
+}
+
+loginBtn.addEventListener(
+"click",
+login
+);
+
+/* ==========================================
+LOAD PROFILE
+========================================== */
+
+async function loadProfile(){
+
+const userId =
+getChatUserId();
+
+if(!userId){
+return;
+}
+
+const result =
+await api(
+"profile",
+{
+user_id:userId
+}
+);
+
+CURRENT_USER =
+result.profile;
+
+}
+
+/* ==========================================
+AUTO LOGIN
+========================================== */
+
+async function restoreSession(){
+
+const userId =
+getChatUserId();
+
+if(!userId){
+showLogin();
+return;
+}
+
+try{
+
+await loadProfile();
+
+await loadChats();
+
+showHome();
+
+}catch{
+
+clearChatSession();
+
+showLogin();
+
+}
+
+}
+
+/* ==========================================
+SCREENS
+========================================== */
+
+function showLogin(){
+
+loginScreen.style.display =
+"flex";
+
+homeScreen.style.display =
+"none";
+
+roomScreen.style.display =
+"none";
+
+}
+
+function showHome(){
+
+loginScreen.style.display =
+"none";
+
+homeScreen.style.display =
+"flex";
+
+roomScreen.style.display =
+"none";
+
+}
+
+function showRoom(){
+
+loginScreen.style.display =
+"none";
+
+homeScreen.style.display =
+"none";
+
+roomScreen.style.display =
+"flex";
+
+}
+
+/* ==========================================
+PRESENCE
+========================================== */
+
+async function updatePresence(){
+
+if(
+!CURRENT_USER
+){
+return;
+}
+
+try{
+
+await api(
+"presence",
+{
+user_id:
+CURRENT_USER.id,
+is_online:true
+}
+);
+
+}catch{}
+
+}
+
+setInterval(
+updatePresence,
+30000
+);
+
+/* ==========================================
+INIT
+========================================== */
+
+restoreSession();
+  /* ==========================================
+CHAT LIST
+========================================== */
+
+async function loadChats(){
+
+if(!CURRENT_USER){
+return;
+}
+
+try{
+
+const result =
+await api(
+"chat_list",
+{
+user_id:
+CURRENT_USER.id
+}
+);
+
+CHAT_LIST =
+result.chats || [];
+
+renderChats();
+
+}catch(error){
+
+console.error(error);
+
+}
+
+}
+
+function renderChats(){
+
+chatListEl.innerHTML =
+"";
+
+if(
+CHAT_LIST.length === 0
+){
+
+chatListEl.innerHTML =
+`
+<div style="
+padding:30px;
+text-align:center;
+color:#8fa0b8;
+">
+No Chats Found
+</div>
+`;
+
+return;
+
+}
+
+CHAT_LIST.forEach(
+(chatItem)=>{
+
+const chat =
+chatItem.af_chats;
+
+const row =
+document.createElement(
+"div"
+);
+
+row.className =
+"af-chat-item";
+
+row.innerHTML =
+`
+<div class="af-avatar">
+${(
+chat.title ||
+"C"
+)
+.charAt(0)
+.toUpperCase()}
+</div>
+
+<div class="af-chat-content">
+
+<div class="af-chat-name">
+${chat.title || "Chat"}
+</div>
+
+<div class="af-chat-last">
+Tap To Open
+</div>
+
+</div>
+
+<div class="af-online"></div>
+`;
+
+row.onclick =
+()=>{
+
+openChat(
+chat.id,
+chat.title
+);
+
+};
+
+chatListEl.appendChild(
+row
+);
+
+}
+);
+
+}
+
+/* ==========================================
+SEARCH USER
+========================================== */
+
+let searchTimer;
+
+searchInput.addEventListener(
+"input",
+()=>{
+
+clearTimeout(
+searchTimer
+);
+
+searchTimer =
+setTimeout(
+searchUsers,
+400
+);
+
+}
+);
+
+async function searchUsers(){
+
+const query =
+searchInput.value.trim();
+
+if(
+query.length < 2
+){
+
+await loadChats();
+
+return;
+
+}
+
+try{
+
+const result =
+await api(
+"search_user",
+{
+query
+}
+);
+
+renderSearchResults(
+result.users || []
+);
+
+}catch(error){
+
+console.error(error);
+
+}
+
+}
+
+function renderSearchResults(
+users
+){
+
+chatListEl.innerHTML =
+"";
+
+if(
+users.length === 0
+){
+
+chatListEl.innerHTML =
+`
+<div style="
+padding:25px;
+text-align:center;
+color:#9aa7bd;
+">
+No Users Found
+</div>
+`;
+
+return;
+
+}
+
+users.forEach(
+(user)=>{
+
+if(
+CURRENT_USER &&
+user.id ===
+CURRENT_USER.id
+){
+return;
+}
+
+const row =
+document.createElement(
+"div"
+);
+
+row.className =
+"af-chat-item";
+
+row.innerHTML =
+`
+<div class="af-avatar">
+${user.username
+.charAt(0)
+.toUpperCase()}
+</div>
+
+<div class="af-chat-content">
+
+<div class="af-chat-name">
+${user.username}
+</div>
+
+<div class="af-chat-last">
+${
+user.is_online
+? "Online"
+: "Offline"
+}
+</div>
+
+</div>
+
+</div>
+`;
+
+row.onclick =
+()=>{
+
+createPrivateChat(
+user
+);
+
+};
+
+chatListEl.appendChild(
+row
+);
+
+}
+);
+
+}
+
+/* ==========================================
+ADD CONTACT
+========================================== */
+
+async function addContact(
+contactId
+){
+
+try{
+
+await api(
+"add_contact",
+{
+owner_id:
+CURRENT_USER.id,
+
+contact_id:
+contactId
+}
+);
+
+}catch(error){
+
+console.error(error);
+
+}
+
+}
+
+/* ==========================================
+PRIVATE CHAT
+========================================== */
+
+async function createPrivateChat(
+user
+){
+
+try{
+
+await addContact(
+user.id
+);
+
+const result =
+await api(
+"create_private",
+{
+user1:
+CURRENT_USER.id,
+
+user2:
+user.id
+}
+);
+
+CURRENT_CHAT = {
+
+id:
+result.chat.id,
+
+title:
+user.username,
+
+user_id:
+user.id
+
+};
+
+openChat(
+result.chat.id,
+user.username
+);
+
+}catch(error){
+
+console.error(error);
+
+alert(
+error.message
+);
+
+}
+
+}
+
+/* ==========================================
+GROUP CHAT
+========================================== */
+
+async function createGroupChat(
+groupName,
+members
+){
+
+try{
+
+const result =
+await api(
+"create_group",
+{
+title:
+groupName,
+
+creator_id:
+CURRENT_USER.id,
+
+members
+}
+);
+
+await loadChats();
+
+openChat(
+result.chat.id,
+groupName
+);
+
+}catch(error){
+
+console.error(error);
+
+}
+
+}
+
+/* ==========================================
+CREATE GROUP UI
+========================================== */
+
+document
+.getElementById(
+"createChatBtn"
+)
+.addEventListener(
+"click",
+async()=>{
+
+const type =
+prompt(
+"1 = User Chat\n2 = Group"
+);
+
+if(type === "2"){
+
+const title =
+prompt(
+"Group Name"
+);
+
+if(!title){
+return;
+}
+
+const ids =
+prompt(
+"Member IDs (comma separated)"
+);
+
+if(!ids){
+return;
+}
+
+const members =
+ids
+.split(",")
+.map(
+v=>v.trim()
+)
+.filter(Boolean);
+
+await createGroupChat(
+title,
+members
+);
+
+}
+
+}
+);
+
+/* ==========================================
+OPEN CHAT
+========================================== */
+
+function openChat(
+chatId,
+title
+){
+
+CURRENT_CHAT = {
+
+id:chatId,
+title:title
+
+};
+
+document
+.getElementById(
+"afRoomName"
+)
+.innerText =
+title;
+
+showRoom();
+
+loadMessages();
+
+}
+
+/* ==========================================
+BACK
+========================================== */
+
+document
+.getElementById(
+"afBackBtn"
+)
+.addEventListener(
+"click",
+()=>{
+
+showHome();
+
+loadChats();
+
+}
+);
+  /* ==========================================
+MESSAGES
+========================================== */
+
+async function loadMessages(){
+
+if(
+!CURRENT_CHAT
+){
+return;
+}
+
+try{
+
+const result =
+await api(
+"messages",
+{
+chat_id:
+CURRENT_CHAT.id,
+limit:100
+}
+);
+
+MESSAGE_LIST =
+result.messages || [];
+
+renderMessages();
+
+markMessagesRead();
+
+}catch(error){
+
+console.error(error);
+
+}
+
+}
+
+function renderMessages(){
+
+const container =
+document.getElementById(
+"afMessages"
+);
+
+container.innerHTML =
+"";
+
+MESSAGE_LIST.forEach(
+(message)=>{
+
+const item =
+document.createElement(
+"div"
+);
+
+item.className =
+`
+af-message
+${
+message.sender_id ===
+CURRENT_USER.id
+? "me"
+: "other"
+}
+`;
+
+let receipt =
+"";
+
+if(
+message.sender_id ===
+CURRENT_USER.id
+){
+
+receipt =
+`
+<div style="
+font-size:11px;
+margin-top:4px;
+opacity:.7;
+text-align:right;
+">
+✓✓
+</div>
+`;
+
+}
+
+item.innerHTML =
+`
+<div>
+${escapeHtml(
+message.content || ""
+)}
+</div>
+${receipt}
+`;
+
+container.appendChild(
+item
+);
+
+}
+);
+
+container.scrollTop =
+container.scrollHeight;
+
+}
+
+/* ==========================================
+SEND MESSAGE
+========================================== */
+
+const sendBtn =
+document.getElementById(
+"afSendBtn"
+);
+
+const messageInput =
+document.getElementById(
+"afMessageInput"
+);
+
+sendBtn.addEventListener(
+"click",
+sendMessage
+);
+
+messageInput.addEventListener(
+"keydown",
+(event)=>{
+
+if(
+event.key === "Enter"
+){
+
+event.preventDefault();
+
+sendMessage();
+
+}
+
+}
+);
+
+async function sendMessage(){
+
+const content =
+messageInput.value.trim();
+
+if(
+!content ||
+!CURRENT_CHAT
+){
+return;
+}
+
+try{
+
+messageInput.value =
+"";
+
+await api(
+"send_message",
+{
+chat_id:
+CURRENT_CHAT.id,
+
+sender_id:
+CURRENT_USER.id,
+
+content,
+
+message_type:
+"text"
+}
+);
+
+stopTyping();
+
+await loadMessages();
+
+}catch(error){
+
+console.error(error);
+
+}
+
+}
+
+/* ==========================================
+READ RECEIPTS
+========================================== */
+
+async function markMessagesRead(){
+
+for(
+const message
+of MESSAGE_LIST
+){
+
+if(
+message.sender_id ===
+CURRENT_USER.id
+){
+continue;
+}
+
+try{
+
+await api(
+"read_receipt",
+{
+message_id:
+message.id,
+
+user_id:
+CURRENT_USER.id
+}
+);
+
+}catch{}
+
+}
+
+}
+
+/* ==========================================
+TYPING
+========================================== */
+
+let typingTimeout;
+
+messageInput.addEventListener(
+"input",
+()=>{
+
+sendTyping();
+
+clearTimeout(
+typingTimeout
+);
+
+typingTimeout =
+setTimeout(
+stopTyping,
+1500
+);
+
+}
+);
+
+async function sendTyping(){
+
+if(
+!CURRENT_CHAT
+){
+return;
+}
+
+try{
+
+await api(
+"typing",
+{
+chat_id:
+CURRENT_CHAT.id,
+
+user_id:
+CURRENT_USER.id,
+
+is_typing:true
+}
+);
+
+}catch{}
+
+}
+
+async function stopTyping(){
+
+if(
+!CURRENT_CHAT
+){
+return;
+}
+
+try{
+
+await api(
+"typing",
+{
+chat_id:
+CURRENT_CHAT.id,
+
+user_id:
+CURRENT_USER.id,
+
+is_typing:false
+}
+);
+
+}catch{}
+
+}
+
+/* ==========================================
+ONLINE STATUS
+========================================== */
+
+async function refreshPresence(){
+
+if(
+!CURRENT_CHAT
+){
+return;
+}
+
+try{
+
+await api(
+"presence",
+{
+user_id:
+CURRENT_USER.id,
+
+is_online:true
+}
+);
+
+}catch{}
+
+}
+
+setInterval(
+refreshPresence,
+30000
+);
+
+/* ==========================================
+REALTIME MESSAGES
+========================================== */
+
+let realtimeTimer =
+null;
+
+function startRealtime(){
+
+if(
+realtimeTimer
+){
+clearInterval(
+realtimeTimer
+);
+}
+
+realtimeTimer =
+setInterval(
+async()=>{
+
+if(
+!CURRENT_CHAT
+){
+return;
+}
+
+await loadMessages();
+
+},
+2500
+);
+
+}
+
+function stopRealtime(){
+
+if(
+realtimeTimer
+){
+
+clearInterval(
+realtimeTimer
+);
+
+realtimeTimer =
+null;
+
+}
+
+}
+
+/* ==========================================
+ROOM EVENTS
+========================================== */
+
+const originalOpenChat =
+openChat;
+
+openChat =
+async function(
+chatId,
+title
+){
+
+CURRENT_CHAT = {
+id:chatId,
+title:title
+};
+
+document
+.getElementById(
+"afRoomName"
+)
+.innerText =
+title;
+
+showRoom();
+
+await loadMessages();
+
+startRealtime();
+
+};
+
+/* ==========================================
+BACK BUTTON OVERRIDE
+========================================== */
+
+document
+.getElementById(
+"afBackBtn"
+)
+addEventListener(
+"click",
+()=>{
+
+stopRealtime();
+
+showHome();
+
+}
+);
+
+/* ==========================================
+LAST SEEN
+========================================== */
+
+function formatLastSeen(
+timestamp
+){
+
+if(
+!timestamp
+){
+return "Offline";
+}
+
+const diff =
+Math.floor(
+(
+Date.now() -
+new Date(
+timestamp
+).getTime()
+)
+/1000
+);
+
+if(
+diff < 60
+){
+return "Last seen now";
+}
+
+if(
+diff < 3600
+){
+return `Last seen ${Math.floor(diff/60)}m ago`;
+}
+
+if(
+diff < 86400
+){
+return `Last seen ${Math.floor(diff/3600)}h ago`;
+}
+
+return `Last seen ${Math.floor(diff/86400)}d ago`;
+
+}
+
+/* ==========================================
+ESCAPE HTML
+========================================== */
+
+function escapeHtml(
+text
+){
+
+const div =
+document.createElement(
+"div"
+);
+
+div.textContent =
+text;
+
+return div.innerHTML;
+
+}
+  /* ==========================================
+FILE PICKER UI
+========================================== */
+
+const uploadButton =
+document.createElement(
+"button"
+);
+
+uploadButton.id =
+"afUploadBtn";
+
+uploadButton.innerHTML =
+"📎";
+
+uploadButton.style.width =
+"50px";
+
+uploadButton.style.height =
+"50px";
+
+uploadButton.style.border =
+"none";
+
+uploadButton.style.borderRadius =
+"999px";
+
+uploadButton.style.background =
+"#1e293b";
+
+uploadButton.style.color =
+"#fff";
+
+uploadButton.style.cursor =
+"pointer";
+
+document
+.querySelector(
+".af-input-bar"
+)
+.insertBefore(
+uploadButton,
+messageInput
+);
+
+const fileInput =
+document.createElement(
+"input"
+);
+
+fileInput.type =
+"file";
+
+fileInput.hidden =
+true;
+
+fileInput.accept =
+"image/*,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.zip";
+
+document.body.appendChild(
+fileInput
+);
+
+uploadButton.onclick =
+()=>{
+fileInput.click();
+};
+
+/* ==========================================
+SUPABASE STORAGE
+========================================== */
+
+const SUPABASE_URL =
+"https://YOUR_PROJECT.supabase.co";
+
+const SUPABASE_ANON_KEY =
+"YOUR_ANON_KEY";
+
+const STORAGE_BUCKET =
+"af-chat-media";
+
+/* ==========================================
+UPLOAD FILE
+========================================== */
+
+fileInput.addEventListener(
+"change",
+async(event)=>{
+
+const file =
+event.target.files[0];
+
+if(!file){
+return;
+}
+
+try{
+
+await uploadMedia(
+file
+);
+
+}catch(error){
+
+console.error(
+error
+);
+
+alert(
+error.message
+);
+
+}
+
+fileInput.value =
+"";
+
+});
+
+async function uploadMedia(
+file
+){
+
+if(
+!CURRENT_CHAT
+){
+return;
+}
+
+const extension =
+file.name
+.split(".")
+.pop();
+
+const fileName =
+`
+${crypto.randomUUID()}
+.${extension}
+`;
+
+const uploadUrl =
+`
+${SUPABASE_URL}
+/storage/v1/object/
+${STORAGE_BUCKET}/
+${fileName}
+`;
+
+const response =
+await fetch(
+uploadUrl,
+{
+method:"POST",
+headers:{
+apikey:
+SUPABASE_ANON_KEY,
+
+Authorization:
+`Bearer ${SUPABASE_ANON_KEY}`,
+
+"Content-Type":
+file.type
+},
+body:file
+}
+);
+
+if(
+!response.ok
+){
+
+throw new Error(
+"Upload Failed"
+);
+
+}
+
+const publicUrl =
+`
+${SUPABASE_URL}
+/storage/v1/object/authenticated/
+${STORAGE_BUCKET}/
+${fileName}
+`;
+
+await saveMediaRecord(
+file,
+publicUrl
+);
+
+await api(
+"send_message",
+{
+chat_id:
+CURRENT_CHAT.id,
+
+sender_id:
+CURRENT_USER.id,
+
+content:
+publicUrl,
+
+message_type:
+detectMessageType(
+file
+)
+}
+);
+
+await loadMessages();
+
+}
+
+/* ==========================================
+SAVE MEDIA
+========================================== */
+
+async function saveMediaRecord(
+file,
+fileUrl
+){
+
+await fetch(
+EDGE_URL,
+{
+method:"POST",
+headers:{
+"Content-Type":
+"application/json"
+},
+body:JSON.stringify({
+
+action:
+"save_media",
+
+sender_id:
+CURRENT_USER.id,
+
+chat_id:
+CURRENT_CHAT.id,
+
+file_name:
+file.name,
+
+file_url:
+fileUrl,
+
+file_size:
+file.size,
+
+mime_type:
+file.type
+
+})
+}
+);
+
+}
+
+/* ==========================================
+MESSAGE TYPE
+========================================== */
+
+function detectMessageType(
+file
+){
+
+if(
+file.type.startsWith(
+"image/"
+)
+){
+return "image";
+}
+
+if(
+file.type ===
+"application/pdf"
+){
+return "pdf";
+}
+
+return "file";
+
+}
+
+/* ==========================================
+RENDER MEDIA
+========================================== */
+
+function renderMessages(){
+
+const container =
+document.getElementById(
+"afMessages"
+);
+
+container.innerHTML =
+"";
+
+MESSAGE_LIST.forEach(
+(message)=>{
+
+const item =
+document.createElement(
+"div"
+);
+
+item.className =
+`
+af-message
+${
+message.sender_id ===
+CURRENT_USER.id
+? "me"
+: "other"
+}
+`;
+
+let content =
+"";
+
+if(
+message.message_type ===
+"image"
+){
+
+content =
+`
+<img
+src="${message.content}"
+style="
+max-width:220px;
+border-radius:12px;
+display:block;
+"
+/>
+`;
+
+}
+else if(
+message.message_type ===
+"pdf"
+){
+
+content =
+`
+<a
+href="${message.content}"
+target="_blank"
+style="
+color:white;
+text-decoration:none;
+">
+📄 Open PDF
+</a>
+`;
+
+}
+else if(
+message.message_type ===
+"file"
+){
+
+content =
+`
+<a
+href="${message.content}"
+target="_blank"
+style="
+color:white;
+text-decoration:none;
+">
+📎 Download File
+</a>
+`;
+
+}
+else{
+
+content =
+escapeHtml(
+message.content || ""
+);
+
+}
+
+item.innerHTML =
+`
+<div>
+${content}
+</div>
+`;
+
+container.appendChild(
+item
+);
+
+});
+
+container.scrollTop =
+container.scrollHeight;
+
+}
+
+/* ==========================================
+IMAGE VIEWER
+========================================== */
+
+document.addEventListener(
+"click",
+(event)=>{
+
+const target =
+event.target;
+
+if(
+target.tagName ===
+"IMG"
+){
+
+showImageViewer(
+target.src
+);
+
+}
+
+});
+
+function showImageViewer(
+url
+){
+
+const viewer =
+document.createElement(
+"div"
+);
+
+viewer.style.position =
+"fixed";
+
+viewer.style.inset =
+"0";
+
+viewer.style.background =
+"rgba(0,0,0,.9)";
+
+viewer.style.display =
+"flex";
+
+viewer.style.alignItems =
+"center";
+
+viewer.style.justifyContent =
+"center";
+
+viewer.style.zIndex =
+"999999";
+
+viewer.innerHTML =
+`
+<img
+src="${url}"
+style="
+max-width:95%;
+max-height:95%;
+object-fit:contain;
+"
+/>
+`;
+
+viewer.onclick =
+()=>{
+
+viewer.remove();
+
+};
+
+document.body.appendChild(
+viewer
+);
+
+}
+  /* ==========================================
+PINNED CHATS
+========================================== */
+
+let PINNED_CHATS = [];
+
+async function pinChat(
+chatId
+){
+
+try{
+
+await api(
+"pin_chat",
+{
+user_id:
+CURRENT_USER.id,
+
+chat_id:
+chatId
+}
+);
+
+if(
+!PINNED_CHATS.includes(
+chatId
+)
+){
+PINNED_CHATS.push(
+chatId
+);
+}
+
+sortChats();
+
+}catch(error){
+
+console.error(
+error
+);
+
+}
+
+}
+
+function sortChats(){
+
+CHAT_LIST.sort(
+(a,b)=>{
+
+const aPinned =
+PINNED_CHATS.includes(
+a.chat_id
+);
+
+const bPinned =
+PINNED_CHATS.includes(
+b.chat_id
+);
+
+if(
+aPinned &&
+!bPinned
+){
+return -1;
+}
+
+if(
+!aPinned &&
+bPinned
+){
+return 1;
+}
+
+return 0;
+
+}
+);
+
+renderChats();
+
+}
+
+/* ==========================================
+REPLY
+========================================== */
+
+let REPLY_MESSAGE =
+null;
+
+const replyBar =
+document.createElement(
+"div"
+);
+
+replyBar.id =
+"afReplyBar";
+
+replyBar.style.display =
+"none";
+
+replyBar.style.padding =
+"10px";
+
+replyBar.style.background =
+"rgba(255,255,255,.08)";
+
+replyBar.style.borderTop =
+"1px solid rgba(255,255,255,.08)";
+
+replyBar.innerHTML =
+`
+<div id="afReplyText"></div>
+`;
+
+document
+.querySelector(
+".af-input-bar"
+)
+.before(
+replyBar
+);
+
+function setReply(
+message
+){
+
+REPLY_MESSAGE =
+message;
+
+replyBar.style.display =
+"block";
+
+document
+.getElementById(
+"afReplyText"
+)
+.innerText =
+message.content;
+
+}
+
+function clearReply(){
+
+REPLY_MESSAGE =
+null;
+
+replyBar.style.display =
+"none";
+
+}
+
+/* ==========================================
+FORWARD
+========================================== */
+
+async function forwardMessage(
+message,
+targetChatId
+){
+
+try{
+
+await api(
+"send_message",
+{
+chat_id:
+targetChatId,
+
+sender_id:
+CURRENT_USER.id,
+
+content:
+message.content,
+
+message_type:
+message.message_type,
+
+forwarded_from:
+message.id
+}
+);
+
+}catch(error){
+
+console.error(
+error
+);
+
+}
+
+}
+
+/* ==========================================
+LONG PRESS MENU
+========================================== */
+
+let longPressTimer;
+
+function bindMessageMenu(
+element,
+message
+){
+
+element.addEventListener(
+"touchstart",
+()=>{
+
+longPressTimer =
+setTimeout(
+()=>{
+
+showMessageMenu(
+message
+);
+
+},
+600
+);
+
+}
+);
+
+element.addEventListener(
+"touchend",
+()=>{
+
+clearTimeout(
+longPressTimer
+);
+
+}
+);
+
+element.addEventListener(
+"mousedown",
+()=>{
+
+longPressTimer =
+setTimeout(
+()=>{
+
+showMessageMenu(
+message
+);
+
+},
+600
+);
+
+}
+);
+
+element.addEventListener(
+"mouseup",
+()=>{
+
+clearTimeout(
+longPressTimer
+);
+
+}
+);
+
+}
+
+function showMessageMenu(
+message
+){
+
+const action =
+prompt(
+"1 Reply\n2 Forward\n3 Pin Chat"
+);
+
+if(
+action === "1"
+){
+
+setReply(
+message
+);
+
+}
+
+if(
+action === "2"
+){
+
+const chatId =
+prompt(
+"Target Chat ID"
+);
+
+if(chatId){
+
+forwardMessage(
+message,
+chatId
+);
+
+}
+
+}
+
+if(
+action === "3"
+){
+
+pinChat(
+CURRENT_CHAT.id
+);
+
+}
+
+}
+
+/* ==========================================
+DELIVERED TICK
+========================================== */
+
+async function getReceiptStatus(
+message
+){
+
+if(
+message.sender_id !==
+CURRENT_USER.id
+){
+return "";
+}
+
+return `
+<span
+style="
+font-size:11px;
+opacity:.8;
+">
+✓
+</span>
+`;
+
+}
+
+/* ==========================================
+READ TICK
+========================================== */
+
+async function getReadStatus(
+message
+){
+
+if(
+message.sender_id !==
+CURRENT_USER.id
+){
+return "";
+}
+
+return `
+<span
+style="
+font-size:11px;
+opacity:.8;
+">
+✓✓
+</span>
+`;
+
+}
+
+/* ==========================================
+RENDER MESSAGES
+========================================== */
+
+async function renderMessages(){
+
+const container =
+document.getElementById(
+"afMessages"
+);
+
+container.innerHTML =
+"";
+
+for(
+const message
+of MESSAGE_LIST
+){
+
+const item =
+document.createElement(
+"div"
+);
+
+item.className =
+`
+af-message
+${
+message.sender_id ===
+CURRENT_USER.id
+? "me"
+: "other"
+}
+`;
+
+let content =
+"";
+
+if(
+message.message_type ===
+"image"
+){
+
+content =
+`
+<img
+src="${message.content}"
+style="
+max-width:220px;
+border-radius:12px;
+"
+/>
+`;
+
+}
+else if(
+message.message_type ===
+"pdf"
+){
+
+content =
+`
+<a
+href="${message.content}"
+target="_blank">
+📄 PDF
+</a>
+`;
+
+}
+else if(
+message.message_type ===
+"file"
+){
+
+content =
+`
+<a
+href="${message.content}"
+target="_blank">
+📎 File
+</a>
+`;
+
+}
+else{
+
+content =
+escapeHtml(
+message.content || ""
+);
+
+}
+
+const status =
+await getReadStatus(
+message
+);
+
+item.innerHTML =
+`
+<div>
+
+${
+message.reply_to
+? `
+<div style="
+font-size:12px;
+opacity:.7;
+margin-bottom:6px;
+">
+Reply
+</div>
+`
+: ""
+}
+
+${content}
+
+${
+message.forwarded_from
+? `
+<div style="
+font-size:11px;
+opacity:.7;
+margin-top:5px;
+">
+Forwarded
+</div>
+`
+: ""
+}
+
+<div style="
+font-size:11px;
+opacity:.6;
+margin-top:4px;
+text-align:right;
+">
+${status}
+</div>
+
+</div>
+`;
+
+bindMessageMenu(
+item,
+message
+);
+
+container.appendChild(
+item
+);
+
+}
+
+container.scrollTop =
+container.scrollHeight;
+
+}
+
+/* ==========================================
+SEND MESSAGE OVERRIDE
+========================================== */
+
+async function sendMessage(){
+
+const content =
+messageInput.value.trim();
+
+if(
+!content
+){
+return;
+}
+
+try{
+
+await api(
+"send_message",
+{
+chat_id:
+CURRENT_CHAT.id,
+
+sender_id:
+CURRENT_USER.id,
+
+content,
+
+message_type:
+"text",
+
+reply_to:
+REPLY_MESSAGE
+? REPLY_MESSAGE.id
+: null
+}
+);
+
+messageInput.value =
+"";
+
+clearReply();
+
+await loadMessages();
+
+}catch(error){
+
+console.error(
+error
+);
+
+}
+
+}
+
+/* ==========================================
+AUTO REFRESH CHAT LIST
+========================================== */
+
+setInterval(
+async()=>{
+
+if(
+homeScreen.style.display ===
+"flex"
+){
+
+await loadChats();
+
+}
+
+},
+5000
+);
+
+/* ==========================================
+ONLINE BADGE
+========================================== */
+
+function getStatusText(
+user
+){
+
+if(
+user.is_online
+){
+
+return "Online";
+
+}
+
+return formatLastSeen(
+user.last_seen
+);
+
+}
+
+/* ==========================================
+TELEGRAM STYLE CHAT OPEN
+========================================== */
+
+async function openChat(
+chatId,
+title
+){
+
+CURRENT_CHAT = {
+id:chatId,
+title:title
+};
+
+document
+.getElementById(
+"afRoomName"
+)
+.innerText =
+title;
+
+showRoom();
+
+await loadMessages();
+
+startRealtime();
+
+messageInput.focus();
+
+}
+
+/* ==========================================
+END
+========================================== */
+</script>
+
+</body>
+</html>
