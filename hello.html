@@ -2194,16 +2194,90 @@
 }
 
 /* ===================================================================
+   CSS CUSTOM PROPERTIES — LIGHT MODE
+=================================================================== */
+
+:root {
+  --af-primary:       #4F46E5;
+  --af-primary-dark:  #3730A3;
+  --af-accent:        #7C3AED;
+  --af-success:       #059669;
+  --af-danger:        #DC2626;
+
+  --bg-body:          #F4F3FF;
+  --bg-card:          #FFFFFF;
+  --bg-input:         #F8F7FF;
+  --bg-group:         #F0EFFE;
+  --bg-group-hover:   #E5E2FF;
+
+  --text-primary:     #1A1830;
+  --text-secondary:   #6B6894;
+  --text-muted:       #A5A3BF;
+
+  --border-card:      rgba(79,70,229,.10);
+  --border-input:     rgba(79,70,229,.18);
+
+  --shadow-card:
+    0 1px 3px  rgba(79,70,229,.06),
+    0 4px 16px rgba(79,70,229,.07);
+
+  --shadow-elevated:
+    0 8px 32px rgba(79,70,229,.14);
+
+  --shadow-btn:
+    0 4px 16px rgba(79,70,229,.32);
+
+  --r-xl:        20px;
+  --r-lg:        16px;
+  --gap-md:      20px;
+  --glass-blur:  24px;
+
+  --font-display: 'Inter', system-ui, sans-serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+}
+
+
+
+/* ===================================================================
+   CSS CUSTOM PROPERTIES — DARK MODE
+=================================================================== */
+
+[data-theme="dark"] {
+  --bg-body:          #0F0E1A;
+  --bg-card:          rgba(26,24,48,.95);
+  --bg-input:         rgba(30,28,55,.90);
+  --bg-group:         rgba(79,70,229,.10);
+  --bg-group-hover:   rgba(79,70,229,.18);
+
+  --text-primary:     #EAE8FF;
+  --text-secondary:   #9B98C4;
+  --text-muted:       #5C5A80;
+
+  --border-card:      rgba(79,70,229,.16);
+  --border-input:     rgba(79,70,229,.24);
+
+  --shadow-card:
+    0 1px 3px  rgba(0,0,0,.40),
+    0 4px 20px rgba(0,0,0,.30);
+
+  --shadow-elevated:  0 8px 40px rgba(0,0,0,.50);
+  --shadow-btn:       0 4px 20px rgba(79,70,229,.45);
+}
+
+
+
+/* ===================================================================
    STUDENT ROOT
 =================================================================== */
 
-#studentaf{
-  width:100%;
-  color:var(--text-primary);
+#studentaf {
+  width: 100%;
+  color: var(--text-primary);
+  font-family: var(--font-body);
 }
 
-#studentaf *{
-  box-sizing:border-box;
+#studentaf * {
+  box-sizing: border-box;
 }
 
 
@@ -2212,16 +2286,16 @@
    CONTAINER
 =================================================================== */
 
-.student-wrapaf{
-  width:100%;
-  max-width:100%;
-  padding:var(--gap-md);
+.student-wrapaf {
+  width: 100%;
+  max-width: 100%;
+  padding: var(--gap-md);
 }
 
-.student-sectionaf{
-  display:flex;
-  flex-direction:column;
-  gap:18px;
+.student-sectionaf {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 
 
@@ -2230,66 +2304,87 @@
    HERO CARD
 =================================================================== */
 
-.student-herocardaf{
-  position:relative;
-  overflow:hidden;
-
-  padding:24px;
-
-  border-radius:var(--r-xl);
-
-  background:var(--bg-card);
-
-  border:1px solid var(--border-card);
-
-  backdrop-filter:blur(var(--glass-blur));
-  -webkit-backdrop-filter:blur(var(--glass-blur));
-
-  box-shadow:var(--shadow-card);
+.student-herocardaf {
+  position: relative;
+  overflow: hidden;
+  padding: 30px 28px;
+  border-radius: var(--r-xl);
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  box-shadow: var(--shadow-card);
 }
 
-.student-herocardaf::before{
-  content:"";
-
-  position:absolute;
-
-  top:-120px;
-  right:-120px;
-
-  width:220px;
-  height:220px;
-
-  border-radius:50%;
-
-  background:
-  radial-gradient(
+.student-herocardaf::before {
+  content: "";
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(
     circle,
-    rgba(99,102,241,.12),
+    rgba(124,58,237,.10),
     transparent 70%
   );
-
-  pointer-events:none;
+  pointer-events: none;
 }
 
-.student-titleaf{
-  font-family:var(--font-display);
-
-  font-size:34px;
-  font-weight:900;
-
-  line-height:1.05;
-  letter-spacing:-0.05em;
-
-  color:var(--text-primary);
+.student-herocardaf::after {
+  content: "";
+  position: absolute;
+  bottom: -60px;
+  left: -40px;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(79,70,229,.07),
+    transparent 70%
+  );
+  pointer-events: none;
 }
 
-.student-subtitleaf{
-  margin-top:10px;
+/* Optional eyebrow label above the title */
+.hero-eyebrowaf {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--af-primary);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
 
-  color:var(--text-secondary);
+.hero-dotaf {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--af-primary);
+  display: inline-block;
+}
 
-  font-size:15px;
-  line-height:1.7;
+.student-titleaf {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  color: var(--text-primary);
+}
+
+.student-titleaf span {
+  color: var(--af-primary);
+}
+
+.student-subtitleaf {
+  margin-top: 12px;
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.75;
 }
 
 
@@ -2298,40 +2393,28 @@
    AUTH CARD
 =================================================================== */
 
-.student-cardaf{
-  position:relative;
-
-  padding:22px;
-
-  border-radius:var(--r-xl);
-
-  background:var(--bg-card);
-
-  border:1px solid var(--border-card);
-
-  backdrop-filter:blur(var(--glass-blur));
-  -webkit-backdrop-filter:blur(var(--glass-blur));
-
-  box-shadow:var(--shadow-card);
+.student-cardaf {
+  position: relative;
+  padding: 26px;
+  border-radius: var(--r-xl);
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  box-shadow: var(--shadow-card);
 }
 
-.student-card-titleaf{
-  font-size:22px;
-  font-weight:900;
-
-  letter-spacing:-0.03em;
-
-  color:var(--text-primary);
-
-  margin-bottom:18px;
+.student-card-titleaf {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: 6px;
 }
 
-.student-card-subaf{
-  color:var(--text-secondary);
-
-  line-height:1.7;
-
-  margin-bottom:18px;
+.student-card-subaf {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 14px;
+  margin-bottom: 20px;
 }
 
 
@@ -2340,113 +2423,117 @@
    FORM
 =================================================================== */
 
-.student-formaf{
-  display:flex;
-  flex-direction:column;
-  gap:14px;
+.student-formaf {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
-.student-labelaf{
-  display:block;
-
-  margin-bottom:8px;
-
-  font-size:13px;
-  font-weight:800;
-
-  color:var(--text-secondary);
+.student-labelaf {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
 }
 
 .student-inputaf,
 .student-selectaf,
-.student-textareaaf{
-  width:100%;
-
-  padding:15px 16px;
-
-  border-radius:18px;
-
-  background:var(--bg-input);
-
-  border:1px solid var(--border-card);
-
-  color:var(--text-primary);
-
-  font-size:15px;
-
-  outline:none;
-
+.student-textareaaf {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-input);
+  color: var(--text-primary);
+  font-size: 15px;
+  font-family: var(--font-body);
+  outline: none;
   transition:
     border-color .2s ease,
-    box-shadow .2s ease,
-    background .2s ease;
+    box-shadow   .2s ease,
+    background   .2s ease;
 }
 
 .student-inputaf::placeholder,
-.student-textareaaf::placeholder{
-  color:var(--text-muted);
+.student-textareaaf::placeholder {
+  color: var(--text-muted);
 }
 
 .student-inputaf:focus,
 .student-selectaf:focus,
-.student-textareaaf:focus{
-  border-color:var(--af-primary);
-
-  box-shadow:
-  0 0 0 4px rgba(99,102,241,.12);
+.student-textareaaf:focus {
+  border-color: var(--af-primary);
+  box-shadow: 0 0 0 4px rgba(79,70,229,.12);
+  background: var(--bg-card);
 }
 
 
 
 /* ===================================================================
-   BUTTONS
+   PRIMARY BUTTON (LOGIN / CTA)
 =================================================================== */
 
 .student-btnaf,
-.student-primaryaf{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  width:100%;
-
-  min-height:54px;
-
-  padding:14px 20px;
-
-  border:none;
-
-  border-radius:18px;
-
-  background:
-  linear-gradient(
-    135deg,
-    var(--af-primary),
-    var(--af-primary-dark)
-  );
-
-  color:#fff;
-
-  font-size:15px;
-  font-weight:900;
-
-  cursor:pointer;
-
-  box-shadow:var(--shadow-btn);
-
+.student-primaryaf {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 52px;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #5B52F0, #4338CA);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(79,70,229,.35);
   transition:
-    transform .18s ease,
-    box-shadow .18s ease;
+    transform   .18s ease,
+    box-shadow  .18s ease,
+    filter      .18s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle top-gloss shine */
+.student-btnaf::before,
+.student-primaryaf::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(255,255,255,.12), transparent);
+  border-radius: inherit;
+  pointer-events: none;
 }
 
 .student-btnaf:hover,
-.student-primaryaf:hover{
-  transform:translateY(-2px);
+.student-primaryaf:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(79,70,229,.42);
+  filter: brightness(1.06);
 }
 
 .student-btnaf:active,
-.student-primaryaf:active{
-  transform:scale(.98);
+.student-primaryaf:active {
+  transform: scale(.98);
+}
+
+/* Animated arrow inside the button */
+.btn-arrowaf {
+  font-size: 17px;
+  transition: transform .18s ease;
+}
+
+.student-btnaf:hover .btn-arrowaf,
+.student-primaryaf:hover .btn-arrowaf {
+  transform: translateX(3px);
 }
 
 
@@ -2455,61 +2542,78 @@
    SECONDARY BUTTON
 =================================================================== */
 
-.student-secondaryaf{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  width:100%;
-
-  min-height:52px;
-
-  padding:14px 18px;
-
-  border-radius:18px;
-
-  background:var(--bg-group);
-
-  border:1px solid var(--border-card);
-
-  color:var(--text-primary);
-
-  font-weight:800;
-
-  transition:.2s ease;
+.student-secondaryaf {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 50px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: var(--bg-group);
+  border: 1px solid var(--border-card);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background .2s ease, transform .18s ease;
 }
 
-.student-secondaryaf:hover{
-  background:var(--bg-group-hover);
+.student-secondaryaf:hover {
+  background: var(--bg-group-hover);
+  transform: translateY(-1px);
 }
 
 
 
 /* ===================================================================
-   AUTH LINKS
+   DIVIDER (for "or continue with")
 =================================================================== */
 
-.student-linkaf{
-  color:var(--af-primary);
-
-  font-size:14px;
-  font-weight:800;
-
-  text-decoration:none;
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-muted);
+  font-size: 13px;
 }
 
-.student-linkaf:hover{
-  opacity:.85;
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border-card);
 }
 
-.student-auth-footeraf{
-  margin-top:16px;
 
-  display:flex;
-  justify-content:center;
-  gap:10px;
 
-  flex-wrap:wrap;
+/* ===================================================================
+   AUTH LINKS / FOOTER
+=================================================================== */
+
+.student-linkaf {
+  color: var(--af-primary);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.student-linkaf:hover {
+  text-decoration: underline;
+  opacity: .85;
+}
+
+.student-auth-footeraf {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  font-size: 14px;
+  color: var(--text-secondary);
 }
 
 
@@ -2518,105 +2622,110 @@
    STATUS / ALERT
 =================================================================== */
 
-.student-alertaf{
-  padding:14px 16px;
-
-  border-radius:16px;
-
-  background:var(--bg-group);
-
-  border:1px solid var(--border-card);
-
-  color:var(--text-secondary);
-
-  font-size:14px;
-  line-height:1.7;
+.student-alertaf {
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: var(--bg-group);
+  border: 1px solid var(--border-card);
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.7;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
 }
 
-.student-successaf{
-  background:rgba(34,197,94,.10);
-  border-color:rgba(34,197,94,.22);
-  color:var(--af-success);
+.student-alertaf i {
+  font-size: 18px;
+  margin-top: 1px;
+  flex-shrink: 0;
 }
 
-.student-dangeraf{
-  background:rgba(239,68,68,.10);
-  border-color:rgba(239,68,68,.22);
-  color:var(--af-danger);
+.student-successaf {
+  background: rgba(5,150,105,.08);
+  border-color: rgba(5,150,105,.20);
+  color: #065F46;
 }
+
+.student-dangeraf {
+  background: rgba(220,38,38,.08);
+  border-color: rgba(220,38,38,.20);
+  color: #991B1B;
+}
+
+[data-theme="dark"] .student-successaf { color: #6EE7B7; }
+[data-theme="dark"] .student-dangeraf  { color: #FCA5A5; }
 
 
 
 /* ===================================================================
-   DASHBOARD HEADER
+   DASHBOARD USER CARD
 =================================================================== */
 
-.student-dashboardaf{
-  display:flex;
-  flex-direction:column;
-  gap:18px;
+.student-dashboardaf {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 
-.student-usercardaf{
-  display:flex;
-  align-items:center;
-  gap:16px;
-
-  padding:22px;
-
-  border-radius:var(--r-xl);
-
-  background:var(--bg-card);
-
-  border:1px solid var(--border-card);
-
-  backdrop-filter:blur(var(--glass-blur));
-  -webkit-backdrop-filter:blur(var(--glass-blur));
-
-  box-shadow:var(--shadow-card);
+.student-usercardaf {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 22px;
+  border-radius: var(--r-xl);
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  box-shadow: var(--shadow-card);
 }
 
-.student-avataraf{
-  width:62px;
-  height:62px;
-
-  border-radius:50%;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  font-size:26px;
-
-  background:
-  linear-gradient(
-    135deg,
-    var(--af-primary),
-    var(--af-primary-dark)
-  );
-
-  color:#fff;
-
-  flex-shrink:0;
+.student-avataraf {
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #5B52F0, #7C3AED);
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(79,70,229,.30);
 }
 
-.student-userinfoaf{
-  flex:1;
+.student-userinfoaf {
+  flex: 1;
 }
 
-.student-usernameaf{
-  font-size:20px;
-  font-weight:900;
-
-  color:var(--text-primary);
+.student-usernameaf {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
 }
 
-.student-idaf{
-  margin-top:4px;
+.student-idaf {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
 
-  font-size:13px;
-
-  color:var(--text-secondary);
+/* Optional plan badge below the name */
+.user-badge-af {
+  margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(79,70,229,.10);
+  color: var(--af-primary);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 
@@ -2625,132 +2734,152 @@
    QUICK STATS
 =================================================================== */
 
-.student-statsaf{
-  display:grid;
-
-  grid-template-columns:
-  repeat(2,minmax(0,1fr));
-
-  gap:14px;
+.student-statsaf {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
 }
 
-.student-stataf{
-  padding:18px;
-
-  border-radius:20px;
-
-  background:var(--bg-card);
-
-  border:1px solid var(--border-card);
-
-  box-shadow:var(--shadow-card);
+.student-stataf {
+  padding: 20px 18px;
+  border-radius: 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
 }
 
-.student-stat-numberaf{
-  font-size:28px;
-  font-weight:900;
-
-  color:var(--text-primary);
+.stat-iconaf {
+  font-size: 20px;
+  color: var(--af-primary);
+  margin-bottom: 10px;
 }
 
-.student-stat-labelaf{
-  margin-top:6px;
-
-  color:var(--text-secondary);
-
-  font-size:13px;
-  font-weight:700;
+.student-stat-numberaf {
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.04em;
+  line-height: 1;
 }
+
+.student-stat-labelaf {
+  margin-top: 6px;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Optional green delta badge in top-right */
+.stat-deltaaf {
+  position: absolute;
+  top: 18px;
+  right: 16px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--af-success);
+  background: rgba(5,150,105,.10);
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+
 
 /* ===================================================================
-   COURSE SECTION
+   COURSE CARDS
 =================================================================== */
 
-.course-gridaf{
-  display:grid;
-  gap:18px;
+.course-gridaf {
+  display: grid;
+  gap: 18px;
 }
 
-.course-cardaf{
-  position:relative;
-  overflow:hidden;
-
-  border-radius:var(--r-xl);
-
-  background:var(--bg-card);
-
-  border:1px solid var(--border-card);
-
-  backdrop-filter:blur(var(--glass-blur));
-  -webkit-backdrop-filter:blur(var(--glass-blur));
-
-  box-shadow:var(--shadow-card);
-
-  transition:
-    transform .2s ease,
-    box-shadow .2s ease;
+.course-cardaf {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-xl);
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  box-shadow: var(--shadow-card);
+  transition: transform .2s ease, box-shadow .2s ease;
 }
 
-.course-cardaf:hover{
-  transform:translateY(-3px);
-  box-shadow:var(--shadow-elevated);
+.course-cardaf:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-elevated);
 }
 
-.course-imageaf{
-  width:100%;
-  aspect-ratio:16/8;
-  object-fit:cover;
+.course-imageaf {
+  width: 100%;
+  aspect-ratio: 16/8;
+  object-fit: cover;
+  display: block;
 }
 
-.course-bodyaf{
-  padding:20px;
+/* Placeholder banner when no image is provided */
+.course-img-placeholderaf {
+  width: 100%;
+  aspect-ratio: 16/8;
+  background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #2563EB 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: rgba(255,255,255,.22);
 }
 
-.course-titleaf{
-  font-family:var(--font-display);
-
-  font-size:22px;
-  font-weight:900;
-
-  line-height:1.2;
-
-  color:var(--text-primary);
+.course-bodyaf {
+  padding: 22px;
 }
 
-.course-descaf{
-  margin-top:10px;
-
-  color:var(--text-secondary);
-
-  line-height:1.7;
-
-  font-size:14px;
+.course-titleaf {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
 }
 
-.course-metaaf{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-
-  margin-top:14px;
+.course-descaf {
+  margin-top: 10px;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  font-size: 14px;
 }
 
-.course-chipaf{
-  display:inline-flex;
-  align-items:center;
+.course-metaaf {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
 
-  padding:7px 12px;
+.course-chipaf {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--bg-group);
+  border: 1px solid var(--border-card);
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 700;
+}
 
-  border-radius:999px;
+.course-chipaf i {
+  font-size: 13px;
+}
 
-  background:var(--bg-group);
-
-  border:1px solid var(--border-card);
-
-  color:var(--text-secondary);
-
-  font-size:12px;
-  font-weight:800;
+/* Separator line between meta and actions */
+.course-divaf {
+  height: 1px;
+  background: var(--border-card);
+  margin: 18px 0;
 }
 
 
@@ -2759,36 +2888,63 @@
    COURSE ACTIONS
 =================================================================== */
 
-.course-actionaf{
-  display:flex;
-  gap:12px;
-
-  margin-top:18px;
+.course-actionaf {
+  display: flex;
+  gap: 10px;
 }
 
-.course-openaf{
-  flex:1;
+.course-openaf {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #5B52F0, #4338CA);
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(79,70,229,.30);
+  transition: transform .18s ease, box-shadow .18s ease;
+  position: relative;
+  overflow: hidden;
+}
 
-  display:flex;
-  justify-content:center;
-  align-items:center;
+.course-openaf::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(255,255,255,.12), transparent);
+  pointer-events: none;
+}
 
-  min-height:50px;
+.course-openaf:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(79,70,229,.40);
+}
 
-  border-radius:16px;
+/* Secondary icon button (bookmark / save) */
+.course-saveaf {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  border: 1px solid var(--border-card);
+  background: var(--bg-group);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background .2s, color .2s;
+}
 
-  background:
-  linear-gradient(
-    135deg,
-    var(--af-primary),
-    var(--af-primary-dark)
-  );
-
-  color:#fff;
-
-  font-weight:900;
-
-  box-shadow:var(--shadow-btn);
+.course-saveaf:hover {
+  background: var(--bg-group-hover);
+  color: var(--af-primary);
 }
 
 
@@ -2797,58 +2953,53 @@
    PROGRESS
 =================================================================== */
 
-.student-progress-cardaf{
-  padding:22px;
-
-  border-radius:var(--r-xl);
-
-  background:var(--bg-card);
-
-  border:1px solid var(--border-card);
-
-  box-shadow:var(--shadow-card);
+.student-progress-cardaf {
+  padding: 22px;
+  border-radius: var(--r-xl);
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  box-shadow: var(--shadow-card);
 }
 
-.student-progress-titleaf{
-  font-size:18px;
-  font-weight:900;
-
-  color:var(--text-primary);
-
-  margin-bottom:14px;
+.prog-headeraf {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
 }
 
-.student-progress-baraf{
-  width:100%;
-  height:12px;
-
-  overflow:hidden;
-
-  border-radius:999px;
-
-  background:var(--bg-group);
+.student-progress-titleaf {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
 }
 
-.student-progress-fillaf{
-  height:100%;
-
-  border-radius:999px;
-
-  background:
-  linear-gradient(
-    90deg,
-    var(--af-primary),
-    var(--af-accent)
-  );
+.prog-pctaf {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--af-primary);
 }
 
-.student-progress-textaf{
-  margin-top:10px;
+.student-progress-baraf {
+  width: 100%;
+  height: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--bg-group);
+}
 
-  color:var(--text-secondary);
+.student-progress-fillaf {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #5B52F0, #7C3AED);
+}
 
-  font-size:13px;
-  font-weight:700;
+.student-progress-textaf {
+  margin-top: 10px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
 }
 
 
@@ -2857,37 +3008,31 @@
    LEARNING PAGE
 =================================================================== */
 
-.learning-boxaf{
-  display:flex;
-  flex-direction:column;
-  gap:18px;
+.learning-boxaf {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 
-.learning-cardaf{
-  padding:22px;
-
-  border-radius:var(--r-xl);
-
-  background:var(--bg-card);
-
-  border:1px solid var(--border-card);
-
-  box-shadow:var(--shadow-card);
+.learning-cardaf {
+  padding: 22px;
+  border-radius: var(--r-xl);
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  box-shadow: var(--shadow-card);
 }
 
-.learning-titleaf{
-  font-size:22px;
-  font-weight:900;
-
-  color:var(--text-primary);
+.learning-titleaf {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
 }
 
-.learning-subaf{
-  margin-top:8px;
-
-  color:var(--text-secondary);
-
-  line-height:1.7;
+.learning-subaf {
+  margin-top: 8px;
+  color: var(--text-secondary);
+  line-height: 1.75;
 }
 
 
@@ -2896,136 +3041,137 @@
    CHAPTER LIST
 =================================================================== */
 
-.chapter-listaf{
-  display:flex;
-  flex-direction:column;
-  gap:14px;
+.chapter-listaf {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.chapter-itemaf{
-  display:flex;
-  align-items:center;
-  gap:14px;
-
-  padding:18px;
-
-  border-radius:20px;
-
-  background:var(--bg-card);
-
-  border:1px solid var(--border-card);
-
-  box-shadow:var(--shadow-card);
-
-  transition:.2s ease;
+.chapter-itemaf {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease;
 }
 
-.chapter-itemaf:hover{
-  transform:translateY(-2px);
+.chapter-itemaf:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-elevated);
 }
 
-.chapter-iconaf{
-  width:48px;
-  height:48px;
-
-  border-radius:14px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  background:var(--bg-group);
-
-  color:var(--af-primary);
-
-  font-size:20px;
-
-  flex-shrink:0;
+.chapter-iconaf {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-group);
+  color: var(--af-primary);
+  font-size: 20px;
+  flex-shrink: 0;
 }
 
-.chapter-contentaf{
-  flex:1;
+.chapter-contentaf {
+  flex: 1;
 }
 
-.chapter-titleaf{
-  font-size:16px;
-  font-weight:900;
-
-  color:var(--text-primary);
+.chapter-titleaf {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text-primary);
 }
 
-.chapter-metaaf{
-  margin-top:4px;
+.chapter-metaaf {
+  margin-top: 3px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
 
-  font-size:13px;
+/* Arrow affordance — moves on hover */
+.chapter-arrowaf {
+  color: var(--text-muted);
+  font-size: 18px;
+  margin-left: auto;
+  flex-shrink: 0;
+  transition: transform .18s ease, color .18s ease;
+}
 
-  color:var(--text-secondary);
+.chapter-itemaf:hover .chapter-arrowaf {
+  transform: translateX(3px);
+  color: var(--af-primary);
+}
+
+/* Completion tick */
+.chapter-doneaf {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(5,150,105,.12);
+  color: var(--af-success);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  flex-shrink: 0;
 }
 
 
 
 /* ===================================================================
-   CONTENT / LESSONS
+   CONTENT / LESSON ITEMS
 =================================================================== */
 
-.content-listaf{
-  display:flex;
-  flex-direction:column;
-  gap:14px;
+.content-listaf {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.content-itemaf{
-  display:flex;
-  align-items:center;
-  gap:14px;
-
-  padding:18px;
-
-  border-radius:20px;
-
-  background:var(--bg-card);
-
-  border:1px solid var(--border-card);
-
-  box-shadow:var(--shadow-card);
+.content-itemaf {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  box-shadow: var(--shadow-card);
 }
 
-.content-iconaf{
-  width:46px;
-  height:46px;
-
-  border-radius:14px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  background:var(--bg-group);
-
-  color:var(--af-primary);
-
-  font-size:18px;
-
-  flex-shrink:0;
+.content-iconaf {
+  width: 44px;
+  height: 44px;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-group);
+  color: var(--af-primary);
+  font-size: 18px;
+  flex-shrink: 0;
 }
 
-.content-bodyaf{
-  flex:1;
+.content-bodyaf {
+  flex: 1;
 }
 
-.content-titleaf{
-  font-size:15px;
-  font-weight:900;
-
-  color:var(--text-primary);
+.content-titleaf {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text-primary);
 }
 
-.content-metaaf{
-  margin-top:4px;
-
-  color:var(--text-secondary);
-
-  font-size:13px;
+.content-metaaf {
+  margin-top: 3px;
+  color: var(--text-secondary);
+  font-size: 13px;
 }
 
 
@@ -3034,30 +3180,29 @@
    BADGES
 =================================================================== */
 
-.student-badgeaf{
-  display:inline-flex;
-  align-items:center;
-
-  padding:8px 12px;
-
-  border-radius:999px;
-
-  background:var(--bg-group);
-
-  border:1px solid var(--border-card);
-
-  color:var(--af-primary);
-
-  font-size:12px;
-  font-weight:900;
+.student-badgeaf {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(79,70,229,.10);
+  border: 1px solid rgba(79,70,229,.15);
+  color: var(--af-primary);
+  font-size: 12px;
+  font-weight: 700;
 }
 
-.student-badge-successaf{
-  color:var(--af-success);
+.student-badge-successaf {
+  background: rgba(5,150,105,.10);
+  border-color: rgba(5,150,105,.18);
+  color: var(--af-success);
 }
 
-.student-badge-dangeraf{
-  color:var(--af-danger);
+.student-badge-dangeraf {
+  background: rgba(220,38,38,.10);
+  border-color: rgba(220,38,38,.18);
+  color: var(--af-danger);
 }
 
 
@@ -3066,65 +3211,53 @@
    EMPTY STATES
 =================================================================== */
 
-.student-emptyaf{
-  padding:40px 24px;
-
-  text-align:center;
-
-  border-radius:var(--r-xl);
-
-  background:var(--bg-card);
-
-  border:1px solid var(--border-card);
-
-  box-shadow:var(--shadow-card);
+.student-emptyaf {
+  padding: 48px 24px;
+  text-align: center;
+  border-radius: var(--r-xl);
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  box-shadow: var(--shadow-card);
 }
 
-.student-empty-iconaf{
-  font-size:42px;
+.student-empty-iconaf {
+  font-size: 40px;
+  color: var(--text-muted);
 }
 
-.student-empty-titleaf{
-  margin-top:14px;
-
-  font-size:22px;
-  font-weight:900;
-
-  color:var(--text-primary);
+.student-empty-titleaf {
+  margin-top: 14px;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
 }
 
-.student-empty-subaf{
-  margin-top:8px;
-
-  color:var(--text-secondary);
-
-  line-height:1.8;
+.student-empty-subaf {
+  margin-top: 8px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  font-size: 14px;
 }
 
 
 
 /* ===================================================================
-   LOADING
+   LOADING SPINNER
 =================================================================== */
 
-.student-loaderaf{
-  width:42px;
-  height:42px;
-
-  border-radius:50%;
-
-  border:4px solid rgba(99,102,241,.15);
-  border-top-color:var(--af-primary);
-
-  animation:studentSpinaf .8s linear infinite;
-
-  margin:auto;
+.student-loaderaf {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid rgba(79,70,229,.15);
+  border-top-color: var(--af-primary);
+  animation: studentSpinaf .7s linear infinite;
+  margin: auto;
 }
 
-@keyframes studentSpinaf{
-  to{
-    transform:rotate(360deg);
-  }
+@keyframes studentSpinaf {
+  to { transform: rotate(360deg); }
 }
 
 
@@ -3133,42 +3266,24 @@
    MOBILE POLISH
 =================================================================== */
 
-@media (max-width:768px){
+@media (max-width: 768px) {
 
-  .student-titleaf{
-    font-size:30px;
-  }
-
-  .course-titleaf{
-    font-size:20px;
-  }
-
-  .student-usercardaf{
-    padding:18px;
-  }
-
-  .student-avataraf{
-    width:56px;
-    height:56px;
-  }
-
-  .course-bodyaf{
-    padding:18px;
-  }
-
-  .learning-cardaf{
-    padding:18px;
-  }
-
-  .student-cardaf{
-    padding:18px;
-  }
+  .student-titleaf     { font-size: 28px; }
+  .course-titleaf      { font-size: 18px; }
+  .student-usercardaf  { padding: 16px; }
+  .student-avataraf    { width: 50px; height: 50px; font-size: 18px; }
+  .course-bodyaf       { padding: 18px; }
+  .learning-cardaf     { padding: 18px; }
+  .student-cardaf      { padding: 20px; }
+  .student-herocardaf  { padding: 24px 20px; }
+  .student-statsaf     { gap: 10px; }
+  .student-stat-numberaf { font-size: 26px; }
 }
 
 
 
 /* ===================================================================
-   DARK MODE POLISH
+   DARK MODE OVERRIDES
 =================================================================== */
 
 [data-theme="dark"] .student-cardaf,
@@ -3179,17 +3294,24 @@
 [data-theme="dark"] .chapter-itemaf,
 [data-theme="dark"] .content-itemaf,
 [data-theme="dark"] .student-progress-cardaf,
-[data-theme="dark"] .student-emptyaf{
-
-  background:
-  linear-gradient(
-    180deg,
-    rgba(30,27,60,.92),
-    rgba(22,19,48,.92)
-  );
+[data-theme="dark"] .student-emptyaf,
+[data-theme="dark"] .student-herocardaf {
+  background: rgba(26,24,48,.95);
+  border-color: rgba(79,70,229,.16);
 }
 
+[data-theme="dark"] .student-inputaf,
+[data-theme="dark"] .student-selectaf,
+[data-theme="dark"] .student-textareaaf {
+  background: rgba(30,28,55,.90);
+  border-color: rgba(79,70,229,.24);
+}
 
+[data-theme="dark"] .student-inputaf:focus,
+[data-theme="dark"] .student-selectaf:focus,
+[data-theme="dark"] .student-textareaaf:focus {
+  background: rgba(26,24,48,.98);
+}
 
   </style>
 </head>
