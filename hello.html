@@ -3384,17 +3384,16 @@ body[data-theme="dark"] #studentaf .student-inputaf {
             <div class="af-section-label">Quick Access</div>
             <div class="af-quick-row af-stagger">
               <!-- Student Login → /account/ -->
-              <button
-                class="af-quick-card glass"
-                onclick="window.location.href='#'"
-                type="button"
-                aria-label="Student Login"
-              >
-                <div class="af-quick-icon">🎓</div>
-                <div class="af-quick-title">Student Login</div>
-                <div class="af-quick-sub">Access your course dashboard.</div>
-              </button>
-
+             <button
+  class="af-quick-card glass"
+  onclick="afSwitchView('student')"
+  type="button"
+  aria-label="Student Login"
+>
+  <div class="af-quick-icon">🎓</div>
+  <div class="af-quick-title">Student Login</div>
+  <div class="af-quick-sub">Access your course dashboard.</div>
+</button>
               <!-- Student Profile → /account/ -->
               <button
                 class="af-quick-card glass"
@@ -4002,17 +4001,18 @@ body[data-theme="dark"] #studentaf .student-inputaf {
               <div class="af-accordion-body" role="region">
                 <div class="af-accordion-divider"></div>
                 <a
-                  class="af-accordion-item"
-                  href="#"
-                  aria-label="Login or Create Student ID"
-                >
-                  <div class="af-accordion-item-icon" aria-hidden="true">📋</div>
-                  <div class="af-accordion-item-text">
-                    <div class="af-accordion-item-label">Login / Create ID</div>
-                    <div class="af-accordion-item-sub">Access your student account</div>
-                  </div>
-                  <span class="af-accordion-item-arrow" aria-hidden="true">›</span>
-                </a>
+  class="af-accordion-item"
+  href="#"
+  onclick="afSwitchView('student'); return false;"
+  aria-label="Login or Create Student ID"
+>
+  <div class="af-accordion-item-icon" aria-hidden="true">📋</div>
+  <div class="af-accordion-item-text">
+    <div class="af-accordion-item-label">Login / Create ID</div>
+    <div class="af-accordion-item-sub">Access your student account</div>
+  </div>
+  <span class="af-accordion-item-arrow" aria-hidden="true">›</span>
+</a>
               </div>
             </div>
 
