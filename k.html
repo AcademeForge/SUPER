@@ -8296,7 +8296,17 @@ async function createAfNexusPostV2() {
     console.error("AF Nexus create post catch:", err);
   }
 }
+  
+function afNexusInitialsV2(name) {
+  if (!name) return "AF";
 
+  return String(name)
+    .trim()
+    .split(/\s+/)
+    .slice(0, 2)
+    .map(v => v.charAt(0).toUpperCase())
+    .join("");
+}
 /* ---------------- POST LIKE ---------------- */
 
 async function toggleAfNexusPostLikeV2(postId) {
