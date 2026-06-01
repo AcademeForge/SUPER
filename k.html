@@ -4177,6 +4177,52 @@
   background: rgba(239,68,68,0.16) !important;
   border-color: rgba(239,68,68,0.30) !important;
 }
+    /* =========================================
+   FORCE FIX - REMOVE MODAL BOTTOM GAP
+========================================= */
+
+#afNexusComposerOverlayV2,
+#afNexusCommentsOverlayV2,
+#afNexusReplyOverlayV2,
+#afNexusMenuOverlayV2{
+  position:fixed !important;
+  inset:0 !important;
+
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+
+  margin:0 !important;
+  padding:16px !important;
+
+  z-index:999999 !important;
+
+  background:rgba(15,23,42,.45) !important;
+}
+
+.af-nexus-composer-card-v2,
+.af-nexus-comments-card-v2,
+.af-nexus-reply-card-v2,
+.af-nexus-menu-card-v2{
+  position:relative !important;
+
+  margin:0 !important;
+  top:auto !important;
+  bottom:auto !important;
+  left:auto !important;
+  right:auto !important;
+
+  transform:none !important;
+
+  max-height:85vh !important;
+}
+
+/* kill any accidental spacing */
+#afNexusComposerOverlayV2 *,
+#afNexusCommentsOverlayV2 *,
+#afNexusReplyOverlayV2 *{
+  scroll-margin-top:0 !important;
+}
   </style>
 </head>
 
