@@ -3731,8 +3731,8 @@
 }
 
 .af-nexus-comment-card-v2.reply {
-  margin-left: 18px !important;
-  border-left: 3px solid rgba(37,99,235,0.35) !important;
+  margin-left: 0 !important;
+  border-left: none !important;
 }
 
 .af-nexus-comment-top-v2 {
@@ -3895,7 +3895,31 @@
   margin-top: 0 !important;
   padding-top: 0 !important;
 }
+.af-nexus-view-replies-v2{
+  margin-top:8px !important;
+  margin-left:8px !important;
+  background:none !important;
+  border:none !important;
+  color:#94a3b8 !important;
+  font-size:13px !important;
+  font-weight:700 !important;
+  cursor:pointer !important;
+  padding:0 !important;
+}
 
+.af-nexus-replies-wrap-v2{
+  margin-top:10px !important;
+  margin-left:28px !important;
+}
+
+.af-nexus-reply-row-v2{
+  padding:10px 0 !important;
+  border-bottom:1px solid rgba(148,163,184,.15) !important;
+}
+
+.af-nexus-reply-row-v2:last-child{
+  border-bottom:none !important;
+}
 /* =========================================================
    DARK MODE — [data-theme="dark"] (matches student module)
 ========================================================= */
@@ -8264,63 +8288,217 @@ function renderAfNexusCommentsV2(comments) {
   if (!box) return;
 
   if (!comments || !comments.length) {
-    box.innerHTML = `<div class="af-nexus-empty-v2">No comments yet.</div>`;
+    box.innerHTML = `
+      <div class="af-nexus-empty-v2">
+        No comments yet.
+      </div>
+    `;
     return;
   }
 
   const byParent = {};
+
   comments.forEach(function(c) {
-    const key = c.parent_comment_id ? String(c.parent_comment_id) : "root";
-    if (!byParent[key]) byParent[key] = [];
+    const key = c.parent_comment_id
+      ? String(c.parent_comment_id)
+      : "root";
+
+    if (!byParent[key]) {
+      byParent[key] = [];
+    }
+
     byParent[key].push(c);
   });
 
-  function renderList(parentKey, depth) {
-    const arr = byParent[parentKey] || [];
+  const rootComments = byParent.root || [];
 
-    return arr.map(function(c) {
-      const isMine = String(c.student_key || "") === String(afNexusStudentKeyV2() || "");
-      const childHtml = renderList(String(c.id), depth + 1);
-      const preview = afNexusEscapeV2((c.content || "").slice(0, 50)).replace(/'/g, "&#39;");
+  box.innerHTML = rootComments.map(function(c) {
 
-      return `
-        <div class="af-nexus-comment-card-v2 ${depth > 0 ? "reply" : ""}">
-          <div class="af-nexus-comment-top-v2">
-            <div>
-              <strong>${afNexusEscapeV2(c.student_name || "Student")}</strong>
-              <small>${afNexusEscapeV2(afNexusTimeV2(c.created_at))}</small>
-            </div>
+    const isMine =
+      String(c.student_key || "") ===
+      String(afNexusStudentKeyV2() || "");
 
-            <button
-              class="af-nexus-menu-btn-v2"
-              type="button"
-              onclick="openAfNexusMenuV2('comment', ${c.id}, ${isMine ? "true" : "false"})"
-            >
-              ⋮
-            </button>
+    const replies =
+      byParent[String(c.id)] || [];
+
+    const preview =
+      afNexusEscapeV2(
+        (c.content || "").slice(0, 50)
+      ).replace(/'/g, "&#39;");
+
+    return `
+      <div class="af-nexus-comment-card-v2">
+
+        <div class="af-nexus-comment-top-v2">
+
+          <div>
+            <strong>
+              ${afNexusEscapeV2(c.student_name || "Student")}
+            </strong>
+
+            <small>
+              ${afNexusEscapeV2(
+                afNexusTimeV2(c.created_at)
+              )}
+            </small>
           </div>
 
-          <p class="af-nexus-comment-text-v2">${afNexusEscapeV2(c.content || "")}</p>
+          <button
+            class="af-nexus-menu-btn-v2"
+            type="button"
+            onclick="openAfNexusMenuV2(
+              'comment',
+              ${c.id},
+              ${isMine ? "true" : "false"}
+            )"
+          >
+            ⋮
+          </button>
 
-          <div class="af-nexus-comment-actions-v2">
-            <button class="af-nexus-action-btn-v2" type="button" onclick="toggleAfNexusCommentLikeV2(${c.id})">
-              ❤️ ${c.likes_count || 0}
-            </button>
-
-            <button class="af-nexus-action-btn-v2" type="button" onclick="openAfNexusReplyV2(${c.id}, '${preview}')">
-              Reply
-            </button>
-          </div>
-
-          ${childHtml}
         </div>
-      `;
-    }).join("");
-  }
 
-  box.innerHTML = renderList("root", 0);
+        <p class="af-nexus-comment-text-v2">
+          ${afNexusEscapeV2(c.content || "")}
+        </p>
+
+        <div class="af-nexus-comment-actions-v2">
+
+          <button
+            class="af-nexus-action-btn-v2"
+            type="button"
+            onclick="toggleAfNexusCommentLikeV2(${c.id})"
+          >
+            ❤️ ${c.likes_count || 0}
+          </button>
+
+          <button
+            class="af-nexus-action-btn-v2"
+            type="button"
+            onclick="openAfNexusReplyV2(
+              ${c.id},
+              '${preview}'
+            )"
+          >
+            Reply
+          </button>
+
+        </div>
+
+        ${
+          replies.length
+            ? `
+            <button
+              class="af-nexus-view-replies-v2"
+              type="button"
+              onclick="toggleRepliesV2(${c.id})"
+            >
+              ─ View ${replies.length}
+              repl${replies.length === 1 ? "y" : "ies"}
+            </button>
+
+            <div
+              id="afReplies-${c.id}"
+              class="af-nexus-replies-wrap-v2 af-hidden"
+            >
+
+              ${replies.map(function(r) {
+
+                const rMine =
+                  String(r.student_key || "") ===
+                  String(afNexusStudentKeyV2() || "");
+
+                const rPreview =
+                  afNexusEscapeV2(
+                    (r.content || "").slice(0, 50)
+                  ).replace(/'/g, "&#39;");
+
+                return `
+                  <div class="af-nexus-reply-row-v2">
+
+                    <div class="af-nexus-comment-top-v2">
+
+                      <div>
+                        <strong>
+                          ${afNexusEscapeV2(
+                            r.student_name || "Student"
+                          )}
+                        </strong>
+
+                        <small>
+                          ${afNexusEscapeV2(
+                            afNexusTimeV2(
+                              r.created_at
+                            )
+                          )}
+                        </small>
+                      </div>
+
+                      <button
+                        class="af-nexus-menu-btn-v2"
+                        type="button"
+                        onclick="openAfNexusMenuV2(
+                          'comment',
+                          ${r.id},
+                          ${rMine ? "true" : "false"}
+                        )"
+                      >
+                        ⋮
+                      </button>
+
+                    </div>
+
+                    <p class="af-nexus-comment-text-v2">
+                      ${afNexusEscapeV2(
+                        r.content || ""
+                      )}
+                    </p>
+
+                    <div class="af-nexus-comment-actions-v2">
+
+                      <button
+                        class="af-nexus-action-btn-v2"
+                        type="button"
+                        onclick="toggleAfNexusCommentLikeV2(${r.id})"
+                      >
+                        ❤️ ${r.likes_count || 0}
+                      </button>
+
+                      <button
+                        class="af-nexus-action-btn-v2"
+                        type="button"
+                        onclick="openAfNexusReplyV2(
+                          ${r.id},
+                          '${rPreview}'
+                        )"
+                      >
+                        Reply
+                      </button>
+
+                    </div>
+
+                  </div>
+                `;
+              }).join("")}
+
+            </div>
+          `
+            : ""
+        }
+
+      </div>
+    `;
+  }).join("");
 }
+  
+function toggleRepliesV2(commentId) {
+  const box = document.getElementById(
+    `afReplies-${commentId}`
+  );
 
+  if (!box) return;
+
+  box.classList.toggle("af-hidden");
+}
 function handleAfNexusCommentTypingV2() {
   const input = document.getElementById("afNexusCommentInputV2");
   const countEl = document.getElementById("afNexusCommentWordCountV2");
