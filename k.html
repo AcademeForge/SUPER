@@ -8275,7 +8275,13 @@ function openAfNexusComposerV2() {
   if (input) {
     input.value = "";
     input.classList.remove("af-limit-exceeded-v2");
-    setTimeout(function() { input.focus(); }, 100);
+   setTimeout(function() {
+  try {
+    input.focus({ preventScroll: true });
+  } catch (e) {
+    input.focus();
+  }
+}, 100);
   }
 
   handleAfNexusPostTypingV2();
