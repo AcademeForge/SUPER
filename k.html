@@ -4021,6 +4021,53 @@
 [data-theme="dark"] .af-nexus-view-replies-v2{
   color:#94a3b8;
 }
+    .af-nexus-write-post-btn-v2{
+  border:none;
+  cursor:pointer;
+
+  display:flex;
+  align-items:center;
+  gap:8px;
+
+  height:38px;
+  padding:0 16px;
+
+  border-radius:12px;
+
+  font-size:13px;
+  font-weight:700;
+
+  color:#fff;
+
+  background:linear-gradient(
+    135deg,
+    #2563eb,
+    #4f46e5
+  );
+
+  box-shadow:
+    0 8px 20px rgba(
+      37,
+      99,
+      235,
+      .22
+    );
+
+  transition:.2s ease;
+}
+
+.af-nexus-write-post-btn-v2:hover{
+  transform:translateY(-1px);
+}
+
+.af-nexus-write-post-btn-v2:active{
+  transform:scale(.98);
+}
+
+[data-theme="light"]
+.af-nexus-write-post-btn-v2{
+  color:#fff;
+}
 /* =========================================================
    DARK MODE — [data-theme="dark"] (matches student module)
 ========================================================= */
@@ -4857,14 +4904,22 @@
       </div>
 
       <!-- USER MINI BAR -->
-      <div class="af-nexus-userbar-v2">
-        <div>
-          <span>Posting as</span>
-          <strong id="afNexusStudentNameV2">Student</strong>
-        </div>
+    <div class="af-nexus-userbar-v2">
 
-        <small id="afNexusStudentMetaV2">Community member</small>
-      </div>
+  <div>
+    <span>Posting as</span>
+    <strong id="afNexusStudentNameV2">Student</strong>
+  </div>
+
+  <button
+    type="button"
+    class="af-nexus-write-post-btn-v2"
+    onclick="openAfNexusComposerV2()"
+  >
+    ✍️ Write Post
+  </button>
+
+</div>
 
       <!-- FEED CONTROLS -->
       <div class="af-nexus-controls-v2">
@@ -8057,10 +8112,10 @@ async function initAfNexusV2() {
   if (writeBtn) writeBtn.classList.remove("af-hidden");
 
   const nameEl = document.getElementById("afNexusStudentNameV2");
-  const metaEl = document.getElementById("afNexusStudentMetaV2");
+ 
 
   if (nameEl) nameEl.textContent = afNexusStudentNameV2();
-  if (metaEl) metaEl.textContent = "AcademeForge learner";
+ 
 
   const cached = afNexusLoadCacheV2();
   if (cached.length) {
