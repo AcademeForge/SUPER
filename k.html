@@ -3585,25 +3585,28 @@
 .af-nexus-menu-overlay-v2 {
   position: fixed !important;
   inset: 0 !important;
-  z-index: 10000 !important;
-  display: grid !important;
-  place-items: end center !important;
-  padding: 14px !important;
-  background: rgba(15,23,42,0.44) !important;
+
+  z-index: 999999 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  padding: 16px !important;
+
+  background: rgba(15,23,42,.45) !important;
   backdrop-filter: blur(10px) !important;
 }
 
 .af-nexus-composer-card-v2,
 .af-nexus-comments-card-v2,
 .af-nexus-reply-card-v2 {
-  width: min(100%, 720px) !important;
-  max-height: min(88dvh, 760px) !important;
-  overflow: auto !important;
-  border-radius: 28px !important;
-  padding: 16px !important;
-  background: linear-gradient(145deg, #ffffff, #f8fafc) !important;
-  border: 1px solid rgba(226,232,240,0.95) !important;
-  box-shadow: 0 24px 70px rgba(15,23,42,0.26) !important;
+  width:min(100%,430px) !important;
+
+  max-height:85vh !important;
+  overflow:auto !important;
+
+  margin:0 !important;
 }
 
 .af-nexus-modal-head-v2 {
