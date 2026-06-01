@@ -3840,21 +3840,6 @@
 
   .af-nexus-author-v2 strong { max-width: 185px !important; }
 
-  .af-nexus-write-btn-v2 {
-    width: 56px !important;
-    height: 56px !important;
-    border-radius: 21px !important;
-    bottom: calc(82px + env(safe-area-inset-bottom)) !important;
-  }
-}
-
-/* Write button desktop position */
-@media (min-width: 768px) {
-  .af-nexus-write-btn-v2 {
-    right: max(18px, calc((100vw - 430px) / 2 + 18px)) !important;
-    bottom: 86px !important;
-  }
-}
 
 /* Overlay visibility forcing */
 #afNexusComposerOverlayV2.af-hidden,
@@ -4020,6 +4005,94 @@
 [data-theme="dark"] .af-nexus-comment-actions-v2 .af-nexus-action-btn-v2,
 [data-theme="dark"] .af-nexus-view-replies-v2{
   color:#94a3b8;
+}
+    /* =========================================================
+   AF NEXUS WRITE BUTTON
+   FLOATING ABOVE BOTTOM NAV
+========================================================= */
+
+:root{
+  --af-app-max-width: 430px;
+  --af-write-gap: 18px;
+  --af-bottom-nav-height: 72px;
+}
+
+.af-nexus-write-btn-v2{
+  position:fixed;
+  z-index:9999;
+
+  width:58px;
+  height:58px;
+
+  display:grid;
+  place-items:center;
+
+  border:none;
+  border-radius:20px;
+
+  color:#fff;
+  font-size:24px;
+
+  background:linear-gradient(
+    135deg,
+    #2563eb,
+    #4f46e5
+  );
+
+  box-shadow:
+    0 14px 32px rgba(37,99,235,.28);
+
+  right:max(
+    var(--af-write-gap),
+    calc(
+      (100vw - var(--af-app-max-width)) / 2
+      + var(--af-write-gap)
+    )
+  );
+
+  bottom:calc(
+    var(--af-bottom-nav-height)
+    + 14px
+    + env(safe-area-inset-bottom)
+  );
+}
+
+/* Mobile */
+
+@media (max-width:767px){
+
+  .af-nexus-write-btn-v2{
+    right:max(
+      16px,
+      env(safe-area-inset-right)
+    );
+
+    bottom:calc(
+      var(--af-bottom-nav-height)
+      + 12px
+      + env(safe-area-inset-bottom)
+    );
+  }
+
+}
+
+/* Desktop */
+
+@media (min-width:768px){
+
+  .af-nexus-write-btn-v2{
+
+    right:max(
+      18px,
+      calc(
+        (100vw - 430px) / 2
+        + 18px
+      )
+    );
+
+    bottom:86px;
+  }
+
 }
 /* =========================================================
    DARK MODE — [data-theme="dark"] (matches student module)
