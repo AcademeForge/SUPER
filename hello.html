@@ -2193,10 +2193,13 @@
   letter-spacing:-0.02em;
 }
 
-/* ==============================
-   NEW STUDENT ID PAGE - AF
-   Safe classes: all end with af
-================================ */
+/* =========================================================
+   STUDENT MODULE - CLEAN ARCHITECTURE
+   Uses app theme variables. No !important. No hardcoded overrides.
+   Dark mode via [data-theme="dark"] only.
+========================================================= */
+
+/* ── Section Shell ───────────────────────────────────────── */
 
 #studentaf {
   min-height: 100vh;
@@ -2204,8 +2207,19 @@
   background:
     radial-gradient(circle at top left, rgba(22, 163, 74, 0.16), transparent 34%),
     radial-gradient(circle at top right, rgba(37, 99, 235, 0.12), transparent 32%),
-    linear-gradient(135deg, #f8fafc 0%, #eef6ff 45%, #f0fdf4 100%);
+    linear-gradient(135deg, var(--bg-primary, #f8fafc) 0%, var(--bg-secondary, #eef6ff) 45%, var(--bg-tertiary, #f0fdf4) 100%);
+  box-sizing: border-box;
 }
+
+#studentaf *,
+#studentaf *::before,
+#studentaf *::after {
+  box-sizing: border-box;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Layout Wrapper ──────────────────────────────────────── */
 
 .student-wrapaf {
   width: 100%;
@@ -2213,14 +2227,22 @@
   margin: 0 auto;
 }
 
+/* ── Visibility System ───────────────────────────────────── */
+
+.hidden-box {
+  display: none;
+}
+
+/* ── Auth Card ───────────────────────────────────────────── */
+
 .student-cardaf {
   position: relative;
   overflow: hidden;
   width: 100%;
   padding: 26px;
   border-radius: 30px;
-  background: rgba(255, 255, 255, 0.94);
-  border: 1px solid rgba(148, 163, 184, 0.32);
+  background: var(--card-bg, rgba(255, 255, 255, 0.94));
+  border: 1px solid var(--border-color, rgba(148, 163, 184, 0.32));
   box-shadow:
     0 24px 70px rgba(15, 23, 42, 0.13),
     inset 0 1px 0 rgba(255, 255, 255, 0.72);
@@ -2249,6 +2271,8 @@
   pointer-events: none;
 }
 
+/* ── Icon ────────────────────────────────────────────────── */
+
 .student-iconaf {
   position: relative;
   z-index: 1;
@@ -2259,13 +2283,14 @@
   display: grid;
   place-items: center;
   font-size: 34px;
-  background:
-    linear-gradient(135deg, #dcfce7, #eff6ff);
+  background: linear-gradient(135deg, #dcfce7, #eff6ff);
   border: 1px solid rgba(22, 163, 74, 0.16);
   box-shadow:
     0 14px 28px rgba(22, 163, 74, 0.16),
     inset 0 0 0 1px rgba(255, 255, 255, 0.72);
 }
+
+/* ── Typography ──────────────────────────────────────────── */
 
 .student-titleaf {
   position: relative;
@@ -2276,7 +2301,7 @@
   line-height: 1.15;
   font-weight: 950;
   letter-spacing: -0.04em;
-  color: #0f172a;
+  color: var(--text-primary, #0f172a);
 }
 
 .student-subtitleaf {
@@ -2285,11 +2310,31 @@
   max-width: 500px;
   margin: 10px auto 20px;
   text-align: center;
-  color: #64748b;
+  color: var(--text-secondary, #64748b);
   line-height: 1.6;
   font-size: 14.5px;
   font-weight: 650;
 }
+
+.student-helpaf {
+  margin: 13px 0 0;
+  text-align: center;
+  color: var(--text-secondary, #64748b);
+  font-size: 13px;
+  line-height: 1.55;
+  font-weight: 700;
+}
+
+.student-labelaf {
+  display: block;
+  margin: 14px 0 8px;
+  color: var(--text-primary, #334155);
+  font-size: 13.5px;
+  font-weight: 950;
+  letter-spacing: -0.01em;
+}
+
+/* ── Tabs ────────────────────────────────────────────────── */
 
 .student-tabsaf {
   position: relative;
@@ -2300,8 +2345,8 @@
   padding: 6px;
   margin: 0 0 18px;
   border-radius: 20px;
-  background: #e2e8f0;
-  border: 1px solid rgba(148, 163, 184, 0.30);
+  background: var(--tab-track, #e2e8f0);
+  border: 1px solid var(--border-color, rgba(148, 163, 184, 0.30));
 }
 
 .student-tabaf {
@@ -2310,7 +2355,7 @@
   padding: 12px 10px;
   border-radius: 15px;
   background: transparent;
-  color: #475569;
+  color: var(--text-secondary, #475569);
   font-weight: 950;
   font-size: 14px;
   cursor: pointer;
@@ -2329,30 +2374,24 @@
   box-shadow: 0 12px 26px rgba(22, 163, 74, 0.26);
 }
 
+/* ── Form Box ────────────────────────────────────────────── */
+
 .student-boxaf {
   position: relative;
   z-index: 1;
   text-align: left;
 }
 
-.student-labelaf {
-  display: block;
-  margin: 14px 0 8px;
-  color: #334155;
-  font-size: 13.5px;
-  font-weight: 950;
-  letter-spacing: -0.01em;
-}
+/* ── Inputs ──────────────────────────────────────────────── */
 
 .student-inputaf {
   width: 100%;
   min-height: 50px;
-  box-sizing: border-box;
   padding: 14px 15px;
   border-radius: 17px;
-  border: 1px solid #cbd5e1;
-  background: rgba(255, 255, 255, 0.96);
-  color: #0f172a;
+  border: 1px solid var(--input-border, #cbd5e1);
+  background: var(--input-bg, rgba(255, 255, 255, 0.96));
+  color: var(--text-primary, #0f172a);
   outline: none;
   font-size: 15px;
   font-weight: 700;
@@ -2360,15 +2399,17 @@
 }
 
 .student-inputaf::placeholder {
-  color: #94a3b8;
+  color: var(--text-muted, #94a3b8);
   font-weight: 650;
 }
 
 .student-inputaf:focus {
   border-color: #16a34a;
   box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.12);
-  background: #ffffff;
+  background: var(--input-bg-focus, #ffffff);
 }
+
+/* ── Buttons ─────────────────────────────────────────────── */
 
 .student-main-btnaf {
   width: 100%;
@@ -2378,7 +2419,7 @@
   padding: 15px 18px;
   border-radius: 18px;
   background: linear-gradient(135deg, #16a34a, #22c55e);
-  color: white;
+  color: #ffffff;
   font-size: 15px;
   font-weight: 950;
   cursor: pointer;
@@ -2389,7 +2430,7 @@
 }
 
 .student-main-btnaf:hover {
-  filter: brightness(1.02);
+  filter: brightness(1.04);
   box-shadow: 0 18px 40px rgba(22, 163, 74, 0.30);
 }
 
@@ -2403,30 +2444,27 @@
   margin-top: 13px;
   padding: 12px 10px;
   border-radius: 16px;
-  background: rgba(37, 99, 235, 0.08);
-  color: #2563eb;
+  background: linear-gradient(135deg, #7f1d1d, #b91c1c);
+  color: #ffffff;
   font-size: 14px;
   font-weight: 950;
   cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 12px 28px rgba(127, 29, 29, 0.35);
   transition: background 0.18s ease, transform 0.18s ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .student-link-btnaf:hover {
-  background: rgba(37, 99, 235, 0.12);
+  background: linear-gradient(135deg, #991b1b, #dc2626);
 }
 
 .student-link-btnaf:active {
   transform: scale(0.985);
 }
 
-.student-helpaf {
-  margin: 13px 0 0;
-  text-align: center;
-  color: #64748b;
-  font-size: 13px;
-  line-height: 1.55;
-  font-weight: 700;
-}
+/* ── Messages ────────────────────────────────────────────── */
 
 .student-messageaf {
   position: relative;
@@ -2455,16 +2493,24 @@
   border: 1px solid rgba(153, 27, 27, 0.12);
 }
 
+.student-messageaf.info {
+  display: block;
+  background: rgba(37, 99, 235, 0.08);
+  color: #1d4ed8;
+  border: 1px solid rgba(37, 99, 235, 0.14);
+}
+
+/* ── Note Box ────────────────────────────────────────────── */
+
 .student-noteaf {
   position: relative;
   z-index: 1;
   margin-top: 18px;
   padding: 15px 16px;
   border-radius: 19px;
-  background:
-    linear-gradient(135deg, rgba(219, 234, 254, 0.96), rgba(220, 252, 231, 0.84));
+  background: linear-gradient(135deg, rgba(219, 234, 254, 0.96), rgba(220, 252, 231, 0.84));
   border: 1px solid rgba(37, 99, 235, 0.12);
-  color: #1e3a8a;
+  color: var(--text-primary, #1e3a8a);
   font-size: 13.5px;
   font-weight: 800;
   line-height: 1.65;
@@ -2474,146 +2520,19 @@
   color: #166534;
 }
 
-/* Mobile polish */
-@media (max-width: 480px) {
-  #studentaf {
-    padding: 16px 12px 88px;
-  }
-
-  .student-cardaf {
-    padding: 22px 18px;
-    border-radius: 26px;
-  }
-
-  .student-titleaf {
-    font-size: 26px;
-  }
-
-  .student-subtitleaf {
-    font-size: 13.5px;
-  }
-
-  .student-iconaf {
-    width: 66px;
-    height: 66px;
-    border-radius: 22px;
-    font-size: 31px;
-  }
-}
-
-/* Dark Mode */
-@media (prefers-color-scheme: dark) {
-  #studentaf {
-    background:
-      radial-gradient(circle at top left, rgba(34, 197, 94, 0.16), transparent 34%),
-      radial-gradient(circle at top right, rgba(59, 130, 246, 0.14), transparent 32%),
-      linear-gradient(135deg, #020617 0%, #0f172a 48%, #052e16 100%);
-  }
-
-  .student-cardaf {
-    background: rgba(15, 23, 42, 0.94);
-    border-color: rgba(148, 163, 184, 0.20);
-    box-shadow:
-      0 24px 70px rgba(0, 0, 0, 0.34),
-      inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  }
-
-  .student-cardaf::before {
-    background: rgba(34, 197, 94, 0.10);
-  }
-
-  .student-cardaf::after {
-    background: rgba(59, 130, 246, 0.10);
-  }
-
-  .student-iconaf {
-    background: linear-gradient(135deg, rgba(22, 163, 74, 0.20), rgba(37, 99, 235, 0.18));
-    border-color: rgba(148, 163, 184, 0.18);
-    box-shadow:
-      0 14px 28px rgba(0, 0, 0, 0.25),
-      inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-  }
-
-  .student-titleaf {
-    color: #f8fafc;
-  }
-
-  .student-subtitleaf,
-  .student-helpaf {
-    color: #94a3b8;
-  }
-
-  .student-tabsaf {
-    background: #1e293b;
-    border-color: rgba(148, 163, 184, 0.18);
-  }
-
-  .student-tabaf {
-    color: #cbd5e1;
-  }
-
-  .student-tabaf.active {
-    color: #ffffff;
-  }
-
-  .student-labelaf {
-    color: #e2e8f0;
-  }
-
-  .student-inputaf {
-    background: rgba(2, 6, 23, 0.72);
-    border-color: #334155;
-    color: #f8fafc;
-  }
-
-  .student-inputaf::placeholder {
-    color: #64748b;
-  }
-
-  .student-inputaf:focus {
-    background: rgba(2, 6, 23, 0.92);
-    border-color: #22c55e;
-    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.13);
-  }
-
-  .student-link-btnaf {
-    background: rgba(59, 130, 246, 0.13);
-    color: #93c5fd;
-  }
-
-  .student-link-btnaf:hover {
-    background: rgba(59, 130, 246, 0.18);
-  }
-
-  .student-noteaf {
-    background: linear-gradient(135deg, rgba(30, 64, 175, 0.20), rgba(22, 101, 52, 0.18));
-    border-color: rgba(148, 163, 184, 0.14);
-    color: #bfdbfe;
-  }
-
-  .student-noteaf b {
-    color: #86efac;
-  }
-}
-/* ==============================
-   STUDENT DASHBOARD / COURSES - AF
-================================ */
+/* ── Dashboard Cards ─────────────────────────────────────── */
 
 .student-dashboardaf {
   position: relative;
   width: 100%;
   padding: 24px;
   border-radius: 30px;
-  background: rgba(255, 255, 255, 0.94);
-  border: 1px solid rgba(148, 163, 184, 0.32);
+  background: var(--card-bg, rgba(255, 255, 255, 0.94));
+  border: 1px solid var(--border-color, rgba(148, 163, 184, 0.32));
   box-shadow:
     0 24px 70px rgba(15, 23, 42, 0.13),
     inset 0 1px 0 rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(16px);
-}
-
-.hidden-box {
-  display: none !important;
 }
 
 .student-dash-headaf {
@@ -2627,7 +2546,7 @@
 .student-dash-headaf h2,
 .student-dashboardaf h2 {
   margin: 0;
-  color: #0f172a;
+  color: var(--text-primary, #0f172a);
   font-size: 26px;
   line-height: 1.2;
   font-weight: 950;
@@ -2643,11 +2562,13 @@
 
 .student-dash-subaf {
   margin: 8px 0 18px;
-  color: #475569;
+  color: var(--text-secondary, #475569);
   font-size: 14px;
   line-height: 1.6;
   font-weight: 700;
 }
+
+/* ── Utility Buttons ─────────────────────────────────────── */
 
 .student-logoutaf,
 .back-miniaf {
@@ -2660,6 +2581,7 @@
   font-weight: 950;
   cursor: pointer;
   transition: transform 0.18s ease, background 0.18s ease;
+  touch-action: manipulation;
 }
 
 .back-miniaf {
@@ -2673,7 +2595,7 @@
   transform: scale(0.98);
 }
 
-/* Course cards */
+/* ── Course Cards ────────────────────────────────────────── */
 
 .course-select-gridaf {
   display: grid;
@@ -2683,11 +2605,10 @@
 
 .course-cardaf {
   width: 100%;
-  border: 1px solid rgba(148, 163, 184, 0.28);
+  border: 1px solid var(--border-color, rgba(148, 163, 184, 0.28));
   border-radius: 22px;
   padding: 16px;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(240, 253, 244, 0.88));
+  background: var(--card-inner-bg, linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(240, 253, 244, 0.88)));
   display: flex;
   align-items: flex-start;
   gap: 14px;
@@ -2721,7 +2642,7 @@
 
 .course-card-bodyaf h3 {
   margin: 0;
-  color: #0f172a;
+  color: var(--text-primary, #0f172a);
   font-size: 17px;
   line-height: 1.25;
   font-weight: 950;
@@ -2729,13 +2650,36 @@
 
 .course-card-bodyaf p {
   margin: 7px 0 0;
-  color: #475569;
+  color: var(--text-secondary, #475569);
   font-size: 13.5px;
   line-height: 1.55;
   font-weight: 700;
 }
 
-/* Course details */
+/* ── No-Course / Empty State ─────────────────────────────── */
+
+.no-course-cardaf {
+  text-align: center;
+  padding: 18px;
+}
+
+.no-course-iconaf {
+  font-size: 44px;
+  margin-bottom: 10px;
+}
+
+.no-course-cardaf h2 {
+  margin: 0 0 8px;
+  color: #991b1b;
+}
+
+.no-course-cardaf p {
+  margin: 6px 0;
+  color: var(--text-secondary, #475569);
+  font-weight: 750;
+}
+
+/* ── Course Detail Head ──────────────────────────────────── */
 
 .course-detail-headaf {
   display: flex;
@@ -2758,7 +2702,7 @@
 
 #courseTitleaf {
   margin: 0;
-  color: #0f172a;
+  color: var(--text-primary, #0f172a);
   font-size: 24px;
   line-height: 1.2;
   font-weight: 950;
@@ -2766,18 +2710,20 @@
 
 #courseIntroaf {
   margin: 7px 0 0;
-  color: #475569;
+  color: var(--text-secondary, #475569);
   font-size: 14px;
   line-height: 1.6;
   font-weight: 700;
 }
 
+/* ── Info Boxes ──────────────────────────────────────────── */
+
 .course-info-boxaf {
   margin-top: 14px;
   padding: 15px;
   border-radius: 20px;
-  background: rgba(248, 250, 252, 0.94);
-  border: 1px solid rgba(148, 163, 184, 0.24);
+  background: var(--info-box-bg, rgba(248, 250, 252, 0.94));
+  border: 1px solid var(--border-color, rgba(148, 163, 184, 0.24));
 }
 
 .course-info-boxaf h3 {
@@ -2789,7 +2735,7 @@
 
 .course-info-boxaf p,
 .course-info-boxaf li {
-  color: #334155;
+  color: var(--text-primary, #334155);
   font-size: 13.8px;
   line-height: 1.65;
   font-weight: 700;
@@ -2800,7 +2746,7 @@
   padding-left: 18px;
 }
 
-/* Learning choice */
+/* ── Learning Choice ─────────────────────────────────────── */
 
 .learning-choiceaf {
   display: grid;
@@ -2809,14 +2755,15 @@
 }
 
 .learning-btnaf {
-  border: 1px solid rgba(148, 163, 184, 0.28);
+  border: 1px solid var(--border-color, rgba(148, 163, 184, 0.28));
   border-radius: 22px;
   padding: 18px 14px;
-  background: rgba(255, 255, 255, 0.96);
+  background: var(--card-bg, rgba(255, 255, 255, 0.96));
   cursor: pointer;
   text-align: center;
   box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
   transition: transform 0.18s ease, box-shadow 0.18s ease;
+  touch-action: manipulation;
 }
 
 .learning-btnaf span {
@@ -2827,7 +2774,7 @@
 
 .learning-btnaf strong {
   display: block;
-  color: #0f172a;
+  color: var(--text-primary, #0f172a);
   font-size: 16px;
   font-weight: 950;
 }
@@ -2835,7 +2782,7 @@
 .learning-btnaf small {
   display: block;
   margin-top: 6px;
-  color: #64748b;
+  color: var(--text-secondary, #64748b);
   font-size: 12.5px;
   line-height: 1.45;
   font-weight: 700;
@@ -2845,7 +2792,7 @@
   transform: scale(0.985);
 }
 
-/* Chapters and content */
+/* ── Chapter & Content Lists ─────────────────────────────── */
 
 .chapter-listaf,
 .content-listaf {
@@ -2856,10 +2803,10 @@
 .chapter-itemaf,
 .content-itemaf {
   width: 100%;
-  border: 1px solid rgba(148, 163, 184, 0.28);
+  border: 1px solid var(--border-color, rgba(148, 163, 184, 0.28));
   border-radius: 20px;
   padding: 14px;
-  background: rgba(255, 255, 255, 0.96);
+  background: var(--card-bg, rgba(255, 255, 255, 0.96));
   text-align: left;
   display: flex;
   justify-content: space-between;
@@ -2874,7 +2821,7 @@
 .chapter-mainaf strong,
 .content-mainaf strong {
   display: block;
-  color: #0f172a;
+  color: var(--text-primary, #0f172a);
   font-size: 14.5px;
   line-height: 1.35;
   font-weight: 950;
@@ -2884,7 +2831,7 @@
 .content-mainaf small {
   display: block;
   margin-top: 5px;
-  color: #64748b;
+  color: var(--text-secondary, #64748b);
   font-size: 12.8px;
   line-height: 1.5;
   font-weight: 700;
@@ -2898,8 +2845,7 @@
   font-weight: 950;
 }
 
-.lockedaf .chapter-statusaf,
-.locked-btnaf {
+.lockedaf .chapter-statusaf {
   background: rgba(153, 27, 27, 0.10);
   color: #991b1b;
 }
@@ -2914,13 +2860,17 @@
   border-radius: 13px;
   padding: 10px 13px;
   background: linear-gradient(135deg, #16a34a, #22c55e);
-  color: white;
+  color: #ffffff;
   font-size: 12.5px;
   font-weight: 950;
   cursor: pointer;
+  touch-action: manipulation;
 }
 
-.content-actionaf:disabled {
+.content-actionaf:disabled,
+.locked-btnaf {
+  background: rgba(153, 27, 27, 0.10);
+  color: #991b1b;
   cursor: not-allowed;
 }
 
@@ -2931,6 +2881,8 @@
   font-size: 12px;
   font-weight: 950;
 }
+
+/* ── Status Text ─────────────────────────────────────────── */
 
 .loading-textaf,
 .empty-textaf,
@@ -2949,7 +2901,7 @@
 
 .empty-textaf {
   background: rgba(148, 163, 184, 0.12);
-  color: #475569;
+  color: var(--text-secondary, #475569);
 }
 
 .error-textaf {
@@ -2957,30 +2909,33 @@
   color: #991b1b;
 }
 
-.no-course-cardaf {
-  text-align: center;
-  padding: 18px;
-}
-
-.no-course-iconaf {
-  font-size: 44px;
-  margin-bottom: 10px;
-}
-
-.no-course-cardaf h2 {
-  margin: 0 0 8px;
-  color: #991b1b;
-}
-
-.no-course-cardaf p {
-  margin: 6px 0;
-  color: #475569;
-  font-weight: 750;
-}
-
-/* Mobile */
+/* ── Mobile ──────────────────────────────────────────────── */
 
 @media (max-width: 520px) {
+  #studentaf {
+    padding: 16px 12px 88px;
+  }
+
+  .student-cardaf {
+    padding: 22px 18px;
+    border-radius: 26px;
+  }
+
+  .student-titleaf {
+    font-size: 26px;
+  }
+
+  .student-subtitleaf {
+    font-size: 13.5px;
+  }
+
+  .student-iconaf {
+    width: 66px;
+    height: 66px;
+    border-radius: 22px;
+    font-size: 31px;
+  }
+
   .student-dashboardaf {
     padding: 20px 16px;
     border-radius: 26px;
@@ -3015,111 +2970,193 @@
   }
 }
 
-/* Dark Mode */
+/* ── Dark Mode — data-theme="dark" only ──────────────────── */
 
-@media (prefers-color-scheme: dark) {
-  .student-dashboardaf {
-    background: rgba(15, 23, 42, 0.94);
-    border-color: rgba(148, 163, 184, 0.20);
-    box-shadow:
-      0 24px 70px rgba(0, 0, 0, 0.34),
-      inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  }
-
-  .student-dash-headaf h2,
-  .student-dashboardaf h2,
-  #courseTitleaf,
-  .course-card-bodyaf h3,
-  .learning-btnaf strong,
-  .chapter-mainaf strong,
-  .content-mainaf strong {
-    color: #ffffff;
-  }
-
-  #studentWelcomeTextaf,
-  .durationaf {
-    color: #86efac;
-  }
-
-  .student-dash-subaf,
-  #courseIntroaf,
-  .course-card-bodyaf p,
-  .learning-btnaf small,
-  .chapter-mainaf small,
-  .content-mainaf small,
-  .no-course-cardaf p {
-    color: #cbd5e1;
-  }
-
-  .course-cardaf,
-  .learning-btnaf,
-  .chapter-itemaf,
-  .content-itemaf {
-    background: rgba(2, 6, 23, 0.72);
-    border-color: rgba(148, 163, 184, 0.18);
-  }
-
-  .course-info-boxaf {
-    background: rgba(2, 6, 23, 0.62);
-    border-color: rgba(148, 163, 184, 0.16);
-  }
-
-  .course-info-boxaf h3 {
-    color: #86efac;
-  }
-
-  .course-info-boxaf p,
-  .course-info-boxaf li {
-    color: #e2e8f0;
-  }
-
-  .course-card-iconaf,
-  .course-detail-iconaf {
-    background: linear-gradient(135deg, rgba(22, 163, 74, 0.22), rgba(37, 99, 235, 0.18));
-    border-color: rgba(148, 163, 184, 0.18);
-  }
-
-  .back-miniaf {
-    background: rgba(59, 130, 246, 0.16);
-    color: #93c5fd;
-  }
-
-  .student-logoutaf,
-  .locked-btnaf {
-    background: rgba(239, 68, 68, 0.14);
-    color: #fecaca;
-  }
-
-  .lockedaf .chapter-statusaf {
-    background: rgba(239, 68, 68, 0.14);
-    color: #fecaca;
-  }
-
-  .unlockedaf .chapter-statusaf {
-    background: rgba(34, 197, 94, 0.14);
-    color: #86efac;
-  }
-
-  .loading-textaf {
-    background: rgba(59, 130, 246, 0.14);
-    color: #bfdbfe;
-  }
-
-  .empty-textaf {
-    background: rgba(148, 163, 184, 0.12);
-    color: #cbd5e1;
-  }
-
-  .error-textaf {
-    background: rgba(239, 68, 68, 0.14);
-    color: #fecaca;
-  }
-
-  .no-course-cardaf h2 {
-    color: #fecaca;
-  }
+[data-theme="dark"] #studentaf {
+  background:
+    radial-gradient(circle at top left, rgba(34, 197, 94, 0.16), transparent 34%),
+    radial-gradient(circle at top right, rgba(59, 130, 246, 0.14), transparent 32%),
+    linear-gradient(135deg, #020617 0%, #0f172a 48%, #052e16 100%);
 }
 
+[data-theme="dark"] .student-cardaf,
+[data-theme="dark"] .student-dashboardaf {
+  background: rgba(15, 23, 42, 0.94);
+  border-color: rgba(148, 163, 184, 0.20);
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .student-cardaf::before {
+  background: rgba(34, 197, 94, 0.10);
+}
+
+[data-theme="dark"] .student-cardaf::after {
+  background: rgba(59, 130, 246, 0.10);
+}
+
+[data-theme="dark"] .student-iconaf,
+[data-theme="dark"] .course-card-iconaf,
+[data-theme="dark"] .course-detail-iconaf {
+  background: linear-gradient(135deg, rgba(22, 163, 74, 0.20), rgba(37, 99, 235, 0.18));
+  border-color: rgba(148, 163, 184, 0.18);
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.25),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .student-titleaf,
+[data-theme="dark"] .student-dash-headaf h2,
+[data-theme="dark"] .student-dashboardaf h2,
+[data-theme="dark"] #courseTitleaf,
+[data-theme="dark"] .course-card-bodyaf h3,
+[data-theme="dark"] .learning-btnaf strong,
+[data-theme="dark"] .chapter-mainaf strong,
+[data-theme="dark"] .content-mainaf strong {
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .student-subtitleaf,
+[data-theme="dark"] .student-helpaf,
+[data-theme="dark"] .student-labelaf,
+[data-theme="dark"] .student-dash-subaf,
+[data-theme="dark"] #courseIntroaf,
+[data-theme="dark"] .course-card-bodyaf p,
+[data-theme="dark"] .learning-btnaf small,
+[data-theme="dark"] .chapter-mainaf small,
+[data-theme="dark"] .content-mainaf small,
+[data-theme="dark"] .no-course-cardaf p {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .student-tabsaf {
+  background: #1e293b;
+  border-color: rgba(148, 163, 184, 0.18);
+}
+
+[data-theme="dark"] .student-tabaf {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .student-tabaf.active {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .student-inputaf {
+  background: rgba(2, 6, 23, 0.72);
+  border-color: #334155;
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .student-inputaf::placeholder {
+  color: #64748b;
+}
+
+[data-theme="dark"] .student-inputaf:focus {
+  background: rgba(2, 6, 23, 0.92);
+  border-color: #22c55e;
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.13);
+}
+
+[data-theme="dark"] .student-noteaf {
+  background: linear-gradient(135deg, rgba(30, 64, 175, 0.20), rgba(22, 101, 52, 0.18));
+  border-color: rgba(148, 163, 184, 0.14);
+  color: #bfdbfe;
+}
+
+[data-theme="dark"] .student-noteaf b {
+  color: #86efac;
+}
+
+[data-theme="dark"] .course-cardaf,
+[data-theme="dark"] .learning-btnaf,
+[data-theme="dark"] .chapter-itemaf,
+[data-theme="dark"] .content-itemaf {
+  background: rgba(2, 6, 23, 0.72);
+  border-color: rgba(148, 163, 184, 0.18);
+}
+
+[data-theme="dark"] .course-info-boxaf {
+  background: rgba(2, 6, 23, 0.62);
+  border-color: rgba(148, 163, 184, 0.16);
+}
+
+[data-theme="dark"] .course-info-boxaf h3 {
+  color: #86efac;
+}
+
+[data-theme="dark"] .course-info-boxaf p,
+[data-theme="dark"] .course-info-boxaf li {
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .back-miniaf {
+  background: rgba(59, 130, 246, 0.16);
+  color: #93c5fd;
+}
+
+[data-theme="dark"] .student-logoutaf {
+  background: rgba(239, 68, 68, 0.14);
+  color: #fecaca;
+}
+
+[data-theme="dark"] .lockedaf .chapter-statusaf {
+  background: rgba(239, 68, 68, 0.14);
+  color: #fecaca;
+}
+
+[data-theme="dark"] .unlockedaf .chapter-statusaf {
+  background: rgba(34, 197, 94, 0.14);
+  color: #86efac;
+}
+
+[data-theme="dark"] #studentWelcomeTextaf,
+[data-theme="dark"] .durationaf {
+  color: #86efac;
+}
+
+[data-theme="dark"] .loading-textaf {
+  background: rgba(59, 130, 246, 0.14);
+  color: #bfdbfe;
+}
+
+[data-theme="dark"] .empty-textaf {
+  background: rgba(148, 163, 184, 0.12);
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .error-textaf {
+  background: rgba(239, 68, 68, 0.14);
+  color: #fecaca;
+}
+
+[data-theme="dark"] .no-course-cardaf h2 {
+  color: #fecaca;
+}
+
+[data-theme="dark"] .student-messageaf.ok {
+  background: rgba(22, 163, 74, 0.18);
+  color: #86efac;
+  border-color: rgba(34, 197, 94, 0.20);
+}
+
+[data-theme="dark"] .student-messageaf.err {
+  background: rgba(153, 27, 27, 0.18);
+  color: #fca5a5;
+  border-color: rgba(239, 68, 68, 0.20);
+}
+
+[data-theme="dark"] .student-messageaf.info {
+  background: rgba(37, 99, 235, 0.14);
+  color: #93c5fd;
+  border-color: rgba(59, 130, 246, 0.20);
+}
+
+[data-theme="dark"] .locked-btnaf {
+  background: rgba(239, 68, 68, 0.14);
+  color: #fca5a5;
+}
 
   </style>
 </head>
@@ -5506,8 +5543,6 @@ document.addEventListener("DOMContentLoaded", function() {
 /* ─────────────────────────────────────────────────────────────
    SECTION 17: BATCHES PURCHASE
    ─────────────────────────────────────────────────────────── */
-
-const RAZORPAY_KEY_ID = "rzp_test_SpO0DdKfoz5wRu";
 
 const afBatchPrice = 49;
 const afBatchOldPrice = 99;
