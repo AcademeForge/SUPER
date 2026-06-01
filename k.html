@@ -3160,881 +3160,94 @@
   color: #fca5a5;
 }
 /* =========================================================
-   AF NEXUS COMMUNITY V2 - PROFESSIONAL MOBILE CSS
-   Dark mode via [data-theme="dark"] (matches student module)
+   AF NEXUS V2
+   PART 1 — LAYOUT + FEED + POSTS
 ========================================================= */
 
-#afNexusLockedV2,
-#afNexusMainV2,
-#afMyNexusViewV2,
-#afNexusComposerOverlayV2,
-#afNexusCommentsOverlayV2,
-#afNexusReplyOverlayV2,
-#afNexusMenuOverlayV2 {
-  box-sizing: border-box !important;
+.af-hidden{
+  display:none !important;
 }
 
-.af-hidden {
-  display: none !important;
-}
-
-/* Main shell */
-.af-nexus-v2-shell {
-  position: relative !important;
-  width: min(100%, 760px) !important;
-  margin: 0 auto !important;
-  padding: clamp(14px, 3.5vw, 22px) !important;
-  border-radius: 28px !important;
-  overflow: hidden !important;
-  background:
-    radial-gradient(circle at 0% 0%, rgba(59,130,246,0.14), transparent 32%),
-    radial-gradient(circle at 100% 0%, rgba(99,102,241,0.12), transparent 34%),
-    linear-gradient(145deg, rgba(255,255,255,0.94), rgba(248,250,252,0.9)) !important;
-  border: 1px solid rgba(226,232,240,0.9) !important;
-  box-shadow: 0 18px 48px rgba(15,23,42,0.10) !important;
-  color: #0f172a !important;
-  min-height: calc(100dvh - 130px) !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 14px !important;
-}
-
-/* Locked screen */
-.af-nexus-locked-v2 {
-  width: 100% !important;
-  min-height: 360px !important;
-  display: grid !important;
-  place-items: center !important;
-  padding: 18px !important;
-}
-
-.af-nexus-locked-card-v2 {
-  width: min(100%, 420px) !important;
-  border-radius: 28px !important;
-  padding: 22px !important;
-  background: linear-gradient(145deg, #fff1f2 0%, #ffffff 100%) !important;
-  border: 1px solid rgba(254, 202, 202, 0.95) !important;
-  box-shadow: 0 20px 42px rgba(127, 29, 29, 0.12) !important;
-  text-align: center !important;
-}
-
-.af-nexus-lock-icon-v2 {
-  width: 64px !important;
-  height: 64px !important;
-  margin: 0 auto 14px !important;
-  display: grid !important;
-  place-items: center !important;
-  border-radius: 22px !important;
-  font-size: 28px !important;
-  background: linear-gradient(135deg, #ef4444, #991b1b) !important;
-  box-shadow: 0 16px 26px rgba(239, 68, 68, 0.22) !important;
-}
-
-.af-nexus-locked-card-v2 h2 {
-  margin: 0 0 8px !important;
-  font-size: clamp(20px, 5vw, 26px) !important;
-  font-weight: 950 !important;
-  letter-spacing: -0.04em !important;
-  color: #7f1d1d !important;
-}
-
-.af-nexus-locked-card-v2 p {
-  margin: 0 auto 18px !important;
-  max-width: 320px !important;
-  font-size: 13px !important;
-  line-height: 1.55 !important;
-  font-weight: 750 !important;
-  color: #991b1b !important;
-}
-
-.af-nexus-login-btn-v2 {
-  width: 100% !important;
-  min-height: 48px !important;
-  border: 0 !important;
-  border-radius: 18px !important;
-  cursor: pointer !important;
-  color: #ffffff !important;
-  font-size: 14px !important;
-  font-weight: 950 !important;
-  background: linear-gradient(135deg, #dc2626, #7f1d1d) !important;
-  box-shadow: 0 14px 24px rgba(220, 38, 38, 0.22) !important;
-  -webkit-tap-highlight-color: transparent !important;
-}
-
-/* Header */
-.af-nexus-header-v2 {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  gap: 12px !important;
-  margin-bottom: 14px !important;
-}
-
-.af-nexus-title-wrap-v2 {
-  min-width: 0 !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 12px !important;
-}
-
-.af-nexus-logo-v2 {
-  width: 48px !important;
-  height: 48px !important;
-  min-width: 48px !important;
-  border-radius: 18px !important;
-  display: grid !important;
-  place-items: center !important;
-  font-size: 22px !important;
-  background: linear-gradient(135deg, #dbeafe, #eef2ff) !important;
-  box-shadow: inset 0 0 0 1px rgba(59,130,246,0.18), 0 12px 22px rgba(37,99,235,0.10) !important;
-}
-
-.af-nexus-title-wrap-v2 h2 {
-  margin: 0 !important;
-  font-size: clamp(20px, 5vw, 28px) !important;
-  line-height: 1.05 !important;
-  font-weight: 1000 !important;
-  letter-spacing: -0.055em !important;
-  color: #0f172a !important;
-}
-
-.af-nexus-title-wrap-v2 p {
-  margin: 4px 0 0 !important;
-  max-width: 390px !important;
-  font-size: 11.5px !important;
-  line-height: 1.35 !important;
-  font-weight: 750 !important;
-  color: #64748b !important;
-}
-
-.af-nexus-my-btn-v2,
-.af-nexus-refresh-btn-v2 {
-  border: 0 !important;
-  outline: none !important;
-  cursor: pointer !important;
-  border-radius: 16px !important;
-  min-height: 40px !important;
-  padding: 0 13px !important;
-  white-space: nowrap !important;
-  font-size: 12px !important;
-  font-weight: 950 !important;
-  color: #ffffff !important;
-  background: linear-gradient(135deg, #2563eb, #4f46e5) !important;
-  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.18) !important;
-  -webkit-tap-highlight-color: transparent !important;
-}
-
-.af-nexus-refresh-btn-v2 {
-  color: #1e293b !important;
-  background: linear-gradient(135deg, #ffffff, #f1f5f9) !important;
-  border: 1px solid rgba(226,232,240,0.95) !important;
-  box-shadow: 0 10px 20px rgba(15,23,42,0.06) !important;
-}
-
-/* User bar */
-.af-nexus-userbar-v2 {
-  margin-bottom: 14px !important;
-  padding: 13px 14px !important;
-  border-radius: 22px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  gap: 10px !important;
-  background: linear-gradient(135deg, rgba(255,255,255,0.96), rgba(248,250,252,0.9)) !important;
-  border: 1px solid rgba(226,232,240,0.92) !important;
-  box-shadow: 0 12px 28px rgba(15,23,42,0.06) !important;
-}
-
-.af-nexus-userbar-v2 span {
-  display: block !important;
-  margin-bottom: 3px !important;
-  font-size: 10.5px !important;
-  line-height: 1 !important;
-  font-weight: 850 !important;
-  color: #64748b !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.06em !important;
-}
-
-.af-nexus-userbar-v2 strong {
-  display: block !important;
-  max-width: 210px !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  white-space: nowrap !important;
-  font-size: 14px !important;
-  line-height: 1.1 !important;
-  font-weight: 950 !important;
-  color: #0f172a !important;
-}
-
-.af-nexus-userbar-v2 small {
-  font-size: 11px !important;
-  font-weight: 800 !important;
-  color: #2563eb !important;
-}
-
-/* Controls */
-.af-nexus-controls-v2 {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
-  gap: 10px !important;
-  margin-bottom: 16px !important;
-  padding: 5px !important;
-  border-radius: 20px !important;
-  background: rgba(241,245,249,0.92) !important;
-  border: 1px solid rgba(226,232,240,0.9) !important;
-}
-
-.af-nexus-filter-btn-v2 {
-  min-height: 42px !important;
-  border: 0 !important;
-  border-radius: 16px !important;
-  cursor: pointer !important;
-  font-size: 12px !important;
-  font-weight: 950 !important;
-  color: #64748b !important;
-  background: transparent !important;
-  -webkit-tap-highlight-color: transparent !important;
-}
-
-.af-nexus-filter-btn-v2.active {
-  color: #ffffff !important;
-  background: linear-gradient(135deg, #0f172a, #334155) !important;
-  box-shadow: 0 10px 18px rgba(15,23,42,0.16) !important;
-}
-
-/* Section head */
-.af-nexus-section-head-v2 {
-  margin-bottom: 12px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  gap: 10px !important;
-}
-
-.af-nexus-section-head-v2 h3 {
-  margin: 0 !important;
-  font-size: 16px !important;
-  line-height: 1.1 !important;
-  font-weight: 950 !important;
-  color: #0f172a !important;
-  letter-spacing: -0.03em !important;
-}
-
-.af-nexus-section-head-v2 p {
-  margin: 4px 0 0 !important;
-  font-size: 11.5px !important;
-  line-height: 1.3 !important;
-  font-weight: 700 !important;
-  color: #64748b !important;
-}
-
-/* Posts */
-.af-nexus-posts-list-v2 {
-  display: grid !important;
-  gap: 12px !important;
-  padding-bottom: 76px !important;
-}
-
-.af-nexus-loading-v2,
-.af-nexus-empty-v2 {
-  padding: 18px !important;
-  border-radius: 22px !important;
-  text-align: center !important;
-  font-size: 13px !important;
-  font-weight: 850 !important;
-  color: #64748b !important;
-  background: rgba(255,255,255,0.82) !important;
-  border: 1px dashed rgba(148,163,184,0.55) !important;
-}
-
-.af-nexus-post-card-v2 {
-  border-radius: 24px !important;
-  padding: 14px !important;
-  background: linear-gradient(145deg, rgba(255,255,255,0.98), rgba(248,250,252,0.94)) !important;
-  border: 1px solid rgba(226,232,240,0.92) !important;
-  box-shadow: 0 14px 30px rgba(15,23,42,0.07) !important;
-}
-
-.af-nexus-post-top-v2 {
-  display: flex !important;
-  align-items: flex-start !important;
-  justify-content: space-between !important;
-  gap: 10px !important;
-  margin-bottom: 10px !important;
-}
-
-.af-nexus-author-v2 {
-  min-width: 0 !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 10px !important;
-}
-
-.af-nexus-avatar-v2 {
-  width: 38px !important;
-  height: 38px !important;
-  min-width: 38px !important;
-  border-radius: 15px !important;
-  display: grid !important;
-  place-items: center !important;
-  font-size: 15px !important;
-  font-weight: 950 !important;
-  color: #ffffff !important;
-  background: linear-gradient(135deg, #2563eb, #7c3aed) !important;
-  box-shadow: 0 10px 18px rgba(37,99,235,0.16) !important;
-}
-
-.af-nexus-author-v2 strong {
-  display: block !important;
-  max-width: 210px !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  white-space: nowrap !important;
-  font-size: 13.5px !important;
-  line-height: 1.1 !important;
-  font-weight: 950 !important;
-  color: #0f172a !important;
-}
-
-.af-nexus-author-v2 small {
-  display: block !important;
-  margin-top: 3px !important;
-  font-size: 10.5px !important;
-  line-height: 1.1 !important;
-  font-weight: 750 !important;
-  color: #94a3b8 !important;
-}
-
-.af-nexus-menu-btn-v2 {
-  width: 34px !important;
-  height: 34px !important;
-  min-width: 34px !important;
-  border: 0 !important;
-  border-radius: 13px !important;
-  cursor: pointer !important;
-  display: grid !important;
-  place-items: center !important;
-  font-size: 18px !important;
-  font-weight: 950 !important;
-  color: #475569 !important;
-  background: rgba(241,245,249,0.9) !important;
-  -webkit-tap-highlight-color: transparent !important;
-}
-
-.af-nexus-post-text-v2 {
-  margin: 0 0 12px !important;
-  font-size: 13.5px !important;
-  line-height: 1.58 !important;
-  font-weight: 650 !important;
-  color: #1e293b !important;
-  white-space: pre-wrap !important;
-  word-break: break-word !important;
-}
-
-.af-nexus-post-actions-v2 {
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  padding-top: 10px !important;
-  border-top: 1px solid rgba(226,232,240,0.9) !important;
-}
-
-.af-nexus-action-btn-v2 {
-  min-height: 36px !important;
-  border: 0 !important;
-  border-radius: 14px !important;
-  cursor: pointer !important;
-  padding: 0 12px !important;
-  font-size: 12px !important;
-  font-weight: 900 !important;
-  color: #334155 !important;
-  background: rgba(241,245,249,0.92) !important;
-  -webkit-tap-highlight-color: transparent !important;
-}
-
-.af-nexus-action-btn-v2.active {
-  color: #ffffff !important;
-  background: linear-gradient(135deg, #ef4444, #be123c) !important;
-  box-shadow: 0 10px 18px rgba(244,63,94,0.16) !important;
-}
-
-/* Floating write button */
-.af-nexus-write-btn-v2 {
-  position: fixed !important;
-  z-index: 9999 !important;
-  width: 58px !important;
-  height: 58px !important;
-  border: 0 !important;
-  border-radius: 22px !important;
-  cursor: pointer !important;
-  display: grid !important;
-  place-items: center !important;
-  font-size: 24px !important;
-  color: #ffffff !important;
-  background: linear-gradient(135deg, #2563eb, #4f46e5) !important;
-  box-shadow: 0 18px 34px rgba(37,99,235,0.30) !important;
-  -webkit-tap-highlight-color: transparent !important;
-  right: max(16px, env(safe-area-inset-right)) !important;
-  bottom: calc(86px + env(safe-area-inset-bottom)) !important;
-}
-
-/* Modals */
-.af-nexus-modal-overlay-v2,
-.af-nexus-menu-overlay-v2 {
-  position: fixed !important;
-  inset: 0 !important;
-  z-index: 10000 !important;
-  display: grid !important;
-  place-items: end center !important;
-  padding: 14px !important;
-  background: rgba(15,23,42,0.44) !important;
-  backdrop-filter: blur(10px) !important;
-}
-
-.af-nexus-composer-card-v2,
-.af-nexus-comments-card-v2,
-.af-nexus-reply-card-v2 {
-  width: min(100%, 720px) !important;
-  max-height: min(88dvh, 760px) !important;
-  overflow: auto !important;
-  border-radius: 28px !important;
-  padding: 16px !important;
-  background: linear-gradient(145deg, #ffffff, #f8fafc) !important;
-  border: 1px solid rgba(226,232,240,0.95) !important;
-  box-shadow: 0 24px 70px rgba(15,23,42,0.26) !important;
-}
-
-.af-nexus-modal-head-v2 {
-  display: flex !important;
-  align-items: flex-start !important;
-  justify-content: space-between !important;
-  gap: 12px !important;
-  margin-bottom: 12px !important;
-}
-
-.af-nexus-modal-head-v2 h3 {
-  margin: 0 !important;
-  font-size: 17px !important;
-  line-height: 1.1 !important;
-  font-weight: 950 !important;
-  color: #0f172a !important;
-}
-
-.af-nexus-modal-head-v2 p {
-  margin: 4px 0 0 !important;
-  font-size: 11.5px !important;
-  font-weight: 750 !important;
-  color: #64748b !important;
-}
-
-.af-nexus-modal-head-v2 button {
-  width: 36px !important;
-  height: 36px !important;
-  border: 0 !important;
-  border-radius: 14px !important;
-  cursor: pointer !important;
-  font-size: 22px !important;
-  font-weight: 900 !important;
-  color: #475569 !important;
-  background: #f1f5f9 !important;
-}
-
-#afNexusPostInputV2,
-#afNexusCommentInputV2,
-#afNexusReplyInputV2 {
-  width: 100% !important;
-  resize: none !important;
-  outline: none !important;
-  border-radius: 20px !important;
-  padding: 14px !important;
-  font-size: 14px !important;
-  line-height: 1.55 !important;
-  font-weight: 650 !important;
-  color: #0f172a !important;
-  background: #ffffff !important;
-  border: 1px solid rgba(203,213,225,0.95) !important;
-  box-shadow: inset 0 1px 0 rgba(15,23,42,0.03) !important;
-}
-
-#afNexusPostInputV2.af-limit-exceeded-v2,
-#afNexusCommentInputV2.af-limit-exceeded-v2,
-#afNexusReplyInputV2.af-limit-exceeded-v2 {
-  color: #dc2626 !important;
-  border-color: rgba(239,68,68,0.8) !important;
-  background: #fff1f2 !important;
-}
-
-.af-nexus-composer-foot-v2,
-.af-nexus-comment-input-foot-v2 {
-  margin-top: 10px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  gap: 10px !important;
-}
-
-.af-nexus-composer-foot-v2 span,
-.af-nexus-comment-input-foot-v2 span {
-  font-size: 11.5px !important;
-  font-weight: 850 !important;
-  color: #64748b !important;
-}
-
-.af-nexus-composer-foot-v2 button,
-.af-nexus-comment-input-foot-v2 button {
-  min-height: 42px !important;
-  border: 0 !important;
-  border-radius: 16px !important;
-  cursor: pointer !important;
-  padding: 0 18px !important;
-  font-size: 13px !important;
-  font-weight: 950 !important;
-  color: #ffffff !important;
-  background: linear-gradient(135deg, #2563eb, #4f46e5) !important;
-  box-shadow: 0 12px 24px rgba(37,99,235,0.18) !important;
-}
-
-.af-nexus-composer-foot-v2 button:disabled,
-.af-nexus-comment-input-foot-v2 button:disabled {
-  opacity: 0.45 !important;
-  cursor: not-allowed !important;
-  box-shadow: none !important;
-}
-
-.af-nexus-word-warning-v2 {
-  margin: 10px 0 0 !important;
-  padding: 10px 12px !important;
-  border-radius: 14px !important;
-  font-size: 11.5px !important;
-  font-weight: 850 !important;
-  color: #991b1b !important;
-  background: #fee2e2 !important;
-  border: 1px solid rgba(248,113,113,0.55) !important;
-}
-
-/* Comments */
-.af-nexus-comments-list-v2 {
-  display: grid !important;
-  gap: 10px !important;
-  max-height: 48dvh !important;
-  overflow: auto !important;
-  padding: 2px 2px 12px !important;
-}
-
-.af-nexus-comment-card-v2 {
-  border-radius: 20px !important;
-  padding: 12px !important;
-  background: rgba(248,250,252,0.96) !important;
-  border: 1px solid rgba(226,232,240,0.9) !important;
-}
-
-.af-nexus-comment-card-v2.reply {
-  margin-left: 0 !important;
-  border-left: none !important;
-}
-
-.af-nexus-comment-top-v2 {
-  display: flex !important;
-  justify-content: space-between !important;
-  gap: 8px !important;
-  margin-bottom: 7px !important;
-}
-
-.af-nexus-comment-top-v2 strong {
-  font-size: 12.5px !important;
-  font-weight: 950 !important;
-  color: #0f172a !important;
-}
-
-.af-nexus-comment-top-v2 small {
-  display: block !important;
-  margin-top: 2px !important;
-  font-size: 10px !important;
-  font-weight: 750 !important;
-  color: #94a3b8 !important;
-}
-
-.af-nexus-comment-text-v2 {
-  margin: 0 0 8px !important;
-  font-size: 12.5px !important;
-  line-height: 1.5 !important;
-  font-weight: 650 !important;
-  color: #334155 !important;
-  white-space: pre-wrap !important;
-  word-break: break-word !important;
-}
-
-.af-nexus-comment-actions-v2 {
-  display: flex !important;
-  gap: 8px !important;
-  align-items: center !important;
-}
-
-.af-nexus-comment-input-box-v2 {
-  margin-top: 12px !important;
-  padding-top: 12px !important;
-  border-top: 1px solid rgba(226,232,240,0.95) !important;
-}
-
-/* Bottom action menu */
-.af-nexus-menu-card-v2 {
-  width: min(100%, 420px) !important;
-  border-radius: 24px !important;
-  padding: 10px !important;
-  background: #ffffff !important;
-  border: 1px solid rgba(226,232,240,0.95) !important;
-  box-shadow: 0 24px 70px rgba(15,23,42,0.24) !important;
-}
-
-.af-nexus-menu-card-v2 button {
-  width: 100% !important;
-  min-height: 48px !important;
-  border: 0 !important;
-  border-radius: 16px !important;
-  cursor: pointer !important;
-  margin: 4px 0 !important;
-  font-size: 14px !important;
-  font-weight: 900 !important;
-  color: #0f172a !important;
-  background: #f8fafc !important;
-}
-
-#afNexusDeleteActionBtnV2 {
-  color: #991b1b !important;
-  background: #fee2e2 !important;
-}
-
-/* Mobile tightening */
-@media (max-width: 430px) {
-  .af-nexus-v2-shell {
-    width: 100% !important;
-    padding: 13px !important;
-    border-radius: 24px !important;
-  }
-
-  .af-nexus-header-v2 { align-items: flex-start !important; }
-
-  .af-nexus-logo-v2 {
-    width: 44px !important;
-    height: 44px !important;
-    min-width: 44px !important;
-    border-radius: 16px !important;
-  }
-
-  .af-nexus-title-wrap-v2 p { max-width: 210px !important; }
-
-  .af-nexus-my-btn-v2 {
-    min-height: 38px !important;
-    padding: 0 11px !important;
-    font-size: 11.5px !important;
-  }
-
-  .af-nexus-userbar-v2 {
-    align-items: flex-start !important;
-    flex-direction: column !important;
-  }
-
-  .af-nexus-section-head-v2 { align-items: flex-start !important; }
-
-  .af-nexus-author-v2 strong { max-width: 185px !important; }
-
-  .af-nexus-write-btn-v2 {
-    width: 56px !important;
-    height: 56px !important;
-    border-radius: 21px !important;
-    bottom: calc(82px + env(safe-area-inset-bottom)) !important;
-  }
-}
-
-/* Write button desktop position */
-@media (min-width: 768px) {
-  .af-nexus-write-btn-v2 {
-    right: max(18px, calc((100vw - 430px) / 2 + 18px)) !important;
-    bottom: 86px !important;
-  }
-}
-
-/* Overlay visibility forcing */
-#afNexusComposerOverlayV2.af-hidden,
-#afNexusCommentsOverlayV2.af-hidden,
-#afNexusReplyOverlayV2.af-hidden,
-#afNexusMenuOverlayV2.af-hidden {
-  display: none !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-}
-
-#afNexusComposerOverlayV2:not(.af-hidden),
-#afNexusCommentsOverlayV2:not(.af-hidden),
-#afNexusReplyOverlayV2:not(.af-hidden),
-#afNexusMenuOverlayV2:not(.af-hidden) {
-  display: grid !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  pointer-events: auto !important;
-}
-
-/* Lock space fix */
-#afNexusLockedV2.af-hidden {
-  display: none !important;
-  height: 0 !important;
-  min-height: 0 !important;
-  max-height: 0 !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  overflow: hidden !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-}
-
-#afNexusMainV2 {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
+.af-nexus-v2-shell{
+  width:min(100%,760px);
+  margin:0 auto;
+  padding:16px;
+  border-radius:24px;
 
-    /* =========================================================
-   AF NEXUS COMMENTS FINAL
-========================================================= */
+  background:#ffffff;
+  border:1px solid #e2e8f0;
 
-.af-nexus-comments-list-v2{
   display:flex;
   flex-direction:column;
-  gap:10px;
-  max-height:65vh;
-  overflow-y:auto;
-  padding:4px;
-}
+  gap:16px;
 
-.af-nexus-comment-card-v2{
-  padding:12px;
-  border-radius:14px;
-  border:1px solid rgba(148,163,184,.15);
-  background:#ffffff;
-}
+  min-height:calc(100dvh - 120px);
 
-.af-nexus-comment-top-v2{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:8px;
-}
-
-.af-nexus-comment-info-v2{
-  flex:1;
-  min-width:0;
-}
-
-.af-nexus-comment-info-v2 strong{
-  font-size:13px;
-  font-weight:700;
   color:#0f172a;
 }
 
-.af-nexus-comment-info-v2 small{
-  margin-left:6px;
-  font-size:11px;
-  color:#64748b;
+.af-nexus-main-v2{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
 }
 
-.af-nexus-comment-text-v2{
-  margin:8px 0;
+/* =========================
+   HEADER
+========================= */
+
+.af-nexus-header-v2{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.af-nexus-title-wrap-v2{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:0;
+}
+
+.af-nexus-logo-v2{
+  width:48px;
+  height:48px;
+
+  border-radius:16px;
+
+  display:grid;
+  place-items:center;
+
+  font-size:22px;
+
+  background:#eef2ff;
+}
+
+.af-nexus-title-wrap-v2 h2{
+  margin:0;
+  font-size:22px;
+  font-weight:800;
+  line-height:1;
+}
+
+.af-nexus-title-wrap-v2 p{
+  margin:4px 0 0;
   font-size:12px;
-  line-height:1.5;
-  color:#334155;
-  word-break:break-word;
-  white-space:pre-wrap;
-}
-
-.af-nexus-comment-actions-v2{
-  display:flex;
-  gap:14px;
-  align-items:center;
-}
-
-.af-nexus-comment-actions-v2 .af-nexus-action-btn-v2{
-  min-height:auto;
-  padding:0;
-  border:none;
-  background:none;
-  font-size:11px;
-  font-weight:700;
   color:#64748b;
 }
 
-.af-nexus-view-replies-v2{
-  margin-top:6px;
+.af-nexus-my-btn-v2,
+.af-nexus-refresh-btn-v2{
+  height:40px;
+  padding:0 14px;
+
   border:none;
-  background:none;
-  padding:0;
-  font-size:11px;
-  font-weight:700;
-  color:#64748b;
-  cursor:pointer;
-}
-
-.af-nexus-replies-wrap-v2{
-  margin-top:8px;
-  margin-left:14px;
-  padding-left:12px;
-  border-left:2px solid rgba(148,163,184,.18);
-}
-
-.af-nexus-reply-row-v2{
-  padding:8px 0;
-}
-
-.af-nexus-reply-row-v2 + .af-nexus-reply-row-v2{
-  border-top:1px solid rgba(148,163,184,.12);
-}
-
-.af-nexus-menu-btn-v2{
-  width:30px;
-  height:30px;
-  min-width:30px;
-  border-radius:10px;
-}
-
-/* DARK */
-
-[data-theme="dark"] .af-nexus-comment-card-v2{
-  background:rgba(15,23,42,.75);
-  border-color:rgba(148,163,184,.18);
-}
-
-[data-theme="dark"] .af-nexus-comment-info-v2 strong{
-  color:#f8fafc;
-}
-
-[data-theme="dark"] .af-nexus-comment-info-v2 small{
-  color:#94a3b8;
-}
-
-[data-theme="dark"] .af-nexus-comment-text-v2{
-  color:#e2e8f0;
-}
-
-[data-theme="dark"] .af-nexus-comment-actions-v2 .af-nexus-action-btn-v2,
-[data-theme="dark"] .af-nexus-view-replies-v2{
-  color:#94a3b8;
-}
-    .af-nexus-write-post-btn-v2{
-  border:none;
-  cursor:pointer;
-
-  display:flex;
-  align-items:center;
-  gap:8px;
-
-  height:38px;
-  padding:0 16px;
-
   border-radius:12px;
 
-  font-size:13px;
+  cursor:pointer;
+
+  font-size:12px;
   font-weight:700;
 
   color:#fff;
@@ -4044,62 +3257,793 @@
     #2563eb,
     #4f46e5
   );
+}
+
+/* =========================
+   USER BAR
+========================= */
+
+.af-nexus-userbar-v2{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+
+  padding:14px;
+
+  border-radius:16px;
+
+  background:#f8fafc;
+  border:1px solid #e2e8f0;
+}
+
+.af-nexus-userbar-v2 span{
+  display:block;
+  margin-bottom:4px;
+
+  font-size:10px;
+  font-weight:700;
+
+  color:#64748b;
+  text-transform:uppercase;
+}
+
+.af-nexus-userbar-v2 strong{
+  font-size:14px;
+  font-weight:700;
+  color:#0f172a;
+}
+
+.af-nexus-write-post-btn-v2{
+  height:38px;
+  padding:0 16px;
+
+  border:none;
+  border-radius:12px;
+
+  cursor:pointer;
+
+  color:#fff;
+  font-size:13px;
+  font-weight:700;
+
+  background:linear-gradient(
+    135deg,
+    #2563eb,
+    #4f46e5
+  );
+}
+
+/* =========================
+   CONTROLS
+========================= */
+
+.af-nexus-controls-v2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.af-nexus-filter-btn-v2{
+  height:42px;
+
+  border:none;
+  border-radius:14px;
+
+  cursor:pointer;
+
+  font-size:12px;
+  font-weight:700;
+
+  color:#64748b;
+  background:#f1f5f9;
+}
+
+.af-nexus-filter-btn-v2.active{
+  color:#fff;
+  background:#0f172a;
+}
+
+/* =========================
+   SECTION HEAD
+========================= */
+
+.af-nexus-section-head-v2{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.af-nexus-section-head-v2 h3{
+  margin:0;
+  font-size:16px;
+  font-weight:700;
+}
+
+.af-nexus-section-head-v2 p{
+  margin:4px 0 0;
+  font-size:12px;
+  color:#64748b;
+}
+
+/* =========================
+   POSTS
+========================= */
+
+.af-nexus-posts-list-v2{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+
+  padding-bottom:120px;
+}
+
+.af-nexus-loading-v2,
+.af-nexus-empty-v2{
+  padding:18px;
+
+  border-radius:16px;
+
+  text-align:center;
+
+  color:#64748b;
+  background:#f8fafc;
+
+  border:1px dashed #cbd5e1;
+}
+
+.af-nexus-post-card-v2{
+  padding:14px;
+
+  border-radius:18px;
+
+  background:#ffffff;
+  border:1px solid #e2e8f0;
+}
+
+.af-nexus-post-top-v2{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:10px;
+
+  margin-bottom:10px;
+}
+
+.af-nexus-author-v2{
+  display:flex;
+  gap:10px;
+  min-width:0;
+}
+
+.af-nexus-avatar-v2{
+  width:38px;
+  height:38px;
+
+  border-radius:12px;
+
+  display:grid;
+  place-items:center;
+
+  font-size:14px;
+  font-weight:700;
+
+  color:#fff;
+
+  background:linear-gradient(
+    135deg,
+    #2563eb,
+    #7c3aed
+  );
+}
+
+.af-nexus-author-v2 strong{
+  display:block;
+  font-size:13px;
+  font-weight:700;
+}
+
+.af-nexus-author-v2 small{
+  display:block;
+  margin-top:2px;
+
+  font-size:11px;
+  color:#64748b;
+}
+
+.af-nexus-menu-btn-v2{
+  width:32px;
+  height:32px;
+
+  border:none;
+  border-radius:10px;
+
+  cursor:pointer;
+
+  background:#f1f5f9;
+}
+
+.af-nexus-post-text-v2{
+  margin:0 0 12px;
+
+  font-size:13px;
+  line-height:1.6;
+
+  color:#334155;
+
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+
+.af-nexus-post-actions-v2{
+  display:flex;
+  gap:8px;
+
+  padding-top:10px;
+
+  border-top:1px solid #e2e8f0;
+}
+
+.af-nexus-action-btn-v2{
+  height:34px;
+  padding:0 12px;
+
+  border:none;
+  border-radius:12px;
+
+  cursor:pointer;
+
+  font-size:12px;
+  font-weight:700;
+
+  background:#f1f5f9;
+  color:#334155;
+}
+
+.af-nexus-action-btn-v2.active{
+  color:#fff;
+  background:#ef4444;
+}
+
+/* =========================
+   FLOATING BUTTON
+========================= */
+
+#afNexusWriteBtnV2{
+  position:fixed;
+  right:16px;
+  bottom:84px;
+
+  width:58px;
+  height:58px;
+
+  border:none;
+  border-radius:20px;
+
+  display:grid;
+  place-items:center;
+
+  font-size:24px;
+  color:#fff;
+
+  z-index:9999;
+
+  background:linear-gradient(
+    135deg,
+    #2563eb,
+    #4f46e5
+  );
 
   box-shadow:
-    0 8px 20px rgba(
+    0 12px 28px rgba(
       37,
       99,
       235,
+      .25
+    );
+}
+    /* =========================================================
+   AF NEXUS V2
+   PART 2 — MODALS + OVERLAYS
+========================================================= */
+
+/* =========================
+   OVERLAYS
+========================= */
+
+#afNexusComposerOverlayV2,
+#afNexusCommentsOverlayV2,
+#afNexusReplyOverlayV2,
+#afNexusMenuOverlayV2{
+  position:fixed;
+  inset:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:16px;
+
+  z-index:999999;
+
+  background:rgba(15,23,42,.55);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+
+/* hidden state */
+
+#afNexusComposerOverlayV2.af-hidden,
+#afNexusCommentsOverlayV2.af-hidden,
+#afNexusReplyOverlayV2.af-hidden,
+#afNexusMenuOverlayV2.af-hidden{
+  display:none;
+}
+
+/* =========================
+   COMPOSER MODAL
+========================= */
+
+.af-nexus-composer-card-v2{
+  width:min(100%,430px);
+  max-height:85vh;
+
+  overflow:auto;
+
+  border-radius:22px;
+
+  padding:18px;
+
+  background:#ffffff;
+  border:1px solid #e2e8f0;
+
+  box-shadow:
+    0 24px 60px rgba(
+      15,
+      23,
+      42,
+      .22
+    );
+}
+
+/* =========================
+   COMMENTS MODAL
+========================= */
+
+.af-nexus-comments-card-v2{
+  width:min(100%,430px);
+  max-height:85vh;
+
+  overflow:hidden;
+
+  border-radius:22px;
+
+  padding:18px;
+
+  background:#ffffff;
+  border:1px solid #e2e8f0;
+
+  box-shadow:
+    0 24px 60px rgba(
+      15,
+      23,
+      42,
       .22
     );
 
-  transition:.2s ease;
+  display:flex;
+  flex-direction:column;
 }
 
-.af-nexus-write-post-btn-v2:hover{
-  transform:translateY(-1px);
+/* =========================
+   REPLY MODAL
+========================= */
+
+.af-nexus-reply-card-v2{
+  width:min(100%,430px);
+  max-height:85vh;
+
+  overflow:auto;
+
+  border-radius:22px;
+
+  padding:18px;
+
+  background:#ffffff;
+  border:1px solid #e2e8f0;
+
+  box-shadow:
+    0 24px 60px rgba(
+      15,
+      23,
+      42,
+      .22
+    );
 }
 
-.af-nexus-write-post-btn-v2:active{
-  transform:scale(.98);
+/* =========================
+   MENU MODAL
+========================= */
+
+.af-nexus-menu-card-v2{
+  width:min(100%,380px);
+
+  border-radius:22px;
+
+  padding:10px;
+
+  background:#ffffff;
+  border:1px solid #e2e8f0;
+
+  box-shadow:
+    0 24px 60px rgba(
+      15,
+      23,
+      42,
+      .22
+    );
 }
 
-[data-theme="light"]
-.af-nexus-write-post-btn-v2{
+/* =========================
+   MODAL HEADER
+========================= */
+
+.af-nexus-modal-head-v2{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+
+  gap:12px;
+
+  margin-bottom:14px;
+}
+
+.af-nexus-modal-head-v2 h3{
+  margin:0;
+
+  font-size:17px;
+  font-weight:700;
+
+  color:#0f172a;
+}
+
+.af-nexus-modal-head-v2 p{
+  margin:4px 0 0;
+
+  font-size:12px;
+  color:#64748b;
+}
+
+.af-nexus-modal-head-v2 button{
+  width:36px;
+  height:36px;
+
+  border:none;
+  border-radius:12px;
+
+  cursor:pointer;
+
+  font-size:20px;
+
+  color:#475569;
+  background:#f1f5f9;
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+#afNexusPostInputV2,
+#afNexusCommentInputV2,
+#afNexusReplyInputV2{
+  width:100%;
+
+  resize:none;
+  outline:none;
+
+  border-radius:16px;
+
+  padding:14px;
+
+  font-size:14px;
+  line-height:1.6;
+
+  color:#0f172a;
+
+  background:#ffffff;
+  border:1px solid #cbd5e1;
+}
+
+#afNexusPostInputV2.af-limit-exceeded-v2,
+#afNexusCommentInputV2.af-limit-exceeded-v2,
+#afNexusReplyInputV2.af-limit-exceeded-v2{
+  color:#dc2626;
+  border-color:#ef4444;
+  background:#fff1f2;
+}
+
+/* =========================
+   FOOTERS
+========================= */
+
+.af-nexus-composer-foot-v2,
+.af-nexus-comment-input-foot-v2{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:10px;
+
+  margin-top:12px;
+}
+
+.af-nexus-composer-foot-v2 span,
+.af-nexus-comment-input-foot-v2 span{
+  font-size:11px;
+  color:#64748b;
+}
+
+.af-nexus-composer-foot-v2 button,
+.af-nexus-comment-input-foot-v2 button{
+  height:42px;
+
+  padding:0 18px;
+
+  border:none;
+  border-radius:14px;
+
+  cursor:pointer;
+
   color:#fff;
+  font-size:13px;
+  font-weight:700;
+
+  background:linear-gradient(
+    135deg,
+    #2563eb,
+    #4f46e5
+  );
 }
-/* =========================================================
-   DARK MODE — [data-theme="dark"] (matches student module)
+
+.af-nexus-composer-foot-v2 button:disabled,
+.af-nexus-comment-input-foot-v2 button:disabled{
+  opacity:.45;
+  cursor:not-allowed;
+}
+
+/* =========================
+   WARNING BOX
+========================= */
+
+.af-nexus-word-warning-v2{
+  margin-top:10px;
+
+  padding:10px 12px;
+
+  border-radius:12px;
+
+  font-size:12px;
+
+  color:#991b1b;
+
+  background:#fee2e2;
+  border:1px solid #fecaca;
+}
+
+/* =========================
+   MENU BUTTONS
+========================= */
+
+.af-nexus-menu-card-v2 button{
+  width:100%;
+  height:46px;
+
+  margin:4px 0;
+
+  border:none;
+  border-radius:14px;
+
+  cursor:pointer;
+
+  font-size:13px;
+  font-weight:700;
+
+  background:#f8fafc;
+  color:#0f172a;
+}
+
+#afNexusDeleteActionBtnV2{
+  background:#fee2e2;
+  color:#991b1b;
+}
+    /* =========================================================
+   AF NEXUS V2
+   PART 3 — COMMENTS + REPLIES + DARK MODE + RESPONSIVE
 ========================================================= */
 
-[data-theme="dark"] .af-nexus-v2-shell {
-  background:
-    radial-gradient(circle at 0% 0%, rgba(59,130,246,0.18), transparent 32%),
-    radial-gradient(circle at 100% 0%, rgba(99,102,241,0.14), transparent 34%),
-    linear-gradient(145deg, rgba(15,23,42,0.94), rgba(2,6,23,0.92)) !important;
-  border-color: rgba(148,163,184,0.18) !important;
-  color: #f8fafc !important;
+/* =========================
+   COMMENTS LIST
+========================= */
+
+.af-nexus-comments-list-v2{
+  display:flex;
+  flex-direction:column;
+
+  gap:10px;
+
+  overflow-y:auto;
+  max-height:55vh;
+
+  padding-right:2px;
 }
 
-[data-theme="dark"] .af-nexus-title-wrap-v2 h2,
-[data-theme="dark"] .af-nexus-section-head-v2 h3,
-[data-theme="dark"] .af-nexus-userbar-v2 strong,
-[data-theme="dark"] .af-nexus-author-v2 strong,
-[data-theme="dark"] .af-nexus-modal-head-v2 h3,
-[data-theme="dark"] .af-nexus-comment-top-v2 strong,
-[data-theme="dark"] .af-nexus-menu-card-v2 button {
-  color: #f8fafc !important;
+/* =========================
+   COMMENT CARD
+========================= */
+
+.af-nexus-comment-card-v2{
+  padding:12px;
+
+  border-radius:16px;
+
+  background:#ffffff;
+  border:1px solid #e2e8f0;
 }
 
-[data-theme="dark"] .af-nexus-title-wrap-v2 p,
-[data-theme="dark"] .af-nexus-section-head-v2 p,
-[data-theme="dark"] .af-nexus-userbar-v2 span,
-[data-theme="dark"] .af-nexus-modal-head-v2 p,
-[data-theme="dark"] .af-nexus-composer-foot-v2 span,
-[data-theme="dark"] .af-nexus-comment-input-foot-v2 span,
-[data-theme="dark"] .af-nexus-author-v2 small,
-[data-theme="dark"] .af-nexus-comment-top-v2 small {
-  color: #94a3b8 !important;
+.af-nexus-comment-top-v2{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+
+  gap:8px;
+}
+
+.af-nexus-comment-info-v2{
+  flex:1;
+  min-width:0;
+}
+
+.af-nexus-comment-info-v2 strong{
+  display:block;
+
+  font-size:13px;
+  font-weight:700;
+
+  color:#0f172a;
+}
+
+.af-nexus-comment-info-v2 small{
+  display:block;
+
+  margin-top:2px;
+
+  font-size:11px;
+
+  color:#64748b;
+}
+
+.af-nexus-comment-text-v2{
+  margin:8px 0;
+
+  font-size:13px;
+  line-height:1.55;
+
+  color:#334155;
+
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+
+.af-nexus-comment-actions-v2{
+  display:flex;
+  align-items:center;
+
+  gap:14px;
+}
+
+.af-nexus-comment-actions-v2 .af-nexus-action-btn-v2{
+  height:auto;
+
+  padding:0;
+
+  border:none;
+
+  background:none;
+
+  font-size:11px;
+  font-weight:700;
+
+  color:#64748b;
+}
+
+/* =========================
+   REPLIES
+========================= */
+
+.af-nexus-view-replies-v2{
+  margin-top:8px;
+
+  padding:0;
+
+  border:none;
+
+  background:none;
+
+  cursor:pointer;
+
+  font-size:11px;
+  font-weight:700;
+
+  color:#64748b;
+}
+
+.af-nexus-replies-wrap-v2{
+  margin-top:10px;
+  margin-left:12px;
+
+  padding-left:12px;
+
+  border-left:2px solid #e2e8f0;
+}
+
+.af-nexus-reply-row-v2{
+  padding:8px 0;
+}
+
+.af-nexus-reply-row-v2 + .af-nexus-reply-row-v2{
+  border-top:1px solid #e2e8f0;
+}
+
+/* =========================
+   COMMENT INPUT
+========================= */
+
+.af-nexus-comment-input-box-v2{
+  margin-top:12px;
+
+  padding-top:12px;
+
+  border-top:1px solid #e2e8f0;
+}
+
+/* =========================
+   LIGHT MODE
+========================= */
+
+[data-theme="light"] .af-nexus-v2-shell{
+  background:#ffffff;
+  color:#0f172a;
+}
+
+[data-theme="light"] .af-nexus-post-card-v2,
+[data-theme="light"] .af-nexus-comment-card-v2,
+[data-theme="light"] .af-nexus-userbar-v2,
+[data-theme="light"] .af-nexus-composer-card-v2,
+[data-theme="light"] .af-nexus-comments-card-v2,
+[data-theme="light"] .af-nexus-reply-card-v2,
+[data-theme="light"] .af-nexus-menu-card-v2{
+  background:#ffffff;
+}
+
+[data-theme="light"] .af-nexus-post-text-v2,
+[data-theme="light"] .af-nexus-comment-text-v2{
+  color:#334155;
+}
+
+[data-theme="light"] .af-nexus-author-v2 strong,
+[data-theme="light"] .af-nexus-comment-info-v2 strong{
+  color:#0f172a;
+}
+
+/* =========================
+   DARK MODE
+========================= */
+
+[data-theme="dark"] .af-nexus-v2-shell{
+  background:#0f172a;
+  border-color:#334155;
+  color:#f8fafc;
 }
 
 [data-theme="dark"] .af-nexus-userbar-v2,
@@ -4107,121 +4051,127 @@
 [data-theme="dark"] .af-nexus-composer-card-v2,
 [data-theme="dark"] .af-nexus-comments-card-v2,
 [data-theme="dark"] .af-nexus-reply-card-v2,
-[data-theme="dark"] .af-nexus-menu-card-v2 {
-  background: linear-gradient(145deg, rgba(15,23,42,0.98), rgba(30,41,59,0.94)) !important;
-  border-color: rgba(148,163,184,0.18) !important;
+[data-theme="dark"] .af-nexus-menu-card-v2{
+  background:#1e293b;
+  border-color:#334155;
 }
 
-[data-theme="dark"] .af-nexus-controls-v2,
-[data-theme="dark"] .af-nexus-menu-btn-v2,
-[data-theme="dark"] .af-nexus-modal-head-v2 button,
-[data-theme="dark"] .af-nexus-action-btn-v2,
-[data-theme="dark"] .af-nexus-menu-card-v2 button {
-  background: rgba(30,41,59,0.92) !important;
-  color: #cbd5e1 !important;
+[data-theme="dark"] .af-nexus-title-wrap-v2 h2,
+[data-theme="dark"] .af-nexus-section-head-v2 h3,
+[data-theme="dark"] .af-nexus-author-v2 strong,
+[data-theme="dark"] .af-nexus-comment-info-v2 strong,
+[data-theme="dark"] .af-nexus-userbar-v2 strong,
+[data-theme="dark"] .af-nexus-modal-head-v2 h3{
+  color:#f8fafc;
 }
 
-[data-theme="dark"] .af-nexus-filter-btn-v2 { color: #94a3b8 !important; }
-
-[data-theme="dark"] .af-nexus-filter-btn-v2.active {
-  color: #ffffff !important;
-  background: linear-gradient(135deg, #1e293b, #475569) !important;
-}
-
-[data-theme="dark"] .af-nexus-refresh-btn-v2 {
-  background: linear-gradient(135deg, rgba(30,41,59,0.96), rgba(15,23,42,0.94)) !important;
-  color: #e2e8f0 !important;
-  border-color: rgba(148,163,184,0.2) !important;
+[data-theme="dark"] .af-nexus-title-wrap-v2 p,
+[data-theme="dark"] .af-nexus-section-head-v2 p,
+[data-theme="dark"] .af-nexus-author-v2 small,
+[data-theme="dark"] .af-nexus-comment-info-v2 small,
+[data-theme="dark"] .af-nexus-userbar-v2 span{
+  color:#94a3b8;
 }
 
 [data-theme="dark"] .af-nexus-post-text-v2,
-[data-theme="dark"] .af-nexus-comment-text-v2 {
-  color: #e2e8f0 !important;
+[data-theme="dark"] .af-nexus-comment-text-v2{
+  color:#e2e8f0;
+}
+
+[data-theme="dark"] .af-nexus-comment-card-v2{
+  background:#334155;
+  border-color:#475569;
+}
+
+[data-theme="dark"] .af-nexus-replies-wrap-v2{
+  border-left-color:#475569;
+}
+
+[data-theme="dark"] .af-nexus-action-btn-v2,
+[data-theme="dark"] .af-nexus-view-replies-v2,
+[data-theme="dark"] .af-nexus-comment-actions-v2 .af-nexus-action-btn-v2{
+  color:#94a3b8;
+}
+
+[data-theme="dark"] .af-nexus-menu-btn-v2{
+  background:#334155;
+  color:#e2e8f0;
 }
 
 [data-theme="dark"] #afNexusPostInputV2,
 [data-theme="dark"] #afNexusCommentInputV2,
-[data-theme="dark"] #afNexusReplyInputV2 {
-  background: rgba(15,23,42,0.96) !important;
-  color: #f8fafc !important;
-  border-color: rgba(148,163,184,0.22) !important;
-}
-
-[data-theme="dark"] .af-nexus-comment-card-v2 {
-  background: rgba(30,41,59,0.78) !important;
-  border-color: rgba(148,163,184,0.16) !important;
+[data-theme="dark"] #afNexusReplyInputV2{
+  background:#0f172a;
+  border-color:#475569;
+  color:#f8fafc;
 }
 
 [data-theme="dark"] .af-nexus-loading-v2,
-[data-theme="dark"] .af-nexus-empty-v2 {
-  background: rgba(15,23,42,0.7) !important;
-  border-color: rgba(148,163,184,0.24) !important;
-  color: #94a3b8 !important;
+[data-theme="dark"] .af-nexus-empty-v2{
+  background:#1e293b;
+  border-color:#334155;
+  color:#94a3b8;
 }
 
-[data-theme="dark"] .af-nexus-locked-card-v2 {
-  background: linear-gradient(145deg, rgba(127,29,29,0.25), rgba(15,23,42,0.95)) !important;
-  border-color: rgba(239,68,68,0.30) !important;
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width:768px){
+
+  .af-nexus-v2-shell{
+    padding:14px;
+    border-radius:20px;
+  }
+
+  .af-nexus-header-v2{
+    align-items:flex-start;
+  }
+
+  .af-nexus-userbar-v2{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .af-nexus-post-card-v2{
+    padding:12px;
+  }
+
+  .af-nexus-comment-card-v2{
+    padding:10px;
+  }
+
+  .af-nexus-composer-card-v2,
+  .af-nexus-comments-card-v2,
+  .af-nexus-reply-card-v2{
+    width:100%;
+    max-height:90vh;
+  }
+
+  #afNexusWriteBtnV2{
+    right:16px;
+    bottom:84px;
+
+    width:56px;
+    height:56px;
+  }
+
 }
 
-[data-theme="dark"] .af-nexus-locked-card-v2 h2 { color: #fecaca !important; }
-[data-theme="dark"] .af-nexus-locked-card-v2 p { color: #fca5a5 !important; }
+/* =========================
+   DESKTOP
+========================= */
 
-[data-theme="dark"] #afNexusDeleteActionBtnV2 {
-  color: #fca5a5 !important;
-  background: rgba(239,68,68,0.18) !important;
-}
+@media (min-width:769px){
 
-[data-theme="dark"] .af-nexus-word-warning-v2 {
-  color: #fca5a5 !important;
-  background: rgba(239,68,68,0.16) !important;
-  border-color: rgba(239,68,68,0.30) !important;
-}
-    /* =========================================
-   FORCE FIX - REMOVE MODAL BOTTOM GAP
-========================================= */
+  #afNexusWriteBtnV2{
+    right:calc(
+      (100vw - min(760px,100vw))/2 + 16px
+    );
 
-#afNexusComposerOverlayV2,
-#afNexusCommentsOverlayV2,
-#afNexusReplyOverlayV2,
-#afNexusMenuOverlayV2{
-  position:fixed !important;
-  inset:0 !important;
+    bottom:84px;
+  }
 
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-
-  margin:0 !important;
-  padding:16px !important;
-
-  z-index:999999 !important;
-
-  background:rgba(15,23,42,.45) !important;
-}
-
-.af-nexus-composer-card-v2,
-.af-nexus-comments-card-v2,
-.af-nexus-reply-card-v2,
-.af-nexus-menu-card-v2{
-  position:relative !important;
-
-  margin:0 !important;
-  top:auto !important;
-  bottom:auto !important;
-  left:auto !important;
-  right:auto !important;
-
-  transform:none !important;
-
-  max-height:85vh !important;
-}
-
-/* kill any accidental spacing */
-#afNexusComposerOverlayV2 *,
-#afNexusCommentsOverlayV2 *,
-#afNexusReplyOverlayV2 *{
-  scroll-margin-top:0 !important;
 }
   </style>
 </head>
