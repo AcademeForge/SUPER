@@ -4029,7 +4029,208 @@
   background: rgba(239,68,68,0.16) !important;
   border-color: rgba(239,68,68,0.30) !important;
 }
+/* ==========================
+   INSTAGRAM STYLE COMMENTS
+========================== */
 
+.af-nexus-comment-card-v2{
+  background:rgba(255,255,255,.03) !important;
+  border:1px solid rgba(255,255,255,.08) !important;
+  border-radius:22px !important;
+  padding:16px !important;
+  margin-bottom:14px !important;
+}
+
+.af-nexus-comment-top-v2{
+  display:flex !important;
+  align-items:flex-start !important;
+  justify-content:space-between !important;
+  gap:12px !important;
+}
+
+.af-nexus-comment-top-v2 > div:first-child{
+  display:flex !important;
+  flex-direction:column !important;
+  gap:2px !important;
+}
+
+.af-nexus-comment-top-v2 strong{
+  font-size:15px !important;
+  font-weight:700 !important;
+  color:#fff !important;
+}
+
+.af-nexus-comment-top-v2 small{
+  font-size:11px !important;
+  color:#94a3b8 !important;
+}
+
+.af-nexus-comment-text-v2{
+  margin:12px 0 14px !important;
+  line-height:1.7 !important;
+  font-size:14px !important;
+  color:#e2e8f0 !important;
+  white-space:pre-wrap !important;
+}
+
+.af-nexus-comment-actions-v2{
+  display:flex !important;
+  align-items:center !important;
+  gap:10px !important;
+}
+
+.af-nexus-comment-actions-v2 .af-nexus-action-btn-v2{
+  min-width:auto !important;
+  padding:8px 14px !important;
+  border-radius:999px !important;
+  background:rgba(255,255,255,.05) !important;
+  border:1px solid rgba(255,255,255,.06) !important;
+}
+
+/* View Replies */
+
+.af-nexus-view-replies-v2{
+  margin-top:12px !important;
+  margin-left:2px !important;
+  background:none !important;
+  border:none !important;
+  color:#94a3b8 !important;
+  font-size:13px !important;
+  font-weight:700 !important;
+  cursor:pointer !important;
+  padding:0 !important;
+}
+
+/* Replies Container */
+
+.af-nexus-replies-wrap-v2{
+  position:relative !important;
+  margin-top:14px !important;
+  margin-left:18px !important;
+  padding-left:24px !important;
+}
+
+.af-nexus-replies-wrap-v2::before{
+  content:"" !important;
+  position:absolute !important;
+  left:0 !important;
+  top:0 !important;
+  bottom:0 !important;
+  width:2px !important;
+  background:rgba(148,163,184,.25) !important;
+  border-radius:999px !important;
+}
+
+/* Individual Reply */
+
+.af-nexus-reply-row-v2{
+  position:relative !important;
+  background:rgba(255,255,255,.035) !important;
+  border:1px solid rgba(255,255,255,.07) !important;
+  border-radius:18px !important;
+  padding:14px !important;
+  margin-bottom:12px !important;
+}
+
+.af-nexus-reply-row-v2:last-child{
+  margin-bottom:0 !important;
+}
+
+/* Reply connector dot */
+
+.af-nexus-reply-row-v2::before{
+  content:"" !important;
+  position:absolute !important;
+  left:-31px !important;
+  top:24px !important;
+  width:10px !important;
+  height:10px !important;
+  border-radius:50% !important;
+  background:#6366f1 !important;
+  box-shadow:0 0 0 4px rgba(99,102,241,.15) !important;
+}
+
+/* Menu Button */
+
+.af-nexus-menu-btn-v2{
+  width:34px !important;
+  height:34px !important;
+  border-radius:50% !important;
+  flex-shrink:0 !important;
+}
+
+/* Comment Scroll Area */
+
+#afNexusCommentsListV2{
+  padding-right:10px !important;
+}
+
+/* Better Mobile Layout */
+
+@media (max-width:600px){
+
+  .af-nexus-comment-card-v2{
+    padding:14px !important;
+  }
+
+  .af-nexus-replies-wrap-v2{
+    margin-left:12px !important;
+    padding-left:18px !important;
+  }
+
+  .af-nexus-reply-row-v2::before{
+    left:-25px !important;
+  }
+
+}
+    /* ==========================
+   AVATAR UI
+========================== */
+
+.af-nexus-user-block-v2{
+  display:flex !important;
+  align-items:center !important;
+  gap:12px !important;
+}
+
+.af-nexus-user-meta-v2{
+  display:flex !important;
+  flex-direction:column !important;
+}
+
+.af-nexus-avatar-v3{
+  width:42px !important;
+  height:42px !important;
+  min-width:42px !important;
+  border-radius:50% !important;
+
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+
+  font-size:13px !important;
+  font-weight:800 !important;
+  color:#fff !important;
+
+  background:linear-gradient(
+    135deg,
+    #6366f1,
+    #8b5cf6
+  ) !important;
+
+  box-shadow:
+    0 4px 12px rgba(99,102,241,.25) !important;
+}
+
+.af-nexus-user-meta-v2 strong{
+  font-size:14px !important;
+  line-height:1.2 !important;
+}
+
+.af-nexus-user-meta-v2 small{
+  font-size:11px !important;
+  color:#94a3b8 !important;
+}
   </style>
 </head>
 
@@ -8329,19 +8530,27 @@ function renderAfNexusCommentsV2(comments) {
     return `
       <div class="af-nexus-comment-card-v2">
 
-        <div class="af-nexus-comment-top-v2">
+      <div class="af-nexus-comment-top-v2">
 
-          <div>
-            <strong>
-              ${afNexusEscapeV2(c.student_name || "Student")}
-            </strong>
+  <div class="af-nexus-user-block-v2">
 
-            <small>
-              ${afNexusEscapeV2(
-                afNexusTimeV2(c.created_at)
-              )}
-            </small>
-          </div>
+    <div class="af-nexus-avatar-v3">
+      ${afNexusInitialsV2(c.student_name)}
+    </div>
+
+    <div class="af-nexus-user-meta-v2">
+      <strong>
+        ${afNexusEscapeV2(c.student_name || "Student")}
+      </strong>
+
+      <small>
+        ${afNexusEscapeV2(
+          afNexusTimeV2(c.created_at)
+        )}
+      </small>
+    </div>
+
+  </div>
 
           <button
             class="af-nexus-menu-btn-v2"
@@ -8415,22 +8624,33 @@ function renderAfNexusCommentsV2(comments) {
                 return `
                   <div class="af-nexus-reply-row-v2">
 
-                    <div class="af-nexus-comment-top-v2">
+                   <div class="af-nexus-comment-top-v2">
 
-                      <div>
-                        <strong>
-                          ${afNexusEscapeV2(
-                            r.student_name || "Student"
-                          )}
-                        </strong>
+  <div class="af-nexus-user-block-v2">
 
-                        <small>
-                          ${afNexusEscapeV2(
-                            afNexusTimeV2(
-                              r.created_at
-                            )
-                          )}
-                        </small>
+    <div class="af-nexus-avatar-v3">
+      ${afNexusInitialsV2(r.student_name)}
+    </div>
+
+    <div class="af-nexus-user-meta-v2">
+
+      <strong>
+        ${afNexusEscapeV2(
+          r.student_name || "Student"
+        )}
+      </strong>
+
+      <small>
+        ${afNexusEscapeV2(
+          afNexusTimeV2(
+            r.created_at
+          )
+        )}
+      </small>
+
+    </div>
+
+  </div>
                       </div>
 
                       <button
