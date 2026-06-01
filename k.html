@@ -4006,93 +4006,41 @@
 [data-theme="dark"] .af-nexus-view-replies-v2{
   color:#94a3b8;
 }
-    /* =========================================================
-   AF NEXUS WRITE BUTTON
-   FLOATING ABOVE BOTTOM NAV
-========================================================= */
+   .af-nexus-write-btn-v2 {
+  position: fixed !important;
+  z-index: 9999 !important;
+  width: 58px !important;
+  height: 58px !important;
+  border: 0 !important;
+  border-radius: 22px !important;
+  cursor: pointer !important;
+  display: grid !important;
+  place-items: center !important;
+  font-size: 24px !important;
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #2563eb, #4f46e5) !important;
+  box-shadow: 0 18px 34px rgba(37,99,235,0.30) !important;
+  -webkit-tap-highlight-color: transparent !important;
 
-:root{
-  --af-app-max-width: 430px;
-  --af-write-gap: 18px;
-  --af-bottom-nav-height: 72px;
+  /* FIXED POSITION */
+  right: 18px !important;
+  bottom: 92px !important;
+
+  /* IMPORTANT */
+  transform: translateZ(0) !important;
+  pointer-events: auto !important;
 }
-
-.af-nexus-write-btn-v2{
-  position:fixed;
-  z-index:9999;
-
-  width:58px;
-  height:58px;
-
-  display:grid;
-  place-items:center;
-
-  border:none;
-  border-radius:20px;
-
-  color:#fff;
-  font-size:24px;
-
-  background:linear-gradient(
-    135deg,
-    #2563eb,
-    #4f46e5
-  );
-
-  box-shadow:
-    0 14px 32px rgba(37,99,235,.28);
-
-  right:max(
-    var(--af-write-gap),
-    calc(
-      (100vw - var(--af-app-max-width)) / 2
-      + var(--af-write-gap)
-    )
-  );
-
-  bottom:calc(
-    var(--af-bottom-nav-height)
-    + 14px
-    + env(safe-area-inset-bottom)
-  );
-}
-
-/* Mobile */
-
-@media (max-width:767px){
-
-  .af-nexus-write-btn-v2{
-    right:max(
-      16px,
-      env(safe-area-inset-right)
-    );
-
-    bottom:calc(
-      var(--af-bottom-nav-height)
-      + 12px
-      + env(safe-area-inset-bottom)
-    );
+  @media (min-width: 768px) {
+  .af-nexus-write-btn-v2 {
+    right: calc((100vw - min(100%, 760px)) / 2 + 18px) !important;
+    bottom: 92px !important;
   }
-
 }
-
-/* Desktop */
-
-@media (min-width:768px){
-
-  .af-nexus-write-btn-v2{
-
-    right:max(
-      18px,
-      calc(
-        (100vw - 430px) / 2
-        + 18px
-      )
-    );
-
-    bottom:86px;
+  @media (max-width: 767px) {
+  .af-nexus-write-btn-v2 {
+    right: 16px !important;
+    bottom: 92px !important;
   }
-
 }
 /* =========================================================
    DARK MODE — [data-theme="dark"] (matches student module)
