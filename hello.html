@@ -2595,160 +2595,6 @@
     color: #86efac;
   }
 }
-
-
-/* ==============================
-   FINAL VISIBILITY + THEME OVERRIDES - AF
-   Single source of truth. Replaces old duplicate text-fix blocks.
-================================ */
-
-#studentaf,
-#studentaf * {
-  box-sizing: border-box;
-  text-rendering: geometricPrecision;
-  -webkit-font-smoothing: antialiased;
-}
-
-#studentaf {
-  color-scheme: light dark;
-}
-
-#studentaf .student-titleaf,
-#studentaf .student-subtitleaf,
-#studentaf .student-helpaf,
-#studentaf .student-labelaf,
-#studentaf .student-tabaf,
-#studentaf .student-noteaf {
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-#studentaf .student-titleaf {
-  color: #000000 !important;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) !important;
-}
-
-#studentaf .student-subtitleaf,
-#studentaf .student-helpaf,
-#studentaf .student-labelaf,
-#studentaf .student-tabaf,
-#studentaf .student-noteaf {
-  color: #000000 !important;
-}
-
-#studentaf .student-noteaf b {
-  color: #15803d !important;
-}
-
-#studentaf .student-inputaf {
-  background: #020617 !important;
-  color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
-  border: 2px solid #16a34a !important;
-  caret-color: #ffffff !important;
-}
-
-#studentaf .student-inputaf::placeholder {
-  color: #e5e7eb !important;
-  -webkit-text-fill-color: #e5e7eb !important;
-  opacity: 1 !important;
-}
-
-#studentaf .student-main-btnaf,
-#studentaf .student-tabaf.active {
-  background: linear-gradient(135deg, #15803d, #22c55e) !important;
-  color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
-}
-
-#studentaf .student-link-btnaf {
-  background: linear-gradient(135deg, #7f1d1d, #b91c1c) !important;
-  color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
-  border: 1px solid rgba(255, 255, 255, 0.18) !important;
-  box-shadow: 0 12px 28px rgba(127, 29, 29, 0.35) !important;
-}
-
-#studentaf .student-link-btnaf:hover {
-  background: linear-gradient(135deg, #991b1b, #dc2626) !important;
-}
-
-@media (prefers-color-scheme: dark) {
-  #studentaf .student-titleaf,
-  #studentaf .student-subtitleaf,
-  #studentaf .student-helpaf,
-  #studentaf .student-labelaf,
-  #studentaf .student-tabaf,
-  #studentaf .student-noteaf {
-    color: #ffffff !important;
-    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.75) !important;
-  }
-
-  #studentaf .student-inputaf {
-    background: #ffffff !important;
-    color: #000000 !important;
-    -webkit-text-fill-color: #000000 !important;
-    border: 2px solid #22c55e !important;
-    caret-color: #000000 !important;
-  }
-
-  #studentaf .student-inputaf::placeholder {
-    color: #374151 !important;
-    -webkit-text-fill-color: #374151 !important;
-  }
-}
-
-html.dark #studentaf .student-titleaf,
-html.dark-mode #studentaf .student-titleaf,
-body.dark #studentaf .student-titleaf,
-body.dark-mode #studentaf .student-titleaf,
-html[data-theme="dark"] #studentaf .student-titleaf,
-body[data-theme="dark"] #studentaf .student-titleaf,
-html.dark #studentaf .student-subtitleaf,
-html.dark-mode #studentaf .student-subtitleaf,
-body.dark #studentaf .student-subtitleaf,
-body.dark-mode #studentaf .student-subtitleaf,
-html[data-theme="dark"] #studentaf .student-subtitleaf,
-body[data-theme="dark"] #studentaf .student-subtitleaf,
-html.dark #studentaf .student-helpaf,
-html.dark-mode #studentaf .student-helpaf,
-body.dark #studentaf .student-helpaf,
-body.dark-mode #studentaf .student-helpaf,
-html[data-theme="dark"] #studentaf .student-helpaf,
-body[data-theme="dark"] #studentaf .student-helpaf,
-html.dark #studentaf .student-labelaf,
-html.dark-mode #studentaf .student-labelaf,
-body.dark #studentaf .student-labelaf,
-body.dark-mode #studentaf .student-labelaf,
-html[data-theme="dark"] #studentaf .student-labelaf,
-body[data-theme="dark"] #studentaf .student-labelaf,
-html.dark #studentaf .student-tabaf,
-html.dark-mode #studentaf .student-tabaf,
-body.dark #studentaf .student-tabaf,
-body.dark-mode #studentaf .student-tabaf,
-html[data-theme="dark"] #studentaf .student-tabaf,
-body[data-theme="dark"] #studentaf .student-tabaf,
-html.dark #studentaf .student-noteaf,
-html.dark-mode #studentaf .student-noteaf,
-body.dark #studentaf .student-noteaf,
-body.dark-mode #studentaf .student-noteaf,
-html[data-theme="dark"] #studentaf .student-noteaf,
-body[data-theme="dark"] #studentaf .student-noteaf {
-  color: #ffffff !important;
-}
-
-html.dark #studentaf .student-inputaf,
-html.dark-mode #studentaf .student-inputaf,
-body.dark #studentaf .student-inputaf,
-body.dark-mode #studentaf .student-inputaf,
-html[data-theme="dark"] #studentaf .student-inputaf,
-body[data-theme="dark"] #studentaf .student-inputaf {
-  background: #ffffff !important;
-  color: #000000 !important;
-  -webkit-text-fill-color: #000000 !important;
-}
-
-
 /* ==============================
    STUDENT DASHBOARD / COURSES - AF
 ================================ */
@@ -5657,66 +5503,798 @@ document.addEventListener("DOMContentLoaded", function() {
   openBatchSectionaf();
 });
 
-  /* ─────────────────────────────────────────────────────────────
-       SECTION 18: LOGIN AUTH & COURSE CARD
-       ─────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   SECTION 17: BATCHES PURCHASE
+   ─────────────────────────────────────────────────────────── */
 
-/* ==============================
-   REQUIRED STANDALONE SAFETY HELPERS - AF
-================================ */
+const RAZORPAY_KEY_ID = "rzp_test_SpO0DdKfoz5wRu";
+
+const afBatchPrice = 49;
+const afBatchOldPrice = 99;
+const afBatchDiscount = Math.round(((afBatchOldPrice - afBatchPrice) / afBatchOldPrice) * 100);
+
+let afSelectedBatch = null;
+let afEnrolledCourseSlugs = [];
+
+const afCourseIdBySlug = {
+  "ai-prompt-engineering": "0e6d4d11-0afc-4070-bbf2-23950cc71da0",
+  "ai-coding": "ad0b6211-f5d1-4d31-982f-386f286778bf",
+  "graphic-design": "483ed390-1923-4198-a003-0ff46ec8dba9",
+  "freelancing": "7fd5fc14-1ce8-46f8-9cbb-5fab1abb5cd9",
+  "video-editing": "4cdd5351-b370-4d07-8841-b4024a0bcb27"
+};
+
+const afBatches = [
+  {
+    id: "video-editing",
+    courseSlug: "video-editing",
+    courseId: afCourseIdBySlug["video-editing"],
+    image: "Course 1.jpeg",
+    category: "Target",
+    language: "HINGLISH",
+    title: "Video & Media Editing Mastery",
+    subtitle: "Learn editing, storytelling, reels, shorts, and professional content creation.",
+    status: "Beta Mode",
+    startText: "Test Payment",
+    price: afBatchPrice,
+    oldPrice: afBatchOldPrice,
+    details: "A practical batch for learners who want to build strong video editing skills for reels, shorts, YouTube content, social media creatives, and professional digital projects.",
+    learn: [
+      "Timeline editing and clean workflow",
+      "Reels, shorts, and social media video structure",
+      "Transitions, captions, audio sync, and color correction",
+      "Content planning and storytelling basics",
+      "Project-based editing practice"
+    ],
+    facilities: [
+      "Chapter-wise learning",
+      "Lecture and notes support",
+      "Practice-based tasks",
+      "Future certificate support",
+      "Batch access after successful purchase"
+    ]
+  },
+  {
+    id: "graphic-design",
+    courseSlug: "graphic-design",
+    courseId: afCourseIdBySlug["graphic-design"],
+    image: "Course 2.jpeg",
+    category: "Target",
+    language: "HINGLISH",
+    title: "Creative & Graphic Design Mastery",
+    subtitle: "Design posters, thumbnails, banners, brand creatives, and visual content.",
+    status: "Beta Mode",
+    startText: "Test Payment",
+    price: afBatchPrice,
+    oldPrice: afBatchOldPrice,
+    details: "A creative batch focused on design fundamentals, social media creatives, thumbnails, posters, brand layouts, typography, and portfolio-ready visual design practice.",
+    learn: [
+      "Design principles and layout basics",
+      "Poster, banner, and thumbnail design",
+      "Typography, color balance, and spacing",
+      "Brand-style social media creatives",
+      "Portfolio-focused design practice"
+    ],
+    facilities: [
+      "Design practice tasks",
+      "Creative assignments",
+      "Notes for quick revision",
+      "Portfolio guidance",
+      "Future project review"
+    ]
+  },
+  {
+    id: "ai-coding",
+    courseSlug: "ai-coding",
+    courseId: afCourseIdBySlug["ai-coding"],
+    image: "Course 3.jpeg",
+    category: "Target",
+    language: "HINGLISH",
+    title: "AI Coding & Logic Foundation",
+    subtitle: "Build coding logic, AI basics, prompts, and beginner-friendly programming thinking.",
+    status: "Beta Mode",
+    startText: "Test Payment",
+    price: afBatchPrice,
+    oldPrice: afBatchOldPrice,
+    details: "A beginner-friendly batch designed to build programming thinking, logic, AI-assisted coding workflow, problem solving, and project structure from the ground level.",
+    learn: [
+      "Logic building and problem solving",
+      "Programming basics for beginners",
+      "AI-assisted coding workflow",
+      "Prompt thinking for coding tasks",
+      "Mini project planning and structure"
+    ],
+    facilities: [
+      "Beginner-friendly explanations",
+      "Practice questions",
+      "Chapter-wise notes",
+      "Mini project ideas",
+      "Future coding dashboard support"
+    ]
+  },
+  {
+    id: "freelancing",
+    courseSlug: "freelancing",
+    courseId: afCourseIdBySlug["freelancing"],
+    image: "Course 4.jpeg",
+    category: "Target",
+    language: "HINGLISH",
+    title: "Freelancing & Monetization Roadmap",
+    subtitle: "Understand digital earning, freelancing basics, client work, and skill monetization.",
+    status: "Beta Mode",
+    startText: "Test Payment",
+    price: afBatchPrice,
+    oldPrice: afBatchOldPrice,
+    details: "A practical batch for students who want to understand freelancing basics, profile building, client communication, service packaging, pricing, and online earning discipline.",
+    learn: [
+      "Freelancing basics and service selection",
+      "Profile and portfolio building",
+      "Client communication fundamentals",
+      "Pricing and delivery discipline",
+      "Online earning mindset and roadmap"
+    ],
+    facilities: [
+      "Freelancing roadmap",
+      "Profile guidance",
+      "Notes and examples",
+      "Practical task ideas",
+      "Future mentorship support"
+    ]
+  },
+  {
+    id: "ai-prompt-engineering",
+    courseSlug: "ai-prompt-engineering",
+    courseId: afCourseIdBySlug["ai-prompt-engineering"],
+    image: "Course 5.jpeg",
+    category: "Target",
+    language: "HINGLISH",
+    title: "AI & Prompt Engineering",
+    subtitle: "Master AI tools, prompt structure, productivity workflows, and practical automation thinking.",
+    status: "Beta Mode",
+    startText: "Test Payment",
+    price: afBatchPrice,
+    oldPrice: afBatchOldPrice,
+    details: "A modern AI-focused batch covering prompt engineering, AI tool usage, structured prompting, productivity workflows, content generation, research support, and practical AI implementation for students and creators.",
+    learn: [
+      "Prompt engineering fundamentals",
+      "AI tools for study, content, and productivity",
+      "Structured prompts for better output",
+      "Research, writing, and automation workflows",
+      "Practical AI use cases for real projects"
+    ],
+    facilities: [
+      "Prompt templates and examples",
+      "Practice-based AI tasks",
+      "Chapter-wise notes",
+      "Real workflow demonstrations",
+      "Future AI project support"
+    ]
+  }
+];
+
+function afBatchEl(id) {
+  return document.getElementById(id);
+}
+
+function getCurrentStudentaf() {
+  return {
+    id: localStorage.getItem("af_student_uuid") || "",
+    student_id: localStorage.getItem("af_student_id") || "",
+    mobile: localStorage.getItem("af_student_mobile") || "",
+    name: localStorage.getItem("af_student_name") || "Student",
+    email: localStorage.getItem("af_student_email") || ""
+  };
+}
+
+function isBatchEnrolledaf(courseSlug) {
+  return afEnrolledCourseSlugs.includes(courseSlug);
+}
+
+function afBatchBackend() {
+  if (typeof studentDb !== "undefined") return studentDb;
+  return null;
+}
+
+async function afBatchEdgeCall(functionName, payload) {
+  const backend = afBatchBackend();
+
+  if (!navigator.onLine) {
+    return { ok: false, message: "No internet connection." };
+  }
+
+  if (!backend) {
+    return { ok: false, message: "No internet connection." };
+  }
+
+  try {
+    const { data, error } = await backend.functions.invoke(functionName, {
+      body: payload || {}
+    });
+
+    if (error) {
+      console.error("AF Batch edge error:", error);
+      return { ok: false, message: "No internet connection." };
+    }
+
+    if (!data) {
+      return { ok: false, message: "No internet connection." };
+    }
+
+    return data;
+
+  } catch (err) {
+    console.error("AF Batch edge catch:", err);
+    return { ok: false, message: "No internet connection." };
+  }
+}
+
+function ensureAfToastWrap() {
+  let wrap = document.getElementById("afToastWrap");
+
+  if (!wrap) {
+    wrap = document.createElement("div");
+    wrap.id = "afToastWrap";
+    wrap.className = "af-toast-wrap";
+    document.body.appendChild(wrap);
+  }
+
+  return wrap;
+}
+
+function showAfToast(message, type = "info", title = "") {
+  const wrap = ensureAfToastWrap();
+  if (!wrap) return;
+
+  const icons = { success: "✓", error: "!", warning: "!", info: "i" };
+  const titles = { success: "Success", error: "Something went wrong", warning: "Notice", info: "Info" };
+
+  wrap.innerHTML = "";
+
+  const toast = document.createElement("div");
+  toast.className = `af-toast af-toast-${type}`;
+
+  toast.innerHTML = `
+    <div class="af-toast-icon">${icons[type] || icons.info}</div>
+    <div class="af-toast-content">
+      <p class="af-toast-title">${title || titles[type] || "Info"}</p>
+      <p class="af-toast-msg">${message}</p>
+    </div>
+    <button class="af-toast-close" type="button" aria-label="Close">×</button>
+  `;
+
+  wrap.appendChild(toast);
+
+  const closeToast = function () {
+    toast.style.animation = "afToastOut 0.22s ease forwards";
+    setTimeout(function () {
+      if (toast && toast.parentNode) {
+        toast.parentNode.removeChild(toast);
+      }
+    }, 220);
+  };
+
+  const closeBtn = toast.querySelector(".af-toast-close");
+  if (closeBtn) closeBtn.addEventListener("click", closeToast);
+
+  setTimeout(closeToast, 2600);
+}
+
+/* ── Backend: Check Course ───────────────────────────────── */
+
+async function checkBatchCourseExistsaf(batch) {
+  if (!batch || !batch.courseId) {
+    throw new Error("Course ID missing for this batch.");
+  }
+
+  const result = await afBatchEdgeCall("batch-course-check-af", {
+    course_id: batch.courseId,
+    course_slug: batch.courseSlug
+  });
+
+  if (!result || !result.ok) {
+    throw new Error(result?.message || "Could not verify course.");
+  }
+
+  return true;
+}
+
+/* ── Backend: Load Enrolled Slugs ────────────────────────── */
+
+async function loadEnrolledBatchSlugsaf() {
+  const student = getCurrentStudentaf();
+  afEnrolledCourseSlugs = [];
+
+  if (!student.id) return [];
+
+  try {
+    const result = await afBatchEdgeCall("batch-enrolled-af", {
+      student_id: student.id
+    });
+
+    if (!result || !result.ok) {
+      console.error("Enrolled check error:", result);
+      return [];
+    }
+
+    const enrolledCourseIds = Array.isArray(result.course_ids) ? result.course_ids : [];
+
+    afEnrolledCourseSlugs = afBatches
+      .filter(function (batch) { return enrolledCourseIds.includes(batch.courseId); })
+      .map(function (batch) { return batch.courseSlug; });
+
+    return afEnrolledCourseSlugs;
+
+  } catch (err) {
+    console.error("loadEnrolledBatchSlugsaf error:", err);
+    return [];
+  }
+}
+
+async function openBatchSectionaf() {
+  showBatchListaf();
+  await loadEnrolledBatchSlugsaf();
+  renderBatchesaf(afBatches);
+}
+
+function showBatchListaf() {
+  const list = afBatchEl("batchListBoxaf");
+  const details = afBatchEl("batchDetailsBoxaf");
+
+  if (details) details.classList.add("hidden-box");
+  if (list) list.classList.remove("hidden-box");
+}
+
+function backToBatchListaf() {
+  showBatchListaf();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function renderBatchesaf(list) {
+  const box = afBatchEl("batchCardsaf");
+  const count = afBatchEl("batchCountTextaf");
+
+  if (!box) return;
+
+  if (count) count.textContent = list.length + " batches available";
+
+  if (!list.length) {
+    box.innerHTML = '<p class="empty-textaf">No batch found.</p>';
+    return;
+  }
+
+  box.innerHTML = list.map(function (batch) {
+    const enrolled = isBatchEnrolledaf(batch.courseSlug);
+
+    return `
+      <div class="batch-cardaf ${enrolled ? "batch-enrolled-cardaf" : ""}">
+        <div class="batch-img-wrapaf" onclick="openBatchDetailsaf('${batch.id}')">
+          <span class="batch-loaderaf"></span>
+          <img class="batch-imgaf" src="${batch.image}" alt="${batch.title}" loading="lazy"
+            onload="this.previousElementSibling.style.display='none'"
+            onerror="this.previousElementSibling.style.display='none'">
+        </div>
+
+        <div class="batch-card-bodyaf">
+          <div class="batch-card-metaaf">
+            <p class="batch-categoryaf">${batch.category}</p>
+            <span class="batch-languageaf">${batch.language}</span>
+          </div>
+
+          <h3 class="batch-titleaf" onclick="openBatchDetailsaf('${batch.id}')">${batch.title}</h3>
+          <p class="batch-subaf">${batch.subtitle}</p>
+
+          <div class="batch-statusaf">
+            <span class="batch-dotaf ${enrolled ? "batch-dot-enrolledaf" : ""}"></span>
+            <span>${enrolled ? "Enrolled" : batch.status}</span>
+            <span>|</span>
+            <span>${enrolled ? "Access active" : batch.startText}</span>
+          </div>
+
+          ${enrolled ? `<div class="batch-enrolled-tagaf">✓ Already Enrolled</div>` : ""}
+
+          <div class="batch-price-actionaf">
+            <div class="batch-priceaf">
+              <div class="batch-price-lineaf">
+                <strong>₹${batch.price}</strong>
+                <del>₹${batch.oldPrice}</del>
+              </div>
+              <span class="batch-offaf">${afBatchDiscount}% OFF</span>
+            </div>
+
+            <div class="batch-buy-rowaf">
+              ${enrolled
+                ? `<button class="batch-buy-btnaf batch-enrolled-btnaf" type="button" disabled>Already Enrolled</button>`
+                : `<button class="batch-buy-btnaf" type="button" onclick="buyBatchDirectaf('${batch.id}', this)">Buy Now</button>`
+              }
+              <button class="batch-arrowaf" type="button" onclick="openBatchDetailsaf('${batch.id}')">›</button>
+            </div>
+          </div>
+        </div>
+      </div>`;
+  }).join("");
+}
+
+function filterBatchesaf() {
+  const input = afBatchEl("batchSearchInputaf");
+  const query = input ? input.value.trim().toLowerCase() : "";
+
+  if (!query) {
+    renderBatchesaf(afBatches);
+    return;
+  }
+
+  const filtered = afBatches.filter(function (batch) {
+    return (
+      batch.title.toLowerCase().includes(query) ||
+      batch.subtitle.toLowerCase().includes(query) ||
+      batch.courseSlug.toLowerCase().includes(query)
+    );
+  });
+
+  renderBatchesaf(filtered);
+}
+
+function openBatchDetailsaf(batchId) {
+  const batch = afBatches.find(function (item) { return item.id === batchId; });
+
+  if (!batch) {
+    showAfToast("Batch not found.", "error", "Batch Error");
+    return;
+  }
+
+  afSelectedBatch = batch;
+
+  const list = afBatchEl("batchListBoxaf");
+  const details = afBatchEl("batchDetailsBoxaf");
+
+  if (list) list.classList.add("hidden-box");
+  if (details) details.classList.remove("hidden-box");
+
+  const enrolled = isBatchEnrolledaf(batch.courseSlug);
+
+  const img = afBatchEl("batchDetailImageaf");
+  if (img) img.src = batch.image;
+
+  if (afBatchEl("batchDetailCategoryaf")) afBatchEl("batchDetailCategoryaf").textContent = batch.category;
+  if (afBatchEl("batchDetailLanguageaf")) afBatchEl("batchDetailLanguageaf").textContent = batch.language;
+  if (afBatchEl("batchDetailTitleaf")) afBatchEl("batchDetailTitleaf").textContent = batch.title;
+  if (afBatchEl("batchDetailDescaf")) afBatchEl("batchDetailDescaf").textContent = batch.subtitle;
+  if (afBatchEl("batchDetailPriceaf")) afBatchEl("batchDetailPriceaf").textContent = "₹" + batch.price;
+  if (afBatchEl("batchDetailOldPriceaf")) afBatchEl("batchDetailOldPriceaf").textContent = "₹" + batch.oldPrice;
+  if (afBatchEl("batchDetailOffaf")) afBatchEl("batchDetailOffaf").textContent = afBatchDiscount + "% OFF";
+  if (afBatchEl("batchFullDetailsaf")) afBatchEl("batchFullDetailsaf").textContent = batch.details;
+
+  if (afBatchEl("batchLearnListaf")) {
+    afBatchEl("batchLearnListaf").innerHTML = batch.learn.map(function (item) {
+      return `<li>${item}</li>`;
+    }).join("");
+  }
+
+  if (afBatchEl("batchFacilityListaf")) {
+    afBatchEl("batchFacilityListaf").innerHTML = batch.facilities.map(function (item) {
+      return `<li>${item}</li>`;
+    }).join("");
+  }
+
+  const btn = afBatchEl("batchDetailBuyBtnaf");
+  if (btn) {
+    if (enrolled) {
+      btn.textContent = "Already Enrolled";
+      btn.disabled = true;
+      btn.classList.add("batch-enrolled-btnaf");
+    } else {
+      btn.textContent = "Buy Now";
+      btn.disabled = false;
+      btn.classList.remove("batch-enrolled-btnaf");
+    }
+  }
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function buyBatchDirectaf(batchId, btn) {
+  const batch = afBatches.find(function (item) { return item.id === batchId; });
+
+  if (!batch) {
+    showAfToast("Batch not found.", "error", "Batch Error");
+    return;
+  }
+
+  if (isBatchEnrolledaf(batch.courseSlug)) {
+    showAfToast("You already have access to this batch.", "success", "Already Enrolled");
+    return;
+  }
+
+  afSelectedBatch = batch;
+  startBatchPaymentaf(batch, btn);
+}
+
+function buySelectedBatchaf() {
+  if (!afSelectedBatch) {
+    showAfToast("Please select a batch first.", "warning", "Select Batch");
+    return;
+  }
+
+  if (isBatchEnrolledaf(afSelectedBatch.courseSlug)) {
+    showAfToast("You already have access to this batch.", "success", "Already Enrolled");
+    return;
+  }
+
+  const btn = afBatchEl("batchDetailBuyBtnaf");
+  startBatchPaymentaf(afSelectedBatch, btn);
+}
+
+async function startBatchPaymentaf(batch, btn) {
+  const student = getCurrentStudentaf();
+
+  if (!student.id) {
+    showAfToast("Please login in AcademeForge app first, then open Batches.", "warning", "Login Required");
+    return;
+  }
+
+  if (!batch.courseId) {
+    showAfToast("Course ID missing for this batch.", "error", "Course Error");
+    return;
+  }
+
+  if (typeof Razorpay === "undefined") {
+    showAfToast("Razorpay checkout script not loaded.", "error", "Payment Error");
+    return;
+  }
+
+  if (!RAZORPAY_KEY_ID || RAZORPAY_KEY_ID === "YOUR_RAZORPAY_KEY_ID") {
+    showAfToast("Razorpay Key ID is not added yet.", "error", "Payment Error");
+    return;
+  }
+
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = "Checking...";
+  }
+
+  try {
+    await checkBatchCourseExistsaf(batch);
+
+    if (btn) btn.textContent = "Opening Payment...";
+
+    const options = {
+      key: RAZORPAY_KEY_ID,
+      amount: Number(batch.price) * 100,
+      currency: "INR",
+      name: "AcademeForge",
+      description: batch.title,
+      image: "",
+      prefill: {
+        name: student.name,
+        email: student.email,
+        contact: student.mobile
+      },
+      notes: {
+        student_uuid: student.id,
+        student_id: student.student_id,
+        course_id: batch.courseId,
+        course_slug: batch.courseSlug,
+        batch_title: batch.title
+      },
+      method: {
+        upi: true,
+        card: true,
+        netbanking: true,
+        wallet: true,
+        paylater: false,
+        emi: false
+      },
+      theme: { color: "#16a34a" },
+      handler: async function (response) {
+        try {
+          if (btn) btn.textContent = "Adding Access...";
+
+          await grantBatchAccessaf(batch, response);
+          await loadEnrolledBatchSlugsaf();
+
+          showAfToast("Your batch access has been added successfully.", "success", "Payment Successful");
+
+          renderBatchesaf(afBatches);
+
+          if (typeof loadStudentCoursesaf === "function") {
+            await loadStudentCoursesaf();
+          }
+
+          backToBatchListaf();
+
+        } catch (err) {
+          console.log("After payment error:", err);
+          showAfToast(err.message || "Payment done, but access update failed.", "error", "Access Error");
+
+          if (btn) {
+            btn.disabled = false;
+            btn.textContent = "Buy Now";
+          }
+        }
+      },
+      modal: {
+        ondismiss: function () {
+          if (btn) {
+            btn.disabled = false;
+            btn.textContent = "Buy Now";
+          }
+          showAfToast("Payment cancelled. You can try again anytime.", "warning", "Payment Cancelled");
+        }
+      }
+    };
+
+    const rzp = new Razorpay(options);
+
+    rzp.on("payment.failed", function (response) {
+      console.error("Razorpay failed:", response);
+
+      let message = "Payment failed. Please try again.";
+      if (response && response.error && response.error.description) {
+        message = response.error.description;
+      }
+
+      showAfToast(message, "error", "Payment Failed");
+
+      if (btn) {
+        btn.disabled = false;
+        btn.textContent = "Buy Now";
+      }
+    });
+
+    rzp.open();
+
+  } catch (err) {
+    console.log("Start batch payment error:", err);
+    showAfToast(err.message || "Something went wrong.", "error", "Course Error");
+
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = "Buy Now";
+    }
+  }
+}
+
+/* ── Backend: Grant Access ───────────────────────────────── */
+
+async function grantBatchAccessaf(batch, paymentResponse) {
+  const student = getCurrentStudentaf();
+
+  if (!student.id) throw new Error("Student login session not found.");
+  if (!batch.courseId) throw new Error("Course ID missing.");
+
+  const result = await afBatchEdgeCall("batch-grant-access-af", {
+    student_uuid: student.id,
+    student_id: student.student_id,
+    student_name: student.name,
+    mobile: student.mobile,
+    email: student.email,
+    course_id: batch.courseId,
+    course_slug: batch.courseSlug,
+    batch_id: batch.id,
+    batch_title: batch.title,
+    amount: batch.price,
+    currency: "INR",
+    razorpay_payment_id: paymentResponse.razorpay_payment_id || "",
+    razorpay_order_id: paymentResponse.razorpay_order_id || "",
+    razorpay_signature: paymentResponse.razorpay_signature || ""
+  });
+
+  if (!result || !result.ok) {
+    throw new Error(result?.message || "Access update failed.");
+  }
+
+  return true;
+}
+
+async function debugBatchCoursesaf() {
+  const result = await afBatchEdgeCall("batch-course-check-af", { debug: true });
+  console.log("Batch course debug:", result);
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  openBatchSectionaf();
+});
+
+/* ─────────────────────────────────────────────────────────────
+   SECTION 18: STUDENT AUTH & COURSE DASHBOARD
+   ─────────────────────────────────────────────────────────── */
+
+/* ── Device Helpers ──────────────────────────────────────── */
 
 function getAFDeviceId() {
   try {
-    var key = "af_device_id";
-    var existing = localStorage.getItem(key);
+    const key = "af_device_id";
+    const existing = localStorage.getItem(key);
     if (existing) return existing;
 
-    var generated = "afdev_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 12);
+    const generated = "afdev_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 12);
     localStorage.setItem(key, generated);
     return generated;
-  } catch (error) {
+  } catch (err) {
     return "afdev_fallback_" + Date.now().toString(36);
   }
 }
 
 function getAFDeviceName() {
   try {
-    var ua = navigator.userAgent || "Unknown Device";
+    const ua = navigator.userAgent || "Unknown Device";
     if (/Android/i.test(ua)) return "Android WebView";
     if (/iPhone|iPad|iPod/i.test(ua)) return "iOS WebView";
     if (/Windows/i.test(ua)) return "Windows Browser";
     if (/Macintosh|Mac OS/i.test(ua)) return "Mac Browser";
     if (/Linux/i.test(ua)) return "Linux Browser";
     return "Web Browser";
-  } catch (error) {
+  } catch (err) {
     return "Web Browser";
   }
 }
 
-
-/* ==============================
-   NEW STUDENT SECTION JS - AF
-================================ */
+/* ── State ───────────────────────────────────────────────── */
 
 let afPendingCreateStudent = null;
 let afResetStudent = null;
 let afForgotOtpVerified = false;
 
-/* =========================
-   MESSAGE
-========================= */
+let afEnrolledCourses = [];
+let afSelectedCourse = null;
+let afSelectedChapterId = null;
+let afLearningMode = "lectures";
+
+/* ── Element Helper ──────────────────────────────────────── */
+
+function afEl(id) {
+  return document.getElementById(id);
+}
+
+function afSafe(value, fallback) {
+  if (value === null || value === undefined || value === "") return fallback || "";
+  return value;
+}
+
+/* ── Visibility System ───────────────────────────────────── */
+
+const AF_STUDENT_PANELS = [
+  "studentAuthCardaf",
+  "courseSelectBox",
+  "noCourseBoxaf",
+  "courseDetailsBoxaf",
+  "learningBoxaf",
+  "chapterBoxaf",
+  "contentBoxaf"
+];
+
+function hideAllStudentPanelsaf() {
+  AF_STUDENT_PANELS.forEach(function (id) {
+    const el = afEl(id);
+    if (el) el.classList.add("hidden-box");
+  });
+}
+
+function showStudentPanelaf(id) {
+  hideAllStudentPanelsaf();
+  const el = afEl(id);
+  if (el) el.classList.remove("hidden-box");
+}
+
+/* ── Message ─────────────────────────────────────────────── */
 
 function showStudentMessageaf(type, text) {
-  const box = document.getElementById("studentMessageaf");
+  const box = afEl("studentMessageaf");
   if (!box) return;
 
+  // Map "info" to a valid CSS class; ok and err are already defined
   box.className = "student-messageaf " + type;
   box.textContent = text || "";
 }
 
-/* =========================
-   BACKEND HELPERS
-========================= */
+function clearStudentMessageaf() {
+  const box = afEl("studentMessageaf");
+  if (!box) return;
+  box.className = "student-messageaf";
+  box.textContent = "";
+}
+
+/* ── Backend ─────────────────────────────────────────────── */
 
 function getStudentBackendaf() {
   if (typeof studentDb !== "undefined") return studentDb;
@@ -5731,17 +6309,11 @@ async function afStudentEdgeCall(functionName, payload) {
   const backend = getStudentBackendaf();
 
   if (!navigator.onLine) {
-    return {
-      ok: false,
-      message: "No internet connection."
-    };
+    return { ok: false, message: "No internet connection." };
   }
 
   if (!backend) {
-    return {
-      ok: false,
-      message: "Server connection failed. Please try again."
-    };
+    return { ok: false, message: "Server connection failed. Please try again." };
   }
 
   try {
@@ -5751,35 +6323,44 @@ async function afStudentEdgeCall(functionName, payload) {
 
     if (error) {
       console.error("AF Edge function error:", error);
-
-      return {
-        ok: false,
-        message: "No internet connection."
-      };
+      return { ok: false, message: "No internet connection." };
     }
 
     if (!data) {
-      return {
-        ok: false,
-        message: "No internet connection."
-      };
+      return { ok: false, message: "No internet connection." };
     }
 
     return data;
 
   } catch (err) {
     console.error("AF Edge function catch:", err);
-
-    return {
-      ok: false,
-      message: "No internet connection."
-    };
+    return { ok: false, message: "No internet connection." };
   }
 }
 
-/* =========================
-   CUSTOM EMAIL OTP - EDGE FUNCTION
-========================= */
+async function afCourseEdgeCall(functionName, payload) {
+  const backend = getStudentBackendaf();
+
+  if (!backend) {
+    return { ok: false, message: "Student backend is not connected." };
+  }
+
+  try {
+    const { data, error } = await backend.functions.invoke(functionName, {
+      body: payload || {}
+    });
+
+    if (error) return { ok: false, message: error.message || "Server request failed." };
+    if (!data) return { ok: false, message: "Empty server response." };
+
+    return data;
+
+  } catch (err) {
+    return { ok: false, message: err.message || "Server request failed." };
+  }
+}
+
+/* ── OTP Helpers ─────────────────────────────────────────── */
 
 async function sendCustomEmailOtpaf(email, mobile, purpose) {
   return await afStudentEdgeCall("student-send-otp-af", {
@@ -5797,70 +6378,60 @@ async function verifyCustomEmailOtpaf(email, otp, purpose) {
   });
 }
 
-/* =========================
-   SWITCH LOGIN / CREATE / FORGOT
-========================= */
+/* ── Mode Switcher ───────────────────────────────────────── */
 
 function switchStudentModeaf(mode) {
-  const loginBox = document.getElementById("studentLoginBoxaf");
-  const createBox = document.getElementById("studentCreateBoxaf");
-  const forgotBox = document.getElementById("studentForgotBoxaf");
+  const loginBox = afEl("studentLoginBoxaf");
+  const createBox = afEl("studentCreateBoxaf");
+  const forgotBox = afEl("studentForgotBoxaf");
+  const loginTabBtn = afEl("loginTabBtnaf");
+  const createTabBtn = afEl("createTabBtnaf");
+  const createOtpArea = afEl("createOtpAreaaf");
+  const forgotOtpArea = afEl("forgotOtpAreaaf");
+  const resetArea = afEl("resetPasswordAreaaf");
 
-  const loginTabBtn = document.getElementById("loginTabBtnaf");
-  const createTabBtn = document.getElementById("createTabBtnaf");
-
-  const createOtpArea = document.getElementById("createOtpAreaaf");
-  const forgotOtpArea = document.getElementById("forgotOtpAreaaf");
-  const resetArea = document.getElementById("resetPasswordAreaaf");
-
-  const msg = document.getElementById("studentMessageaf");
-  if (msg) {
-    msg.className = "student-messageaf";
-    msg.textContent = "";
-  }
+  clearStudentMessageaf();
 
   afPendingCreateStudent = null;
   afResetStudent = null;
   afForgotOtpVerified = false;
 
-  if (createOtpArea) createOtpArea.style.display = "none";
-  if (forgotOtpArea) forgotOtpArea.style.display = "none";
-  if (resetArea) resetArea.style.display = "none";
+  if (createOtpArea) createOtpArea.classList.add("hidden-box");
+  if (forgotOtpArea) forgotOtpArea.classList.add("hidden-box");
+  if (resetArea) resetArea.classList.add("hidden-box");
 
   if (!loginBox || !createBox || !forgotBox) {
     console.log("Student AF boxes missing");
     return;
   }
 
-  loginBox.style.display = "none";
-  createBox.style.display = "none";
-  forgotBox.style.display = "none";
+  loginBox.classList.add("hidden-box");
+  createBox.classList.add("hidden-box");
+  forgotBox.classList.add("hidden-box");
 
   if (loginTabBtn) loginTabBtn.classList.remove("active");
   if (createTabBtn) createTabBtn.classList.remove("active");
 
   if (mode === "login") {
-    loginBox.style.display = "block";
+    loginBox.classList.remove("hidden-box");
     if (loginTabBtn) loginTabBtn.classList.add("active");
   }
 
   if (mode === "create") {
-    createBox.style.display = "block";
+    createBox.classList.remove("hidden-box");
     if (createTabBtn) createTabBtn.classList.add("active");
   }
 
   if (mode === "forgot") {
-    forgotBox.style.display = "block";
+    forgotBox.classList.remove("hidden-box");
   }
 }
 
-/* =========================
-   LOGIN - EDGE FUNCTION
-========================= */
+/* ── Login ───────────────────────────────────────────────── */
 
 async function loginStudentaf() {
-  const idInput = document.getElementById("loginPhoneaf");
-  const passwordInput = document.getElementById("loginPasswordaf");
+  const idInput = afEl("loginPhoneaf");
+  const passwordInput = afEl("loginPasswordaf");
 
   const loginId = idInput ? idInput.value.trim() : "";
   const cleanLoginId = cleanPhoneaf(loginId);
@@ -5893,44 +6464,36 @@ async function loginStudentaf() {
     }
 
     if (!result.student) {
-  showStudentMessageaf("err", "Login failed. Student data not received.");
-  return;
-}
+      showStudentMessageaf("err", "Login failed. Student data not received.");
+      return;
+    }
 
-var finalSessionToken = result.session_token || result.login_token || "";
-var finalDeviceId = result.device_id || getAFDeviceId();
+    const finalSessionToken = result.session_token || result.login_token || "";
+    const finalDeviceId = result.device_id || getAFDeviceId();
 
-if (!finalSessionToken) {
-  showStudentMessageaf("err", "Login failed. Session token not received.");
-  return;
-}
+    if (!finalSessionToken) {
+      showStudentMessageaf("err", "Login failed. Session token not received.");
+      return;
+    }
 
-saveStudentSessionaf(result.student, finalSessionToken, finalDeviceId);
+    saveStudentSessionaf(result.student, finalSessionToken, finalDeviceId);
+    localStorage.setItem("af_last_login_at", new Date().toISOString());
 
-localStorage.setItem("af_last_login_at", new Date().toISOString());
+    openCourseSectionAfterLoginaf(result.student);
 
-console.log("LOGIN SAVED:", {
-  token: finalSessionToken,
-  device: finalDeviceId,
-  student: result.student.student_id || "",
-  mobile: result.student.mobile || result.student.phone || ""
-});
-
-openCourseSectionAfterLoginaf(result.student);
   } catch (err) {
     console.error("Login catch:", err);
     showStudentMessageaf("err", "Login failed: " + err.message);
   }
 }
-/* =========================
-   CREATE ID - SEND OTP
-========================= */
+
+/* ── Create ID — Send OTP ────────────────────────────────── */
 
 async function sendCreateOtpaf() {
-  const nameInput = document.getElementById("createNameaf");
-  const phoneInput = document.getElementById("createPhoneaf");
-  const emailInput = document.getElementById("createEmailaf");
-  const passwordInput = document.getElementById("createPasswordaf");
+  const nameInput = afEl("createNameaf");
+  const phoneInput = afEl("createPhoneaf");
+  const emailInput = afEl("createEmailaf");
+  const passwordInput = afEl("createPasswordaf");
 
   const name = nameInput ? nameInput.value.trim() : "";
   const mobile = phoneInput ? cleanPhoneaf(phoneInput.value) : "";
@@ -5999,8 +6562,8 @@ async function sendCreateOtpaf() {
       return;
     }
 
-    const otpArea = document.getElementById("createOtpAreaaf");
-    if (otpArea) otpArea.style.display = "block";
+    const otpArea = afEl("createOtpAreaaf");
+    if (otpArea) otpArea.classList.remove("hidden-box");
 
     showStudentMessageaf("ok", "OTP sent to your email. Please verify to create your Student ID.");
 
@@ -6010,12 +6573,10 @@ async function sendCreateOtpaf() {
   }
 }
 
-/* =========================
-   CREATE ID - VERIFY OTP + EDGE INSERT
-========================= */
+/* ── Create ID — Verify OTP ──────────────────────────────── */
 
 async function verifyCreateOtpAndCreateIdaf() {
-  const otpInput = document.getElementById("createOtpaf");
+  const otpInput = afEl("createOtpaf");
   const otp = otpInput ? otpInput.value.trim() : "";
 
   if (!afPendingCreateStudent) {
@@ -6023,12 +6584,7 @@ async function verifyCreateOtpAndCreateIdaf() {
     return;
   }
 
-  if (!otp) {
-    showStudentMessageaf("err", "Enter OTP.");
-    return;
-  }
-
-  if (otp.length < 4) {
+  if (!otp || otp.length < 4) {
     showStudentMessageaf("err", "Enter valid OTP.");
     return;
   }
@@ -6036,12 +6592,7 @@ async function verifyCreateOtpAndCreateIdaf() {
   showStudentMessageaf("info", "Verifying OTP and creating your Student ID...");
 
   try {
-    const payload = {
-      ...afPendingCreateStudent,
-      otp: otp,
-      purpose: "create"
-    };
-
+    const payload = { ...afPendingCreateStudent, otp: otp, purpose: "create" };
     const result = await afStudentEdgeCall("student-create-af", payload);
 
     if (!result || !result.ok) {
@@ -6056,11 +6607,9 @@ async function verifyCreateOtpAndCreateIdaf() {
 
     afPendingCreateStudent = null;
 
-    const otpArea = document.getElementById("createOtpAreaaf");
-    const otpInput2 = document.getElementById("createOtpaf");
-
-    if (otpArea) otpArea.style.display = "none";
-    if (otpInput2) otpInput2.value = "";
+    const otpArea = afEl("createOtpAreaaf");
+    if (otpArea) otpArea.classList.add("hidden-box");
+    if (otpInput) otpInput.value = "";
 
     saveStudentSessionaf(result.student);
     showStudentMessageaf("ok", "Student ID created successfully.");
@@ -6072,12 +6621,10 @@ async function verifyCreateOtpAndCreateIdaf() {
   }
 }
 
-/* =========================
-   FORGOT PASSWORD - FIND ACCOUNT BY EDGE
-========================= */
+/* ── Forgot Password — Find Account ──────────────────────── */
 
 async function findStudentForResetaf() {
-  const input = document.getElementById("forgotLoginaf");
+  const input = afEl("forgotLoginaf");
   const value = input ? input.value.trim() : "";
   const cleanValue = cleanPhoneaf(value);
 
@@ -6121,11 +6668,11 @@ async function findStudentForResetaf() {
       return;
     }
 
-    const otpArea = document.getElementById("forgotOtpAreaaf");
-    const resetArea = document.getElementById("resetPasswordAreaaf");
+    const otpArea = afEl("forgotOtpAreaaf");
+    const resetArea = afEl("resetPasswordAreaaf");
 
-    if (otpArea) otpArea.style.display = "block";
-    if (resetArea) resetArea.style.display = "none";
+    if (otpArea) otpArea.classList.remove("hidden-box");
+    if (resetArea) resetArea.classList.add("hidden-box");
 
     showStudentMessageaf("ok", "OTP sent to your registered email. Please verify.");
 
@@ -6135,12 +6682,10 @@ async function findStudentForResetaf() {
   }
 }
 
-/* =========================
-   FORGOT PASSWORD - VERIFY OTP
-========================= */
+/* ── Forgot Password — Verify OTP ────────────────────────── */
 
 async function verifyForgotOtpaf() {
-  const otpInput = document.getElementById("forgotOtpaf");
+  const otpInput = afEl("forgotOtpaf");
   const otp = otpInput ? otpInput.value.trim() : "";
 
   if (!afResetStudent) {
@@ -6148,12 +6693,7 @@ async function verifyForgotOtpaf() {
     return;
   }
 
-  if (!otp) {
-    showStudentMessageaf("err", "Enter OTP.");
-    return;
-  }
-
-  if (otp.length < 4) {
+  if (!otp || otp.length < 4) {
     showStudentMessageaf("err", "Enter valid OTP.");
     return;
   }
@@ -6161,11 +6701,7 @@ async function verifyForgotOtpaf() {
   showStudentMessageaf("info", "Verifying OTP...");
 
   try {
-    const verifyResult = await verifyCustomEmailOtpaf(
-      afResetStudent.email,
-      otp,
-      "reset"
-    );
+    const verifyResult = await verifyCustomEmailOtpaf(afResetStudent.email, otp, "reset");
 
     if (!verifyResult || !verifyResult.ok) {
       showStudentMessageaf("err", "Invalid OTP: " + (verifyResult?.message || "Verification failed."));
@@ -6174,8 +6710,8 @@ async function verifyForgotOtpaf() {
 
     afForgotOtpVerified = true;
 
-    const resetArea = document.getElementById("resetPasswordAreaaf");
-    if (resetArea) resetArea.style.display = "block";
+    const resetArea = afEl("resetPasswordAreaaf");
+    if (resetArea) resetArea.classList.remove("hidden-box");
 
     showStudentMessageaf("ok", "Email verified. Create your new password.");
 
@@ -6185,12 +6721,10 @@ async function verifyForgotOtpaf() {
   }
 }
 
-/* =========================
-   FORGOT PASSWORD - EDGE UPDATE
-========================= */
+/* ── Forgot Password — Reset ─────────────────────────────── */
 
 async function resetStudentPasswordaf() {
-  const newPasswordInput = document.getElementById("newPasswordaf");
+  const newPasswordInput = afEl("newPasswordaf");
   const newPassword = newPasswordInput ? newPasswordInput.value.trim() : "";
 
   if (!afResetStudent) {
@@ -6225,13 +6759,13 @@ async function resetStudentPasswordaf() {
     afResetStudent = null;
     afForgotOtpVerified = false;
 
-    const resetArea = document.getElementById("resetPasswordAreaaf");
-    const otpArea = document.getElementById("forgotOtpAreaaf");
-    const forgotOtpInput = document.getElementById("forgotOtpaf");
-    const newPasswordInput2 = document.getElementById("newPasswordaf");
+    const resetArea = afEl("resetPasswordAreaaf");
+    const otpArea = afEl("forgotOtpAreaaf");
+    const forgotOtpInput = afEl("forgotOtpaf");
+    const newPasswordInput2 = afEl("newPasswordaf");
 
-    if (resetArea) resetArea.style.display = "none";
-    if (otpArea) otpArea.style.display = "none";
+    if (resetArea) resetArea.classList.add("hidden-box");
+    if (otpArea) otpArea.classList.add("hidden-box");
     if (forgotOtpInput) forgotOtpInput.value = "";
     if (newPasswordInput2) newPasswordInput2.value = "";
 
@@ -6247,238 +6781,22 @@ async function resetStudentPasswordaf() {
   }
 }
 
-/* =========================
-   SESSION
-========================= */
+/* ── Session ─────────────────────────────────────────────── */
 
 function saveStudentSessionaf(student, sessionToken, deviceId) {
   localStorage.setItem("af_student_logged_in", "true");
-
   localStorage.setItem("af_session_token", sessionToken || "");
   localStorage.setItem("af_device_id", deviceId || getAFDeviceId());
-
   localStorage.setItem("af_student_uuid", student.id || "");
   localStorage.setItem("af_student_id", student.student_id || student.mobile || student.phone || "");
   localStorage.setItem("af_student_mobile", student.mobile || student.phone || "");
   localStorage.setItem("af_student_name", student.name || "Student");
   localStorage.setItem("af_student_email", student.email || "");
 }
-/* =========================
-   OPEN COURSE SECTION AFTER LOGIN
-========================= */
+
+/* ── Open Dashboard After Login ──────────────────────────── */
 
 function openCourseSectionAfterLoginaf(studentData) {
-  const authCard = document.getElementById("studentAuthCardaf");
-  const courseSelectBox = document.getElementById("courseSelectBox");
-  const courseDetailsBox = document.getElementById("courseDetailsBox");
-  const welcomeText = document.getElementById("studentWelcomeText");
-
-  if (authCard) {
-    authCard.style.display = "none";
-  }
-
-  if (courseDetailsBox) {
-    courseDetailsBox.classList.add("hidden-box");
-    courseDetailsBox.style.display = "none";
-  }
-
-  if (courseSelectBox) {
-    courseSelectBox.classList.remove("hidden-box");
-    courseSelectBox.style.display = "block";
-  } else {
-    console.log("courseSelectBox not found");
-    showStudentMessageaf("err", "Course section not found.");
-    return;
-  }
-
-  if (welcomeText) {
-    welcomeText.textContent = "Welcome " + ((studentData && studentData.name) || "Student");
-  }
-
-  if (typeof renderCourses === "function") {
-    renderCourses();
-  }
-
-  if (typeof loadCourses === "function") {
-    loadCourses();
-  }
-
-  if (typeof loadStudentCourses === "function") {
-    loadStudentCourses(studentData);
-  }
-}
-
-/* =========================
-   LOGOUT
-========================= */
-
-function logoutStudent() {
-  localStorage.removeItem("af_student_logged_in");
-  localStorage.removeItem("af_student_uuid");
-  localStorage.removeItem("af_student_id");
-  localStorage.removeItem("af_student_mobile");
-  localStorage.removeItem("af_student_name");
-  localStorage.removeItem("af_student_email");
-
-  const authCard = document.getElementById("studentAuthCardaf");
-  const courseSelectBox = document.getElementById("courseSelectBox");
-  const courseDetailsBox = document.getElementById("courseDetailsBox");
-
-  if (courseSelectBox) {
-    courseSelectBox.classList.add("hidden-box");
-    courseSelectBox.style.display = "none";
-  }
-
-  if (courseDetailsBox) {
-    courseDetailsBox.classList.add("hidden-box");
-    courseDetailsBox.style.display = "none";
-  }
-
-  if (authCard) {
-    authCard.style.display = "block";
-  }
-
-  switchStudentModeaf("login");
-}
-
-/* =========================
-   AUTO LOGIN FROM LOCAL SESSION
-========================= */
-
-document.addEventListener("DOMContentLoaded", function () {
-  const loggedIn = localStorage.getItem("af_student_logged_in");
-
-  if (loggedIn === "true") {
-    const studentData = {
-      id: localStorage.getItem("af_student_uuid"),
-      student_id: localStorage.getItem("af_student_id"),
-      mobile: localStorage.getItem("af_student_mobile"),
-      name: localStorage.getItem("af_student_name"),
-      email: localStorage.getItem("af_student_email")
-    };
-
-    openCourseSectionAfterLoginaf(studentData);
-  } else {
-    switchStudentModeaf("login");
-  }
-});
-  
-/* ==============================
-   STUDENT COURSE DASHBOARD JS - AF
-   Secure Backend Fetch via Edge Functions
-
-   Edge Functions:
-   student-courses-af
-   student-chapters-af
-   student-lectures-af
-   student-notes-af
-================================ */
-
-let afEnrolledCourses = [];
-let afSelectedCourse = null;
-let afSelectedChapterId = null;
-let afLearningMode = "lectures";
-
-function afBackend() {
-  if (typeof studentDb !== "undefined") return studentDb;
-  return null;
-}
-
-function afEl(id) {
-  return document.getElementById(id);
-}
-
-function afSafe(value, fallback) {
-  if (value === null || value === undefined || value === "") return fallback || "";
-  return value;
-}
-
-async function afCourseEdgeCall(functionName, payload) {
-  const backend = afBackend();
-
-  if (!backend) {
-    return {
-      ok: false,
-      message: "Student backend is not connected."
-    };
-  }
-
-  try {
-    const { data, error } = await backend.functions.invoke(functionName, {
-      body: payload || {}
-    });
-
-    if (error) {
-      return {
-        ok: false,
-        message: error.message || "Server request failed."
-      };
-    }
-
-    if (!data) {
-      return {
-        ok: false,
-        message: "Empty server response."
-      };
-    }
-
-    return data;
-
-  } catch (err) {
-    return {
-      ok: false,
-      message: err.message || "Server request failed."
-    };
-  }
-}
-
-function hideStudentPanelsaf() {
-  const panels = [
-    "studentAuthCardaf",
-    "courseSelectBox",
-    "noCourseBoxaf",
-    "courseDetailsBoxaf",
-    "learningBoxaf",
-    "chapterBoxaf",
-    "contentBoxaf"
-  ];
-
-  panels.forEach(function (id) {
-    const el = afEl(id);
-    if (!el) return;
-
-    if (id === "studentAuthCardaf") {
-      el.style.display = "none";
-    } else {
-      el.classList.add("hidden-box");
-      el.style.display = "none";
-    }
-  });
-}
-
-function showStudentPanelaf(id) {
-  hideStudentPanelsaf();
-
-  const el = afEl(id);
-  if (!el) return;
-
-  if (id === "studentAuthCardaf") {
-    el.style.display = "block";
-  } else {
-    el.classList.remove("hidden-box");
-    el.style.display = "block";
-  }
-}
-
-/* ==============================
-   LOGIN SUCCESS OPEN COURSE AREA
-================================ */
-
-function openCourseSectionAfterLoginaf(studentData) {
-  if (typeof saveStudentSessionaf === "function") {
-    saveStudentSessionaf(studentData);
-  }
-
   const welcomeText = afEl("studentWelcomeTextaf");
   if (welcomeText) {
     welcomeText.textContent = "Welcome " + afSafe(studentData && studentData.name, "Student");
@@ -6488,18 +6806,14 @@ function openCourseSectionAfterLoginaf(studentData) {
   loadStudentCoursesaf();
 }
 
-/* ==============================
-   LOAD ENROLLED COURSES - EDGE
-================================ */
+/* ── Load Enrolled Courses ───────────────────────────────── */
 
 async function loadStudentCoursesaf() {
   const studentUuid = localStorage.getItem("af_student_uuid");
   const studentName = localStorage.getItem("af_student_name") || "Student";
 
   const welcomeText = afEl("studentWelcomeTextaf");
-  if (welcomeText) {
-    welcomeText.textContent = "Welcome " + studentName;
-  }
+  if (welcomeText) welcomeText.textContent = "Welcome " + studentName;
 
   if (!studentUuid) {
     showNoCourseMessageaf("Student session not found. Please login again.");
@@ -6572,9 +6886,7 @@ function showNoCourseMessageaf(message) {
   showStudentPanelaf("noCourseBoxaf");
 }
 
-/* ==============================
-   COURSE DETAILS
-================================ */
+/* ── Course Details ──────────────────────────────────────── */
 
 function openCourseDetailsaf(courseId) {
   afSelectedCourse = afEnrolledCourses.find(function (course) {
@@ -6627,9 +6939,7 @@ function openCourseDetailsaf(courseId) {
     }
 
     facilitiesBox.innerHTML = facilities.length
-      ? facilities.map(function (item) {
-          return `<li>${item}</li>`;
-        }).join("")
+      ? facilities.map(function (item) { return `<li>${item}</li>`; }).join("")
       : "<li>Facilities will be updated soon.</li>";
   }
 
@@ -6640,9 +6950,7 @@ function backToCoursesaf() {
   showStudentPanelaf("courseSelectBox");
 }
 
-/* ==============================
-   LEARNING MODE
-================================ */
+/* ── Learning Mode ───────────────────────────────────────── */
 
 function startLearningaf() {
   if (!afSelectedCourse) {
@@ -6678,13 +6986,10 @@ function backToLearningaf() {
   showStudentPanelaf("learningBoxaf");
 }
 
-/* ==============================
-   CHAPTERS - EDGE
-================================ */
+/* ── Chapters ────────────────────────────────────────────── */
 
 async function loadChaptersaf() {
   const list = afEl("chapterListaf");
-
   if (!list) return;
 
   if (!afSelectedCourse) {
@@ -6700,7 +7005,6 @@ async function loadChaptersaf() {
     });
 
     if (!result || !result.ok) {
-      console.log("Chapters edge error:", result);
       list.innerHTML = '<p class="error-textaf">' + afSafe(result?.message, "Unable to load chapters.") + '</p>';
       return;
     }
@@ -6746,9 +7050,7 @@ async function openChapterContentaf(chapterId, isLocked) {
 
     if (title) title.textContent = "🔒 Chapter Locked";
     if (sub) sub.textContent = "This chapter will unlock after content upload.";
-    if (list) {
-      list.innerHTML = '<p class="error-textaf">This chapter is currently locked.</p>';
-    }
+    if (list) list.innerHTML = '<p class="error-textaf">This chapter is currently locked.</p>';
 
     showStudentPanelaf("contentBoxaf");
     return;
@@ -6767,13 +7069,10 @@ function backToChaptersaf() {
   showStudentPanelaf("chapterBoxaf");
 }
 
-/* ==============================
-   LECTURES - EDGE
-================================ */
+/* ── Lectures ────────────────────────────────────────────── */
 
 async function loadLecturesaf(chapterId) {
   const list = afEl("contentListaf");
-
   if (!list) return;
 
   const title = afEl("contentTitleaf");
@@ -6790,7 +7089,6 @@ async function loadLecturesaf(chapterId) {
     });
 
     if (!result || !result.ok) {
-      console.log("Lectures edge error:", result);
       list.innerHTML = '<p class="error-textaf">' + afSafe(result?.message, "Unable to load lectures.") + '</p>';
       return;
     }
@@ -6813,11 +7111,9 @@ async function loadLecturesaf(chapterId) {
             <small>${afSafe(lecture.description, "Lecture details will be available soon.")}</small>
             <span class="durationaf">⏱ ${afSafe(lecture.duration, "10-15 min")}</span>
           </div>
-
-          ${
-            locked
-              ? '<button class="content-actionaf locked-btnaf" type="button" disabled>Locked</button>'
-              : `<button class="content-actionaf" type="button" onclick="openVideoaf('${lecture.video_url}')">Watch</button>`
+          ${locked
+            ? '<button class="content-actionaf locked-btnaf" type="button" disabled>Locked</button>'
+            : `<button class="content-actionaf" type="button" onclick="openVideoaf('${lecture.video_url}')">Watch</button>`
           }
         </div>
       `;
@@ -6829,13 +7125,10 @@ async function loadLecturesaf(chapterId) {
   }
 }
 
-/* ==============================
-   NOTES - EDGE
-================================ */
+/* ── Notes ───────────────────────────────────────────────── */
 
 async function loadNotesaf(chapterId) {
   const list = afEl("contentListaf");
-
   if (!list) return;
 
   const title = afEl("contentTitleaf");
@@ -6852,7 +7145,6 @@ async function loadNotesaf(chapterId) {
     });
 
     if (!result || !result.ok) {
-      console.log("Notes edge error:", result);
       list.innerHTML = '<p class="error-textaf">' + afSafe(result?.message, "Unable to load notes.") + '</p>';
       return;
     }
@@ -6874,11 +7166,9 @@ async function loadNotesaf(chapterId) {
             <strong>${icon} Lecture ${note.note_number} Notes</strong>
             <small>${afSafe(note.title, "Notes will be available soon.")}</small>
           </div>
-
-          ${
-            locked
-              ? '<button class="content-actionaf locked-btnaf" type="button" disabled>Locked</button>'
-              : `<button class="content-actionaf" type="button" onclick="openPdfaf('${note.pdf_url}')">Open PDF</button>`
+          ${locked
+            ? '<button class="content-actionaf locked-btnaf" type="button" disabled>Locked</button>'
+            : `<button class="content-actionaf" type="button" onclick="openPdfaf('${note.pdf_url}')">Open PDF</button>`
           }
         </div>
       `;
@@ -6890,31 +7180,19 @@ async function loadNotesaf(chapterId) {
   }
 }
 
-/* ==============================
-   OPEN FILES
-================================ */
+/* ── Open Files ──────────────────────────────────────────── */
 
 function openVideoaf(url) {
-  if (!url) {
-    alert("Video is not available yet.");
-    return;
-  }
-
+  if (!url) { alert("Video is not available yet."); return; }
   window.open(url, "_blank");
 }
 
 function openPdfaf(url) {
-  if (!url) {
-    alert("PDF is not available yet.");
-    return;
-  }
-
+  if (!url) { alert("PDF is not available yet."); return; }
   window.open(url, "_blank");
 }
 
-/* ==============================
-   LOGOUT - AF
-================================ */
+/* ── Logout ──────────────────────────────────────────────── */
 
 function logoutStudentaf() {
   localStorage.removeItem("af_student_logged_in");
@@ -6923,6 +7201,7 @@ function logoutStudentaf() {
   localStorage.removeItem("af_student_mobile");
   localStorage.removeItem("af_student_name");
   localStorage.removeItem("af_student_email");
+  localStorage.removeItem("af_session_token");
 
   afEnrolledCourses = [];
   afSelectedCourse = null;
@@ -6930,20 +7209,19 @@ function logoutStudentaf() {
   afLearningMode = "lectures";
 
   showStudentPanelaf("studentAuthCardaf");
-
-  if (typeof switchStudentModeaf === "function") {
-    switchStudentModeaf("login");
-  }
+  switchStudentModeaf("login");
 }
 
-/* Old onclick support */
+function logoutStudentafWithMessage() {
+  logoutStudentaf();
+}
+
+/* Legacy alias */
 function logoutStudent() {
   logoutStudentaf();
 }
 
-/* ==============================
-   AUTO LOGIN CHECK
-================================ */
+/* ── Auto Login on DOMContentLoaded ─────────────────────── */
 
 document.addEventListener("DOMContentLoaded", function () {
   const loggedIn = localStorage.getItem("af_student_logged_in");
@@ -6958,6 +7236,9 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     openCourseSectionAfterLoginaf(studentData);
+  } else {
+    showStudentPanelaf("studentAuthCardaf");
+    switchStudentModeaf("login");
   }
 });
   
