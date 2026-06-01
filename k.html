@@ -3159,2003 +3159,853 @@
   background: rgba(239, 68, 68, 0.14);
   color: #fca5a5;
 }
-/* ============================================================
-   AF NEXUS COMMUNITY V2 — COMPLETE CSS
-   Design system: matches student module (doc 5)
-   Dark mode: [data-theme="dark"] ONLY — no body.dark hacks
-   No !important except where strictly needed for overlay fixes
-   Fonts: Sora (display) + Nunito (body) — loaded by parent
-   ============================================================ */
+/* =========================================================
+   AF NEXUS COMMUNITY V2 - PROFESSIONAL MOBILE CSS
+   Dark mode via [data-theme="dark"] (matches student module)
+========================================================= */
 
-/* ── CSS Custom Properties (light defaults) ───────────────── */
-:root {
-  --nx-primary:        #4f46e5;
-  --nx-primary-dark:   #3730a3;
-  --nx-primary-light:  #818cf8;
-  --nx-accent:         #06b6d4;
-  --nx-danger:         #ef4444;
-  --nx-success:        #22c55e;
-  --nx-warn:           #f59e0b;
-
-  /* surfaces */
-  --nx-bg:             #f0f2ff;
-  --nx-shell:          rgba(255,255,255,0.94);
-  --nx-card:           rgba(255,255,255,0.98);
-  --nx-card-inner:     rgba(248,250,252,0.96);
-  --nx-overlay-bg:     rgba(15,23,42,0.5);
-  --nx-modal-bg:       #ffffff;
-  --nx-input-bg:       rgba(255,255,255,0.96);
-  --nx-input-bg-focus: #ffffff;
-  --nx-tab-track:      rgba(241,245,249,0.95);
-  --nx-action-bg:      rgba(241,245,249,0.92);
-  --nx-comment-bg:     rgba(248,250,252,0.97);
-  --nx-locked-bg:      linear-gradient(145deg, #fff1f2 0%, #ffffff 100%);
-
-  /* text */
-  --nx-text:           #0f172a;
-  --nx-text-2:         #475569;
-  --nx-text-muted:     #94a3b8;
-  --nx-text-inv:       #ffffff;
-
-  /* borders */
-  --nx-border:         rgba(226,232,240,0.9);
-  --nx-border-card:    rgba(203,213,225,0.8);
-  --nx-border-input:   rgba(203,213,225,0.95);
-  --nx-border-modal:   rgba(226,232,240,0.95);
-
-  /* shadows */
-  --nx-shadow-shell:   0 18px 48px rgba(15,23,42,0.10);
-  --nx-shadow-card:    0 14px 30px rgba(15,23,42,0.07);
-  --nx-shadow-modal:   0 24px 70px rgba(15,23,42,0.22);
-  --nx-shadow-btn:     0 12px 24px rgba(79,70,229,0.18);
-  --nx-shadow-fab:     0 18px 34px rgba(79,70,229,0.30);
-  --nx-shadow-avatar:  0 10px 18px rgba(79,70,229,0.16);
-  --nx-shadow-lock:    0 20px 42px rgba(127,29,29,0.12);
-
-  /* avatar gradient */
-  --nx-avatar-grad:    linear-gradient(135deg, #4f46e5, #7c3aed);
-
-  /* radii */
-  --nx-r-xs:   8px;
-  --nx-r-sm:   14px;
-  --nx-r-md:   20px;
-  --nx-r-lg:   24px;
-  --nx-r-xl:   28px;
-  --nx-r-full: 9999px;
-
-  /* motion */
-  --nx-ease:        cubic-bezier(0.22,1,0.36,1);
-  --nx-ease-spring: cubic-bezier(0.34,1.56,0.64,1);
-  --nx-dur-fast:    150ms;
-  --nx-dur-med:     260ms;
-  --nx-dur-slow:    400ms;
+#afNexusLockedV2,
+#afNexusMainV2,
+#afMyNexusViewV2,
+#afNexusComposerOverlayV2,
+#afNexusCommentsOverlayV2,
+#afNexusReplyOverlayV2,
+#afNexusMenuOverlayV2 {
+  box-sizing: border-box !important;
 }
 
-/* ── Dark Mode — data-theme="dark" only ───────────────────── */
-[data-theme="dark"] {
-  --nx-bg:             #0c0b1d;
-  --nx-shell:          rgba(18,15,42,0.96);
-  --nx-card:           rgba(22,20,50,0.98);
-  --nx-card-inner:     rgba(30,27,60,0.94);
-  --nx-overlay-bg:     rgba(0,0,0,0.65);
-  --nx-modal-bg:       #1a1730;
-  --nx-input-bg:       rgba(15,13,38,0.92);
-  --nx-input-bg-focus: rgba(10,9,28,0.98);
-  --nx-tab-track:      rgba(30,27,60,0.92);
-  --nx-action-bg:      rgba(30,27,60,0.92);
-  --nx-comment-bg:     rgba(25,22,55,0.95);
-  --nx-locked-bg:      linear-gradient(145deg, #1a0a0a 0%, #1a1730 100%);
-
-  --nx-text:           #f0eeff;
-  --nx-text-2:         #a5a3c2;
-  --nx-text-muted:     #6b6a8a;
-  --nx-text-inv:       #ffffff;
-
-  --nx-border:         rgba(129,140,248,0.14);
-  --nx-border-card:    rgba(129,140,248,0.18);
-  --nx-border-input:   rgba(129,140,248,0.20);
-  --nx-border-modal:   rgba(129,140,248,0.16);
-
-  --nx-shadow-shell:   0 18px 48px rgba(0,0,0,0.40);
-  --nx-shadow-card:    0 14px 30px rgba(0,0,0,0.30);
-  --nx-shadow-modal:   0 24px 70px rgba(0,0,0,0.55);
-  --nx-shadow-btn:     0 12px 24px rgba(79,70,229,0.30);
-  --nx-shadow-fab:     0 18px 34px rgba(79,70,229,0.40);
-  --nx-shadow-avatar:  0 10px 18px rgba(79,70,229,0.24);
-  --nx-shadow-lock:    0 20px 42px rgba(0,0,0,0.45);
-
-  --nx-avatar-grad:    linear-gradient(135deg, #4f46e5, #7c3aed);
+.af-hidden {
+  display: none !important;
 }
 
-/* ══════════════════════════════════════════════════════════
-   SHELL
-══════════════════════════════════════════════════════════ */
-
+/* Main shell */
 .af-nexus-v2-shell {
-  position: relative;
-  width: min(100%, 760px);
-  margin: 0 auto;
-  padding: clamp(14px, 3.5vw, 22px);
-  border-radius: var(--nx-r-xl);
-  display: flex;
-  flex-direction: column;
-  gap: 0;
+  position: relative !important;
+  width: min(100%, 760px) !important;
+  margin: 0 auto !important;
+  padding: clamp(14px, 3.5vw, 22px) !important;
+  border-radius: 28px !important;
+  overflow: hidden !important;
   background:
-    radial-gradient(circle at 0% 0%, rgba(79,70,229,0.12), transparent 32%),
-    radial-gradient(circle at 100% 0%, rgba(99,102,241,0.10), transparent 34%),
-    var(--nx-shell);
-  border: 1px solid var(--nx-border);
-  box-shadow: var(--nx-shadow-shell);
-  color: var(--nx-text);
-  min-height: calc(100dvh - 130px);
-  overflow: hidden;
-  transition:
-    background var(--nx-dur-med) var(--nx-ease),
-    border-color var(--nx-dur-med) var(--nx-ease),
-    color var(--nx-dur-med) var(--nx-ease);
+    radial-gradient(circle at 0% 0%, rgba(59,130,246,0.14), transparent 32%),
+    radial-gradient(circle at 100% 0%, rgba(99,102,241,0.12), transparent 34%),
+    linear-gradient(145deg, rgba(255,255,255,0.94), rgba(248,250,252,0.9)) !important;
+  border: 1px solid rgba(226,232,240,0.9) !important;
+  box-shadow: 0 18px 48px rgba(15,23,42,0.10) !important;
+  color: #0f172a !important;
+  min-height: calc(100dvh - 130px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 14px !important;
 }
 
-/* ══════════════════════════════════════════════════════════
-   LOCKED SCREEN
-══════════════════════════════════════════════════════════ */
-
+/* Locked screen */
 .af-nexus-locked-v2 {
-  width: 100%;
-  min-height: 360px;
-  display: grid;
-  place-items: center;
-  padding: 18px;
+  width: 100% !important;
+  min-height: 360px !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 18px !important;
 }
 
 .af-nexus-locked-card-v2 {
-  width: min(100%, 400px);
-  border-radius: var(--nx-r-xl);
-  padding: 28px 22px;
-  background: var(--nx-locked-bg);
-  border: 1px solid rgba(254,202,202,0.6);
-  box-shadow: var(--nx-shadow-lock);
-  text-align: center;
-  transition: background var(--nx-dur-med) var(--nx-ease);
-}
-
-[data-theme="dark"] .af-nexus-locked-card-v2 {
-  border-color: rgba(239,68,68,0.25);
+  width: min(100%, 420px) !important;
+  border-radius: 28px !important;
+  padding: 22px !important;
+  background: linear-gradient(145deg, #fff1f2 0%, #ffffff 100%) !important;
+  border: 1px solid rgba(254, 202, 202, 0.95) !important;
+  box-shadow: 0 20px 42px rgba(127, 29, 29, 0.12) !important;
+  text-align: center !important;
 }
 
 .af-nexus-lock-icon-v2 {
-  width: 64px;
-  height: 64px;
-  margin: 0 auto 16px;
-  display: grid;
-  place-items: center;
-  border-radius: 22px;
-  font-size: 28px;
-  background: linear-gradient(135deg, #ef4444, #991b1b);
-  box-shadow: 0 16px 26px rgba(239,68,68,0.25);
+  width: 64px !important;
+  height: 64px !important;
+  margin: 0 auto 14px !important;
+  display: grid !important;
+  place-items: center !important;
+  border-radius: 22px !important;
+  font-size: 28px !important;
+  background: linear-gradient(135deg, #ef4444, #991b1b) !important;
+  box-shadow: 0 16px 26px rgba(239, 68, 68, 0.22) !important;
 }
 
 .af-nexus-locked-card-v2 h2 {
-  margin: 0 0 10px;
-  font-family: 'Sora', sans-serif;
-  font-size: clamp(20px, 5vw, 24px);
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  color: #7f1d1d;
+  margin: 0 0 8px !important;
+  font-size: clamp(20px, 5vw, 26px) !important;
+  font-weight: 950 !important;
+  letter-spacing: -0.04em !important;
+  color: #7f1d1d !important;
 }
-
-[data-theme="dark"] .af-nexus-locked-card-v2 h2 { color: #fca5a5; }
 
 .af-nexus-locked-card-v2 p {
-  margin: 0 auto 20px;
-  max-width: 320px;
-  font-size: 13px;
-  line-height: 1.6;
-  font-weight: 600;
-  color: #991b1b;
+  margin: 0 auto 18px !important;
+  max-width: 320px !important;
+  font-size: 13px !important;
+  line-height: 1.55 !important;
+  font-weight: 750 !important;
+  color: #991b1b !important;
 }
-
-[data-theme="dark"] .af-nexus-locked-card-v2 p { color: #f87171; }
 
 .af-nexus-login-btn-v2 {
-  width: 100%;
-  min-height: 48px;
-  border: none;
-  border-radius: 16px;
-  cursor: pointer;
-  color: #ffffff;
-  font-family: 'Sora', sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  background: linear-gradient(135deg, #dc2626, #7f1d1d);
-  box-shadow: 0 14px 24px rgba(220,38,38,0.25);
-  transition: filter var(--nx-dur-fast), transform var(--nx-dur-fast) var(--nx-ease-spring);
-  -webkit-tap-highlight-color: transparent;
+  width: 100% !important;
+  min-height: 48px !important;
+  border: 0 !important;
+  border-radius: 18px !important;
+  cursor: pointer !important;
+  color: #ffffff !important;
+  font-size: 14px !important;
+  font-weight: 950 !important;
+  background: linear-gradient(135deg, #dc2626, #7f1d1d) !important;
+  box-shadow: 0 14px 24px rgba(220, 38, 38, 0.22) !important;
+  -webkit-tap-highlight-color: transparent !important;
 }
-.af-nexus-login-btn-v2:hover  { filter: brightness(1.06); }
-.af-nexus-login-btn-v2:active { transform: scale(0.97); }
 
-/* ══════════════════════════════════════════════════════════
-   HEADER
-══════════════════════════════════════════════════════════ */
-
+/* Header */
 .af-nexus-header-v2 {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 16px 16px 12px;
-  border-bottom: 1px solid var(--nx-border);
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  margin-bottom: 14px !important;
 }
 
 .af-nexus-title-wrap-v2 {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-width: 0;
+  min-width: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
 }
 
 .af-nexus-logo-v2 {
-  width: 44px;
-  height: 44px;
-  min-width: 44px;
-  border-radius: 16px;
-  display: grid;
-  place-items: center;
-  font-size: 20px;
-  background: linear-gradient(135deg, rgba(79,70,229,0.12), rgba(129,140,248,0.18));
-  border: 1px solid var(--nx-border-card);
-  box-shadow: inset 0 0 0 1px rgba(79,70,229,0.10);
-  transition: background var(--nx-dur-med) var(--nx-ease);
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+  border-radius: 18px !important;
+  display: grid !important;
+  place-items: center !important;
+  font-size: 22px !important;
+  background: linear-gradient(135deg, #dbeafe, #eef2ff) !important;
+  box-shadow: inset 0 0 0 1px rgba(59,130,246,0.18), 0 12px 22px rgba(37,99,235,0.10) !important;
 }
 
 .af-nexus-title-wrap-v2 h2 {
-  margin: 0;
-  font-family: 'Sora', sans-serif;
-  font-size: clamp(18px, 4.5vw, 22px);
-  font-weight: 800;
-  letter-spacing: -0.05em;
-  color: var(--nx-text);
-  transition: color var(--nx-dur-med) var(--nx-ease);
+  margin: 0 !important;
+  font-size: clamp(20px, 5vw, 28px) !important;
+  line-height: 1.05 !important;
+  font-weight: 1000 !important;
+  letter-spacing: -0.055em !important;
+  color: #0f172a !important;
 }
 
 .af-nexus-title-wrap-v2 p {
-  margin: 3px 0 0;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--nx-text-muted);
-  line-height: 1.3;
-  transition: color var(--nx-dur-med) var(--nx-ease);
+  margin: 4px 0 0 !important;
+  max-width: 390px !important;
+  font-size: 11.5px !important;
+  line-height: 1.35 !important;
+  font-weight: 750 !important;
+  color: #64748b !important;
 }
 
-/* Header action buttons */
-.af-nexus-header-actions-v2 {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-shrink: 0;
-}
-
-.af-nexus-icon-btn-v2 {
-  width: 38px;
-  height: 38px;
-  border: none;
-  border-radius: 14px;
-  background: var(--nx-action-bg);
-  border: 1px solid var(--nx-border);
-  display: grid;
-  place-items: center;
-  font-size: 16px;
-  color: var(--nx-text-2);
-  cursor: pointer;
-  position: relative;
-  transition:
-    background var(--nx-dur-fast) var(--nx-ease),
-    color var(--nx-dur-fast) var(--nx-ease),
-    transform var(--nx-dur-fast) var(--nx-ease-spring);
-  -webkit-tap-highlight-color: transparent;
-}
-.af-nexus-icon-btn-v2:hover  { background: var(--nx-border-card); color: var(--nx-primary); }
-.af-nexus-icon-btn-v2:active { transform: scale(0.92); }
-
-.af-nexus-icon-btn-v2 .af-notif-badge {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--nx-danger);
-  border: 2px solid var(--nx-shell);
-  display: none;
-}
-.af-nexus-icon-btn-v2 .af-notif-badge.show { display: block; }
-
-/* Legacy "My Nexus" → now "Profile" button — keep id/class */
-.af-nexus-my-btn-v2 {
-  border: none;
-  border-radius: 14px;
-  min-height: 38px;
-  padding: 0 14px;
-  white-space: nowrap;
-  font-family: 'Sora', sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--nx-primary);
-  background: rgba(79,70,229,0.10);
-  border: 1px solid rgba(79,70,229,0.20);
-  cursor: pointer;
-  transition:
-    background var(--nx-dur-fast) var(--nx-ease),
-    color var(--nx-dur-fast) var(--nx-ease),
-    transform var(--nx-dur-fast) var(--nx-ease-spring);
-  -webkit-tap-highlight-color: transparent;
-}
-.af-nexus-my-btn-v2:hover  { background: rgba(79,70,229,0.16); }
-.af-nexus-my-btn-v2:active { transform: scale(0.96); }
-
-[data-theme="dark"] .af-nexus-my-btn-v2 {
-  color: var(--nx-primary-light);
-  background: rgba(129,140,248,0.12);
-  border-color: rgba(129,140,248,0.24);
-}
-
-/* ══════════════════════════════════════════════════════════
-   FEED CONTROLS — Twitter style tabs
-══════════════════════════════════════════════════════════ */
-
-.af-nexus-controls-v2 {
-  display: flex;
-  border-bottom: 1px solid var(--nx-border);
-  padding: 0 8px;
-  background: transparent;
-  gap: 0;
-}
-
-.af-nexus-filter-btn-v2 {
-  flex: 1;
-  min-height: 48px;
-  border: none;
-  background: transparent;
-  font-family: 'Sora', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--nx-text-muted);
-  cursor: pointer;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -1px;
-  transition:
-    color var(--nx-dur-fast) var(--nx-ease),
-    border-color var(--nx-dur-fast) var(--nx-ease);
-  -webkit-tap-highlight-color: transparent;
-}
-.af-nexus-filter-btn-v2:hover { color: var(--nx-text); }
-
-.af-nexus-filter-btn-v2.active {
-  color: var(--nx-primary);
-  border-bottom-color: var(--nx-primary);
-}
-[data-theme="dark"] .af-nexus-filter-btn-v2.active { color: var(--nx-primary-light); border-bottom-color: var(--nx-primary-light); }
-
-/* ══════════════════════════════════════════════════════════
-   SECTION HEAD
-══════════════════════════════════════════════════════════ */
-
-.af-nexus-section-head-v2 {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 14px 16px 10px;
-}
-
-.af-nexus-section-head-v2 h3 {
-  margin: 0;
-  font-family: 'Sora', sans-serif;
-  font-size: 15px;
-  font-weight: 800;
-  color: var(--nx-text);
-  letter-spacing: -0.03em;
-  transition: color var(--nx-dur-med) var(--nx-ease);
-}
-
-.af-nexus-section-head-v2 p {
-  margin: 3px 0 0;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--nx-text-muted);
-  transition: color var(--nx-dur-med) var(--nx-ease);
+.af-nexus-my-btn-v2,
+.af-nexus-refresh-btn-v2 {
+  border: 0 !important;
+  outline: none !important;
+  cursor: pointer !important;
+  border-radius: 16px !important;
+  min-height: 40px !important;
+  padding: 0 13px !important;
+  white-space: nowrap !important;
+  font-size: 12px !important;
+  font-weight: 950 !important;
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #2563eb, #4f46e5) !important;
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.18) !important;
+  -webkit-tap-highlight-color: transparent !important;
 }
 
 .af-nexus-refresh-btn-v2 {
-  border: none;
-  border-radius: 12px;
-  min-height: 34px;
-  padding: 0 12px;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--nx-text-2);
-  background: var(--nx-action-bg);
-  border: 1px solid var(--nx-border);
-  cursor: pointer;
-  transition:
-    background var(--nx-dur-fast) var(--nx-ease),
-    transform var(--nx-dur-fast) var(--nx-ease-spring);
-  -webkit-tap-highlight-color: transparent;
+  color: #1e293b !important;
+  background: linear-gradient(135deg, #ffffff, #f1f5f9) !important;
+  border: 1px solid rgba(226,232,240,0.95) !important;
+  box-shadow: 0 10px 20px rgba(15,23,42,0.06) !important;
 }
-.af-nexus-refresh-btn-v2:hover  { background: var(--nx-border-card); }
-.af-nexus-refresh-btn-v2:active { transform: scale(0.95); }
 
-/* ══════════════════════════════════════════════════════════
-   POSTS LIST
-══════════════════════════════════════════════════════════ */
+/* User bar */
+.af-nexus-userbar-v2 {
+  margin-bottom: 14px !important;
+  padding: 13px 14px !important;
+  border-radius: 22px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 10px !important;
+  background: linear-gradient(135deg, rgba(255,255,255,0.96), rgba(248,250,252,0.9)) !important;
+  border: 1px solid rgba(226,232,240,0.92) !important;
+  box-shadow: 0 12px 28px rgba(15,23,42,0.06) !important;
+}
 
+.af-nexus-userbar-v2 span {
+  display: block !important;
+  margin-bottom: 3px !important;
+  font-size: 10.5px !important;
+  line-height: 1 !important;
+  font-weight: 850 !important;
+  color: #64748b !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+}
+
+.af-nexus-userbar-v2 strong {
+  display: block !important;
+  max-width: 210px !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  font-size: 14px !important;
+  line-height: 1.1 !important;
+  font-weight: 950 !important;
+  color: #0f172a !important;
+}
+
+.af-nexus-userbar-v2 small {
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  color: #2563eb !important;
+}
+
+/* Controls */
+.af-nexus-controls-v2 {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 10px !important;
+  margin-bottom: 16px !important;
+  padding: 5px !important;
+  border-radius: 20px !important;
+  background: rgba(241,245,249,0.92) !important;
+  border: 1px solid rgba(226,232,240,0.9) !important;
+}
+
+.af-nexus-filter-btn-v2 {
+  min-height: 42px !important;
+  border: 0 !important;
+  border-radius: 16px !important;
+  cursor: pointer !important;
+  font-size: 12px !important;
+  font-weight: 950 !important;
+  color: #64748b !important;
+  background: transparent !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+.af-nexus-filter-btn-v2.active {
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #0f172a, #334155) !important;
+  box-shadow: 0 10px 18px rgba(15,23,42,0.16) !important;
+}
+
+/* Section head */
+.af-nexus-section-head-v2 {
+  margin-bottom: 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 10px !important;
+}
+
+.af-nexus-section-head-v2 h3 {
+  margin: 0 !important;
+  font-size: 16px !important;
+  line-height: 1.1 !important;
+  font-weight: 950 !important;
+  color: #0f172a !important;
+  letter-spacing: -0.03em !important;
+}
+
+.af-nexus-section-head-v2 p {
+  margin: 4px 0 0 !important;
+  font-size: 11.5px !important;
+  line-height: 1.3 !important;
+  font-weight: 700 !important;
+  color: #64748b !important;
+}
+
+/* Posts */
 .af-nexus-posts-list-v2 {
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 80px;
+  display: grid !important;
+  gap: 12px !important;
+  padding-bottom: 76px !important;
 }
 
-/* Loading + Empty */
-.af-nexus-loading-v2 {
-  padding: 32px 20px;
-  text-align: center;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--nx-text-muted);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-
-.af-nexus-loading-v2::before {
-  content: "";
-  display: block;
-  width: 24px;
-  height: 24px;
-  border: 3px solid var(--nx-border-card);
-  border-top-color: var(--nx-primary);
-  border-radius: 50%;
-  animation: nx-spin 0.8s linear infinite;
-}
-
-@keyframes nx-spin { to { transform: rotate(360deg); } }
-
+.af-nexus-loading-v2,
 .af-nexus-empty-v2 {
-  padding: 40px 20px;
-  text-align: center;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--nx-text-muted);
+  padding: 18px !important;
+  border-radius: 22px !important;
+  text-align: center !important;
+  font-size: 13px !important;
+  font-weight: 850 !important;
+  color: #64748b !important;
+  background: rgba(255,255,255,0.82) !important;
+  border: 1px dashed rgba(148,163,184,0.55) !important;
 }
-
-/* ══════════════════════════════════════════════════════════
-   POST CARD — Twitter/X style
-══════════════════════════════════════════════════════════ */
 
 .af-nexus-post-card-v2 {
-  padding: 14px 16px;
-  border-bottom: 1px solid var(--nx-border);
-  display: flex;
-  gap: 12px;
-  background: transparent;
-  transition: background var(--nx-dur-fast) var(--nx-ease);
-  animation: nx-post-in 0.3s var(--nx-ease) both;
+  border-radius: 24px !important;
+  padding: 14px !important;
+  background: linear-gradient(145deg, rgba(255,255,255,0.98), rgba(248,250,252,0.94)) !important;
+  border: 1px solid rgba(226,232,240,0.92) !important;
+  box-shadow: 0 14px 30px rgba(15,23,42,0.07) !important;
 }
-
-@keyframes nx-post-in {
-  from { opacity: 0; transform: translateY(6px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.af-nexus-post-card-v2:hover { background: rgba(79,70,229,0.03); }
-[data-theme="dark"] .af-nexus-post-card-v2:hover { background: rgba(129,140,248,0.04); }
-
-/* Avatar as a column */
-.af-nexus-post-avatar-col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex-shrink: 0;
-}
-
-.af-nexus-avatar-v2 {
-  width: 40px;
-  height: 40px;
-  min-width: 40px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-family: 'Sora', sans-serif;
-  font-size: 14px;
-  font-weight: 800;
-  color: #ffffff;
-  background: var(--nx-avatar-grad);
-  box-shadow: var(--nx-shadow-avatar);
-  cursor: pointer;
-  transition: transform var(--nx-dur-fast) var(--nx-ease-spring);
-}
-.af-nexus-avatar-v2:hover { transform: scale(1.06); }
-
-/* Post body column */
-.af-nexus-post-body-v2 { flex: 1; min-width: 0; }
 
 .af-nexus-post-top-v2 {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 8px;
-  margin-bottom: 4px;
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: space-between !important;
+  gap: 10px !important;
+  margin-bottom: 10px !important;
 }
 
 .af-nexus-author-v2 {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-wrap: wrap;
-  cursor: pointer;
-  min-width: 0;
+  min-width: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.af-nexus-avatar-v2 {
+  width: 38px !important;
+  height: 38px !important;
+  min-width: 38px !important;
+  border-radius: 15px !important;
+  display: grid !important;
+  place-items: center !important;
+  font-size: 15px !important;
+  font-weight: 950 !important;
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #2563eb, #7c3aed) !important;
+  box-shadow: 0 10px 18px rgba(37,99,235,0.16) !important;
 }
 
 .af-nexus-author-v2 strong {
-  font-family: 'Sora', sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--nx-text);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 200px;
-  transition: color var(--nx-dur-med) var(--nx-ease);
+  display: block !important;
+  max-width: 210px !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  font-size: 13.5px !important;
+  line-height: 1.1 !important;
+  font-weight: 950 !important;
+  color: #0f172a !important;
 }
-.af-nexus-author-v2 strong:hover { text-decoration: underline; color: var(--nx-primary); }
 
 .af-nexus-author-v2 small {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--nx-text-muted);
-  white-space: nowrap;
-  transition: color var(--nx-dur-med) var(--nx-ease);
+  display: block !important;
+  margin-top: 3px !important;
+  font-size: 10.5px !important;
+  line-height: 1.1 !important;
+  font-weight: 750 !important;
+  color: #94a3b8 !important;
 }
 
-/* 3-dot menu button */
 .af-nexus-menu-btn-v2 {
-  width: 32px;
-  height: 32px;
-  min-width: 32px;
-  border: none;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--nx-text-muted);
-  background: transparent;
-  cursor: pointer;
-  transition:
-    background var(--nx-dur-fast) var(--nx-ease),
-    color var(--nx-dur-fast) var(--nx-ease),
-    transform var(--nx-dur-fast) var(--nx-ease-spring);
-  -webkit-tap-highlight-color: transparent;
-  flex-shrink: 0;
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  border: 0 !important;
+  border-radius: 13px !important;
+  cursor: pointer !important;
+  display: grid !important;
+  place-items: center !important;
+  font-size: 18px !important;
+  font-weight: 950 !important;
+  color: #475569 !important;
+  background: rgba(241,245,249,0.9) !important;
+  -webkit-tap-highlight-color: transparent !important;
 }
-.af-nexus-menu-btn-v2:hover  { background: rgba(79,70,229,0.08); color: var(--nx-primary); }
-.af-nexus-menu-btn-v2:active { transform: scale(0.88); }
 
-/* Post text */
 .af-nexus-post-text-v2 {
-  margin: 0 0 10px;
-  font-size: 14px;
-  line-height: 1.6;
-  font-weight: 500;
-  color: var(--nx-text);
-  white-space: pre-wrap;
-  word-break: break-word;
-  transition: color var(--nx-dur-med) var(--nx-ease);
+  margin: 0 0 12px !important;
+  font-size: 13.5px !important;
+  line-height: 1.58 !important;
+  font-weight: 650 !important;
+  color: #1e293b !important;
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
 }
 
-/* Action bar */
 .af-nexus-post-actions-v2 {
-  display: flex;
-  align-items: center;
-  gap: 4px;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding-top: 10px !important;
+  border-top: 1px solid rgba(226,232,240,0.9) !important;
 }
 
 .af-nexus-action-btn-v2 {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  min-height: 32px;
-  border: none;
-  border-radius: 20px;
-  padding: 0 10px;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--nx-text-muted);
-  background: transparent;
-  cursor: pointer;
-  transition:
-    background var(--nx-dur-fast) var(--nx-ease),
-    color var(--nx-dur-fast) var(--nx-ease),
-    transform var(--nx-dur-fast) var(--nx-ease-spring);
-  -webkit-tap-highlight-color: transparent;
-}
-.af-nexus-action-btn-v2:hover  { background: rgba(79,70,229,0.07); color: var(--nx-primary); }
-.af-nexus-action-btn-v2:active .af-nx-action-icon { transform: scale(1.3); }
-
-.af-nx-action-icon {
-  font-size: 15px;
-  transition: transform var(--nx-dur-fast) var(--nx-ease-spring);
+  min-height: 36px !important;
+  border: 0 !important;
+  border-radius: 14px !important;
+  cursor: pointer !important;
+  padding: 0 12px !important;
+  font-size: 12px !important;
+  font-weight: 900 !important;
+  color: #334155 !important;
+  background: rgba(241,245,249,0.92) !important;
+  -webkit-tap-highlight-color: transparent !important;
 }
 
-.af-nexus-action-btn-v2.liked { color: var(--nx-danger); }
-.af-nexus-action-btn-v2.liked:hover { background: rgba(239,68,68,0.08); }
-
-/* ══════════════════════════════════════════════════════════
-   FLOATING WRITE BUTTON (FAB)
-══════════════════════════════════════════════════════════ */
-
-:root {
-  --nx-app-max: 760px;
-  --nx-fab-gap: 18px;
+.af-nexus-action-btn-v2.active {
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #ef4444, #be123c) !important;
+  box-shadow: 0 10px 18px rgba(244,63,94,0.16) !important;
 }
 
+/* Floating write button */
 .af-nexus-write-btn-v2 {
-  position: fixed;
-  z-index: 999;
-  width: 54px;
-  height: 54px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  font-size: 22px;
-  color: #ffffff;
-  background: linear-gradient(135deg, #4f46e5, #818cf8);
-  box-shadow: var(--nx-shadow-fab);
-  right: max(var(--nx-fab-gap), calc((100vw - var(--nx-app-max)) / 2 + var(--nx-fab-gap)));
-  bottom: calc(86px + env(safe-area-inset-bottom));
-  transition:
-    transform var(--nx-dur-fast) var(--nx-ease-spring),
-    box-shadow var(--nx-dur-fast) var(--nx-ease);
-  -webkit-tap-highlight-color: transparent;
-}
-.af-nexus-write-btn-v2:hover  { transform: scale(1.06); box-shadow: 0 22px 40px rgba(79,70,229,0.40); }
-.af-nexus-write-btn-v2:active { transform: scale(0.94); }
-
-@media (min-width: 768px) {
-  :root { --nx-app-max: 430px; --nx-fab-gap: 18px; }
-  .af-nexus-write-btn-v2 { bottom: 86px; }
+  position: fixed !important;
+  z-index: 9999 !important;
+  width: 58px !important;
+  height: 58px !important;
+  border: 0 !important;
+  border-radius: 22px !important;
+  cursor: pointer !important;
+  display: grid !important;
+  place-items: center !important;
+  font-size: 24px !important;
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #2563eb, #4f46e5) !important;
+  box-shadow: 0 18px 34px rgba(37,99,235,0.30) !important;
+  -webkit-tap-highlight-color: transparent !important;
+  right: max(16px, env(safe-area-inset-right)) !important;
+  bottom: calc(86px + env(safe-area-inset-bottom)) !important;
 }
 
-@media (max-width: 767px) {
-  :root { --nx-app-max: 100vw; --nx-fab-gap: 16px; }
-  .af-nexus-write-btn-v2 {
-    right: max(16px, env(safe-area-inset-right));
-    bottom: calc(86px + env(safe-area-inset-bottom));
-  }
-}
-
-/* ══════════════════════════════════════════════════════════
-   MODAL OVERLAY (base)
-══════════════════════════════════════════════════════════ */
-
+/* Modals */
 .af-nexus-modal-overlay-v2,
 .af-nexus-menu-overlay-v2 {
-  position: fixed;
-  inset: 0;
-  z-index: 10000;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding: 12px;
-  background: var(--nx-overlay-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity var(--nx-dur-med) var(--nx-ease);
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 10000 !important;
+  display: grid !important;
+  place-items: end center !important;
+  padding: 14px !important;
+  background: rgba(15,23,42,0.44) !important;
+  backdrop-filter: blur(10px) !important;
 }
-
-/* Visible state controlled by JS — remove af-hidden to show */
-.af-nexus-modal-overlay-v2:not(.af-hidden),
-.af-nexus-menu-overlay-v2:not(.af-hidden) {
-  opacity: 1;
-  pointer-events: all;
-}
-
-/* ── Modal Cards ──────────────────────────────────────────── */
 
 .af-nexus-composer-card-v2,
 .af-nexus-comments-card-v2,
 .af-nexus-reply-card-v2 {
-  width: min(100%, 560px);
-  max-height: min(88dvh, 760px);
-  overflow: auto;
-  border-radius: var(--nx-r-xl);
-  padding: 0;
-  background: var(--nx-modal-bg);
-  border: 1px solid var(--nx-border-modal);
-  box-shadow: var(--nx-shadow-modal);
-  transform: translateY(32px);
-  transition:
-    transform var(--nx-dur-med) var(--nx-ease-spring),
-    background var(--nx-dur-med) var(--nx-ease);
-  display: flex;
-  flex-direction: column;
+  width: min(100%, 720px) !important;
+  max-height: min(88dvh, 760px) !important;
+  overflow: auto !important;
+  border-radius: 28px !important;
+  padding: 16px !important;
+  background: linear-gradient(145deg, #ffffff, #f8fafc) !important;
+  border: 1px solid rgba(226,232,240,0.95) !important;
+  box-shadow: 0 24px 70px rgba(15,23,42,0.26) !important;
 }
-
-.af-nexus-modal-overlay-v2:not(.af-hidden) .af-nexus-composer-card-v2,
-.af-nexus-modal-overlay-v2:not(.af-hidden) .af-nexus-comments-card-v2,
-.af-nexus-modal-overlay-v2:not(.af-hidden) .af-nexus-reply-card-v2 {
-  transform: translateY(0);
-}
-
-/* ── Modal Head ───────────────────────────────────────────── */
 
 .af-nexus-modal-head-v2 {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 16px 16px 12px;
-  border-bottom: 1px solid var(--nx-border);
-  flex-shrink: 0;
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  margin-bottom: 12px !important;
 }
 
 .af-nexus-modal-head-v2 h3 {
-  margin: 0;
-  font-family: 'Sora', sans-serif;
-  font-size: 16px;
-  font-weight: 800;
-  color: var(--nx-text);
-  transition: color var(--nx-dur-med) var(--nx-ease);
+  margin: 0 !important;
+  font-size: 17px !important;
+  line-height: 1.1 !important;
+  font-weight: 950 !important;
+  color: #0f172a !important;
 }
 
 .af-nexus-modal-head-v2 p {
-  margin: 3px 0 0;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--nx-text-muted);
-  transition: color var(--nx-dur-med) var(--nx-ease);
+  margin: 4px 0 0 !important;
+  font-size: 11.5px !important;
+  font-weight: 750 !important;
+  color: #64748b !important;
 }
 
-.af-nexus-modal-head-v2 > button {
-  width: 34px;
-  height: 34px;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 1;
-  color: var(--nx-text-muted);
-  background: var(--nx-action-bg);
-  flex-shrink: 0;
-  transition: background var(--nx-dur-fast) var(--nx-ease), transform var(--nx-dur-fast) var(--nx-ease-spring);
-}
-.af-nexus-modal-head-v2 > button:hover  { background: var(--nx-border-card); }
-.af-nexus-modal-head-v2 > button:active { transform: scale(0.9); }
-
-/* ── Composer textarea ────────────────────────────────────── */
-
-.af-nexus-composer-body-v2 {
-  display: flex;
-  gap: 12px;
-  padding: 14px 16px;
-  flex: 1;
+.af-nexus-modal-head-v2 button {
+  width: 36px !important;
+  height: 36px !important;
+  border: 0 !important;
+  border-radius: 14px !important;
+  cursor: pointer !important;
+  font-size: 22px !important;
+  font-weight: 900 !important;
+  color: #475569 !important;
+  background: #f1f5f9 !important;
 }
 
-.af-nexus-composer-avatar-v2 {
-  width: 40px;
-  height: 40px;
-  min-width: 40px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-family: 'Sora', sans-serif;
-  font-size: 14px;
-  font-weight: 800;
-  color: #ffffff;
-  background: var(--nx-avatar-grad);
-  flex-shrink: 0;
-}
-
-#afNexusPostInputV2 {
-  flex: 1;
-  border: none;
-  background: transparent;
-  resize: none;
-  outline: none;
-  font-family: 'Nunito', sans-serif;
-  font-size: 15px;
-  line-height: 1.6;
-  font-weight: 500;
-  color: var(--nx-text);
-  min-height: 80px;
-  transition: color var(--nx-dur-med) var(--nx-ease);
-}
-#afNexusPostInputV2::placeholder { color: var(--nx-text-muted); }
-
-/* ── Comment/Reply textareas ──────────────────────────────── */
-
+#afNexusPostInputV2,
 #afNexusCommentInputV2,
 #afNexusReplyInputV2 {
-  width: 100%;
-  resize: none;
-  outline: none;
-  border-radius: 18px;
-  padding: 10px 14px;
-  font-family: 'Nunito', sans-serif;
-  font-size: 14px;
-  line-height: 1.55;
-  font-weight: 500;
-  color: var(--nx-text);
-  background: var(--nx-input-bg);
-  border: 1px solid var(--nx-border-input);
-  transition:
-    border-color var(--nx-dur-fast) var(--nx-ease),
-    box-shadow var(--nx-dur-fast) var(--nx-ease),
-    background var(--nx-dur-med) var(--nx-ease),
-    color var(--nx-dur-med) var(--nx-ease);
-}
-#afNexusCommentInputV2:focus,
-#afNexusReplyInputV2:focus {
-  border-color: var(--nx-primary);
-  box-shadow: 0 0 0 3px rgba(79,70,229,0.12);
-  background: var(--nx-input-bg-focus);
-}
-#afNexusCommentInputV2.af-limit-exceeded-v2,
-#afNexusReplyInputV2.af-limit-exceeded-v2,
-#afNexusPostInputV2.af-limit-exceeded-v2 {
-  color: var(--nx-danger);
-  border-color: rgba(239,68,68,0.6);
-  background: rgba(239,68,68,0.04);
+  width: 100% !important;
+  resize: none !important;
+  outline: none !important;
+  border-radius: 20px !important;
+  padding: 14px !important;
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+  font-weight: 650 !important;
+  color: #0f172a !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(203,213,225,0.95) !important;
+  box-shadow: inset 0 1px 0 rgba(15,23,42,0.03) !important;
 }
 
-/* ── Footer bars ──────────────────────────────────────────── */
+#afNexusPostInputV2.af-limit-exceeded-v2,
+#afNexusCommentInputV2.af-limit-exceeded-v2,
+#afNexusReplyInputV2.af-limit-exceeded-v2 {
+  color: #dc2626 !important;
+  border-color: rgba(239,68,68,0.8) !important;
+  background: #fff1f2 !important;
+}
 
 .af-nexus-composer-foot-v2,
 .af-nexus-comment-input-foot-v2 {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 10px 16px 14px;
-  border-top: 1px solid var(--nx-border);
-  flex-shrink: 0;
+  margin-top: 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 10px !important;
 }
 
 .af-nexus-composer-foot-v2 span,
 .af-nexus-comment-input-foot-v2 span {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--nx-text-muted);
-  transition: color var(--nx-dur-med) var(--nx-ease);
+  font-size: 11.5px !important;
+  font-weight: 850 !important;
+  color: #64748b !important;
 }
 
-.af-nexus-composer-foot-v2 > button,
-.af-nexus-comment-input-foot-v2 > button {
-  min-height: 38px;
-  border: none;
-  border-radius: 20px;
-  padding: 0 20px;
-  font-family: 'Sora', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  color: #ffffff;
-  background: linear-gradient(135deg, #4f46e5, #818cf8);
-  box-shadow: var(--nx-shadow-btn);
-  cursor: pointer;
-  transition:
-    filter var(--nx-dur-fast) var(--nx-ease),
-    transform var(--nx-dur-fast) var(--nx-ease-spring),
-    opacity var(--nx-dur-fast) var(--nx-ease);
-  -webkit-tap-highlight-color: transparent;
-}
-.af-nexus-composer-foot-v2 > button:hover,
-.af-nexus-comment-input-foot-v2 > button:hover { filter: brightness(1.08); }
-.af-nexus-composer-foot-v2 > button:active,
-.af-nexus-comment-input-foot-v2 > button:active { transform: scale(0.96); }
-.af-nexus-composer-foot-v2 > button:disabled,
-.af-nexus-comment-input-foot-v2 > button:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-  box-shadow: none;
+.af-nexus-composer-foot-v2 button,
+.af-nexus-comment-input-foot-v2 button {
+  min-height: 42px !important;
+  border: 0 !important;
+  border-radius: 16px !important;
+  cursor: pointer !important;
+  padding: 0 18px !important;
+  font-size: 13px !important;
+  font-weight: 950 !important;
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #2563eb, #4f46e5) !important;
+  box-shadow: 0 12px 24px rgba(37,99,235,0.18) !important;
 }
 
-/* Word warning */
+.af-nexus-composer-foot-v2 button:disabled,
+.af-nexus-comment-input-foot-v2 button:disabled {
+  opacity: 0.45 !important;
+  cursor: not-allowed !important;
+  box-shadow: none !important;
+}
+
 .af-nexus-word-warning-v2 {
-  margin: 0;
-  padding: 9px 16px;
-  font-size: 12px;
-  font-weight: 700;
-  color: #991b1b;
-  background: rgba(254,226,226,0.9);
-  border-top: 1px solid rgba(239,68,68,0.2);
-  flex-shrink: 0;
-  transition: background var(--nx-dur-med) var(--nx-ease);
-}
-[data-theme="dark"] .af-nexus-word-warning-v2 {
-  background: rgba(127,29,29,0.30);
-  color: #fca5a5;
-  border-top-color: rgba(239,68,68,0.25);
+  margin: 10px 0 0 !important;
+  padding: 10px 12px !important;
+  border-radius: 14px !important;
+  font-size: 11.5px !important;
+  font-weight: 850 !important;
+  color: #991b1b !important;
+  background: #fee2e2 !important;
+  border: 1px solid rgba(248,113,113,0.55) !important;
 }
 
-/* ══════════════════════════════════════════════════════════
-   COMMENTS — Twitter/Instagram style
-══════════════════════════════════════════════════════════ */
-
-.af-nexus-comments-card-v2 {
-  max-height: min(90dvh, 800px);
-}
-
+/* Comments */
 .af-nexus-comments-list-v2 {
-  flex: 1;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  display: grid !important;
+  gap: 10px !important;
+  max-height: 48dvh !important;
+  overflow: auto !important;
+  padding: 2px 2px 12px !important;
 }
 
-/* Individual comment item */
-.af-nexus-comment-item-v2 {
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--nx-border);
-  display: flex;
-  gap: 10px;
-  animation: nx-post-in 0.2s var(--nx-ease) both;
-  transition: background var(--nx-dur-fast) var(--nx-ease);
-}
-.af-nexus-comment-item-v2:hover { background: rgba(79,70,229,0.02); }
-[data-theme="dark"] .af-nexus-comment-item-v2:hover { background: rgba(129,140,248,0.03); }
-
-/* Threaded reply — indent */
-.af-nexus-comment-item-v2.nx-reply {
-  padding-left: 28px;
-  background: rgba(79,70,229,0.02);
-  border-left: 2px solid rgba(79,70,229,0.20);
-  margin-left: 12px;
-}
-[data-theme="dark"] .af-nexus-comment-item-v2.nx-reply {
-  background: rgba(129,140,248,0.03);
-  border-left-color: rgba(129,140,248,0.25);
+.af-nexus-comment-card-v2 {
+  border-radius: 20px !important;
+  padding: 12px !important;
+  background: rgba(248,250,252,0.96) !important;
+  border: 1px solid rgba(226,232,240,0.9) !important;
 }
 
-.af-nexus-comment-avatar-v2 {
-  width: 32px;
-  height: 32px;
-  min-width: 32px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-family: 'Sora', sans-serif;
-  font-size: 11px;
-  font-weight: 800;
-  color: #ffffff;
-  background: linear-gradient(135deg, var(--nx-accent), var(--nx-primary));
-  cursor: pointer;
-  flex-shrink: 0;
-  transition: transform var(--nx-dur-fast) var(--nx-ease-spring);
+.af-nexus-comment-card-v2.reply {
+  margin-left: 18px !important;
+  border-left: 3px solid rgba(37,99,235,0.35) !important;
 }
-.af-nexus-comment-avatar-v2:hover { transform: scale(1.08); }
-
-.af-nexus-comment-body-v2 { flex: 1; min-width: 0; }
 
 .af-nexus-comment-top-v2 {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  margin-bottom: 3px;
+  display: flex !important;
+  justify-content: space-between !important;
+  gap: 8px !important;
+  margin-bottom: 7px !important;
 }
 
 .af-nexus-comment-top-v2 strong {
-  font-family: 'Sora', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--nx-text);
-  transition: color var(--nx-dur-med) var(--nx-ease);
+  font-size: 12.5px !important;
+  font-weight: 950 !important;
+  color: #0f172a !important;
 }
 
 .af-nexus-comment-top-v2 small {
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--nx-text-muted);
-  white-space: nowrap;
-  transition: color var(--nx-dur-med) var(--nx-ease);
+  display: block !important;
+  margin-top: 2px !important;
+  font-size: 10px !important;
+  font-weight: 750 !important;
+  color: #94a3b8 !important;
 }
 
 .af-nexus-comment-text-v2 {
-  margin: 0 0 6px;
-  font-size: 13.5px;
-  line-height: 1.55;
-  font-weight: 500;
-  color: var(--nx-text);
-  white-space: pre-wrap;
-  word-break: break-word;
-  transition: color var(--nx-dur-med) var(--nx-ease);
+  margin: 0 0 8px !important;
+  font-size: 12.5px !important;
+  line-height: 1.5 !important;
+  font-weight: 650 !important;
+  color: #334155 !important;
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
 }
 
 .af-nexus-comment-actions-v2 {
-  display: flex;
-  gap: 2px;
-  align-items: center;
+  display: flex !important;
+  gap: 8px !important;
+  align-items: center !important;
 }
 
-.af-nx-comment-action {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 4px 8px;
-  border-radius: 16px;
-  border: none;
-  background: transparent;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--nx-text-muted);
-  cursor: pointer;
-  transition:
-    background var(--nx-dur-fast) var(--nx-ease),
-    color var(--nx-dur-fast) var(--nx-ease);
-  -webkit-tap-highlight-color: transparent;
-}
-.af-nx-comment-action:hover  { background: rgba(79,70,229,0.07); color: var(--nx-primary); }
-.af-nx-comment-action.liked  { color: var(--nx-danger); }
-.af-nx-comment-action.liked:hover { background: rgba(239,68,68,0.07); }
-
-/* Reply indicator bar */
-.af-nexus-reply-bar-v2 {
-  padding: 8px 16px;
-  background: rgba(79,70,229,0.06);
-  border-left: 3px solid var(--nx-primary);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  flex-shrink: 0;
-  transition: background var(--nx-dur-med) var(--nx-ease);
-}
-[data-theme="dark"] .af-nexus-reply-bar-v2 { background: rgba(129,140,248,0.08); }
-
-.af-nexus-reply-bar-v2 span {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--nx-text-2);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  transition: color var(--nx-dur-med) var(--nx-ease);
-}
-.af-nexus-reply-bar-v2 button {
-  border: none;
-  background: transparent;
-  font-size: 18px;
-  color: var(--nx-text-muted);
-  cursor: pointer;
-  flex-shrink: 0;
-  line-height: 1;
-  padding: 0 4px;
-}
-
-/* Comment input wrapper */
 .af-nexus-comment-input-box-v2 {
-  padding: 10px 14px 12px;
-  border-top: 1px solid var(--nx-border);
-  flex-shrink: 0;
+  margin-top: 12px !important;
+  padding-top: 12px !important;
+  border-top: 1px solid rgba(226,232,240,0.95) !important;
 }
 
-/* ══════════════════════════════════════════════════════════
-   ACTION SHEET — contextual menu
-══════════════════════════════════════════════════════════ */
-
+/* Bottom action menu */
 .af-nexus-menu-card-v2 {
-  width: min(100%, 400px);
-  border-radius: var(--nx-r-lg);
-  padding: 8px;
-  background: var(--nx-modal-bg);
-  border: 1px solid var(--nx-border-modal);
-  box-shadow: var(--nx-shadow-modal);
-  transform: translateY(24px);
-  transition:
-    transform var(--nx-dur-med) var(--nx-ease-spring),
-    background var(--nx-dur-med) var(--nx-ease);
+  width: min(100%, 420px) !important;
+  border-radius: 24px !important;
+  padding: 10px !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(226,232,240,0.95) !important;
+  box-shadow: 0 24px 70px rgba(15,23,42,0.24) !important;
 }
 
-.af-nexus-menu-overlay-v2:not(.af-hidden) .af-nexus-menu-card-v2 {
-  transform: translateY(0);
+.af-nexus-menu-card-v2 button {
+  width: 100% !important;
+  min-height: 48px !important;
+  border: 0 !important;
+  border-radius: 16px !important;
+  cursor: pointer !important;
+  margin: 4px 0 !important;
+  font-size: 14px !important;
+  font-weight: 900 !important;
+  color: #0f172a !important;
+  background: #f8fafc !important;
 }
 
-.af-nexus-menu-item-v2 {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-height: 50px;
-  border: none;
-  border-radius: 14px;
-  padding: 0 16px;
-  margin: 2px 0;
-  font-family: 'Nunito', sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--nx-text);
-  background: transparent;
-  cursor: pointer;
-  text-align: left;
-  transition:
-    background var(--nx-dur-fast) var(--nx-ease),
-    color var(--nx-dur-fast) var(--nx-ease),
-    transform var(--nx-dur-fast) var(--nx-ease-spring);
-  -webkit-tap-highlight-color: transparent;
-}
-.af-nexus-menu-item-v2:hover  { background: var(--nx-action-bg); }
-.af-nexus-menu-item-v2:active { transform: scale(0.98); }
-.af-nexus-menu-item-v2 .af-nx-menu-emoji { font-size: 20px; }
-
-.af-nexus-menu-item-v2.danger { color: var(--nx-danger); }
-.af-nexus-menu-item-v2.danger:hover { background: rgba(239,68,68,0.08); }
-.af-nexus-menu-item-v2.cancel { color: var(--nx-text-muted); font-weight: 600; }
-
-.af-nexus-menu-divider-v2 {
-  height: 1px;
-  background: var(--nx-border);
-  margin: 4px 0;
-}
-
-/* Legacy single delete btn — keep existing id */
 #afNexusDeleteActionBtnV2 {
-  width: 100%;
-  min-height: 48px;
-  border: none;
-  border-radius: 14px;
-  cursor: pointer;
-  margin: 2px 0;
-  padding: 0 16px;
-  font-family: 'Nunito', sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--nx-danger);
-  background: rgba(239,68,68,0.08);
-  text-align: left;
-  transition: background var(--nx-dur-fast) var(--nx-ease);
-}
-#afNexusDeleteActionBtnV2:hover { background: rgba(239,68,68,0.14); }
-
-/* ══════════════════════════════════════════════════════════
-   PROFILE PANEL  (new — #afNexusProfilePanelV2)
-══════════════════════════════════════════════════════════ */
-
-.af-nexus-profile-panel-v2 {
-  width: min(100%, 480px);
-  max-height: min(88dvh, 700px);
-  overflow-y: auto;
-  border-radius: var(--nx-r-xl);
-  background: var(--nx-modal-bg);
-  border: 1px solid var(--nx-border-modal);
-  box-shadow: var(--nx-shadow-modal);
-  transform: translateY(32px);
-  transition:
-    transform var(--nx-dur-med) var(--nx-ease-spring),
-    background var(--nx-dur-med) var(--nx-ease);
-  display: flex;
-  flex-direction: column;
-}
-.af-nexus-modal-overlay-v2:not(.af-hidden) .af-nexus-profile-panel-v2 {
-  transform: translateY(0);
-}
-
-.af-nexus-profile-hero-v2 {
-  padding: 24px 20px 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  text-align: center;
-  border-bottom: 1px solid var(--nx-border);
-}
-
-.af-nexus-profile-avatar-lg-v2 {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-family: 'Sora', sans-serif;
-  font-size: 24px;
-  font-weight: 800;
-  color: #ffffff;
-  background: var(--nx-avatar-grad);
-  box-shadow: var(--nx-shadow-avatar);
-}
-
-.af-nexus-profile-name-v2 {
-  font-family: 'Sora', sans-serif;
-  font-size: 18px;
-  font-weight: 800;
-  color: var(--nx-text);
-  letter-spacing: -0.03em;
-  margin: 0;
-  transition: color var(--nx-dur-med) var(--nx-ease);
-}
-
-.af-nexus-profile-status-v2 {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--nx-text-muted);
-  transition: color var(--nx-dur-med) var(--nx-ease);
-}
-
-.af-nx-online-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--nx-success);
-  animation: nx-pulse 2s infinite;
-}
-
-.af-nx-offline-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--nx-text-muted);
-}
-
-@keyframes nx-pulse {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.4; }
-}
-
-.af-nexus-profile-actions-v2 {
-  display: flex;
-  gap: 8px;
-  padding: 14px 16px;
-  border-bottom: 1px solid var(--nx-border);
-}
-
-.af-nx-profile-action-btn {
-  flex: 1;
-  min-height: 38px;
-  border: none;
-  border-radius: 20px;
-  font-family: 'Sora', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  transition:
-    filter var(--nx-dur-fast) var(--nx-ease),
-    transform var(--nx-dur-fast) var(--nx-ease-spring);
-  -webkit-tap-highlight-color: transparent;
-}
-.af-nx-profile-action-btn:active { transform: scale(0.96); }
-.af-nx-profile-action-btn.primary {
-  background: linear-gradient(135deg, #4f46e5, #818cf8);
-  color: #ffffff;
-  box-shadow: var(--nx-shadow-btn);
-}
-.af-nx-profile-action-btn.primary:hover { filter: brightness(1.07); }
-.af-nx-profile-action-btn.ghost {
-  background: var(--nx-action-bg);
-  color: var(--nx-text-2);
-  border: 1px solid var(--nx-border);
-}
-.af-nx-profile-action-btn.ghost:hover { background: var(--nx-border-card); }
-
-.af-nexus-profile-posts-v2 { flex: 1; overflow-y: auto; }
-
-.af-nexus-profile-posts-head-v2 {
-  padding: 12px 16px 8px;
-  font-family: 'Sora', sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--nx-text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  border-bottom: 1px solid var(--nx-border);
-  display: flex;
-  gap: 12px;
-}
-
-.af-nx-profile-tab {
-  border: none;
-  background: transparent;
-  font-family: 'Sora', sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--nx-text-muted);
-  cursor: pointer;
-  padding: 4px 0;
-  border-bottom: 2px solid transparent;
-  transition: color var(--nx-dur-fast), border-color var(--nx-dur-fast);
-}
-.af-nx-profile-tab.active { color: var(--nx-primary); border-bottom-color: var(--nx-primary); }
-
-.af-nexus-profile-post-mini-v2 {
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--nx-border);
-  font-size: 13px;
-  line-height: 1.55;
-  color: var(--nx-text);
-  transition: background var(--nx-dur-fast) var(--nx-ease), color var(--nx-dur-med) var(--nx-ease);
-}
-.af-nexus-profile-post-mini-v2:hover { background: rgba(79,70,229,0.03); }
-.af-nexus-profile-post-mini-v2 .af-nx-mini-meta {
-  margin-top: 5px;
-  font-size: 11px;
-  color: var(--nx-text-muted);
-  display: flex;
-  gap: 12px;
-}
-
-/* ══════════════════════════════════════════════════════════
-   NOTIFICATIONS PANEL  (#afNexusNotifPanelV2)
-══════════════════════════════════════════════════════════ */
-
-.af-nexus-notif-panel-v2 {
-  width: min(100%, 420px);
-  max-height: min(80dvh, 600px);
-  overflow-y: auto;
-  border-radius: var(--nx-r-xl);
-  background: var(--nx-modal-bg);
-  border: 1px solid var(--nx-border-modal);
-  box-shadow: var(--nx-shadow-modal);
-  transform: translateY(24px);
-  transition: transform var(--nx-dur-med) var(--nx-ease-spring), background var(--nx-dur-med) var(--nx-ease);
-  display: flex;
-  flex-direction: column;
-}
-.af-nexus-modal-overlay-v2:not(.af-hidden) .af-nexus-notif-panel-v2 {
-  transform: translateY(0);
-}
-
-.af-nexus-notif-item-v2 {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--nx-border);
-  cursor: pointer;
-  transition: background var(--nx-dur-fast) var(--nx-ease);
-}
-.af-nexus-notif-item-v2:hover  { background: rgba(79,70,229,0.04); }
-.af-nexus-notif-item-v2.unread { background: rgba(79,70,229,0.06); }
-[data-theme="dark"] .af-nexus-notif-item-v2.unread { background: rgba(129,140,248,0.08); }
-
-.af-nexus-notif-avatar-v2 {
-  width: 36px;
-  height: 36px;
-  min-width: 36px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-family: 'Sora', sans-serif;
-  font-size: 13px;
-  font-weight: 800;
-  color: #ffffff;
-  background: var(--nx-avatar-grad);
-  flex-shrink: 0;
-}
-
-.af-nexus-notif-text-v2 {
-  flex: 1;
-  font-size: 13px;
-  line-height: 1.5;
-  color: var(--nx-text);
-  transition: color var(--nx-dur-med) var(--nx-ease);
-}
-.af-nexus-notif-text-v2 b { font-weight: 700; }
-.af-nexus-notif-time-v2 {
-  font-size: 11px;
-  color: var(--nx-text-muted);
-  margin-top: 3px;
-}
-.af-nexus-notif-dot-v2 {
-  width: 8px;
-  height: 8px;
-  min-width: 8px;
-  border-radius: 50%;
-  background: var(--nx-primary);
-  align-self: center;
-}
-
-/* ══════════════════════════════════════════════════════════
-   CHAT SECTION  (#af-nexus-chat-section)
-══════════════════════════════════════════════════════════ */
-
-.af-nexus-chat-list-v2 {
-  display: flex;
-  flex-direction: column;
-}
-
-.af-nexus-chat-search-v2 {
-  padding: 10px 14px;
-  border-bottom: 1px solid var(--nx-border);
-}
-
-.af-nexus-chat-search-inner-v2 {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--nx-input-bg);
-  border: 1px solid var(--nx-border-input);
-  border-radius: var(--nx-r-full);
-  padding: 9px 14px;
-  transition:
-    border-color var(--nx-dur-fast) var(--nx-ease),
-    box-shadow var(--nx-dur-fast) var(--nx-ease),
-    background var(--nx-dur-med) var(--nx-ease);
-}
-.af-nexus-chat-search-inner-v2:focus-within {
-  border-color: var(--nx-primary);
-  box-shadow: 0 0 0 3px rgba(79,70,229,0.10);
-}
-
-.af-nexus-chat-search-input-v2 {
-  flex: 1;
-  border: none;
-  background: transparent;
-  outline: none;
-  font-family: 'Nunito', sans-serif;
-  font-size: 14px;
-  color: var(--nx-text);
-  transition: color var(--nx-dur-med) var(--nx-ease);
-}
-.af-nexus-chat-search-input-v2::placeholder { color: var(--nx-text-muted); }
-
-/* Chat list items */
-.af-nexus-chat-item-v2 {
-  padding: 12px 16px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  border-bottom: 1px solid var(--nx-border);
-  cursor: pointer;
-  transition: background var(--nx-dur-fast) var(--nx-ease);
-}
-.af-nexus-chat-item-v2:hover  { background: rgba(79,70,229,0.04); }
-.af-nexus-chat-item-v2:active { background: rgba(79,70,229,0.08); }
-
-.af-nexus-chat-item-avatar-v2 {
-  width: 46px;
-  height: 46px;
-  min-width: 46px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-family: 'Sora', sans-serif;
-  font-size: 16px;
-  font-weight: 800;
-  color: #ffffff;
-  background: linear-gradient(135deg, #06b6d4, #4f46e5);
-  position: relative;
-  flex-shrink: 0;
-}
-
-.af-nx-status-dot {
-  position: absolute;
-  bottom: 1px;
-  right: 1px;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 2px solid var(--nx-modal-bg);
-  background: var(--nx-text-muted);
-  transition: background var(--nx-dur-med) var(--nx-ease), border-color var(--nx-dur-med) var(--nx-ease);
-}
-.af-nx-status-dot.online { background: var(--nx-success); }
-
-.af-nexus-chat-item-info-v2 { flex: 1; min-width: 0; }
-
-.af-nexus-chat-item-row1-v2 {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 3px;
-}
-
-.af-nexus-chat-item-name-v2 {
-  font-family: 'Sora', sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--nx-text);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  transition: color var(--nx-dur-med) var(--nx-ease);
-}
-
-.af-nexus-chat-item-time-v2 {
-  font-size: 11px;
-  color: var(--nx-text-muted);
-  white-space: nowrap;
-  flex-shrink: 0;
-  transition: color var(--nx-dur-med) var(--nx-ease);
-}
-
-.af-nexus-chat-item-preview-v2 {
-  font-size: 12px;
-  color: var(--nx-text-muted);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  transition: color var(--nx-dur-med) var(--nx-ease);
-}
-
-/* ══════════════════════════════════════════════════════════
-   CHAT WINDOW  (#af-nexus-chat-window)
-══════════════════════════════════════════════════════════ */
-
-.af-nexus-chat-window-v2 {
-  position: fixed;
-  inset: 0;
-  z-index: 5000;
-  display: none;
-  flex-direction: column;
-  background: var(--nx-modal-bg);
-  max-width: var(--nx-app-max, 760px);
-  left: 50%;
-  transform: translateX(-50%);
-  transition: background var(--nx-dur-med) var(--nx-ease);
-}
-.af-nexus-chat-window-v2.open { display: flex; }
-
-.af-nexus-chat-win-header-v2 {
-  height: 60px;
-  background: var(--nx-shell);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--nx-border);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 0 14px;
-  flex-shrink: 0;
-  transition: background var(--nx-dur-med) var(--nx-ease);
-}
-
-.af-nexus-chat-back-btn-v2 {
-  width: 34px;
-  height: 34px;
-  border-radius: 12px;
-  background: var(--nx-action-bg);
-  border: 1px solid var(--nx-border);
-  display: grid;
-  place-items: center;
-  font-size: 18px;
-  cursor: pointer;
-  color: var(--nx-text);
-  flex-shrink: 0;
-  transition: background var(--nx-dur-fast) var(--nx-ease), color var(--nx-dur-fast) var(--nx-ease);
-}
-.af-nexus-chat-back-btn-v2:hover { background: var(--nx-border-card); }
-
-.af-nexus-chat-win-info-v2 {
-  flex: 1;
-  min-width: 0;
-  cursor: pointer;
-}
-.af-nexus-chat-win-name-v2 {
-  font-family: 'Sora', sans-serif;
-  font-size: 15px;
-  font-weight: 800;
-  color: var(--nx-text);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  line-height: 1.1;
-  transition: color var(--nx-dur-med) var(--nx-ease);
-}
-.af-nexus-chat-win-status-v2 {
-  font-size: 11px;
-  color: var(--nx-text-muted);
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  margin-top: 2px;
-  transition: color var(--nx-dur-med) var(--nx-ease);
-}
-
-/* Messages area */
-.af-nexus-messages-area-v2 {
-  flex: 1;
-  overflow-y: auto;
-  padding: 12px 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  -webkit-overflow-scrolling: touch;
-}
-
-.af-nx-msg-wrap {
-  display: flex;
-  gap: 8px;
-  align-items: flex-end;
-  animation: nx-post-in 0.18s var(--nx-ease) both;
-}
-.af-nx-msg-wrap.mine { flex-direction: row-reverse; }
-
-.af-nx-msg-avatar {
-  width: 26px;
-  height: 26px;
-  min-width: 26px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-size: 9px;
-  font-weight: 800;
-  color: #ffffff;
-  background: linear-gradient(135deg, var(--nx-accent), var(--nx-primary));
-  flex-shrink: 0;
-}
-
-.af-nx-msg-col {
-  display: flex;
-  flex-direction: column;
-  max-width: 72%;
-  gap: 2px;
-}
-.af-nx-msg-wrap.mine .af-nx-msg-col { align-items: flex-end; }
-.af-nx-msg-wrap:not(.mine) .af-nx-msg-col { align-items: flex-start; }
-
-/* Reply preview inside bubble */
-.af-nx-reply-preview {
-  padding: 5px 10px;
-  border-radius: 10px;
-  border-left: 3px solid var(--nx-primary);
-  background: rgba(79,70,229,0.08);
-  font-size: 11.5px;
-  color: var(--nx-text-2);
-  line-height: 1.4;
-  max-width: 100%;
-  margin-bottom: 3px;
-  transition: background var(--nx-dur-med) var(--nx-ease), color var(--nx-dur-med) var(--nx-ease);
-}
-[data-theme="dark"] .af-nx-reply-preview { background: rgba(129,140,248,0.12); }
-
-.af-nx-bubble {
-  padding: 9px 13px;
-  border-radius: 18px;
-  font-size: 14px;
-  line-height: 1.5;
-  word-break: break-word;
-  white-space: pre-wrap;
-  position: relative;
-}
-.af-nx-bubble.theirs {
-  background: var(--nx-action-bg);
-  color: var(--nx-text);
-  border-bottom-left-radius: 4px;
-  transition: background var(--nx-dur-med) var(--nx-ease), color var(--nx-dur-med) var(--nx-ease);
-}
-.af-nx-bubble.mine {
-  background: linear-gradient(135deg, #4f46e5, #818cf8);
-  color: #ffffff;
-  border-bottom-right-radius: 4px;
-}
-
-/* Emoji reactions on bubble */
-.af-nx-reactions {
-  display: flex;
-  gap: 2px;
-  flex-wrap: wrap;
-  margin-top: 3px;
-}
-.af-nx-reaction-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  padding: 2px 7px;
-  border-radius: 12px;
-  background: var(--nx-action-bg);
-  border: 1px solid var(--nx-border);
-  font-size: 13px;
-  cursor: pointer;
-  transition: background var(--nx-dur-fast) var(--nx-ease), transform var(--nx-dur-fast) var(--nx-ease-spring);
-}
-.af-nx-reaction-chip:hover  { background: var(--nx-border-card); }
-.af-nx-reaction-chip:active { transform: scale(0.9); }
-.af-nx-reaction-chip.mine   { background: rgba(79,70,229,0.12); border-color: rgba(79,70,229,0.25); }
-.af-nx-reaction-chip span   { font-size: 11px; font-weight: 700; color: var(--nx-text-muted); }
-
-.af-nx-msg-time {
-  font-size: 10px;
-  color: var(--nx-text-muted);
-  padding: 0 4px;
-  transition: color var(--nx-dur-med) var(--nx-ease);
-}
-
-.af-nx-date-divider {
-  text-align: center;
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--nx-text-muted);
-  padding: 10px 0;
-  letter-spacing: 0.04em;
-  transition: color var(--nx-dur-med) var(--nx-ease);
-}
-
-/* Typing indicator */
-.af-nx-typing-bar {
-  padding: 8px 16px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  color: var(--nx-text-muted);
-  font-style: italic;
-  flex-shrink: 0;
-  transition: color var(--nx-dur-med) var(--nx-ease);
-}
-.af-nx-typing-dots {
-  display: flex;
-  gap: 3px;
-  align-items: center;
-}
-.af-nx-typing-dots span {
-  width: 5px;
-  height: 5px;
-  background: var(--nx-text-muted);
-  border-radius: 50%;
-  animation: nx-bounce 1.2s ease-in-out infinite;
-}
-.af-nx-typing-dots span:nth-child(2) { animation-delay: 0.2s; }
-.af-nx-typing-dots span:nth-child(3) { animation-delay: 0.4s; }
-@keyframes nx-bounce {
-  0%, 80%, 100% { transform: scale(0.7); opacity: 0.5; }
-  40%           { transform: scale(1);   opacity: 1; }
-}
-
-/* Chat reply bar */
-.af-nx-chat-reply-bar {
-  padding: 8px 14px;
-  background: rgba(79,70,229,0.06);
-  border-top: 1px solid var(--nx-border);
-  border-left: 3px solid var(--nx-primary);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  font-size: 12px;
-  color: var(--nx-text-2);
-  flex-shrink: 0;
-  transition: background var(--nx-dur-med) var(--nx-ease), color var(--nx-dur-med) var(--nx-ease);
-}
-[data-theme="dark"] .af-nx-chat-reply-bar { background: rgba(129,140,248,0.08); }
-.af-nx-chat-reply-bar button { border: none; background: transparent; font-size: 18px; color: var(--nx-text-muted); cursor: pointer; }
-
-/* Emoji picker row */
-.af-nx-emoji-picker-row {
-  display: flex;
-  gap: 4px;
-  padding: 6px 12px;
-  background: var(--nx-shell);
-  border-top: 1px solid var(--nx-border);
-  flex-shrink: 0;
-  transition: background var(--nx-dur-med) var(--nx-ease);
-}
-.af-nx-emoji-btn {
-  width: 36px;
-  height: 36px;
-  border: none;
-  border-radius: 12px;
-  background: var(--nx-action-bg);
-  font-size: 18px;
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  transition: background var(--nx-dur-fast) var(--nx-ease), transform var(--nx-dur-fast) var(--nx-ease-spring);
-}
-.af-nx-emoji-btn:hover  { background: var(--nx-border-card); }
-.af-nx-emoji-btn:active { transform: scale(0.88); }
-.af-nx-emoji-picker-row label {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--nx-text-muted);
-  align-self: center;
-  margin-left: 4px;
-  transition: color var(--nx-dur-med) var(--nx-ease);
-}
-
-/* Chat input bar */
-.af-nexus-chat-input-bar-v2 {
-  padding: 10px 12px;
-  padding-bottom: calc(10px + env(safe-area-inset-bottom));
-  border-top: 1px solid var(--nx-border);
-  background: var(--nx-shell);
-  display: flex;
-  align-items: flex-end;
-  gap: 8px;
-  flex-shrink: 0;
-  transition: background var(--nx-dur-med) var(--nx-ease);
-}
-
-.af-nexus-chat-input-wrap-v2 {
-  flex: 1;
-  display: flex;
-  align-items: flex-end;
-  gap: 8px;
-  background: var(--nx-input-bg);
-  border: 1px solid var(--nx-border-input);
-  border-radius: 22px;
-  padding: 8px 12px;
-  transition:
-    border-color var(--nx-dur-fast) var(--nx-ease),
-    box-shadow var(--nx-dur-fast) var(--nx-ease),
-    background var(--nx-dur-med) var(--nx-ease);
-}
-.af-nexus-chat-input-wrap-v2:focus-within {
-  border-color: var(--nx-primary);
-  box-shadow: 0 0 0 3px rgba(79,70,229,0.10);
-}
-
-.af-nexus-chat-input-field-v2 {
-  flex: 1;
-  border: none;
-  background: transparent;
-  resize: none;
-  outline: none;
-  font-family: 'Nunito', sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--nx-text);
-  max-height: 100px;
-  overflow-y: auto;
-  transition: color var(--nx-dur-med) var(--nx-ease);
-}
-.af-nexus-chat-input-field-v2::placeholder { color: var(--nx-text-muted); }
-
-.af-nexus-chat-send-btn-v2 {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: none;
-  background: linear-gradient(135deg, #4f46e5, #818cf8);
-  color: #ffffff;
-  font-size: 15px;
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-  box-shadow: var(--nx-shadow-btn);
-  cursor: pointer;
-  transition: transform var(--nx-dur-fast) var(--nx-ease-spring), opacity var(--nx-dur-fast) var(--nx-ease);
-  -webkit-tap-highlight-color: transparent;
-}
-.af-nexus-chat-send-btn-v2:active   { transform: scale(0.88); }
-.af-nexus-chat-send-btn-v2:disabled { opacity: 0.4; }
-
-/* User search results */
-.af-nx-user-result {
-  padding: 10px 16px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  border-bottom: 1px solid var(--nx-border);
-  cursor: pointer;
-  transition: background var(--nx-dur-fast) var(--nx-ease);
-}
-.af-nx-user-result:hover { background: rgba(79,70,229,0.04); }
-
-.af-nx-user-result-avatar {
-  width: 38px;
-  height: 38px;
-  min-width: 38px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--nx-warn), var(--nx-accent));
-  display: grid;
-  place-items: center;
-  font-family: 'Sora', sans-serif;
-  font-size: 13px;
-  font-weight: 800;
-  color: #ffffff;
-  position: relative;
-}
-
-.af-nx-user-result-info { flex: 1; min-width: 0; }
-.af-nx-user-result-name { font-size: 14px; font-weight: 700; color: var(--nx-text); transition: color var(--nx-dur-med) var(--nx-ease); }
-.af-nx-user-result-meta { font-size: 11px; color: var(--nx-text-muted); margin-top: 2px; transition: color var(--nx-dur-med) var(--nx-ease); }
-
-/* ══════════════════════════════════════════════════════════
-   MY NEXUS VIEW  (back view — keep IDs)
-══════════════════════════════════════════════════════════ */
-
-.af-my-nexus-view-v2 {
-  display: flex;
-  flex-direction: column;
-}
-
-/* ══════════════════════════════════════════════════════════
-   REPORT MODAL
-══════════════════════════════════════════════════════════ */
-
-.af-nx-report-options {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 14px;
-}
-
-.af-nx-report-option {
-  padding: 12px 14px;
-  border-radius: 14px;
-  border: 1px solid var(--nx-border);
-  text-align: left;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--nx-text);
-  background: var(--nx-action-bg);
-  cursor: pointer;
-  transition:
-    border-color var(--nx-dur-fast) var(--nx-ease),
-    background var(--nx-dur-fast) var(--nx-ease),
-    color var(--nx-dur-fast) var(--nx-ease),
-    transform var(--nx-dur-fast) var(--nx-ease-spring);
-  -webkit-tap-highlight-color: transparent;
-}
-.af-nx-report-option:hover   { border-color: var(--nx-primary); background: rgba(79,70,229,0.07); }
-.af-nx-report-option:active  { transform: scale(0.98); }
-.af-nx-report-option.selected {
-  border-color: var(--nx-primary);
-  background: rgba(79,70,229,0.10);
-  color: var(--nx-primary);
-}
-[data-theme="dark"] .af-nx-report-option.selected { color: var(--nx-primary-light); }
-
-/* ══════════════════════════════════════════════════════════
-   VISIBILITY HELPERS (overlay fix — keep !important here)
-══════════════════════════════════════════════════════════ */
-
-.af-hidden {
+  color: #991b1b !important;
+  background: #fee2e2 !important;
+}
+
+/* Mobile tightening */
+@media (max-width: 430px) {
+  .af-nexus-v2-shell {
+    width: 100% !important;
+    padding: 13px !important;
+    border-radius: 24px !important;
+  }
+
+  .af-nexus-header-v2 { align-items: flex-start !important; }
+
+  .af-nexus-logo-v2 {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    border-radius: 16px !important;
+  }
+
+  .af-nexus-title-wrap-v2 p { max-width: 210px !important; }
+
+  .af-nexus-my-btn-v2 {
+    min-height: 38px !important;
+    padding: 0 11px !important;
+    font-size: 11.5px !important;
+  }
+
+  .af-nexus-userbar-v2 {
+    align-items: flex-start !important;
+    flex-direction: column !important;
+  }
+
+  .af-nexus-section-head-v2 { align-items: flex-start !important; }
+
+  .af-nexus-author-v2 strong { max-width: 185px !important; }
+
+  .af-nexus-write-btn-v2 {
+    width: 56px !important;
+    height: 56px !important;
+    border-radius: 21px !important;
+    bottom: calc(82px + env(safe-area-inset-bottom)) !important;
+  }
+}
+
+/* Write button desktop position */
+@media (min-width: 768px) {
+  .af-nexus-write-btn-v2 {
+    right: max(18px, calc((100vw - 430px) / 2 + 18px)) !important;
+    bottom: 86px !important;
+  }
+}
+
+/* Overlay visibility forcing */
+#afNexusComposerOverlayV2.af-hidden,
+#afNexusCommentsOverlayV2.af-hidden,
+#afNexusReplyOverlayV2.af-hidden,
+#afNexusMenuOverlayV2.af-hidden {
   display: none !important;
   opacity: 0 !important;
   visibility: hidden !important;
   pointer-events: none !important;
 }
 
+#afNexusComposerOverlayV2:not(.af-hidden),
+#afNexusCommentsOverlayV2:not(.af-hidden),
+#afNexusReplyOverlayV2:not(.af-hidden),
+#afNexusMenuOverlayV2:not(.af-hidden) {
+  display: grid !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+/* Lock space fix */
 #afNexusLockedV2.af-hidden {
+  display: none !important;
   height: 0 !important;
   min-height: 0 !important;
   max-height: 0 !important;
   padding: 0 !important;
   margin: 0 !important;
   overflow: hidden !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
-/* ══════════════════════════════════════════════════════════
-   MOBILE  ≤ 430px
-══════════════════════════════════════════════════════════ */
-
-@media (max-width: 430px) {
-  .af-nexus-v2-shell {
-    width: 100%;
-    padding: 0;
-    border-radius: 0;
-  }
-
-  .af-nexus-locked-card-v2 { padding: 22px 16px; }
-  .af-nexus-composer-card-v2,
-  .af-nexus-comments-card-v2,
-  .af-nexus-reply-card-v2 { border-radius: 22px 22px 0 0; }
-  .af-nexus-menu-card-v2  { border-radius: 20px 20px 0 0; }
-  .af-nexus-profile-panel-v2 { border-radius: 22px 22px 0 0; }
-  .af-nexus-notif-panel-v2   { border-radius: 22px 22px 0 0; }
-
-  .af-nexus-author-v2 strong { max-width: 160px; }
-
-  .af-nexus-write-btn-v2 {
-    width: 52px;
-    height: 52px;
-    border-radius: 18px;
-    bottom: calc(80px + env(safe-area-inset-bottom));
-  }
+#afNexusMainV2 {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
 }
+
+/* =========================================================
+   DARK MODE — [data-theme="dark"] (matches student module)
+========================================================= */
+
+[data-theme="dark"] .af-nexus-v2-shell {
+  background:
+    radial-gradient(circle at 0% 0%, rgba(59,130,246,0.18), transparent 32%),
+    radial-gradient(circle at 100% 0%, rgba(99,102,241,0.14), transparent 34%),
+    linear-gradient(145deg, rgba(15,23,42,0.94), rgba(2,6,23,0.92)) !important;
+  border-color: rgba(148,163,184,0.18) !important;
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .af-nexus-title-wrap-v2 h2,
+[data-theme="dark"] .af-nexus-section-head-v2 h3,
+[data-theme="dark"] .af-nexus-userbar-v2 strong,
+[data-theme="dark"] .af-nexus-author-v2 strong,
+[data-theme="dark"] .af-nexus-modal-head-v2 h3,
+[data-theme="dark"] .af-nexus-comment-top-v2 strong,
+[data-theme="dark"] .af-nexus-menu-card-v2 button {
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .af-nexus-title-wrap-v2 p,
+[data-theme="dark"] .af-nexus-section-head-v2 p,
+[data-theme="dark"] .af-nexus-userbar-v2 span,
+[data-theme="dark"] .af-nexus-modal-head-v2 p,
+[data-theme="dark"] .af-nexus-composer-foot-v2 span,
+[data-theme="dark"] .af-nexus-comment-input-foot-v2 span,
+[data-theme="dark"] .af-nexus-author-v2 small,
+[data-theme="dark"] .af-nexus-comment-top-v2 small {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .af-nexus-userbar-v2,
+[data-theme="dark"] .af-nexus-post-card-v2,
+[data-theme="dark"] .af-nexus-composer-card-v2,
+[data-theme="dark"] .af-nexus-comments-card-v2,
+[data-theme="dark"] .af-nexus-reply-card-v2,
+[data-theme="dark"] .af-nexus-menu-card-v2 {
+  background: linear-gradient(145deg, rgba(15,23,42,0.98), rgba(30,41,59,0.94)) !important;
+  border-color: rgba(148,163,184,0.18) !important;
+}
+
+[data-theme="dark"] .af-nexus-controls-v2,
+[data-theme="dark"] .af-nexus-menu-btn-v2,
+[data-theme="dark"] .af-nexus-modal-head-v2 button,
+[data-theme="dark"] .af-nexus-action-btn-v2,
+[data-theme="dark"] .af-nexus-menu-card-v2 button {
+  background: rgba(30,41,59,0.92) !important;
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .af-nexus-filter-btn-v2 { color: #94a3b8 !important; }
+
+[data-theme="dark"] .af-nexus-filter-btn-v2.active {
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #1e293b, #475569) !important;
+}
+
+[data-theme="dark"] .af-nexus-refresh-btn-v2 {
+  background: linear-gradient(135deg, rgba(30,41,59,0.96), rgba(15,23,42,0.94)) !important;
+  color: #e2e8f0 !important;
+  border-color: rgba(148,163,184,0.2) !important;
+}
+
+[data-theme="dark"] .af-nexus-post-text-v2,
+[data-theme="dark"] .af-nexus-comment-text-v2 {
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] #afNexusPostInputV2,
+[data-theme="dark"] #afNexusCommentInputV2,
+[data-theme="dark"] #afNexusReplyInputV2 {
+  background: rgba(15,23,42,0.96) !important;
+  color: #f8fafc !important;
+  border-color: rgba(148,163,184,0.22) !important;
+}
+
+[data-theme="dark"] .af-nexus-comment-card-v2 {
+  background: rgba(30,41,59,0.78) !important;
+  border-color: rgba(148,163,184,0.16) !important;
+}
+
+[data-theme="dark"] .af-nexus-loading-v2,
+[data-theme="dark"] .af-nexus-empty-v2 {
+  background: rgba(15,23,42,0.7) !important;
+  border-color: rgba(148,163,184,0.24) !important;
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .af-nexus-locked-card-v2 {
+  background: linear-gradient(145deg, rgba(127,29,29,0.25), rgba(15,23,42,0.95)) !important;
+  border-color: rgba(239,68,68,0.30) !important;
+}
+
+[data-theme="dark"] .af-nexus-locked-card-v2 h2 { color: #fecaca !important; }
+[data-theme="dark"] .af-nexus-locked-card-v2 p { color: #fca5a5 !important; }
+
+[data-theme="dark"] #afNexusDeleteActionBtnV2 {
+  color: #fca5a5 !important;
+  background: rgba(239,68,68,0.18) !important;
+}
+
+[data-theme="dark"] .af-nexus-word-warning-v2 {
+  color: #fca5a5 !important;
+  background: rgba(239,68,68,0.16) !important;
+  border-color: rgba(239,68,68,0.30) !important;
+}
+
   </style>
 </head>
 
