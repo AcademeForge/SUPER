@@ -2072,16 +2072,35 @@
   }
 
   /* ── SPLASH ── */
-  function afHideSplash() {
-    const splash = document.getElementById('afSplash');
-    if (!splash) return;
-    if (sessionStorage.getItem('af_splash_shown')) { splash.remove(); return; }
-    sessionStorage.setItem('af_splash_shown', '1');
-    setTimeout(() => {
-      splash.classList.add('hidden');
-      setTimeout(() => { if (splash.parentNode) splash.parentNode.removeChild(splash); }, 400);
-    }, 1200);
+function afHideSplash() {
+
+  const splash =
+    document.getElementById("afSplash");
+
+  if (!splash) return;
+
+  if (sessionStorage.getItem("af_splash_shown")) {
+    splash.remove();
+    return;
   }
+
+  sessionStorage.setItem(
+    "af_splash_shown",
+    "1"
+  );
+
+  setTimeout(function () {
+
+    splash.style.opacity = "0";
+    splash.style.pointerEvents = "none";
+
+    setTimeout(function () {
+      splash.remove();
+    }, 400);
+
+  }, 1200);
+
+}
 
   /* ── VIEW SWITCHING ── */
   const AF_VIEWS = {
