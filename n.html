@@ -1812,7 +1812,7 @@
   </div>
 
   <!-- LEARNING HEATMAP OVERLAY -->
-  <div class="af-modal-overlay" id="learningHeatmapOverlay" onclick="document.getElementById('learningHeatmapOverlay').classList.remove('open')">
+  <div class="af-modal-overlay" id="learningHeatmapOverlay" onclick="afCloseOverlay('learningHeatmapOverlay')"
     <div class="af-modal-sheet" onclick="event.stopPropagation()" role="dialog" aria-modal="true" style="text-align:left;align-items:stretch;padding:24px;">
       <div class="af-modal-drag" style="align-self:center;"></div>
       <div class="learning-heatmap-page" style="padding:0;gap:16px;">
@@ -1844,13 +1844,13 @@
             <li>If a day is missed, the streak starts again from zero.</li>
           </ul>
         </div>
-        <button class="af-modal-ok" onclick="document.getElementById('learningHeatmapOverlay').classList.remove('open')" type="button" style="max-width:100%;margin:0;">Close</button>
+        <button class="af-modal-ok" onclick="afCloseOverlay('learningHeatmapOverlay')" type="button" style="max-width:100%;margin:0;">Close</button>
       </div>
     </div>
   </div>
 
   <!-- CONTACT US OVERLAY -->
-  <div class="af-modal-overlay" id="contactUsOverlay" onclick="document.getElementById('contactUsOverlay').classList.remove('open')">
+  <div class="af-modal-overlay" id="contactUsOverlay" onclick="afCloseOverlay('contactUsOverlay')">
     <div class="af-modal-sheet" onclick="event.stopPropagation()" role="dialog" aria-modal="true" style="text-align:left;align-items:stretch;padding:0;max-height:90vh;overflow-y:auto;">
       <div style="padding:24px 24px 0;">
         <div class="af-modal-drag" style="align-self:center;width:36px;margin:0 auto 16px;"></div>
@@ -1888,7 +1888,7 @@
   </div>
 
   <!-- CONTACT STATUS OVERLAY -->
-  <div class="af-modal-overlay" id="contactStatusOverlay" onclick="document.getElementById('contactStatusOverlay').classList.remove('open')">
+  <div class="af-modal-overlay" id="contactStatusOverlay" onclick="afCloseOverlay('contactStatusOverlay')">
     <div class="af-modal-sheet" onclick="event.stopPropagation()" role="dialog" aria-modal="true" style="text-align:left;align-items:stretch;padding:24px;max-height:90vh;overflow-y:auto;">
       <div class="af-modal-drag" style="align-self:center;"></div>
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
@@ -1897,12 +1897,12 @@
       </div>
       <div id="contactRequestStatusMessageAf" class="request-status-message-af">Loading...</div>
       <div id="contactRequestStatusListAf" class="request-status-list-af"></div>
-      <button class="af-modal-ok" onclick="document.getElementById('contactStatusOverlay').classList.remove('open')" type="button" style="max-width:100%;margin-top:16px;">Close</button>
+      <button class="af-modal-ok" onclick="afCloseOverlay('contactStatusOverlay')" type="button" style="max-width:100%;margin-top:16px;">Close</button>
     </div>
   </div>
 
   <!-- BUG STATUS OVERLAY -->
-  <div class="af-modal-overlay" id="bugStatusOverlay" onclick="document.getElementById('bugStatusOverlay').classList.remove('open')">
+  <div class="af-modal-overlay" id="bugStatusOverlay" onclick="afCloseOverlay('bugStatusOverlay')">
     <div class="af-modal-sheet" onclick="event.stopPropagation()" role="dialog" aria-modal="true" style="text-align:left;align-items:stretch;padding:24px;max-height:90vh;overflow-y:auto;">
       <div class="af-modal-drag" style="align-self:center;"></div>
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
@@ -1911,7 +1911,7 @@
       </div>
       <div id="requestStatusMessageAf" class="request-status-message-af">Loading...</div>
       <div id="requestStatusListAf" class="request-status-list-af"></div>
-      <button class="af-modal-ok" onclick="document.getElementById('bugStatusOverlay').classList.remove('open')" type="button" style="max-width:100%;margin-top:16px;">Close</button>
+      <button class="af-modal-ok" onclick="afCloseOverlay('bugStatusOverlay')" type="button" style="max-width:100%;margin-top:16px;">Close</button>
     </div>
   </div>
 
@@ -2131,27 +2131,65 @@ function afHideSplash() {
   /* legacy showSection — kept for any old references */
   function showSection(id) { /* no-op: section system replaced by overlay modals */ }
 
-  /* ── SECTION-BASED HELPERS (now open overlays) ── */
-  function _showLearningHeatmap() {
-    loadLearningHeatmap();
-    document.getElementById('learningHeatmapOverlay').classList.add('open');
-  }
-  function openContactUsPage() {
-    document.getElementById('contactUsOverlay').classList.add('open');
-  }
-  function backToSettingsFromContact() {
-    document.getElementById('contactUsOverlay').classList.remove('open');
-  }
-  function openContactRequestStatusPageAf() {
-    loadContactRequestStatusAf(false);
-    document.getElementById('contactStatusOverlay').classList.add('open');
-  }
-  function openRequestStatusPageAf() {
-    loadRequestStatusAf(false);
-    document.getElementById('bugStatusOverlay').classList.add('open');
-  }
-  function openStudentDashboardCardAf() { afSwitchView('student'); }
+ /* ── SECTION-BASED HELPERS (now open overlays) ── */
+function _showLearningHeatmap() {
+  loadLearningHeatmap();
+  afOpenOverlay('learningHeatmapOverlay');
+}
 
+function openContactUsPage() {
+  afOpenOverlay('contactUsOverlay');
+}
+
+function backToSettingsFromContact() {
+  afCloseOverlay('contactUsOverlay');
+}
+
+function openContactRequestStatusPageAf() {
+  loadContactRequestStatusAf(false);
+  afOpenOverlay('contactStatusOverlay');
+}
+
+function openRequestStatusPageAf() {
+  loadRequestStatusAf(false);
+  afOpenOverlay('bugStatusOverlay');
+}
+
+function openStudentDashboardCardAf() {
+  afSwitchView('student');
+}
+
+    /* ── OVERLAY HELPERS ── */
+
+function afOpenOverlay(id) {
+
+  const nav = document.querySelector('.af-bottom-nav');
+
+  if (nav) {
+    nav.style.display = 'none';
+  }
+
+  const overlay = document.getElementById(id);
+
+  if (overlay) {
+    overlay.classList.add('open');
+  }
+}
+
+function afCloseOverlay(id) {
+
+  const overlay = document.getElementById(id);
+
+  if (overlay) {
+    overlay.classList.remove('open');
+  }
+
+  const nav = document.querySelector('.af-bottom-nav');
+
+  if (nav) {
+    nav.style.display = '';
+  }
+}
   /* ── SWIPE NAV ── */
   const AF_VIEW_ORDER = ['home','student','batches','community','settings'];
   let afTouchStartX = 0, afTouchStartY = 0, afTouchStartTime = 0;
