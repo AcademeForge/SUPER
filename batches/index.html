@@ -3,505 +3,739 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Task Management Showcase</title>
+<title>Timezy - Task Management</title>
 
 <style>
+:root{
+    --primary:#0d5c2b;
+    --primary-light:#eaf4ec;
+    --bg:#f7f8f5;
+    --card:#ffffff;
+    --text:#1a1a1a;
+    --muted:#777;
+    --danger:#ff4d4f;
+}
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family: Inter, Arial, sans-serif;
+    font-family:Inter,Arial,sans-serif;
 }
 
 body{
-    background:#f8f8f6;
+    background:var(--bg);
+    color:var(--text);
+}
+
+.hidden{
+    display:none!important;
+}
+
+button{
+    cursor:pointer;
+    border:none;
+}
+
+input,textarea,select{
+    width:100%;
+    border:none;
+    outline:none;
+    background:#fff;
+    padding:14px;
+    border-radius:12px;
+}
+
+#onboarding{
     min-height:100vh;
-    color:#111;
-    overflow-x:hidden;
-}
-
-.container{
-    max-width:1400px;
-    margin:auto;
-    padding:40px 30px 80px;
-}
-
-.top-label{
-    color:#666;
-    font-size:24px;
-    margin-bottom:40px;
-}
-
-.slide-indicator{
-    position:absolute;
-    top:30px;
-    right:40px;
-    background:#333;
-    color:white;
-    padding:12px 22px;
-    border-radius:40px;
-    font-size:32px;
-    font-weight:600;
-}
-
-.hero{
-    text-align:center;
-}
-
-.hero h1{
-    font-size:110px;
-    font-weight:800;
-    line-height:1;
-    margin-bottom:25px;
-}
-
-.hero p{
-    font-size:28px;
-    color:#6f6f6f;
-    max-width:850px;
-    margin:auto;
-    line-height:1.3;
-}
-
-.category{
-    margin-top:35px;
-    color:#1f7a3f;
-    font-weight:700;
-    font-size:32px;
-}
-
-.category::after{
-    content:"";
-    display:block;
-    width:180px;
-    height:5px;
-    background:#3b9b57;
-    border-radius:10px;
-    margin:15px auto 0;
-}
-
-.phone-section{
-    margin-top:70px;
-    display:flex;
-    justify-content:center;
-    align-items:flex-end;
-    gap:40px;
-    flex-wrap:wrap;
-}
-
-.phone{
-    width:280px;
-    height:560px;
-    background:#eef2eb;
-    border-radius:38px;
-    border:10px solid white;
-    box-shadow:0 15px 35px rgba(0,0,0,.08);
-    overflow:hidden;
-    padding:22px;
-}
-
-.status{
-    font-size:12px;
-    color:#555;
-    margin-bottom:15px;
-}
-
-.phone1{
-    display:flex;
-    flex-direction:column;
-}
-
-.logo{
-    font-size:44px;
-    font-weight:800;
-    text-align:center;
-    margin-top:10px;
-}
-
-.illustration{
-    flex:1;
     display:flex;
     justify-content:center;
     align-items:center;
+    padding:30px;
 }
 
-.avatar{
-    width:180px;
-    height:180px;
-    border-radius:50%;
-    background:white;
-    border:4px solid #d8d8d8;
-    position:relative;
-}
-
-.avatar::before{
-    content:"";
-    position:absolute;
-    width:80px;
-    height:80px;
-    background:#664c43;
-    border-radius:50%;
-    top:25px;
-    left:50px;
-}
-
-.avatar::after{
-    content:"";
-    position:absolute;
-    width:110px;
-    height:70px;
-    background:#ffffff;
-    bottom:20px;
-    left:35px;
-    border-radius:20px;
-}
-
-.phone-title{
-    font-size:20px;
-    font-weight:700;
-    margin-bottom:10px;
-}
-
-.phone-text{
-    color:#666;
-    font-size:13px;
-    line-height:1.5;
-}
-
-.btn{
-    margin-top:25px;
-    background:#0f5c21;
-    color:white;
+.onboard-card{
+    width:100%;
+    max-width:450px;
     text-align:center;
+}
+
+.logo{
+    font-size:48px;
+    font-weight:800;
+    margin-bottom:20px;
+}
+
+.illustration{
+    width:220px;
+    height:220px;
+    margin:auto;
+    border-radius:50%;
+    background:var(--primary-light);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:90px;
+}
+
+.onboard-card h1{
+    margin-top:20px;
+    font-size:32px;
+}
+
+.onboard-card p{
+    margin-top:10px;
+    color:var(--muted);
+}
+
+.onboard-card input{
+    margin-top:20px;
+}
+
+.primary-btn{
+    width:100%;
+    background:var(--primary);
+    color:#fff;
     padding:14px;
-    border-radius:50px;
+    border-radius:14px;
+    margin-top:15px;
     font-weight:600;
 }
 
+.app{
+    max-width:1000px;
+    margin:auto;
+    padding:20px;
+}
+
+.header{
+    background:var(--card);
+    padding:20px;
+    border-radius:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
 .greeting{
+    color:#666;
     font-size:14px;
-    color:#777;
 }
 
-.name{
+.username{
+    font-size:28px;
     font-weight:700;
-    margin-bottom:20px;
 }
 
-.task-card{
-    background:white;
-    padding:15px;
-    border-radius:18px;
-    margin-bottom:20px;
-}
-
-.task-card h4{
-    font-size:14px;
+.edit-btn{
+    background:#eee;
+    padding:10px 15px;
+    border-radius:12px;
 }
 
 .stats{
     display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:15px;
     margin-bottom:20px;
 }
 
 .stat{
     background:white;
-    border-radius:16px;
-    padding:15px;
-    text-align:center;
-}
-
-.stat .num{
-    font-size:28px;
-    font-weight:700;
-    margin-top:10px;
-}
-
-.activity{
-    background:white;
+    padding:20px;
     border-radius:18px;
-    padding:15px;
 }
 
-.bars{
-    display:flex;
-    align-items:flex-end;
-    justify-content:space-between;
-    height:150px;
-    margin-top:20px;
-}
-
-.bar{
-    width:22px;
-    background:#dfe5dd;
-    border-radius:20px;
-}
-
-.bar.active{
-    background:#0f5c21;
-}
-
-.phone3 h2{
-    font-size:20px;
-    margin-bottom:25px;
-}
-
-.calendar{
-    display:flex;
-    justify-content:space-between;
-    margin-bottom:25px;
+.stat h3{
     color:#666;
-    font-size:13px;
-}
-
-.calendar .active-day{
-    width:32px;
-    height:32px;
-    background:#0f5c21;
-    color:white;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.schedule{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-}
-
-.event{
-    background:white;
-    border-radius:16px;
-    padding:14px;
     font-size:14px;
 }
 
-.event strong{
-    display:block;
-    margin-bottom:4px;
+.stat .num{
+    font-size:32px;
+    font-weight:700;
+    margin-top:8px;
 }
 
-.footer{
-    margin-top:60px;
+.progress-card{
+    background:white;
+    padding:20px;
+    border-radius:18px;
+    margin-bottom:20px;
+}
+
+.progress-bar{
+    width:100%;
+    height:12px;
+    background:#e5e5e5;
+    border-radius:30px;
+    overflow:hidden;
+    margin-top:10px;
+}
+
+.progress-fill{
+    height:100%;
+    width:0%;
+    background:var(--primary);
+}
+
+.form{
+    background:white;
+    padding:20px;
+    border-radius:18px;
+    margin-bottom:20px;
+}
+
+.form-grid{
+    display:grid;
+    gap:10px;
+}
+
+.task-toolbar{
+    display:flex;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.task-toolbar input{
+    flex:1;
+}
+
+.filter-btn{
+    padding:12px 18px;
+    background:white;
+    border-radius:12px;
+}
+
+.active-filter{
+    background:var(--primary);
+    color:white;
+}
+
+.task-list{
+    display:grid;
+    gap:12px;
+}
+
+.task{
+    background:white;
+    border-radius:18px;
+    padding:16px;
+}
+
+.task-top{
     display:flex;
     justify-content:space-between;
-    align-items:center;
+    gap:10px;
 }
 
-.author{
-    display:flex;
-    align-items:center;
-    gap:14px;
-}
-
-.author img{
-    width:60px;
-    height:60px;
-    border-radius:50%;
-}
-
-.handle{
-    font-size:30px;
+.task-title{
+    font-size:18px;
     font-weight:700;
 }
 
-.desc{
+.completed .task-title{
+    text-decoration:line-through;
+    opacity:.6;
+}
+
+.task-desc{
     color:#666;
-    font-size:22px;
+    margin-top:6px;
 }
 
-.center-name{
-    font-size:28px;
-    text-decoration:underline;
+.badge{
+    display:inline-block;
+    margin-top:10px;
+    padding:6px 10px;
+    border-radius:30px;
+    font-size:12px;
+}
+
+.high{
+    background:#ffe2e2;
+    color:#c62828;
+}
+
+.medium{
+    background:#fff1d6;
+    color:#b26a00;
+}
+
+.low{
+    background:#e5f7ea;
+    color:#157a35;
+}
+
+.task-actions{
+    display:flex;
+    gap:8px;
+    margin-top:12px;
+}
+
+.small-btn{
+    padding:8px 12px;
+    border-radius:10px;
+}
+
+.complete{
+    background:#dff5e6;
+}
+
+.edit{
+    background:#ececec;
+}
+
+.delete{
+    background:#ffe3e3;
+    color:#c00;
+}
+
+.empty{
+    text-align:center;
     color:#666;
+    padding:40px;
 }
 
-.swipe{
-    text-align:right;
-    font-size:42px;
-    color:#444;
-}
-
-.arrow{
-    font-size:60px;
-}
-
-@media(max-width:1100px){
-
-    .hero h1{
-        font-size:70px;
-    }
-
-    .hero p{
-        font-size:22px;
-    }
-
-    .footer{
+@media(max-width:600px){
+    .header{
         flex-direction:column;
-        gap:30px;
-        text-align:center;
+        align-items:flex-start;
+        gap:10px;
+    }
+
+    .task-toolbar{
+        flex-wrap:wrap;
     }
 }
 </style>
 </head>
 <body>
 
-<div class="container">
+<!-- ONBOARDING -->
 
-    <div class="slide-indicator">4/6</div>
+<div id="onboarding">
+    <div class="onboard-card">
+        <div class="logo">Timezy</div>
 
-    <div class="top-label">App Ideas</div>
+        <div class="illustration">👩🏻‍💻</div>
 
-    <section class="hero">
         <h1>Task Management</h1>
 
         <p>
-            Manage tasks, set priorities, track progress,
-            and stay organized every day.
+            Manage tasks, set priorities,
+            track progress and stay organized.
         </p>
 
-        <div class="category">Productivity</div>
-    </section>
+        <input
+            id="nameInput"
+            placeholder="Enter your name"
+        >
 
-    <section class="phone-section">
+        <button class="primary-btn" id="startBtn">
+            Let's Go
+        </button>
+    </div>
+</div>
 
-        <!-- Phone 1 -->
-        <div class="phone phone1">
-            <div class="status">9:41</div>
+<!-- APP -->
 
-            <div class="logo">Timezy</div>
+<div id="app" class="app hidden">
 
-            <div class="illustration">
-                <div class="avatar"></div>
-            </div>
-
-            <div class="phone-title">
-                Schedule Smarter,<br>
-                Work Better
-            </div>
-
-            <div class="phone-text">
-                Manage and handle your project schedules
-                in a convenient way.
-            </div>
-
-            <div class="btn">Let's Go</div>
+    <div class="header">
+        <div>
+            <div class="greeting" id="greeting"></div>
+            <div class="username" id="username"></div>
         </div>
 
-        <!-- Phone 2 -->
-        <div class="phone">
-            <div class="status">9:41</div>
-
-            <div class="greeting">Good Morning</div>
-            <div class="name">Zevanya Casey</div>
-
-            <div class="task-card">
-                <h4>Create New Task</h4>
-            </div>
-
-            <div class="stats">
-                <div class="stat">
-                    <div>Project</div>
-                    <div class="num">150</div>
-                </div>
-
-                <div class="stat">
-                    <div>Client</div>
-                    <div class="num">75</div>
-                </div>
-
-                <div class="stat">
-                    <div>Ongoing</div>
-                    <div class="num">50</div>
-                </div>
-
-                <div class="stat">
-                    <div>Done</div>
-                    <div class="num">100</div>
-                </div>
-            </div>
-
-            <div class="activity">
-                <strong>Activity</strong>
-
-                <div class="bars">
-                    <div class="bar" style="height:60px"></div>
-                    <div class="bar" style="height:80px"></div>
-                    <div class="bar" style="height:70px"></div>
-                    <div class="bar" style="height:90px"></div>
-                    <div class="bar active" style="height:130px"></div>
-                    <div class="bar active" style="height:150px"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Phone 3 -->
-        <div class="phone phone3">
-            <div class="status">9:41</div>
-
-            <h2>Your Daily Planner, Calender.</h2>
-
-            <div class="calendar">
-                <span>Sun</span>
-                <span>Mon</span>
-                <span>Tue</span>
-                <div class="active-day">18</div>
-                <span>Thu</span>
-                <span>Fri</span>
-                <span>Sat</span>
-            </div>
-
-            <div class="schedule">
-                <div class="event">
-                    <strong>Floyd Miles</strong>
-                    8:00 - 8:15 AM
-                </div>
-
-                <div class="event">
-                    <strong>Logan Anderson</strong>
-                    8:15 - 8:30 AM
-                </div>
-
-                <div class="event">
-                    <strong>Meeting Client</strong>
-                    9:00 - 10:00 AM
-                </div>
-
-                <div class="event">
-                    <strong>Daily Meeting</strong>
-                    10:00 - 11:00 AM
-                </div>
-            </div>
-        </div>
-
-    </section>
-
-    <div class="footer">
-
-        <div class="author">
-            <img src="https://i.pravatar.cc/150?img=12" alt="">
-            <div>
-                <div class="handle">@rifqieh</div>
-                <div class="desc">Build web and mobile apps</div>
-            </div>
-        </div>
-
-        <div class="center-name">
-            Abu Hossain
-        </div>
-
-        <div class="swipe">
-            Swipe
-            <div class="arrow">→</div>
-        </div>
-
+        <button class="edit-btn" id="editName">
+            ✏ Edit Name
+        </button>
     </div>
 
+    <div class="stats">
+        <div class="stat">
+            <h3>Total Tasks</h3>
+            <div class="num" id="totalCount">0</div>
+        </div>
+
+        <div class="stat">
+            <h3>Completed</h3>
+            <div class="num" id="completedCount">0</div>
+        </div>
+
+        <div class="stat">
+            <h3>Pending</h3>
+            <div class="num" id="pendingCount">0</div>
+        </div>
+    </div>
+
+    <div class="progress-card">
+        <strong>Progress</strong>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+    </div>
+
+    <div class="form">
+        <div class="form-grid">
+            <input id="taskTitle" placeholder="Task title">
+
+            <textarea
+                id="taskDesc"
+                rows="3"
+                placeholder="Task description"
+            ></textarea>
+
+            <select id="taskPriority">
+                <option value="high">High Priority</option>
+                <option value="medium">Medium Priority</option>
+                <option value="low">Low Priority</option>
+            </select>
+
+            <button class="primary-btn" id="addTask">
+                Add Task
+            </button>
+        </div>
+    </div>
+
+    <div class="task-toolbar">
+        <input id="search" placeholder="Search task...">
+
+        <button class="filter-btn active-filter" data-filter="all">
+            All
+        </button>
+
+        <button class="filter-btn" data-filter="active">
+            Active
+        </button>
+
+        <button class="filter-btn" data-filter="completed">
+            Completed
+        </button>
+    </div>
+
+    <div id="taskList" class="task-list"></div>
+
 </div>
+
+<script>
+
+const onboarding = document.getElementById("onboarding");
+const app = document.getElementById("app");
+
+let tasks = JSON.parse(localStorage.getItem("timezy_tasks")) || [];
+let currentFilter = "all";
+
+function saveTasks(){
+    localStorage.setItem(
+        "timezy_tasks",
+        JSON.stringify(tasks)
+    );
+}
+
+function getGreeting(){
+
+    const h = new Date().getHours();
+
+    if(h < 12) return "☀️ Good Morning";
+    if(h < 17) return "🌤 Good Afternoon";
+    if(h < 21) return "🌙 Good Evening";
+
+    return "🌌 Good Night";
+}
+
+function updateHeader(){
+    document.getElementById("greeting").textContent =
+        getGreeting();
+
+    document.getElementById("username").textContent =
+        localStorage.getItem("timezy_user") || "User";
+}
+
+function updateStats(){
+
+    const total = tasks.length;
+    const completed = tasks.filter(t=>t.completed).length;
+    const pending = total - completed;
+
+    document.getElementById("totalCount").textContent = total;
+    document.getElementById("completedCount").textContent = completed;
+    document.getElementById("pendingCount").textContent = pending;
+
+    const progress =
+        total === 0
+        ? 0
+        : Math.round((completed/total)*100);
+
+    document.getElementById("progressFill").style.width =
+        progress + "%";
+}
+
+function renderTasks(){
+
+    const list =
+        document.getElementById("taskList");
+
+    const search =
+        document.getElementById("search")
+        .value
+        .toLowerCase();
+
+    let filtered = tasks.filter(task=>{
+
+        const matchSearch =
+            task.title.toLowerCase().includes(search) ||
+            task.description.toLowerCase().includes(search);
+
+        if(!matchSearch) return false;
+
+        if(currentFilter==="active")
+            return !task.completed;
+
+        if(currentFilter==="completed")
+            return task.completed;
+
+        return true;
+    });
+
+    if(filtered.length===0){
+        list.innerHTML =
+        `<div class="empty">
+            No tasks found
+        </div>`;
+        return;
+    }
+
+    list.innerHTML = filtered.map(task=>`
+        <div class="task ${task.completed ? 'completed':''}">
+            <div class="task-top">
+
+                <div>
+                    <div class="task-title">
+                        ${task.title}
+                    </div>
+
+                    <div class="task-desc">
+                        ${task.description}
+                    </div>
+
+                    <div class="badge ${task.priority}">
+                        ${task.priority.toUpperCase()}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="task-actions">
+
+                <button
+                    class="small-btn complete"
+                    onclick="toggleTask(${task.id})"
+                >
+                    ${task.completed ? 'Undo' : 'Complete'}
+                </button>
+
+                <button
+                    class="small-btn edit"
+                    onclick="editTask(${task.id})"
+                >
+                    Edit
+                </button>
+
+                <button
+                    class="small-btn delete"
+                    onclick="deleteTask(${task.id})"
+                >
+                    Delete
+                </button>
+
+            </div>
+        </div>
+    `).join("");
+
+    updateStats();
+}
+
+function toggleTask(id){
+
+    tasks = tasks.map(task=>{
+        if(task.id===id){
+            task.completed = !task.completed;
+        }
+        return task;
+    });
+
+    saveTasks();
+    renderTasks();
+}
+
+function deleteTask(id){
+
+    if(!confirm("Delete task?")) return;
+
+    tasks = tasks.filter(task=>task.id!==id);
+
+    saveTasks();
+    renderTasks();
+}
+
+function editTask(id){
+
+    const task =
+        tasks.find(t=>t.id===id);
+
+    const title =
+        prompt("Task title", task.title);
+
+    if(title===null) return;
+
+    const description =
+        prompt(
+            "Description",
+            task.description
+        );
+
+    if(description===null) return;
+
+    task.title = title;
+    task.description = description;
+
+    saveTasks();
+    renderTasks();
+}
+
+document
+.getElementById("addTask")
+.onclick = ()=>{
+
+    const title =
+        document.getElementById("taskTitle")
+        .value.trim();
+
+    const desc =
+        document.getElementById("taskDesc")
+        .value.trim();
+
+    const priority =
+        document.getElementById("taskPriority")
+        .value;
+
+    if(!title){
+        alert("Enter task title");
+        return;
+    }
+
+    tasks.unshift({
+        id:Date.now(),
+        title,
+        description:desc,
+        priority,
+        completed:false,
+        createdAt:new Date().toISOString()
+    });
+
+    saveTasks();
+
+    document.getElementById("taskTitle").value="";
+    document.getElementById("taskDesc").value="";
+
+    renderTasks();
+};
+
+document
+.getElementById("search")
+.addEventListener(
+    "input",
+    renderTasks
+);
+
+document
+.querySelectorAll("[data-filter]")
+.forEach(btn=>{
+
+    btn.onclick = ()=>{
+
+        document
+        .querySelectorAll("[data-filter]")
+        .forEach(b=>
+            b.classList.remove("active-filter")
+        );
+
+        btn.classList.add("active-filter");
+
+        currentFilter =
+            btn.dataset.filter;
+
+        renderTasks();
+    };
+});
+
+document
+.getElementById("editName")
+.onclick = ()=>{
+
+    const name =
+        prompt(
+            "Enter your name",
+            localStorage.getItem("timezy_user")
+        );
+
+    if(!name) return;
+
+    localStorage.setItem(
+        "timezy_user",
+        name
+    );
+
+    updateHeader();
+};
+
+document
+.getElementById("startBtn")
+.onclick = ()=>{
+
+    const name =
+        document
+        .getElementById("nameInput")
+        .value
+        .trim();
+
+    if(!name){
+        alert("Enter your name");
+        return;
+    }
+
+    localStorage.setItem(
+        "timezy_user",
+        name
+    );
+
+    localStorage.setItem(
+        "timezy_onboarding",
+        "true"
+    );
+
+    showApp();
+};
+
+function showApp(){
+
+    onboarding.classList.add("hidden");
+    app.classList.remove("hidden");
+
+    updateHeader();
+    renderTasks();
+}
+
+if(
+    localStorage.getItem("timezy_onboarding")
+){
+    showApp();
+}
+
+</script>
 
 </body>
 </html>
